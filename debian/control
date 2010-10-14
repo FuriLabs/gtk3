@@ -33,7 +33,14 @@ Build-Depends: debhelper (>= 7.0.50~),
                quilt,
                gawk,
                xsltproc,
-               shared-mime-info
+               shared-mime-info,
+               gobject-introspection,
+               gir1.0-freedesktop,
+               libgirepository1.0-dev,
+               gir1.0-glib-2.0,
+               gir1.0-atk-1.0,
+               gir1.0-pango-1.0,
+               gir1.0-gdkpixbuf-2.0
 Build-Depends-Indep: gtk-doc-tools (>= 1.8),
                      docbook-xml,
                      docbook-utils,
@@ -42,8 +49,7 @@ Build-Depends-Indep: gtk-doc-tools (>= 1.8),
                      libpango1.0-doc,
                      libcairo2-doc
 Standards-Version: 3.9.1
-Vcs-Svn: svn://svn.debian.org/pkg-gnome/desktop/unstable/gtk+3.0/
-Vcs-Browser: http://svn.debian.org/wsvn/pkg-gnome/desktop/unstable/gtk+3.0/
+Vcs-Bzr: https://code.launchpad.net/~ubuntu-desktop/gtk/ubuntu
 Homepage: http://www.gtk.org/
 
 Package: libgtk3.0-0
@@ -211,6 +217,23 @@ Description: Pixbuf-based theme for GTK+ 3.x
  suites.
  .
  This package contains the pixbuf theme engine.
+
+
+#Package: gir1.0-gtk-3.0
+#Architecture: any
+#Depends: libgtk3.0-common,
+#         ${misc:Depends},
+#         ${shlibs:Depends},
+#         ${gir:Depends}
+#Conflicts: gobject-introspection-repository
+#Description: The GTK+ graphical user interface library
+# The GTK+ is a multi-platform toolkit for creating graphical user
+# interfaces. Offering a complete set of widgets, the GTK+ is suitable
+# for projects ranging from small one-off tools to complete application
+# suites.
+# .
+# This package can be used by other packages using the GIRepository format to
+# generate dynamic bindings.
 
 Package: libgail3.0-0
 Architecture: any
