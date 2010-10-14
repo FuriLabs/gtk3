@@ -1,3 +1,31 @@
+gtk+3.0 (2.91.0-1~build2) maverick; urgency=low
+
+  * Review ubuntu patches
+  * debian/control:
+    - set ubuntu vcs
+    - updated the binaries list and build depends for the gir
+  * debian/libgtk2.0-0.symbols:
+    - updated for the ubuntu defined symbols
+  * debian/gir1.0-gtk-3.0.install.in, debian/libgtk3.0-dev.install.in:
+    - updated for the gir build
+  * debian/patches/043_ubuntu_menu_proxy.patch:
+    - updated version of the ubuntu menu proxy patch, thanks Cody Russell
+  * debian/patches/071_no_offscreen_widgets_grabbing.patch:
+    - change by Cody Russell to not let offscreen widgets do grabbing
+  * debian/patches/072_indicator_menu_update.patch:
+    - extra signals required for the indicator updates
+  * debian/patches/073_treeview_almost_fixed.patch:
+    - "ubuntu-almost-fixed-height" private property to speed-up software-center
+  * debian/patches/091_bugzilla_tooltip_refresh.patch:
+    - updated version from the fedora git
+  * debian/rules:
+    - build the gir
+  * debian/patches/062_ubuntu-set-grab-add.patch:
+    - commented for now since it needs to be updated
+  * Don't use gir yet to workaround build issues
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 12 Oct 2010 12:13:42 +0200
+
 gtk+3.0 (2.91.0-1~build1) maverick; urgency=low
 
   * Upload the debian experimental stock version to a ppa for testing,
