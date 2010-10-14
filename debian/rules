@@ -83,7 +83,7 @@ ALL_PKGS := $(BINARY_INDEP_PKGS) $(BINARY_ARCH_PKGS)
 # list of flavors we build; each gets a builddir, a configure pass (configure
 # args are defined below), a build pass, and an install pass (in two steps)
 # Note: the shared flavor is required
-FLAVORS := shared shared_udeb static
+FLAVORS := shared shared_udeb
 
 # current flavor we're building; this is only expanded in flavor specific
 # targets
@@ -158,11 +158,6 @@ DH_INSTALLDOCS_FILES := NEWS README ChangeLog
 # macro computing the list of 'debian/<pkg>.*" files which have a corresponding
 # ".in" file; pass the list of packages in $(1)
 dh_subst_files = $(patsubst %.in,%,$(wildcard $(addprefix debian/, $(addsuffix *.in, $(1)))))
-
-# Gruik gruik generation of .devhelp files for the FAQ and tutorial
-debian/gtk3-%.devhelp: docs/%/html/index.html
-	gawk -f debian/gruik2devhelp.awk -v name=gtk3-$* $< > $@
-devhelpfiles: debian/gtk3-faq.devhelp debian/gtk3-tutorial.devhelp
 
 patch: $(STAMP_DIR)/patch-stamp
 
