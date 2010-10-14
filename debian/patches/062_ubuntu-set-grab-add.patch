@@ -1,6 +1,7 @@
-diff -Nur gtk+3.0-2.91.0/gtk/gtk.symbols gtk+3.0-2.91.0.ubuntu/gtk/gtk.symbols
---- gtk+3.0-2.91.0/gtk/gtk.symbols	2010-10-13 11:22:12.000000000 +0200
-+++ gtk+3.0-2.91.0.ubuntu/gtk/gtk.symbols	2010-10-13 11:23:54.000000000 +0200
+Index: gtk+3.0-2.91.0/gtk/gtk.symbols
+===================================================================
+--- gtk+3.0-2.91.0.orig/gtk/gtk.symbols	2010-10-13 16:57:36.628125241 +0200
++++ gtk+3.0-2.91.0/gtk/gtk.symbols	2010-10-13 16:57:36.756125241 +0200
 @@ -4366,6 +4366,7 @@
  gtk_widget_get_preferred_size
  gtk_widget_get_preferred_width
@@ -9,10 +10,11 @@ diff -Nur gtk+3.0-2.91.0/gtk/gtk.symbols gtk+3.0-2.91.0.ubuntu/gtk/gtk.symbols
  #endif
  #endif
  
-diff -Nur gtk+3.0-2.91.0/gtk/gtkwidget.c gtk+3.0-2.91.0.ubuntu/gtk/gtkwidget.c
---- gtk+3.0-2.91.0/gtk/gtkwidget.c	2010-10-13 11:22:12.000000000 +0200
-+++ gtk+3.0-2.91.0.ubuntu/gtk/gtkwidget.c	2010-10-13 11:26:40.000000000 +0200
-@@ -12519,3 +12519,14 @@
+Index: gtk+3.0-2.91.0/gtk/gtkwidget.c
+===================================================================
+--- gtk+3.0-2.91.0.orig/gtk/gtkwidget.c	2010-10-01 03:30:41.000000000 +0200
++++ gtk+3.0-2.91.0/gtk/gtkwidget.c	2010-10-13 16:57:55.000000000 +0200
+@@ -12511,3 +12511,11 @@
  {
    widget->priv->height_request_needed = height_request_needed;
  }
@@ -21,15 +23,13 @@ diff -Nur gtk+3.0-2.91.0/gtk/gtkwidget.c gtk+3.0-2.91.0.ubuntu/gtk/gtkwidget.c
 +ubuntu_gtk_widget_set_has_grab (GtkWidget *widget,
 +                                gboolean   has_grab)
 +{
-+  if (has_grab)
-+    GTK_OBJECT_FLAGS (widget) |= GTK_HAS_GRAB;
-+  else
-+    GTK_OBJECT_FLAGS (widget) &= ~(GTK_HAS_GRAB);
++  _gtk_widget_set_has_grab (widget, has_grab);
 +}
 + 
-diff -Nur gtk+3.0-2.91.0/gtk/gtkwidget.h gtk+3.0-2.91.0.ubuntu/gtk/gtkwidget.h
---- gtk+3.0-2.91.0/gtk/gtkwidget.h	2010-09-30 20:29:56.000000000 +0200
-+++ gtk+3.0-2.91.0.ubuntu/gtk/gtkwidget.h	2010-10-13 11:26:59.267041015 +0200
+Index: gtk+3.0-2.91.0/gtk/gtkwidget.h
+===================================================================
+--- gtk+3.0-2.91.0.orig/gtk/gtkwidget.h	2010-09-30 20:29:56.000000000 +0200
++++ gtk+3.0-2.91.0/gtk/gtkwidget.h	2010-10-13 16:57:36.784125241 +0200
 @@ -892,6 +892,9 @@
  
  gboolean     gtk_widget_in_destruction (GtkWidget *widget);
