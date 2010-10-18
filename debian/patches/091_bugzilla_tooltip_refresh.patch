@@ -1,9 +1,10 @@
 # Description: better looking tooltips
 # Upstream: https://bugzilla.gnome.org/show_bug.cgi?id=599617
 # Ubuntu: https://launchpad.net/bugs/487208
-diff -up gtk+-2.91.0/gtk/gtktooltip.c.fresh-tooltips gtk+-2.91.0/gtk/gtktooltip.c
---- gtk+-2.91.0/gtk/gtktooltip.c.fresh-tooltips	2010-09-27 20:40:00.000000000 -0400
-+++ gtk+-2.91.0/gtk/gtktooltip.c	2010-10-12 12:24:35.351808000 -0400
+Index: gtk+3.0-2.91.1/gtk/gtktooltip.c
+===================================================================
+--- gtk+3.0-2.91.1.orig/gtk/gtktooltip.c	2010-10-14 04:56:57.000000000 +0200
++++ gtk+3.0-2.91.1/gtk/gtktooltip.c	2010-10-18 14:10:23.567672002 +0200
 @@ -35,6 +35,9 @@
  #include "gtkalignment.h"
  #include "gtksizerequest.h"
@@ -12,9 +13,9 @@ diff -up gtk+-2.91.0/gtk/gtktooltip.c.fresh-tooltips gtk+-2.91.0/gtk/gtktooltip.
 +#include "gdk/x11/gdkx.h"
 +#endif
  
- #undef DEBUG_TOOLTIP
- 
-@@ -99,6 +102,7 @@ static void       gtk_tooltip_display_cl
+ /**
+  * SECTION:gtktooltip
+@@ -165,6 +168,7 @@
  						    GtkTooltip      *tooltip);
  static void       gtk_tooltip_set_last_window      (GtkTooltip      *tooltip,
  						    GdkWindow       *window);
@@ -22,7 +23,7 @@ diff -up gtk+-2.91.0/gtk/gtktooltip.c.fresh-tooltips gtk+-2.91.0/gtk/gtktooltip.
  
  
  G_DEFINE_TYPE (GtkTooltip, gtk_tooltip, G_TYPE_OBJECT);
-@@ -114,6 +118,40 @@ gtk_tooltip_class_init (GtkTooltipClass 
+@@ -180,6 +184,40 @@
  }
  
  static void
@@ -63,7 +64,7 @@ diff -up gtk+-2.91.0/gtk/gtktooltip.c.fresh-tooltips gtk+-2.91.0/gtk/gtktooltip.
  gtk_tooltip_init (GtkTooltip *tooltip)
  {
    GtkStyle *style;
-@@ -133,8 +171,12 @@ gtk_tooltip_init (GtkTooltip *tooltip)
+@@ -199,8 +237,12 @@
    tooltip->last_window = NULL;
  
    tooltip->window = g_object_ref (gtk_window_new (GTK_WINDOW_POPUP));
@@ -76,7 +77,7 @@ diff -up gtk+-2.91.0/gtk/gtktooltip.c.fresh-tooltips gtk+-2.91.0/gtk/gtktooltip.
    gtk_widget_set_app_paintable (tooltip->window, TRUE);
    gtk_window_set_resizable (GTK_WINDOW (tooltip->window), FALSE);
    gtk_widget_set_name (tooltip->window, "gtk-tooltip");
-@@ -168,6 +210,13 @@ gtk_tooltip_init (GtkTooltip *tooltip)
+@@ -234,6 +276,13 @@
    gtk_box_pack_start (GTK_BOX (tooltip->box), tooltip->label,
  		      FALSE, FALSE, 0);
  
@@ -90,7 +91,7 @@ diff -up gtk+-2.91.0/gtk/gtktooltip.c.fresh-tooltips gtk+-2.91.0/gtk/gtktooltip.
    tooltip->custom_widget = NULL;
  }
  
-@@ -517,19 +566,209 @@ gtk_tooltip_window_style_set (GtkTooltip
+@@ -583,19 +632,209 @@
    gtk_widget_queue_draw (tooltip->window);
  }
  
@@ -310,10 +311,11 @@ diff -up gtk+-2.91.0/gtk/gtktooltip.c.fresh-tooltips gtk+-2.91.0/gtk/gtktooltip.
  
    return FALSE;
  }
-diff -up gtk+-2.91.0/gtk/gtkwidget.c.fresh-tooltips gtk+-2.91.0/gtk/gtkwidget.c
---- gtk+-2.91.0/gtk/gtkwidget.c.fresh-tooltips	2010-09-30 21:30:41.000000000 -0400
-+++ gtk+-2.91.0/gtk/gtkwidget.c	2010-10-12 12:07:04.421808000 -0400
-@@ -2891,6 +2891,14 @@ gtk_widget_class_init (GtkWidgetClass *k
+Index: gtk+3.0-2.91.1/gtk/gtkwidget.c
+===================================================================
+--- gtk+3.0-2.91.1.orig/gtk/gtkwidget.c	2010-10-18 14:10:18.547672002 +0200
++++ gtk+3.0-2.91.1/gtk/gtkwidget.c	2010-10-18 14:10:23.579672001 +0200
+@@ -3071,6 +3071,14 @@
                                                               1, G_MAXINT, 16,
                                                               GTK_PARAM_READABLE));
  
@@ -328,5 +330,3 @@ diff -up gtk+-2.91.0/gtk/gtkwidget.c.fresh-tooltips gtk+-2.91.0/gtk/gtkwidget.c
    g_type_class_add_private (klass, sizeof (GtkWidgetPrivate));
  }
  
-
-
