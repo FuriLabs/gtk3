@@ -1,0 +1,21 @@
+Index: gtk+3.0-2.91.1/gtk/gtkprinteroptionwidget.c
+===================================================================
+--- gtk+3.0-2.91.1.orig/gtk/gtkprinteroptionwidget.c	2010-10-26 11:01:39.263842995 -0400
++++ gtk+3.0-2.91.1/gtk/gtkprinteroptionwidget.c	2010-10-26 11:08:45.263843002 -0400
+@@ -29,6 +29,7 @@
+ #include "gtkcelllayout.h"
+ #include "gtkcellrenderertext.h"
+ #include "gtkcombobox.h"
++#include "gtkcomboboxtext.h"
+ #include "gtkfilechooserbutton.h"
+ #include "gtkimage.h"
+ #include "gtklabel.h"
+@@ -374,7 +375,7 @@
+ 
+   if (gtk_combo_box_get_has_entry (GTK_COMBO_BOX (combo)))
+     {
+-      value = gtk_combo_box_get_active_text(GTK_COMBO_BOX (combo));
++      value = gtk_combo_box_text_get_active_text(GTK_COMBO_BOX_TEXT (combo));
+     }
+   else
+     {
