@@ -12,11 +12,11 @@ should access to the GdkWindow.
  gtk/gtkrange.h                       |    1 +
  4 files changed, 22 insertions(+), 0 deletions(-)
 
-diff --git a/docs/reference/gtk/gtk3-sections.txt b/docs/reference/gtk/gtk3-sections.txt
-index ad27a06..45cd2b9 100644
---- a/docs/reference/gtk/gtk3-sections.txt
-+++ b/docs/reference/gtk/gtk3-sections.txt
-@@ -2437,6 +2437,7 @@ gtk_range_get_slider_range
+Index: gtk+3.0-2.91.2/docs/reference/gtk/gtk3-sections.txt
+===================================================================
+--- gtk+3.0-2.91.2.orig/docs/reference/gtk/gtk3-sections.txt	2010-10-29 16:43:56.172046204 -0400
++++ gtk+3.0-2.91.2/docs/reference/gtk/gtk3-sections.txt	2010-10-29 16:44:07.000000000 -0400
+@@ -2453,6 +2453,7 @@
  gtk_range_get_slider_size_fixed
  gtk_range_set_min_slider_size
  gtk_range_set_slider_size_fixed
@@ -24,11 +24,11 @@ index ad27a06..45cd2b9 100644
  
  <SUBSECTION Standard>
  GTK_RANGE
-diff --git a/gtk/gtk.symbols b/gtk/gtk.symbols
-index fce5e72..5cf12d0 100644
---- a/gtk/gtk.symbols
-+++ b/gtk/gtk.symbols
-@@ -2616,6 +2616,7 @@ gtk_radio_tool_button_set_group
+Index: gtk+3.0-2.91.2/gtk/gtk.symbols
+===================================================================
+--- gtk+3.0-2.91.2.orig/gtk/gtk.symbols	2010-10-29 16:44:07.000000000 -0400
++++ gtk+3.0-2.91.2/gtk/gtk.symbols	2010-10-29 16:44:07.000000000 -0400
+@@ -2639,6 +2639,7 @@
  #if IN_HEADER(__GTK_RANGE_H__)
  #if IN_FILE(__GTK_RANGE_C__)
  gtk_range_get_adjustment
@@ -36,11 +36,11 @@ index fce5e72..5cf12d0 100644
  gtk_range_get_fill_level
  gtk_range_get_flippable
  gtk_range_get_inverted
-diff --git a/gtk/gtkrange.c b/gtk/gtkrange.c
-index fd9ae0e..66a3d77 100644
---- a/gtk/gtkrange.c
-+++ b/gtk/gtkrange.c
-@@ -3999,6 +3999,25 @@ gtk_range_remove_update_timer (GtkRange *range)
+Index: gtk+3.0-2.91.2/gtk/gtkrange.c
+===================================================================
+--- gtk+3.0-2.91.2.orig/gtk/gtkrange.c	2010-10-29 16:43:56.120046204 -0400
++++ gtk+3.0-2.91.2/gtk/gtkrange.c	2010-10-29 16:59:43.552046206 -0400
+@@ -4107,6 +4107,26 @@
      }
  }
  
@@ -59,18 +59,19 @@ index fd9ae0e..66a3d77 100644
 +gtk_range_get_event_window (GtkRange *range)
 +{
 +  g_return_val_if_fail (GTK_IS_RANGE (range), NULL);
++  GtkRangePrivate *priv = range->priv;
 +
-+  return range->event_window;
++  return priv->event_window;
 +}
 +
  void
  _gtk_range_set_stop_values (GtkRange *range,
                              gdouble  *values,
-diff --git a/gtk/gtkrange.h b/gtk/gtkrange.h
-index f2b91b8..ebe77c0 100644
---- a/gtk/gtkrange.h
-+++ b/gtk/gtkrange.h
-@@ -146,6 +146,7 @@ gboolean           gtk_range_get_restrict_to_fill_level    (GtkRange      *range
+Index: gtk+3.0-2.91.2/gtk/gtkrange.h
+===================================================================
+--- gtk+3.0-2.91.2.orig/gtk/gtkrange.h	2010-10-29 16:43:56.064046204 -0400
++++ gtk+3.0-2.91.2/gtk/gtkrange.h	2010-10-29 16:44:07.000000000 -0400
+@@ -147,6 +147,7 @@
  void               gtk_range_set_fill_level                (GtkRange      *range,
                                                              gdouble        fill_level);
  gdouble            gtk_range_get_fill_level                (GtkRange      *range);
@@ -78,6 +79,3 @@ index f2b91b8..ebe77c0 100644
  
  /* internal API */
  gdouble            _gtk_range_get_wheel_delta              (GtkRange      *range,
--- 
-1.7.1
-
