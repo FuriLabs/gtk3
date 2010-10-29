@@ -1,5 +1,6 @@
-gtk+3.0 (2.91.2-0ubuntu1~build1) maverick; urgency=low
+gtk+3.0 (2.91.2-0ubuntu1~build1) UNRELEASED; urgency=low
 
+  [ Michael Terry ]
   * New upstream release
   * debian/control.in:
     - Require GLib 2.27.1
@@ -13,6 +14,12 @@ gtk+3.0 (2.91.2-0ubuntu1~build1) maverick; urgency=low
     - Remove, applied upstream 
   * debian/libgtk3.0-doc.install.in:
     - Remove doc faq file no more shipped
+
+  [ Didier Roche ]
+  * debian/patches/074_expose_active_menu_item.patch:
+    - Expose the active menu for the soundmenu (LP: #655760)
+  * debian/patches/075_expose_gdkwidget_for_gtkrange.patch:
+    - expose the event window for ido (LP: #655756)
 
  -- Michael Terry <mterry@ubuntu.com>  Tue, 26 Oct 2010 18:58:33 -0400
 
