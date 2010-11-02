@@ -12,23 +12,23 @@ Adding a gtk_menu_shell_get_selected_item to the API to get it.
  gtk/gtkmenushell.h |    1 +
  3 files changed, 23 insertions(+), 0 deletions(-)
 
-diff --git a/gtk/gtk.symbols b/gtk/gtk.symbols
-index 3336e51..fce5e72 100644
---- a/gtk/gtk.symbols
-+++ b/gtk/gtk.symbols
-@@ -1965,6 +1965,7 @@ gtk_menu_shell_select_first
+Index: gtk+3.0-2.91.2/gtk/gtk.symbols
+===================================================================
+--- gtk+3.0-2.91.2.orig/gtk/gtk.symbols	2010-11-02 11:22:41.000000000 +0100
++++ gtk+3.0-2.91.2/gtk/gtk.symbols	2010-11-02 11:22:59.188799002 +0100
+@@ -1987,6 +1987,7 @@
  gtk_menu_shell_select_item
  gtk_menu_shell_set_take_focus
  gtk_menu_shell_get_take_focus
 +gtk_menu_shell_get_selected_item
+ ubuntu_gtk_menu_shell_activate_mnemonic
  #endif
  #endif
- 
-diff --git a/gtk/gtkmenushell.c b/gtk/gtkmenushell.c
-index e531de1..b85fbd8 100644
---- a/gtk/gtkmenushell.c
-+++ b/gtk/gtkmenushell.c
-@@ -1266,6 +1266,27 @@ gtk_menu_shell_deselect (GtkMenuShell *menu_shell)
+Index: gtk+3.0-2.91.2/gtk/gtkmenushell.c
+===================================================================
+--- gtk+3.0-2.91.2.orig/gtk/gtkmenushell.c	2010-11-02 11:22:41.776799001 +0100
++++ gtk+3.0-2.91.2/gtk/gtkmenushell.c	2010-11-02 11:22:41.820799001 +0100
+@@ -1336,6 +1336,27 @@
      }
  }
  
@@ -56,11 +56,11 @@ index e531de1..b85fbd8 100644
  void
  gtk_menu_shell_activate_item (GtkMenuShell      *menu_shell,
  			      GtkWidget         *menu_item,
-diff --git a/gtk/gtkmenushell.h b/gtk/gtkmenushell.h
-index d9b2307..1229d40 100644
---- a/gtk/gtkmenushell.h
-+++ b/gtk/gtkmenushell.h
-@@ -112,6 +112,7 @@ void  gtk_menu_shell_deselect          (GtkMenuShell *menu_shell);
+Index: gtk+3.0-2.91.2/gtk/gtkmenushell.h
+===================================================================
+--- gtk+3.0-2.91.2.orig/gtk/gtkmenushell.h	2010-10-22 13:23:22.000000000 +0200
++++ gtk+3.0-2.91.2/gtk/gtkmenushell.h	2010-11-02 11:22:41.820799001 +0100
+@@ -114,6 +114,7 @@
  void  gtk_menu_shell_activate_item     (GtkMenuShell *menu_shell,
  					GtkWidget    *menu_item,
  					gboolean      force_deactivate);
@@ -68,6 +68,3 @@ index d9b2307..1229d40 100644
  void  gtk_menu_shell_select_first      (GtkMenuShell *menu_shell,
  					gboolean      search_sensitive);
  void _gtk_menu_shell_select_last       (GtkMenuShell *menu_shell,
--- 
-1.7.1
-
