@@ -1,9 +1,29 @@
-gtk+3.0 (2.91.3-0ubuntu1~build4) UNRELEASED; urgency=low
+gtk+3.0 (2.91.3-0ubuntu1) natty; urgency=low
 
+  [ Michael Terry ]
   * debian/libgtk3.0-0.symbols:
     - Fix some symbols that had debian versioning cruft
+  * debian/rules:
+    - Set introspection=no for non-shared build
+  * debian/libgtk3.0-doc.doc-base.gtk-faq:
+    - Dropped, as faq docs are no longer shipped
+  * debian/libgtk3.0-doc.doc-base.gtk.in:
+    - Rename to just .gtk and specify DOC_PKG manually.  Many other files
+      hardcode it anyway and it was confusing the build system.
+  * debian/libgtk3.0-doc.links.in:
+    - Drop non-existant faq doc symlink
+  * debian/libgail3.0-doc.links:
+    - Update directories to match where the source installs docs
+  * debian/libgail3.0-doc.doc-base.gail-reference:
+    - Fix document name to not conflict with 2.0 version
+    - Update directories to match where the source installs docs
 
- -- Michael Terry <mterry@ubuntu.com>  Tue, 02 Nov 2010 14:37:54 -0400
+  [ Bilal Akhtar ]
+  * debian/patches/092_default_to_xdg_document_dir.patch:
+    - Use $XDG_DOCUMENTS_DIR as default directory rather than the home
+      directory for the 'Print to File' function. (LP: #611011)
+
+ -- Michael Terry <mterry@ubuntu.com>  Fri, 05 Nov 2010 11:45:26 -0400
 
 gtk+3.0 (2.91.3-0ubuntu1~build3) natty; urgency=low
 
@@ -81,6 +101,35 @@ gtk+3.0 (2.91.1-0ubuntu1~build2) maverick; urgency=low
 
  -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 18 Oct 2010 11:19:26 +0200
 
+gtk+3.0 (2.91.0-1) experimental; urgency=low
+
+  [ Sebastian Dröge ]
+  * Initial GTK+ 3 packaging.
+
+  [ Rico Tzschichholz ]
+  * New upstream development release
+  * some fixes and changes
+
+  [ Sjoerd Simons ]
+  * New upstream release (2.91.0)
+  * debian/patches/009_gtk-export-filechooser.patch:
+    + Removed. Doesn't apply anymore and was only needed for hildon
+  * Update build-depends to cairo >= 1.10.0 and glib-2.0 >= 2.27.0
+  * debian/patches/070_mandatory-relibtoolize.patch
+    + Updated
+  * Update the faq/tutorial index files names
+  * debian/control.in:
+    + Add dependency on docbook-utils for db2html to generate the documentation
+      html during build
+  * Update the symbols file
+  * Version various document index files so they don't conflict with their
+    gtk2 flavour
+  * debian/libgtk3-bin.preinst, debian/libgtk3-bin.postrm:
+    + Divert gtk+2.0's update-icon-caches. The format remained the same so this
+      is safe to do
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun, 10 Oct 2010 14:06:26 +0100
+
 gtk+3.0 (2.91.0-1~build2) maverick; urgency=low
 
   * Review ubuntu patches
@@ -118,35 +167,6 @@ gtk+3.0 (2.91.0-1~build1) maverick; urgency=low
     workaround a build issues with this one
 
  -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 11 Oct 2010 19:16:30 +0200
-
-gtk+3.0 (2.91.0-1) experimental; urgency=low
-
-  [ Sebastian Dröge ]
-  * Initial GTK+ 3 packaging.
-
-  [ Rico Tzschichholz ]
-  * New upstream development release
-  * some fixes and changes
-
-  [ Sjoerd Simons ]
-  * New upstream release (2.91.0)
-  * debian/patches/009_gtk-export-filechooser.patch:
-    + Removed. Doesn't apply anymore and was only needed for hildon
-  * Update build-depends to cairo >= 1.10.0 and glib-2.0 >= 2.27.0
-  * debian/patches/070_mandatory-relibtoolize.patch
-    + Updated
-  * Update the faq/tutorial index files names
-  * debian/control.in:
-    + Add dependency on docbook-utils for db2html to generate the documentation
-      html during build
-  * Update the symbols file
-  * Version various document index files so they don't conflict with their
-    gtk2 flavour
-  * debian/libgtk3-bin.preinst, debian/libgtk3-bin.postrm:
-    + Divert gtk+2.0's update-icon-caches. The format remained the same so this
-      is safe to do
-
- -- Sjoerd Simons <sjoerd@debian.org>  Sun, 10 Oct 2010 14:06:26 +0100
 
 gtk+2.0 (2.21.5-1) experimental; urgency=low
 
