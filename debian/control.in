@@ -125,7 +125,6 @@ Architecture: any
 Depends: @SHARED_PKG@ (= ${binary:Version}),
          @COMMON_PKG@,
          ${misc:Depends},
-         ${shlibs:Depends},
          libglib2.0-dev (>= 2.27.3),
          libgdk-pixbuf2.0-dev (>= 2.21.0),
          libpango1.0-dev (>= 1.20),
@@ -223,7 +222,6 @@ Package: gir1.0-gtk-3.0
 Architecture: any
 Depends: @COMMON_PKG@,
          ${misc:Depends},
-         ${shlibs:Depends},
          ${gir:Depends}
 Conflicts: gobject-introspection-repository
 Description: The GTK+ graphical user interface library
