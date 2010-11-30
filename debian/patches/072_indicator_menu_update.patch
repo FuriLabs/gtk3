@@ -3,11 +3,11 @@
 ## Origin/Author: Cody Russell <bratsche@gnome.org>, 
 ##                Sense Hofstede <sense@ubuntu.com>
 ## Bug: unknown and https://launchpad.net/bugs/608219
-Index: gtk+3.0-2.91.1/gtk/gtkcontainer.c
+Index: gtk+-2.91.5/gtk/gtkcontainer.c
 ===================================================================
---- gtk+3.0-2.91.1.orig/gtk/gtkcontainer.c	2010-10-15 03:56:33.000000000 +0200
-+++ gtk+3.0-2.91.1/gtk/gtkcontainer.c	2010-10-18 14:10:21.759672002 +0200
-@@ -269,6 +269,8 @@
+--- gtk+-2.91.5.orig/gtk/gtkcontainer.c	2010-11-16 06:32:56.000000000 +1100
++++ gtk+-2.91.5/gtk/gtkcontainer.c	2010-11-30 11:50:20.997861001 +1100
+@@ -270,6 +270,8 @@
    REMOVE,
    CHECK_RESIZE,
    SET_FOCUS_CHILD,
@@ -16,7 +16,7 @@ Index: gtk+3.0-2.91.1/gtk/gtkcontainer.c
    LAST_SIGNAL
  };
  
-@@ -524,6 +526,24 @@
+@@ -525,6 +527,24 @@
  		  _gtk_marshal_VOID__OBJECT,
  		  G_TYPE_NONE, 1,
  		  GTK_TYPE_WIDGET);
@@ -41,10 +41,10 @@ Index: gtk+3.0-2.91.1/gtk/gtkcontainer.c
  
    g_type_class_add_private (class, sizeof (GtkContainerPrivate));
  }
-Index: gtk+3.0-2.91.1/gtk/gtkmenuitem.c
+Index: gtk+-2.91.5/gtk/gtkmenuitem.c
 ===================================================================
---- gtk+3.0-2.91.1.orig/gtk/gtkmenuitem.c	2010-10-18 14:10:16.155672004 +0200
-+++ gtk+3.0-2.91.1/gtk/gtkmenuitem.c	2010-10-18 14:10:21.767672002 +0200
+--- gtk+-2.91.5.orig/gtk/gtkmenuitem.c	2010-11-30 11:46:51.887861001 +1100
++++ gtk+-2.91.5/gtk/gtkmenuitem.c	2010-11-30 11:50:20.997861001 +1100
 @@ -53,6 +53,8 @@
    TOGGLE_SIZE_ALLOCATE,
    SELECT,
@@ -54,7 +54,7 @@ Index: gtk+3.0-2.91.1/gtk/gtkmenuitem.c
    LAST_SIGNAL
  };
  
-@@ -273,6 +275,25 @@
+@@ -271,6 +273,25 @@
                    _gtk_marshal_VOID__VOID,
                    G_TYPE_NONE, 0);
  
@@ -80,7 +80,7 @@ Index: gtk+3.0-2.91.1/gtk/gtkmenuitem.c
    /**
     * GtkMenuItem:right-justified:
     *
-@@ -1206,6 +1227,11 @@
+@@ -1204,6 +1225,11 @@
        if (gtk_widget_get_parent (GTK_WIDGET (menu_item)))
  	gtk_widget_queue_resize (GTK_WIDGET (menu_item));
  
@@ -92,11 +92,11 @@ Index: gtk+3.0-2.91.1/gtk/gtkmenuitem.c
        g_object_notify (G_OBJECT (menu_item), "submenu");
      }
  }
-Index: gtk+3.0-2.91.1/gtk/gtkmenushell.c
+Index: gtk+-2.91.5/gtk/gtkmenushell.c
 ===================================================================
---- gtk+3.0-2.91.1.orig/gtk/gtkmenushell.c	2010-10-18 14:10:16.163671999 +0200
-+++ gtk+3.0-2.91.1/gtk/gtkmenushell.c	2010-10-18 14:10:21.771671999 +0200
-@@ -559,6 +559,8 @@
+--- gtk+-2.91.5.orig/gtk/gtkmenushell.c	2010-11-30 11:46:51.887861001 +1100
++++ gtk+-2.91.5/gtk/gtkmenushell.c	2010-11-30 11:50:20.997861001 +1100
+@@ -571,6 +571,8 @@
                                GTK_WIDGET (menu_shell),
                                child,
                                position);

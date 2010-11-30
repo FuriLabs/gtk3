@@ -12,23 +12,23 @@ Adding a gtk_menu_shell_get_selected_item to the API to get it.
  gtk/gtkmenushell.h |    1 +
  3 files changed, 23 insertions(+), 0 deletions(-)
 
-Index: gtk+3.0-2.91.2/gtk/gtk.symbols
+Index: gtk+-2.91.5/gtk/gtk.symbols
 ===================================================================
---- gtk+3.0-2.91.2.orig/gtk/gtk.symbols	2010-11-02 11:22:41.000000000 +0100
-+++ gtk+3.0-2.91.2/gtk/gtk.symbols	2010-11-02 11:22:59.188799002 +0100
-@@ -1987,6 +1987,7 @@
- gtk_menu_shell_select_item
- gtk_menu_shell_set_take_focus
- gtk_menu_shell_get_take_focus
+--- gtk+-2.91.5.orig/gtk/gtk.symbols	2010-11-30 11:50:09.000000000 +1100
++++ gtk+-2.91.5/gtk/gtk.symbols	2010-11-30 11:50:53.817861001 +1100
+@@ -1364,6 +1364,7 @@
+ gtk_menu_shell_cancel
+ gtk_menu_shell_deactivate
+ gtk_menu_shell_deselect
 +gtk_menu_shell_get_selected_item
- ubuntu_gtk_menu_shell_activate_mnemonic
- #endif
- #endif
-Index: gtk+3.0-2.91.2/gtk/gtkmenushell.c
+ gtk_menu_shell_get_take_focus
+ gtk_menu_shell_get_type G_GNUC_CONST
+ gtk_menu_shell_insert
+Index: gtk+-2.91.5/gtk/gtkmenushell.c
 ===================================================================
---- gtk+3.0-2.91.2.orig/gtk/gtkmenushell.c	2010-11-02 11:22:41.776799001 +0100
-+++ gtk+3.0-2.91.2/gtk/gtkmenushell.c	2010-11-02 11:22:41.820799001 +0100
-@@ -1336,6 +1336,27 @@
+--- gtk+-2.91.5.orig/gtk/gtkmenushell.c	2010-11-30 11:50:20.000000000 +1100
++++ gtk+-2.91.5/gtk/gtkmenushell.c	2010-11-30 11:50:29.087861001 +1100
+@@ -1348,6 +1348,27 @@
      }
  }
  
@@ -56,10 +56,10 @@ Index: gtk+3.0-2.91.2/gtk/gtkmenushell.c
  void
  gtk_menu_shell_activate_item (GtkMenuShell      *menu_shell,
  			      GtkWidget         *menu_item,
-Index: gtk+3.0-2.91.2/gtk/gtkmenushell.h
+Index: gtk+-2.91.5/gtk/gtkmenushell.h
 ===================================================================
---- gtk+3.0-2.91.2.orig/gtk/gtkmenushell.h	2010-10-22 13:23:22.000000000 +0200
-+++ gtk+3.0-2.91.2/gtk/gtkmenushell.h	2010-11-02 11:22:41.820799001 +0100
+--- gtk+-2.91.5.orig/gtk/gtkmenushell.h	2010-11-16 06:32:56.000000000 +1100
++++ gtk+-2.91.5/gtk/gtkmenushell.h	2010-11-30 11:50:29.087861001 +1100
 @@ -114,6 +114,7 @@
  void  gtk_menu_shell_activate_item     (GtkMenuShell *menu_shell,
  					GtkWidget    *menu_item,
