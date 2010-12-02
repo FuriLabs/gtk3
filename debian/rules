@@ -167,6 +167,7 @@ $(STAMP_DIR)/patch-stamp:
 	# apply patches
 	QUILT_PATCHES=$(PATCH_DIR) quilt --quiltrc /dev/null push -a || test $$? = 2
 	dh_autoreconf
+	rm gdk/gdkenumtypes.h gdk/gdkenumtypes.c
 	# backup the original files to restore them in the clean target
 	-test -r config.sub && cp config.sub config.sub.orig
 	-test -r config.guess && cp config.guess config.guess.orig
