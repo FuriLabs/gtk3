@@ -1,0 +1,30 @@
+From 08a6671a928cae3b0bea998b310f2088c346b24b Mon Sep 17 00:00:00 2001
+From: Martin Pitt <martin.pitt@ubuntu.com>
+Date: Thu, 2 Dec 2010 16:57:19 +0100
+Subject: [PATCH 2/2] fix building introspection with a separate build directory
+
+When using a separate build tree, gdk/gdkenumtypes.h gets generated in the
+build dir, not in the source dir. Therefore we need to add the build directory
+to the include search path when building the GIRs, so that gdk/gdk.h can
+actually find <gdk/gdkenumtypes.h>.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=636043
+---
+ gdk/Makefile.am |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+diff --git a/gdk/Makefile.am b/gdk/Makefile.am
+index 9a48fe8..a51ef9d 100644
+--- a/gdk/Makefile.am
++++ b/gdk/Makefile.am
+@@ -34,6 +34,7 @@ INCLUDES =                              \
+ 	-DG_LOG_DOMAIN=\"Gdk\"		\
+ 	-DGDK_COMPILATION		\
+ 	-I$(top_srcdir)			\
++	-I$(top_builddir)		\
+ 	-I$(top_builddir)/gdk		\
+ 	$(GTK_DEBUG_FLAGS) 		\
+ 	$(GDK_DEP_CFLAGS)
+-- 
+1.7.2.3
+
