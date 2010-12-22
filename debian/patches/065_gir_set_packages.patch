@@ -9,34 +9,34 @@ Date:   Fri Nov 19 13:54:48 2010 -0500
     
     https://bugzilla.gnome.org/show_bug.cgi?id=635287
 
-Index: gtk+-2.91.6/gdk/Makefile.am
+Index: gtk+-2.91.7/gdk/Makefile.am
 ===================================================================
---- gtk+-2.91.6.orig/gdk/Makefile.am	2010-12-07 16:32:53.507103002 +1100
-+++ gtk+-2.91.6/gdk/Makefile.am	2010-12-07 16:33:56.597103001 +1100
-@@ -174,6 +174,8 @@
+--- gtk+-2.91.7.orig/gdk/Makefile.am	2010-12-22 13:17:44.613372002 +1100
++++ gtk+-2.91.7/gdk/Makefile.am	2010-12-22 13:23:18.353372001 +1100
+@@ -181,6 +181,8 @@
  Gdk_3_0_gir_INCLUDES = Gio-2.0 GdkPixbuf-2.0 Pango-1.0 cairo-1.0
- Gdk_3_0_gir_LIBS = $(gdktargetlib)
+ Gdk_3_0_gir_LIBS = libgdk-3.0.la
  Gdk_3_0_gir_FILES = $(introspection_files)
 +Gdk_3_0_gir_PACKAGES = gdk-3.0
 +
  Gdk_3_0_gir_CFLAGS = $(INCLUDES)
  INTROSPECTION_GIRS += Gdk-3.0.gir
  
-@@ -219,6 +221,7 @@
+@@ -230,6 +232,7 @@
  GdkX11_3_0_gir_INCLUDES = Gio-2.0 Gdk-3.0 GdkPixbuf-2.0 Pango-1.0 xlib-2.0
- GdkX11_3_0_gir_LIBS = $(gdktargetlib)
+ GdkX11_3_0_gir_LIBS = libgdk-3.0.la
  GdkX11_3_0_gir_FILES = $(x11_introspection_files)
 +GdkX11_3_0_gir_PACKAGES = gdk-x11-3.0
  GdkX11_3_0_gir_CFLAGS = $(INCLUDES) -L$(top_builddir)/gdk
  INTROSPECTION_GIRS += GdkX11-3.0.gir
  
-Index: gtk+-2.91.6/gtk/Makefile.am
+Index: gtk+-2.91.7/gtk/Makefile.am
 ===================================================================
---- gtk+-2.91.6.orig/gtk/Makefile.am	2010-12-07 16:33:04.547103002 +1100
-+++ gtk+-2.91.6/gtk/Makefile.am	2010-12-07 16:33:56.597103001 +1100
-@@ -971,6 +971,7 @@
- Gtk_3_0_gir_LIBS += $(top_builddir)/gdk/libgdk-x11-3.0.la
- endif
+--- gtk+-2.91.7.orig/gtk/Makefile.am	2010-12-22 13:23:11.843372001 +1100
++++ gtk+-2.91.7/gtk/Makefile.am	2010-12-22 13:23:18.353372001 +1100
+@@ -970,6 +970,7 @@
+ 		-DGTK_TEXT_USE_INTERNAL_UNSUPPORTED_API
+ Gtk_3_0_gir_LIBS = libgtk-3.0.la
  Gtk_3_0_gir_FILES = $(introspection_files)
 +Gtk_3_0_gir_PACKAGES = gtk+-3.0
  INTROSPECTION_GIRS += Gtk-3.0.gir
