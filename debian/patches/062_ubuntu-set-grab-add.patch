@@ -1,8 +1,8 @@
-Index: gtk+-2.91.6/gtk/gtk.symbols
+Index: gtk+-2.91.7/gtk/gtk.symbols
 ===================================================================
---- gtk+-2.91.6.orig/gtk/gtk.symbols	2010-12-07 16:33:04.547103002 +1100
-+++ gtk+-2.91.6/gtk/gtk.symbols	2010-12-07 16:33:55.087103003 +1100
-@@ -3663,6 +3663,7 @@
+--- gtk+-2.91.7.orig/gtk/gtk.symbols	2010-12-22 13:23:11.843372001 +1100
++++ gtk+-2.91.7/gtk/gtk.symbols	2010-12-22 13:23:15.483372000 +1100
+@@ -3767,6 +3767,7 @@
  gtk_window_unstick
  gtk_wrap_mode_get_type G_GNUC_CONST
  ubuntu_gtk_menu_shell_activate_mnemonic
@@ -10,11 +10,11 @@ Index: gtk+-2.91.6/gtk/gtk.symbols
  ubuntu_menu_proxy_get_type G_GNUC_CONST
  ubuntu_menu_proxy_get
  ubuntu_menu_proxy_insert
-Index: gtk+-2.91.6/gtk/gtkwidget.c
+Index: gtk+-2.91.7/gtk/gtkwidget.c
 ===================================================================
---- gtk+-2.91.6.orig/gtk/gtkwidget.c	2010-12-06 14:04:13.000000000 +1100
-+++ gtk+-2.91.6/gtk/gtkwidget.c	2010-12-07 16:33:55.097103002 +1100
-@@ -13968,3 +13968,11 @@
+--- gtk+-2.91.7.orig/gtk/gtkwidget.c	2010-12-22 03:36:24.000000000 +1100
++++ gtk+-2.91.7/gtk/gtkwidget.c	2010-12-22 13:23:15.483372000 +1100
+@@ -13978,3 +13978,11 @@
  
    return widget->priv->context;
  }
@@ -26,11 +26,11 @@ Index: gtk+-2.91.6/gtk/gtkwidget.c
 +  _gtk_widget_set_has_grab (widget, has_grab);
 +}
 + 
-Index: gtk+-2.91.6/gtk/gtkwidget.h
+Index: gtk+-2.91.7/gtk/gtkwidget.h
 ===================================================================
---- gtk+-2.91.6.orig/gtk/gtkwidget.h	2010-12-06 02:46:52.000000000 +1100
-+++ gtk+-2.91.6/gtk/gtkwidget.h	2010-12-07 16:33:55.097103002 +1100
-@@ -978,6 +978,9 @@
+--- gtk+-2.91.7.orig/gtk/gtkwidget.h	2010-12-22 03:36:05.000000000 +1100
++++ gtk+-2.91.7/gtk/gtkwidget.h	2010-12-22 13:23:15.483372000 +1100
+@@ -975,6 +975,9 @@
  GtkWidgetPath *   gtk_widget_get_path (GtkWidget *widget);
  
  

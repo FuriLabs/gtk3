@@ -12,11 +12,11 @@ should access to the GdkWindow.
  gtk/gtkrange.h                       |    1 +
  4 files changed, 22 insertions(+), 0 deletions(-)
 
-Index: gtk+-2.91.6/docs/reference/gtk/gtk3-sections.txt
+Index: gtk+-2.91.7/docs/reference/gtk/gtk3-sections.txt
 ===================================================================
---- gtk+-2.91.6.orig/docs/reference/gtk/gtk3-sections.txt	2010-12-07 11:59:13.000000000 +1100
-+++ gtk+-2.91.6/docs/reference/gtk/gtk3-sections.txt	2010-12-07 16:34:03.607103002 +1100
-@@ -2471,6 +2471,7 @@
+--- gtk+-2.91.7.orig/docs/reference/gtk/gtk3-sections.txt	2010-12-22 11:45:55.000000000 +1100
++++ gtk+-2.91.7/docs/reference/gtk/gtk3-sections.txt	2010-12-22 13:25:31.913372002 +1100
+@@ -2467,6 +2467,7 @@
  gtk_range_get_slider_size_fixed
  gtk_range_set_min_slider_size
  gtk_range_set_slider_size_fixed
@@ -24,11 +24,11 @@ Index: gtk+-2.91.6/docs/reference/gtk/gtk3-sections.txt
  
  <SUBSECTION Standard>
  GTK_RANGE
-Index: gtk+-2.91.6/gtk/gtk.symbols
+Index: gtk+-2.91.7/gtk/gtk.symbols
 ===================================================================
---- gtk+-2.91.6.orig/gtk/gtk.symbols	2010-12-07 16:34:02.207103003 +1100
-+++ gtk+-2.91.6/gtk/gtk.symbols	2010-12-07 16:34:03.607103002 +1100
-@@ -1918,6 +1918,7 @@
+--- gtk+-2.91.7.orig/gtk/gtk.symbols	2010-12-22 13:25:30.173372001 +1100
++++ gtk+-2.91.7/gtk/gtk.symbols	2010-12-22 13:25:31.913372002 +1100
+@@ -2022,6 +2022,7 @@
  gtk_radio_tool_button_new_with_stock_from_widget
  gtk_radio_tool_button_set_group
  gtk_range_get_adjustment
@@ -36,11 +36,11 @@ Index: gtk+-2.91.6/gtk/gtk.symbols
  gtk_range_get_fill_level
  gtk_range_get_flippable
  gtk_range_get_inverted
-Index: gtk+-2.91.6/gtk/gtkrange.c
+Index: gtk+-2.91.7/gtk/gtkrange.c
 ===================================================================
---- gtk+-2.91.6.orig/gtk/gtkrange.c	2010-12-06 02:46:52.000000000 +1100
-+++ gtk+-2.91.6/gtk/gtkrange.c	2010-12-07 16:34:03.607103002 +1100
-@@ -4161,6 +4161,26 @@
+--- gtk+-2.91.7.orig/gtk/gtkrange.c	2010-12-22 03:36:05.000000000 +1100
++++ gtk+-2.91.7/gtk/gtkrange.c	2010-12-22 13:25:31.913372002 +1100
+@@ -4171,6 +4171,26 @@
      }
  }
  
@@ -67,10 +67,10 @@ Index: gtk+-2.91.6/gtk/gtkrange.c
  void
  _gtk_range_set_stop_values (GtkRange *range,
                              gdouble  *values,
-Index: gtk+-2.91.6/gtk/gtkrange.h
+Index: gtk+-2.91.7/gtk/gtkrange.h
 ===================================================================
---- gtk+-2.91.6.orig/gtk/gtkrange.h	2010-12-06 02:46:52.000000000 +1100
-+++ gtk+-2.91.6/gtk/gtkrange.h	2010-12-07 16:34:03.607103002 +1100
+--- gtk+-2.91.7.orig/gtk/gtkrange.h	2010-12-22 03:36:05.000000000 +1100
++++ gtk+-2.91.7/gtk/gtkrange.h	2010-12-22 13:25:31.923372002 +1100
 @@ -147,6 +147,7 @@
  void               gtk_range_set_fill_level                (GtkRange      *range,
                                                              gdouble        fill_level);

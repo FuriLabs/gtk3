@@ -13,15 +13,15 @@ https://bugzilla.gnome.org/show_bug.cgi?id=636043
  gdk/Makefile.am |    1 +
  1 files changed, 1 insertions(+), 0 deletions(-)
 
-Index: gtk+-2.91.6/gdk/Makefile.am
+Index: gtk+-2.91.7/gdk/Makefile.am
 ===================================================================
---- gtk+-2.91.6.orig/gdk/Makefile.am	2010-12-06 02:46:51.000000000 +1100
-+++ gtk+-2.91.6/gdk/Makefile.am	2010-12-07 16:32:53.507103002 +1100
+--- gtk+-2.91.7.orig/gdk/Makefile.am	2010-12-22 09:36:42.000000000 +1100
++++ gtk+-2.91.7/gdk/Makefile.am	2010-12-22 13:17:44.613372002 +1100
 @@ -33,6 +33,7 @@
  	-DG_LOG_DOMAIN=\"Gdk\"		\
  	-DGDK_COMPILATION		\
  	-I$(top_srcdir)			\
 +	-I$(top_builddir)		\
  	-I$(top_builddir)/gdk		\
- 	$(GTK_DEBUG_FLAGS) 		\
+ 	$(GTK_DEBUG_FLAGS)		\
  	$(GDK_DEP_CFLAGS)
