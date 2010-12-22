@@ -1,19 +1,19 @@
-gtk+3.0 (2.91.7-0ubuntu1) UNRELEASED; urgency=low
+gtk+3.0 (2.91.7-0ubuntu1) natty; urgency=low
 
   * New upstream release
   * debian/libgtk3.0-dev.install.in:
-    - Include files moved??
+    - gdkconfig.h no longer distributed
   * debian/libgtk3.0-0.symbols:
      - Updated
   * debian/rules:
-    - Libs no longer have -x11 in them?? Should all libs be affected?
+    - Update matching rule for chrpath due to library name change
   * debian/patches/093_xsync_include.patch:
     - Applied upstream
   * debian/patches/093_dso_link_issues.patch:
   * debian/patches/094_gtkprint_test_fix.patch:
     - Build fixes
 
- -- Robert Ancell <robert.ancell@canonical.com>  Wed, 22 Dec 2010 13:12:52 +1100
+ -- Robert Ancell <robert.ancell@canonical.com>  Thu, 23 Dec 2010 09:53:49 +1100
 
 gtk+3.0 (2.91.6-0ubuntu2) natty; urgency=low
 
