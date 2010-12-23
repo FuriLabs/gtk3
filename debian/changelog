@@ -1,3 +1,73 @@
+gtk+3.0 (2.91.7-1ubuntu1) natty; urgency=low
+
+  * Merge with Debian experimental, remaining Ubuntu changes:
+  * debian/control:
+    - Build-depend on dh-autoreconf
+    - Add Vcs-Bzr link
+  * debian/libgtk2.0-0.symbols:
+    - Add Ubuntu specific symbols
+  * debian/rules:
+    - Use dh_autoreconf
+    - Remove gdk/gdkenumtypes.h before build
+  * debian/watch:
+    - Watch for unstable versions
+  * debian/patches/004_gir_with_separate_build_tree.patch:
+    - When using a separate build tree, gdk/gdkenumtypes.h gets generated in the
+      build dir, not in the source dir. Therefore we need to add the build
+      directory to the include search path when building the GIRs, so that
+      gdk/gdk.h can actually find <gdk/gdkenumtypes.h>.
+  * debian/patches/043_menu_proxy.patch
+    - Add GtkMenuProxy support for remoting menus.
+  * debian/patches/062_dnd_menubar.patch:
+    - Allow click on menubars for dnd
+  * debian/patches/065_gir_set_packages.patch
+    - Added _gir_PACKAGES for each gir created, to match gir to pkg which is
+      needed by vapigen-0.12
+  * debian/patches/071_no_offscreen_widgets_grabbing.patch:
+    - Don't let offscreen widgets do grabbing
+  * debian/patches/072_indicator_menu_update.patch:
+    - Change by Cody Russell to send an update event on menu changes,
+      should make the bluetooth indicator refresh correctly
+  * debian/patches/073_treeview_almost_fixed.patch:
+    - "ubuntu-almost-fixed-height" private property to speed-up software-center
+  * debian/patches/074_expose_active_menu_item.patch:
+    - Expose the active menu for the soundmenu
+  * debian/patches/075_expose_gdkwidget_for_gtkrange.patch:
+    - Expose the event window for ido
+  * debian/patches/091_bugzilla_tooltip_refresh.patch:
+    - Upstream bugzilla change to have better looking tooltips the gtk theme
+      need to set "new-tooltip-style" to use those
+  * debian/patches/092_default_to_xdg_document_dir.patch:
+    - Use $XDG_DOCUMENTS_DIR as default directory rather than the home
+      directory for the 'Print to File' function.
+  * debian/patches/093_dso_link_issues.patch:
+  * debian/patches/094_gtkprint_test_fix.patch:
+    - Build fixes
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Thu, 23 Dec 2010 15:03:09 +1100
+
+gtk+3.0 (2.91.7-1) UNRELEASED; urgency=low
+
+  * debian/control.in:
+    - Bump build-depends on libglib2.0-dev
+  * debian/libgtk3.0-0.symbols:
+    - Updated.
+  * debian/libgtk3.0-dev.install.in
+    - gdkconfig.h no longer distributed
+  * debian/rules:
+    - Bumped the shver.
+  * debian/patches/001_static-linking-dont-query-immodules.patch:
+  * debian/patches/005_support_disabling_x11_extensions.patch:
+  * debian/patches/003_gdk.pc_privates.patch:
+  * debian/patches/070_mandatory-relibtoolize.patch:
+  * debian/patches/041_ia32-libs.patch:
+  * debian/patches/002_static-linking-dont-build-perf.patch:
+  * debian/patches/004_git_add_missing_include.patch:
+  * debian/patches/042_treeview_single-focus.patch:
+    - Refreshed
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Thu, 23 Dec 2010 14:09:17 +1100
+
 gtk+3.0 (2.91.7-0ubuntu1) natty; urgency=low
 
   * New upstream release
@@ -14,6 +84,29 @@ gtk+3.0 (2.91.7-0ubuntu1) natty; urgency=low
     - Build fixes
 
  -- Robert Ancell <robert.ancell@canonical.com>  Thu, 23 Dec 2010 09:53:49 +1100
+
+gtk+3.0 (2.91.6-1) experimental; urgency=low
+
+  * New upstream release.
+    + debian/patches/004_git_dont_setup_timeout_twice.patch:
+      - Removed, included upstream.
+    + debian/patches/004_git_add_missing_include.patch:
+      - New patch from upstream git, add a missing include that
+        otherwise caused the build to fail when disabling X extensions.
+    + debian/patches/006_reenable_pixbuf_engine.patch:
+      - New patch. Build the pixbuf engine even if it hasn't been ported to
+        the new GtkThemingEngine API.
+    + debian/patches/*:
+      - Refreshed.
+    + debian/libgtk3.0-0.symbols:
+      - Updated.
+      - Add Build-Depends-Package.
+    + debian/rules:
+      - Bumped the shver.
+      - Disable silent builds.
+  * Let gir1.2-gtk-3.0 replace gir1.0-gtk-3.0.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Sat, 18 Dec 2010 16:00:23 +0000
 
 gtk+3.0 (2.91.6-0ubuntu2) natty; urgency=low
 
@@ -46,6 +139,33 @@ gtk+3.0 (2.91.6-0ubuntu1) natty; urgency=low
 
  -- Robert Ancell <robert.ancell@canonical.com>  Wed, 08 Dec 2010 19:05:20 +1100
 
+gtk+3.0 (2.91.5-2) experimental; urgency=low
+
+  * debian/control.in,
+    debian/rules:
+    + Remove the chrpath hack, it's been fixed in libtool.
+  * Update to the new gir policy:
+    - Rename gir1.0-gtk-3.0 to gir1.2-gtk-3.0.
+    - Bump the gobject-introspection build dependency.
+    - Build depend on gir1.2 packages.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Sun, 12 Dec 2010 16:03:02 +0100
+
+gtk+3.0 (2.91.5-1) experimental; urgency=low
+
+  * New upstream release.
+    + debian/patches/004_gtk_gir_build.patch:
+      - Removed, fixed upstream.
+    + debian/patches/004_git_dont_setup_timeout_twice.patch:
+      - New patch from upstream git, don't setup a timeout in
+        gtkspinners twice.
+    + debian/patches/070_mandatory-relibtoolize.patch:
+      - Updated.
+    + debian/libgtk3.0-0.symbols:
+      - Updated.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Tue, 30 Nov 2010 23:13:17 +0100
+
 gtk+3.0 (2.91.5-0ubuntu1) natty; urgency=low
 
   * New upstream release
@@ -57,6 +177,45 @@ gtk+3.0 (2.91.5-0ubuntu1) natty; urgency=low
     - Applied upstream
 
  -- Robert Ancell <robert.ancell@canonical.com>  Tue, 30 Nov 2010 11:43:13 +1100
+
+gtk+3.0 (2.91.4-2) experimental; urgency=low
+
+  [ Laurent Bigonville ]
+  * debian/watch: Bump version to 3
+
+  [ Emilio Pozuelo Monfort ]
+  * Add gir1.0-gtk-3.0, based on the gir1.0-gtk-2.0 Ubuntu patch.
+  * debian/patches/004_gtk_gir_build.patch:
+    + Fix the introspection build.
+  * debian/patches/070_mandatory-relibtoolize.patch:
+    + Updated.
+
+  [ Sjoerd Simons ]
+  * Update build-depends to properly depend on -dev packages with .gir
+  * Target experimental
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sat, 27 Nov 2010 17:01:51 +0000
+
+gtk+3.0 (2.91.4-1) experimental; urgency=low
+
+  * debian/libgtk3.0-common.install:
+    + Ship the GSettings schemas.
+  * New upstream release.
+    + debian/control.in:
+      - Bump glib2.0 build requirement.
+    + debian/patches/*:
+      - Refreshed.
+  * debian/libgtk3.0-bin.{preinst,postrm}:
+    + Add #DEBHELPER# token. Make errors fatal with set -e.
+  * debian/rules:
+    + Exclude .in files from the dh_installdocs call, so that
+      it picks the real .doc-base files and not the .in ones.
+  * debian/libgtk3.0-doc.doc-base.gdk{,.in}:
+    + Don't hardcode the package name, generate it at build time.
+  * debian/libgail3.0-doc.doc-base.gail-reference:
+    + Fix paths to the manual.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Tue, 16 Nov 2010 06:30:33 +0100
 
 gtk+3.0 (2.91.4-0ubuntu2) natty; urgency=low
 
@@ -79,6 +238,41 @@ gtk+3.0 (2.91.4-0ubuntu1) natty; urgency=low
     - Fix build
 
  -- Robert Ancell <robert.ancell@canonical.com>  Thu, 11 Nov 2010 13:12:48 +1100
+
+gtk+3.0 (2.91.3-1) experimental; urgency=low
+
+  [ Sebastian Dröge ]
+  * Initial GTK+ 3 packaging.
+
+  [ Rico Tzschichholz ]
+  * New upstream development release
+  * some fixes and changes
+
+  [ Sjoerd Simons ]
+  * New upstream release (2.91.3)
+  * debian/patches/009_gtk-export-filechooser.patch:
+    + Removed. Doesn't apply anymore and was only needed for hildon
+  * Update build-depends to cairo >= 1.10.0 and glib-2.0 >= 2.27.0
+  * debian/patches/070_mandatory-relibtoolize.patch
+    + Updated
+  * Update the faq/tutorial index files names
+  * debian/control.in:
+    + Add dependency on docbook-utils for db2html to generate the documentation
+      html during build
+  * Update the symbols file
+  * Version various document index files so they don't conflict with their
+    gtk2 flavour
+  * debian/libgtk3-bin.preinst, debian/libgtk3-bin.postrm:
+    + Divert gtk+2.0's update-icon-caches. The format remained the same so this
+      is safe to do
+  * debian/ruels, libtk3.0-doc.*: Tutorial and FAQ have been removed from the
+    gtk source as they were updated, stop trying to install them
+  * debian/libgail3.0-doc.doc-base.gail-reference
+    + Rename the doc-base to gail-reference-3.0 to not conflict with
+      libgail3.0-doc
+  * debian/copyright updated/rewritten
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun, 07 Nov 2010 20:45:46 +0000
 
 gtk+3.0 (2.91.3-0ubuntu1) natty; urgency=low
 
