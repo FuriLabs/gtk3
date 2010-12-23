@@ -1,17 +1,18 @@
 Source: gtk+3.0
 Section: libs
 Priority: optional
-Maintainer: Sebastien Bacher <seb128@ubuntu.com>
+Maintainer: Ubuntu Desktop Team <ubuntu-desktop@lists.ubuntu.com>
+XSBC-Original-Maintainer: Sebastien Bacher <seb128@debian.org>
 Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
 Build-Depends: debhelper (>= 7.0.50~),
                dh-autoreconf,
                gettext,
                pkg-config,
                autotools-dev,
-               libglib2.0-dev (>= 2.27.3),
-               libgdk-pixbuf2.0-dev (>= 2.21.0),
-               libpango1.0-dev (>= 1.20),
-               libatk1.0-dev (>= 1.29.2),
+               libglib2.0-dev (>= 2.27.5),
+               libgdk-pixbuf2.0-dev (>= 2.22.1),
+               libpango1.0-dev (>= 1.28.3-2),
+               libatk1.0-dev (>= 1.32.0),
                libx11-dev (>= 2:1.3.3-2),
                libxext-dev (>= 2:1.1.1-3),
                libxi-dev (>= 2:1.3-4),
@@ -27,21 +28,20 @@ Build-Depends: debhelper (>= 7.0.50~),
                libxfixes-dev (>= 1:3.0.0-3),
                libcairo2-dev (>= 1.10.0),
                gnome-pkg-tools (>= 0.11),
-               chrpath,
                dpkg-dev (>= 1.13.19),
                x11proto-xext-dev,
                libcups2-dev (>= 1.2),
+               gobject-introspection (>= 0.9.12-4~),
+               libgirepository1.0-dev (>= 0.9.3),
+               gir1.2-glib-2.0,
+               gir1.2-freedesktop,
+               gir1.2-atk-1.0,
+               gir1.2-pango-1.0,
+               gir1.2-gdkpixbuf-2.0,
                quilt,
                gawk,
                xsltproc,
-               shared-mime-info,
-               gobject-introspection,
-               gir1.2-freedesktop,
-               libgirepository1.0-dev,
-               gir1.2-glib-2.0,
-               gir1.2-atk-1.0,
-               gir1.2-pango-1.0,
-               gir1.2-gdkpixbuf-2.0
+               shared-mime-info
 Build-Depends-Indep: gtk-doc-tools (>= 1.8),
                      docbook-xml,
                      docbook-utils,
@@ -125,7 +125,8 @@ Architecture: any
 Depends: libgtk3.0-0 (= ${binary:Version}),
          libgtk3.0-common,
          ${misc:Depends},
-         libglib2.0-dev (>= 2.27.3),
+         ${shlibs:Depends},
+         libglib2.0-dev (>= 2.27.5),
          libgdk-pixbuf2.0-dev (>= 2.21.0),
          libpango1.0-dev (>= 1.20),
          libatk1.0-dev (>= 1.29.2),
@@ -203,28 +204,30 @@ Description: Examples files for the GTK+ 3.0
  This package contains the examples files and a demonstration program
  for the GTK+-3.0.
 
-#Package: gtk3-engines-pixbuf
-#Section: graphics
-#Architecture: any
-#Depends: ${misc:Depends},
-#         ${shlibs:Depends},
-#         libgtk3.0-0 (= ${binary:Version}),
-#         libgtk3.0-common
-#Description: Pixbuf-based theme for GTK+ 3.x
-# The GTK+ is a multi-platform toolkit for creating graphical user
-# interfaces. Offering a complete set of widgets, the GTK+ is suitable
-# for projects ranging from small one-off tools to complete application
-# suites.
-# .
-# This package contains the pixbuf theme engine.
+Package: gtk3-engines-pixbuf
+Section: graphics
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         libgtk3.0-0 (= ${binary:Version}),
+         libgtk3.0-common
+Description: Pixbuf-based theme for GTK+ 3.x
+ The GTK+ is a multi-platform toolkit for creating graphical user
+ interfaces. Offering a complete set of widgets, the GTK+ is suitable
+ for projects ranging from small one-off tools to complete application
+ suites.
+ .
+ This package contains the pixbuf theme engine.
 
 Package: gir1.2-gtk-3.0
 Architecture: any
 Depends: libgtk3.0-common,
          ${misc:Depends},
+         ${shlibs:Depends},
          ${gir:Depends}
 Conflicts: gobject-introspection-repository, gir1.0-gtk-3.0
-Description: The GTK+ graphical user interface library
+Replaces: gir1.0-gtk-3.0
+Description: The GTK+ graphical user interface library -- gir bindings
  The GTK+ is a multi-platform toolkit for creating graphical user
  interfaces. Offering a complete set of widgets, the GTK+ is suitable
  for projects ranging from small one-off tools to complete application
