@@ -137,8 +137,8 @@ Index: gtk+-2.91.7/gtk/gtkmenuitem.c
  #include "gtkbuildable.h"
  #include "gtkactivatable.h"
  #include "gtkintl.h"
-@@ -1662,7 +1663,18 @@
- 				  widget);
+@@ -1715,7 +1715,18 @@
+       gtk_menu_shell_select_item (GTK_MENU_SHELL (parent), widget);
      }
    else
 -    g_signal_emit (widget, menu_item_signals[ACTIVATE_ITEM], 0);
@@ -154,7 +154,7 @@ Index: gtk+-2.91.7/gtk/gtkmenuitem.c
 +          g_signal_emit (widget, menu_item_signals[ACTIVATE_ITEM], 0);
 +        }
 +    }
-   
+ 
    return TRUE;
  }
 Index: gtk+-2.91.7/gtk/gtkmenushell.c
@@ -162,8 +162,8 @@ Index: gtk+-2.91.7/gtk/gtkmenushell.c
 --- gtk+-2.91.7.orig/gtk/gtkmenushell.c	2010-12-22 03:36:05.000000000 +1100
 +++ gtk+-2.91.7/gtk/gtkmenushell.c	2010-12-22 13:23:11.843372001 +1100
 @@ -36,6 +36,7 @@
- #include "gtkmenuitem.h"
- #include "gtkmenushell.h"
+ #include "gtkmenuitemprivate.h"
+ #include "gtkmenushellprivate.h"
  #include "gtkmenuprivate.h"
 +#include "ubuntumenuproxy.h"
  #include "gtkmnemonichash.h"
@@ -179,19 +179,9 @@ Index: gtk+-2.91.7/gtk/gtkmenushell.c
  };
  
  /* Terminology:
-@@ -135,6 +137,9 @@
- 
-   GdkDevice *grab_pointer;
- 
-+  UbuntuMenuProxy *proxy;
-+  gboolean         local;
-+
-   guint take_focus : 1;
-   guint activated_submenu : 1;
-   /* This flag is a crutch to keep mnemonics in the same menu
-@@ -383,6 +388,14 @@
- 							 TRUE,
- 							 GTK_PARAM_READWRITE));
+@@ -365,6 +367,14 @@
+                                                          TRUE,
+                                                          GTK_PARAM_READWRITE));
  
 +  g_object_class_install_property (object_class,
 +                                   PROP_LOCAL,
@@ -204,7 +194,7 @@ Index: gtk+-2.91.7/gtk/gtkmenushell.c
    g_type_class_add_private (object_class, sizeof (GtkMenuShellPrivate));
  }
  
-@@ -393,6 +406,22 @@
+@@ -375,6 +385,22 @@
  }
  
  static void
@@ -226,11 +216,11 @@ Index: gtk+-2.91.7/gtk/gtkmenushell.c
 +static void
  gtk_menu_shell_init (GtkMenuShell *menu_shell)
  {
-   GtkMenuShellPrivate *priv = GTK_MENU_SHELL_GET_PRIVATE (menu_shell);
-@@ -410,6 +439,13 @@
-   priv->key_hash = NULL;
+   GtkMenuShellPrivate *priv;
+@@ -384,6 +410,13 @@
+                                       GtkMenuShellPrivate);
+   menu_shell->priv = priv;
    priv->take_focus = TRUE;
-   priv->activated_submenu = FALSE;
 +  priv->proxy = ubuntu_menu_proxy_get ();
 +  priv->local = FALSE;
 +
@@ -241,11 +231,11 @@ Index: gtk+-2.91.7/gtk/gtkmenushell.c
  }
  
  static void
-@@ -419,12 +455,16 @@
+@@ -393,12 +426,16 @@
                               GParamSpec   *pspec)
  {
    GtkMenuShell *menu_shell = GTK_MENU_SHELL (object);
-+  GtkMenuShellPrivate *priv = GTK_MENU_SHELL_GET_PRIVATE (object);
++  GtkMenuShellPrivate *priv = menu_shell->priv;
  
    switch (prop_id)
      {
@@ -258,11 +248,11 @@ Index: gtk+-2.91.7/gtk/gtkmenushell.c
      default:
        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
        break;
-@@ -438,12 +478,23 @@
-                              GParamSpec  *pspec)
+@@ -412,12 +449,23 @@
+                              GParamSpec *pspec)
  {
    GtkMenuShell *menu_shell = GTK_MENU_SHELL (object);
-+  GtkMenuShellPrivate *priv = GTK_MENU_SHELL_GET_PRIVATE (menu_shell);
++  GtkMenuShellPrivate *priv = menu_shell->priv;
 +  gboolean local;
  
    switch (prop_id)
@@ -282,9 +272,9 @@ Index: gtk+-2.91.7/gtk/gtkmenushell.c
      default:
        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
        break;
-@@ -456,6 +507,13 @@
+@@ -432,6 +480,13 @@
    GtkMenuShell *menu_shell = GTK_MENU_SHELL (object);
-   GtkMenuShellPrivate *priv = GTK_MENU_SHELL_GET_PRIVATE (menu_shell);
+   GtkMenuShellPrivate *priv = menu_shell->priv;
  
 +  if (priv->proxy != NULL)
 +    {
@@ -296,8 +286,8 @@ Index: gtk+-2.91.7/gtk/gtkmenushell.c
    if (priv->mnemonic_hash)
      _gtk_mnemonic_hash_free (priv->mnemonic_hash);
    if (priv->key_hash)
-@@ -495,14 +553,24 @@
- 		       gint          position)
+@@ -467,14 +522,24 @@
+                        gint          position)
  {
    GtkMenuShellClass *class;
 +  GtkMenuShellPrivate *priv;
@@ -307,7 +297,7 @@ Index: gtk+-2.91.7/gtk/gtkmenushell.c
  
    class = GTK_MENU_SHELL_GET_CLASS (menu_shell);
  
-+  priv = GTK_MENU_SHELL_GET_PRIVATE (menu_shell);
++  priv = menu_shell->priv;
 +
    if (class->insert)
      class->insert (menu_shell, child, position);
@@ -321,7 +311,7 @@ Index: gtk+-2.91.7/gtk/gtkmenushell.c
  }
  
  static void
-@@ -1908,3 +1976,23 @@
+@@ -1868,6 +1933,26 @@
        g_object_notify (G_OBJECT (menu_shell), "take-focus");
      }
  }
@@ -333,7 +323,7 @@ Index: gtk+-2.91.7/gtk/gtkmenushell.c
 +
 +  g_return_val_if_fail (GTK_IS_MENU_SHELL (shell), FALSE);
 +
-+  priv = GTK_MENU_SHELL_GET_PRIVATE (shell);
++  priv = shell->priv;
 +
 +  if (priv->proxy && !ubuntu_menu_proxy_show_local (priv->proxy))
 +    {
@@ -345,6 +335,9 @@ Index: gtk+-2.91.7/gtk/gtkmenushell.c
 +
 +  return FALSE;
 +}
+ 
+ /**
+  * gtk_menu_shell_get_selected_item:
 Index: gtk+-2.91.7/gtk/gtkwindow.c
 ===================================================================
 --- gtk+-2.91.7.orig/gtk/gtkwindow.c	2010-12-22 04:07:05.000000000 +1100
@@ -655,7 +648,7 @@ Index: gtk+-2.91.7/gtk/ubuntumenuproxy.h
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ gtk+-2.91.7/gtk/ubuntumenuproxy.h	2010-12-22 13:23:11.853372001 +1100
-@@ -0,0 +1,74 @@
+@@ -0,0 +1,73 @@
 +/*
 + * Copyright (C) 2010 Canonical, Ltd.
 + *
@@ -685,7 +678,6 @@ Index: gtk+-2.91.7/gtk/ubuntumenuproxy.h
 +#define __UBUNTU_MENU_PROXY_H__
 +
 +#include <gtk/gtkwidget.h>
-+#include <gtk/gtktypeutils.h>
 +
 +G_BEGIN_DECLS
 +
@@ -1017,3 +1009,25 @@ Index: gtk+-2.91.7/gtk/ubuntumenuproxymodule.h
 +G_END_DECLS
 +
 +#endif /* __UBUNTU_MENU_PROXY_MODULE_H__ */
+diff --git a/gtk/gtkmenushellprivate.h b/gtk/gtkmenushellprivate.h
+index 6015f0c..50b5ed1 100644
+--- a/gtk/gtkmenushellprivate.h
++++ b/gtk/gtkmenushellprivate.h
+@@ -24,6 +24,7 @@
+ #include <gtk/gtkmenushell.h>
+ #include <gtk/gtkmnemonichash.h>
+ #include <gtk/gtkkeyhash.h>
++#include "ubuntumenuproxy.h"
+ 
+ 
+ G_BEGIN_DECLS
+@@ -54,6 +54,9 @@ struct _GtkMenuShellPrivate
+   GtkKeyHash *key_hash;
+ 
+   GdkDevice *grab_pointer;
++
++  UbuntuMenuProxy *proxy;
++  gboolean local;
+ };
+ 
+ void        _gtk_menu_shell_select_last      (GtkMenuShell *menu_shell,

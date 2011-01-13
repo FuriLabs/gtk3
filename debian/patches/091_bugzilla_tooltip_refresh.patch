@@ -63,7 +63,7 @@ Index: gtk+-2.91.7/gtk/gtktooltip.c
 +static void
  gtk_tooltip_init (GtkTooltip *tooltip)
  {
-   GtkStyle *style;
+   GtkStyleContext *context;
 @@ -199,8 +237,12 @@
    tooltip->last_window = NULL;
  
@@ -91,7 +91,7 @@ Index: gtk+-2.91.7/gtk/gtktooltip.c
    tooltip->custom_widget = NULL;
  }
  
-@@ -583,19 +632,209 @@
+@@ -596,6 +645,169 @@
    gtk_widget_queue_draw (tooltip->window);
  }
  
@@ -260,57 +260,7 @@ Index: gtk+-2.91.7/gtk/gtktooltip.c
 +
  static gboolean
  gtk_tooltip_paint_window (GtkTooltip *tooltip,
--                          cairo_t    *cr)
-+                          cairo_t    *context)
- {
--  gtk_paint_flat_box (gtk_widget_get_style (tooltip->window),
--		      cr,
--		      GTK_STATE_NORMAL,
--		      GTK_SHADOW_OUT,
--		      tooltip->window,
--		      "tooltip",
--		      0, 0,
--                      gtk_widget_get_allocated_width (tooltip->window),
--                      gtk_widget_get_allocated_height (tooltip->window));
-+  gboolean new_style;
-+
-+  gtk_widget_style_get (tooltip->window, "new-tooltip-style", &new_style, NULL);
-+
-+  if (new_style)
-+    {
-+      cairo_surface_t *surface;
-+      cairo_t         *cr;
-+
-+      cairo_set_operator (context, CAIRO_OPERATOR_SOURCE);
-+      surface = cairo_surface_create_similar (cairo_get_target (context),
-+                                              CAIRO_CONTENT_COLOR_ALPHA,
-+                                               gtk_widget_get_allocated_width (tooltip->window),
-+                                               gtk_widget_get_allocated_height (tooltip->window));
-+      cr = cairo_create (surface);
-+      fill_background (tooltip->window, cr);
-+      cairo_destroy (cr);
-+
-+      cairo_set_source_surface (context, surface, 0, 0);
-+      cairo_paint (context);
-+      cairo_surface_destroy (surface);
-+
-+      update_shape (tooltip);
-+    }
-+  else
-+    {
-+      gtk_paint_flat_box (gtk_widget_get_style (tooltip->window),
-+                           context,
-+                          GTK_STATE_NORMAL,
-+                          GTK_SHADOW_OUT,
-+                          tooltip->window,
-+                          "tooltip",
-+                          0, 0,
-+                           gtk_widget_get_allocated_width (tooltip->window),
-+                           gtk_widget_get_allocated_height (tooltip->window));
-+    }
- 
-   return FALSE;
- }
+                           cairo_t    *cr)
 Index: gtk+-2.91.7/gtk/gtkwidget.c
 ===================================================================
 --- gtk+-2.91.7.orig/gtk/gtkwidget.c	2010-12-22 13:23:15.483372000 +1100
