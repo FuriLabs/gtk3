@@ -3,8 +3,11 @@ Section: libs
 Priority: optional
 Maintainer: Ubuntu Desktop Team <ubuntu-desktop@lists.ubuntu.com>
 XSBC-Original-Maintainer: Sebastien Bacher <seb128@debian.org>
-Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Emilio Pozuelo Monfort <pochu@debian.org>, Sjoerd Simons <sjoerd@debian.org>
+Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Emilio Pozuelo Monfort <pochu@debian.org>
 Build-Depends: debhelper (>= 7.0.50~),
+               cdbs (>= 0.4.90~),
+               gnome-pkg-tools (>= 0.11),
+               dpkg-dev (>= 1.13.19),
                dh-autoreconf,
                gettext,
                pkg-config,
@@ -28,8 +31,6 @@ Build-Depends: debhelper (>= 7.0.50~),
                libxinerama-dev (>= 2:1.1-3),
                libxfixes-dev (>= 1:3.0.0-3),
                libcairo2-dev (>= 1.10.0),
-               gnome-pkg-tools (>= 0.11),
-               dpkg-dev (>= 1.13.19),
                x11proto-xext-dev,
                libcups2-dev (>= 1.2),
                gobject-introspection (>= 0.9.12-4~),
@@ -39,12 +40,10 @@ Build-Depends: debhelper (>= 7.0.50~),
                gir1.2-atk-1.0,
                gir1.2-pango-1.0,
                gir1.2-gdkpixbuf-2.0,
-               quilt,
                gawk,
                xsltproc,
                shared-mime-info
-Build-Depends-Indep: gtk-doc-tools (>= 1.8),
-                     docbook-xml,
+Build-Depends-Indep: docbook-xml,
                      docbook-utils,
                      libglib2.0-doc,
                      libatk1.0-doc,
