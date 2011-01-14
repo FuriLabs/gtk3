@@ -1,4 +1,57 @@
-gtk+3.0 (2.99.2-1ubuntu1) UNRELEASED; urgency=low
+gtk+3.0 (2.99.2-1ubuntu2) UNRELEASED; urgency=low
+
+  * Merge with Debian experimental, remaining Ubuntu changes:
+  * debian/control:
+    - Build-depend on dh-autoreconf
+    - Move gtk-doc-tools from Build-Depends-Indep to Build-Depends as it is
+      required by dh_autoreconf
+    - Add Vcs-Bzr link
+  * debian/libgtk2.0-0.symbols:
+    - Add Ubuntu specific symbols
+  * debian/rules:
+    - Use autoreconf.mk
+  * debian/watch:
+    - Watch for unstable versions
+  * debian/patches/043_menu_proxy.patch
+    - Add GtkMenuProxy support for remoting menus.
+  * debian/patches/062_dnd_menubar.patch:
+    - Allow click on menubars for dnd
+  * debian/patches/065_gir_set_packages.patch
+    - Added _gir_PACKAGES for each gir created, to match gir to pkg which is
+      needed by vapigen-0.12
+  * debian/patches/071_no_offscreen_widgets_grabbing.patch:
+    - Don't let offscreen widgets do grabbing
+  * debian/patches/072_indicator_menu_update.patch:
+    - Change by Cody Russell to send an update event on menu changes,
+      should make the bluetooth indicator refresh correctly
+  * debian/patches/073_treeview_almost_fixed.patch:
+    - "ubuntu-almost-fixed-height" private property to speed-up software-center
+  * debian/patches/075_expose_gdkwidget_for_gtkrange.patch:
+    - Expose the event window for ido
+  * debian/patches/091_bugzilla_tooltip_refresh.patch:
+    - Upstream bugzilla change to have better looking tooltips the gtk theme
+      need to set "new-tooltip-style" to use those
+  * debian/patches/092_default_to_xdg_document_dir.patch:
+    - Use $XDG_DOCUMENTS_DIR as default directory rather than the home
+      directory for the 'Print to File' function.
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Fri, 14 Jan 2011 12:05:51 -0500
+
+gtk+3.0 (2.99.2-1) experimental; urgency=low
+
+  * New upstream release.
+    + d/p/0001-stylecontext-Protect-the-cairo-contexts-with-cairo_s.patch
+      d/p/0003-Fixed-assertions-in-gtk_cell_renderer_get_aligned_ar.patch
+      d/p/0002-_gtk_cell_area_set_cell_data_func_with_proxy-set-the.patch
+      - Removed, included upstream.
+    + debian/libgtk3.0-0.symbols:
+      - Updated.
+    + debian/rules:
+      - Bumped the shver.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Thu, 13 Jan 2011 18:36:27 +0000
+
+gtk+3.0 (2.99.2-0ubuntu1) UNRELEASED; urgency=low
 
   * New upstream release
   * debian/patches/015_default-fallback-icon-theme.patch:
@@ -24,6 +77,65 @@ gtk+3.0 (2.99.2-1ubuntu1) UNRELEASED; urgency=low
     - Updated to new API
 
  -- Rodrigo Moya <rodrigo.moya@canonical.com>  Thu, 13 Jan 2011 16:05:39 +0100
+
+gtk+3.0 (2.99.1-1) experimental; urgency=low
+
+  [ Robert Ancell ]
+  * debian/control.in:
+    - Bump build-depends on libglib2.0-dev
+  * debian/libgtk3.0-0.symbols:
+    - Updated.
+  * debian/libgtk3.0-dev.install.in
+    - gdkconfig.h no longer distributed
+  * debian/rules:
+    - Bumped the shver.
+  * debian/patches/001_static-linking-dont-query-immodules.patch:
+  * debian/patches/005_support_disabling_x11_extensions.patch:
+  * debian/patches/003_gdk.pc_privates.patch:
+  * debian/patches/070_mandatory-relibtoolize.patch:
+  * debian/patches/041_ia32-libs.patch:
+  * debian/patches/002_static-linking-dont-build-perf.patch:
+  * debian/patches/004_git_add_missing_include.patch:
+  * debian/patches/042_treeview_single-focus.patch:
+    - Refreshed.
+
+  [ Emilio Pozuelo Monfort ]
+  * New upstream release.
+    + debian/rules:
+      - Pass --enable-xinput instead of --with-xinput=yes.
+      - Bump the shver.
+    + debian/patches/004_git_add_missing_include.patch,
+      debian/patches/005_support_disabling_x11_extensions.patch,
+      debian/patches/007-continue-to-install-gdk-TARGET-3.0.pc.patch:
+      - Removed, included upstream.
+    + debian/patches/061_use_pdf_as_default_printing_standard.patch:
+      - Removed. The cups backend part has been fixed upstream in a (better)
+        different way, and the lpr part doesn't make sense as we don't know
+        if the job will be sent to CUPS or not.
+    + debian/patches/070_mandatory-relibtoolize.patch,
+      debian/rules:
+      - Switch to dh-autoreconf.
+    + debian/patches/*:
+      - Refreshed.
+    + debian/libgtk3.0-0.symbols,
+      debian/libgail3.0-0.symbols:
+      - Updated.
+    + debian/libgtk3.0-*.{install.in,manpages},
+      debian/rules:
+      - Install manpages and binaries with the -3.0 suffix as upstream has
+        stopped doing so.
+  * Switch to CDBS' flavours system.
+  * debian/rules:
+    + Remove hack to build on PowerPC64. That port is dead, and if it's
+      ever back, hopefully we won't need to workaround toolchain issues.
+    + Pass -O1 to the linker so dynamic loading is faster.
+  * d/patches/0001-stylecontext-Protect-the-cairo-contexts-with-cairo_s.patch
+    d/patches/0003-Fixed-assertions-in-gtk_cell_renderer_get_aligned_ar.patch
+    d/patches/0002-_gtk_cell_area_set_cell_data_func_with_proxy-set-the.patch
+    + Backport patches from upstream git. They fix rendering issues and
+      assertion failures.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Wed, 12 Jan 2011 22:06:17 +0000
 
 gtk+3.0 (2.91.7-1ubuntu1) natty; urgency=low
 
