@@ -80,9 +80,9 @@ Index: gtk+-2.91.7/gtk/gtkmenuitem.c
    /**
     * GtkMenuItem:right-justified:
     *
-@@ -1204,6 +1225,11 @@
+@@ -1242,6 +1265,11 @@
        if (gtk_widget_get_parent (GTK_WIDGET (menu_item)))
- 	gtk_widget_queue_resize (GTK_WIDGET (menu_item));
+         gtk_widget_queue_resize (GTK_WIDGET (menu_item));
  
 +      if(submenu == NULL)
 +        g_signal_emit_by_name (menu_item, "submenu-removed");
