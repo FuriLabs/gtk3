@@ -1,10 +1,10 @@
 # Description: better looking tooltips
 # Upstream: https://bugzilla.gnome.org/show_bug.cgi?id=599617
 # Ubuntu: https://launchpad.net/bugs/487208
-Index: gtk+-2.91.7/gtk/gtktooltip.c
+Index: gtk+3.0-2.99.3/gtk/gtktooltip.c
 ===================================================================
---- gtk+-2.91.7.orig/gtk/gtktooltip.c	2010-12-22 04:07:07.000000000 +1100
-+++ gtk+-2.91.7/gtk/gtktooltip.c	2010-12-22 13:25:33.873372002 +1100
+--- gtk+3.0-2.99.3.orig/gtk/gtktooltip.c
++++ gtk+3.0-2.99.3/gtk/gtktooltip.c
 @@ -35,6 +35,9 @@
  #include "gtkalignment.h"
  #include "gtksizerequest.h"
@@ -64,7 +64,7 @@ Index: gtk+-2.91.7/gtk/gtktooltip.c
  gtk_tooltip_init (GtkTooltip *tooltip)
  {
    GtkStyleContext *context;
-@@ -199,8 +237,12 @@
+@@ -200,8 +238,12 @@
    tooltip->last_window = NULL;
  
    tooltip->window = g_object_ref (gtk_window_new (GTK_WINDOW_POPUP));
@@ -77,7 +77,7 @@ Index: gtk+-2.91.7/gtk/gtktooltip.c
    gtk_widget_set_app_paintable (tooltip->window, TRUE);
    gtk_window_set_resizable (GTK_WINDOW (tooltip->window), FALSE);
    gtk_widget_set_name (tooltip->window, "gtk-tooltip");
-@@ -234,6 +276,13 @@
+@@ -241,6 +283,13 @@
    gtk_box_pack_start (GTK_BOX (tooltip->box), tooltip->label,
  		      FALSE, FALSE, 0);
  
@@ -261,11 +261,11 @@ Index: gtk+-2.91.7/gtk/gtktooltip.c
  static gboolean
  gtk_tooltip_paint_window (GtkTooltip *tooltip,
                            cairo_t    *cr)
-Index: gtk+-2.91.7/gtk/gtkwidget.c
+Index: gtk+3.0-2.99.3/gtk/gtkwidget.c
 ===================================================================
---- gtk+-2.91.7.orig/gtk/gtkwidget.c	2010-12-22 13:23:15.483372000 +1100
-+++ gtk+-2.91.7/gtk/gtkwidget.c	2010-12-22 13:25:33.883372002 +1100
-@@ -3141,6 +3141,14 @@
+--- gtk+3.0-2.99.3.orig/gtk/gtkwidget.c
++++ gtk+3.0-2.99.3/gtk/gtkwidget.c
+@@ -3130,6 +3130,14 @@
                                                               1, G_MAXINT, 16,
                                                               GTK_PARAM_READABLE));
  
