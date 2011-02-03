@@ -3,11 +3,11 @@
 ## Origin/Author: Cody Russell <bratsche@gnome.org>, 
 ##                Sense Hofstede <sense@ubuntu.com>
 ## Bug: unknown and https://launchpad.net/bugs/608219
-Index: gtk+-2.91.7/gtk/gtkcontainer.c
+Index: gtk+3.0-2.99.3/gtk/gtkcontainer.c
 ===================================================================
---- gtk+-2.91.7.orig/gtk/gtkcontainer.c	2010-12-22 03:36:24.000000000 +1100
-+++ gtk+-2.91.7/gtk/gtkcontainer.c	2010-12-22 13:23:21.983372001 +1100
-@@ -244,6 +244,8 @@
+--- gtk+3.0-2.99.3.orig/gtk/gtkcontainer.c
++++ gtk+3.0-2.99.3/gtk/gtkcontainer.c
+@@ -246,6 +246,8 @@
    REMOVE,
    CHECK_RESIZE,
    SET_FOCUS_CHILD,
@@ -16,10 +16,11 @@ Index: gtk+-2.91.7/gtk/gtkcontainer.c
    LAST_SIGNAL
  };
  
-@@ -504,6 +506,24 @@
- 		  _gtk_marshal_VOID__OBJECT,
- 		  G_TYPE_NONE, 1,
- 		  GTK_TYPE_WIDGET);
+@@ -505,6 +507,24 @@
+                   NULL, NULL,
+                   _gtk_marshal_VOID__OBJECT,
+                   G_TYPE_NONE, 1,
++                  GTK_TYPE_WIDGET);
 +  container_signals[CHILD_ADDED] =
 +    g_signal_new (I_("child-added"),
 +                  G_OBJECT_CLASS_TYPE (gobject_class),
@@ -37,15 +38,14 @@ Index: gtk+-2.91.7/gtk/gtkcontainer.c
 +                  NULL, NULL,
 +                  _gtk_marshal_VOID__OBJECT,
 +                  G_TYPE_NONE, 1,
-+                  GTK_TYPE_WIDGET);
+                   GTK_TYPE_WIDGET);
  
    g_type_class_add_private (class, sizeof (GtkContainerPrivate));
- }
-Index: gtk+-2.91.7/gtk/gtkmenuitem.c
+Index: gtk+3.0-2.99.3/gtk/gtkmenuitem.c
 ===================================================================
---- gtk+-2.91.7.orig/gtk/gtkmenuitem.c	2010-12-22 13:23:11.843372001 +1100
-+++ gtk+-2.91.7/gtk/gtkmenuitem.c	2010-12-22 13:23:21.983372001 +1100
-@@ -53,6 +53,8 @@
+--- gtk+3.0-2.99.3.orig/gtk/gtkmenuitem.c
++++ gtk+3.0-2.99.3/gtk/gtkmenuitem.c
+@@ -52,6 +52,8 @@
    TOGGLE_SIZE_ALLOCATE,
    SELECT,
    DESELECT,
@@ -54,7 +54,7 @@ Index: gtk+-2.91.7/gtk/gtkmenuitem.c
    LAST_SIGNAL
  };
  
-@@ -271,6 +273,25 @@
+@@ -268,6 +270,25 @@
                    _gtk_marshal_VOID__VOID,
                    G_TYPE_NONE, 0);
  
@@ -80,7 +80,7 @@ Index: gtk+-2.91.7/gtk/gtkmenuitem.c
    /**
     * GtkMenuItem:right-justified:
     *
-@@ -1242,6 +1265,11 @@
+@@ -1243,6 +1264,11 @@
        if (gtk_widget_get_parent (GTK_WIDGET (menu_item)))
          gtk_widget_queue_resize (GTK_WIDGET (menu_item));
  
@@ -92,11 +92,11 @@ Index: gtk+-2.91.7/gtk/gtkmenuitem.c
        g_object_notify (G_OBJECT (menu_item), "submenu");
      }
  }
-Index: gtk+-2.91.7/gtk/gtkmenushell.c
+Index: gtk+3.0-2.99.3/gtk/gtkmenushell.c
 ===================================================================
---- gtk+-2.91.7.orig/gtk/gtkmenushell.c	2010-12-22 13:23:11.843372001 +1100
-+++ gtk+-2.91.7/gtk/gtkmenushell.c	2010-12-22 13:23:21.983372001 +1100
-@@ -571,6 +571,8 @@
+--- gtk+3.0-2.99.3.orig/gtk/gtkmenushell.c
++++ gtk+3.0-2.99.3/gtk/gtkmenushell.c
+@@ -623,6 +623,8 @@
                                GTK_WIDGET (menu_shell),
                                child,
                                position);
