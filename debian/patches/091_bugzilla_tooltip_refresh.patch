@@ -1,10 +1,10 @@
 # Description: better looking tooltips
 # Upstream: https://bugzilla.gnome.org/show_bug.cgi?id=599617
 # Ubuntu: https://launchpad.net/bugs/487208
-Index: gtk+3.0-2.99.3/gtk/gtktooltip.c
+Index: gtk+-3.0.0/gtk/gtktooltip.c
 ===================================================================
---- gtk+3.0-2.99.3.orig/gtk/gtktooltip.c
-+++ gtk+3.0-2.99.3/gtk/gtktooltip.c
+--- gtk+-3.0.0.orig/gtk/gtktooltip.c	2011-02-10 23:27:24.000000000 +1100
++++ gtk+-3.0.0/gtk/gtktooltip.c	2011-02-14 11:29:44.607147789 +1100
 @@ -35,6 +35,9 @@
  #include "gtkalignment.h"
  #include "gtksizerequest.h"
@@ -261,11 +261,11 @@ Index: gtk+3.0-2.99.3/gtk/gtktooltip.c
  static gboolean
  gtk_tooltip_paint_window (GtkTooltip *tooltip,
                            cairo_t    *cr)
-Index: gtk+3.0-2.99.3/gtk/gtkwidget.c
+Index: gtk+-3.0.0/gtk/gtkwidget.c
 ===================================================================
---- gtk+3.0-2.99.3.orig/gtk/gtkwidget.c
-+++ gtk+3.0-2.99.3/gtk/gtkwidget.c
-@@ -3130,6 +3130,14 @@
+--- gtk+-3.0.0.orig/gtk/gtkwidget.c	2011-02-14 11:29:37.347272919 +1100
++++ gtk+-3.0.0/gtk/gtkwidget.c	2011-02-14 11:29:44.607147789 +1100
+@@ -3139,6 +3139,14 @@
                                                               1, G_MAXINT, 16,
                                                               GTK_PARAM_READABLE));
  

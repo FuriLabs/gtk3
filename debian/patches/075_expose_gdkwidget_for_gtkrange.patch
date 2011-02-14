@@ -12,11 +12,11 @@ should access to the GdkWindow.
  gtk/gtkrange.h                       |    1 +
  4 files changed, 22 insertions(+), 0 deletions(-)
 
-Index: gtk+3.0-2.99.3/docs/reference/gtk/gtk3-sections.txt
+Index: gtk+-3.0.0/docs/reference/gtk/gtk3-sections.txt
 ===================================================================
---- gtk+3.0-2.99.3.orig/docs/reference/gtk/gtk3-sections.txt
-+++ gtk+3.0-2.99.3/docs/reference/gtk/gtk3-sections.txt
-@@ -2500,6 +2500,7 @@
+--- gtk+-3.0.0.orig/docs/reference/gtk/gtk3-sections.txt	2011-02-09 15:21:39.000000000 +1100
++++ gtk+-3.0.0/docs/reference/gtk/gtk3-sections.txt	2011-02-14 11:29:42.947176217 +1100
+@@ -2502,6 +2502,7 @@
  gtk_range_get_slider_size_fixed
  gtk_range_set_min_slider_size
  gtk_range_set_slider_size_fixed
@@ -24,11 +24,11 @@ Index: gtk+3.0-2.99.3/docs/reference/gtk/gtk3-sections.txt
  
  <SUBSECTION Standard>
  GTK_RANGE
-Index: gtk+3.0-2.99.3/gtk/gtk.symbols
+Index: gtk+-3.0.0/gtk/gtk.symbols
 ===================================================================
---- gtk+3.0-2.99.3.orig/gtk/gtk.symbols
-+++ gtk+3.0-2.99.3/gtk/gtk.symbols
-@@ -2046,6 +2046,7 @@
+--- gtk+-3.0.0.orig/gtk/gtk.symbols	2011-02-14 11:29:37.347272919 +1100
++++ gtk+-3.0.0/gtk/gtk.symbols	2011-02-14 11:29:42.947176217 +1100
+@@ -2040,6 +2040,7 @@
  gtk_radio_tool_button_new_with_stock_from_widget
  gtk_radio_tool_button_set_group
  gtk_range_get_adjustment
@@ -36,10 +36,10 @@ Index: gtk+3.0-2.99.3/gtk/gtk.symbols
  gtk_range_get_fill_level
  gtk_range_get_flippable
  gtk_range_get_inverted
-Index: gtk+3.0-2.99.3/gtk/gtkrange.c
+Index: gtk+-3.0.0/gtk/gtkrange.c
 ===================================================================
---- gtk+3.0-2.99.3.orig/gtk/gtkrange.c
-+++ gtk+3.0-2.99.3/gtk/gtkrange.c
+--- gtk+-3.0.0.orig/gtk/gtkrange.c	2011-01-31 13:24:51.000000000 +1100
++++ gtk+-3.0.0/gtk/gtkrange.c	2011-02-14 11:29:42.947176217 +1100
 @@ -4043,6 +4043,26 @@
      }
  }
@@ -67,10 +67,10 @@ Index: gtk+3.0-2.99.3/gtk/gtkrange.c
  void
  _gtk_range_set_stop_values (GtkRange *range,
                              gdouble  *values,
-Index: gtk+3.0-2.99.3/gtk/gtkrange.h
+Index: gtk+-3.0.0/gtk/gtkrange.h
 ===================================================================
---- gtk+3.0-2.99.3.orig/gtk/gtkrange.h
-+++ gtk+3.0-2.99.3/gtk/gtkrange.h
+--- gtk+-3.0.0.orig/gtk/gtkrange.h	2011-01-15 16:04:51.000000000 +1100
++++ gtk+-3.0.0/gtk/gtkrange.h	2011-02-14 11:29:42.947176217 +1100
 @@ -146,6 +146,7 @@
  void               gtk_range_set_round_digits              (GtkRange      *range,
                                                              gint           round_digits);
