@@ -5,7 +5,6 @@ DEB_MAKE_DESTDIRSKEL = $(CURDIR)/debian/install/@FLAVOR@
 DEB_MAKE_FLAVORS = shared shared_udeb static
 DISABLE_UPDATE_UPLOADERS = 1
 
-include /usr/share/cdbs/1/rules/autoreconf.mk
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/rules/autoreconf.mk
 include /usr/share/cdbs/1/rules/utils.mk
@@ -119,6 +118,7 @@ debian/%: debian/%.in
 		-e "s#@GTK_BINARY_VERSION@#$(GTK_BINARY_VERSION)#g" \
 		-e "s#@LIBDIR@#$(LIBDIR)#g" \
 		-e 's#@OPTLIBDIR@#$(OPTLIBDIR)#g' \
+		-e 's#@CONFDIR@#$(CONFDIR)#g' \
 		-e "s#@MODULES_BASE_PATH@#$(MODULES_BASE_PATH)#g" \
 		$@.in > $@
 
