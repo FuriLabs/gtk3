@@ -1,8 +1,67 @@
-gtk+3.0 (3.0.0-0ubuntu2) UNRELEASED; urgency=low
+gtk+3.0 (3.0.0-1ubuntu1) natty; urgency=low
 
-  * Rename packages to use new shared object naming
+  * Merge with Debian experimental, remaining Ubuntu changes:
+  * debian/control:
+    - Add Vcs-Bzr link  
+  * debian/libgtk2.0-0.symbols:
+    - Add Ubuntu specific symbols
+  * debian/watch:
+    - Watch for unstable versions
+  * debian/patches/043_menu_proxy.patch
+    - Add GtkMenuProxy support for remoting menus.
+  * debian/patches/062_dnd_menubar.patch:
+    - Allow click on menubars for dnd
+  * debian/patches/071_no_offscreen_widgets_grabbing.patch:
+    - Don't let offscreen widgets do grabbing
+  * debian/patches/072_indicator_menu_update.patch:
+    - Change by Cody Russell to send an update event on menu changes,
+      should make the bluetooth indicator refresh correctly
+  * debian/patches/073_treeview_almost_fixed.patch:
+    - "ubuntu-almost-fixed-height" private property to speed-up software-center
+  * debian/patches/075_expose_gdkwidget_for_gtkrange.patch:
+    - Expose the event window for ido
+  * debian/patches/091_bugzilla_tooltip_refresh.patch:
+    - Upstream bugzilla change to have better looking tooltips the gtk theme
+      need to set "new-tooltip-style" to use those
+  * debian/patches/092_default_to_xdg_document_dir.patch:
+    - Use $XDG_DOCUMENTS_DIR as default directory rather than the home
+      directory for the 'Print to File' function.
 
- -- Robert Ancell <robert.ancell@canonical.com>  Tue, 15 Feb 2011 12:20:50 +1100
+ -- Robert Ancell <robert.ancell@canonical.com>  Mon, 21 Feb 2011 15:49:45 +1100
+
+gtk+3.0 (3.0.0-1) experimental; urgency=low
+
+  [ Emilio Pozuelo Monfort ]
+  * New upstream release.
+    + debian/control.in:
+      - Stop building the pixbuf package, it hasn't been ported to the
+        new style API so is useless.
+    + debian/patches/006_reenable_pixbuf_engine.patch:
+      - Removed, no longer necessary.
+    + debian/libgtk3.0-0.symbols:
+      - Updated.
+    + debian/libgtk3.0-dev.install.in,
+      debian/libgtk3.0-dev.manpages,
+      debian/rules:
+      - gtk-builder-convert is gone, stop shipping it.
+
+  [ Robert Ancell ]
+  * New upstream release
+  * Rename binary packages to new so naming
+  * debian/control:
+    - Bump build-depends on libglib2.0-dev, libgdk-pixbuf2.0-dev, libatk1.0-dev,
+      gobject-introspection
+  * debian/libgail-3-0.symbols:
+  * debian/libgtk-3-0.symbols:
+    - Updated
+    - Mark symbols with stable version number
+  * debian/rules:
+    - Bump SHVER
+
+  [ Emilio Pozuelo Monfort ]
+  * Fix some leftovers after the renaming.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Sat, 19 Feb 2011 11:40:36 +0000
 
 gtk+3.0 (3.0.0-0ubuntu1) natty; urgency=low
 
