@@ -40,9 +40,7 @@ Build-Depends: debhelper (>= 7.0.50~),
                gir1.2-atk-1.0,
                gir1.2-pango-1.0,
                gir1.2-gdkpixbuf-2.0,
-               gawk,
-               xsltproc,
-               shared-mime-info
+               gawk
 Build-Depends-Indep: docbook-xml,
                      docbook-utils,
                      libglib2.0-doc,
@@ -131,6 +129,7 @@ Package: @DEV_PKG@
 Section: libdevel
 Architecture: any
 Depends: @SHARED_PKG@ (= ${binary:Version}),
+         gir1.2-gtk-3.0 (= ${binary:Version}),
          @COMMON_PKG@,
          ${misc:Depends},
          ${shlibs:Depends},
