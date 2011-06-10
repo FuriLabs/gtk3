@@ -6,9 +6,9 @@ Index: gtk+-3.0.2/gtk/gtktooltip.c
 --- gtk+-3.0.2.orig/gtk/gtktooltip.c	2011-01-25 08:43:34.000000000 +1100
 +++ gtk+-3.0.2/gtk/gtktooltip.c	2011-03-08 15:44:06.321659430 +1100
 @@ -35,6 +35,9 @@
- #include "gtkalignment.h"
  #include "gtksizerequest.h"
- 
+ #include "gtkwindowprivate.h"
+
 +#ifdef GDK_WINDOWING_X11
 +#include "gdk/x11/gdkx.h"
 +#endif
