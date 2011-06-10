@@ -1,0 +1,24 @@
+From e45230ad39a773bc8eed64d5d7f9ebaf470ccc4c Mon Sep 17 00:00:00 2001
+From: Benjamin Otte <otte@redhat.com>
+Date: Wed, 08 Jun 2011 13:47:46 +0000
+Subject: gdk: Make background changes queue a repaint
+
+For client-side windows, we need to queue a repaint when the background
+changes. For native windows, the windowing system does take care of it,
+but client-side windows are our own, so we gotta do it manually.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=652102
+---
+diff --git a/gdk/gdkwindow.c b/gdk/gdkwindow.c
+index 210e517..cc2d9c2 100644
+--- a/gdk/gdkwindow.c
++++ b/gdk/gdkwindow.c
+@@ -6548,6 +6548,8 @@ gdk_window_set_background_pattern (GdkWindow *window,
+       GdkWindowImplClass *impl_class = GDK_WINDOW_IMPL_GET_CLASS (window->impl);
+       impl_class->set_background (window, pattern);
+     }
++  else
++    gdk_window_invalidate_rect_full (window, NULL, TRUE, CLEAR_BG_ALL);
+ }
+ 
+ /**
