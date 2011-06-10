@@ -548,7 +548,7 @@ libgdk-3.so.0 libgtk-3-0 #MINVER#
  gdk_x11_window_get_xid@Base 3.0.0
  gdk_x11_window_lookup_for_display@Base 3.0.0
  gdk_x11_window_move_to_current_desktop@Base 3.0.0
- gdk_x11_window_set_theme_variant_gtk_only@Base 3.0.6
+ gdk_x11_window_set_theme_variant@Base 3.1.4
  gdk_x11_window_set_user_time@Base 3.0.0
  gdk_x11_xatom_to_atom@Base 3.0.0
  gdk_x11_xatom_to_atom_for_display@Base 3.0.0
@@ -862,10 +862,12 @@ libgtk-3.so.0 libgtk-3-0 #MINVER#
  gtk_builder_set_translation_domain@Base 3.0.0
  gtk_builder_value_from_string@Base 3.0.0
  gtk_builder_value_from_string_type@Base 3.0.0
+ gtk_button_box_get_child_non_homogeneous@Base 3.1.4
  gtk_button_box_get_child_secondary@Base 3.0.0
  gtk_button_box_get_layout@Base 3.0.0
  gtk_button_box_get_type@Base 3.0.0
  gtk_button_box_new@Base 3.0.0
+ gtk_button_box_set_child_non_homogeneous@Base 3.1.4
  gtk_button_box_set_child_secondary@Base 3.0.0
  gtk_button_box_set_layout@Base 3.0.0
  gtk_button_box_style_get_type@Base 3.0.0
@@ -1207,6 +1209,7 @@ libgtk-3.so.0 libgtk-3-0 #MINVER#
  gtk_container_child_get@Base 3.0.0
  gtk_container_child_get_property@Base 3.0.0
  gtk_container_child_get_valist@Base 3.0.0
+ gtk_container_child_notify@Base 3.1.4
  gtk_container_child_set@Base 3.0.0
  gtk_container_child_set_property@Base 3.0.0
  gtk_container_child_set_valist@Base 3.0.0
@@ -1292,6 +1295,7 @@ libgtk-3.so.0 libgtk-3-0 #MINVER#
  gtk_drag_highlight@Base 3.0.0
  gtk_drag_result_get_type@Base 3.0.0
  gtk_drag_set_icon_default@Base 3.0.0
+ gtk_drag_set_icon_gicon@Base 3.1.4
  gtk_drag_set_icon_name@Base 3.0.0
  gtk_drag_set_icon_pixbuf@Base 3.0.0
  gtk_drag_set_icon_stock@Base 3.0.0
@@ -1302,6 +1306,7 @@ libgtk-3.so.0 libgtk-3-0 #MINVER#
  gtk_drag_source_add_uri_targets@Base 3.0.0
  gtk_drag_source_get_target_list@Base 3.0.0
  gtk_drag_source_set@Base 3.0.0
+ gtk_drag_source_set_icon_gicon@Base 3.1.4
  gtk_drag_source_set_icon_name@Base 3.0.0
  gtk_drag_source_set_icon_pixbuf@Base 3.0.0
  gtk_drag_source_set_icon_stock@Base 3.0.0
@@ -1388,6 +1393,7 @@ libgtk-3.so.0 libgtk-3-0 #MINVER#
  gtk_entry_get_layout_offsets@Base 3.0.0
  gtk_entry_get_max_length@Base 3.0.0
  gtk_entry_get_overwrite_mode@Base 3.0.0
+ gtk_entry_get_placeholder_text@Base 3.1.4
  gtk_entry_get_progress_fraction@Base 3.0.0
  gtk_entry_get_progress_pulse_step@Base 3.0.0
  gtk_entry_get_text@Base 3.0.0
@@ -1422,6 +1428,7 @@ libgtk-3.so.0 libgtk-3-0 #MINVER#
  gtk_entry_set_invisible_char@Base 3.0.0
  gtk_entry_set_max_length@Base 3.0.0
  gtk_entry_set_overwrite_mode@Base 3.0.0
+ gtk_entry_set_placeholder_text@Base 3.1.4
  gtk_entry_set_progress_fraction@Base 3.0.0
  gtk_entry_set_progress_pulse_step@Base 3.0.0
  gtk_entry_set_text@Base 3.0.0
@@ -1441,6 +1448,7 @@ libgtk-3.so.0 libgtk-3-0 #MINVER#
  gtk_expander_get_label@Base 3.0.0
  gtk_expander_get_label_fill@Base 3.0.0
  gtk_expander_get_label_widget@Base 3.0.0
+ gtk_expander_get_resize_toplevel@Base 3.1.4
  gtk_expander_get_spacing@Base 3.0.0
  gtk_expander_get_type@Base 3.0.0
  gtk_expander_get_use_markup@Base 3.0.0
@@ -1451,6 +1459,7 @@ libgtk-3.so.0 libgtk-3-0 #MINVER#
  gtk_expander_set_label@Base 3.0.0
  gtk_expander_set_label_fill@Base 3.0.0
  gtk_expander_set_label_widget@Base 3.0.0
+ gtk_expander_set_resize_toplevel@Base 3.1.4
  gtk_expander_set_spacing@Base 3.0.0
  gtk_expander_set_use_markup@Base 3.0.0
  gtk_expander_set_use_underline@Base 3.0.0
@@ -1981,6 +1990,10 @@ libgtk-3.so.0 libgtk-3-0 #MINVER#
  gtk_list_store_set_value@Base 3.0.0
  gtk_list_store_set_valuesv@Base 3.0.0
  gtk_list_store_swap@Base 3.0.0
+ gtk_lock_button_get_permission@Base 3.1.4
+ gtk_lock_button_get_type@Base 3.1.4
+ gtk_lock_button_new@Base 3.1.4
+ gtk_lock_button_set_permission@Base 3.1.4
  gtk_main@Base 3.0.0
  gtk_main_do_event@Base 3.0.0
  gtk_main_iteration@Base 3.0.0
@@ -4109,6 +4122,7 @@ libgtk-3.so.0 libgtk-3-0 #MINVER#
  gtk_widget_path_length@Base 3.0.0
  gtk_widget_path_new@Base 3.0.0
  gtk_widget_path_prepend_type@Base 3.0.0
+ gtk_widget_path_to_string@Base 3.1.4
  gtk_widget_pop_composite_child@Base 3.0.0
  gtk_widget_push_composite_child@Base 3.0.0
  gtk_widget_queue_compute_expand@Base 3.0.0
