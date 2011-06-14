@@ -1,9 +1,22 @@
-gtk+3.0 (3.1.4-0ubuntu2) UNRELEASED; urgency=low
+gtk+3.0 (3.1.6-0ubuntu1) UNRELEASED; urgency=low
 
-  * debian/patches/006_git_queue_repaint.patch
-    - Make background changes queue a repaint
+  * New upstream version
+    - GtkOverlay is a new container that allows to place one or more 'overlay' 
+      widgets on top of another widget. 
+      This can be used for 'floating statusbars' and similar interfaces.
+    - GtkLockButton has been simplified in appearance to look like a normal 
+      button
+    - GtkNotebook now supports height-for-width layout
+    - Accessibility for menuitems and combo boxes has been restored
+    - The horizontal and vertical subclasses of GtkBox, GtkPaned,
+      GtkSeparator, GtkScrollbar, GtkScale and GtkButtonBox have been deprecated
+  * debian/patches/libgtk-3-0.symbols: 
+    - updated symbols list
+  * debian/patches/091_bugzilla_tooltip_refresh.patch: 
+    - commented from the series, it's not clear it's still needed with GTK3 and 
+      will need updating to work with the new version
 
- -- Ken VanDine <ken.vandine@canonical.com>  Fri, 10 Jun 2011 18:18:23 -0400
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 14 Jun 2011 17:51:43 +0200
 
 gtk+3.0 (3.1.4-0ubuntu1) oneiric; urgency=low
 
