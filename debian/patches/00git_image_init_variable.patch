@@ -1,0 +1,23 @@
+From c903ece96be6b307eb756430f0b0b9acfca4dbae Mon Sep 17 00:00:00 2001
+From: Juan A. Suarez Romero <jasuarez@igalia.com>
+Date: Tue, 14 Jun 2011 09:49:23 +0000
+Subject: image: Initialize variable
+
+---
+(limited to 'gtk/gtkimage.c')
+
+diff --git a/gtk/gtkimage.c b/gtk/gtkimage.c
+index 821f98c..6fbb718 100644
+--- a/gtk/gtkimage.c
++++ b/gtk/gtkimage.c
+@@ -1499,7 +1499,7 @@ ensure_stated_icon_from_info (GtkImage *image,
+ {
+   GtkImagePrivate *priv = image->priv;
+   GtkStyleContext *context;
+-  GdkPixbuf *destination;
++  GdkPixbuf *destination = NULL;
+   gboolean symbolic;
+ 
+   context = gtk_widget_get_style_context (GTK_WIDGET (image));
+--
+cgit v0.9
