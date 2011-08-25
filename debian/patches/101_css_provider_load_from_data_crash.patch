@@ -1,0 +1,21 @@
+Description: Prevent crash when provided a string without a terminating null
+Author: Michael Terry <michael.terry@canonical.com>
+Bug: https://bugzilla.gnome.org/show_bug.cgi?id=657359
+Bug-Ubuntu: https://bugs.launchpad.net/gtk/+bug/831812
+
+Index: gtk+3.0-3.1.12/gtk/gtkcssprovider.c
+===================================================================
+--- gtk+3.0-3.1.12.orig/gtk/gtkcssprovider.c	2011-08-25 14:05:47.218896272 -0400
++++ gtk+3.0-3.1.12/gtk/gtkcssprovider.c	2011-08-25 14:06:33.026896757 -0400
+@@ -2443,6 +2443,11 @@
+             }
+         }
+     }
++  else
++    {
++      free_data = g_strndup (data, length);
++      data = free_data;
++    }
+ 
+   if (data)
+     {
