@@ -3,13 +3,13 @@ Author: Michael Terry <michael.terry@canonical.com>
 Bug: https://bugzilla.gnome.org/show_bug.cgi?id=657359
 Bug-Ubuntu: https://bugs.launchpad.net/gtk/+bug/831812
 
-Index: gtk+3.0-3.1.12/gtk/gtkcssprovider.c
+Index: gtk+3.0-3.1.16/gtk/gtkcssprovider.c
 ===================================================================
---- gtk+3.0-3.1.12.orig/gtk/gtkcssprovider.c	2011-08-25 14:05:47.218896272 -0400
-+++ gtk+3.0-3.1.12/gtk/gtkcssprovider.c	2011-08-25 14:06:33.026896757 -0400
-@@ -2443,6 +2443,11 @@
-             }
-         }
+--- gtk+3.0-3.1.16.orig/gtk/gtkcssprovider.c	2011-09-05 08:52:01.379554654 +0200
++++ gtk+3.0-3.1.16/gtk/gtkcssprovider.c	2011-09-05 08:52:50.189554977 +0200
+@@ -2453,6 +2453,11 @@
+ 
+       parse_statement (scanner);
      }
 +  else
 +    {
@@ -17,5 +17,5 @@ Index: gtk+3.0-3.1.12/gtk/gtkcssprovider.c
 +      data = free_data;
 +    }
  
-   if (data)
-     {
+   gtk_css_scanner_pop_section (scanner, GTK_CSS_SECTION_DOCUMENT);
+ }
