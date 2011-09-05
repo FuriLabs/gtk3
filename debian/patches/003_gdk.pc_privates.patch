@@ -1,8 +1,8 @@
-Index: gtk+-3.0.2/configure.ac
+Index: gtk+3.0-3.1.16/configure.ac
 ===================================================================
---- gtk+-3.0.2.orig/configure.ac	2011-03-08 15:43:46.203438701 +1100
-+++ gtk+-3.0.2/configure.ac	2011-03-08 15:43:47.763296370 +1100
-@@ -1210,20 +1210,23 @@
+--- gtk+3.0-3.1.16.orig/configure.ac	2011-09-05 08:45:09.000000000 +0200
++++ gtk+3.0-3.1.16/configure.ac	2011-09-05 08:48:01.489553063 +0200
+@@ -1263,20 +1263,23 @@
  CFLAGS="$saved_cflags"
  LDFLAGS="$saved_ldflags"
  
@@ -10,9 +10,9 @@ Index: gtk+-3.0.2/configure.ac
 +GDK_PACKAGES="$PANGO_PACKAGES gdk-pixbuf-2.0"
 +GDK_PRIVATE_PACKAGES="$GIO_PACKAGE $X_PACKAGES $WAYLAND_PACKAGES $cairo_backends cairo-gobject"
  
--GDK_DEP_LIBS="$GDK_EXTRA_LIBS `$PKG_CONFIG --libs $GDK_PACKAGES`"
+-GDK_DEP_LIBS="$GDK_EXTRA_LIBS `$PKG_CONFIG --libs $GDK_PACKAGES` $MATH_LIB"
 -GDK_DEP_CFLAGS="`$PKG_CONFIG --cflags  gthread-2.0 $GDK_PACKAGES` $GDK_EXTRA_CFLAGS"
-+GDK_DEP_LIBS="$GDK_EXTRA_LIBS `$PKG_CONFIG --libs $GDK_PACKAGES $GDK_PRIVATE_PACKAGES`"
++GDK_DEP_LIBS="$GDK_EXTRA_LIBS `$PKG_CONFIG --libs $GDK_PACKAGES $GDK_PRIVATE_PACKAGES` $MATH_LIB"
 +GDK_DEP_CFLAGS="`$PKG_CONFIG --cflags  gthread-2.0 $GDK_PACKAGES $GDK_PRIVATE_PACKAGES` $GDK_EXTRA_CFLAGS"
  #
  # If we aren't writing explicit dependencies, then don't put the extra libraries we need
@@ -30,10 +30,10 @@ Index: gtk+-3.0.2/configure.ac
  AC_SUBST(GDK_EXTRA_LIBS)
  AC_SUBST(GDK_EXTRA_CFLAGS)
  AC_SUBST(GDK_DEP_LIBS)
-Index: gtk+-3.0.2/gdk-3.0.pc.in
+Index: gtk+3.0-3.1.16/gdk-3.0.pc.in
 ===================================================================
---- gtk+-3.0.2.orig/gdk-3.0.pc.in	2011-02-12 07:24:40.000000000 +1100
-+++ gtk+-3.0.2/gdk-3.0.pc.in	2011-03-08 15:43:47.763296370 +1100
+--- gtk+3.0-3.1.16.orig/gdk-3.0.pc.in	2011-08-16 04:04:34.000000000 +0200
++++ gtk+3.0-3.1.16/gdk-3.0.pc.in	2011-09-05 08:45:45.449552162 +0200
 @@ -8,5 +8,6 @@
  Description: GTK+ Drawing Kit
  Version: @VERSION@
