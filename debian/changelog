@@ -5,6 +5,12 @@ gtk+3.0 (3.1.18-0ubuntu2) UNRELEASED; urgency=low
     gdkenumtypes.c is correctly included with separate build trees, too. This
     fixes missing GTypes in the .gir when using a separate build tree.
     (LP: #769256)
+  * Ship pregenerated documentation from upstream tarball again:
+    - debian/rules: Drop --enable-gtk-doc again.
+    - debian/control.in: Move gtk-doc-tools back to B-D-I.
+    - debian/libgtk-3-doc.install.in, debian/libgail-3-doc.install: Update
+      origins to install from source tree.
+    - (LP: #842543)
 
  -- Martin Pitt <martin.pitt@ubuntu.com>  Thu, 08 Sep 2011 10:24:11 +0200
 
