@@ -7,6 +7,9 @@ gtk+3.0 (3.1.90-0ubuntu1) UNRELEASED; urgency=low
     - 4 translation updates.
   * 101_gdkenumtypes.c_location.patch: Update to the current version sent to
     upstream, which also works with distcheck.
+  * debian/libgtk-3-0.symbols: Update for new upstream version. Note that
+    some gtk_font_chooser_*() symbols got dropped, but they only existed since
+    3.1.12, and only gtkmm3.0 uses them (which will also be updated today).
 
  -- Martin Pitt <martin.pitt@ubuntu.com>  Thu, 15 Sep 2011 05:43:45 +0200
 
