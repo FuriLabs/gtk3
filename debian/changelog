@@ -1,4 +1,4 @@
-gtk+3.0 (3.1.90-0ubuntu1) UNRELEASED; urgency=low
+gtk+3.0 (3.1.90-0ubuntu1) oneiric; urgency=low
 
   * New upstream bug fix release.
   * Add 000git_updates_since_3.1.90.patch: Upstream changes since 3.1.90, to
@@ -9,9 +9,10 @@ gtk+3.0 (3.1.90-0ubuntu1) UNRELEASED; urgency=low
     upstream, which also works with distcheck.
   * debian/libgtk-3-0.symbols: Update for new upstream version. Note that
     some gtk_font_chooser_*() symbols got dropped, but they only existed since
-    3.1.12, and only gtkmm3.0 uses them (which will also be updated today).
+    3.1.12. Only gtkmm3.0 references them, and no gtkmm3.0 rdepends uses that
+    API.
 
- -- Martin Pitt <martin.pitt@ubuntu.com>  Thu, 15 Sep 2011 05:43:45 +0200
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Thu, 15 Sep 2011 06:44:26 +0200
 
 gtk+3.0 (3.1.18-0ubuntu3) oneiric; urgency=low
 
