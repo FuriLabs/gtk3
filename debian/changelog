@@ -1,8 +1,187 @@
-gtk+3.0 (3.2.2-0ubuntu2) UNRELEASED; urgency=low
+gtk+3.0 (3.2.2-2ubuntu1) UNRELEASED; urgency=low
 
-  * 075_expose_gdkwidget_for_gtkrange.patch: Add bug links.
+  * Merge with Debian unstable and SVN head. Remaining Ubuntu changes:
+    - Ubuntu specific patches, see their patch headers:
+      043_ubuntu_menu_proxy.patch
+      062_ubuntu-set-grab-add.patch
+      063_resize_grip_default.patch
+      072_indicator_menu_update.patch
+      073_treeview_almost_fixed.patch
+      075_expose_gdkwidget_for_gtkrange.patch
+      100_overlay_scrollbar_loading.patch
+    - debian/libgtk-3-0.symbols: Add symbols from menu proxy and
+      075_expose_gdkwidget_for_gtkrange patches.
+    - debian/watch: Watch for unstable versions.
+    - debian/patches/series: Disable 043_notebook_scroll.patch. This is a
+      Debian change and we want the upstream behaviour or at least a rationale
+      for this.
+  * debian/patches/*: Add standard patch headers to Ubuntu patches, as
+    available.
 
  -- Martin Pitt <martin.pitt@ubuntu.com>  Tue, 22 Nov 2011 10:10:47 +0100
+
+gtk+3.0 (3.2.2-3) UNRELEASED; urgency=low
+
+  * Add 000git_gtk_tree_view_get_tooltip_context_annotation.patch: Fix
+    gtk_tree_view_get_tooltip_context() transfer annotation, causing crashes
+    when using this method from Python.
+  * Add 016_no_offscreen_widgets_grabbing.patch: Widgets inside
+    GtkOffscreenWindow seem like they should not be allowed to do
+    grab the mouse or whatever, as this can deactivate open menus.
+    (LP: #512427, GNOME #607668)
+  * Add 017_no_offscreen_device_grabbing.patch: Do not allow devices in an
+    offscreen hierarchy to take grabs. (LP: #804009, GNOME #658563)
+  * Add 018_gdkenumtypes.c_location.patch: Always generate gdk/gdkenumtypes.c
+    in the source tree, and fix path in the introspection sources. With this,
+    gdkenumtypes.c is correctly included with separate build trees, too.  This
+    fixes missing GTypes in the .gir when using a separate build tree.
+    (LP: #769256, GNOME #647729)
+  * debian/rules: Bump SHVER to 3.1.90.
+  * Build for multiarch. Adapted Steve Langasek's changes to Ubuntu's gtk+2.0
+    package:
+    - debian/control.in: Bump build dependencies to multiarch aware versions.
+    - debian/control.in: Add Multi-Arch: and necessary Pre-Depends: fields.
+      (libraries/-dbg are "same", -doc/-bin are "foreign").
+    - debian/rules: Use multiarch LIBDIR.
+    - debian/libgail-3-dev.install, debian/libgail-3-0.install: Rename to
+      *.in, and use @LIBDIR@ instead of hardcoded usr/lib.
+    - debian/gir1.2-gtk-3.0.install.in: Use @LIBDIR@.
+    - debian/libgtk-3-0.triggers.in, debian/libgtk-3-0.postinst.in,
+      debian/rules: Also trigger on changes to the fallback non-multiarch
+      module directory, which is now called @OLD_MODULES_BASE_PATH@.
+    - Add 061_multiarch_module_fallback.patch: Fall back to the hard-coded
+      pre-multiarch module directory when searching for modules. This
+      maintains compatibility with packages installing modules to
+      the old directories.
+
+ -- Martin Pitt <mpitt@debian.org>  Tue, 22 Nov 2011 09:34:45 +0100
+
+gtk+3.0 (3.2.2-2) unstable; urgency=low
+
+  * Upload to unstable.
+  * debian/control.in:
+    - Add Breaks against gnome-themes-standard (<< 3.2) due to the CSS theming
+      related changes. Closes: #649203
+  * Fix broken symlinks in /usr/share/doc. Closes: #647466
+
+ -- Michael Biebl <biebl@debian.org>  Sat, 19 Nov 2011 00:01:03 +0100
+
+gtk+3.0 (3.2.2-1) experimental; urgency=low
+
+  * New upstream release.
+  * Refresh patches.
+
+ -- Michael Biebl <biebl@debian.org>  Mon, 14 Nov 2011 00:07:56 +0100
+
+gtk+3.0 (3.2.1-2) experimental; urgency=low
+
+  * debian/control.in:
+    - Move gtk-doc-tools from Build-Depends-Indep to Build-Depends as it is
+      required by autoreconf. Also bump it to (>= 1.11).
+
+ -- Michael Biebl <biebl@debian.org>  Sat, 22 Oct 2011 00:30:44 +0200
+
+gtk+3.0 (3.2.1-1) experimental; urgency=low
+
+  [ Sjoerd Simons ]
+  * New upstream release
+  * debian/control.in: Update build-depends
+  * debian/rules: Bump libgail SHVER depends
+  * d/p/002_static-linking-dont-build-perf.patch: Removed, fixed upstream
+  * d/p/030_xim-modules.patch: Removed, fixed upstream
+  * d/p/045_trayicon-visual.patch: Removed, fixed upstream
+  * d/p/003_gdk.pc_privates.patch: Refreshed
+  * d/p/043_notebook_scroll.patch: Refreshed
+  * d/p/044_tracker_fts.patch: Refreshed
+  * debian/rules: Enable gtk-doc build with the shared build
+
+  [ Michael Biebl ]
+  * debian/watch:
+    - Track .xz tarballs.
+  * debian/control.in:
+    - Set pkg-gnome-maintainers@lists.alioth.debian.org as Maintainer.
+    - Instead of depending on lynx | www-browser, make the -doc packages
+      suggest devhelp.
+
+  [ Sjoerd Simons ]
+  * debian/libgtk-3-0.symbols: Update symbols
+  * Remove libgail-3-common package. Modules have been integrated directly into
+    Gtk
+  * debian/patches/70-Fix-document-generation-in-out-of-tree-builds.patch:
+    + Added, fix documentation when build out of tree
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Fri, 21 Oct 2011 19:36:06 +0200
+
+gtk+3.0 (3.0.12-3) unstable; urgency=low
+
+  * 030_xim-modules.patch: stolen from upstream git. Fix the behavior of 
+    XIM modules. Closes: #633720.
+  * 043_notebook_scroll.patch: handle a few more widgets to avoid 
+    alt+scroll being intercepted by ranges, spin buttons, combo boxes…
+
+ -- Josselin Mouette <joss@debian.org>  Thu, 08 Sep 2011 13:01:03 +0200
+
+gtk+3.0 (3.0.12-2) unstable; urgency=low
+
+  [ Josselin Mouette ]
+  * Tighten dependencies on libgtk-3-common. Closes: #636766.
+
+  [ Michael Biebl ]
+  * debian/patches/045_trayicon-visual.patch: Fix assertion in trayicon-x11
+    when visual is not available. Thanks to Vincent Bernat for the patch.
+    Closes: #637067
+  * debian/libgail-3-0.symbols: Remove trailing empty line which confuses
+    dpkg-gensymbols.
+  * Bump debhelper compatibility level to 8.
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 30 Aug 2011 01:57:26 +0200
+
+gtk+3.0 (3.0.12-1) unstable; urgency=low
+
+  * New upstream release.
+    - GdkKeymap: Prevent an infinite loop in the non-XKB case.
+      (Closes: #633917)
+  * Stop installing libtool .la files.
+
+ -- Michael Biebl <biebl@debian.org>  Thu, 28 Jul 2011 12:45:04 +0200
+
+gtk+3.0 (3.0.11-1) unstable; urgency=low
+
+  * New upstream release.
+    - Fixes infinite-loop in GTK_FILE_CHOOSER_ACTION_CREATE_FOLDER.
+      (Closes: #628457)
+  * debian/patches/044_tracker_fts.patch: Enable Tracker full text search.
+
+ -- Michael Biebl <biebl@debian.org>  Thu, 14 Jul 2011 14:45:24 +0200
+
+gtk+3.0 (3.0.10-1) unstable; urgency=low
+
+  [ Josselin Mouette ]
+  * libgtk-3-0.postrm.in: fix badly written test.
+
+  [ Fabian Greffrath ]
+  * Remove leftover diversions from the libgtk3.0-bin package
+    that got replaced by libgtk-3-bin (Closes: #617662 ).
+
+  [ Michael Biebl ]
+  * debian/watch: Switch to .bz2 tarballs.
+  * New upstream release.
+  * Refresh patches.
+  * Bump Standards-Version to 3.9.2. No further changes.
+  * Drop Build-Depends on dpkg-dev (>= 1.13.19). Even lenny has a more recent
+    version.
+  * Update package descriptions.
+  * Drop debian/gruik2devhelp.awk and Build-Depends on gawk, obsolete.
+
+  [ Josselin Mouette ]
+  * 043_notebook_scroll.patch: new patch. Reintroduce tab scrolling in 
+    GtkNotebook, but this time only when Alt is pressed, as recommended 
+    by upstream, and from the whole notebook area.
+  * Drop debhelper 8 requirement so that it can build.
+  * libgtk-3-bin.preinst: only remove libgtk3.0-bin diversions if they 
+    already exist.
+
+ -- Josselin Mouette <joss@debian.org>  Sat, 04 Jun 2011 22:51:06 +0200
 
 gtk+3.0 (3.2.2-0ubuntu1) precise; urgency=low
 

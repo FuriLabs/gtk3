@@ -1,19 +1,20 @@
 Source: gtk+3.0
 Section: libs
 Priority: optional
-Maintainer: Ubuntu Desktop Team <ubuntu-desktop@lists.ubuntu.com>
-XSBC-Original-Maintainer: Sebastien Bacher <seb128@debian.org>
+Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
 Uploaders: @GNOME_TEAM@
-Build-Depends: debhelper (>= 8),
+Build-Depends: debhelper (>= 8.1.3),
                cdbs (>= 0.4.90~),
                gnome-pkg-tools (>= 0.11),
+               dpkg-dev (>= 1.16.0),
+               gtk-doc-tools (>= 1.11),
                dh-autoreconf,
                gettext,
                pkg-config,
                autotools-dev,
-               libglib2.0-dev (>= 2.29.13),
-               libgdk-pixbuf2.0-dev (>= 2.23.5),
-               libpango1.0-dev (>= 1.29),
+               libglib2.0-dev (>= 2.30.0),
+               libgdk-pixbuf2.0-dev (>= 2.24.0),
+               libpango1.0-dev (>= 1.29.0),
                libatk1.0-dev (>= 2.1.5),
                libx11-dev (>= 2:1.3.3-2),
                libxext-dev (>= 2:1.1.1-3),
@@ -31,10 +32,14 @@ Build-Depends: debhelper (>= 8),
                libcairo2-dev (>= 1.10.0),
                x11proto-xext-dev,
                libcups2-dev (>= 1.2),
-               gobject-introspection (>= 0.10.1),
-               libgirepository1.0-dev (>= 0.10.1)
-Build-Depends-Indep: gtk-doc-tools (>= 1.8),
-                     docbook-xml,
+               gobject-introspection (>= 0.10.8-2),
+               libgirepository1.0-dev (>= 0.10.8-2),
+               gir1.2-glib-2.0,
+               gir1.2-freedesktop,
+               gir1.2-atk-1.0,
+               gir1.2-pango-1.0,
+               gir1.2-gdkpixbuf-2.0
+Build-Depends-Indep: docbook-xml,
                      docbook-utils,
                      libglib2.0-doc,
                      libatk1.0-doc,
@@ -46,11 +51,10 @@ Homepage: http://www.gtk.org/
 
 Package: @SHARED_PKG@
 Architecture: any
-Depends: @COMMON_PKG@,
+Depends: @COMMON_PKG@ (= ${source:Version}),
          ${misc:Depends},
          ${shlibs:Depends},
-         shared-mime-info,
-         libglib2.0-0 (>= 2.29.13)
+         shared-mime-info
 Provides: @GTK_BINVER_DEP@
 Recommends: hicolor-icon-theme,
             @BIN_PKG@
@@ -58,6 +62,9 @@ Suggests: librsvg2-common,
           gvfs
 Conflicts: libgtk3.0-0
 Replaces: libgtk3.0-0
+Breaks: gnome-themes-standard (<< 3.2)
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
 Description: GTK+ graphical user interface library
  GTK+ is a multi-platform toolkit for creating graphical user
  interfaces. Offering a complete set of widgets, GTK+ is suitable
@@ -94,6 +101,7 @@ Depends: ${misc:Depends}
 Recommends: @SHARED_PKG@
 Conflicts: libgtk3.0-common
 Replaces: libgtk3.0-common
+Multi-Arch: foreign
 Description: common files for the GTK+ graphical user interface library
  GTK+ is a multi-platform toolkit for creating graphical user
  interfaces. Offering a complete set of widgets, GTK+ is suitable
@@ -107,9 +115,10 @@ Section: misc
 Architecture: all
 Depends: ${misc:Depends},
          @SHARED_PKG@ (>= ${source:Version}),
-         @COMMON_PKG@
+         @COMMON_PKG@ (= ${source:Version})
 Conflicts: libgtk3.0-bin
 Replaces: libgtk3.0-bin
+Multi-Arch: foreign
 Description: programs for the GTK+ graphical user interface library
  GTK+ is a multi-platform toolkit for creating graphical user
  interfaces. Offering a complete set of widgets, GTK+ is suitable
@@ -141,7 +150,7 @@ Depends: @SHARED_PKG@ (= ${binary:Version}),
          libxfixes-dev (>= 1:3.0.0-3),
          libxcomposite-dev (>= 1:0.2.0-3),
          libxdamage-dev (>= 1:1.0.1-3),
-         pkg-config,
+         pkg-config (>= 0.26-1),
          libxml2-utils
 Recommends: python (>= 2.4),
             debhelper
@@ -166,6 +175,7 @@ Depends: @SHARED_PKG@ (= ${binary:Version}),
          ${misc:Depends}
 Conflicts: libgtk3.0-0-dbg
 Replaces: libgtk3.0-0-dbg
+Multi-Arch: same
 Description: GTK+ libraries and debugging symbols
  GTK+ is a multi-platform toolkit for creating graphical user
  interfaces. Offering a complete set of widgets, GTK+ is suitable
@@ -179,13 +189,14 @@ Description: GTK+ libraries and debugging symbols
 Package: @DOC_PKG@
 Section: doc
 Architecture: all
-Depends: lynx | www-browser,
-         ${misc:Depends}
+Depends: ${misc:Depends}
 Recommends: libglib2.0-doc,
             libatk1.0-doc,
             libpango1.0-doc
+Suggests: devhelp
 Conflicts: libgtk3.0-doc
 Replaces: libgtk3.0-doc
+Multi-Arch: foreign
 Description: documentation for the GTK+ graphical user interface library
  GTK+ is a multi-platform toolkit for creating graphical user
  interfaces. Offering a complete set of widgets, GTK+ is suitable
@@ -206,7 +217,7 @@ Conflicts: gtk-3.0-examples
 Replaces: gtk-3.0-examples
 Description: example files for GTK+ 3
  GTK+ is a multi-platform toolkit for creating graphical user
- interfaces. Offering a complete set of widgets, the GTK+ is suitable
+ interfaces. Offering a complete set of widgets, GTK+ is suitable
  for projects ranging from small one-off tools to complete application
  suites.
  .
@@ -252,6 +263,8 @@ Depends: ${misc:Depends},
          @SHARED_PKG@ (= ${binary:Version})
 Conflicts: libgail3.0-0
 Replaces: libgail3.0-0
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
 Description: GNOME Accessibility Implementation Library -- shared libraries
  Gail implements ATK interfaces for GTK+ widgets which are dynamically
  loadable at runtime by a GTK+ application. Once loaded, those parts of
@@ -260,29 +273,13 @@ Description: GNOME Accessibility Implementation Library -- shared libraries
  .
  This package contains the shared library.
 
-Package: libgail-3-common
-Architecture: any
-Depends: ${misc:Depends},
-         ${shlibs:Depends},
-         libgail-3-0 (= ${binary:Version})
-Conflicts: libgail3.0-common
-Replaces: libgail3.0-common
-Description: GNOME Accessibility Implementation Library -- common modules
- Gail implements ATK interfaces for GTK+ widgets which are dynamically
- loadable at runtime by a GTK+ application. Once loaded, those parts of
- an application that use standard GTK+ widgets will have a basic level
- of accessibility, without the need to modify the application at all.
- .
- This package contains core shared libraries.
-
 Package: libgail-3-dev
 Architecture: any
 Section: libdevel
 Depends: ${misc:Depends},
          libgail-3-0 (= ${binary:Version}),
-         libgail-3-common (= ${binary:Version}),
          @DEV_PKG@ (= ${binary:Version}),
-         pkg-config,
+         pkg-config (>= 0.26-1),
          libatk1.0-dev (>= 1.13.0)
 Suggests: libgail-3-doc
 Conflicts: libgail3.0-dev
@@ -303,6 +300,7 @@ Depends: ${misc:Depends}, libgail-3-0 (= ${binary:Version})
 Recommends: @DEBUG_PKG@
 Conflicts: libgail3.0-0-dbg
 Replaces: libgail3.0-0-dbg
+Multi-Arch: same
 Description: Gail libraries and debugging symbols
  Gail is the "GNOME Accessibility Implementation Library".
  .
@@ -313,9 +311,11 @@ Description: Gail libraries and debugging symbols
 Package: libgail-3-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends}, lynx | www-browser
+Depends: ${misc:Depends}
+Suggests: devhelp
 Conflicts: libgail3.0-doc
 Replaces: libgail3.0-doc
+Multi-Arch: foreign
 Description: documentation files of the Gail library
  Gail implements ATK interfaces for GTK+ widgets which are dynamically
  loadable at runtime by a GTK+ application. Once loaded, those parts of
