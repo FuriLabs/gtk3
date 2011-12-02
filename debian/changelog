@@ -1,8 +1,16 @@
 gtk+3.0 (3.2.2-2ubuntu2) UNRELEASED; urgency=low
 
+  * debian/patches/git_invalid_unref_call.patch:
+    - git patch to fix a segfault in the fileselector added in the recent 
+      version (lp: #897891)
+  * debian/patches/git_fix_appchooser_segfault.patch,
+    debian/patches/git_fix_appchooser_button_segfault.patch:
+    - git backports to fix segfaults in gtk_app_chooser (lp: #864249, #861605)
+
+  [ Martin Pitt ]
   * debian/control.in: Move -bin to Arch: any.
 
- -- Martin Pitt <martin.pitt@ubuntu.com>  Tue, 29 Nov 2011 17:46:19 +0100
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 02 Dec 2011 17:29:48 +0100
 
 gtk+3.0 (3.2.2-2ubuntu1) precise; urgency=low
 
