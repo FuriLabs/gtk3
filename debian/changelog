@@ -1,3 +1,20 @@
+gtk+3.0 (3.2.2-2ubuntu4) UNRELEASED; urgency=low
+
+  * debian/patches/gtkmenuitemaccessible-set-alt-name.patch: Extend the
+    GtkMenuItemAccessible object so applications can set an alternative
+    textual description for a menu item that has an icon, where the icon
+    is used to give the user more information about the item in question.
+    This textual description is used by assistive technologies such as Orca
+    to label the menu item.
+
+ -- Luke Yelavich <themuso@ubuntu.com>  Mon, 12 Dec 2011 14:03:50 +1100
+
+gtk+3.0 (3.2.2-2ubuntu3) precise; urgency=low
+
+  * No-change rebuild to drop spurious libsfgcc1 dependency on armhf.
+
+ -- Adam Conrad <adconrad@ubuntu.com>  Fri, 02 Dec 2011 17:28:22 -0700
+
 gtk+3.0 (3.2.2-2ubuntu2) precise; urgency=low
 
   * debian/patches/git_invalid_unref_call.patch:
