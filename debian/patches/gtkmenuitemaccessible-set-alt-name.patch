@@ -1,0 +1,74 @@
+Index: gtk+3.0-3.2.2/gtk/a11y/gtkmenuitemaccessible.c
+===================================================================
+--- gtk+3.0-3.2.2.orig/gtk/a11y/gtkmenuitemaccessible.c	2011-11-08 05:47:33.000000000 +1100
++++ gtk+3.0-3.2.2/gtk/a11y/gtkmenuitemaccessible.c	2011-12-12 14:10:12.095281297 +1100
+@@ -193,20 +193,54 @@
+     return name;
+ 
+   accessible = GTK_MENU_ITEM_ACCESSIBLE (obj);
+-  label = get_label_from_container (widget);
+ 
+-  g_free (accessible->text);
+-  accessible->text = get_text_from_label_widget (label);
++  if (accessible->alt_text != NULL)
++    {
++      g_free (accessible->text);
++      accessible->text = g_strdup (accessible->alt_text);
++    }
++  else
++    {
++      label = get_label_from_container (widget);
++
++      g_free (accessible->text);
++      accessible->text = get_text_from_label_widget (label);
++    }
+ 
+   return accessible->text;
+ }
+ 
+ static void
++gtk_menu_item_accessible_set_name (AtkObject *obj,
++                                   const gchar *name)
++{
++  GtkMenuItemAccessible *accessible;
++
++  g_return_if_fail (GTK_IS_MENU_ITEM_ACCESSIBLE (obj));
++
++  accessible = GTK_MENU_ITEM_ACCESSIBLE (obj);
++
++  if (accessible->alt_text != NULL)
++    g_free (accessible->alt_text);
++
++  if (name != NULL)
++    {
++      accessible->alt_text = g_strdup (name);
++    }
++  else
++    {
++      accessible->alt_text = NULL;
++    }
++}
++
++static void
+ gtk_menu_item_accessible_finalize (GObject *object)
+ {
+   GtkMenuItemAccessible *accessible = GTK_MENU_ITEM_ACCESSIBLE (object);
+ 
+   g_free (accessible->text);
++  if (accessible->alt_text != NULL)
++    g_free (accessible->alt_text);
+ 
+   G_OBJECT_CLASS (_gtk_menu_item_accessible_parent_class)->finalize (object);
+ }
+Index: gtk+3.0-3.2.2/gtk/a11y/gtkmenuitemaccessible.h
+===================================================================
+--- gtk+3.0-3.2.2.orig/gtk/a11y/gtkmenuitemaccessible.h	2011-11-08 05:47:33.000000000 +1100
++++ gtk+3.0-3.2.2/gtk/a11y/gtkmenuitemaccessible.h	2011-12-12 14:00:23.899266239 +1100
+@@ -39,6 +39,7 @@
+   GtkContainerAccessible parent;
+ 
+   gchar *text;
++  gchar *alt_text;
+ };
+ 
+ struct _GtkMenuItemAccessibleClass
