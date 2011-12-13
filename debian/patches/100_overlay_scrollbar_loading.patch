@@ -1,8 +1,8 @@
 === modified file 'gtk/gtkhscrollbar.c'
-Index: gtk+3.0-3.1.16/gtk/gtkhscrollbar.c
+Index: gtk+3.0-3.3.4/gtk/deprecated/gtkhscrollbar.c
 ===================================================================
---- gtk+3.0-3.1.16.orig/gtk/gtkhscrollbar.c	2011-09-05 08:52:01.439554654 +0200
-+++ gtk+3.0-3.1.16/gtk/gtkhscrollbar.c	2011-09-05 08:52:44.339554938 +0200
+--- gtk+3.0-3.3.4.orig/gtk/deprecated/gtkhscrollbar.c	2011-11-19 18:27:36.000000000 +0100
++++ gtk+3.0-3.3.4/gtk/deprecated/gtkhscrollbar.c	2011-12-07 18:45:34.881657516 +0100
 @@ -33,6 +33,8 @@
  #include "gtkorientable.h"
  #include "gtkintl.h"
@@ -80,23 +80,23 @@ Index: gtk+3.0-3.1.16/gtk/gtkhscrollbar.c
 +      init_once = TRUE;
 +    }
 +}
-Index: gtk+3.0-3.1.16/gtk/gtkhscrollbar.h
+Index: gtk+3.0-3.3.4/gtk/deprecated/gtkhscrollbar.h
 ===================================================================
---- gtk+3.0-3.1.16.orig/gtk/gtkhscrollbar.h	2011-09-05 08:52:01.459554651 +0200
-+++ gtk+3.0-3.1.16/gtk/gtkhscrollbar.h	2011-09-05 08:52:44.339554938 +0200
-@@ -63,6 +63,7 @@
- 
+--- gtk+3.0-3.3.4.orig/gtk/deprecated/gtkhscrollbar.h	2011-11-19 18:27:36.000000000 +0100
++++ gtk+3.0-3.3.4/gtk/deprecated/gtkhscrollbar.h	2011-12-07 18:45:34.881657516 +0100
+@@ -60,6 +60,7 @@
  GType      gtk_hscrollbar_get_type (void) G_GNUC_CONST;
+ GDK_DEPRECATED_FOR(gtk_scrollbar_new)
  GtkWidget* gtk_hscrollbar_new      (GtkAdjustment *adjustment);
 +void       ubuntu_gtk_hscrollbar_init (void);
  
- 
  G_END_DECLS
-Index: gtk+3.0-3.1.16/gtk/gtkmain.c
+ 
+Index: gtk+3.0-3.3.4/gtk/gtkmain.c
 ===================================================================
---- gtk+3.0-3.1.16.orig/gtk/gtkmain.c	2011-09-05 08:52:19.209554770 +0200
-+++ gtk+3.0-3.1.16/gtk/gtkmain.c	2011-09-05 08:52:44.349554937 +0200
-@@ -857,6 +857,11 @@
+--- gtk+3.0-3.3.4.orig/gtk/gtkmain.c	2011-12-07 18:42:26.000000000 +0100
++++ gtk+3.0-3.3.4/gtk/gtkmain.c	2011-12-07 18:45:34.885657516 +0100
+@@ -714,6 +714,11 @@
  
    _gtk_accel_map_init ();
  
@@ -108,10 +108,10 @@ Index: gtk+3.0-3.1.16/gtk/gtkmain.c
    /* Set the 'initialized' flag.
     */
    gtk_initialized = TRUE;
-Index: gtk+3.0-3.1.16/gtk/gtkscrollbar.c
+Index: gtk+3.0-3.3.4/gtk/gtkscrollbar.c
 ===================================================================
---- gtk+3.0-3.1.16.orig/gtk/gtkscrollbar.c	2011-09-05 08:52:01.499554651 +0200
-+++ gtk+3.0-3.1.16/gtk/gtkscrollbar.c	2011-09-05 08:52:44.349554937 +0200
+--- gtk+3.0-3.3.4.orig/gtk/gtkscrollbar.c	2011-11-07 19:47:36.000000000 +0100
++++ gtk+3.0-3.3.4/gtk/gtkscrollbar.c	2011-12-07 18:45:34.885657516 +0100
 @@ -58,6 +58,9 @@
  
  static void gtk_scrollbar_style_updated (GtkWidget *widget);
@@ -191,10 +191,10 @@ Index: gtk+3.0-3.1.16/gtk/gtkscrollbar.c
 +      init_once = TRUE;
 +    }
 +}
-Index: gtk+3.0-3.1.16/gtk/gtkscrollbar.h
+Index: gtk+3.0-3.3.4/gtk/gtkscrollbar.h
 ===================================================================
---- gtk+3.0-3.1.16.orig/gtk/gtkscrollbar.h	2011-09-05 08:52:01.539554654 +0200
-+++ gtk+3.0-3.1.16/gtk/gtkscrollbar.h	2011-09-05 08:52:44.349554937 +0200
+--- gtk+3.0-3.3.4.orig/gtk/gtkscrollbar.h	2011-08-16 04:04:34.000000000 +0200
++++ gtk+3.0-3.3.4/gtk/gtkscrollbar.h	2011-12-07 18:45:34.885657516 +0100
 @@ -68,6 +68,7 @@
  GType       gtk_scrollbar_get_type (void) G_GNUC_CONST;
  GtkWidget * gtk_scrollbar_new      (GtkOrientation  orientation,
@@ -203,11 +203,11 @@ Index: gtk+3.0-3.1.16/gtk/gtkscrollbar.h
  
  G_END_DECLS
  
-Index: gtk+3.0-3.1.16/gtk/gtkscrolledwindow.c
+Index: gtk+3.0-3.3.4/gtk/gtkscrolledwindow.c
 ===================================================================
---- gtk+3.0-3.1.16.orig/gtk/gtkscrolledwindow.c	2011-09-05 08:52:01.429554652 +0200
-+++ gtk+3.0-3.1.16/gtk/gtkscrolledwindow.c	2011-09-05 08:52:44.349554937 +0200
-@@ -220,6 +220,8 @@
+--- gtk+3.0-3.3.4.orig/gtk/gtkscrolledwindow.c	2011-11-19 18:27:36.000000000 +0100
++++ gtk+3.0-3.3.4/gtk/gtkscrolledwindow.c	2011-12-07 18:45:34.889657516 +0100
+@@ -222,6 +222,8 @@
  
  static guint signals[LAST_SIGNAL] = {0};
  
@@ -216,7 +216,7 @@ Index: gtk+3.0-3.1.16/gtk/gtkscrolledwindow.c
  G_DEFINE_TYPE (GtkScrolledWindow, gtk_scrolled_window, GTK_TYPE_BIN)
  
  
-@@ -1212,7 +1214,7 @@
+@@ -1214,7 +1216,7 @@
  
        gtk_widget_style_get (widget, "scrollbars-within-bevel", &scrollbars_within_bevel, NULL);
  
@@ -225,7 +225,7 @@ Index: gtk+3.0-3.1.16/gtk/gtkscrolledwindow.c
          {
            GtkStateFlags state;
            GtkBorder padding, border;
-@@ -1768,7 +1770,7 @@
+@@ -1770,7 +1772,7 @@
  
        if (priv->shadow_type != GTK_SHADOW_NONE)
  	{
@@ -234,7 +234,7 @@ Index: gtk+3.0-3.1.16/gtk/gtkscrolledwindow.c
              {
                child_allocation.x -= padding.left + border.left;
                child_allocation.width += padding.left + padding.right + border.left + border.right;
-@@ -1816,7 +1818,7 @@
+@@ -1818,7 +1820,7 @@
  
        if (priv->shadow_type != GTK_SHADOW_NONE)
  	{
@@ -243,7 +243,7 @@ Index: gtk+3.0-3.1.16/gtk/gtkscrolledwindow.c
              {
                child_allocation.y -= padding.top + border.top;
  	      child_allocation.height += padding.top + padding.bottom + border.top + border.bottom;
-@@ -2057,6 +2059,58 @@
+@@ -2059,6 +2061,58 @@
  }
  
  /*
@@ -302,7 +302,7 @@ Index: gtk+3.0-3.1.16/gtk/gtkscrolledwindow.c
   * _gtk_scrolled_window_get_spacing:
   * @scrolled_window: a scrolled window
   * 
-@@ -2072,6 +2126,9 @@
+@@ -2074,6 +2128,9 @@
      
    g_return_val_if_fail (GTK_IS_SCROLLED_WINDOW (scrolled_window), 0);
  
@@ -312,10 +312,10 @@ Index: gtk+3.0-3.1.16/gtk/gtkscrolledwindow.c
    class = GTK_SCROLLED_WINDOW_GET_CLASS (scrolled_window);
  
    if (class->scrollbar_spacing >= 0)
-Index: gtk+3.0-3.1.16/gtk/gtkscrolledwindow.h
+Index: gtk+3.0-3.3.4/gtk/gtkscrolledwindow.h
 ===================================================================
---- gtk+3.0-3.1.16.orig/gtk/gtkscrolledwindow.h	2011-09-05 08:52:01.519554653 +0200
-+++ gtk+3.0-3.1.16/gtk/gtkscrolledwindow.h	2011-09-05 08:52:44.349554937 +0200
+--- gtk+3.0-3.3.4.orig/gtk/gtkscrolledwindow.h	2011-11-08 06:59:23.000000000 +0100
++++ gtk+3.0-3.3.4/gtk/gtkscrolledwindow.h	2011-12-07 18:45:34.893657516 +0100
 @@ -119,6 +119,7 @@
                                                             gint               height);
  
@@ -324,10 +324,10 @@ Index: gtk+3.0-3.1.16/gtk/gtkscrolledwindow.h
  
  
  G_END_DECLS
-Index: gtk+3.0-3.1.16/gtk/gtkvscrollbar.c
+Index: gtk+3.0-3.3.4/gtk/deprecated/gtkvscrollbar.c
 ===================================================================
---- gtk+3.0-3.1.16.orig/gtk/gtkvscrollbar.c	2011-09-05 08:52:01.469554652 +0200
-+++ gtk+3.0-3.1.16/gtk/gtkvscrollbar.c	2011-09-05 08:52:44.349554937 +0200
+--- gtk+3.0-3.3.4.orig/gtk/deprecated/gtkvscrollbar.c	2011-11-19 18:27:36.000000000 +0100
++++ gtk+3.0-3.3.4/gtk/deprecated/gtkvscrollbar.c	2011-12-07 18:45:34.893657516 +0100
 @@ -33,6 +33,8 @@
  #include "gtkvscrollbar.h"
  #include "gtkintl.h"
@@ -405,15 +405,15 @@ Index: gtk+3.0-3.1.16/gtk/gtkvscrollbar.c
 +      init_once = TRUE;
 +    }
 +}
-Index: gtk+3.0-3.1.16/gtk/gtkvscrollbar.h
+Index: gtk+3.0-3.3.4/gtk/deprecated/gtkvscrollbar.h
 ===================================================================
---- gtk+3.0-3.1.16.orig/gtk/gtkvscrollbar.h	2011-09-05 08:52:01.479554654 +0200
-+++ gtk+3.0-3.1.16/gtk/gtkvscrollbar.h	2011-09-05 08:52:44.349554937 +0200
-@@ -69,6 +69,7 @@
+--- gtk+3.0-3.3.4.orig/gtk/deprecated/gtkvscrollbar.h	2011-11-19 18:27:36.000000000 +0100
++++ gtk+3.0-3.3.4/gtk/deprecated/gtkvscrollbar.h	2011-12-07 18:45:34.893657516 +0100
+@@ -65,6 +65,7 @@
  
  GType      gtk_vscrollbar_get_type (void) G_GNUC_CONST;
  GtkWidget* gtk_vscrollbar_new      (GtkAdjustment *adjustment);
 +void       ubuntu_gtk_vscrollbar_init (void);
  
- 
  G_END_DECLS
+ 

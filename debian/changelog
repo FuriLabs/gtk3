@@ -1,3 +1,19 @@
+gtk+3.0 (3.3.4-0ubuntu1) UNRELEASED; urgency=low
+
+  * New upstream version
+  * Refreshed the patches for the new version
+  * Dropped patches backported from git they are included in the tarball
+  * debian/control.in:
+    - require the new glib
+  * debian/libgtk-3-0.symbols:
+    - new version update
+  * debian/rules:
+    - updated shlibs version
+  * debian/patches/041_ia32-libs.patch: 
+    - dropped, that seems a leftover in the multiarch world
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 07 Dec 2011 17:35:01 +0100
+
 gtk+3.0 (3.2.2-2ubuntu4) precise; urgency=low
 
   * debian/patches/gtkmenuitemaccessible-set-alt-name.patch: Extend the

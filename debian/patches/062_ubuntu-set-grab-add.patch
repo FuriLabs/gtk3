@@ -1,8 +1,8 @@
-Index: gtk+3.0-3.1.16/gtk/gtk.symbols
+Index: gtk+3.0-3.3.4/gtk/gtk.symbols
 ===================================================================
---- gtk+3.0-3.1.16.orig/gtk/gtk.symbols	2011-09-05 08:52:11.049554717 +0200
-+++ gtk+3.0-3.1.16/gtk/gtk.symbols	2011-09-05 08:52:13.489554730 +0200
-@@ -3859,6 +3859,7 @@
+--- gtk+3.0-3.3.4.orig/gtk/gtk.symbols	2011-12-07 18:38:43.685637615 +0100
++++ gtk+3.0-3.3.4/gtk/gtk.symbols	2011-12-07 18:38:51.777638009 +0100
+@@ -3867,6 +3867,7 @@
  gtk_window_unstick
  gtk_wrap_mode_get_type
  ubuntu_gtk_menu_shell_activate_mnemonic
@@ -10,13 +10,13 @@ Index: gtk+3.0-3.1.16/gtk/gtk.symbols
  ubuntu_menu_proxy_get_type
  ubuntu_menu_proxy_get
  ubuntu_menu_proxy_insert
-Index: gtk+3.0-3.1.16/gtk/gtkwidget.c
+Index: gtk+3.0-3.3.4/gtk/gtkwidget.c
 ===================================================================
---- gtk+3.0-3.1.16.orig/gtk/gtkwidget.c	2011-09-05 08:52:02.109554655 +0200
-+++ gtk+3.0-3.1.16/gtk/gtkwidget.c	2011-09-05 08:52:13.499554731 +0200
-@@ -14539,3 +14539,11 @@
- 
-   return widget->priv->context;
+--- gtk+3.0-3.3.4.orig/gtk/gtkwidget.c	2011-11-21 19:12:49.000000000 +0100
++++ gtk+3.0-3.3.4/gtk/gtkwidget.c	2011-12-07 18:38:51.789638006 +0100
+@@ -13876,3 +13876,11 @@
+ {
+   widget->priv->style = style;
  }
 +
 +void
@@ -26,12 +26,12 @@ Index: gtk+3.0-3.1.16/gtk/gtkwidget.c
 +  _gtk_widget_set_has_grab (widget, has_grab);
 +}
 + 
-Index: gtk+3.0-3.1.16/gtk/gtkwidget.h
+Index: gtk+3.0-3.3.4/gtk/gtkwidget.h
 ===================================================================
---- gtk+3.0-3.1.16.orig/gtk/gtkwidget.h	2011-09-05 08:52:02.129554657 +0200
-+++ gtk+3.0-3.1.16/gtk/gtkwidget.h	2011-09-05 08:52:13.509554732 +0200
-@@ -950,6 +950,9 @@
- GtkWidgetPath *   gtk_widget_get_path (GtkWidget *widget);
+--- gtk+3.0-3.3.4.orig/gtk/gtkwidget.h	2011-11-19 18:27:37.000000000 +0100
++++ gtk+3.0-3.3.4/gtk/gtkwidget.h	2011-12-07 18:38:51.793638007 +0100
+@@ -893,6 +893,9 @@
+                                                 GdkModifierIntent  intent);
  
  
 +void   ubuntu_gtk_widget_set_has_grab  (GtkWidget *widget,
