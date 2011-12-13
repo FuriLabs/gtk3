@@ -4,11 +4,11 @@ Bug: https://bugzilla.gnome.org/show_bug.cgi?id=654557
 Bug-Ubuntu: https://launchpad.net/bugs/809919
 
 === modified file 'gtk/gtkwindow.c'
-Index: gtk+3.0-3.1.12/gtk/gtkwindow.c
+Index: gtk+3.0-3.3.4/gtk/gtkwindow.c
 ===================================================================
---- gtk+3.0-3.1.12.orig/gtk/gtkwindow.c	2011-08-16 13:40:45.682189089 +0200
-+++ gtk+3.0-3.1.12/gtk/gtkwindow.c	2011-08-16 13:40:45.790189088 +0200
-@@ -989,6 +989,12 @@
+--- gtk+3.0-3.3.4.orig/gtk/gtkwindow.c	2011-12-07 18:38:43.701637616 +0100
++++ gtk+3.0-3.3.4/gtk/gtkwindow.c	2011-12-07 18:38:53.017638067 +0100
+@@ -991,6 +991,12 @@
                                                               P_("Height of resize grip"),
                                                               0, G_MAXINT, 16, GTK_PARAM_READWRITE));
  
@@ -21,7 +21,7 @@ Index: gtk+3.0-3.1.12/gtk/gtkwindow.c
  
    /**
     * GtkWindow:application:
-@@ -1158,6 +1164,14 @@
+@@ -1160,6 +1166,14 @@
    priv->mnemonics_visible = TRUE;
    priv->focus_visible = TRUE;
  
