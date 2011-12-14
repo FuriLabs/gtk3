@@ -1,0 +1,36 @@
+From 0d71f62388acce5e264d4d3bb8450756b684e180 Mon Sep 17 00:00:00 2001
+From: Cosimo Cecchi <cosimoc@gnome.org>
+Date: Wed, 23 Nov 2011 16:21:29 +0000
+Subject: frame: don't access padding before it's initialized
+
+Move padding initialization before its first access.
+---
+(limited to 'gtk/gtkframe.c')
+
+diff --git a/gtk/gtkframe.c b/gtk/gtkframe.c
+index 275c6ea..c2e1ad2 100644
+--- a/gtk/gtkframe.c
++++ b/gtk/gtkframe.c
+@@ -860,6 +860,9 @@ gtk_frame_get_preferred_size (GtkWidget      *request,
+   gint minimum, natural;
+   guint border_width;
+ 
++  get_padding_and_border (frame, &padding);
++  border_width = gtk_container_get_border_width (GTK_CONTAINER (widget));
++
+   if (priv->label_widget && gtk_widget_get_visible (priv->label_widget))
+     {
+       if (orientation == GTK_ORIENTATION_HORIZONTAL)
+@@ -902,9 +905,6 @@ gtk_frame_get_preferred_size (GtkWidget      *request,
+         }
+     }
+ 
+-  get_padding_and_border (frame, &padding);
+-  border_width = gtk_container_get_border_width (GTK_CONTAINER (widget));
+-
+   if (orientation == GTK_ORIENTATION_HORIZONTAL)
+     {
+       minimum += (border_width * 2) + padding.left + padding.right;
+--
+cgit v0.9.0.2
+
