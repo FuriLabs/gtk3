@@ -1,3 +1,28 @@
+gtk+3.0 (3.3.6-0ubuntu1) UNRELEASED; urgency=low
+
+  * New upstream version, dropped the patches backported from git:
+    - trap XIQueryDevice errors to avoid sessions errors issues after suspend
+      (lp: #882956)
+    - don't grab mouse input when the menu bar or the resize-grip are clicked
+      (lp: #878859)
+  * debian/control.in:
+    - updated glib requirement
+  * debian/libgtk-3-0.postinst.in, debian/rules:
+    - don't list the old non-multi-arch ims directory, everything using gtk3
+      should be updated and it breaks the update when the directory is empty 
+      (lp: #908801)
+  * debian/libgtk-3-0.symbols:
+    - new version update
+  * debian/patches/003_gdk.pc_privates.patch:
+    - dropped, upstream did similar changes in the new version
+  * debian/patches/042_treeview_single-focus.patch:
+    - comment that debian change, it has no comment explaining what it's 
+      supposed to do and needs to be updating if still needed.
+  * debian/rules:
+    - updated shlibs version
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 03 Jan 2012 18:47:20 +0100
+
 gtk+3.0 (3.3.4-0ubuntu2) precise; urgency=low
 
   * debian/patches/git_fix_padding_issues.patch: should fix the 
