@@ -23,7 +23,7 @@ LDFLAGS += -Wl,-O1
 
 APIVER := 3
 SONAME := 0
-SHVER := 3.3.4
+SHVER := 3.3.6
 
 LIBDIR := usr/lib/$(DEB_HOST_MULTIARCH)
 
@@ -38,7 +38,6 @@ CONFDIR := etc/gtk-3.0
 
 # relative base directory for all types of modules
 MODULES_BASE_PATH := $(LIBDIR)/gtk-3.0/$(GTK_BINARY_VERSION)
-OLD_MODULES_BASE_PATH := usr/lib/gtk-3.0/$(GTK_BINARY_VERSION)
 
 # package names
 SHARED_PKG := libgtk-$(APIVER)-$(SONAME)
@@ -114,7 +113,6 @@ debian/%: debian/%.in
 		-e 's#@OPTLIBDIR@#$(OPTLIBDIR)#g' \
 		-e 's#@CONFDIR@#$(CONFDIR)#g' \
 		-e "s#@MODULES_BASE_PATH@#$(MODULES_BASE_PATH)#g" \
-		-e "s#@OLD_MODULES_BASE_PATH@#$(OLD_MODULES_BASE_PATH)#g" \
 		$@.in > $@
 
 clean:: debian/control
