@@ -1,0 +1,80 @@
+From 18406b7b04da088f8a3efe7cca5ac1647080dc0b Mon Sep 17 00:00:00 2001
+From: Matthias Clasen <mclasen@redhat.com>
+Date: Thu, 22 Dec 2011 15:44:28 +0000
+Subject: [PATCH] Revert "x11: Avoid spurious focus events on grabs"
+
+This reverts commit db4a6040afd3d1cabbb306037e811f37d62e2e76.
+
+This is causing bad focus confusion e.g. in gnome-terminal.
+---
+ gdk/x11/gdkdevicemanager-core-x11.c    |    5 -----
+ gdk/x11/gdkdevicemanager-xi2.c         |    1 -
+ gdk/x11/gdkdevicemanagerprivate-core.h |    3 ---
+ 3 files changed, 0 insertions(+), 9 deletions(-)
+
+diff --git a/gdk/x11/gdkdevicemanager-core-x11.c b/gdk/x11/gdkdevicemanager-core-x11.c
+index 503ad54..156ba8b 100644
+--- a/gdk/x11/gdkdevicemanager-core-x11.c
++++ b/gdk/x11/gdkdevicemanager-core-x11.c
+@@ -665,7 +665,6 @@ gdk_x11_device_manager_core_translate_event (GdkEventTranslator *translator,
+     case FocusIn:
+     case FocusOut:
+       _gdk_device_manager_core_handle_focus (window,
+-                                             xevent->xfocus.window,
+                                              device_manager->core_keyboard,
+                                              NULL,
+                                              xevent->type == FocusIn,
+@@ -796,7 +795,6 @@ _gdk_x11_event_translate_keyboard_string (GdkEventKey *event)
+  */
+ void
+ _gdk_device_manager_core_handle_focus (GdkWindow *window,
+-                                       Window     original,
+                                        GdkDevice *device,
+                                        GdkDevice *source_device,
+                                        gboolean   focus_in,
+@@ -821,9 +819,6 @@ _gdk_device_manager_core_handle_focus (GdkWindow *window,
+   if (!toplevel)
+     return;
+ 
+-  if (toplevel->focus_window == original)
+-    return;
+-
+   had_focus = HAS_FOCUS (toplevel);
+ 
+   switch (detail)
+diff --git a/gdk/x11/gdkdevicemanager-xi2.c b/gdk/x11/gdkdevicemanager-xi2.c
+index f9e4d11..273ca7d 100644
+--- a/gdk/x11/gdkdevicemanager-xi2.c
++++ b/gdk/x11/gdkdevicemanager-xi2.c
+@@ -1228,7 +1228,6 @@ gdk_x11_device_manager_xi2_translate_event (GdkEventTranslator *translator,
+                                              GUINT_TO_POINTER (xev->sourceid));
+ 
+         _gdk_device_manager_core_handle_focus (window,
+-                                               xev->event,
+                                                device,
+                                                source_device,
+                                                (ev->evtype == XI_FocusIn) ? TRUE : FALSE,
+diff --git a/gdk/x11/gdkdevicemanagerprivate-core.h b/gdk/x11/gdkdevicemanagerprivate-core.h
+index 54463bb..428b34f 100644
+--- a/gdk/x11/gdkdevicemanagerprivate-core.h
++++ b/gdk/x11/gdkdevicemanagerprivate-core.h
+@@ -20,8 +20,6 @@
+ #ifndef __GDK_DEVICE_MANAGER_PRIVATE_CORE_H__
+ #define __GDK_DEVICE_MANAGER_PRIVATE_CORE_H__
+ 
+-#include <X11/Xlib.h>
+-
+ #include "gdkx11devicemanager-core.h"
+ #include "gdkdevicemanagerprivate.h"
+ 
+@@ -40,7 +38,6 @@ struct _GdkX11DeviceManagerCoreClass
+ };
+ 
+ void            _gdk_device_manager_core_handle_focus           (GdkWindow   *window,
+-                                                                 Window       original,
+                                                                  GdkDevice   *device,
+                                                                  GdkDevice   *source_device,
+                                                                  gboolean     focus_in,
+-- 
+1.7.7.3
+
