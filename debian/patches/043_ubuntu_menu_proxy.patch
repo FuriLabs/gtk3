@@ -1,9 +1,12 @@
+## Description: add some description
+## Origin/Author: add some origin or author
+## Bug: bug URL
 Description: Add GtkMenuProxy support for remoting menus.
 
 Index: gtk+3.0-3.3.6/gtk/gtk.h
 ===================================================================
---- gtk+3.0-3.3.6.orig/gtk/gtk.h	2011-12-19 19:46:00.000000000 +0100
-+++ gtk+3.0-3.3.6/gtk/gtk.h	2012-01-03 19:12:13.685441609 +0100
+--- gtk+3.0-3.3.6.orig/gtk/gtk.h	2012-01-12 12:27:08.242524557 +0100
++++ gtk+3.0-3.3.6/gtk/gtk.h	2012-01-12 12:27:20.658524220 +0100
 @@ -75,6 +75,8 @@
  #include <gtk/gtkcellview.h>
  #include <gtk/gtkcheckbutton.h>
@@ -15,37 +18,25 @@ Index: gtk+3.0-3.3.6/gtk/gtk.h
  #include <gtk/gtkcolorsel.h>
 Index: gtk+3.0-3.3.6/gtk/gtkmenubar.c
 ===================================================================
---- gtk+3.0-3.3.6.orig/gtk/gtkmenubar.c	2011-12-19 20:35:59.000000000 +0100
-+++ gtk+3.0-3.3.6/gtk/gtkmenubar.c	2012-01-03 19:12:13.689441610 +0100
-@@ -56,6 +56,9 @@
- #define BORDER_SPACING  0
- #define DEFAULT_IPADDING 1
- 
-+/* timeout before showing the menubar */
-+#define TIMEOUT_MENUBAR_SHOW 500
-+
- /* Properties */
- enum {
-   PROP_0,
-@@ -67,9 +70,11 @@
+--- gtk+3.0-3.3.6.orig/gtk/gtkmenubar.c	2012-01-12 12:27:08.222524558 +0100
++++ gtk+3.0-3.3.6/gtk/gtkmenubar.c	2012-01-12 12:27:20.658524220 +0100
+@@ -67,9 +67,9 @@
  {
    GtkPackDirection pack_direction;
    GtkPackDirection child_pack_direction;
-+  gboolean shown;
-+  guint32 source_show_menu_bar_id;
++  gboolean shell_shows;
  };
  
 -
-+static void gtk_menu_bar_dispose           (GObject             *object);
  static void gtk_menu_bar_set_property      (GObject             *object,
  					    guint                prop_id,
  					    const GValue        *value,
-@@ -94,10 +99,14 @@
+@@ -94,10 +94,14 @@
                                                           gint         *natural);
  static void gtk_menu_bar_size_allocate     (GtkWidget       *widget,
  					    GtkAllocation   *allocation);
-+static void gtk_menu_bar_show              (GtkWidget       *widget);
-+static void gtk_menu_bar_hide              (GtkWidget       *widget);
++static void gtk_menu_bar_realize           (GtkWidget *widget);
++static void gtk_menu_bar_unrealize         (GtkWidget *widget);
  static gint gtk_menu_bar_draw              (GtkWidget       *widget,
                                              cairo_t         *cr);
  static void gtk_menu_bar_hierarchy_changed (GtkWidget       *widget,
@@ -55,20 +46,12 @@ Index: gtk+3.0-3.3.6/gtk/gtkmenubar.c
  static gint gtk_menu_bar_get_popup_delay   (GtkMenuShell    *menu_shell);
  static void gtk_menu_bar_move_current      (GtkMenuShell     *menu_shell,
                                              GtkMenuDirectionType direction);
-@@ -119,6 +128,7 @@
-   widget_class = (GtkWidgetClass*) class;
-   menu_shell_class = (GtkMenuShellClass*) class;
- 
-+  gobject_class->dispose = gtk_menu_bar_dispose;
-   gobject_class->get_property = gtk_menu_bar_get_property;
-   gobject_class->set_property = gtk_menu_bar_set_property;
- 
-@@ -127,10 +137,11 @@
+@@ -127,10 +131,11 @@
    widget_class->get_preferred_width_for_height = gtk_menu_bar_get_preferred_width_for_height;
    widget_class->get_preferred_height_for_width = gtk_menu_bar_get_preferred_height_for_width;
    widget_class->size_allocate = gtk_menu_bar_size_allocate;
-+  widget_class->show = gtk_menu_bar_show;
-+  widget_class->hide = gtk_menu_bar_hide;
++  widget_class->realize = gtk_menu_bar_realize;
++  widget_class->unrealize = gtk_menu_bar_unrealize;
    widget_class->draw = gtk_menu_bar_draw;
    widget_class->hierarchy_changed = gtk_menu_bar_hierarchy_changed;
 -  
@@ -77,233 +60,92 @@ Index: gtk+3.0-3.3.6/gtk/gtkmenubar.c
  
    menu_shell_class->submenu_placement = GTK_TOP_BOTTOM;
    menu_shell_class->get_popup_delay = gtk_menu_bar_get_popup_delay;
-@@ -233,6 +244,192 @@
-   g_type_class_add_private (gobject_class, sizeof (GtkMenuBarPrivate));
- }
- 
-+/* really show the menubar, but only if it has to be shown */
-+static void
-+real_show_menu_bar (GtkMenuBar *menu_bar)
-+{
-+  GtkMenuBarPrivate *priv;
-+
-+  priv = menu_bar->priv;
-+
-+  /* if it has to be shown, proceed */
-+  if (priv->shown)
-+    {
-+      /* resize the area.
-+       * in reality, this should only be called by timeouts started
-+       * by ubuntu_gtk_menu_bar_show, but it won't hurt too much. */
-+      gtk_widget_queue_resize (GTK_WIDGET (menu_bar));
-+
-+      /* now we can finally show the menubar */
-+      GTK_WIDGET_CLASS (gtk_menu_bar_parent_class)->show (GTK_WIDGET (menu_bar));
-+    }
-+}
-+
-+/* callback associated to the GSource source_show_menu_bar_id */
-+static gboolean
-+show_menu_bar_cb (gpointer user_data)
-+{
-+  GtkMenuBar *menu_bar;
-+  GtkMenuBarPrivate *priv;
-+
-+  menu_bar = GTK_MENU_BAR (user_data);
-+  priv = menu_bar->priv;
-+
-+  real_show_menu_bar (menu_bar);
-+  priv->source_show_menu_bar_id = 0;
-+
-+  return FALSE;
-+}
-+
-+/* prepare to load the timeout */
-+static void
-+show_menu_bar (GtkMenuBar *menu_bar)
-+{
-+  GtkMenuBarPrivate *priv;
-+  const gchar *module_name;
-+
-+  priv = menu_bar->priv;
-+
-+  module_name = g_getenv ("UBUNTU_MENUPROXY");
-+
-+  /* stop running timeout */
-+  if (priv->source_show_menu_bar_id != 0)
-+    {
-+      g_source_remove (priv->source_show_menu_bar_id);
-+      priv->source_show_menu_bar_id = 0;
-+    }
-+
-+  /* if UBUNTU_MENUPROXY is NULL skip the timeout,
-+   * otherwise start it */
-+  if (module_name == NULL)
-+    real_show_menu_bar (menu_bar);
-+  else
-+    priv->source_show_menu_bar_id = g_timeout_add (TIMEOUT_MENUBAR_SHOW,
-+                                                   show_menu_bar_cb,
-+                                                   menu_bar);
-+}
-+
-+/* function called by the ubuntu-local signal callback */
-+static void
-+ubuntu_gtk_menu_bar_show (GtkWidget *widget)
-+{
-+  GtkMenuBar *menu_bar;
-+  GtkMenuBarPrivate *priv;
-+
-+  menu_bar = GTK_MENU_BAR (widget);
-+  priv = menu_bar->priv;
-+
-+  /* proceed only if is has to be shown */
-+  if (priv->shown)
-+    show_menu_bar (menu_bar);
-+}
-+
-+/* function called by the ubuntu-local signal callback */
-+static void
-+ubuntu_gtk_menu_bar_hide (GtkWidget *widget)
-+{
-+  GtkMenuBar *menu_bar;
-+  GtkMenuBarPrivate *priv;
-+
-+  menu_bar = GTK_MENU_BAR (widget);
-+  priv = menu_bar->priv;
-+
-+  /* stop running timeout */
-+  if (priv->source_show_menu_bar_id != 0)
-+    {
-+      g_source_remove (priv->source_show_menu_bar_id);
-+      priv->source_show_menu_bar_id = 0;
-+    }
-+
-+  /* resize the area */
-+  gtk_widget_queue_resize (widget);
-+
-+  /* now we can hide the menubar */
-+  GTK_WIDGET_CLASS (gtk_menu_bar_parent_class)->hide (widget);
-+}
-+
-+static void
-+gtk_menu_bar_show (GtkWidget *widget)
-+{
-+  GtkMenuBar *menu_bar;
-+  GtkMenuBarPrivate *priv;
-+  gboolean local;
-+
-+  menu_bar = GTK_MENU_BAR (widget);
-+  priv = menu_bar->priv;
-+
-+  g_object_get (widget,
-+                "ubuntu-local", &local,
-+                NULL);
-+
-+  /* always update the shown private gboolean */
-+  priv->shown = TRUE;
-+
-+  /* proceed only if it is ubuntu local */
-+  if (local)
-+    show_menu_bar (menu_bar);
-+}
-+
-+static void
-+gtk_menu_bar_hide (GtkWidget *widget)
-+{
-+  GtkMenuBar *menu_bar;
-+  GtkMenuBarPrivate *priv;
-+
-+  menu_bar = GTK_MENU_BAR (widget);
-+  priv = menu_bar->priv;
-+
-+  /* always update the shown private gboolean */
-+  priv->shown = FALSE;
-+
-+  /* stop running timeout */
-+  if (priv->source_show_menu_bar_id != 0)
-+    {
-+      g_source_remove (priv->source_show_menu_bar_id);
-+      priv->source_show_menu_bar_id = 0;
-+    }
-+
-+  GTK_WIDGET_CLASS (gtk_menu_bar_parent_class)->hide (widget);
-+}
-+
-+static void
-+gtk_menu_bar_dispose (GObject *object)
-+{
-+  GtkMenuBar *menu_bar;
-+  GtkMenuBarPrivate *priv;
-+
-+  menu_bar = GTK_MENU_BAR (object);
-+  priv = menu_bar->priv;
-+
-+  /* stop running timeout */
-+  if (priv->source_show_menu_bar_id != 0)
-+    {
-+      g_source_remove (priv->source_show_menu_bar_id);
-+      priv->source_show_menu_bar_id = 0;
-+    }
-+
-+  G_OBJECT_CLASS (gtk_menu_bar_parent_class)->dispose (object);
-+}
-+
-+static void
-+local_notify (GtkWidget  *widget,
-+              GParamSpec *pspec,
-+              gpointer    user_data)
-+{
-+  gboolean local;
-+
-+  g_object_get (widget,
-+                "ubuntu-local", &local,
-+                NULL);
-+
-+  /* we received notify::ubuntu-local,
-+   * it's time to show or hide the menubar */
-+  if (local)
-+    ubuntu_gtk_menu_bar_show (widget);
-+  else
-+    ubuntu_gtk_menu_bar_hide (widget);
-+}
-+
- static void
- gtk_menu_bar_init (GtkMenuBar *menu_bar)
- {
-@@ -242,6 +439,13 @@
-                                                 GTK_TYPE_MENU_BAR,
-                                                 GtkMenuBarPrivate);
- 
-+  menu_bar->priv->shown = FALSE;
-+
-+  g_signal_connect (menu_bar,
-+                    "notify::ubuntu-local",
-+                    G_CALLBACK (local_notify),
-+                    NULL);
-+
-   context = gtk_widget_get_style_context (GTK_WIDGET (menu_bar));
-   gtk_style_context_add_class (context, GTK_STYLE_CLASS_MENUBAR);
- }
-@@ -338,10 +542,18 @@
-   guint border_width;
-   gboolean use_toggle_size, use_maximize;
-   gint child_minimum, child_natural;
-+  gboolean local;
- 
-   *minimum = 0;
-   *natural = 0;
- 
-+  g_object_get (widget,
-+                "ubuntu-local", &local,
-+                NULL);
-+
-+  if (!local)
-+    return;
-+
-   menu_bar = GTK_MENU_BAR (widget);
+@@ -346,6 +351,9 @@
    menu_shell = GTK_MENU_SHELL (widget);
    priv = menu_bar->priv;
-@@ -739,8 +951,16 @@
+ 
++  if (priv->shell_shows)
++    return;
++
+   children = menu_shell->priv->children;
+ 
+   if (priv->child_pack_direction == GTK_PACK_DIRECTION_LTR ||
+@@ -477,6 +485,27 @@
+   menu_shell = GTK_MENU_SHELL (widget);
+   priv = menu_bar->priv;
+ 
++  if (priv->shell_shows)
++    {
++      GtkAllocation zero = { 0, 0, 0, 0 };
++      GdkWindow *window;
++
++      /* We manually assign an empty allocation to the menubar to
++       * prevent the container from attempting to draw it at all.
++       */
++      gtk_widget_set_allocation (widget, &zero);
++
++      /* Then we move the GdkWindow belonging to the menubar outside of
++       * the clipping rectangle of the parent window so that we can't
++       * see it.
++       */
++      window = gtk_widget_get_window (widget);
++      if (window != NULL)
++        gdk_window_move_resize (window, -1, -1, 1, 1);
++
++      return;
++    }
++
+   gtk_widget_set_allocation (widget, allocation);
+ 
+   if (gtk_widget_get_realized (widget))
+@@ -631,6 +660,46 @@
+     }
+ }
+ 
++static void
++gtk_menu_bar_shell_shows_menubar_cb (GtkSettings *settings,
++                                     GParamSpec  *pspec,
++                                     gpointer     user_data)
++{
++  GtkMenuBar *menu_bar;
++
++  menu_bar = GTK_MENU_BAR (user_data);
++
++  g_object_get (settings, "gtk-shell-shows-menubar", &menu_bar->priv->shell_shows, NULL);
++
++  gtk_widget_queue_resize (GTK_WIDGET (menu_bar));
++}
++
++static void
++gtk_menu_bar_realize (GtkWidget *widget)
++{
++  GtkSettings *settings;
++
++  GTK_WIDGET_CLASS (gtk_menu_bar_parent_class)->realize (widget);
++
++  settings = gtk_widget_get_settings (widget);
++
++  g_signal_connect (settings, "notify::gtk-shell-shows-menubar",
++                    G_CALLBACK (gtk_menu_bar_shell_shows_menubar_cb), widget);
++  gtk_menu_bar_shell_shows_menubar_cb (settings, NULL, widget);
++}
++
++static void
++gtk_menu_bar_unrealize (GtkWidget *widget)
++{
++  GtkSettings *settings;
++
++  settings = gtk_widget_get_settings (widget);
++
++  g_signal_handlers_disconnect_by_func (settings, gtk_menu_bar_shell_shows_menubar_cb, widget);
++
++  GTK_WIDGET_CLASS (gtk_menu_bar_parent_class)->unrealize (widget);
++}
++
+ static gint
+ gtk_menu_bar_draw (GtkWidget *widget,
+ 		   cairo_t   *cr)
+@@ -739,8 +808,16 @@
  	    {
  	      GtkMenuShell *menu_shell = GTK_MENU_SHELL (menubars->data);
  
@@ -322,7 +164,7 @@ Index: gtk+3.0-3.3.6/gtk/gtkmenubar.c
  	      
  	      g_list_free (menubars);
  	      
-@@ -807,6 +1027,16 @@
+@@ -807,6 +884,16 @@
      add_to_window (GTK_WINDOW (toplevel), menubar);
  }
  
@@ -333,7 +175,7 @@ Index: gtk+3.0-3.3.6/gtk/gtkmenubar.c
 +  g_return_val_if_fail (GTK_IS_MENU_BAR (widget),
 +                        gtk_widget_can_activate_accel (widget, signal_id));
 +
-+  return GTK_MENU_BAR (widget)->priv->shown && gtk_widget_is_sensitive (widget);
++  return gtk_widget_is_sensitive (widget);
 +}
 +
  /**
@@ -341,8 +183,8 @@ Index: gtk+3.0-3.3.6/gtk/gtkmenubar.c
   * @menubar: a #GtkMenuBar
 Index: gtk+3.0-3.3.6/gtk/gtkmenuitem.c
 ===================================================================
---- gtk+3.0-3.3.6.orig/gtk/gtkmenuitem.c	2011-12-19 20:35:59.000000000 +0100
-+++ gtk+3.0-3.3.6/gtk/gtkmenuitem.c	2012-01-03 19:12:13.693441610 +0100
+--- gtk+3.0-3.3.6.orig/gtk/gtkmenuitem.c	2012-01-12 12:27:08.250524556 +0100
++++ gtk+3.0-3.3.6/gtk/gtkmenuitem.c	2012-01-12 12:27:20.658524220 +0100
 @@ -38,6 +38,7 @@
  #include "gtkmenuprivate.h"
  #include "gtkseparatormenuitem.h"
@@ -373,8 +215,8 @@ Index: gtk+3.0-3.3.6/gtk/gtkmenuitem.c
  }
 Index: gtk+3.0-3.3.6/gtk/gtkmenushell.c
 ===================================================================
---- gtk+3.0-3.3.6.orig/gtk/gtkmenushell.c	2011-12-19 18:46:00.000000000 +0100
-+++ gtk+3.0-3.3.6/gtk/gtkmenushell.c	2012-01-03 19:12:13.697441610 +0100
+--- gtk+3.0-3.3.6.orig/gtk/gtkmenushell.c	2012-01-12 12:27:08.262524556 +0100
++++ gtk+3.0-3.3.6/gtk/gtkmenushell.c	2012-01-12 12:27:52.390523357 +0100
 @@ -48,6 +48,7 @@
  #include "gtkmenuitemprivate.h"
  #include "gtkmenushellprivate.h"
@@ -383,116 +225,15 @@ Index: gtk+3.0-3.3.6/gtk/gtkmenushell.c
  #include "gtkmnemonichash.h"
  #include "gtkwindow.h"
  #include "gtkprivate.h"
-@@ -81,7 +82,8 @@
- 
- enum {
-   PROP_0,
--  PROP_TAKE_FOCUS
-+  PROP_TAKE_FOCUS,
-+  PROP_LOCAL
- };
- 
- /* Terminology:
-@@ -455,6 +457,14 @@
- 
-   gtk_widget_class_set_accessible_type (widget_class, GTK_TYPE_MENU_SHELL_ACCESSIBLE);
- 
-+  g_object_class_install_property (object_class,
-+                                   PROP_LOCAL,
-+                                   g_param_spec_boolean ("ubuntu-local",
-+                                                         P_("Local menu"),
-+                                                         P_("Determines whether the menu is local"),
-+                                                         FALSE,
-+                                                         GTK_PARAM_READWRITE));
-+
-   g_type_class_add_private (object_class, sizeof (GtkMenuShellPrivate));
- }
- 
-@@ -465,6 +475,14 @@
- }
- 
- static void
-+show_local_notify (UbuntuMenuProxy *proxy,
-+                   GParamSpec      *pspec,
-+                   GtkMenuShell    *shell)
-+{
-+  g_object_notify (shell, "ubuntu-local");
-+}
-+
-+static void
- gtk_menu_shell_init (GtkMenuShell *menu_shell)
- {
-   GtkMenuShellPrivate *priv;
-@@ -474,6 +492,13 @@
+@@ -474,6 +475,7 @@
                                        GtkMenuShellPrivate);
    menu_shell->priv = priv;
    priv->take_focus = TRUE;
 +  priv->proxy = ubuntu_menu_proxy_get ();
-+  priv->local = FALSE;
-+
-+  if (priv->proxy != NULL)
-+    g_signal_connect (priv->proxy, "notify::show-local",
-+                      G_CALLBACK (show_local_notify),
-+                      menu_shell);
  }
  
  static void
-@@ -483,12 +508,16 @@
-                              GParamSpec   *pspec)
- {
-   GtkMenuShell *menu_shell = GTK_MENU_SHELL (object);
-+  GtkMenuShellPrivate *priv = menu_shell->priv;
- 
-   switch (prop_id)
-     {
-     case PROP_TAKE_FOCUS:
-       gtk_menu_shell_set_take_focus (menu_shell, g_value_get_boolean (value));
-       break;
-+    case PROP_LOCAL:
-+      priv->local = g_value_get_boolean (value);
-+      break;
-     default:
-       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-       break;
-@@ -502,12 +531,23 @@
-                              GParamSpec *pspec)
- {
-   GtkMenuShell *menu_shell = GTK_MENU_SHELL (object);
-+  GtkMenuShellPrivate *priv = menu_shell->priv;
-+  gboolean local;
- 
-   switch (prop_id)
-     {
-     case PROP_TAKE_FOCUS:
-       g_value_set_boolean (value, gtk_menu_shell_get_take_focus (menu_shell));
-       break;
-+    case PROP_LOCAL:
-+      if (priv->proxy == NULL || ubuntu_menu_proxy_show_local (priv->proxy)) {
-+        local = TRUE;
-+      } else {
-+        local = priv->local;
-+      }
-+
-+      g_value_set_boolean (value, local);
-+      break;
-     default:
-       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-       break;
-@@ -520,6 +560,13 @@
-   GtkMenuShell *menu_shell = GTK_MENU_SHELL (object);
-   GtkMenuShellPrivate *priv = menu_shell->priv;
- 
-+  if (priv->proxy != NULL)
-+    {
-+      g_signal_handlers_disconnect_by_func (priv->proxy,
-+                                            show_local_notify,
-+                                            menu_shell);
-+    }
-+
-   if (priv->mnemonic_hash)
-     _gtk_mnemonic_hash_free (priv->mnemonic_hash);
-   if (priv->key_hash)
-@@ -582,10 +629,20 @@
+@@ -582,10 +584,20 @@
                         GtkWidget    *child,
                         gint          position)
  {
@@ -513,7 +254,7 @@ Index: gtk+3.0-3.3.6/gtk/gtkmenushell.c
  }
  
  static void
-@@ -2016,6 +2073,54 @@
+@@ -2016,6 +2028,54 @@
      }
  }
  
@@ -529,20 +270,20 @@ Index: gtk+3.0-3.3.6/gtk/gtkmenushell.c
 +  while (tmp_list)
 +    {
 +      GtkWidget *child = tmp_list->data;
-+      
++
 +      if ((!search_sensitive && gtk_widget_get_visible (child)) ||
-+	   _gtk_menu_item_is_selectable (child))
-+      {
-+	to_select = child;
-+	if (!GTK_IS_TEAROFF_MENU_ITEM (child))
-+	  break;
-+      }
++           _gtk_menu_item_is_selectable (child))
++        {
++          to_select = child;
++          if (!GTK_IS_TEAROFF_MENU_ITEM (child))
++            break;
++        }
 +
 +      tmp_list = tmp_list->next;
 +    }
 +
 +  return to_select &&
-+	 ubuntu_gtk_menu_shell_activate_mnemonic(menu_shell, to_select);
++         ubuntu_gtk_menu_shell_activate_mnemonic(menu_shell, to_select);
 +}
 +
 +gboolean
@@ -570,8 +311,8 @@ Index: gtk+3.0-3.3.6/gtk/gtkmenushell.c
   * @menu_shell: a #GtkMenuShell
 Index: gtk+3.0-3.3.6/gtk/gtkmenushellprivate.h
 ===================================================================
---- gtk+3.0-3.3.6.orig/gtk/gtkmenushellprivate.h	2011-11-07 19:47:35.000000000 +0100
-+++ gtk+3.0-3.3.6/gtk/gtkmenushellprivate.h	2012-01-03 19:12:13.697441610 +0100
+--- gtk+3.0-3.3.6.orig/gtk/gtkmenushellprivate.h	2012-01-12 12:27:08.198524557 +0100
++++ gtk+3.0-3.3.6/gtk/gtkmenushellprivate.h	2012-01-12 12:27:20.658524220 +0100
 @@ -24,6 +24,7 @@
  #include <gtk/gtkmenushell.h>
  #include <gtk/gtkmnemonichash.h>
@@ -580,20 +321,19 @@ Index: gtk+3.0-3.3.6/gtk/gtkmenushellprivate.h
  
  
  G_BEGIN_DECLS
-@@ -54,6 +55,9 @@
+@@ -54,6 +55,8 @@
    GtkKeyHash *key_hash;
  
    GdkDevice *grab_pointer;
 +
 +  UbuntuMenuProxy *proxy;
-+  gboolean local;
  };
  
  void        _gtk_menu_shell_select_last      (GtkMenuShell *menu_shell,
 Index: gtk+3.0-3.3.6/gtk/gtk.symbols
 ===================================================================
---- gtk+3.0-3.3.6.orig/gtk/gtk.symbols	2011-12-20 00:00:57.000000000 +0100
-+++ gtk+3.0-3.3.6/gtk/gtk.symbols	2012-01-03 19:12:13.701441610 +0100
+--- gtk+3.0-3.3.6.orig/gtk/gtk.symbols	2012-01-12 12:27:08.206524558 +0100
++++ gtk+3.0-3.3.6/gtk/gtk.symbols	2012-01-12 12:27:20.662524220 +0100
 @@ -3882,3 +3882,9 @@
  gtk_window_unmaximize
  gtk_window_unstick
@@ -606,8 +346,8 @@ Index: gtk+3.0-3.3.6/gtk/gtk.symbols
 +ubuntu_menu_proxy_module_get
 Index: gtk+3.0-3.3.6/gtk/gtkwindow.c
 ===================================================================
---- gtk+3.0-3.3.6.orig/gtk/gtkwindow.c	2011-12-19 19:46:00.000000000 +0100
-+++ gtk+3.0-3.3.6/gtk/gtkwindow.c	2012-01-03 19:12:13.717441611 +0100
+--- gtk+3.0-3.3.6.orig/gtk/gtkwindow.c	2012-01-12 12:27:08.214524557 +0100
++++ gtk+3.0-3.3.6/gtk/gtkwindow.c	2012-01-12 12:27:20.662524220 +0100
 @@ -118,6 +118,8 @@
  
    GdkWindow *grip_window;
@@ -662,8 +402,8 @@ Index: gtk+3.0-3.3.6/gtk/gtkwindow.c
        break;
 Index: gtk+3.0-3.3.6/gtk/Makefile.am
 ===================================================================
---- gtk+3.0-3.3.6.orig/gtk/Makefile.am	2011-12-20 00:24:42.000000000 +0100
-+++ gtk+3.0-3.3.6/gtk/Makefile.am	2012-01-03 19:12:13.749441613 +0100
+--- gtk+3.0-3.3.6.orig/gtk/Makefile.am	2012-01-12 12:27:08.270524556 +0100
++++ gtk+3.0-3.3.6/gtk/Makefile.am	2012-01-12 12:27:20.662524220 +0100
 @@ -267,6 +267,8 @@
  	gtkmenu.h		\
  	gtkmenubar.h		\
@@ -685,7 +425,7 @@ Index: gtk+3.0-3.3.6/gtk/Makefile.am
 Index: gtk+3.0-3.3.6/gtk/ubuntumenuproxy.c
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+3.0-3.3.6/gtk/ubuntumenuproxy.c	2012-01-03 19:12:13.753441613 +0100
++++ gtk+3.0-3.3.6/gtk/ubuntumenuproxy.c	2012-01-12 12:27:20.662524220 +0100
 @@ -0,0 +1,246 @@
 +/*
 + * Copyright (C) 2010 Canonical, Ltd.
@@ -936,7 +676,7 @@ Index: gtk+3.0-3.3.6/gtk/ubuntumenuproxy.c
 Index: gtk+3.0-3.3.6/gtk/ubuntumenuproxy.h
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+3.0-3.3.6/gtk/ubuntumenuproxy.h	2012-01-03 19:12:13.753441613 +0100
++++ gtk+3.0-3.3.6/gtk/ubuntumenuproxy.h	2012-01-12 12:27:20.666524219 +0100
 @@ -0,0 +1,73 @@
 +/*
 + * Copyright (C) 2010 Canonical, Ltd.
@@ -1014,7 +754,7 @@ Index: gtk+3.0-3.3.6/gtk/ubuntumenuproxy.h
 Index: gtk+3.0-3.3.6/gtk/ubuntumenuproxymodule.c
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+3.0-3.3.6/gtk/ubuntumenuproxymodule.c	2012-01-03 19:12:13.757441613 +0100
++++ gtk+3.0-3.3.6/gtk/ubuntumenuproxymodule.c	2012-01-12 12:27:20.666524219 +0100
 @@ -0,0 +1,210 @@
 +/*
 + * Copyright (C) 2010 Canonical, Ltd.
@@ -1229,7 +969,7 @@ Index: gtk+3.0-3.3.6/gtk/ubuntumenuproxymodule.c
 Index: gtk+3.0-3.3.6/gtk/ubuntumenuproxymodule.h
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+3.0-3.3.6/gtk/ubuntumenuproxymodule.h	2012-01-03 19:12:13.757441613 +0100
++++ gtk+3.0-3.3.6/gtk/ubuntumenuproxymodule.h	2012-01-12 12:27:20.666524219 +0100
 @@ -0,0 +1,69 @@
 +/*
 + * Copyright (C) 2010 Canonical, Ltd.
@@ -1302,8 +1042,8 @@ Index: gtk+3.0-3.3.6/gtk/ubuntumenuproxymodule.h
 +#endif /* __UBUNTU_MENU_PROXY_MODULE_H__ */
 Index: gtk+3.0-3.3.6/gtk/gtkmnemonichash.c
 ===================================================================
---- gtk+3.0-3.3.6.orig/gtk/gtkmnemonichash.c	2011-08-16 04:04:34.000000000 +0200
-+++ gtk+3.0-3.3.6/gtk/gtkmnemonichash.c	2012-01-03 19:12:13.757441613 +0100
+--- gtk+3.0-3.3.6.orig/gtk/gtkmnemonichash.c	2012-01-12 12:27:08.254524557 +0100
++++ gtk+3.0-3.3.6/gtk/gtkmnemonichash.c	2012-01-12 12:27:20.666524219 +0100
 @@ -20,6 +20,9 @@
   */
  
