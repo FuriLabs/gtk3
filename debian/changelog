@@ -1,7 +1,33 @@
-gtk+3.0 (3.3.6-0ubuntu4) UNRELEASED; urgency=low
+gtk+3.0 (3.3.8-0ubuntu1) UNRELEASED; urgency=low
 
+  * New upstream version
+    * GtkApplication:
+      - Supports logout notification and inhibiting
+      - Buttons, toolbuttons and switches can now be connected to GActions
+    * GtkSpinButton no longer allows to change the value when not editable
+    * GtkLabel link support has been rewritten to be be more robust
+    * GtkBuilder:
+      - Supports the 'id' in GtkComboBoxText
+      - Can parse GVariant-valued properties
+      - Support loading from a GResource
+    * GtkImage: Support loading from a GResource
+    * GtkUIManager: Support loading from a GResource
+    * Accessibility: key snooping support has been removed
+    * Wayland backend and Theming improvements
+    * Miscellaneous:
+      - Turn default theme css files and dnd cursors into GResources
+    * Bugs fixed:
+      - "Drag & Drop broken for remote X sessions" (lp: #587856)
+      - "Folder selector broken in Precise" (lp: #914356)
+      - "Save file dialog arbitrary selects file name" (lp: #912420)
+      - "Gnome-screenshot fails to save pictures in the good folder" 
+        (lp: #916577)
+      - "Changing selection no longer sets cursor" (lp: #911905)
+  * debian/control.in:
+    - updated glib requirement
   * debian/libgtk-3-0.symbols:
-    - updated for the new overlay scrollbar code
+    - updated for the new version and the overlay scrollbar update
+  * drop patches included in the new version
   * debian/patches/100_overlay_scrollbar_loading.patch:
     - updated patch from Cimi (lp: #911263)
 
