@@ -1,0 +1,29 @@
+From 2f3ffd5fde41c7e62a30ea2579234c9e9d74b51b Mon Sep 17 00:00:00 2001
+From: Benjamin Otte <otte@redhat.com>
+Date: Tue, 24 Jan 2012 14:44:03 +0000
+Subject: treeview: Fix comparison to catch all cases
+
+Otherwise, we could sometimes fail to update the cursor node when the
+right row was deleted.
+
+Also, I'd like to file a formal complaint that this node/tree
+differentiation makes writing comparisons too complicated.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=668169
+---
+diff --git a/gtk/gtktreeview.c b/gtk/gtktreeview.c
+index 7256485..993a41b 100644
+--- a/gtk/gtktreeview.c
++++ b/gtk/gtktreeview.c
+@@ -9025,7 +9025,8 @@ gtk_tree_view_row_deleted (GtkTreeModel *model,
+   /* If the cursor row got deleted, move the cursor to the next row */
+   if (tree_view->priv->cursor_node &&
+       (tree_view->priv->cursor_node == node ||
+-       (node->children &&  _gtk_rbtree_contains (node->children, tree_view->priv->cursor_tree))))
++       (node->children && (tree_view->priv->cursor_tree == node->children ||
++                           _gtk_rbtree_contains (node->children, tree_view->priv->cursor_tree)))))
+     {
+       GtkTreePath *cursor_path;
+ 
+--
+cgit v0.9.0.2
