@@ -5,6 +5,11 @@ gtk+3.0 (3.3.12-0ubuntu1) UNRELEASED; urgency=low
     - require the new glib
   * debian/libgtk-3-0.symbols:
     - new version update
+  * debian/patches/dont_rename_annotation.patch:
+    - don't rename gtk_menu_popup_for_device it's an api break for bindings
+      (lp: #923171)
+  * debian/patches/git_appchooser_ref_hold.patch:
+    - correct hold the reference, avoid a segfault (lp: #864249)
   * debian/rules:
     - updated shlib version
 
