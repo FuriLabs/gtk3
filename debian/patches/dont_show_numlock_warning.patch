@@ -1,0 +1,27 @@
+Description: Don't show a warning for the numlock key in gtkentry boxes,
+ as some hardware tracks numlock status differently.
+Origin: reverts http://git.gnome.org/browse/gtk+/commit/gtk/gtkentry.c?id=85e3f22c19b1322a7469f985feedf55fdff0dd6f
+Bug-Ubuntu: https://bugs.launchpad.net/ubuntu/+source/gnome-screensaver/+bug/841541
+Bug-Ubuntu: https://bugs.launchpad.net/ubuntu/+source/gnome-screensaver/+bug/877456
+Bug-Ubuntu: https://bugs.launchpad.net/ubuntu/+source/gnome-screensaver/+bug/835649
+Bug: https://bugzilla.gnome.org/show_bug.cgi?id=662093
+Bug: https://bugzilla.gnome.org/show_bug.cgi?id=658875
+
+Index: gtk+3.0-3.3.12/gtk/gtkentry.c
+===================================================================
+--- gtk+3.0-3.3.12.orig/gtk/gtkentry.c	2012-01-27 13:48:12.000000000 -0500
++++ gtk+3.0-3.3.12/gtk/gtkentry.c	2012-02-05 17:06:43.527763039 -0500
+@@ -10185,12 +10185,7 @@
+ 
+   if (gtk_entry_get_display_mode (entry) != DISPLAY_NORMAL && priv->caps_lock_warning)
+     { 
+-      if (gdk_keymap_get_num_lock_state (keymap)
+-          && gdk_keymap_get_caps_lock_state (keymap))
+-        text = _("Caps Lock and Num Lock are on");
+-      else if (gdk_keymap_get_num_lock_state (keymap))
+-        text = _("Num Lock is on");
+-      else if (gdk_keymap_get_caps_lock_state (keymap))
++      if (gdk_keymap_get_caps_lock_state (keymap))
+         text = _("Caps Lock is on");
+     }
+ 
