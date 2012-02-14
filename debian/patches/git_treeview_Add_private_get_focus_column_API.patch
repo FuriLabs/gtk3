@@ -1,25 +1,12 @@
 From 00a810ae04a16c5e5d97a980440b4cc1b5883894 Mon Sep 17 00:00:00 2001
 From: Benjamin Otte <otte@redhat.com>
 Date: Sat, 11 Feb 2012 02:49:12 +0100
-Subject: [PATCH 2/4] treeview: Add private get_focus_column() API
+Subject: [PATCH 03/16] treeview: Add private get_focus_column() API
 
 ---
- gtk/gtktreeprivate.h |    1 +
- gtk/gtktreeview.c    |    6 ++++++
- 2 files changed, 7 insertions(+), 0 deletions(-)
+ gtk/gtktreeview.c |    6 ++++++
+ 1 files changed, 6 insertions(+), 0 deletions(-)
 
-diff --git a/gtk/gtktreeprivate.h b/gtk/gtktreeprivate.h
-index 010c3c9..8103c72 100644
---- a/gtk/gtktreeprivate.h
-+++ b/gtk/gtktreeprivate.h
-@@ -85,6 +85,7 @@ void         _gtk_tree_view_set_anchor_path           (GtkTreeView
- 						       GtkTreePath                 *anchor_path);
- GtkRBTree *  _gtk_tree_view_get_rbtree                (GtkTreeView                 *tree_view);
- 
-+GtkTreeViewColumn *_gtk_tree_view_get_focus_column    (GtkTreeView                 *tree_view);
- void               _gtk_tree_view_set_focus_column    (GtkTreeView                 *tree_view,
- 						       GtkTreeViewColumn           *column);
- GdkWindow         *_gtk_tree_view_get_header_window   (GtkTreeView                 *tree_view);
 diff --git a/gtk/gtktreeview.c b/gtk/gtktreeview.c
 index d1b641b..8a769f8 100644
 --- a/gtk/gtktreeview.c

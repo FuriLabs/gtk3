@@ -1,12 +1,13 @@
 From a4559f1e19d10be801ac6e954d58b34a12ac2d4f Mon Sep 17 00:00:00 2001
 From: Benjamin Otte <otte@redhat.com>
 Date: Sat, 11 Feb 2012 01:59:19 +0100
-Subject: [PATCH 01/12] treeview: Tell accessible about focus column changes
+Subject: [PATCH 01/16] treeview: Tell accessible about focus column changes
 
 ---
  gtk/a11y/gtktreeviewaccessible.c |    7 +++++++
  gtk/a11y/gtktreeviewaccessible.h |    4 ++++
- 2 files changed, 11 insertions(+), 0 deletions(-)
+ gtk/gtktreeview.c                |    9 +++++++++
+ 3 files changed, 20 insertions(+), 0 deletions(-)
 
 diff --git a/gtk/a11y/gtktreeviewaccessible.c b/gtk/a11y/gtktreeviewaccessible.c
 index 4fca7fa..adb3a0b 100644
@@ -41,6 +42,27 @@ index 58c75e8..7f953b4 100644
  
  void            _gtk_tree_view_accessible_add_state     (GtkTreeView       *treeview,
                                                           GtkRBTree         *tree,
+diff --git a/gtk/gtktreeview.c b/gtk/gtktreeview.c
+index 96d9107..decf78b 100644
+--- a/gtk/gtktreeview.c
++++ b/gtk/gtktreeview.c
+@@ -10019,7 +10019,16 @@ void
+ _gtk_tree_view_set_focus_column (GtkTreeView       *tree_view,
+ 				 GtkTreeViewColumn *column)
+ {
++  GtkTreeViewColumn *old_column = tree_view->priv->focus_column;
++
++  if (old_column == column)
++    return;
++
+   tree_view->priv->focus_column = column;
++
++  _gtk_tree_view_accessible_update_focus_column (tree_view, 
++                                                 old_column,
++                                                 column);
+ }
+ 
+ 
 -- 
 1.7.9
 
