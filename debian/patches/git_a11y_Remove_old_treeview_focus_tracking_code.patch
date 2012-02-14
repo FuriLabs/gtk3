@@ -1,0 +1,224 @@
+From 5e587229c85a3961a642bcfdff2504a53ecd4735 Mon Sep 17 00:00:00 2001
+From: Benjamin Otte <otte@redhat.com>
+Date: Sat, 11 Feb 2012 03:14:22 +0100
+Subject: [PATCH 05/12] a11y: Remove old treeview focus tracking code
+
+---
+ gtk/a11y/gtktreeviewaccessible.c |  152 --------------------------------------
+ 1 files changed, 0 insertions(+), 152 deletions(-)
+
+diff --git a/gtk/a11y/gtktreeviewaccessible.c b/gtk/a11y/gtktreeviewaccessible.c
+index 3dfedfa..a0f7626 100644
+--- a/gtk/a11y/gtktreeviewaccessible.c
++++ b/gtk/a11y/gtktreeviewaccessible.c
+@@ -45,13 +45,6 @@ struct _GtkTreeViewAccessibleCellInfo
+   GtkTreeViewAccessible *view;
+ };
+ 
+-/* signal handling */
+-
+-static void     cursor_changed       (GtkTreeView      *tree_view,
+-                                      GtkTreeViewAccessible *accessible);
+-static gboolean focus_in             (GtkWidget        *widget);
+-static gboolean focus_out            (GtkWidget        *widget);
+-
+ /* Misc */
+ 
+ static int              cell_info_get_index             (GtkTreeView                     *tree_view,
+@@ -68,7 +61,6 @@ static void             cell_info_new                   (GtkTreeViewAccessible
+                                                          GtkCellAccessible      *cell);
+ static gint             get_column_number               (GtkTreeView            *tree_view,
+                                                          GtkTreeViewColumn      *column);
+-static gint             get_focus_index                 (GtkTreeView            *tree_view);
+ static gint             get_index                       (GtkTreeView            *tree_view,
+                                                          GtkTreePath            *path,
+                                                          gint                   actual_column);
+@@ -175,13 +167,6 @@ gtk_tree_view_accessible_initialize (AtkObject *obj,
+   tree_view = GTK_TREE_VIEW (widget);
+   tree_model = gtk_tree_view_get_model (tree_view);
+ 
+-  g_signal_connect (tree_view, "cursor-changed",
+-                    G_CALLBACK (cursor_changed), accessible);
+-  g_signal_connect (tree_view, "focus-in-event",
+-                    G_CALLBACK (focus_in), NULL);
+-  g_signal_connect (tree_view, "focus-out-event",
+-                    G_CALLBACK (focus_out), NULL);
+-
+   if (tree_model)
+     {
+       if (gtk_tree_model_get_flags (tree_model) & GTK_TREE_MODEL_LIST_ONLY)
+@@ -406,7 +391,6 @@ gtk_tree_view_accessible_ref_child (AtkObject *obj,
+   GList *renderer_list;
+   GList *l;
+   GtkContainerCellAccessible *container = NULL;
+-  gint focus_index;
+ 
+   widget = gtk_accessible_get_widget (GTK_ACCESSIBLE (obj));
+   if (widget == NULL)
+@@ -434,11 +418,6 @@ gtk_tree_view_accessible_ref_child (AtkObject *obj,
+   if (cell)
+     return g_object_ref (cell);
+ 
+-  if (accessible->focus_cell == NULL)
+-      focus_index = get_focus_index (tree_view);
+-  else
+-      focus_index = -1;
+-
+   path = _gtk_tree_path_new_from_rbtree (tree, node);
+   tree_model = gtk_tree_view_get_model (tree_view);
+ 
+@@ -484,14 +463,6 @@ gtk_tree_view_accessible_ref_child (AtkObject *obj,
+ 
+       if (container)
+         _gtk_container_cell_accessible_add_child (container, cell);
+-
+-      _gtk_cell_accessible_add_state (cell, ATK_STATE_FOCUSABLE, FALSE);
+-      if (focus_index == i)
+-        {
+-          accessible->focus_cell = g_object_ref (cell);
+-          _gtk_cell_accessible_add_state (cell, ATK_STATE_FOCUSED, FALSE);
+-          g_signal_emit_by_name (accessible, "active-descendant-changed", cell);
+-        }
+     }
+   g_list_free (renderer_list);
+   if (container)
+@@ -584,46 +555,6 @@ _gtk_tree_view_accessible_init (GtkTreeViewAccessible *view)
+ {
+ }
+ 
+-gint
+-get_focus_index (GtkTreeView *tree_view)
+-{
+-  GtkTreePath *focus_path;
+-  GtkTreeViewColumn *focus_column;
+-  gint index;
+-
+-  gtk_tree_view_get_cursor (tree_view, &focus_path, &focus_column);
+-  if (focus_path && focus_column)
+-    index = get_index (tree_view, focus_path,
+-                       get_column_number (tree_view, focus_column));
+-  else
+-    index = -1;
+-
+-  if (focus_path)
+-    gtk_tree_path_free (focus_path);
+-
+-  return index;
+-}
+-
+-/* This function returns a reference to the accessible object
+- * for the cell in the treeview which has focus, if any
+- */
+-static AtkObject *
+-gtk_tree_view_accessible_ref_focus_cell (GtkTreeView *tree_view)
+-{
+-  AtkObject *focus_cell = NULL;
+-  AtkObject *atk_obj;
+-  gint focus_index;
+-
+-  focus_index = get_focus_index (tree_view);
+-  if (focus_index >= 0)
+-    {
+-      atk_obj = gtk_widget_get_accessible (GTK_WIDGET (tree_view));
+-      focus_cell = atk_object_ref_accessible_child (atk_obj, focus_index);
+-    }
+-
+-  return focus_cell;
+-}
+-
+ /* atkcomponent.h */
+ 
+ static AtkObject *
+@@ -1434,89 +1365,6 @@ gtk_cell_accessible_parent_interface_init (GtkCellAccessibleParentIface *iface)
+   iface->edit = gtk_tree_view_accessible_edit;
+ }
+ 
+-/* signal handling */
+-
+-static void
+-cursor_changed (GtkTreeView           *tree_view,
+-                GtkTreeViewAccessible *accessible)
+-{
+-  AtkObject *cell;
+-
+-  cell = gtk_tree_view_accessible_ref_focus_cell (tree_view);
+-  if (cell)
+-    {
+-      if (cell != accessible->focus_cell)
+-        {
+-          if (accessible->focus_cell)
+-            {
+-              _gtk_cell_accessible_remove_state (GTK_CELL_ACCESSIBLE (accessible->focus_cell), ATK_STATE_ACTIVE, FALSE);
+-              _gtk_cell_accessible_remove_state (GTK_CELL_ACCESSIBLE (accessible->focus_cell), ATK_STATE_FOCUSED, FALSE);
+-              g_object_unref (accessible->focus_cell);
+-              accessible->focus_cell = cell;
+-            }
+-
+-          if (gtk_widget_has_focus (GTK_WIDGET (tree_view)))
+-            {
+-              _gtk_cell_accessible_add_state (GTK_CELL_ACCESSIBLE (cell), ATK_STATE_ACTIVE, FALSE);
+-              _gtk_cell_accessible_add_state (GTK_CELL_ACCESSIBLE (cell), ATK_STATE_FOCUSED, FALSE);
+-            }
+-
+-          g_signal_emit_by_name (accessible, "active-descendant-changed", cell);
+-        }
+-      else
+-        g_object_unref (cell);
+-    }
+-}
+-
+-static gboolean
+-focus_in (GtkWidget *widget)
+-{
+-  GtkTreeView *tree_view;
+-  GtkTreeViewAccessible *accessible;
+-  AtkStateSet *state_set;
+-  AtkObject *cell;
+-
+-  tree_view = GTK_TREE_VIEW (widget);
+-  accessible = GTK_TREE_VIEW_ACCESSIBLE (gtk_widget_get_accessible (widget));
+-
+-  if (accessible->focus_cell == NULL)
+-    {
+-      cell = gtk_tree_view_accessible_ref_focus_cell (tree_view);
+-      if (cell)
+-        {
+-          state_set = atk_object_ref_state_set (cell);
+-          if (state_set)
+-            {
+-              if (!atk_state_set_contains_state (state_set, ATK_STATE_FOCUSED))
+-                {
+-                  _gtk_cell_accessible_add_state (GTK_CELL_ACCESSIBLE (cell), ATK_STATE_ACTIVE, FALSE);
+-                  accessible->focus_cell = cell;
+-                  _gtk_cell_accessible_add_state (GTK_CELL_ACCESSIBLE (cell), ATK_STATE_FOCUSED, FALSE);
+-                  g_signal_emit_by_name (accessible, "active-descendant-changed", cell);
+-                }
+-              g_object_unref (state_set);
+-            }
+-        }
+-    }
+-  return FALSE;
+-}
+-
+-static gboolean
+-focus_out (GtkWidget *widget)
+-{
+-  GtkTreeViewAccessible *accessible;
+-
+-  accessible = GTK_TREE_VIEW_ACCESSIBLE (gtk_widget_get_accessible (widget));
+-  if (accessible->focus_cell)
+-    {
+-      _gtk_cell_accessible_remove_state (GTK_CELL_ACCESSIBLE (accessible->focus_cell), ATK_STATE_ACTIVE, FALSE);
+-      _gtk_cell_accessible_remove_state (GTK_CELL_ACCESSIBLE (accessible->focus_cell), ATK_STATE_FOCUSED, FALSE);
+-      g_object_unref (accessible->focus_cell);
+-      accessible->focus_cell = NULL;
+-    }
+-  return FALSE;
+-}
+-
+ void
+ _gtk_tree_view_accessible_reorder (GtkTreeView *treeview)
+ {
+-- 
+1.7.9
+
