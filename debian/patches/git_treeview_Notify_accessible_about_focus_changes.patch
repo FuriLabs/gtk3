@@ -1,11 +1,12 @@
 From f90ff5d50b9650470a50bfb822d9f4968915c390 Mon Sep 17 00:00:00 2001
 From: Benjamin Otte <otte@redhat.com>
 Date: Sat, 11 Feb 2012 02:38:48 +0100
-Subject: [PATCH 02/12] treeview: Notify accessible about focus changes
+Subject: [PATCH 1/4] treeview: Notify accessible about focus changes
 
 ---
  gtk/a11y/gtktreeviewaccessible.c |   12 ++++++++++++
- 1 files changed, 12 insertions(+), 0 deletions(-)
+ gtk/gtktreeview.c                |    9 +++++++++
+ 2 files changed, 21 insertions(+), 0 deletions(-)
 
 diff --git a/gtk/a11y/gtktreeviewaccessible.c b/gtk/a11y/gtktreeviewaccessible.c
 index adb3a0b..af497b2 100644
@@ -37,6 +38,33 @@ index adb3a0b..af497b2 100644
    for (i = 0; i < gtk_tree_view_get_n_columns (treeview); i++)
      {
        GtkCellAccessible *cell = peek_cell (accessible,
+diff --git a/gtk/gtktreeview.c b/gtk/gtktreeview.c
+index decf78b..d1b641b 100644
+--- a/gtk/gtktreeview.c
++++ b/gtk/gtktreeview.c
+@@ -13188,6 +13188,10 @@ gtk_tree_view_real_set_cursor (GtkTreeView     *tree_view,
+ {
+   if (!(flags & CURSOR_INVALID) && tree_view->priv->cursor_node)
+     {
++      _gtk_tree_view_accessible_remove_state (tree_view,
++                                              tree_view->priv->cursor_tree,
++                                              tree_view->priv->cursor_node,
++                                              GTK_CELL_RENDERER_FOCUSED);
+       _gtk_tree_view_queue_draw_node (tree_view,
+                                       tree_view->priv->cursor_tree,
+                                       tree_view->priv->cursor_node,
+@@ -13250,6 +13254,11 @@ gtk_tree_view_real_set_cursor (GtkTreeView     *tree_view,
+                                           tree_view->priv->cursor_node,
+                                           NULL);
+ 	}
++
++      _gtk_tree_view_accessible_add_state (tree_view,
++                                           tree_view->priv->cursor_tree,
++                                           tree_view->priv->cursor_node,
++                                           GTK_CELL_RENDERER_FOCUSED);
+     }
+ 
+   g_signal_emit (tree_view, tree_view_signals[CURSOR_CHANGED], 0);
 -- 
 1.7.9
 
