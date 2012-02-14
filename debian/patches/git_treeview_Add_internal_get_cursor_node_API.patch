@@ -1,0 +1,56 @@
+From 5fe947640ce55ef3e45f42ff00f5664551d2abca Mon Sep 17 00:00:00 2001
+From: Benjamin Otte <otte@redhat.com>
+Date: Sat, 11 Feb 2012 02:54:11 +0100
+Subject: [PATCH 4/4] treeview: Add internal get_cursor_node() API
+
+---
+ gtk/gtktreeprivate.h |    3 +++
+ gtk/gtktreeview.c    |   18 ++++++++++++++++++
+ 2 files changed, 21 insertions(+), 0 deletions(-)
+
+diff --git a/gtk/gtktreeprivate.h b/gtk/gtktreeprivate.h
+index 8103c72..e3329c5 100644
+--- a/gtk/gtktreeprivate.h
++++ b/gtk/gtktreeprivate.h
+@@ -49,6 +49,9 @@ gboolean     _gtk_tree_view_find_node                 (GtkTreeView       *tree_v
+ 						       GtkTreePath       *path,
+ 						       GtkRBTree        **tree,
+ 						       GtkRBNode        **node);
++gboolean     _gtk_tree_view_get_cursor_node           (GtkTreeView       *tree_view,
++						       GtkRBTree        **tree,
++						       GtkRBNode        **node);
+ GtkTreePath *_gtk_tree_path_new_from_rbtree           (GtkRBTree         *tree,
+ 						       GtkRBNode         *node);
+ void         _gtk_tree_view_child_move_resize         (GtkTreeView       *tree_view,
+diff --git a/gtk/gtktreeview.c b/gtk/gtktreeview.c
+index 8a769f8..251717f 100644
+--- a/gtk/gtktreeview.c
++++ b/gtk/gtktreeview.c
+@@ -10009,6 +10009,24 @@ _gtk_tree_view_get_rbtree (GtkTreeView *tree_view)
+   return tree_view->priv->tree;
+ }
+ 
++gboolean
++_gtk_tree_view_get_cursor_node (GtkTreeView  *tree_view,
++                                GtkRBTree   **tree,
++                                GtkRBNode   **node)
++{
++  GtkTreeViewPrivate *priv;
++
++  priv = tree_view->priv;
++
++  if (priv->cursor_node == NULL)
++    return FALSE;
++
++  *tree = priv->cursor_tree;
++  *node = priv->cursor_node;
++
++  return TRUE;
++}
++
+ GdkWindow *
+ _gtk_tree_view_get_header_window (GtkTreeView *tree_view)
+ {
+-- 
+1.7.9
+
