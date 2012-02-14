@@ -1,0 +1,72 @@
+From 315ac9413b02c408b02bc832f6ef0abdca31f75e Mon Sep 17 00:00:00 2001
+From: Benjamin Otte <otte@redhat.com>
+Date: Sat, 11 Feb 2012 04:13:04 +0100
+Subject: [PATCH 08/12] a11y: Set relations without tree path
+
+We can directly use at the rbtree's parent.
+---
+ gtk/a11y/gtktreeviewaccessible.c |   22 ++++++----------------
+ 1 files changed, 6 insertions(+), 16 deletions(-)
+
+diff --git a/gtk/a11y/gtktreeviewaccessible.c b/gtk/a11y/gtktreeviewaccessible.c
+index aa648e3..df952b4 100644
+--- a/gtk/a11y/gtktreeviewaccessible.c
++++ b/gtk/a11y/gtktreeviewaccessible.c
+@@ -375,7 +375,6 @@ gtk_tree_view_accessible_ref_child (AtkObject *obj,
+   GtkTreeView *tree_view;
+   GtkCellRenderer *renderer;
+   GtkTreeViewColumn *tv_col;
+-  GtkTreePath *path;
+   GtkRBTree *tree;
+   GtkRBNode *node;
+   AtkObject *child;
+@@ -410,8 +409,6 @@ gtk_tree_view_accessible_ref_child (AtkObject *obj,
+   if (cell)
+     return g_object_ref (cell);
+ 
+-  path = _gtk_tree_path_new_from_rbtree (tree, node);
+-
+   renderer_list = gtk_cell_layout_get_cells (GTK_CELL_LAYOUT (tv_col));
+ 
+   /* If there is not exactly one renderer in the list,
+@@ -465,31 +462,24 @@ gtk_tree_view_accessible_ref_child (AtkObject *obj,
+   if (gtk_tree_view_get_expander_column (tree_view) == tv_col)
+     {
+       AtkRelationSet *relation_set;
+-      AtkObject *accessible_array[1];
+       AtkRelation* relation;
+       AtkObject *parent_node;
+ 
+       relation_set = atk_object_ref_relation_set (ATK_OBJECT (child));
+ 
+-      gtk_tree_path_up (path);
+-      if (gtk_tree_path_get_depth (path) == 0)
+-        parent_node = obj;
+-      else
++      if (tree->parent_tree)
+         {
+-          gint parent_index;
+-
+-          parent_index = get_index (tree_view, path, i % get_n_columns (tree_view));
+-          parent_node = atk_object_ref_accessible_child (obj, parent_index);
++          /* XXX: force creation here */
++          parent_node = ATK_OBJECT (peek_cell (accessible, tree->parent_tree, tree->parent_node, tv_col));
+         }
+-      accessible_array[0] = parent_node;
+-      relation = atk_relation_new (accessible_array, 1,
+-                                   ATK_RELATION_NODE_CHILD_OF);
++      else
++        parent_node = obj;
++      relation = atk_relation_new (&parent_node, 1, ATK_RELATION_NODE_CHILD_OF);
+       atk_relation_set_add (relation_set, relation);
+       atk_object_add_relationship (parent_node, ATK_RELATION_NODE_PARENT_OF, child);
+       g_object_unref (relation);
+       g_object_unref (relation_set);
+     }
+-  gtk_tree_path_free (path);
+ 
+   return child;
+ }
+-- 
+1.7.9
+

@@ -1,0 +1,42 @@
+From f90ff5d50b9650470a50bfb822d9f4968915c390 Mon Sep 17 00:00:00 2001
+From: Benjamin Otte <otte@redhat.com>
+Date: Sat, 11 Feb 2012 02:38:48 +0100
+Subject: [PATCH 02/12] treeview: Notify accessible about focus changes
+
+---
+ gtk/a11y/gtktreeviewaccessible.c |   12 ++++++++++++
+ 1 files changed, 12 insertions(+), 0 deletions(-)
+
+diff --git a/gtk/a11y/gtktreeviewaccessible.c b/gtk/a11y/gtktreeviewaccessible.c
+index adb3a0b..af497b2 100644
+--- a/gtk/a11y/gtktreeviewaccessible.c
++++ b/gtk/a11y/gtktreeviewaccessible.c
+@@ -2103,6 +2103,12 @@ _gtk_tree_view_accessible_add_state (GtkTreeView          *treeview,
+ 
+   accessible = GTK_TREE_VIEW_ACCESSIBLE (obj);
+ 
++  if (state == GTK_CELL_RENDERER_FOCUSED)
++    {
++      /* will add later */
++      return;
++    }
++
+   for (i = 0; i < gtk_tree_view_get_n_columns (treeview); i++)
+     {
+       GtkCellAccessible *cell = peek_cell (accessible,
+@@ -2135,6 +2141,12 @@ _gtk_tree_view_accessible_remove_state (GtkTreeView          *treeview,
+ 
+   accessible = GTK_TREE_VIEW_ACCESSIBLE (obj);
+ 
++  if (state == GTK_CELL_RENDERER_FOCUSED)
++    {
++      /* will add later */
++      return;
++    }
++
+   for (i = 0; i < gtk_tree_view_get_n_columns (treeview); i++)
+     {
+       GtkCellAccessible *cell = peek_cell (accessible,
+-- 
+1.7.9
+
