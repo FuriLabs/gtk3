@@ -1,3 +1,22 @@
+gtk+3.0 (3.3.14-0ubuntu4) UNRELEASED; urgency=low
+
+  * debian/libgtk-3-0.install.in:
+    - install the settings.in
+  * debian/patches/015_default-fallback-icon-theme.patch:
+    - dropped in favor of the settings.in configuration
+  * debian/patches/060_ignore-random-icons.patch:
+    - dropped, GNOME bug #451634 states the issue has been fixed slightly
+      different upstream which means the patch is not required
+  * debian/patches/063_resize_grip_default.patch:
+    - dropped, Cimi said it's not needed and can be done from the theme
+  * debian/patches/072_indicator_menu_update.patch:
+    - dropped, it's not required with the current dbusmenu
+  * debian/settings.in:
+    - define default themes there, it's better than hardcoding, also define
+      the default sound theme (lp: #932716)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 20 Feb 2012 11:07:13 +0100
+
 gtk+3.0 (3.3.14-0ubuntu3) precise; urgency=low
 
   * Revert the previous upload, it turned gnome-control-center to a segfault 
