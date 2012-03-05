@@ -3,11 +3,11 @@
 ## Bug: bug URL
 Description: Add GtkMenuProxy support for remoting menus.
 
-Index: gtk+3.0-3.3.10/gtk/gtk.h
+Index: gtk+3.0-3.3.18/gtk/gtk.h
 ===================================================================
---- gtk+3.0-3.3.10.orig/gtk/gtk.h	2012-01-09 20:02:21.000000000 +0100
-+++ gtk+3.0-3.3.10/gtk/gtk.h	2012-01-24 16:52:08.934515532 +0100
-@@ -76,6 +76,8 @@
+--- gtk+3.0-3.3.18.orig/gtk/gtk.h	2012-03-04 03:45:51.000000000 +0100
++++ gtk+3.0-3.3.18/gtk/gtk.h	2012-03-05 23:39:09.366812962 +0100
+@@ -74,6 +74,8 @@
  #include <gtk/gtkcellview.h>
  #include <gtk/gtkcheckbutton.h>
  #include <gtk/gtkcheckmenuitem.h>
@@ -16,11 +16,11 @@ Index: gtk+3.0-3.3.10/gtk/gtk.h
  #include <gtk/gtkclipboard.h>
  #include <gtk/gtkcolorbutton.h>
  #include <gtk/gtkcolorchooser.h>
-Index: gtk+3.0-3.3.10/gtk/gtkmenubar.c
+Index: gtk+3.0-3.3.18/gtk/gtkmenubar.c
 ===================================================================
---- gtk+3.0-3.3.10.orig/gtk/gtkmenubar.c	2012-01-05 20:19:33.000000000 +0100
-+++ gtk+3.0-3.3.10/gtk/gtkmenubar.c	2012-01-24 16:56:16.378519243 +0100
-@@ -67,9 +67,9 @@
+--- gtk+3.0-3.3.18.orig/gtk/gtkmenubar.c	2012-03-01 19:51:59.000000000 +0100
++++ gtk+3.0-3.3.18/gtk/gtkmenubar.c	2012-03-05 23:39:09.366812962 +0100
+@@ -65,9 +65,9 @@
  {
    GtkPackDirection pack_direction;
    GtkPackDirection child_pack_direction;
@@ -31,7 +31,7 @@ Index: gtk+3.0-3.3.10/gtk/gtkmenubar.c
  static void gtk_menu_bar_set_property      (GObject             *object,
  					    guint                prop_id,
  					    const GValue        *value,
-@@ -94,10 +94,14 @@
+@@ -92,10 +92,14 @@
                                                           gint         *natural);
  static void gtk_menu_bar_size_allocate     (GtkWidget       *widget,
  					    GtkAllocation   *allocation);
@@ -46,7 +46,7 @@ Index: gtk+3.0-3.3.10/gtk/gtkmenubar.c
  static gint gtk_menu_bar_get_popup_delay   (GtkMenuShell    *menu_shell);
  static void gtk_menu_bar_move_current      (GtkMenuShell     *menu_shell,
                                              GtkMenuDirectionType direction);
-@@ -127,10 +131,11 @@
+@@ -125,10 +129,11 @@
    widget_class->get_preferred_width_for_height = gtk_menu_bar_get_preferred_width_for_height;
    widget_class->get_preferred_height_for_width = gtk_menu_bar_get_preferred_height_for_width;
    widget_class->size_allocate = gtk_menu_bar_size_allocate;
@@ -60,7 +60,7 @@ Index: gtk+3.0-3.3.10/gtk/gtkmenubar.c
  
    menu_shell_class->submenu_placement = GTK_TOP_BOTTOM;
    menu_shell_class->get_popup_delay = gtk_menu_bar_get_popup_delay;
-@@ -242,6 +247,8 @@
+@@ -240,6 +245,8 @@
                                                  GTK_TYPE_MENU_BAR,
                                                  GtkMenuBarPrivate);
  
@@ -69,7 +69,7 @@ Index: gtk+3.0-3.3.10/gtk/gtkmenubar.c
    context = gtk_widget_get_style_context (GTK_WIDGET (menu_bar));
    gtk_style_context_add_class (context, GTK_STYLE_CLASS_MENUBAR);
  }
-@@ -346,6 +353,9 @@
+@@ -344,6 +351,9 @@
    menu_shell = GTK_MENU_SHELL (widget);
    priv = menu_bar->priv;
  
@@ -79,7 +79,7 @@ Index: gtk+3.0-3.3.10/gtk/gtkmenubar.c
    children = menu_shell->priv->children;
  
    if (priv->child_pack_direction == GTK_PACK_DIRECTION_LTR ||
-@@ -477,6 +487,27 @@
+@@ -475,6 +485,27 @@
    menu_shell = GTK_MENU_SHELL (widget);
    priv = menu_bar->priv;
  
@@ -107,7 +107,7 @@ Index: gtk+3.0-3.3.10/gtk/gtkmenubar.c
    gtk_widget_set_allocation (widget, allocation);
  
    if (gtk_widget_get_realized (widget))
-@@ -631,6 +662,52 @@
+@@ -629,6 +660,52 @@
      }
  }
  
@@ -160,7 +160,7 @@ Index: gtk+3.0-3.3.10/gtk/gtkmenubar.c
  static gint
  gtk_menu_bar_draw (GtkWidget *widget,
  		   cairo_t   *cr)
-@@ -739,8 +816,16 @@
+@@ -737,8 +814,16 @@
  	    {
  	      GtkMenuShell *menu_shell = GTK_MENU_SHELL (menubars->data);
  
@@ -179,7 +179,7 @@ Index: gtk+3.0-3.3.10/gtk/gtkmenubar.c
  	      
  	      g_list_free (menubars);
  	      
-@@ -807,6 +892,16 @@
+@@ -805,6 +890,16 @@
      add_to_window (GTK_WINDOW (toplevel), menubar);
  }
  
@@ -196,11 +196,11 @@ Index: gtk+3.0-3.3.10/gtk/gtkmenubar.c
  /**
   * _gtk_menu_bar_cycle_focus:
   * @menubar: a #GtkMenuBar
-Index: gtk+3.0-3.3.10/gtk/gtkmenuitem.c
+Index: gtk+3.0-3.3.18/gtk/gtkmenuitem.c
 ===================================================================
---- gtk+3.0-3.3.10.orig/gtk/gtkmenuitem.c	2012-01-05 20:19:33.000000000 +0100
-+++ gtk+3.0-3.3.10/gtk/gtkmenuitem.c	2012-01-24 16:52:08.938515532 +0100
-@@ -38,6 +38,7 @@
+--- gtk+3.0-3.3.18.orig/gtk/gtkmenuitem.c	2012-03-04 03:45:51.000000000 +0100
++++ gtk+3.0-3.3.18/gtk/gtkmenuitem.c	2012-03-05 23:39:09.370812961 +0100
+@@ -36,6 +36,7 @@
  #include "gtkmenuprivate.h"
  #include "gtkseparatormenuitem.h"
  #include "gtkprivate.h"
@@ -208,7 +208,7 @@ Index: gtk+3.0-3.3.10/gtk/gtkmenuitem.c
  #include "gtkbuildable.h"
  #include "gtkactivatable.h"
  #include "gtkwidgetprivate.h"
-@@ -1740,7 +1741,18 @@
+@@ -1746,7 +1747,18 @@
        gtk_menu_shell_select_item (GTK_MENU_SHELL (parent), widget);
      }
    else
@@ -228,11 +228,11 @@ Index: gtk+3.0-3.3.10/gtk/gtkmenuitem.c
  
    return TRUE;
  }
-Index: gtk+3.0-3.3.10/gtk/gtkmenushell.c
+Index: gtk+3.0-3.3.18/gtk/gtkmenushell.c
 ===================================================================
---- gtk+3.0-3.3.10.orig/gtk/gtkmenushell.c	2012-01-05 20:19:33.000000000 +0100
-+++ gtk+3.0-3.3.10/gtk/gtkmenushell.c	2012-01-24 16:52:08.938515532 +0100
-@@ -48,6 +48,7 @@
+--- gtk+3.0-3.3.18.orig/gtk/gtkmenushell.c	2012-03-01 22:27:52.000000000 +0100
++++ gtk+3.0-3.3.18/gtk/gtkmenushell.c	2012-03-05 23:39:09.374812961 +0100
+@@ -46,6 +46,7 @@
  #include "gtkmenuitemprivate.h"
  #include "gtkmenushellprivate.h"
  #include "gtkmenuprivate.h"
@@ -240,7 +240,7 @@ Index: gtk+3.0-3.3.10/gtk/gtkmenushell.c
  #include "gtkmnemonichash.h"
  #include "gtkwindow.h"
  #include "gtkprivate.h"
-@@ -474,6 +475,7 @@
+@@ -472,6 +473,7 @@
                                        GtkMenuShellPrivate);
    menu_shell->priv = priv;
    priv->take_focus = TRUE;
@@ -248,7 +248,7 @@ Index: gtk+3.0-3.3.10/gtk/gtkmenushell.c
  }
  
  static void
-@@ -582,10 +584,20 @@
+@@ -580,10 +582,20 @@
                         GtkWidget    *child,
                         gint          position)
  {
@@ -269,7 +269,7 @@ Index: gtk+3.0-3.3.10/gtk/gtkmenushell.c
  }
  
  static void
-@@ -2016,6 +2028,54 @@
+@@ -1987,6 +1999,54 @@
      }
  }
  
@@ -324,11 +324,11 @@ Index: gtk+3.0-3.3.10/gtk/gtkmenushell.c
  /**
   * gtk_menu_shell_get_selected_item:
   * @menu_shell: a #GtkMenuShell
-Index: gtk+3.0-3.3.10/gtk/gtkmenushellprivate.h
+Index: gtk+3.0-3.3.18/gtk/gtkmenushellprivate.h
 ===================================================================
---- gtk+3.0-3.3.10.orig/gtk/gtkmenushellprivate.h	2011-11-07 19:47:35.000000000 +0100
-+++ gtk+3.0-3.3.10/gtk/gtkmenushellprivate.h	2012-01-24 16:52:08.942515530 +0100
-@@ -24,6 +24,7 @@
+--- gtk+3.0-3.3.18.orig/gtk/gtkmenushellprivate.h	2012-03-01 19:51:59.000000000 +0100
++++ gtk+3.0-3.3.18/gtk/gtkmenushellprivate.h	2012-03-05 23:39:09.378812962 +0100
+@@ -22,6 +22,7 @@
  #include <gtk/gtkmenushell.h>
  #include <gtk/gtkmnemonichash.h>
  #include <gtk/gtkkeyhash.h>
@@ -336,7 +336,7 @@ Index: gtk+3.0-3.3.10/gtk/gtkmenushellprivate.h
  
  
  G_BEGIN_DECLS
-@@ -54,6 +55,8 @@
+@@ -52,6 +53,8 @@
    GtkKeyHash *key_hash;
  
    GdkDevice *grab_pointer;
@@ -345,11 +345,11 @@ Index: gtk+3.0-3.3.10/gtk/gtkmenushellprivate.h
  };
  
  void        _gtk_menu_shell_select_last      (GtkMenuShell *menu_shell,
-Index: gtk+3.0-3.3.10/gtk/gtk.symbols
+Index: gtk+3.0-3.3.18/gtk/gtk.symbols
 ===================================================================
---- gtk+3.0-3.3.10.orig/gtk/gtk.symbols	2012-01-16 22:15:20.000000000 +0100
-+++ gtk+3.0-3.3.10/gtk/gtk.symbols	2012-01-24 16:52:08.942515530 +0100
-@@ -3907,3 +3907,9 @@
+--- gtk+3.0-3.3.18.orig/gtk/gtk.symbols	2012-03-01 22:27:52.000000000 +0100
++++ gtk+3.0-3.3.18/gtk/gtk.symbols	2012-03-05 23:39:14.998813235 +0100
+@@ -3922,3 +3922,9 @@
  gtk_window_unmaximize
  gtk_window_unstick
  gtk_wrap_mode_get_type
@@ -359,11 +359,11 @@ Index: gtk+3.0-3.3.10/gtk/gtk.symbols
 +ubuntu_menu_proxy_insert
 +ubuntu_menu_proxy_module_get_type
 +ubuntu_menu_proxy_module_get
-Index: gtk+3.0-3.3.10/gtk/gtkwindow.c
+Index: gtk+3.0-3.3.18/gtk/gtkwindow.c
 ===================================================================
---- gtk+3.0-3.3.10.orig/gtk/gtkwindow.c	2012-01-20 14:17:35.000000000 +0100
-+++ gtk+3.0-3.3.10/gtk/gtkwindow.c	2012-01-24 16:52:08.946515528 +0100
-@@ -121,6 +121,8 @@
+--- gtk+3.0-3.3.18.orig/gtk/gtkwindow.c	2012-03-01 19:51:59.000000000 +0100
++++ gtk+3.0-3.3.18/gtk/gtkwindow.c	2012-03-05 23:39:09.390812962 +0100
+@@ -119,6 +119,8 @@
  
    GdkWindow *grip_window;
  
@@ -372,7 +372,7 @@ Index: gtk+3.0-3.3.10/gtk/gtkwindow.c
    gchar   *startup_id;
    gchar   *title;
    gchar   *wmclass_class;
-@@ -229,6 +231,7 @@
+@@ -227,6 +229,7 @@
    PROP_HAS_RESIZE_GRIP,
    PROP_RESIZE_GRIP_VISIBLE,
    PROP_APPLICATION,
@@ -380,7 +380,7 @@ Index: gtk+3.0-3.3.10/gtk/gtkwindow.c
    /* Readonly properties */
    PROP_IS_ACTIVE,
    PROP_HAS_TOPLEVEL_FOCUS,
-@@ -635,6 +638,14 @@
+@@ -633,6 +636,14 @@
  							NULL,
  							GTK_PARAM_READWRITE));
  
@@ -395,7 +395,7 @@ Index: gtk+3.0-3.3.10/gtk/gtkwindow.c
    /**
     * GtkWindow:startup-id:
     *
-@@ -1318,6 +1329,9 @@
+@@ -1316,6 +1327,9 @@
      case PROP_FOCUS_VISIBLE:
        gtk_window_set_focus_visible (window, g_value_get_boolean (value));
        break;
@@ -405,7 +405,7 @@ Index: gtk+3.0-3.3.10/gtk/gtkwindow.c
      default:
        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
        break;
-@@ -1445,6 +1459,9 @@
+@@ -1443,6 +1457,9 @@
      case PROP_FOCUS_VISIBLE:
        g_value_set_boolean (value, priv->focus_visible);
        break;
@@ -415,11 +415,11 @@ Index: gtk+3.0-3.3.10/gtk/gtkwindow.c
      default:
        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
        break;
-Index: gtk+3.0-3.3.10/gtk/Makefile.am
+Index: gtk+3.0-3.3.18/gtk/Makefile.am
 ===================================================================
---- gtk+3.0-3.3.10.orig/gtk/Makefile.am	2012-01-20 14:12:28.000000000 +0100
-+++ gtk+3.0-3.3.10/gtk/Makefile.am	2012-01-24 16:52:08.946515528 +0100
-@@ -268,6 +268,8 @@
+--- gtk+3.0-3.3.18.orig/gtk/Makefile.am	2012-03-05 14:09:38.000000000 +0100
++++ gtk+3.0-3.3.18/gtk/Makefile.am	2012-03-05 23:39:12.758813125 +0100
+@@ -272,6 +272,8 @@
  	gtkmenu.h		\
  	gtkmenubar.h		\
  	gtkmenuitem.h		\
@@ -428,7 +428,7 @@ Index: gtk+3.0-3.3.10/gtk/Makefile.am
  	gtkmenushell.h		\
  	gtkmenutoolbutton.h	\
  	gtkmessagedialog.h	\
-@@ -664,6 +666,8 @@
+@@ -688,6 +690,8 @@
  	gtkmenu.c		\
  	gtkmenubar.c		\
  	gtkmenuitem.c		\
@@ -437,10 +437,10 @@ Index: gtk+3.0-3.3.10/gtk/Makefile.am
  	gtkmenushell.c		\
  	gtkmenutoolbutton.c	\
  	gtkmessagedialog.c	\
-Index: gtk+3.0-3.3.10/gtk/ubuntumenuproxy.c
+Index: gtk+3.0-3.3.18/gtk/ubuntumenuproxy.c
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+3.0-3.3.10/gtk/ubuntumenuproxy.c	2012-01-24 16:52:08.946515528 +0100
++++ gtk+3.0-3.3.18/gtk/ubuntumenuproxy.c	2012-03-05 23:39:09.394812962 +0100
 @@ -0,0 +1,246 @@
 +/*
 + * Copyright (C) 2010 Canonical, Ltd.
@@ -688,10 +688,10 @@ Index: gtk+3.0-3.3.10/gtk/ubuntumenuproxy.c
 +{
 +  g_signal_emit (proxy, menu_proxy_signals[ACTIVATE_MENU], 0, widget);
 +}
-Index: gtk+3.0-3.3.10/gtk/ubuntumenuproxy.h
+Index: gtk+3.0-3.3.18/gtk/ubuntumenuproxy.h
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+3.0-3.3.10/gtk/ubuntumenuproxy.h	2012-01-24 16:52:08.946515528 +0100
++++ gtk+3.0-3.3.18/gtk/ubuntumenuproxy.h	2012-03-05 23:39:09.394812962 +0100
 @@ -0,0 +1,73 @@
 +/*
 + * Copyright (C) 2010 Canonical, Ltd.
@@ -766,10 +766,10 @@ Index: gtk+3.0-3.3.10/gtk/ubuntumenuproxy.h
 +G_END_DECLS
 +
 +#endif /* __UBUNTU_MENU_PROXY_H__ */
-Index: gtk+3.0-3.3.10/gtk/ubuntumenuproxymodule.c
+Index: gtk+3.0-3.3.18/gtk/ubuntumenuproxymodule.c
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+3.0-3.3.10/gtk/ubuntumenuproxymodule.c	2012-01-24 16:52:08.946515528 +0100
++++ gtk+3.0-3.3.18/gtk/ubuntumenuproxymodule.c	2012-03-05 23:39:09.394812962 +0100
 @@ -0,0 +1,210 @@
 +/*
 + * Copyright (C) 2010 Canonical, Ltd.
@@ -981,10 +981,10 @@ Index: gtk+3.0-3.3.10/gtk/ubuntumenuproxymodule.c
 +
 +  return proxy_module_singleton;
 +}
-Index: gtk+3.0-3.3.10/gtk/ubuntumenuproxymodule.h
+Index: gtk+3.0-3.3.18/gtk/ubuntumenuproxymodule.h
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+3.0-3.3.10/gtk/ubuntumenuproxymodule.h	2012-01-24 16:52:08.946515528 +0100
++++ gtk+3.0-3.3.18/gtk/ubuntumenuproxymodule.h	2012-03-05 23:39:09.394812962 +0100
 @@ -0,0 +1,69 @@
 +/*
 + * Copyright (C) 2010 Canonical, Ltd.
@@ -1055,11 +1055,11 @@ Index: gtk+3.0-3.3.10/gtk/ubuntumenuproxymodule.h
 +G_END_DECLS
 +
 +#endif /* __UBUNTU_MENU_PROXY_MODULE_H__ */
-Index: gtk+3.0-3.3.10/gtk/gtkmnemonichash.c
+Index: gtk+3.0-3.3.18/gtk/gtkmnemonichash.c
 ===================================================================
---- gtk+3.0-3.3.10.orig/gtk/gtkmnemonichash.c	2011-08-16 04:04:34.000000000 +0200
-+++ gtk+3.0-3.3.10/gtk/gtkmnemonichash.c	2012-01-24 16:52:08.946515528 +0100
-@@ -20,6 +20,9 @@
+--- gtk+3.0-3.3.18.orig/gtk/gtkmnemonichash.c	2012-03-01 19:51:59.000000000 +0100
++++ gtk+3.0-3.3.18/gtk/gtkmnemonichash.c	2012-03-05 23:39:09.398812963 +0100
+@@ -18,6 +18,9 @@
   */
  
  #include "gtkmnemonichash.h"
@@ -1069,7 +1069,7 @@ Index: gtk+3.0-3.3.10/gtk/gtkmnemonichash.c
  
  struct _GtkMnemnonicHash
  {
-@@ -115,6 +118,7 @@
+@@ -113,6 +116,7 @@
    GtkWidget *widget, *chosen_widget;
    GdkWindow *window;
    gboolean overloaded;
@@ -1077,7 +1077,7 @@ Index: gtk+3.0-3.3.10/gtk/gtkmnemonichash.c
  
    targets = g_hash_table_lookup (mnemonic_hash->hash,
  				 GUINT_TO_POINTER (keyval));
-@@ -128,9 +132,11 @@
+@@ -126,9 +130,11 @@
        widget = GTK_WIDGET (list->data);
        window = gtk_widget_get_window (widget);
  

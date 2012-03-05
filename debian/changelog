@@ -1,3 +1,33 @@
+gtk+3.0 (3.3.18-0ubuntu1) UNRELEASED; urgency=low
+
+  * New upstream version
+    * Add support for touch devices
+    - New device types GDK_SOURCE_TOUCHSCREEN and GDK_SOURCE_TOUCHPAD for 
+      direct and indirect touch devices
+    - New event GdkEventTouch and GDK_TOUCH_MASK
+    - New signal GtkWidget::touch-event
+    * Add support for smooth scrolling
+    - Scroll events can contain scroll deltas, obtainable via 
+      gdk_event_get_scroll_deltas()
+    - Scroll direction for such events is GDK_SCROLL_SMOOTH
+    - To receive scroll events, widgets must now
+      set either GDK_SCROLL_MASK or GDK_SMOOTH_SCROLL_MASK
+    * GtkScrolledWindow will do kinetic scrolling with touch devices
+    * XInput2 is now required for building the X11 backend, 
+      support for XInput1 has been removed
+    * Deprecations are now versioned, and new API is marked with the version 
+      it was introduced. Use these with GDK_VERSION_{MIN,MAX}_REQUIRED
+    * Theming:
+      - Memory consumption of the CSS parser has been reduced
+      - CSS selectors of the form "a + b" and "a ~ b" work now
+  * debian/control.in: updated glib requirement
+  * debian/libgtk-3-0.symbols: new version update
+  * debian/rules:
+    - drop deprecated --enable-xinput option
+    - updated shlib ver
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 05 Mar 2012 23:25:49 +0100
+
 gtk+3.0 (3.3.16-0ubuntu1) precise; urgency=low
 
   * New upstream version:
