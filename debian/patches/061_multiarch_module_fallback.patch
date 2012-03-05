@@ -5,11 +5,11 @@ Description: Fall back to the hard-coded pre-multiarch module directory
 Author: Steve Langasek <steve.langasek@linaro.org>
 Forwarded: not-needed
 
-Index: gtk+3.0-3.3.4/gtk/gtkmodules.c
+Index: gtk+3.0-3.3.18/gtk/gtkmodules.c
 ===================================================================
---- gtk+3.0-3.3.4.orig/gtk/gtkmodules.c	2011-11-19 18:27:36.000000000 +0100
-+++ gtk+3.0-3.3.4/gtk/gtkmodules.c	2011-12-07 18:34:51.545626383 +0100
-@@ -59,6 +59,7 @@
+--- gtk+3.0-3.3.18.orig/gtk/gtkmodules.c	2012-03-01 19:51:59.000000000 +0100
++++ gtk+3.0-3.3.18/gtk/gtkmodules.c	2012-03-05 23:39:09.346812961 +0100
+@@ -57,6 +57,7 @@
    gchar *home_gtk_dir = NULL;
    gchar *module_path;
    gchar *default_dir;
@@ -17,7 +17,7 @@ Index: gtk+3.0-3.3.4/gtk/gtkmodules.c
    static gchar **result = NULL;
  
    if (result)
-@@ -73,21 +74,23 @@
+@@ -71,21 +72,23 @@
  
    if (exe_prefix)
      default_dir = g_build_filename (exe_prefix, "lib", "gtk-3.0", NULL);
