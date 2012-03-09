@@ -1,0 +1,14 @@
+diff --git a/gtk/gtkeventbox.c b/gtk/gtkeventbox.c
+index 6f0b027..1a92820 100644
+--- a/gtk/gtkeventbox.c
++++ b/gtk/gtkeventbox.c
+@@ -414,7 +414,8 @@ gtk_event_box_realize (GtkWidget *widget)
+                         | GDK_BUTTON_RELEASE_MASK
+                         | GDK_EXPOSURE_MASK
+                         | GDK_ENTER_NOTIFY_MASK
+-                        | GDK_LEAVE_NOTIFY_MASK;
++                        | GDK_LEAVE_NOTIFY_MASK
++                        | GDK_SCROLL_MASK;
+ 
+   priv = GTK_EVENT_BOX (widget)->priv;
+ 
