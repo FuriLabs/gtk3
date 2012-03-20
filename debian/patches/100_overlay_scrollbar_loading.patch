@@ -1,7 +1,7 @@
-Index: gtk+3.0-3.3.18/gtk/deprecated/gtkhscrollbar.c
+Index: gtk+3.0-3.3.20/gtk/deprecated/gtkhscrollbar.c
 ===================================================================
---- gtk+3.0-3.3.18.orig/gtk/deprecated/gtkhscrollbar.c	2012-03-04 03:45:51.000000000 +0100
-+++ gtk+3.0-3.3.18/gtk/deprecated/gtkhscrollbar.c	2012-03-05 23:39:09.530812969 +0100
+--- gtk+3.0-3.3.20.orig/gtk/deprecated/gtkhscrollbar.c	2012-03-18 21:58:25.000000000 +0100
++++ gtk+3.0-3.3.20/gtk/deprecated/gtkhscrollbar.c	2012-03-20 18:48:18.385061470 +0100
 @@ -31,7 +31,7 @@
  #include "gtkintl.h"
  #include "gtkorientable.h"
@@ -21,10 +21,10 @@ Index: gtk+3.0-3.3.18/gtk/deprecated/gtkhscrollbar.c
    return g_object_new (GTK_TYPE_HSCROLLBAR,
                         "adjustment", adjustment,
                         NULL);
-Index: gtk+3.0-3.3.18/gtk/deprecated/gtkvscrollbar.c
+Index: gtk+3.0-3.3.20/gtk/deprecated/gtkvscrollbar.c
 ===================================================================
---- gtk+3.0-3.3.18.orig/gtk/deprecated/gtkvscrollbar.c	2012-03-04 03:45:51.000000000 +0100
-+++ gtk+3.0-3.3.18/gtk/deprecated/gtkvscrollbar.c	2012-03-05 23:39:09.530812969 +0100
+--- gtk+3.0-3.3.20.orig/gtk/deprecated/gtkvscrollbar.c	2012-03-18 21:58:25.000000000 +0100
++++ gtk+3.0-3.3.20/gtk/deprecated/gtkvscrollbar.c	2012-03-20 18:48:18.385061470 +0100
 @@ -31,7 +31,7 @@
  #include "gtkintl.h"
  #include "gtkorientable.h"
@@ -44,10 +44,10 @@ Index: gtk+3.0-3.3.18/gtk/deprecated/gtkvscrollbar.c
    return g_object_new (GTK_TYPE_VSCROLLBAR,
                         "adjustment", adjustment,
                         NULL);
-Index: gtk+3.0-3.3.18/gtk/gtkmain.c
+Index: gtk+3.0-3.3.20/gtk/gtkmain.c
 ===================================================================
---- gtk+3.0-3.3.18.orig/gtk/gtkmain.c	2012-03-05 23:39:09.278812957 +0100
-+++ gtk+3.0-3.3.18/gtk/gtkmain.c	2012-03-05 23:39:09.534812969 +0100
+--- gtk+3.0-3.3.20.orig/gtk/gtkmain.c	2012-03-20 18:48:18.013061452 +0100
++++ gtk+3.0-3.3.20/gtk/gtkmain.c	2012-03-20 18:48:18.389061469 +0100
 @@ -127,6 +127,7 @@
  #include "gtkversion.h"
  #include "gtkwidgetprivate.h"
@@ -66,10 +66,10 @@ Index: gtk+3.0-3.3.18/gtk/gtkmain.c
    /* Set the 'initialized' flag.
     */
    gtk_initialized = TRUE;
-Index: gtk+3.0-3.3.18/gtk/gtkscrollbar.c
+Index: gtk+3.0-3.3.20/gtk/gtkscrollbar.c
 ===================================================================
---- gtk+3.0-3.3.18.orig/gtk/gtkscrollbar.c	2012-03-04 03:45:51.000000000 +0100
-+++ gtk+3.0-3.3.18/gtk/gtkscrollbar.c	2012-03-05 23:39:09.534812969 +0100
+--- gtk+3.0-3.3.20.orig/gtk/gtkscrollbar.c	2012-03-18 21:58:26.000000000 +0100
++++ gtk+3.0-3.3.20/gtk/gtkscrollbar.c	2012-03-20 18:48:18.389061469 +0100
 @@ -30,6 +30,7 @@
  #include "gtkadjustment.h"
  #include "gtkintl.h"
@@ -88,10 +88,10 @@ Index: gtk+3.0-3.3.18/gtk/gtkscrollbar.c
    return g_object_new (GTK_TYPE_SCROLLBAR,
                         "orientation", orientation,
                         "adjustment",  adjustment,
-Index: gtk+3.0-3.3.18/gtk/gtkscrolledwindow.c
+Index: gtk+3.0-3.3.20/gtk/gtkscrolledwindow.c
 ===================================================================
---- gtk+3.0-3.3.18.orig/gtk/gtkscrolledwindow.c	2012-03-05 00:47:09.000000000 +0100
-+++ gtk+3.0-3.3.18/gtk/gtkscrolledwindow.c	2012-03-05 23:39:09.542812971 +0100
+--- gtk+3.0-3.3.20.orig/gtk/gtkscrolledwindow.c	2012-03-19 11:15:07.000000000 +0100
++++ gtk+3.0-3.3.20/gtk/gtkscrolledwindow.c	2012-03-20 18:48:18.397061470 +0100
 @@ -40,6 +40,7 @@
  #include "gtkwidgetprivate.h"
  #include "gtkwindow.h"
@@ -100,7 +100,7 @@ Index: gtk+3.0-3.3.18/gtk/gtkscrolledwindow.c
  
  #include <math.h>
  
-@@ -1521,7 +1522,7 @@
+@@ -1547,7 +1548,7 @@
  
        gtk_widget_style_get (widget, "scrollbars-within-bevel", &scrollbars_within_bevel, NULL);
  
@@ -109,7 +109,7 @@ Index: gtk+3.0-3.3.18/gtk/gtkscrolledwindow.c
          {
            GtkStateFlags state;
            GtkBorder padding, border;
-@@ -2171,7 +2172,7 @@
+@@ -2197,7 +2198,7 @@
  
        if (priv->shadow_type != GTK_SHADOW_NONE)
  	{
@@ -118,7 +118,7 @@ Index: gtk+3.0-3.3.18/gtk/gtkscrolledwindow.c
              {
                child_allocation.x -= padding.left + border.left;
                child_allocation.width += padding.left + padding.right + border.left + border.right;
-@@ -2219,7 +2220,7 @@
+@@ -2245,7 +2246,7 @@
  
        if (priv->shadow_type != GTK_SHADOW_NONE)
  	{
@@ -127,7 +127,7 @@ Index: gtk+3.0-3.3.18/gtk/gtkscrolledwindow.c
              {
                child_allocation.y -= padding.top + border.top;
  	      child_allocation.height += padding.top + padding.bottom + border.top + border.bottom;
-@@ -3135,6 +3136,9 @@
+@@ -3161,6 +3162,9 @@
      
    g_return_val_if_fail (GTK_IS_SCROLLED_WINDOW (scrolled_window), 0);
  
@@ -137,11 +137,11 @@ Index: gtk+3.0-3.3.18/gtk/gtkscrolledwindow.c
    class = GTK_SCROLLED_WINDOW_GET_CLASS (scrolled_window);
  
    if (class->scrollbar_spacing >= 0)
-Index: gtk+3.0-3.3.18/gtk/Makefile.am
+Index: gtk+3.0-3.3.20/gtk/Makefile.am
 ===================================================================
---- gtk+3.0-3.3.18.orig/gtk/Makefile.am	2012-03-05 23:39:09.390812962 +0100
-+++ gtk+3.0-3.3.18/gtk/Makefile.am	2012-03-05 23:39:09.542812971 +0100
-@@ -1064,7 +1064,7 @@
+--- gtk+3.0-3.3.20.orig/gtk/Makefile.am	2012-03-20 18:48:18.201061460 +0100
++++ gtk+3.0-3.3.20/gtk/Makefile.am	2012-03-20 18:48:18.405061471 +0100
+@@ -1068,7 +1068,7 @@
  lib_LTLIBRARIES = libgtk-3.la
  
  gtkincludedir = $(includedir)/gtk-3.0/gtk
@@ -150,7 +150,7 @@ Index: gtk+3.0-3.3.18/gtk/Makefile.am
  
  deprecatedincludedir = $(includedir)/gtk-3.0/gtk/deprecated
  deprecatedinclude_HEADERS= $(deprecated_h_sources)
-@@ -1072,7 +1072,7 @@
+@@ -1076,7 +1076,7 @@
  gtkunixprintincludedir = $(includedir)/gtk-3.0/unix-print/gtk
  gtkunixprintinclude_HEADERS = $(gtk_unix_print_public_h_sources)
  
@@ -159,10 +159,10 @@ Index: gtk+3.0-3.3.18/gtk/Makefile.am
  libgtk_3_la_LDFLAGS = $(libtool_opts)
  libgtk_3_la_LIBADD = $(libadd)
  libgtk_3_la_DEPENDENCIES = $(deps)
-Index: gtk+3.0-3.3.18/gtk/ubuntuoverlayscrollbar.c
+Index: gtk+3.0-3.3.20/gtk/ubuntuoverlayscrollbar.c
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+3.0-3.3.18/gtk/ubuntuoverlayscrollbar.c	2012-03-05 23:39:09.542812971 +0100
++++ gtk+3.0-3.3.20/gtk/ubuntuoverlayscrollbar.c	2012-03-20 18:48:18.409061470 +0100
 @@ -0,0 +1,111 @@
 +/*
 + * Copyright (C) 2011 Canonical, Ltd.
@@ -275,10 +275,10 @@ Index: gtk+3.0-3.3.18/gtk/ubuntuoverlayscrollbar.c
 +{
 +  use_overlay_scrollbar = enabled;
 +}
-Index: gtk+3.0-3.3.18/gtk/ubuntuoverlayscrollbar.h
+Index: gtk+3.0-3.3.20/gtk/ubuntuoverlayscrollbar.h
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+3.0-3.3.18/gtk/ubuntuoverlayscrollbar.h	2012-03-05 23:39:09.546812971 +0100
++++ gtk+3.0-3.3.20/gtk/ubuntuoverlayscrollbar.h	2012-03-20 18:48:18.417061471 +0100
 @@ -0,0 +1,44 @@
 +/*
 + * Copyright (C) 2011 Canonical, Ltd.
