@@ -1,0 +1,50 @@
+From d51840ccf31a4c0c8ecea293a20e8344b8cd2338 Mon Sep 17 00:00:00 2001
+From: Matthias Clasen <mclasen@redhat.com>
+Date: Thu, 29 Mar 2012 22:58:12 +0000
+Subject: filechooser: Fix entry completion
+
+Inserting the selected completion did not actually work. Oops.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=673090
+---
+diff --git a/gtk/gtkfilechooserentry.c b/gtk/gtkfilechooserentry.c
+index 720eb1e..98ecd24 100644
+--- a/gtk/gtkfilechooserentry.c
++++ b/gtk/gtkfilechooserentry.c
+@@ -233,23 +233,25 @@ gtk_file_chooser_entry_dispose (GObject *object)
+ /* Match functions for the GtkEntryCompletion */
+ static gboolean
+ match_selected_callback (GtkEntryCompletion  *completion,
+-			 GtkTreeModel        *model,
+-			 GtkTreeIter         *iter,
+-			 GtkFileChooserEntry *chooser_entry)
++                         GtkTreeModel        *model,
++                         GtkTreeIter         *iter,
++                         GtkFileChooserEntry *chooser_entry)
+ {
+   char *path;
+-  
++  gint pos;
++
+   gtk_tree_model_get (model, iter,
+-		      FULL_PATH_COLUMN, &path,
++                      FULL_PATH_COLUMN, &path,
+                       -1);
+ 
+   gtk_editable_delete_text (GTK_EDITABLE (chooser_entry),
+-			    0,
++                            0,
+                             gtk_editable_get_position (GTK_EDITABLE (chooser_entry)));
++  pos = 0;
+   gtk_editable_insert_text (GTK_EDITABLE (chooser_entry),
+-			    path,
+-                            0,
+-                            NULL); 
++                            path,
++                            -1,
++                            &pos);
+ 
+   g_free (path);
+ 
+--
+cgit v0.9.0.2
