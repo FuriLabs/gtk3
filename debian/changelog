@@ -1,3 +1,13 @@
+gtk+3.0 (3.4.0-0ubuntu3) precise; urgency=low
+
+  * debian/patches/043_ubuntu_menu_proxy.patch:
+    - Revert my changes to add back ubuntu-local.  It caused a new bug
+      (LP: #971459) that caused menubars to pop in and out on startup.
+      Since the patch was added largely for glade's benefit, we can
+      just blacklist glade in appmenu-gtk instead.
+
+ -- Michael Terry <mterry@ubuntu.com>  Mon, 02 Apr 2012 10:39:28 -0400
+
 gtk+3.0 (3.4.0-0ubuntu2) precise; urgency=low
 
   * debian/patches/upstream_treeview_rendering.patch:
