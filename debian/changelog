@@ -1,3 +1,14 @@
+gtk+3.0 (3.4.0-0ubuntu5) precise-proposed; urgency=low
+
+  * debian/patches/git_scrolling_performances.patch:
+    "Don't call gdk_window_process_updates() when scrolling
+     This can cause lagging when scrolling as it causes us to repaint
+     on every scroll event. This wasn't historically a great problem,
+     but with smooth scrolling we get a lot more events, so this
+     now creates visible lagging on slower machines."
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 05 Apr 2012 23:29:06 +0200
+
 gtk+3.0 (3.4.0-0ubuntu4) precise-proposed; urgency=low
 
   * debian/patches/no_touchscreen_name_hack.patch:
