@@ -1,9 +1,19 @@
 gtk+3.0 (3.4.0-0ubuntu4) UNRELEASED; urgency=low
 
+  * debian/patches/no_touchscreen_name_hack.patch:
+    - drop the hack to make devices which are named with "touch" to be
+      touchscreen, it's not the case for i.e "appletouch" (lp: #965311)
+  * debian/patches/git_dont_ignore_button_release_event.patch:
+    - "Don't ignore button releases after a wmspec move/resize"
+  * debian/patches/git_shrinkable_widget.patch:
+    - git patch, should fix empathy resizing horizontally when it shouldn't
+      (lp: #903779)
+
+  [ Didier Roche ]
   * debian/patches/git_gtkcellrenderer_grabbing_modifier.patch:
     - upstream patch to support modifier 'tapping' (LP: #969256)
 
- -- Didier Roche <didrocks@ubuntu.com>  Tue, 03 Apr 2012 09:21:27 +0200
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 05 Apr 2012 11:47:48 +0200
 
 gtk+3.0 (3.4.0-0ubuntu3) precise; urgency=low
 
