@@ -1,0 +1,235 @@
+From 917ca6a802af574232f413fdf904e1633d706b52 Mon Sep 17 00:00:00 2001
+From: Benjamin Otte <otte@redhat.com>
+Date: Thu, 05 Apr 2012 13:48:51 +0000
+Subject: gtk: Don't call gdk_window_process_updates() when scrolling
+
+This can cause lagging when scrolling as it causes us to repaint
+on every scroll event. This wasn't historically a great problem,
+but with smooth scrolling we get a lot more events, so this
+now creates visible lagging on slower machines.
+---
+diff --git a/gtk/gtkiconview.c b/gtk/gtkiconview.c
+index fc19bad..33482e1 100644
+--- a/gtk/gtkiconview.c
++++ b/gtk/gtkiconview.c
+@@ -2360,20 +2360,6 @@ gtk_icon_view_real_toggle_cursor_item (GtkIconView *icon_view)
+     }
+ }
+ 
+-/* Internal functions */
+-static void
+-gtk_icon_view_process_updates (GtkIconView *icon_view)
+-{
+-  /* Prior to drawing, we check if a layout has been scheduled.  If so,
+-   * do it now that all cell view items have valid sizes before we proceeed
+-   * (and resize the bin_window if required).
+-   */
+-  if (icon_view->priv->layout_idle_id != 0)
+-    gtk_icon_view_layout (icon_view);
+-
+-  gdk_window_process_updates (icon_view->priv->bin_window, TRUE);
+-}
+-
+ static void
+ gtk_icon_view_set_hadjustment_values (GtkIconView *icon_view)
+ {
+@@ -2511,8 +2497,6 @@ gtk_icon_view_adjustment_changed (GtkAdjustment *adjustment,
+         gtk_icon_view_update_rubberband (GTK_WIDGET (icon_view));
+       
+       _gtk_icon_view_accessible_adjustment_changed (icon_view);
+-
+-      gtk_icon_view_process_updates (icon_view);
+     }
+ }
+ 
+diff --git a/gtk/gtkimage.c b/gtk/gtkimage.c
+index ef3d0be..fa87ea7 100644
+--- a/gtk/gtkimage.c
++++ b/gtk/gtkimage.c
+@@ -1312,9 +1312,6 @@ animation_timeout (gpointer data)
+         gdk_threads_add_timeout (delay, animation_timeout, image);
+ 
+       gtk_widget_queue_draw (widget);
+-
+-      if (gtk_widget_is_drawable (widget))
+-        gdk_window_process_updates (gtk_widget_get_window (widget), TRUE);
+     }
+ 
+   return FALSE;
+diff --git a/gtk/gtklayout.c b/gtk/gtklayout.c
+index 147ea92..10528bb 100644
+--- a/gtk/gtklayout.c
++++ b/gtk/gtklayout.c
+@@ -1123,7 +1123,5 @@ gtk_layout_adjustment_changed (GtkAdjustment *adjustment,
+       gdk_window_move (priv->bin_window,
+ 		       - gtk_adjustment_get_value (priv->hadjustment),
+ 		       - gtk_adjustment_get_value (priv->vadjustment));
+-
+-      gdk_window_process_updates (priv->bin_window, TRUE);
+     }
+ }
+diff --git a/gtk/gtkrange.c b/gtk/gtkrange.c
+index c7a2b52..c35b48e 100644
+--- a/gtk/gtkrange.c
++++ b/gtk/gtkrange.c
+@@ -116,8 +116,6 @@ struct _GtkRangePrivate
+   gint  slider_start;                /* Slider range along the long dimension, in widget->window coords */
+   gint  slider_end;
+ 
+-  guint repaint_id;
+-
+   /* Steppers are: < > ---- < >
+    *               a b      c d
+    */
+@@ -1499,10 +1497,6 @@ gtk_range_destroy (GtkWidget *widget)
+ 
+   gtk_range_remove_step_timer (range);
+ 
+-  if (priv->repaint_id)
+-    g_source_remove (priv->repaint_id);
+-  priv->repaint_id = 0;
+-
+   if (priv->adjustment)
+     {
+       g_signal_handlers_disconnect_by_func (priv->adjustment,
+@@ -2034,11 +2028,6 @@ gtk_range_draw (GtkWidget *widget,
+                           "focus-padding", &focus_padding,
+                           NULL);
+ 
+-  /* we're now exposing, so there's no need to force early repaints */
+-  if (priv->repaint_id)
+-    g_source_remove (priv->repaint_id);
+-  priv->repaint_id = 0;
+-
+   gtk_range_calc_marks (range);
+   gtk_range_calc_layout (range, gtk_adjustment_get_value (priv->adjustment));
+ 
+@@ -2984,20 +2973,6 @@ gtk_range_adjustment_changed (GtkAdjustment *adjustment,
+    */
+ }
+ 
+-static gboolean
+-force_repaint (gpointer data)
+-{
+-  GtkRange *range = GTK_RANGE (data);
+-  GtkRangePrivate *priv = range->priv;
+-  GtkWidget *widget = GTK_WIDGET (range);
+-
+-  priv->repaint_id = 0;
+-  if (gtk_widget_is_drawable (widget))
+-    gdk_window_process_updates (gtk_widget_get_window (widget), FALSE);
+-
+-  return FALSE;
+-}
+-
+ static void
+ gtk_range_adjustment_value_changed (GtkAdjustment *adjustment,
+ 				    gpointer       data)
+@@ -3014,11 +2989,6 @@ gtk_range_adjustment_value_changed (GtkAdjustment *adjustment,
+       (GTK_IS_SCALE (range) && gtk_scale_get_draw_value (GTK_SCALE (range))))
+     {
+       gtk_widget_queue_draw (GTK_WIDGET (range));
+-      /* setup a timer to ensure the range isn't lagging too much behind the scroll position */
+-      if (!priv->repaint_id)
+-        priv->repaint_id = gdk_threads_add_timeout_full (GDK_PRIORITY_EVENTS,
+-                                                         181, force_repaint,
+-                                                         range, NULL);
+     }
+ 
+   /* Note that we don't round off to priv->round_digits here.
+diff --git a/gtk/gtktextview.c b/gtk/gtktextview.c
+index 33f2b5c..601f939 100644
+--- a/gtk/gtktextview.c
++++ b/gtk/gtktextview.c
+@@ -7700,26 +7700,6 @@ gtk_text_view_value_changed (GtkAdjustment *adjustment,
+    */
+   gtk_text_view_validate_onscreen (text_view);
+   
+-  /* process exposes */
+-  if (gtk_widget_get_realized (GTK_WIDGET (text_view)))
+-    {
+-      DV (g_print ("Processing updates (%s)\n", G_STRLOC));
+-      
+-      if (priv->left_window)
+-        gdk_window_process_updates (priv->left_window->bin_window, TRUE);
+-
+-      if (priv->right_window)
+-        gdk_window_process_updates (priv->right_window->bin_window, TRUE);
+-
+-      if (priv->top_window)
+-        gdk_window_process_updates (priv->top_window->bin_window, TRUE);
+-      
+-      if (priv->bottom_window)
+-        gdk_window_process_updates (priv->bottom_window->bin_window, TRUE);
+-  
+-      gdk_window_process_updates (priv->text_window->bin_window, TRUE);
+-    }
+-
+   /* If this got installed, get rid of it, it's just a waste of time. */
+   if (priv->first_validate_idle != 0)
+     {
+diff --git a/gtk/gtktreeview.c b/gtk/gtktreeview.c
+index c3ec3d6..96dfe39 100644
+--- a/gtk/gtktreeview.c
++++ b/gtk/gtktreeview.c
+@@ -6810,21 +6810,6 @@ install_presize_handler (GtkTreeView *tree_view)
+     }
+ }
+ 
+-static void
+-gtk_tree_view_bin_process_updates (GtkTreeView *tree_view)
+-{
+-  /* Prior to drawing, we make sure the visible area is validated. */
+-  if (tree_view->priv->presize_handler_timer)
+-    {
+-      g_source_remove (tree_view->priv->presize_handler_timer);
+-      tree_view->priv->presize_handler_timer = 0;
+-
+-      do_presize_handler (tree_view);
+-    }
+-
+-  gdk_window_process_updates (tree_view->priv->bin_window, TRUE);
+-}
+-
+ static gboolean
+ scroll_sync_handler (GtkTreeView *tree_view)
+ {
+@@ -9393,10 +9378,6 @@ gtk_tree_view_clamp_node_visible (GtkTreeView *tree_view,
+   path = _gtk_tree_path_new_from_rbtree (tree, node);
+   if (path)
+     {
+-      /* We process updates because we want to clear old selected items when we scroll.
+-       * if this is removed, we get a "selection streak" at the bottom. */
+-      gtk_tree_view_bin_process_updates (tree_view);
+-
+       gtk_tree_view_scroll_to_cell (tree_view, path, NULL, FALSE, 0.0, 0.0);
+       gtk_tree_path_free (path);
+     }
+@@ -11311,9 +11292,6 @@ gtk_tree_view_adjustment_changed (GtkAdjustment *adjustment,
+           if (!tree_view->priv->in_top_row_to_dy)
+             gtk_tree_view_dy_to_top_row (tree_view);
+ 	}
+-
+-      gdk_window_process_updates (tree_view->priv->header_window, TRUE);
+-      gtk_tree_view_bin_process_updates (tree_view);
+     }
+ }
+ 
+diff --git a/gtk/gtkviewport.c b/gtk/gtkviewport.c
+index 4829cde..03b05e2 100644
+--- a/gtk/gtkviewport.c
++++ b/gtk/gtkviewport.c
+@@ -901,10 +901,7 @@ gtk_viewport_adjustment_value_changed (GtkAdjustment *adjustment,
+       new_y = - gtk_adjustment_get_value (vadjustment);
+ 
+       if (new_x != old_x || new_y != old_y)
+-	{
+-	  gdk_window_move (priv->bin_window, new_x, new_y);
+-	  gdk_window_process_updates (priv->bin_window, TRUE);
+-	}
++	gdk_window_move (priv->bin_window, new_x, new_y);
+     }
+ }
+ 
+--
+cgit v0.9.0.2
