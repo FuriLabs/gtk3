@@ -1,3 +1,37 @@
+gtk+3.0 (3.4.1-0ubuntu1) UNRELEASED; urgency=low
+
+  * New upstream bug fix release:
+    - Custom theme can crash apps with GtkEntryCompletion
+    - Window expands horizontally rather than the text entry growing
+    - conflict between srcdir != builddir and generated enum types
+    - Wayland and X11 backends simultaneously enabled is broken
+    - Anchored widgets inside GtkTextView are drawn out of place
+    - gtk file-chooser: Autocompletion - Dropdown-list: selection fails
+    - windows draw as unfocused/backdrop on window managers
+    - URL to mailing lists in README incorrect
+    - gactionmuxer: Fix list_actions
+    - After clicking empty parts of a toolbar/menubar the next mouse click
+      (button release) does not work
+    - shouldn't set GDK_SOURCE_TOUCHSCREEN based on the name
+    - GtkTreeView should not handle extra mouse buttons
+    - GdkEventButton contains wrong buttons in modifier mask for button
+      releases
+    - entrycompletion: set_property() should use property setter functions
+    - application-window: try to use the desktop name in the fallback menu
+    - Deal more gracefully with a flood of scroll events
+    - Translation updates.
+  * Drop patches which are upstream now:
+    -upstream_treeview_rendering.patch
+    -git_filechooser_selection.patch
+    -git_gtkcellrenderer_grabbing_modifier.patch
+    -no_touchscreen_name_hack.patch
+    -git_dont_ignore_button_release_event.patch
+    -git_shrinkable_widget.patch
+    -git_scrolling_performances.patch
+  * debian/control.in: Bump Build dependencies as per upstream configure.ac.
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Mon, 16 Apr 2012 07:32:44 +0200
+
 gtk+3.0 (3.4.0-0ubuntu5) precise-proposed; urgency=low
 
   * debian/patches/git_scrolling_performances.patch:
