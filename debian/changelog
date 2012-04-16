@@ -29,6 +29,12 @@ gtk+3.0 (3.4.1-0ubuntu1) UNRELEASED; urgency=low
     -git_shrinkable_widget.patch
     -git_scrolling_performances.patch
   * debian/control.in: Bump Build dependencies as per upstream configure.ac.
+  * Add 00git_gtkimage_cleanup_crash.patch: GtkImage: Move the freeing of the
+    icon_helper from the destory to the finalize function to avoid segfaults
+    when trying to access a destroyed object before it is disposed. This often
+    happens in signal handlers which get called asynchronously after destroy.
+    Patch cherrypicked from upstream git head. (LP: #938090, same in
+    LP#946463)
 
  -- Martin Pitt <martin.pitt@ubuntu.com>  Mon, 16 Apr 2012 07:32:44 +0200
 
