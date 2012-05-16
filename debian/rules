@@ -2,7 +2,7 @@
 
 DEB_BUILDDIR = debian/build
 DEB_MAKE_DESTDIRSKEL = $(CURDIR)/debian/install/@FLAVOR@
-DEB_MAKE_FLAVORS = shared shared_udeb static
+DEB_MAKE_FLAVORS = shared shared_udeb
 DISABLE_UPDATE_UPLOADERS = 1
 
 include /usr/share/cdbs/1/rules/autoreconf.mk
@@ -23,7 +23,6 @@ LDFLAGS += -Wl,-O1
 
 APIVER := 3
 SONAME := 0
-SHVER := 3.3.18
 
 LIBDIR := usr/lib/$(DEB_HOST_MULTIARCH)
 
@@ -38,6 +37,7 @@ CONFDIR := etc/gtk-3.0
 
 # relative base directory for all types of modules
 MODULES_BASE_PATH := $(LIBDIR)/gtk-3.0/$(GTK_BINARY_VERSION)
+OLD_MODULES_BASE_PATH := usr/lib/gtk-3.0/$(GTK_BINARY_VERSION)
 
 # package names
 SHARED_PKG := libgtk-$(APIVER)-$(SONAME)
@@ -48,8 +48,9 @@ DOC_PKG := libgtk-$(APIVER)-doc
 BIN_PKG := libgtk-$(APIVER)-bin
 DEBUG_PKG := $(SHARED_PKG)-dbg
 EXAMPLES_PKG := gtk-$(APIVER)-examples
-PIXBUF_PKG := gtk3-engines-pixbuf
 
+DEB_DH_INSTALL_ARGS += --sourcedir=debian/install/shared
+DEB_DH_INSTALL_ARGS_$(UDEB_PKG) += --sourcedir=debian/install/shared_udeb
 
 DEB_CONFIGURE_EXTRA_FLAGS = \
 			--libdir=/$(LIBDIR) \
@@ -58,22 +59,17 @@ DEB_CONFIGURE_EXTRA_FLAGS = \
 DEB_CONFIGURE_FLAGS_shared = \
 			--enable-gtk-doc \
 			--enable-shared \
-			--enable-introspection=yes \
+			--enable-introspection \
+			--enable-colord \
 			--disable-static
 
 DEB_CONFIGURE_FLAGS_shared_udeb = \
-			--enable-introspection=no \
+			--disable-introspection \
+			--disable-colord \
 			--disable-xcomposite \
 			--disable-xdamage \
 			--disable-xfixes \
 			--disable-xrandr
-
-DEB_CONFIGURE_FLAGS_static = \
-			--with-included-loaders=yes \
-			--enable-introspection=no \
-			--disable-modules \
-			--disable-shared \
-			--enable-static
 
 DEB_MAKE_CHECK_TARGET = -k check || true
 DEB_INSTALL_DOCS_ALL = AUTHORS
@@ -81,7 +77,7 @@ DEB_INSTALL_DOCS_$(COMMON_PKG) = README NEWS
 DEB_INSTALL_DOCS_$(DOC_PKG) += -X.in
 DEB_DH_MAKESHLIBS_ARGS_ALL += -X$(MODULES_BASE_PATH)
 DEB_DH_MAKESHLIBS_ARGS_$(SHARED_PKG) += -V --add-udeb=$(UDEB_PKG) -- -c4
-DEB_DH_MAKESHLIBS_ARGS_libgail-3-0 += -V"libgail-3-0 (>= $(SHVER)), libgail-3-common (>= $(SHVER))" -- -c4
+DEB_DH_MAKESHLIBS_ARGS_libgail-3-0 += -V -- -c4
 DEB_DH_FIXPERMS_ARGS_ALL += -X$(LIBDIR)/$(SHARED_PKG)
 DEB_DH_STRIP_ARGS = --dbg-package=$(if $(findstring libgail,$(cdbs_curpkg)),libgail-3-0-dbg,$(DEBUG_PKG))
 DEB_DH_STRIP_ARGS_$(UDEB_PKG) =
@@ -105,13 +101,12 @@ debian/%: debian/%.in
 		-e "s#@BIN_PKG@#$(BIN_PKG)#g" \
 		-e "s#@DEBUG_PKG@#$(DEBUG_PKG)#g" \
 		-e "s#@EXAMPLES_PKG@#$(EXAMPLES_PKG)#g" \
-		-e "s#@PIXBUF_PKG@#$(PIXBUF_PKG)#g" \
 		-e "s#@GNOME_TEAM@#$(UPLOADERS)#g" \
 		-e "s#@GTK_BINARY_VERSION@#$(GTK_BINARY_VERSION)#g" \
 		-e "s#@LIBDIR@#$(LIBDIR)#g" \
-		-e 's#@OPTLIBDIR@#$(OPTLIBDIR)#g' \
 		-e 's#@CONFDIR@#$(CONFDIR)#g' \
 		-e "s#@MODULES_BASE_PATH@#$(MODULES_BASE_PATH)#g" \
+		-e "s#@OLD_MODULES_BASE_PATH@#$(OLD_MODULES_BASE_PATH)#g" \
 		$@.in > $@
 
 clean:: debian/control
@@ -126,12 +121,14 @@ build-arch: $(call dh_subst_files,$(DEB_ARCH_PACKAGES))
 binary-install/$(SHARED_PKG)::
 	# Install the binaries with a -3.0 suffix
 	mv debian/$(SHARED_PKG)/$(LIBDIR)/$(SHARED_PKG)/gtk-update-icon-cache \
-	   debian/$(SHARED_PKG)/$(LIBDIR)/$(SHARED_PKG)/gtk-update-icon-cache-3.0
+	    debian/$(SHARED_PKG)/$(LIBDIR)/$(SHARED_PKG)/gtk-update-icon-cache-3.0
 
 binary-install/$(BIN_PKG)::
 	# Install the binaries with a -3.0 suffix
 	mv debian/$(BIN_PKG)/usr/share/man/man1/gtk-update-icon-cache.1 \
-	   debian/$(BIN_PKG)/usr/share/man/man1/gtk-update-icon-cache-3.0.1
+	    debian/$(BIN_PKG)/usr/share/man/man1/gtk-update-icon-cache-3.0.1
+	install -m 0755 -D debian/update-icon-caches \
+	    debian/$(BIN_PKG)/usr/sbin/update-icon-caches
 
 list-missing:
 	# FIXME: remove this when CDBS' list-missing works with multiple flavors

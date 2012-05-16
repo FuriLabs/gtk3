@@ -33,6 +33,7 @@ Build-Depends: debhelper (>= 8.1.3),
                libcairo2-dev (>= 1.10.0),
                x11proto-xext-dev,
                libcups2-dev (>= 1.2),
+               libcolord-dev (>= 0.1.9),
                gobject-introspection (>= 1.32.0),
                libgirepository1.0-dev (>= 1.32.0)
 Build-Depends-Indep: docbook-xml,
@@ -41,7 +42,7 @@ Build-Depends-Indep: docbook-xml,
                      libatk1.0-doc,
                      libpango1.0-doc,
                      libcairo2-doc
-Standards-Version: 3.9.2
+Standards-Version: 3.9.3
 Vcs-Bzr: https://code.launchpad.net/~ubuntu-desktop/gtk/ubuntugtk3
 Homepage: http://www.gtk.org/
 
@@ -56,8 +57,6 @@ Recommends: hicolor-icon-theme,
             @BIN_PKG@
 Suggests: librsvg2-common,
           gvfs
-Conflicts: libgtk3.0-0
-Replaces: libgtk3.0-0
 Breaks: gnome-themes-standard (<< 3.2)
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
@@ -77,8 +76,6 @@ Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends}
 Provides: @GTK_BINVER_DEP@
-Conflicts: libgtk3.0-0-udeb
-Replaces: libgtk3.0-0-udeb
 Description: GTK+ graphical user interface library - minimal runtime
  This is a udeb, or a microdeb, for the debian-installer.
  .
@@ -95,8 +92,8 @@ Section: misc
 Architecture: all
 Depends: ${misc:Depends}
 Recommends: @SHARED_PKG@
-Conflicts: libgtk3.0-common
-Replaces: libgtk3.0-common
+Breaks: @SHARED_PKG@ (<< 3.5.2)
+Replaces: @SHARED_PKG@ (<< 3.5.2)
 Multi-Arch: foreign
 Description: common files for the GTK+ graphical user interface library
  GTK+ is a multi-platform toolkit for creating graphical user
@@ -112,8 +109,6 @@ Architecture: any
 Depends: ${misc:Depends},
          @SHARED_PKG@ (>= ${source:Version}),
          @COMMON_PKG@ (= ${source:Version})
-Conflicts: libgtk3.0-bin
-Replaces: libgtk3.0-bin
 Multi-Arch: foreign
 Description: programs for the GTK+ graphical user interface library
  GTK+ is a multi-platform toolkit for creating graphical user
@@ -137,30 +132,25 @@ Depends: @SHARED_PKG@ (= ${binary:Version}),
          libpango1.0-dev (>= 1.30.0),
          libatk1.0-dev (>= 2.2.0),
          libcairo2-dev (>= 1.10.0),
-         libx11-dev (>= 2:1.0.0-6),
-         libxext-dev (>= 1:1.0.1-2),
-         libxinerama-dev (>= 1:1.0.1-4.1),
-         libxi-dev (>= 1:1.0.1-4),
-         libxrandr-dev (>= 1:1.2.99),
-         libxcursor-dev,
-         libxfixes-dev (>= 1:3.0.0-3),
-         libxcomposite-dev (>= 1:0.2.0-3),
-         libxdamage-dev (>= 1:1.0.1-3),
-         pkg-config (>= 0.26-1),
-         libxml2-utils
-Recommends: python (>= 2.4),
-            debhelper
+         libx11-dev,
+         libxext-dev,
+         libxinerama-dev,
+         libxi-dev,
+         libxrandr-dev,
+         libxcursor-dev ,
+         libxfixes-dev,
+         libxcomposite-dev,
+         libxdamage-dev,
+         pkg-config (>= 0.26-1)
 Suggests: @DOC_PKG@
-Conflicts: libgtk3.0-dev
-Replaces: libgtk3.0-dev
 Description: development files for the GTK+ library
  GTK+ is a multi-platform toolkit for creating graphical user
  interfaces. Offering a complete set of widgets, GTK+ is suitable
  for projects ranging from small one-off tools to complete application
  suites.
  .
- This package contains the header files and static libraries which are
- needed for developing GTK+ applications.
+ This package contains the header and development files which are
+ needed for building GTK+ applications.
 
 Package: @DEBUG_PKG@
 Section: debug
@@ -169,8 +159,6 @@ Architecture: any
 Depends: @SHARED_PKG@ (= ${binary:Version}),
          @COMMON_PKG@,
          ${misc:Depends}
-Conflicts: libgtk3.0-0-dbg
-Replaces: libgtk3.0-0-dbg
 Multi-Arch: same
 Description: GTK+ libraries and debugging symbols
  GTK+ is a multi-platform toolkit for creating graphical user
@@ -190,8 +178,6 @@ Recommends: libglib2.0-doc,
             libatk1.0-doc,
             libpango1.0-doc
 Suggests: devhelp
-Conflicts: libgtk3.0-doc
-Replaces: libgtk3.0-doc
 Multi-Arch: foreign
 Description: documentation for the GTK+ graphical user interface library
  GTK+ is a multi-platform toolkit for creating graphical user
@@ -209,8 +195,8 @@ Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends},
          @SHARED_PKG@ (= ${binary:Version})
-Conflicts: gtk-3.0-examples
-Replaces: gtk-3.0-examples
+Breaks: @COMMON_PKG@ (<< 3.5.2)
+Replaces: @COMMON_PKG@ (<< 3.5.2)
 Description: example files for GTK+ 3
  GTK+ is a multi-platform toolkit for creating graphical user
  interfaces. Offering a complete set of widgets, GTK+ is suitable
@@ -220,29 +206,13 @@ Description: example files for GTK+ 3
  This package contains the example files and a demonstration program
  for GTK+3.
 
-#Package: @PIXBUF_PKG@
-#Section: graphics
-#Architecture: any
-#Depends: ${misc:Depends},
-#         ${shlibs:Depends},
-#         @SHARED_PKG@ (= ${binary:Version}),
-#         @COMMON_PKG@
-#Description: pixbuf-based theme for GTK+ 3.x
-# GTK+ is a multi-platform toolkit for creating graphical user
-# interfaces. Offering a complete set of widgets, GTK+ is suitable
-# for projects ranging from small one-off tools to complete application
-# suites.
-# .
-# This package contains the pixbuf theme engine.
-
 Package: gir1.2-gtk-3.0
+Section: introspection
 Architecture: any
 Depends: @COMMON_PKG@,
          ${misc:Depends},
          ${shlibs:Depends},
          ${gir:Depends}
-Conflicts: gir1.0-gtk-3.0
-Replaces: gir1.0-gtk-3.0
 Description: GTK+ graphical user interface library -- gir bindings
  GTK+ is a multi-platform toolkit for creating graphical user
  interfaces. Offering a complete set of widgets, GTK+ is suitable
@@ -257,8 +227,6 @@ Architecture: any
 Depends: ${misc:Depends},
          ${shlibs:Depends},
          @SHARED_PKG@ (= ${binary:Version})
-Conflicts: libgail3.0-0
-Replaces: libgail3.0-0
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Description: GNOME Accessibility Implementation Library -- shared libraries
@@ -276,10 +244,8 @@ Depends: ${misc:Depends},
          libgail-3-0 (= ${binary:Version}),
          @DEV_PKG@ (= ${binary:Version}),
          pkg-config (>= 0.26-1),
-         libatk1.0-dev (>= 1.13.0)
+         libatk1.0-dev (>= 2.2.0)
 Suggests: libgail-3-doc
-Conflicts: libgail3.0-dev
-Replaces: libgail3.0-dev
 Description: GNOME Accessibility Implementation Library -- development files
  Gail implements ATK interfaces for GTK+ widgets which are dynamically
  loadable at runtime by a GTK+ application. Once loaded, those parts of
@@ -294,8 +260,6 @@ Section: debug
 Priority: extra
 Depends: ${misc:Depends}, libgail-3-0 (= ${binary:Version})
 Recommends: @DEBUG_PKG@
-Conflicts: libgail3.0-0-dbg
-Replaces: libgail3.0-0-dbg
 Multi-Arch: same
 Description: Gail libraries and debugging symbols
  Gail is the "GNOME Accessibility Implementation Library".
@@ -309,8 +273,6 @@ Architecture: all
 Section: doc
 Depends: ${misc:Depends}
 Suggests: devhelp
-Conflicts: libgail3.0-doc
-Replaces: libgail3.0-doc
 Multi-Arch: foreign
 Description: documentation files of the Gail library
  Gail implements ATK interfaces for GTK+ widgets which are dynamically
