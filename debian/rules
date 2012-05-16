@@ -122,6 +122,8 @@ binary-install/$(SHARED_PKG)::
 	# Install the binaries with a -3.0 suffix
 	mv debian/$(SHARED_PKG)/$(LIBDIR)/$(SHARED_PKG)/gtk-update-icon-cache \
 	    debian/$(SHARED_PKG)/$(LIBDIR)/$(SHARED_PKG)/gtk-update-icon-cache-3.0
+	# Install custom settings
+	install -D debian/settings.ini debian/$(SHARED_PKG)/$(CONFDIR)/settings.ini
 
 binary-install/$(BIN_PKG)::
 	# Install the binaries with a -3.0 suffix
