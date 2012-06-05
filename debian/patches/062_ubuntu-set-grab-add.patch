@@ -1,8 +1,8 @@
-Index: gtk+-3.5.2/gtk/gtk.symbols
+Index: gtk+-3.5.4/gtk/gtk.symbols
 ===================================================================
---- gtk+-3.5.2.orig/gtk/gtk.symbols	2012-05-16 10:09:15.278667039 +1200
-+++ gtk+-3.5.2/gtk/gtk.symbols	2012-05-16 10:09:16.550666997 +1200
-@@ -3923,6 +3923,7 @@
+--- gtk+-3.5.4.orig/gtk/gtk.symbols	2012-06-05 16:59:28.736578600 +1200
++++ gtk+-3.5.4/gtk/gtk.symbols	2012-06-05 16:59:30.348578544 +1200
+@@ -3927,6 +3927,7 @@
  gtk_window_unstick
  gtk_wrap_mode_get_type
  ubuntu_gtk_menu_shell_activate_mnemonic
@@ -10,10 +10,10 @@ Index: gtk+-3.5.2/gtk/gtk.symbols
  ubuntu_menu_proxy_get_type
  ubuntu_menu_proxy_get
  ubuntu_menu_proxy_insert
-Index: gtk+-3.5.2/gtk/gtkwidget.c
+Index: gtk+-3.5.4/gtk/gtkwidget.c
 ===================================================================
---- gtk+-3.5.2.orig/gtk/gtkwidget.c	2012-05-16 10:09:13.370667104 +1200
-+++ gtk+-3.5.2/gtk/gtkwidget.c	2012-05-16 10:09:16.554666997 +1200
+--- gtk+-3.5.4.orig/gtk/gtkwidget.c	2012-06-02 11:43:51.000000000 +1200
++++ gtk+-3.5.4/gtk/gtkwidget.c	2012-06-05 16:59:30.352578544 +1200
 @@ -14062,3 +14062,11 @@
  {
    widget->priv->style = style;
@@ -26,10 +26,10 @@ Index: gtk+-3.5.2/gtk/gtkwidget.c
 +  _gtk_widget_set_has_grab (widget, has_grab);
 +}
 + 
-Index: gtk+-3.5.2/gtk/gtkwidget.h
+Index: gtk+-3.5.4/gtk/gtkwidget.h
 ===================================================================
---- gtk+-3.5.2.orig/gtk/gtkwidget.h	2012-05-16 10:09:13.370667104 +1200
-+++ gtk+-3.5.2/gtk/gtkwidget.h	2012-05-16 10:09:16.554666997 +1200
+--- gtk+-3.5.4.orig/gtk/gtkwidget.h	2012-05-17 07:25:55.000000000 +1200
++++ gtk+-3.5.4/gtk/gtkwidget.h	2012-06-05 16:59:30.356578545 +1200
 @@ -887,6 +887,9 @@
                                                  GdkModifierIntent  intent);
  
