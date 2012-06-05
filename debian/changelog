@@ -35,6 +35,14 @@ gtk+3.0 (3.5.4-0ubuntu1) UNRELEASED; urgency=low
     - 099_eventbox_scroll_mask.patch
     - git_gtkcellrenderer_grabbing_modifier.patch
 
+  [ Ken VanDine ]
+  * debian/patches/101_revert_symbolic_icon_search.patch
+    - Revert symbolic icon search changes from 3.4.2, it breaks the icon 
+      displayed in indicator-power because of the order the icons are searched
+      in.  It looks like ubuntu-mono should drop the old icon names and 
+      use the new -symbolic icons.  We need to carry this patch until 
+      ubuntu-mono fixes it's handling of symbolic icons.  (LP: #1001229)
+
  -- Robert Ancell <robert.ancell@canonical.com>  Tue, 05 Jun 2012 16:51:51 +1200
 
 gtk+3.0 (3.4.2-1) unstable; urgency=low
