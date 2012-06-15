@@ -1,4 +1,4 @@
-gtk+3.0 (3.5.4-0ubuntu1) UNRELEASED; urgency=low
+gtk+3.0 (3.5.4-0ubuntu1) quantal; urgency=low
 
   [ Jeremy Bicha ]
   * settings.ini:
@@ -6,9 +6,10 @@ gtk+3.0 (3.5.4-0ubuntu1) UNRELEASED; urgency=low
     for the Applications menu isn't set too small (LP: #986969)
 
   [ Robert Ancell ]
-  * New upstream release
+  * New upstream release (LP: #1000545)
   * debian/control:
     - Bump build-depends on libglib2.0-dev
+    - Add breaks older version of gtk3-engines-unico
   * debian/libgtk-3-0.symbols:
     - Updated
   * debian/libgtk-3-0.install.in:
@@ -43,7 +44,7 @@ gtk+3.0 (3.5.4-0ubuntu1) UNRELEASED; urgency=low
       use the new -symbolic icons.  We need to carry this patch until 
       ubuntu-mono fixes it's handling of symbolic icons.  (LP: #1001229)
 
- -- Robert Ancell <robert.ancell@canonical.com>  Tue, 05 Jun 2012 16:51:51 +1200
+ -- Robert Ancell <robert.ancell@canonical.com>  Fri, 15 Jun 2012 11:36:11 +1200
 
 gtk+3.0 (3.4.2-1) unstable; urgency=low
 
