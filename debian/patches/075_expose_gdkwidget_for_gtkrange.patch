@@ -12,11 +12,11 @@ should access to the GdkWindow.
  gtk/gtkrange.h                       |    1 +
  4 files changed, 22 insertions(+), 0 deletions(-)
 
-Index: gtk+-3.5.4/docs/reference/gtk/gtk3-sections.txt
+Index: gtk+-3.5.6/docs/reference/gtk/gtk3-sections.txt
 ===================================================================
---- gtk+-3.5.4.orig/docs/reference/gtk/gtk3-sections.txt	2012-06-04 23:14:01.000000000 +1200
-+++ gtk+-3.5.4/docs/reference/gtk/gtk3-sections.txt	2012-06-05 16:59:33.872578422 +1200
-@@ -2590,6 +2590,7 @@
+--- gtk+-3.5.6.orig/docs/reference/gtk/gtk3-sections.txt	2012-06-26 09:30:10.000000000 +1200
++++ gtk+-3.5.6/docs/reference/gtk/gtk3-sections.txt	2012-06-27 17:29:27.146100321 +1200
+@@ -2616,6 +2616,7 @@
  gtk_range_get_slider_size_fixed
  gtk_range_set_min_slider_size
  gtk_range_set_slider_size_fixed
@@ -24,11 +24,11 @@ Index: gtk+-3.5.4/docs/reference/gtk/gtk3-sections.txt
  
  <SUBSECTION Standard>
  GTK_RANGE
-Index: gtk+-3.5.4/gtk/gtk.symbols
+Index: gtk+-3.5.6/gtk/gtk.symbols
 ===================================================================
---- gtk+-3.5.4.orig/gtk/gtk.symbols	2012-06-05 16:59:30.348578544 +1200
-+++ gtk+-3.5.4/gtk/gtk.symbols	2012-06-05 16:59:33.876578422 +1200
-@@ -2142,6 +2142,7 @@
+--- gtk+-3.5.6.orig/gtk/gtk.symbols	2012-06-27 17:29:24.226100419 +1200
++++ gtk+-3.5.6/gtk/gtk.symbols	2012-06-27 17:29:27.146100321 +1200
+@@ -2153,6 +2153,7 @@
  gtk_radio_tool_button_new_with_stock_from_widget
  gtk_radio_tool_button_set_group
  gtk_range_get_adjustment
@@ -36,10 +36,10 @@ Index: gtk+-3.5.4/gtk/gtk.symbols
  gtk_range_get_fill_level
  gtk_range_get_flippable
  gtk_range_get_inverted
-Index: gtk+-3.5.4/gtk/gtkrange.c
+Index: gtk+-3.5.6/gtk/gtkrange.c
 ===================================================================
---- gtk+-3.5.4.orig/gtk/gtkrange.c	2012-06-02 11:43:50.000000000 +1200
-+++ gtk+-3.5.4/gtk/gtkrange.c	2012-06-05 16:59:33.876578422 +1200
+--- gtk+-3.5.6.orig/gtk/gtkrange.c	2012-06-15 06:25:16.000000000 +1200
++++ gtk+-3.5.6/gtk/gtkrange.c	2012-06-27 17:29:27.150100319 +1200
 @@ -4158,6 +4158,26 @@
    return range->priv->has_origin;
  }
@@ -67,10 +67,10 @@ Index: gtk+-3.5.4/gtk/gtkrange.c
  void
  _gtk_range_set_stop_values (GtkRange *range,
                              gdouble  *values,
-Index: gtk+-3.5.4/gtk/gtkrange.h
+Index: gtk+-3.5.6/gtk/gtkrange.h
 ===================================================================
---- gtk+-3.5.4.orig/gtk/gtkrange.h	2012-05-17 07:25:54.000000000 +1200
-+++ gtk+-3.5.4/gtk/gtkrange.h	2012-06-05 16:59:33.876578422 +1200
+--- gtk+-3.5.6.orig/gtk/gtkrange.h	2012-05-17 07:25:54.000000000 +1200
++++ gtk+-3.5.6/gtk/gtkrange.h	2012-06-27 17:29:27.150100319 +1200
 @@ -143,6 +143,7 @@
  void               gtk_range_set_round_digits              (GtkRange      *range,
                                                              gint           round_digits);
