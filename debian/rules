@@ -117,6 +117,10 @@ clean:: debian/control
 	touch debian/control.in
 	rm -f $(call dh_subst_files,$(DEB_ALL_PACKAGES))
 
+# https://bugzilla.gnome.org/show_bug.cgi?id=671817
+common-configure-arch:: 
+	mkdir -p $(G_HOME)/.local/share
+
 # Add dependencies to generate files from the debian/*.in ones
 build-indep: $(call dh_subst_files,$(DEB_INDEP_PACKAGES))
 build-arch: $(call dh_subst_files,$(DEB_ARCH_PACKAGES))
