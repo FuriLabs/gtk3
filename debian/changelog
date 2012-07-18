@@ -1,3 +1,21 @@
+gtk+3.0 (3.5.8-0ubuntu1) UNRELEASED; urgency=low
+
+  * New upstream version (lp: #1025531)
+    * gtk-launch: A new commandline utility to launch an application from 
+      its desktop file
+    * GtkStrengthBar: A new widget for displaying the strength or level 
+      or some quantity
+    * Wayland: Updates for changes in the Wayland protocol
+    * Bugs fixed
+  * debian/control.in:
+    - libgail-3-0 depends on at-spi2-core since a11y is an hard depends
+  * debian/libgtk-3-0.symbols:
+    - Updated
+  * debian/libgtk-3-bin.install:
+    - install gtk-launcher there
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 18 Jul 2012 15:20:22 +0200
+
 gtk+3.0 (3.5.6-0ubuntu5) quantal; urgency=low
 
   * Add debian/tests/control: DEP-8 autopkgtest control file. Add XS-Testsuite
