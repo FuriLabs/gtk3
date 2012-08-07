@@ -13,11 +13,11 @@ https://bugzilla.gnome.org/show_bug.cgi?id=673360
  gtk/gtkcellrendereraccel.h |    3 ++-
  2 files changed, 39 insertions(+), 1 deletions(-)
 
-diff --git a/gtk/gtkcellrendereraccel.c b/gtk/gtkcellrendereraccel.c
-index 385c561..e01f54f 100644
+Index: b/gtk/gtkcellrendereraccel.c
+===================================================================
 --- a/gtk/gtkcellrendereraccel.c
 +++ b/gtk/gtkcellrendereraccel.c
-@@ -98,6 +98,13 @@ struct _GtkCellRendererAccelPrivate
+@@ -98,6 +98,13 @@
  
    GdkModifierType accel_mods;
  
@@ -31,7 +31,7 @@ index 385c561..e01f54f 100644
    guint accel_key;
    guint keycode;
  };
-@@ -195,6 +202,10 @@ gtk_cell_renderer_accel_class_init (GtkCellRendererAccelClass *cell_accel_class)
+@@ -195,6 +202,10 @@
     * accepted by GTK+ are allowed, and the accelerators are rendered
     * in the same way as they are in menus.
     *
@@ -42,7 +42,7 @@ index 385c561..e01f54f 100644
     * Since: 2.10
     */
    g_object_class_install_property (object_class,
-@@ -444,6 +455,29 @@ grab_key_callback (GtkWidget            *widget,
+@@ -444,6 +455,29 @@
  
    display = gtk_widget_get_display (widget);
  
@@ -72,7 +72,7 @@ index 385c561..e01f54f 100644
    if (event->is_modifier)
      return TRUE;
  
-@@ -722,6 +756,9 @@ gtk_cell_renderer_accel_start_editing (GtkCellRenderer      *cell,
+@@ -722,6 +756,9 @@
    g_signal_connect (G_OBJECT (widget), "key-press-event",
                      G_CALLBACK (grab_key_callback),
                      accel);
@@ -82,11 +82,11 @@ index 385c561..e01f54f 100644
  
    eventbox = g_object_new (_gtk_cell_editable_event_box_get_type (), NULL);
    priv->edit_widget = eventbox;
-diff --git a/gtk/gtkcellrendereraccel.h b/gtk/gtkcellrendereraccel.h
-index a4fe49c..24dd4a0 100644
+Index: b/gtk/gtkcellrendereraccel.h
+===================================================================
 --- a/gtk/gtkcellrendereraccel.h
 +++ b/gtk/gtkcellrendereraccel.h
-@@ -41,7 +41,8 @@ typedef struct _GtkCellRendererAccelClass         GtkCellRendererAccelClass;
+@@ -41,7 +41,8 @@
  typedef enum
  {
    GTK_CELL_RENDERER_ACCEL_MODE_GTK,
@@ -96,5 +96,3 @@ index a4fe49c..24dd4a0 100644
  } GtkCellRendererAccelMode;
  
  
--- 
-1.7.9.1
