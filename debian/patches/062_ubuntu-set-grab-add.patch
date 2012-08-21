@@ -15,8 +15,8 @@ Index: b/gtk/gtkwidget.c
 --- a/gtk/gtkwidget.c
 +++ b/gtk/gtkwidget.c
 @@ -14072,3 +14072,11 @@
- {
-   widget->priv->style = style;
+ 
+   g_action_muxer_insert (muxer, name, group);
  }
 +
 +void
@@ -31,8 +31,8 @@ Index: b/gtk/gtkwidget.h
 --- a/gtk/gtkwidget.h
 +++ b/gtk/gtkwidget.h
 @@ -887,6 +887,9 @@
-                                                 GdkModifierIntent  intent);
- 
+                                                                          const gchar  *name,
+                                                                          GActionGroup *group);
  
 +void   ubuntu_gtk_widget_set_has_grab  (GtkWidget *widget,
 +                                        gboolean   has_grab);

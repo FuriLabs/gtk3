@@ -1,3 +1,25 @@
+gtk+3.0 (3.5.12-0ubuntu1) UNRELEASED; urgency=low
+
+  * New upstream version:
+    GtkApplication:
+    - Add gtk_application_get_active_window to get the active window
+    - Add gtk_widget_insert_action_group to allow more flexibility
+      when associating widgets with actions
+    GtkMenuButton:
+    - The gtk_menu_button_set_menu function is getting renamed
+      to gtk_menu_button_set_popup. The old name is still available
+      for now, but will be removed before 3.6
+    GtkToolbar:
+    - use CSS properties instead of style properties for padding
+    Input method support:
+    - GtkEntry and GtkTextView now have input-purpose and input-hints
+      properties that let applications provide useful hints to
+      input methods, like 'this entry is for a phone nr'.
+  * debian/libgtk-3-0.symbols:
+    - updated
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 17 Aug 2012 12:40:43 +0200
+
 gtk+3.0 (3.5.10-0ubuntu1) quantal-proposed; urgency=low
 
   * New upstream release (LP: #1033867).
