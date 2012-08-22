@@ -1,0 +1,39 @@
+From 81e76746ffc1a9ad77ab7c3c7b9f43e344401e3c Mon Sep 17 00:00:00 2001
+From: Ryan Lortie <desrt@desrt.ca>
+Date: Wed, 22 Aug 2012 04:54:57 +0000
+Subject: GtkActionHelper: two small fixups in _set_target_value()
+
+First, ensure we always consume floating values, as documented.
+
+Second (and more serious), don't try to query the action if the
+action name is not set yet.  This will cause crashes...
+---
+diff --git a/gtk/gtkactionhelper.c b/gtk/gtkactionhelper.c
+index 6047a43..a3a0c46 100644
+--- a/gtk/gtkactionhelper.c
++++ b/gtk/gtkactionhelper.c
+@@ -523,7 +523,10 @@ gtk_action_helper_set_action_target_value (GtkActionHelper *helper,
+     return;
+ 
+   if (target_value && helper->target && g_variant_equal (target_value, helper->target))
+-    return;
++    {
++      g_variant_unref (g_variant_ref_sink (target_value));
++      return;
++    }
+ 
+   if (helper->target)
+     {
+@@ -534,6 +537,10 @@ gtk_action_helper_set_action_target_value (GtkActionHelper *helper,
+   if (target_value)
+     helper->target = g_variant_ref_sink (target_value);
+ 
++  /* The action_name has not yet been set.  Don't do anything yet. */
++  if (helper->action_name == NULL)
++    return;
++
+   was_enabled = helper->enabled;
+   was_active = helper->active;
+ 
+--
+cgit v0.9.0.2
