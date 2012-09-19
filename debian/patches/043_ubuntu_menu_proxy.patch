@@ -1060,32 +1060,40 @@ Index: gtk+-3.5.18/gtk/ubuntumenuproxymodule.h
 +#endif /* __UBUNTU_MENU_PROXY_MODULE_H__ */
 Index: gtk+-3.5.18/gtk/gtkmnemonichash.c
 ===================================================================
---- gtk+-3.5.18.orig/gtk/gtkmnemonichash.c	2012-09-19 03:34:42.000000000 +1200
-+++ gtk+-3.5.18/gtk/gtkmnemonichash.c	2012-09-19 12:17:02.564727946 +1200
-@@ -18,6 +18,9 @@
+--- gtk+-3.5.18.orig/gtk/gtkmnemonichash.c	2012-09-19 10:41:33.439291224 +0200
++++ gtk+-3.5.18/gtk/gtkmnemonichash.c	2012-09-19 12:41:33.439291224 +0200
+@@ -18,6 +18,10 @@
   */
  
  #include "gtkmnemonichash.h"
 +#include "ubuntumenuproxy.h"
 +#include "gtkmenuitem.h"
++#include "gtkmenubar.h"
 +#include "gtkaccellabel.h"
  
  struct _GtkMnemnonicHash
  {
-@@ -113,6 +116,7 @@
+@@ -112,7 +116,8 @@
+   GSList *list, *targets;
    GtkWidget *widget, *chosen_widget;
    GdkWindow *window;
-   gboolean overloaded;
+-  gboolean overloaded;
++  gboolean overloaded, hasMenuBarParent;
 +  UbuntuMenuProxy * menu_proxy = ubuntu_menu_proxy_get();
  
    targets = g_hash_table_lookup (mnemonic_hash->hash,
  				 GUINT_TO_POINTER (keyval));
-@@ -126,9 +130,11 @@
+@@ -125,10 +130,16 @@
+     {
        widget = GTK_WIDGET (list->data);
        window = gtk_widget_get_window (widget);
++      if (widget)
++	hasMenuBarParent = gtk_widget_get_ancestor(widget, GTK_TYPE_MENU_BAR) != NULL;
++      else
++	hasMenuBarParent = FALSE;
  
 -      if (gtk_widget_is_sensitive (widget) &&
-+      if ((menu_proxy && !ubuntu_menu_proxy_show_local(menu_proxy) && GTK_IS_ACCEL_LABEL(widget))
++      if ((menu_proxy && hasMenuBarParent && !ubuntu_menu_proxy_show_local(menu_proxy) && GTK_IS_ACCEL_LABEL(widget))
 +      || (gtk_widget_is_sensitive (widget) &&
  	  gtk_widget_get_mapped (widget) &&
            window && gdk_window_is_viewable (window))
