@@ -6,6 +6,15 @@ gtk+3.0 (3.5.18-0ubuntu1) quantal; urgency=low
 
  -- Robert Ancell <robert.ancell@canonical.com>  Wed, 19 Sep 2012 13:20:34 +1200
 
+gtk+3.0 (3.5.16-0ubuntu2) UNRELEASED; urgency=low
+
+  * debian/patches/101_revert_symbolic_icon_search.patch:
+    - drop the revert workaround done for precise, the icon theme should 
+      be fixed rather in quantal since that's the correct solution,
+      the patch also creates issues in gnome-shell (lp: #1001229)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 05 Sep 2012 19:29:09 +0200
+
 gtk+3.0 (3.5.16-0ubuntu1) quantal; urgency=low
 
   * New upstream bugfix release
