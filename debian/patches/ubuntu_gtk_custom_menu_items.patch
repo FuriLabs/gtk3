@@ -1,10 +1,10 @@
 # Description: gtk_menu_new_from_model doesn't support custom menu items
 # Ubuntu: https://bugs.launchpad.net/ubuntu/+source/gtk+3.0/+bug/1039476
 #
-diff --git a/gtk/gtkmodelmenu.c b/gtk/gtkmodelmenu.c
-index dccf72a..4574e64 100644
---- a/gtk/gtkmodelmenu.c
-+++ b/gtk/gtkmodelmenu.c
+Index: gtk+-3.5.18/gtk/gtkmodelmenu.c
+===================================================================
+--- gtk+-3.5.18.orig/gtk/gtkmodelmenu.c	2012-09-19 03:34:42.000000000 +1200
++++ gtk+-3.5.18/gtk/gtkmodelmenu.c	2012-09-19 12:18:50.524724208 +1200
 @@ -28,6 +28,7 @@
  #include "gtkseparatormenuitem.h"
  #include "gtkmodelmenuitem.h"
@@ -13,7 +13,7 @@ index dccf72a..4574e64 100644
  
  #define MODEL_MENU_WIDGET_DATA "gtk-model-menu-widget-data"
  
-@@ -73,6 +74,80 @@ gtk_model_menu_binding_free (gpointer data)
+@@ -72,6 +73,80 @@
    g_slice_free (GtkModelMenuBinding, binding);
  }
  
@@ -94,14 +94,14 @@ index dccf72a..4574e64 100644
  static void
  gtk_model_menu_binding_append_item (GtkModelMenuBinding  *binding,
                                      GMenuModel           *model,
-@@ -107,7 +182,10 @@ gtk_model_menu_binding_append_item (GtkModelMenuBinding  *binding,
+@@ -106,7 +181,10 @@
      {
        GtkMenuItem *item;
  
--      item = gtk_model_menu_item_new (model, item_index, action_namespace, binding->accels);
+-      item = gtk_model_menu_item_new (model, item_index, action_namespace);
 +      item = gtk_model_menu_create_custom_item (model, item_index, action_namespace);
 +      if (item == NULL)
-+        item = gtk_model_menu_item_new (model, item_index, action_namespace, binding->accels);
++        item = gtk_model_menu_item_new (model, item_index, action_namespace);
 +
        gtk_menu_shell_append (binding->shell, GTK_WIDGET (item));
        gtk_widget_show (GTK_WIDGET (item));

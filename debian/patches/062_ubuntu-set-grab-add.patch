@@ -1,8 +1,8 @@
-Index: gtk+-3.5.14/gtk/gtk.symbols
+Index: gtk+-3.5.18/gtk/gtk.symbols
 ===================================================================
---- gtk+-3.5.14.orig/gtk/gtk.symbols	2012-09-04 16:30:30.122589619 +1200
-+++ gtk+-3.5.14/gtk/gtk.symbols	2012-09-04 16:30:32.222589547 +1200
-@@ -3972,6 +3972,7 @@
+--- gtk+-3.5.18.orig/gtk/gtk.symbols	2012-09-19 12:17:02.560727946 +1200
++++ gtk+-3.5.18/gtk/gtk.symbols	2012-09-19 12:17:04.212727888 +1200
+@@ -3976,6 +3976,7 @@
  gtk_wrap_mode_get_type
  ubuntu_gtk_menu_shell_activate_mnemonic
  ubuntu_gtk_menu_shell_activate_first
@@ -10,11 +10,11 @@ Index: gtk+-3.5.14/gtk/gtk.symbols
  ubuntu_menu_proxy_activate_menu
  ubuntu_menu_proxy_get_type
  ubuntu_menu_proxy_get
-Index: gtk+-3.5.14/gtk/gtkwidget.c
+Index: gtk+-3.5.18/gtk/gtkwidget.c
 ===================================================================
---- gtk+-3.5.14.orig/gtk/gtkwidget.c	2012-09-03 16:19:03.000000000 +1200
-+++ gtk+-3.5.14/gtk/gtkwidget.c	2012-09-04 16:30:32.226589547 +1200
-@@ -14156,3 +14156,11 @@
+--- gtk+-3.5.18.orig/gtk/gtkwidget.c	2012-09-19 03:34:43.000000000 +1200
++++ gtk+-3.5.18/gtk/gtkwidget.c	2012-09-19 12:17:04.216727887 +1200
+@@ -14140,3 +14140,11 @@
    else
      g_action_muxer_remove (muxer, name);
  }
@@ -26,10 +26,10 @@ Index: gtk+-3.5.14/gtk/gtkwidget.c
 +  _gtk_widget_set_has_grab (widget, has_grab);
 +}
 + 
-Index: gtk+-3.5.14/gtk/gtkwidget.h
+Index: gtk+-3.5.18/gtk/gtkwidget.h
 ===================================================================
---- gtk+-3.5.14.orig/gtk/gtkwidget.h	2012-08-25 09:44:30.000000000 +1200
-+++ gtk+-3.5.14/gtk/gtkwidget.h	2012-09-04 16:30:32.230589546 +1200
+--- gtk+-3.5.18.orig/gtk/gtkwidget.h	2012-09-19 03:34:43.000000000 +1200
++++ gtk+-3.5.18/gtk/gtkwidget.h	2012-09-19 12:17:04.216727887 +1200
 @@ -891,6 +891,9 @@
                                                                           const gchar  *name,
                                                                           GActionGroup *group);
