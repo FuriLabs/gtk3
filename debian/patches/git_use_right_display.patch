@@ -1,0 +1,38 @@
+From f9d77959a4518699a96b3c85ddc18d0ff01aeac5 Mon Sep 17 00:00:00 2001
+From: Alexander Larsson <alexl@redhat.com>
+Date: Thu, 27 Sep 2012 11:46:26 +0000
+Subject: Don't create GdkWindows with NULL parents
+
+This is not multi-display safe, you always need to pick the right
+parent based on which screen your widget is at.
+---
+diff --git a/gtk/gtktexthandle.c b/gtk/gtktexthandle.c
+index 00f43f8..3738d02 100644
+--- a/gtk/gtktexthandle.c
++++ b/gtk/gtktexthandle.c
+@@ -195,7 +195,8 @@ _gtk_text_handle_create_window (GtkTextHandle *handle)
+       mask |= GDK_WA_VISUAL;
+     }
+ 
+-  window = gdk_window_new (NULL, &attributes, mask);
++  window = gdk_window_new (gtk_widget_get_root_window (priv->parent),
++			   &attributes, mask);
+   gdk_window_set_user_data (window, priv->parent);
+   gdk_window_set_background_rgba (window, &bg);
+ 
+diff --git a/gtk/gtktreeview.c b/gtk/gtktreeview.c
+index 686310c..263fe59 100644
+--- a/gtk/gtktreeview.c
++++ b/gtk/gtktreeview.c
+@@ -3923,7 +3923,7 @@ gtk_tree_view_motion_draw_column_motion_arrow (GtkTreeView *tree_view)
+           attributes.y = y;
+ 	  attributes.width = width;
+ 	  attributes.height = height;
+-	  tree_view->priv->drag_highlight_window = gdk_window_new (NULL, &attributes, attributes_mask);
++	  tree_view->priv->drag_highlight_window = gdk_window_new (gtk_widget_get_root_window (widget), &attributes, attributes_mask);
+ 	  gdk_window_set_user_data (tree_view->priv->drag_highlight_window, GTK_WIDGET (tree_view));
+ 
+ 	  mask_image = cairo_image_surface_create (CAIRO_FORMAT_A1, width, height);
+--
+cgit v0.9.0.2
+
