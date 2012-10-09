@@ -1,5 +1,10 @@
 gtk+3.0 (3.6.0-0ubuntu3) UNRELEASED; urgency=low
 
+  * debian/patches/revert_git_a11y_stopped.patch:
+    - revert recent commit which unload a11y on shutdown, 
+      that's an optimization and not strictly necessary and it's creating 
+      issue with e.g ubiquity (lp: #1056300). That's a workaround but seems
+      to be the safest solution for quantal.
   * debian/control.in:
     - let libgtk depends on at-spi-core2 (rather than libgail) since that's
       the library which is using the service, that should fix issues the
