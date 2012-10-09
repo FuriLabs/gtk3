@@ -5,6 +5,8 @@ gtk+3.0 (3.6.0-0ubuntu3) UNRELEASED; urgency=low
       that's an optimization and not strictly necessary and it's creating 
       issue with e.g ubiquity (lp: #1056300). That's a workaround but seems
       to be the safest solution for quantal.
+  * debian/patches/git_iconview_render_item_select.patch: 
+    - "iconview: Render focus even in non-selected items"
   * debian/control.in:
     - let libgtk depends on at-spi-core2 (rather than libgail) since that's
       the library which is using the service, that should fix issues the
