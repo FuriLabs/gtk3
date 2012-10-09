@@ -54,7 +54,8 @@ Architecture: any
 Depends: @COMMON_PKG@ (= ${source:Version}),
          ${misc:Depends},
          ${shlibs:Depends},
-         shared-mime-info
+         shared-mime-info,
+         at-spi2-core
 Provides: @GTK_BINVER_DEP@
 Recommends: hicolor-icon-theme,
             @BIN_PKG@
@@ -231,8 +232,7 @@ Package: libgail-3-0
 Architecture: any
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-         @SHARED_PKG@ (= ${binary:Version}),
-         at-spi2-core
+         @SHARED_PKG@ (= ${binary:Version})
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Description: GNOME Accessibility Implementation Library -- shared libraries

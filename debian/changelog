@@ -1,3 +1,12 @@
+gtk+3.0 (3.6.0-0ubuntu3) UNRELEASED; urgency=low
+
+  * debian/control.in:
+    - let libgtk depends on at-spi-core2 (rather than libgail) since that's
+      the library which is using the service, that should fix issues the
+      warnings raised on some configurations (including the QA tests)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 09 Oct 2012 11:23:35 +0200
+
 gtk+3.0 (3.6.0-0ubuntu2) quantal-proposed; urgency=low
 
   * debian/patches/git_use_right_display.patch:
