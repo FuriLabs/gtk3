@@ -54,7 +54,8 @@ Architecture: any
 Depends: libgtk-3-common (= ${source:Version}),
          ${misc:Depends},
          ${shlibs:Depends},
-         shared-mime-info
+         shared-mime-info,
+         at-spi2-core
 Provides: gtk3-binver-3.0.0
 Recommends: hicolor-icon-theme,
             libgtk-3-bin
@@ -231,8 +232,7 @@ Package: libgail-3-0
 Architecture: any
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-         libgtk-3-0 (= ${binary:Version}),
-         at-spi2-core
+         libgtk-3-0 (= ${binary:Version})
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Description: GNOME Accessibility Implementation Library -- shared libraries
