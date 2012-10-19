@@ -1,3 +1,14 @@
+gtk+3.0 (3.6.0-0ubuntu3.1) quantal-proposed; urgency=low
+
+  * Cherry-pick some upstream patches from 3.6.1 (LP: #1068585)
+    + appchooserwidget: check for g_app_info_should_show(). This ensures
+      NoDisplay=true or NotShowIn/OnlyShowIn values in the desktop file are
+      respected.
+    + Make process_all_updates draw synchronously to improve rendering
+      performance.
+
+ -- Iain Lane <iain.lane@canonical.com>  Thu, 18 Oct 2012 17:49:38 +0100
+
 gtk+3.0 (3.6.0-0ubuntu3) quantal-proposed; urgency=low
 
   * debian/patches/revert_git_a11y_stopped.patch:
