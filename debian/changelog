@@ -1,9 +1,20 @@
-gtk+3.0 (3.6.2-0ubuntu2) UNRELEASED; urgency=low
+gtk+3.0 (3.6.4-0ubuntu1) UNRELEASED; urgency=low
 
+  [ Sebastien Bacher ]
   * debian/patches/git_dont_duplicate_bookmark.patch:
     - "Remove bookmark duplicate of shortcut" (lp: #316959)
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 16 Nov 2012 15:31:38 +0100
+  [ Robert Ancell ]
+  * New upstream release
+  * debian/control.in:
+    - Add ${shlibs:Depends} Depends to libgtk-3-bin
+  * debian/libgtk-3-bin.install:
+    - Install gtk-launch man page.
+  * debian/libgtk-3-dev.install:
+    - Install gtkbuilder.rng RELAX NG schema file which can be used to
+      validate GtkBuilder ui files.
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Thu, 10 Jan 2013 15:55:23 +1300
 
 gtk+3.0 (3.6.2-0ubuntu1) raring; urgency=low
 

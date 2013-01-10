@@ -13,10 +13,10 @@ https://bugzilla.gnome.org/show_bug.cgi?id=673360
  gtk/gtkcellrendereraccel.h |    3 ++-
  2 files changed, 39 insertions(+), 1 deletions(-)
 
-Index: b/gtk/gtkcellrendereraccel.c
+Index: gtk+-3.6.4/gtk/gtkcellrendereraccel.c
 ===================================================================
---- a/gtk/gtkcellrendereraccel.c
-+++ b/gtk/gtkcellrendereraccel.c
+--- gtk+-3.6.4.orig/gtk/gtkcellrendereraccel.c	2013-01-10 16:04:04.165595520 +1300
++++ gtk+-3.6.4/gtk/gtkcellrendereraccel.c	2013-01-10 16:04:04.161595519 +1300
 @@ -98,6 +98,13 @@
  
    GdkModifierType accel_mods;
@@ -72,7 +72,7 @@ Index: b/gtk/gtkcellrendereraccel.c
    if (event->is_modifier)
      return TRUE;
  
-@@ -722,6 +756,9 @@
+@@ -724,6 +758,9 @@
    g_signal_connect (G_OBJECT (widget), "key-press-event",
                      G_CALLBACK (grab_key_callback),
                      accel);
@@ -82,10 +82,10 @@ Index: b/gtk/gtkcellrendereraccel.c
  
    eventbox = g_object_new (_gtk_cell_editable_event_box_get_type (), NULL);
    priv->edit_widget = eventbox;
-Index: b/gtk/gtkcellrendereraccel.h
+Index: gtk+-3.6.4/gtk/gtkcellrendereraccel.h
 ===================================================================
---- a/gtk/gtkcellrendereraccel.h
-+++ b/gtk/gtkcellrendereraccel.h
+--- gtk+-3.6.4.orig/gtk/gtkcellrendereraccel.h	2013-01-10 16:04:04.165595520 +1300
++++ gtk+-3.6.4/gtk/gtkcellrendereraccel.h	2013-01-10 16:04:04.161595519 +1300
 @@ -41,7 +41,8 @@
  typedef enum
  {

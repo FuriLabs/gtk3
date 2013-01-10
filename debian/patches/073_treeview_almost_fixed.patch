@@ -3,10 +3,10 @@ Bug: https://bugzilla.gnome.org/607447
 Bug-Ubuntu: https://launchpad.net/bugs/514879
 
 === modified file 'gtk/gtktreeview.c'
-Index: gtk+-3.5.2/gtk/gtktreeview.c
+Index: gtk+-3.6.4/gtk/gtktreeview.c
 ===================================================================
---- gtk+-3.5.2.orig/gtk/gtktreeview.c	2012-05-16 10:09:12.974667115 +1200
-+++ gtk+-3.5.2/gtk/gtktreeview.c	2012-05-16 10:09:19.250666909 +1200
+--- gtk+-3.6.4.orig/gtk/gtktreeview.c	2013-01-10 16:03:58.421595565 +1300
++++ gtk+-3.6.4/gtk/gtktreeview.c	2013-01-10 16:03:58.417595565 +1300
 @@ -462,6 +462,7 @@
  
    guint fixed_height_mode : 1;
@@ -57,7 +57,7 @@ Index: gtk+-3.5.2/gtk/gtktreeview.c
      case PROP_HOVER_SELECTION:
        tree_view->priv->hover_selection = g_value_get_boolean (value);
        break;
-@@ -8744,7 +8759,15 @@
+@@ -8740,7 +8755,15 @@
  
    _gtk_tree_view_accessible_changed (tree_view, tree, node);
  

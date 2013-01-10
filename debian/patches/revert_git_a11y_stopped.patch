@@ -1,7 +1,8 @@
-diff -Nur gtk+3.0-3.6.0.old/gtk/a11y/gail.c gtk+3.0-3.6.0/gtk/a11y/gail.c
---- gtk+3.0-3.6.0.old/gtk/a11y/gail.c	2012-10-09 11:28:38.129582008 +0200
-+++ gtk+3.0-3.6.0/gtk/a11y/gail.c	2012-10-09 11:30:27.485587299 +0200
-@@ -76,7 +76,6 @@
+Index: gtk+-3.6.4/gtk/a11y/gail.c
+===================================================================
+--- gtk+-3.6.4.orig/gtk/a11y/gail.c	2013-01-10 16:04:08.029595489 +1300
++++ gtk+-3.6.4/gtk/a11y/gail.c	2013-01-10 16:04:08.021595489 +1300
+@@ -78,7 +78,6 @@
  static guint focus_notify_handler = 0;    
  static guint focus_tracker_id = 0;
  static GQuark quark_focus_object = 0;
@@ -9,7 +10,7 @@ diff -Nur gtk+3.0-3.6.0.old/gtk/a11y/gail.c gtk+3.0-3.6.0/gtk/a11y/gail.c
  
  static AtkObject*
  gail_get_accessible_for_widget (GtkWidget *widget,
-@@ -796,24 +795,9 @@
+@@ -798,24 +797,9 @@
  }
  
  void
@@ -35,9 +36,10 @@ diff -Nur gtk+3.0-3.6.0.old/gtk/a11y/gail.c gtk+3.0-3.6.0/gtk/a11y/gail.c
  
    if (initialized)
      return;
-diff -Nur gtk+3.0-3.6.0.old/gtk/a11y/gailutil.c gtk+3.0-3.6.0/gtk/a11y/gailutil.c
---- gtk+3.0-3.6.0.old/gtk/a11y/gailutil.c	2012-10-09 11:28:38.117582007 +0200
-+++ gtk+3.0-3.6.0/gtk/a11y/gailutil.c	2012-10-09 11:30:27.485587299 +0200
+Index: gtk+-3.6.4/gtk/a11y/gailutil.c
+===================================================================
+--- gtk+-3.6.4.orig/gtk/a11y/gailutil.c	2013-01-10 16:04:08.029595489 +1300
++++ gtk+-3.6.4/gtk/a11y/gailutil.c	2013-01-10 16:04:08.021595489 +1300
 @@ -206,17 +206,6 @@
                      (GCallback) window_removed, NULL);
  }
@@ -69,9 +71,10 @@ diff -Nur gtk+3.0-3.6.0.old/gtk/a11y/gailutil.c gtk+3.0-3.6.0/gtk/a11y/gailutil.
  _gail_util_install (void)
  {
    AtkUtilClass *atk_class = ATK_UTIL_CLASS (g_type_class_ref (ATK_TYPE_UTIL));
-diff -Nur gtk+3.0-3.6.0.old/gtk/a11y/gailutil.h gtk+3.0-3.6.0/gtk/a11y/gailutil.h
---- gtk+3.0-3.6.0.old/gtk/a11y/gailutil.h	2012-10-09 11:28:38.121582007 +0200
-+++ gtk+3.0-3.6.0/gtk/a11y/gailutil.h	2012-10-09 11:30:27.485587299 +0200
+Index: gtk+-3.6.4/gtk/a11y/gailutil.h
+===================================================================
+--- gtk+-3.6.4.orig/gtk/a11y/gailutil.h	2013-01-10 16:04:08.029595489 +1300
++++ gtk+-3.6.4/gtk/a11y/gailutil.h	2013-01-10 16:04:08.021595489 +1300
 @@ -23,7 +23,6 @@
  G_BEGIN_DECLS
  
@@ -80,9 +83,10 @@ diff -Nur gtk+3.0-3.6.0.old/gtk/a11y/gailutil.h gtk+3.0-3.6.0/gtk/a11y/gailutil.
  
  gboolean  _gail_util_key_snooper (GtkWidget   *the_widget,
                                    GdkEventKey *event);
-diff -Nur gtk+3.0-3.6.0.old/gtk/gtkapplication.c gtk+3.0-3.6.0/gtk/gtkapplication.c
---- gtk+3.0-3.6.0.old/gtk/gtkapplication.c	2012-10-09 11:28:38.261582015 +0200
-+++ gtk+3.0-3.6.0/gtk/gtkapplication.c	2012-10-09 11:30:27.493587302 +0200
+Index: gtk+-3.6.4/gtk/gtkapplication.c
+===================================================================
+--- gtk+-3.6.4.orig/gtk/gtkapplication.c	2013-01-10 16:04:08.029595489 +1300
++++ gtk+-3.6.4/gtk/gtkapplication.c	2013-01-10 16:04:08.021595489 +1300
 @@ -47,8 +47,6 @@
  #include <gdk/x11/gdkx.h>
  #endif
@@ -109,10 +113,11 @@ diff -Nur gtk+3.0-3.6.0.old/gtk/gtkapplication.c gtk+3.0-3.6.0/gtk/gtkapplicatio
    G_APPLICATION_CLASS (gtk_application_parent_class)
      ->shutdown (application);
  }
-diff -Nur gtk+3.0-3.6.0.old/gtk/gtkmain.c gtk+3.0-3.6.0/gtk/gtkmain.c
---- gtk+3.0-3.6.0.old/gtk/gtkmain.c	2012-10-09 11:28:38.217582012 +0200
-+++ gtk+3.0-3.6.0/gtk/gtkmain.c	2012-10-09 11:30:27.497587303 +0200
-@@ -1173,15 +1172,11 @@
+Index: gtk+-3.6.4/gtk/gtkmain.c
+===================================================================
+--- gtk+-3.6.4.orig/gtk/gtkmain.c	2013-01-10 16:04:08.029595489 +1300
++++ gtk+-3.6.4/gtk/gtkmain.c	2013-01-10 16:04:08.025595489 +1300
+@@ -1170,15 +1170,11 @@
  
    if (gtk_main_loop_level == 0)
      {
