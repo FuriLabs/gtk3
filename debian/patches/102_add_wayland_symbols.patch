@@ -1,25 +1,32 @@
---- gtk+3.0-3.5.16.orig/gdk/gdk.symbols	2012-08-16 10:49:17.000000000 -0400
-+++ gtk+3.0-3.5.16/gdk/gdk.symbols	2012-09-06 18:39:54.102504997 -0400
-@@ -44,6 +44,7 @@
+Index: b/gdk/gdk.symbols
+===================================================================
+--- a/gdk/gdk.symbols
++++ b/gdk/gdk.symbols
+@@ -44,6 +44,9 @@
  gdk_cursor_ref
  gdk_cursor_type_get_type
  gdk_cursor_unref
++#ifdef GDK_WINDOWING_WAYLAND
 +gdk_device_core_get_type
++#endif
  gdk_device_free_history
  gdk_device_get_associated_device
  gdk_device_get_axis
-@@ -67,6 +68,7 @@
+@@ -67,6 +70,9 @@
  gdk_device_grab_info_libgtk_only
  gdk_device_list_axes
  gdk_device_list_slave_devices
++#ifdef GDK_WINDOWING_WAYLAND
 +gdk_device_manager_core_get_type
++#endif
  gdk_device_manager_get_client_pointer
  gdk_device_manager_get_display
  gdk_device_manager_get_type
-@@ -350,6 +352,15 @@
+@@ -350,6 +356,17 @@
  gdk_visual_get_type
  gdk_visual_get_visual_type
  gdk_visual_type_get_type
++#ifdef GDK_WINDOWING_WAYLAND
 +gdk_wayland_app_launch_context_get_type
 +gdk_wayland_device_clear_selection_content_libgtk_only
 +gdk_wayland_device_get_selection_type_atoms_libgtk_only
@@ -29,6 +36,7 @@
 +gdk_wayland_display_manager_get_type
 +gdk_wayland_drag_context_get_type
 +gdk_wayland_window_set_modal_hint
++#endif
  #ifdef GDK_WINDOWING_WIN32
  gdk_win32_handle_table_lookup
  gdk_win32_icon_to_pixbuf_libgtk_only
