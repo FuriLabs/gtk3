@@ -1,0 +1,23 @@
+From 7ace43816630b7990135956e04eeaacf26bddab3 Mon Sep 17 00:00:00 2001
+From: Fabian Henze <flyser42@gmx.de>
+Date: Mon, 05 Nov 2012 12:30:00 +0000
+Subject: Fix the annotations of gtk_color_chooser_get_rgba()
+
+https://bugzilla.gnome.org/show_bug.cgi?id=687633
+---
+diff --git a/gtk/gtkcolorchooser.c b/gtk/gtkcolorchooser.c
+index 4727aaf..cbefdd3 100644
+--- a/gtk/gtkcolorchooser.c
++++ b/gtk/gtkcolorchooser.c
+@@ -122,7 +122,7 @@ _gtk_color_chooser_color_activated (GtkColorChooser *chooser,
+ /**
+  * gtk_color_chooser_get_rgba:
+  * @chooser: a #GtkColorChooser
+- * @color: return location for the color
++ * @color: (out): a #GdkRGBA to fill in with the current color
+  *
+  * Gets the currently-selected color.
+  *
+--
+cgit v0.9.0.2
+
