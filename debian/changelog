@@ -1,11 +1,15 @@
 gtk+3.0 (3.6.4-0ubuntu5) UNRELEASED; urgency=low
 
+  [ Sebastien Bacher ]
   * debian/patches/git_color_annotation_fix.patch:
     - backport annotation fix from trunk (lp: #1101301)
   * debian/patches/062_ubuntu-set-grab-add.patch:
     - drop that patch, it was needed at some point by ido/indicator-sound
       but this code has been rewritten without the new for those hacks,
       thanks Lars Uebernickel for checking
+
+  [ Iain Lane ]
+  * BD on newer libxkbcommon; previous versions generated very strict shlibs.
 
  -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 31 Jan 2013 11:46:52 +0100
 
