@@ -1,4 +1,4 @@
-gtk+3.0 (3.7.12-1ubuntu1~build1) raring; urgency=low
+gtk+3.0 (3.8.0-0ubuntu1) UNRELEASED; urgency=low
 
   * New version update:
     - includes fix for wayland backend segfault (lp: #1113424)
@@ -7,21 +7,16 @@ gtk+3.0 (3.7.12-1ubuntu1~build1) raring; urgency=low
       in place of context menus, on touch devices
     - The print dialog now shows printers that are discovered
       using avahi (lp: #1082519)
+    - File chooser dialog doesn't provide network access (lp: #304345)
+    - selection is reported incorrectly in file chooser button (lp: #1041546)
   * debian/libgtk-3-0.symbols:
     - new version update
-  * debian/control.in:
-    - Build-Depends on libavahi-gobject-dev
   * debian/patches/git_color_annotation_fix.patch,
     debian/patches/git_cssimage_load_when_needed.patch,
     debian/patches/git_dont_duplicate_bookmark.patch:
     - dropped, those fixes are in the new version
   * debian/patches/102_add_wayland_symbols.patch:
     - updated for new symbols
-  * debian/patches/git_format_security.patch:
-    - new patch, fixes the build with -Werror=format-security
-  * debian/patches/git_gtktextview_segfault.patch:
-    - backport upstream git fix other gedit segfaults when scrolling
-    
 
  -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 25 Feb 2013 16:29:19 +0100
 
