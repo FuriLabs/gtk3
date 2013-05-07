@@ -1,4 +1,4 @@
-gtk+3.0 (3.8.0-0ubuntu1) UNRELEASED; urgency=low
+gtk+3.0 (3.8.1-0ubuntu1) UNRELEASED; urgency=low
 
   * New version update:
     - includes fix for wayland backend segfault (lp: #1113424)
@@ -15,6 +15,8 @@ gtk+3.0 (3.8.0-0ubuntu1) UNRELEASED; urgency=low
     debian/patches/git_cssimage_load_when_needed.patch,
     debian/patches/git_dont_duplicate_bookmark.patch:
     - dropped, those fixes are in the new version
+  * debian/patches/git_gtkbin_revert.patch:
+    - backport patch from git that revert a commit breaking hfw
   * debian/patches/102_add_wayland_symbols.patch:
     - updated for new symbols
 
