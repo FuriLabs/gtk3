@@ -1,165 +1,55 @@
-From 12a031b3a91144261624e033f68fcce5a609d18a Mon Sep 17 00:00:00 2001
+From 0a56e280f89632864fbe92110b5aae40a24a68a6 Mon Sep 17 00:00:00 2001
 From: Lars Uebernickel <lars.uebernickel@canonical.com>
 Date: Wed, 8 May 2013 13:21:55 -0700
 Subject: [PATCH] Allow custom menu items from gtk_menu_new_from_model
 
-Provide GtkMenuItemFactory, an interface that can be implemented by
+Provide UbuntuMenuItemFactory, an interface that can be implemented by
 extension points. It has one function: create a GtkMenuItem for a
 GMenuItem and a GActionGroup, keyed by the type given in the
 x-canonical-type attribute.
 
 This is not considered to be public API.
 ---
- gtk/Makefile.am          |   2 +
- gtk/gtk.h                |   1 +
- gtk/gtkmenuitemfactory.c |  38 ++++++++++++
- gtk/gtkmenuitemfactory.h |  57 ++++++++++++++++++
- gtk/gtkmodelmenu.c       | 147 ++++++++++++++++++++++++++++++++++++++++++++++-
- 5 files changed, 244 insertions(+), 1 deletion(-)
- create mode 100644 gtk/gtkmenuitemfactory.c
- create mode 100644 gtk/gtkmenuitemfactory.h
+ gtk/Makefile.am             |   3 +
+ gtk/gtkmodelmenu.c          | 147 +++++++++++++++++++++++++++++++++++++++++++-
+ gtk/ubuntu-private.h        |  32 ++++++++++
+ gtk/ubuntumenuitemfactory.c |  38 ++++++++++++
+ gtk/ubuntumenuitemfactory.h |  57 +++++++++++++++++
+ 5 files changed, 276 insertions(+), 1 deletion(-)
+ create mode 100644 gtk/ubuntu-private.h
+ create mode 100644 gtk/ubuntumenuitemfactory.c
+ create mode 100644 gtk/ubuntumenuitemfactory.h
 
 diff --git a/gtk/Makefile.am b/gtk/Makefile.am
-index e164c90..717f8bf 100644
+index e164c90..304e252 100644
 --- a/gtk/Makefile.am
 +++ b/gtk/Makefile.am
-@@ -277,6 +277,7 @@ gtk_public_h_sources = 		\
+@@ -175,6 +175,7 @@ deprecated_private_h_sources =			\
+ 
+ gtk_public_h_sources = 		\
+ 	gtk.h			\
++	ubuntu-private.h	\
+ 	gtkx.h			\
+ 	gtk-a11y.h		\
+ 	gtkaboutdialog.h	\
+@@ -277,6 +278,7 @@ gtk_public_h_sources = 		\
  	gtklockbutton.h		\
  	gtkmain.h		\
  	gtkmenu.h		\
-+	gtkmenuitemfactory.h	\
++	ubuntumenuitemfactory.h	\
  	gtkmenubar.h		\
  	gtkmenubutton.h		\
  	gtkmenuitem.h		\
-@@ -765,6 +766,7 @@ gtk_base_c_sources = 		\
+@@ -765,6 +767,7 @@ gtk_base_c_sources = 		\
  	gtkmisc.c		\
  	gtkmnemonichash.c	\
  	gtkmodelmenu.c		\
-+	gtkmenuitemfactory.c	\
++	ubuntumenuitemfactory.c	\
  	gtkmodelmenuitem.c	\
  	gtkmodifierstyle.c	\
  	gtkmodules.c		\
-diff --git a/gtk/gtk.h b/gtk/gtk.h
-index e95494f..c384979 100644
---- a/gtk/gtk.h
-+++ b/gtk/gtk.h
-@@ -223,6 +223,7 @@
- #include <gtk/gtkwidget.h>
- #include <gtk/gtkwidgetpath.h>
- #include <gtk/gtkwindow.h>
-+#include <gtk/gtkmenuitemfactory.h>
- 
- #ifndef GTK_DISABLE_DEPRECATED
- #include <gtk/deprecated/gtkcolorsel.h>
-diff --git a/gtk/gtkmenuitemfactory.c b/gtk/gtkmenuitemfactory.c
-new file mode 100644
-index 0000000..007699a
---- /dev/null
-+++ b/gtk/gtkmenuitemfactory.c
-@@ -0,0 +1,38 @@
-+/*
-+* Copyright 2013 Canonical Ltd.
-+*
-+* This program is free software: you can redistribute it and/or modify it
-+* under the terms of the GNU General Public License version 3, as published
-+* by the Free Software Foundation.
-+*
-+* This program is distributed in the hope that it will be useful, but
-+* WITHOUT ANY WARRANTY; without even the implied warranties of
-+* MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR
-+* PURPOSE.  See the GNU General Public License for more details.
-+*
-+* You should have received a copy of the GNU General Public License along
-+* with this program.  If not, see <http://www.gnu.org/licenses/>.
-+*
-+* Authors:
-+*     Lars Uebernickel <lars.uebernickel@canonical.com>
-+*/
-+
-+#include "gtkmenuitemfactory.h"
-+
-+G_DEFINE_INTERFACE_WITH_CODE (GtkMenuItemFactory, gtk_menu_item_factory, G_TYPE_OBJECT,
-+  GIOExtensionPoint *ep = g_io_extension_point_register (GTK_MENU_ITEM_FACTORY_EXTENSION_POINT_NAME);
-+  g_io_extension_point_set_required_type (ep, g_define_type_id);)
-+
-+static void
-+gtk_menu_item_factory_default_init (GtkMenuItemFactoryInterface *iface)
-+{
-+}
-+
-+GtkMenuItem *
-+gtk_menu_item_factory_create_menu_item (GtkMenuItemFactory *factory,
-+                                        const gchar        *type,
-+                                        GMenuItem          *menuitem,
-+                                        GActionGroup       *actions)
-+{
-+  return GTK_MENU_ITEM_FACTORY_GET_IFACE (factory)->create_menu_item (factory, type, menuitem, actions);
-+}
-diff --git a/gtk/gtkmenuitemfactory.h b/gtk/gtkmenuitemfactory.h
-new file mode 100644
-index 0000000..ffeb8da
---- /dev/null
-+++ b/gtk/gtkmenuitemfactory.h
-@@ -0,0 +1,57 @@
-+/*
-+* Copyright 2013 Canonical Ltd.
-+*
-+* This program is free software: you can redistribute it and/or modify it
-+* under the terms of the GNU General Public License version 3, as published
-+* by the Free Software Foundation.
-+*
-+* This program is distributed in the hope that it will be useful, but
-+* WITHOUT ANY WARRANTY; without even the implied warranties of
-+* MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR
-+* PURPOSE.  See the GNU General Public License for more details.
-+*
-+* You should have received a copy of the GNU General Public License along
-+* with this program.  If not, see <http://www.gnu.org/licenses/>.
-+*
-+* Authors:
-+*     Lars Uebernickel <lars.uebernickel@canonical.com>
-+*/
-+
-+#ifndef __GTK_MENU_ITEM_FACTORY_H__
-+#define __GTK_MENU_ITEM_FACTORY_H__
-+
-+#include <gio/gio.h>
-+#include "gtkmenuitem.h"
-+
-+G_BEGIN_DECLS
-+
-+#define GTK_TYPE_MENU_ITEM_FACTORY         (gtk_menu_item_factory_get_type ())
-+#define GTK_MENU_ITEM_FACTORY(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), GTK_TYPE_MENU_ITEM_FACTORY, GtkMenuItemFactory))
-+#define GTK_IS_MENU_ITEM_FACTORY(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), GTK_TYPE_MENU_ITEM_FACTORY))
-+#define GTK_MENU_ITEM_FACTORY_GET_IFACE(o) (G_TYPE_INSTANCE_GET_INTERFACE ((o), GTK_TYPE_MENU_ITEM_FACTORY, GtkMenuItemFactoryInterface))
-+
-+#define GTK_MENU_ITEM_FACTORY_EXTENSION_POINT_NAME "gtk-menu-item-factory"
-+
-+typedef struct _GtkMenuItemFactoryInterface GtkMenuItemFactoryInterface;
-+typedef struct _GtkMenuItemFactory          GtkMenuItemFactory;
-+
-+struct _GtkMenuItemFactoryInterface
-+{
-+  GTypeInterface iface;
-+
-+  GtkMenuItem * (*create_menu_item)  (GtkMenuItemFactory *factory,
-+                                      const gchar        *type,
-+                                      GMenuItem          *menuitem,
-+                                      GActionGroup       *actions);
-+};
-+
-+GType                   gtk_menu_item_factory_get_type      (void);
-+
-+GtkMenuItem *           gtk_menu_item_factory_create_menu_item (GtkMenuItemFactory *factory,
-+                                                                const gchar        *type,
-+                                                                GMenuItem          *menuitem,
-+                                                                GActionGroup       *actions);
-+
-+G_END_DECLS
-+
-+#endif
 diff --git a/gtk/gtkmodelmenu.c b/gtk/gtkmodelmenu.c
-index 0c3cc5e..1f4c049 100644
+index 0c3cc5e..2b6899b 100644
 --- a/gtk/gtkmodelmenu.c
 +++ b/gtk/gtkmodelmenu.c
 @@ -28,6 +28,8 @@
@@ -167,7 +57,7 @@ index 0c3cc5e..1f4c049 100644
  #include "gtkmodelmenuitem.h"
  #include "gtkapplicationprivate.h"
 +#include "gtkwidgetprivate.h"
-+#include "gtkmenuitemfactory.h"
++#include "ubuntumenuitemfactory.h"
  
  #define MODEL_MENU_WIDGET_DATA "gtk-model-menu-widget-data"
  
@@ -230,12 +120,12 @@ index 0c3cc5e..1f4c049 100644
 +    {
 +      GIOExtensionPoint *ep;
 +
-+      g_type_ensure (GTK_TYPE_MENU_ITEM_FACTORY);
-+      ep = g_io_extension_point_lookup (GTK_MENU_ITEM_FACTORY_EXTENSION_POINT_NAME);
++      g_type_ensure (UBUNTU_TYPE_MENU_ITEM_FACTORY);
++      ep = g_io_extension_point_lookup (UBUNTU_MENU_ITEM_FACTORY_EXTENSION_POINT_NAME);
 +      for (it = g_io_extension_point_get_extensions (ep); it != NULL; it = it->next)
 +        {
 +          GIOExtension *ext = it->data;
-+          GtkMenuItemFactory *factory;
++          UbuntuMenuItemFactory *factory;
 +
 +          factory = g_object_new (g_io_extension_get_type (ext), NULL);
 +          factories = g_list_prepend (factories, factory);
@@ -245,10 +135,10 @@ index 0c3cc5e..1f4c049 100644
 +
 +  for (it = factories; it != NULL; it = it->next)
 +    {
-+      GtkMenuItemFactory *factory = it->data;
++      UbuntuMenuItemFactory *factory = it->data;
 +      GtkMenuItem *item;
 +
-+      item = gtk_menu_item_factory_create_menu_item (factory, typename, menuitem, actions);
++      item = ubuntu_menu_item_factory_create_menu_item (factory, typename, menuitem, actions);
 +      if (item)
 +        return item;
 +    }
@@ -330,6 +220,151 @@ index 0c3cc5e..1f4c049 100644
        gtk_menu_shell_append (binding->shell, GTK_WIDGET (item));
        gtk_widget_show (GTK_WIDGET (item));
        binding->n_items++;
+diff --git a/gtk/ubuntu-private.h b/gtk/ubuntu-private.h
+new file mode 100644
+index 0000000..3ed366f
+--- /dev/null
++++ b/gtk/ubuntu-private.h
+@@ -0,0 +1,32 @@
++/*
++* Copyright 2013 Canonical Ltd.
++*
++* This program is free software: you can redistribute it and/or modify it
++* under the terms of the GNU General Public License version 3, as published
++* by the Free Software Foundation.
++*
++* This program is distributed in the hope that it will be useful, but
++* WITHOUT ANY WARRANTY; without even the implied warranties of
++* MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR
++* PURPOSE.  See the GNU General Public License for more details.
++*
++* You should have received a copy of the GNU General Public License along
++* with this program.  If not, see <http://www.gnu.org/licenses/>.
++*
++* Authors:
++*     Lars Uebernickel <lars.uebernickel@canonical.com>
++*/
++
++/*
++ * Warning: this file is not part of gtk+, but an Ubuntu-specific extension.
++ * The API provided here is meant to be used only from Unity.
++ *
++ * Applications should not use this.
++ */
++
++#ifndef __UBUNTU_PRIVATE_H__
++#define __UBUNTU_PRIVATE_H__
++
++#include "ubuntumenuitemfactory.h"
++
++#endif
+diff --git a/gtk/ubuntumenuitemfactory.c b/gtk/ubuntumenuitemfactory.c
+new file mode 100644
+index 0000000..65de84a
+--- /dev/null
++++ b/gtk/ubuntumenuitemfactory.c
+@@ -0,0 +1,38 @@
++/*
++* Copyright 2013 Canonical Ltd.
++*
++* This program is free software: you can redistribute it and/or modify it
++* under the terms of the GNU General Public License version 3, as published
++* by the Free Software Foundation.
++*
++* This program is distributed in the hope that it will be useful, but
++* WITHOUT ANY WARRANTY; without even the implied warranties of
++* MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR
++* PURPOSE.  See the GNU General Public License for more details.
++*
++* You should have received a copy of the GNU General Public License along
++* with this program.  If not, see <http://www.gnu.org/licenses/>.
++*
++* Authors:
++*     Lars Uebernickel <lars.uebernickel@canonical.com>
++*/
++
++#include "ubuntumenuitemfactory.h"
++
++G_DEFINE_INTERFACE_WITH_CODE (UbuntuMenuItemFactory, ubuntu_menu_item_factory, G_TYPE_OBJECT,
++  GIOExtensionPoint *ep = g_io_extension_point_register (UBUNTU_MENU_ITEM_FACTORY_EXTENSION_POINT_NAME);
++  g_io_extension_point_set_required_type (ep, g_define_type_id);)
++
++static void
++ubuntu_menu_item_factory_default_init (UbuntuMenuItemFactoryInterface *iface)
++{
++}
++
++GtkMenuItem *
++ubuntu_menu_item_factory_create_menu_item (UbuntuMenuItemFactory *factory,
++                                           const gchar           *type,
++                                           GMenuItem             *menuitem,
++                                           GActionGroup          *actions)
++{
++  return UBUNTU_MENU_ITEM_FACTORY_GET_IFACE (factory)->create_menu_item (factory, type, menuitem, actions);
++}
+diff --git a/gtk/ubuntumenuitemfactory.h b/gtk/ubuntumenuitemfactory.h
+new file mode 100644
+index 0000000..e6f93c0
+--- /dev/null
++++ b/gtk/ubuntumenuitemfactory.h
+@@ -0,0 +1,57 @@
++/*
++* Copyright 2013 Canonical Ltd.
++*
++* This program is free software: you can redistribute it and/or modify it
++* under the terms of the GNU General Public License version 3, as published
++* by the Free Software Foundation.
++*
++* This program is distributed in the hope that it will be useful, but
++* WITHOUT ANY WARRANTY; without even the implied warranties of
++* MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR
++* PURPOSE.  See the GNU General Public License for more details.
++*
++* You should have received a copy of the GNU General Public License along
++* with this program.  If not, see <http://www.gnu.org/licenses/>.
++*
++* Authors:
++*     Lars Uebernickel <lars.uebernickel@canonical.com>
++*/
++
++#ifndef __UBUNTU_MENU_ITEM_FACTORY_H__
++#define __UBUNTU_MENU_ITEM_FACTORY_H__
++
++#include <gio/gio.h>
++#include "gtkmenuitem.h"
++
++G_BEGIN_DECLS
++
++#define UBUNTU_TYPE_MENU_ITEM_FACTORY         (ubuntu_menu_item_factory_get_type ())
++#define UBUNTU_MENU_ITEM_FACTORY(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), UBUNTU_TYPE_MENU_ITEM_FACTORY, UbuntuMenuItemFactory))
++#define UBUNTU_IS_MENU_ITEM_FACTORY(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), UBUNTU_TYPE_MENU_ITEM_FACTORY))
++#define UBUNTU_MENU_ITEM_FACTORY_GET_IFACE(o) (G_TYPE_INSTANCE_GET_INTERFACE ((o), UBUNTU_TYPE_MENU_ITEM_FACTORY, UbuntuMenuItemFactoryInterface))
++
++#define UBUNTU_MENU_ITEM_FACTORY_EXTENSION_POINT_NAME "ubuntu-menu-item-factory"
++
++typedef struct _UbuntuMenuItemFactoryInterface UbuntuMenuItemFactoryInterface;
++typedef struct _UbuntuMenuItemFactory          UbuntuMenuItemFactory;
++
++struct _UbuntuMenuItemFactoryInterface
++{
++  GTypeInterface iface;
++
++  GtkMenuItem * (*create_menu_item)  (UbuntuMenuItemFactory *factory,
++                                      const gchar           *type,
++                                      GMenuItem             *menuitem,
++                                      GActionGroup          *actions);
++};
++
++GType                   ubuntu_menu_item_factory_get_type      (void);
++
++GtkMenuItem *           ubuntu_menu_item_factory_create_menu_item (UbuntuMenuItemFactory *factory,
++                                                                   const gchar           *type,
++                                                                   GMenuItem             *menuitem,
++                                                                   GActionGroup          *actions);
++
++G_END_DECLS
++
++#endif
 -- 
 1.8.1.2
 
