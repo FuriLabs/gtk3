@@ -1,4 +1,4 @@
-From 0a56e280f89632864fbe92110b5aae40a24a68a6 Mon Sep 17 00:00:00 2001
+From 311cf9c2fd6bbc303c816585cfc4986cdee2db52 Mon Sep 17 00:00:00 2001
 From: Lars Uebernickel <lars.uebernickel@canonical.com>
 Date: Wed, 8 May 2013 13:21:55 -0700
 Subject: [PATCH] Allow custom menu items from gtk_menu_new_from_model
@@ -11,11 +11,12 @@ x-canonical-type attribute.
 This is not considered to be public API.
 ---
  gtk/Makefile.am             |   3 +
+ gtk/gtk.symbols             |   2 +
  gtk/gtkmodelmenu.c          | 147 +++++++++++++++++++++++++++++++++++++++++++-
  gtk/ubuntu-private.h        |  32 ++++++++++
  gtk/ubuntumenuitemfactory.c |  38 ++++++++++++
  gtk/ubuntumenuitemfactory.h |  57 +++++++++++++++++
- 5 files changed, 276 insertions(+), 1 deletion(-)
+ 6 files changed, 278 insertions(+), 1 deletion(-)
  create mode 100644 gtk/ubuntu-private.h
  create mode 100644 gtk/ubuntumenuitemfactory.c
  create mode 100644 gtk/ubuntumenuitemfactory.h
@@ -48,6 +49,16 @@ index e164c90..304e252 100644
  	gtkmodelmenuitem.c	\
  	gtkmodifierstyle.c	\
  	gtkmodules.c		\
+diff --git a/gtk/gtk.symbols b/gtk/gtk.symbols
+index 030a06c..711b6ba 100644
+--- a/gtk/gtk.symbols
++++ b/gtk/gtk.symbols
+@@ -4055,3 +4055,5 @@ gtk_window_unfullscreen
+ gtk_window_unmaximize
+ gtk_window_unstick
+ gtk_wrap_mode_get_type
++ubuntu_menu_item_factory_get_type
++ubuntu_menu_item_factory_create_menu_item
 diff --git a/gtk/gtkmodelmenu.c b/gtk/gtkmodelmenu.c
 index 0c3cc5e..2b6899b 100644
 --- a/gtk/gtkmodelmenu.c
