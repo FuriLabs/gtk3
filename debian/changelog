@@ -2,14 +2,17 @@ gtk+3.0 (3.8.2-0ubuntu4) UNRELEASED; urgency=low
 
   * debian/control.in:
     - Conflicts on appmenu-gtk3 since we drop the patches needed for it
-  * debian/gtk-3-examples.install: 
-    - list gtk3-demo-application there
   * debian/patches/043_ubuntu_menu_proxy.patch,
     debian/libgtk-3-0.symbols:
     - drop old menu patches, we deprecate appmenu-gtk in favor of the new
       unity-gtk-module code
+  * debian/patches/git-gtkmodelmenuitem-icon-support.patch:
+    - git backport from 3.9, add upstream's GtkModelMenuItem GIcon support, 
+      thanks William Hua
+  * debian/gtk-3-examples.install: 
+    - list gtk3-demo-application there
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 05 Jun 2013 21:40:20 +0200
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 05 Jun 2013 21:01:19 +0200
 
 gtk+3.0 (3.8.2-0ubuntu3) saucy; urgency=low
 
