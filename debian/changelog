@@ -1,10 +1,19 @@
+gtk+3.0 (3.8.2-0ubuntu8) UNRELEASED; urgency=low
+
+  * debian/patches: Cherrypick upstream git iconcache fixes (LP: #1186694)
+    - git_iconcache_ref_GtkIconData.patch
+    - git_icontheme_move_changed_emission.patch
+ 
+
+ -- Tim Lunn <tim@feathertop.org>  Fri, 05 Jul 2013 09:41:38 +1000
+
 gtk+3.0 (3.8.2-0ubuntu7) saucy; urgency=low
 
   * Revert the previous change and work around the GCC-4.8 breakage by
     building without optimisations on armhf. For the GCC problem, see bug
     #1194123 
 
- -- Iain Lane <iain.lane@canonical.com>  Tue, 25 Jun 2013 10:58:43 +0100
+ -- Iain Lane <iain.lane@canonical.com>  Tue, 25 Jun 2013 09:18:04 +0100
 
 gtk+3.0 (3.8.2-0ubuntu6) saucy; urgency=low
 
