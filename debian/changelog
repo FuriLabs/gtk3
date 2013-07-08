@@ -1,3 +1,14 @@
+gtk+3.0 (3.8.2-0ubuntu8) UNRELEASED; urgency=low
+
+  * debian/patches/git_filechooser_signal.patch:
+    "GtkFileChooserButton: Also emit 'file-set' when changing the selection 
+      through the combo box"
+  * debian/patches/git_fileselect_subdir.patch:
+    " GtkFileChooserEntry: don't inline-complete if the entry 
+      doesn't have the focus" (lp: #1102042)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 08 Jul 2013 13:12:10 +0200
+
 gtk+3.0 (3.8.2-0ubuntu7) saucy; urgency=low
 
   * Revert the previous change and work around the GCC-4.8 breakage by
