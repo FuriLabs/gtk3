@@ -4,6 +4,7 @@ DEB_BUILDDIR = debian/build
 DEB_MAKE_DESTDIRSKEL = $(CURDIR)/debian/install/@FLAVOR@
 DEB_MAKE_FLAVORS = shared shared_udeb
 DISABLE_UPDATE_UPLOADERS = 1
+DEB_BUILD_PARALLEL = yes
 
 include /usr/share/cdbs/1/rules/autoreconf.mk
 include /usr/share/cdbs/1/rules/debhelper.mk

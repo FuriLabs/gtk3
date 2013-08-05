@@ -54,7 +54,7 @@ XS-Testsuite: autopkgtest
 
 Package: libgtk-3-0
 Architecture: any
-Depends: libgtk-3-common (= ${source:Version}),
+Depends: libgtk-3-common (>= ${source:Upstream-Version}),
          ${misc:Depends},
          ${shlibs:Depends},
          shared-mime-info,
@@ -116,7 +116,7 @@ Section: misc
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends},
          libgtk-3-0 (>= ${source:Version}),
-         libgtk-3-common (= ${source:Version})
+         libgtk-3-common (>= ${source:Upstream-Version})
 Multi-Arch: foreign
 Description: programs for the GTK+ graphical user interface library
  GTK+ is a multi-platform toolkit for creating graphical user
