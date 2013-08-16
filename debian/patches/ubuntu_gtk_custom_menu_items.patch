@@ -22,8 +22,8 @@ This is not considered to be public API.
 
 Index: gtk+3.0-3.8.2/gtk/Makefile.am
 ===================================================================
---- gtk+3.0-3.8.2.orig/gtk/Makefile.am	2013-05-28 13:52:25.122237124 +0200
-+++ gtk+3.0-3.8.2/gtk/Makefile.am	2013-05-28 13:52:25.106237124 +0200
+--- gtk+3.0-3.8.2.orig/gtk/Makefile.am	2013-08-15 22:30:36.711735362 -0500
++++ gtk+3.0-3.8.2/gtk/Makefile.am	2013-08-15 22:30:36.703735295 -0500
 @@ -175,6 +175,7 @@
  
  gtk_public_h_sources = 		\
@@ -40,7 +40,7 @@ Index: gtk+3.0-3.8.2/gtk/Makefile.am
  	gtkmenubar.h		\
  	gtkmenubutton.h		\
  	gtkmenuitem.h		\
-@@ -769,6 +771,7 @@
+@@ -765,6 +767,7 @@
  	gtkmisc.c		\
  	gtkmnemonichash.c	\
  	gtkmodelmenu.c		\
@@ -50,8 +50,8 @@ Index: gtk+3.0-3.8.2/gtk/Makefile.am
  	gtkmodules.c		\
 Index: gtk+3.0-3.8.2/gtk/gtkmodelmenu.c
 ===================================================================
---- gtk+3.0-3.8.2.orig/gtk/gtkmodelmenu.c	2013-05-28 13:52:25.122237124 +0200
-+++ gtk+3.0-3.8.2/gtk/gtkmodelmenu.c	2013-05-28 13:52:25.110237124 +0200
+--- gtk+3.0-3.8.2.orig/gtk/gtkmodelmenu.c	2013-08-15 22:30:36.711735362 -0500
++++ gtk+3.0-3.8.2/gtk/gtkmodelmenu.c	2013-08-15 22:32:02.856649676 -0500
 @@ -28,6 +28,8 @@
  #include "gtkseparatormenuitem.h"
  #include "gtkmodelmenuitem.h"
@@ -61,7 +61,7 @@ Index: gtk+3.0-3.8.2/gtk/gtkmodelmenu.c
  
  #define MODEL_MENU_WIDGET_DATA "gtk-model-menu-widget-data"
  
-@@ -72,6 +74,146 @@
+@@ -72,6 +74,149 @@
    g_slice_free (GtkModelMenuBinding, binding);
  }
  
@@ -159,15 +159,18 @@ Index: gtk+3.0-3.8.2/gtk/gtkmodelmenu.c
 +  menuitem = g_menu_item_new_from_model (menu, item_index);
 +  if (action_namespace)
 +    {
-+      gchar *action;
-+      gchar *fullname;
++      gchar *action = NULL;
++      gchar *fullname = NULL;
 +
 +      g_menu_item_get_attribute (menuitem, G_MENU_ATTRIBUTE_ACTION, "s", &action);
-+      fullname = g_strconcat (action_namespace, ".", action, NULL);
-+      g_menu_item_set_attribute (menuitem, G_MENU_ATTRIBUTE_ACTION, "s", fullname);
++      if (action)
++        {
++          fullname = g_strconcat (action_namespace, ".", action, NULL);
++          g_menu_item_set_attribute (menuitem, G_MENU_ATTRIBUTE_ACTION, "s", fullname);
 +
-+      g_free (action);
-+      g_free (fullname);
++          g_free (action);
++          g_free (fullname);
++        }
 +    }
 +
 +  if (g_menu_model_get_item_attribute (menu, item_index, "x-canonical-type", "s", &typename))
@@ -208,7 +211,7 @@ Index: gtk+3.0-3.8.2/gtk/gtkmodelmenu.c
  static void
  gtk_model_menu_binding_append_item (GtkModelMenuBinding  *binding,
                                      GMenuModel           *model,
-@@ -106,7 +248,10 @@
+@@ -106,7 +251,10 @@
      {
        GtkMenuItem *item;
  
@@ -223,7 +226,7 @@ Index: gtk+3.0-3.8.2/gtk/gtkmodelmenu.c
 Index: gtk+3.0-3.8.2/gtk/ubuntu-private.h
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+3.0-3.8.2/gtk/ubuntu-private.h	2013-05-28 13:52:25.110237124 +0200
++++ gtk+3.0-3.8.2/gtk/ubuntu-private.h	2013-08-15 22:30:36.707735329 -0500
 @@ -0,0 +1,32 @@
 +/*
 +* Copyright 2013 Canonical Ltd.
@@ -260,7 +263,7 @@ Index: gtk+3.0-3.8.2/gtk/ubuntu-private.h
 Index: gtk+3.0-3.8.2/gtk/ubuntumenuitemfactory.c
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+3.0-3.8.2/gtk/ubuntumenuitemfactory.c	2013-05-28 13:52:25.114237124 +0200
++++ gtk+3.0-3.8.2/gtk/ubuntumenuitemfactory.c	2013-08-15 22:30:36.707735329 -0500
 @@ -0,0 +1,38 @@
 +/*
 +* Copyright 2013 Canonical Ltd.
@@ -303,7 +306,7 @@ Index: gtk+3.0-3.8.2/gtk/ubuntumenuitemfactory.c
 Index: gtk+3.0-3.8.2/gtk/ubuntumenuitemfactory.h
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ gtk+3.0-3.8.2/gtk/ubuntumenuitemfactory.h	2013-05-28 13:52:25.114237124 +0200
++++ gtk+3.0-3.8.2/gtk/ubuntumenuitemfactory.h	2013-08-15 22:30:36.707735329 -0500
 @@ -0,0 +1,57 @@
 +/*
 +* Copyright 2013 Canonical Ltd.
@@ -364,8 +367,8 @@ Index: gtk+3.0-3.8.2/gtk/ubuntumenuitemfactory.h
 +#endif
 Index: gtk+3.0-3.8.2/gtk/gtk.symbols
 ===================================================================
---- gtk+3.0-3.8.2.orig/gtk/gtk.symbols	2013-05-28 13:52:24.990237129 +0200
-+++ gtk+3.0-3.8.2/gtk/gtk.symbols	2013-05-28 13:52:58.898235664 +0200
+--- gtk+3.0-3.8.2.orig/gtk/gtk.symbols	2013-08-15 22:30:36.711735362 -0500
++++ gtk+3.0-3.8.2/gtk/gtk.symbols	2013-08-15 22:30:36.711735362 -0500
 @@ -4056,3 +4056,5 @@
  gtk_window_unmaximize
  gtk_window_unstick
