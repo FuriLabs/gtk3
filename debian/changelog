@@ -1,3 +1,12 @@
+gtk+3.0 (3.8.4-0ubuntu4) UNRELEASED; urgency=low
+
+  * debian/patches/git_list_handlers.patch: gtk was made, during 
+    the 3.8 cycle, to ignore the mimetype handlers with NoDisplay=true. 
+    The change turned out to be wrong and got reverted in 3.10, doing the
+    same here. It makes, e.g shotwell to be listed again (lp: #1238149)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 11 Oct 2013 15:24:16 +0200
+
 gtk+3.0 (3.8.4-0ubuntu3) saucy; urgency=low
 
   * debian/patches/git_padding_value.patch: don't use a negative padding, 
