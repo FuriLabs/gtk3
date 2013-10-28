@@ -1,3 +1,15 @@
+gtk+3.0 (3.8.6-0ubuntu2) UNRELEASED; urgency=low
+
+  * Backport fixes from git
+  * debian/patches/git_frame_disconnect.patch
+    debian/patches/git_frame_update.patch:
+    - "This fixes high wake-up count from any application using GtkTreeView,
+       even idle ones."
+  * debian/patches/git_submenus_leak.patch:
+    - "don't leak submenus", thanks Lars Uebernickel (lp: #1199877)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 28 Oct 2013 10:44:26 -0700
+
 gtk+3.0 (3.8.6-0ubuntu1) saucy; urgency=low
 
   * New upstream version
