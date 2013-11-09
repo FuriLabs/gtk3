@@ -1,3 +1,35 @@
+gtk+3.0 (3.10.2-0ubuntu1) UNRELEASED; urgency=low
+
+  * New upstream version
+  * debian/patches/git-gtkmodelmenuitem-icon-support.patch,
+    debian/patches/git_frame_disconnect.patch,
+    debian/patches/git_frame_update.patch,
+    debian/patches/git_list_handlers.patch,
+    debian/patches/git_submenus_leak.patch,
+    debian/patches/revert_git_a11y_stopped.patch,
+    debian/patches/031_ia64_children_test.patch:
+    - drop: fixed upstream
+  * debian/patches/abicheck-dynamic-backends:
+    - drop: abicheck was removed upstream
+  * debian/patches/075_expose_gdkwidget_for_gtkrange.patch:
+    - drop: ido doesn't use this anymore
+  * debian/patches/102_add_wayland_symbols.patch:
+    - drop: symbols are exported automatically now
+  * debian/patches/015_default-fallback-icon-theme.patch,
+    debian/patches/018_gdkenumtypes.c_location.patch,
+    debian/patches/032_mips_treeview_row_separator_height.patch
+    - update from debian
+  * debian/patches/uimanager-guard-against-nested-node-updates.patch:
+    - update: make it apply (gtkuimanager.c was moved to deprecated)
+  * debian/patches/ubuntu_gtk_custom_menu_items.patch:
+    - update: gtkmodelmenu was replaced by gtkmenutracker
+  * debian/patches/073_treeview_almost_fixed.patch:
+    - update: property wrongly marked as readable (caught by the new tests)
+  * Add debian/patches/gtk-object-tests-run-under-local-environment.patch:
+    - make new tests work non-installed (GNOME #711715)
+
+ -- Lars Uebernickel <lars.uebernickel@ubuntu.com>  Sat, 09 Nov 2013 02:03:52 +0100
+
 gtk+3.0 (3.8.6-0ubuntu2) saucy; urgency=low
 
   * Backport fixes from git
