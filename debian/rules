@@ -83,10 +83,6 @@ DEB_CONFIGURE_FLAGS_shared_udeb = \
 # Avoid test failures on buildd environments
 export HOME=$(CURDIR)/debian/build
 
-ifeq ($(DEB_HOST_ARCH), armhf)
-# This is to work around LP: #1194123
-export CFLAGS := $(CFLAGS:-O2=-O0)
-endif
 DEB_MAKE_CHECK_TARGET = -k check
 DEB_INSTALL_DOCS_ALL = AUTHORS
 DEB_INSTALL_DOCS_$(COMMON_PKG) = README NEWS
