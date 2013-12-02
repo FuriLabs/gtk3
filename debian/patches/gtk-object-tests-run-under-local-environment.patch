@@ -1,4 +1,4 @@
-From 30d68383516fe9cde06c5f43068bee6702a3ce4b Mon Sep 17 00:00:00 2001
+From 463381c51490b062db6a89a7ed5827211a576960 Mon Sep 17 00:00:00 2001
 From: Lars Uebernickel <lars.uebernickel@canonical.com>
 Date: Sat, 9 Nov 2013 01:15:33 +0100
 Subject: [PATCH] gtk object tests: run under local environment
@@ -11,26 +11,32 @@ session bus.
 
 https://bugzilla.gnome.org/show_bug.cgi?id=711715
 ---
- testsuite/gtk/Makefile.am        |  8 ++++++++
+ testsuite/gtk/Makefile.am        | 14 ++++++++++++++
  testsuite/gtk/defaultvalue.c     | 36 +++++++++++++++++++++++++++++++++++-
- testsuite/gtk/object.c           |  3 +++
+ testsuite/gtk/object.c           | 11 +++++++++++
  testsuite/gtk/objects-finalize.c | 25 ++++++++++++++++++++++++-
  testsuite/gtk/templates.c        | 12 ++++++++++++
- 5 files changed, 82 insertions(+), 2 deletions(-)
+ 5 files changed, 96 insertions(+), 2 deletions(-)
 
 diff --git a/testsuite/gtk/Makefile.am b/testsuite/gtk/Makefile.am
-index 75e92dd..fd6a0ed 100644
+index 75e92dd..0c11ef4 100644
 --- a/testsuite/gtk/Makefile.am
 +++ b/testsuite/gtk/Makefile.am
-@@ -129,6 +129,14 @@ EXTRA_DIST +=				\
+@@ -129,6 +129,20 @@ EXTRA_DIST +=				\
  	file-chooser-test-dir/text.txt	\
  	$(NULL)
  
++GTK_GSETTINGS_SCHEMAS = \
++	$(top_srcdir)/gtk/org.gtk.Settings.ColorChooser.gschema.xml \
++	$(top_srcdir)/gtk/org.gtk.Settings.FileChooser.gschema.xml \
++	$(NULL)
 +
 +BUILT_SOURCES = gschemas.compiled
 +
-+gschemas.compiled: $(top_srcdir)/gtk/*.gschema.xml
-+	$(GLIB_COMPILE_SCHEMAS) $(top_srcdir)/gtk --targetdir=$(builddir)
++gschemas.compiled: $(GTK_GSETTINGS_SCHEMAS)
++	$(GLIB_COMPILE_SCHEMAS) \
++		$(addprefix --schema-file=,$(GTK_GSETTINGS_SCHEMAS)) \
++		--targetdir=$(builddir)
 +
 +all-am: gschemas.compiled
 +
@@ -38,7 +44,7 @@ index 75e92dd..fd6a0ed 100644
  insttestdir = $(pkglibexecdir)/installed-tests
  insttest_PROGRAMS = $(TEST_PROGS)
 diff --git a/testsuite/gtk/defaultvalue.c b/testsuite/gtk/defaultvalue.c
-index 1d9c2af..8a9870d 100644
+index bdb0bb6..9b2bcaf 100644
 --- a/testsuite/gtk/defaultvalue.c
 +++ b/testsuite/gtk/defaultvalue.c
 @@ -87,6 +87,17 @@ test_type (gconstpointer data)
@@ -59,7 +65,7 @@ index 1d9c2af..8a9870d 100644
    klass = g_type_class_ref (type);
  
    if (g_type_is_a (type, GTK_TYPE_SETTINGS))
-@@ -379,10 +390,27 @@ main (int argc, char **argv)
+@@ -384,10 +395,27 @@ main (int argc, char **argv)
  {
    const GType *otypes;
    guint i;
@@ -87,7 +93,7 @@ index 1d9c2af..8a9870d 100644
    otypes = gtk_test_list_all_types (NULL);
    for (i = 0; otypes[i]; i++)
      {
-@@ -396,5 +424,11 @@ main (int argc, char **argv)
+@@ -401,5 +429,11 @@ main (int argc, char **argv)
        g_free (testname);
      }
  
@@ -101,19 +107,36 @@ index 1d9c2af..8a9870d 100644
 +  return result;
  }
 diff --git a/testsuite/gtk/object.c b/testsuite/gtk/object.c
-index 1bfd1bf..041a7a0 100644
+index 055fc3a..d80b475 100644
 --- a/testsuite/gtk/object.c
 +++ b/testsuite/gtk/object.c
-@@ -308,6 +308,9 @@ main (int   argc,
+@@ -308,9 +308,18 @@ main (int   argc,
  {
    const GType *otypes;
    guint i;
++  gchar *schema_dir;
 +
 +  g_setenv ("GSETTINGS_BACKEND", "memory", TRUE);
 +
    /* initialize test program */
    gtk_test_init (&argc, &argv);
    gtk_test_register_all_types ();
++
++  /* g_test_build_filename must be called after gtk_test_init */
++  schema_dir = g_test_build_filename (G_TEST_BUILT, "", NULL);
++  g_setenv ("GSETTINGS_SCHEMA_DIR", schema_dir, TRUE);
++
+   /* install a property test for each widget type */
+   otypes = gtk_test_list_all_types (NULL);
+   for (i = 0; otypes[i]; i++)
+@@ -322,5 +331,7 @@ main (int   argc,
+         g_test_add_data_func (testpath, (void*) otypes[i], widget_property_tests);
+         g_free (testpath);
+       }
++
++  g_free (schema_dir);
+   return g_test_run ();
+ }
 diff --git a/testsuite/gtk/objects-finalize.c b/testsuite/gtk/objects-finalize.c
 index 0e1eae0..fd28f88 100644
 --- a/testsuite/gtk/objects-finalize.c
@@ -193,5 +216,5 @@ index 66ccd1f..e66c835 100644
    return g_test_run();
  }
 -- 
-1.8.4.2
+1.8.4.4
 
