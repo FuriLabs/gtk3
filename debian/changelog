@@ -1,11 +1,14 @@
 gtk+3.0 (3.10.5-0ubuntu1) UNRELEASED; urgency=low
 
   * debian/control.in:
+    - Build-Depends on dbus-x11n g_test_dbus_up() is using dbus-launch
+    - Build-Depends on at-spi2-core, needed for the tests
     - updated cairo, glib, wayland requirements
   * Renamed some patches to follow in serie and indicate correct origin
   * debian/patches/git_bookmark_ellipsize.patch:
     - dropped, the fix is in the new version
   * debian/rules:
+    - copy build hacks from debian to use local schemas
     - drop armhf -O0 workaround, gcc got fixed since
 
   [ Lars Uebernickel ]
