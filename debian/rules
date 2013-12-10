@@ -80,13 +80,6 @@ DEB_CONFIGURE_FLAGS_shared_udeb = \
 			--disable-xfixes \
 			--disable-xrandr
 
-# Avoid test failures on buildd environments
-export HOME=$(CURDIR)/debian/build
-
-ifeq ($(DEB_HOST_ARCH), armhf)
-# This is to work around LP: #1194123
-export CFLAGS := $(CFLAGS:-O2=-O0)
-endif
 DEB_MAKE_CHECK_TARGET = -k check
 DEB_INSTALL_DOCS_ALL = AUTHORS
 DEB_INSTALL_DOCS_$(COMMON_PKG) = README NEWS
@@ -131,6 +124,9 @@ clean:: debian/control
 	# gross kludge to force control generation with the %.in target
 	touch debian/control.in
 	rm -f $(call dh_subst_files,$(DEB_ALL_PACKAGES))
+	# work around tarball generated with too new Wayland
+	rm gdk/wayland/gtk-shell-client-protocol.h
+	rm gdk/wayland/gtk-shell-protocol.c
 
 # Add dependencies to generate files from the debian/*.in ones
 build-indep: $(call dh_subst_files,$(DEB_INDEP_PACKAGES))
