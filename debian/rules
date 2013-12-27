@@ -125,8 +125,8 @@ clean:: debian/control
 	touch debian/control.in
 	rm -f $(call dh_subst_files,$(DEB_ALL_PACKAGES))
 	# work around tarball generated with too new Wayland
-	rm gdk/wayland/gtk-shell-client-protocol.h
-	rm gdk/wayland/gtk-shell-protocol.c
+	rm -f gdk/wayland/gtk-shell-client-protocol.h
+	rm -f gdk/wayland/gtk-shell-protocol.c
 
 # Add dependencies to generate files from the debian/*.in ones
 build-indep: $(call dh_subst_files,$(DEB_INDEP_PACKAGES))
