@@ -1,0 +1,105 @@
+Description: fix prototypes of signal callbacks in the test suite
+ The signal callbacks are defined to take pointers as their arguments, but the
+ callbacks found in testsuite/gtk/builder.c are passing a GParamSpec by value
+ as the second argument.  This confuses and angers the compiler on ppc64el,
+ resulting in segfaults after return from the function due to stack-smashing
+ by the (completely-unused) argument.
+Author: Steve Langasek <steve.langasek@ubuntu.com>
+Bug-Ubuntu: https://bugs.launchpad.net/bugs/1262380
+
+Index: gtk+3.0-3.10.6/testsuite/gtk/builder.c
+===================================================================
+--- gtk+3.0-3.10.6.orig/testsuite/gtk/builder.c	2013-12-05 03:51:07.000000000 +0000
++++ gtk+3.0-3.10.6/testsuite/gtk/builder.c	2013-12-27 01:43:21.314839022 +0000
+@@ -26,14 +26,14 @@
+ #include <gdk/gdkkeysyms.h>
+ 
+ /* exported for GtkBuilder */
+-void signal_normal (GtkWindow *window, GParamSpec spec);
+-void signal_after (GtkWindow *window, GParamSpec spec);
+-void signal_object (GtkButton *button, GParamSpec spec);
+-void signal_object_after (GtkButton *button, GParamSpec spec);
+-void signal_first (GtkButton *button, GParamSpec spec);
+-void signal_second (GtkButton *button, GParamSpec spec);
+-void signal_extra (GtkButton *button, GParamSpec spec);
+-void signal_extra2 (GtkButton *button, GParamSpec spec);
++void signal_normal (GtkWindow *window, GParamSpec *spec);
++void signal_after (GtkWindow *window, GParamSpec *spec);
++void signal_object (GtkButton *button, GParamSpec *spec);
++void signal_object_after (GtkButton *button, GParamSpec *spec);
++void signal_first (GtkButton *button, GParamSpec *spec);
++void signal_second (GtkButton *button, GParamSpec *spec);
++void signal_extra (GtkButton *button, GParamSpec *spec);
++void signal_extra2 (GtkButton *button, GParamSpec *spec);
+ 
+ /* Copied from gtkiconfactory.c; keep in sync! */
+ struct _GtkIconSet
+@@ -140,7 +140,7 @@
+ static int object_after = 0;
+ 
+ void /* exported for GtkBuilder */
+-signal_normal (GtkWindow *window, GParamSpec spec)
++signal_normal (GtkWindow *window, GParamSpec *spec)
+ {
+   g_assert (GTK_IS_WINDOW (window));
+   g_assert (normal == 0);
+@@ -150,7 +150,7 @@
+ }
+ 
+ void /* exported for GtkBuilder */
+-signal_after (GtkWindow *window, GParamSpec spec)
++signal_after (GtkWindow *window, GParamSpec *spec)
+ {
+   g_assert (GTK_IS_WINDOW (window));
+   g_assert (normal == 1);
+@@ -160,7 +160,7 @@
+ }
+ 
+ void /* exported for GtkBuilder */
+-signal_object (GtkButton *button, GParamSpec spec)
++signal_object (GtkButton *button, GParamSpec *spec)
+ {
+   g_assert (GTK_IS_BUTTON (button));
+   g_assert (object == 0);
+@@ -170,7 +170,7 @@
+ }
+ 
+ void /* exported for GtkBuilder */
+-signal_object_after (GtkButton *button, GParamSpec spec)
++signal_object_after (GtkButton *button, GParamSpec *spec)
+ {
+   g_assert (GTK_IS_BUTTON (button));
+   g_assert (object == 1);
+@@ -180,28 +180,28 @@
+ }
+ 
+ void /* exported for GtkBuilder */
+-signal_first (GtkButton *button, GParamSpec spec)
++signal_first (GtkButton *button, GParamSpec *spec)
+ {
+   g_assert (normal == 0);
+   normal = 10;
+ }
+ 
+ void /* exported for GtkBuilder */
+-signal_second (GtkButton *button, GParamSpec spec)
++signal_second (GtkButton *button, GParamSpec *spec)
+ {
+   g_assert (normal == 10);
+   normal = 20;
+ }
+ 
+ void /* exported for GtkBuilder */
+-signal_extra (GtkButton *button, GParamSpec spec)
++signal_extra (GtkButton *button, GParamSpec *spec)
+ {
+   g_assert (normal == 20);
+   normal = 30;
+ }
+ 
+ void /* exported for GtkBuilder */
+-signal_extra2 (GtkButton *button, GParamSpec spec)
++signal_extra2 (GtkButton *button, GParamSpec *spec)
+ {
+   g_assert (normal == 30);
+   normal = 40;
