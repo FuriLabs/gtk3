@@ -1,0 +1,54 @@
+From 963a6ad77e082f9a32fa8ce7d9d1e03bf0839df3 Mon Sep 17 00:00:00 2001
+From: Marek Kasik <mkasik@redhat.com>
+Date: Fri, 21 Feb 2014 14:47:03 +0000
+Subject: printing: Fix visibility of tabs in print dialog
+
+"Job", "Image Quality", "Color", "Finishing" and "Advanced" tabs
+shouldn't be shown if there is no printer selected.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=724895
+---
+Index: gtk+3.0-3.10.7/gtk/gtkprintunixdialog.ui
+===================================================================
+--- gtk+3.0-3.10.7.orig/gtk/gtkprintunixdialog.ui	2014-02-25 11:38:50.727645948 +0100
++++ gtk+3.0-3.10.7/gtk/gtkprintunixdialog.ui	2014-02-25 11:38:50.723645948 +0100
+@@ -1047,7 +1047,6 @@
+                 </child>
+                 <child>
+                   <object class="GtkGrid" id="job_page">
+-                    <property name="visible">True</property>
+                     <property name="can_focus">False</property>
+                     <property name="border_width">12</property>
+                     <property name="row_spacing">18</property>
+@@ -1430,7 +1429,6 @@
+                 </child>
+                 <child>
+                   <object class="GtkScrolledWindow" id="image_quality_page">
+-                    <property name="visible">True</property>
+                     <property name="can_focus">True</property>
+                     <property name="hscrollbar_policy">never</property>
+                     <property name="shadow_type">in</property>
+@@ -1495,7 +1493,6 @@
+                 </child>
+                 <child>
+                   <object class="GtkScrolledWindow" id="color_page">
+-                    <property name="visible">True</property>
+                     <property name="can_focus">True</property>
+                     <property name="hscrollbar_policy">never</property>
+                     <property name="shadow_type">in</property>
+@@ -1560,7 +1557,6 @@
+                 </child>
+                 <child>
+                   <object class="GtkScrolledWindow" id="finishing_page">
+-                    <property name="visible">True</property>
+                     <property name="can_focus">True</property>
+                     <property name="hscrollbar_policy">never</property>
+                     <property name="shadow_type">in</property>
+@@ -1625,7 +1621,6 @@
+                 </child>
+                 <child>
+                   <object class="GtkScrolledWindow" id="advanced_page">
+-                    <property name="visible">True</property>
+                     <property name="can_focus">True</property>
+                     <property name="hscrollbar_policy">never</property>
+                     <property name="shadow_type">in</property>

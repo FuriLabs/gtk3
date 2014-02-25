@@ -1,0 +1,34 @@
+From 673d88e778af4f83b64f3e7d3f6b784daa12ea4b Mon Sep 17 00:00:00 2001
+From: Matthias Clasen <mclasen@redhat.com>
+Date: Tue, 18 Feb 2014 05:10:44 +0000
+Subject: touch popover: use underlines
+
+The mnemonic underlines were 'sticking out' in the touch
+selection popover.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=723621
+---
+Index: gtk+3.0-3.10.7/gtk/gtkentry.c
+===================================================================
+--- gtk+3.0-3.10.7.orig/gtk/gtkentry.c	2014-02-25 11:38:50.751645949 +0100
++++ gtk+3.0-3.10.7/gtk/gtkentry.c	2014-02-25 11:38:50.747645949 +0100
+@@ -9371,6 +9371,7 @@
+                       gboolean      sensitive)
+ {
+   GtkToolItem *item = gtk_tool_button_new (NULL, label);
++  gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (item), TRUE);
+   g_object_set_data (G_OBJECT (item), I_("gtk-signal"), (char *)signal);
+   g_signal_connect (item, "clicked", G_CALLBACK (activate_bubble_cb), entry);
+   gtk_widget_set_sensitive (GTK_WIDGET (item), sensitive);
+Index: gtk+3.0-3.10.7/gtk/gtktextview.c
+===================================================================
+--- gtk+3.0-3.10.7.orig/gtk/gtktextview.c	2014-02-25 11:38:50.751645949 +0100
++++ gtk+3.0-3.10.7/gtk/gtktextview.c	2014-02-25 11:38:50.747645949 +0100
+@@ -8822,6 +8822,7 @@
+                       gboolean      sensitive)
+ {
+   GtkToolItem *item = gtk_tool_button_new (NULL, label);
++  gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (item), TRUE);
+   g_object_set_data (G_OBJECT (item), I_("gtk-signal"), (char *)signal);
+   g_signal_connect (item, "clicked", G_CALLBACK (activate_bubble_cb), text_view);
+   gtk_widget_set_sensitive (GTK_WIDGET (item), sensitive);
