@@ -1,0 +1,19 @@
+From 496177f1be624e23e0000ad0c69efff81827b637 Mon Sep 17 00:00:00 2001
+From: Marek Kasik <mkasik@redhat.com>
+Date: Mon, 20 Jan 2014 14:45:16 +0000
+Subject: printing: Show "Replace" button when printing to existing file
+
+The button needs to be showed by gtk_widget_show().
+---
+Index: gtk+3.0-3.10.7/gtk/gtkprintunixdialog.c
+===================================================================
+--- gtk+3.0-3.10.7.orig/gtk/gtkprintunixdialog.c	2014-02-25 11:38:50.663645946 +0100
++++ gtk+3.0-3.10.7/gtk/gtkprintunixdialog.c	2014-02-25 11:38:50.659645946 +0100
+@@ -618,6 +618,7 @@
+ 
+   button = gtk_button_new_with_mnemonic (mnemonic_label);
+   gtk_widget_set_can_default (button, TRUE);
++  gtk_widget_show (button);
+ 
+   gtk_dialog_add_action_widget (GTK_DIALOG (dialog), button, response_id);
+ }
