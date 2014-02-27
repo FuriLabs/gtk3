@@ -20,11 +20,11 @@ It is needed by unity and should not be considered public API.
  create mode 100644 gtk/ubuntumenuitemfactory.c
  create mode 100644 gtk/ubuntumenuitemfactory.h
 
-diff --git a/gtk/Makefile.am b/gtk/Makefile.am
-index 8cfb620..8cd90fa 100644
---- a/gtk/Makefile.am
-+++ b/gtk/Makefile.am
-@@ -176,6 +176,8 @@ deprecated_private_h_sources =			\
+Index: gtk+3.0-3.10.7/gtk/Makefile.am
+===================================================================
+--- gtk+3.0-3.10.7.orig/gtk/Makefile.am	2014-02-27 12:44:39.405779725 +0100
++++ gtk+3.0-3.10.7/gtk/Makefile.am	2014-02-27 12:44:39.397779725 +0100
+@@ -176,6 +176,8 @@
  
  gtk_public_h_sources = 		\
  	gtk.h			\
@@ -33,7 +33,7 @@ index 8cfb620..8cd90fa 100644
  	gtkx.h			\
  	gtk-a11y.h		\
  	gtkaboutdialog.h	\
-@@ -601,6 +603,7 @@ deprecated_c_sources = 			\
+@@ -601,6 +603,7 @@
  
  gtk_base_c_sources = 		\
  	$(deprecated_c_sources)	\
@@ -41,10 +41,10 @@ index 8cfb620..8cd90fa 100644
  	gtkactionmuxer.c	\
  	gtkactionobserver.c	\
  	gtkactionobservable.c	\
-diff --git a/gtk/gtkmenushell.c b/gtk/gtkmenushell.c
-index 4c6a105..b1b2bf3 100644
---- a/gtk/gtkmenushell.c
-+++ b/gtk/gtkmenushell.c
+Index: gtk+3.0-3.10.7/gtk/gtkmenushell.c
+===================================================================
+--- gtk+3.0-3.10.7.orig/gtk/gtkmenushell.c	2014-02-27 12:44:39.405779725 +0100
++++ gtk+3.0-3.10.7/gtk/gtkmenushell.c	2014-02-27 12:45:00.689780434 +0100
 @@ -81,6 +81,8 @@
  
  #include "a11y/gtkmenushellaccessible.h"
@@ -54,7 +54,7 @@ index 4c6a105..b1b2bf3 100644
  
  #define MENU_SHELL_TIMEOUT   500
  #define MENU_POPUP_DELAY     225
-@@ -2041,6 +2043,60 @@ gtk_menu_shell_tracker_remove_func (gint     position,
+@@ -2041,6 +2043,58 @@
    gtk_widget_destroy (child);
  }
  
@@ -85,8 +85,6 @@ index 4c6a105..b1b2bf3 100644
 +          fullname = g_strconcat (action_namespace, ".", action, NULL);
 +          g_menu_item_set_attribute (item, "action", "s", fullname);
 +
-+          g_message ("%s", fullname);
-+
 +          g_free (fullname);
 +          g_free (action);
 +        }
@@ -115,7 +113,7 @@ index 4c6a105..b1b2bf3 100644
  static void
  gtk_menu_shell_tracker_insert_func (GtkMenuTrackerItem *item,
                                      gint                position,
-@@ -2048,6 +2104,9 @@ gtk_menu_shell_tracker_insert_func (GtkMenuTrackerItem *item,
+@@ -2048,6 +2102,9 @@
  {
    GtkMenuShell *menu_shell = user_data;
    GtkWidget *widget;
@@ -125,7 +123,7 @@ index 4c6a105..b1b2bf3 100644
  
    if (gtk_menu_tracker_item_get_is_separator (item))
      {
-@@ -2107,6 +2166,18 @@ gtk_menu_shell_tracker_insert_func (GtkMenuTrackerItem *item,
+@@ -2107,6 +2164,18 @@
  
        gtk_widget_show (widget);
      }
@@ -144,11 +142,11 @@ index 4c6a105..b1b2bf3 100644
    else
      {
        widget = gtk_model_menu_item_new ();
-diff --git a/gtk/gtkmenutrackeritem.c b/gtk/gtkmenutrackeritem.c
-index 2d712a1..14d9d13 100644
---- a/gtk/gtkmenutrackeritem.c
-+++ b/gtk/gtkmenutrackeritem.c
-@@ -786,3 +786,19 @@ gtk_menu_tracker_item_request_submenu_shown (GtkMenuTrackerItem *self,
+Index: gtk+3.0-3.10.7/gtk/gtkmenutrackeritem.c
+===================================================================
+--- gtk+3.0-3.10.7.orig/gtk/gtkmenutrackeritem.c	2014-02-27 12:44:39.405779725 +0100
++++ gtk+3.0-3.10.7/gtk/gtkmenutrackeritem.c	2014-02-27 12:44:39.397779725 +0100
+@@ -786,3 +786,19 @@
    else
      gtk_menu_tracker_item_set_submenu_shown (self, shown);
  }
@@ -168,11 +166,11 @@ index 2d712a1..14d9d13 100644
 +
 +  return self->action_namespace;
 +}
-diff --git a/gtk/gtkmenutrackeritem.h b/gtk/gtkmenutrackeritem.h
-index 9db30eb..e679b6b 100644
---- a/gtk/gtkmenutrackeritem.h
-+++ b/gtk/gtkmenutrackeritem.h
-@@ -81,4 +81,8 @@ void                    gtk_menu_tracker_item_request_submenu_shown     (GtkMenu
+Index: gtk+3.0-3.10.7/gtk/gtkmenutrackeritem.h
+===================================================================
+--- gtk+3.0-3.10.7.orig/gtk/gtkmenutrackeritem.h	2014-02-27 12:44:39.405779725 +0100
++++ gtk+3.0-3.10.7/gtk/gtkmenutrackeritem.h	2014-02-27 12:44:39.401779725 +0100
+@@ -81,4 +81,8 @@
  
  gboolean                gtk_menu_tracker_item_get_submenu_shown         (GtkMenuTrackerItem *self);
  
@@ -181,11 +179,10 @@ index 9db30eb..e679b6b 100644
 +const gchar *           gtk_menu_tracker_item_get_action_namespace      (GtkMenuTrackerItem *self);
 +
  #endif
-diff --git a/gtk/ubuntu-private.h b/gtk/ubuntu-private.h
-new file mode 100644
-index 0000000..3ed366f
---- /dev/null
-+++ b/gtk/ubuntu-private.h
+Index: gtk+3.0-3.10.7/gtk/ubuntu-private.h
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ gtk+3.0-3.10.7/gtk/ubuntu-private.h	2014-02-27 12:44:39.401779725 +0100
 @@ -0,0 +1,32 @@
 +/*
 +* Copyright 2013 Canonical Ltd.
@@ -219,11 +216,10 @@ index 0000000..3ed366f
 +#include "ubuntumenuitemfactory.h"
 +
 +#endif
-diff --git a/gtk/ubuntumenuitemfactory.c b/gtk/ubuntumenuitemfactory.c
-new file mode 100644
-index 0000000..24eb214
---- /dev/null
-+++ b/gtk/ubuntumenuitemfactory.c
+Index: gtk+3.0-3.10.7/gtk/ubuntumenuitemfactory.c
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ gtk+3.0-3.10.7/gtk/ubuntumenuitemfactory.c	2014-02-27 12:44:39.401779725 +0100
 @@ -0,0 +1,70 @@
 +/*
 +* Copyright 2013 Canonical Ltd.
@@ -295,11 +291,10 @@ index 0000000..24eb214
 +{
 +  return UBUNTU_MENU_ITEM_FACTORY_GET_IFACE (factory)->create_menu_item (factory, type, menuitem, actions);
 +}
-diff --git a/gtk/ubuntumenuitemfactory.h b/gtk/ubuntumenuitemfactory.h
-new file mode 100644
-index 0000000..e97539d
---- /dev/null
-+++ b/gtk/ubuntumenuitemfactory.h
+Index: gtk+3.0-3.10.7/gtk/ubuntumenuitemfactory.h
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ gtk+3.0-3.10.7/gtk/ubuntumenuitemfactory.h	2014-02-27 12:44:39.401779725 +0100
 @@ -0,0 +1,61 @@
 +/*
 +* Copyright 2013 Canonical Ltd.
@@ -362,6 +357,3 @@ index 0000000..e97539d
 +G_END_DECLS
 +
 +#endif
--- 
-1.8.3.2
-
