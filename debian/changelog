@@ -2,8 +2,13 @@ gtk+3.0 (3.10.7-0ubuntu4) UNRELEASED; urgency=medium
 
   * debian/patches/ubuntu_gtk_custom_menu_items.patch:
     - clean leftover debug g_message() call
+  * debian/patches/git_popup_menu_shift.patch:
+    - "gtkmenu: displace popups by their css margin. Without a margin, 
+       the pointer is above the first (or last) menu item, making it easy 
+       to accidentally activate that item.", thanks Lars Uebernickel
+       (lp: #1281617)
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 27 Feb 2014 12:45:37 +0100
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 06 Mar 2014 10:37:36 +0100
 
 gtk+3.0 (3.10.7-0ubuntu3) trusty; urgency=medium
 
