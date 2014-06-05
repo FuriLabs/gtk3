@@ -8,11 +8,11 @@ https://bugzilla.gnome.org/show_bug.cgi?id=730893
  gtk/gtkdialog.c | 63 +++++++++++++++++++++++++++------------------------------
  1 file changed, 30 insertions(+), 33 deletions(-)
 
-diff --git a/gtk/gtkdialog.c b/gtk/gtkdialog.c
-index eb342a5..532fd58 100644
---- a/gtk/gtkdialog.c
-+++ b/gtk/gtkdialog.c
-@@ -214,6 +214,10 @@ static void      gtk_dialog_buildable_custom_finished    (GtkBuildable  *buildab
+Index: gtk+3.0-3.12.2/gtk/gtkdialog.c
+===================================================================
+--- gtk+3.0-3.12.2.orig/gtk/gtkdialog.c	2014-06-05 13:15:50.106082966 +0200
++++ gtk+3.0-3.12.2/gtk/gtkdialog.c	2014-06-05 13:15:50.102082965 +0200
+@@ -214,6 +214,10 @@
                                                            GObject       *child,
                                                            const gchar   *tagname,
                                                            gpointer       user_data);
@@ -23,7 +23,7 @@ index eb342a5..532fd58 100644
  
  
  enum {
-@@ -273,47 +277,17 @@ add_cb (GtkContainer *container,
+@@ -273,47 +277,17 @@
  }
  
  static void
@@ -74,7 +74,7 @@ index eb342a5..532fd58 100644
  }
  
  static void
-@@ -719,6 +693,7 @@ gtk_dialog_buildable_interface_init (GtkBuildableIface *iface)
+@@ -719,6 +693,7 @@
    parent_buildable_iface = g_type_interface_peek_parent (iface);
    iface->custom_tag_start = gtk_dialog_buildable_custom_tag_start;
    iface->custom_finished = gtk_dialog_buildable_custom_finished;
@@ -82,7 +82,7 @@ index eb342a5..532fd58 100644
  }
  
  static gboolean
-@@ -1830,6 +1805,28 @@ gtk_dialog_buildable_custom_finished (GtkBuildable *buildable,
+@@ -1830,6 +1805,28 @@
    g_slice_free (ActionWidgetsSubParserData, parser_data);
  }
  
@@ -111,6 +111,3 @@ index eb342a5..532fd58 100644
  /**
   * gtk_dialog_get_action_area:
   * @dialog: a #GtkDialog
--- 
-2.0.0.rc4
-

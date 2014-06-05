@@ -8,11 +8,11 @@ Subject: [PATCH 3/3] message dialog: restore traditional look on unity
  gtk/resources/ui/gtkmessagedialog.ui | 17 +++++++++++++++++
  2 files changed, 52 insertions(+), 1 deletion(-)
 
-diff --git a/gtk/gtkmessagedialog.c b/gtk/gtkmessagedialog.c
-index e3f8ec4..ca08860 100644
---- a/gtk/gtkmessagedialog.c
-+++ b/gtk/gtkmessagedialog.c
-@@ -104,6 +104,9 @@ struct _GtkMessageDialogPrivate
+Index: gtk+3.0-3.12.2/gtk/gtkmessagedialog.c
+===================================================================
+--- gtk+3.0-3.12.2.orig/gtk/gtkmessagedialog.c	2014-06-05 13:15:50.158082967 +0200
++++ gtk+3.0-3.12.2/gtk/gtkmessagedialog.c	2014-06-05 13:15:50.150082967 +0200
+@@ -104,6 +104,9 @@
    GtkWidget     *label;
    GtkWidget     *message_area; /* vbox for the primary and secondary labels, and any extra content from the caller */
    GtkWidget     *secondary_label;
@@ -22,7 +22,7 @@ index e3f8ec4..ca08860 100644
  
    guint          has_primary_markup : 1;
    guint          has_secondary_text : 1;
-@@ -298,6 +301,9 @@ gtk_message_dialog_class_init (GtkMessageDialogClass *class)
+@@ -298,6 +301,9 @@
    gtk_widget_class_set_template_from_resource (widget_class, "/org/gtk/libgtk/ui/gtkmessagedialog.ui");
    gtk_widget_class_bind_template_child_private (widget_class, GtkMessageDialog, label);
    gtk_widget_class_bind_template_child_private (widget_class, GtkMessageDialog, secondary_label);
@@ -32,7 +32,7 @@ index e3f8ec4..ca08860 100644
    gtk_widget_class_bind_template_child_internal_private (widget_class, GtkMessageDialog, message_area);
  }
  
-@@ -320,7 +326,27 @@ gtk_message_dialog_init (GtkMessageDialog *dialog)
+@@ -320,7 +326,27 @@
  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
    action_area = gtk_dialog_get_action_area (GTK_DIALOG (dialog));
  G_GNUC_END_IGNORE_DEPRECATIONS
@@ -61,7 +61,7 @@ index e3f8ec4..ca08860 100644
  }
  
  static void
-@@ -360,6 +386,7 @@ setup_type (GtkMessageDialog *dialog,
+@@ -360,6 +386,7 @@
  {
    GtkMessageDialogPrivate *priv = dialog->priv;
    const gchar *name = NULL;
@@ -69,7 +69,7 @@ index e3f8ec4..ca08860 100644
    AtkObject *atk_obj;
  
    priv->message_type = type;
-@@ -368,18 +395,22 @@ setup_type (GtkMessageDialog *dialog,
+@@ -368,18 +395,22 @@
      {
      case GTK_MESSAGE_INFO:
        name = _("Information");
@@ -92,7 +92,7 @@ index e3f8ec4..ca08860 100644
        break;
  
      case GTK_MESSAGE_OTHER:
-@@ -397,6 +428,9 @@ setup_type (GtkMessageDialog *dialog,
+@@ -397,6 +428,9 @@
        if (name)
          atk_object_set_name (atk_obj, name);
      }
@@ -102,10 +102,10 @@ index e3f8ec4..ca08860 100644
  }
  
  static void 
-diff --git a/gtk/resources/ui/gtkmessagedialog.ui b/gtk/resources/ui/gtkmessagedialog.ui
-index d75a414..a4b0dda 100644
---- a/gtk/resources/ui/gtkmessagedialog.ui
-+++ b/gtk/resources/ui/gtkmessagedialog.ui
+Index: gtk+3.0-3.12.2/gtk/resources/ui/gtkmessagedialog.ui
+===================================================================
+--- gtk+3.0-3.12.2.orig/gtk/resources/ui/gtkmessagedialog.ui	2014-06-05 13:15:50.158082967 +0200
++++ gtk+3.0-3.12.2/gtk/resources/ui/gtkmessagedialog.ui	2014-06-05 13:15:50.154082967 +0200
 @@ -30,6 +30,23 @@
              <property name="margin_end">30</property>
              <property name="spacing">30</property>
@@ -130,6 +130,3 @@ index d75a414..a4b0dda 100644
                <object class="GtkBox" id="message_area">
                  <property name="visible">True</property>
                  <property name="can_focus">False</property>
--- 
-2.0.0.rc4
-
