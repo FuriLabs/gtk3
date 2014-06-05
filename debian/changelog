@@ -1,6 +1,7 @@
 gtk+3.0 (3.12.2-0ubuntu1~utopic1) utopic; urgency=medium
 
   * Update, based on gnome3-staging work
+  
   [ Rico Tzschichholz ]
   * New upstream release
   * debian/control.in:
@@ -8,6 +9,12 @@ gtk+3.0 (3.12.2-0ubuntu1~utopic1) utopic; urgency=medium
       gobject-introspection (>= 1.39.3)
   * debian/libgtk-3-0.symbols:
     - updated
+    
+  [ Lars Uebernickel ]
+  * debian/patches/gtkdialog-don-t-use-csd-when-use-header-bar-is-FALSE.patch
+    debian/patches/gtkaboutdialog-support-showing-buttons-in-action-are.patch
+    debian/patches/ message-dialog-restore-traditional-look-on-unity.patch
+    - restore titlebars on dialogs
 
  -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 05 Jun 2014 11:37:51 +0200
 
