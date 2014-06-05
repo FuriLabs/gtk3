@@ -12,10 +12,10 @@ https://bugzilla.gnome.org/show_bug.cgi?id=730893
  gtk/gtkaboutdialog.c | 120 +++++++++++++++++++++++++++++++++++++--------------
  1 file changed, 87 insertions(+), 33 deletions(-)
 
-diff --git a/gtk/gtkaboutdialog.c b/gtk/gtkaboutdialog.c
-index d2a56b6..554fef4 100644
---- a/gtk/gtkaboutdialog.c
-+++ b/gtk/gtkaboutdialog.c
+Index: gtk+3.0-3.12.2/gtk/gtkaboutdialog.c
+===================================================================
+--- gtk+3.0-3.12.2.orig/gtk/gtkaboutdialog.c	2014-06-05 13:15:50.130082966 +0200
++++ gtk+3.0-3.12.2/gtk/gtkaboutdialog.c	2014-06-05 13:15:50.126082966 +0200
 @@ -56,6 +56,7 @@
  #include "gtkheaderbar.h"
  #include "gtkprivate.h"
@@ -24,7 +24,7 @@ index d2a56b6..554fef4 100644
  
  
  /**
-@@ -154,6 +155,9 @@ struct _GtkAboutDialogPrivate
+@@ -154,6 +155,9 @@
  
    GtkWidget *stack;
    GtkWidget *stack_switcher;
@@ -34,7 +34,7 @@ index d2a56b6..554fef4 100644
    GtkWidget *logo_image;
    GtkWidget *name_label;
    GtkWidget *version_label;
-@@ -178,6 +182,7 @@ struct _GtkAboutDialogPrivate
+@@ -178,6 +182,7 @@
    guint hovering_over_link : 1;
    guint wrap_license : 1;
    guint in_child_changed : 1;
@@ -42,7 +42,7 @@ index d2a56b6..554fef4 100644
  };
  
  enum
-@@ -238,7 +243,10 @@ static gboolean             text_view_motion_notify_event   (GtkWidget
+@@ -238,7 +243,10 @@
  static gboolean             text_view_visibility_notify_event(GtkWidget          *text_view,
  							      GdkEventVisibility *event,
  							      GtkAboutDialog     *about);
@@ -54,7 +54,7 @@ index d2a56b6..554fef4 100644
  
  enum {
    ACTIVATE_LINK,
-@@ -278,37 +286,6 @@ stack_visible_child_notify (GtkStack       *stack,
+@@ -278,37 +286,6 @@
    return FALSE;
  }
  
@@ -92,7 +92,7 @@ index d2a56b6..554fef4 100644
  static void
  gtk_about_dialog_class_init (GtkAboutDialogClass *klass)
  {
-@@ -321,7 +298,6 @@ gtk_about_dialog_class_init (GtkAboutDialogClass *klass)
+@@ -321,7 +298,6 @@
    object_class->set_property = gtk_about_dialog_set_property;
    object_class->get_property = gtk_about_dialog_get_property;
  
@@ -100,7 +100,7 @@ index d2a56b6..554fef4 100644
    object_class->finalize = gtk_about_dialog_finalize;
  
    widget_class->show = gtk_about_dialog_show;
-@@ -703,6 +679,51 @@ switch_page (GtkAboutDialog *about,
+@@ -703,6 +679,51 @@
    GtkAboutDialogPrivate *priv = about->priv;
  
    gtk_stack_set_visible_child_name (GTK_STACK (priv->stack), name);
@@ -152,7 +152,7 @@ index d2a56b6..554fef4 100644
  }
  
  static void
-@@ -736,6 +757,9 @@ gtk_about_dialog_init (GtkAboutDialog *about)
+@@ -736,6 +757,9 @@
    gtk_dialog_set_default_response (GTK_DIALOG (about), GTK_RESPONSE_CANCEL);
  
    gtk_widget_init_template (GTK_WIDGET (about));
@@ -162,7 +162,7 @@ index d2a56b6..554fef4 100644
  
    switch_page (about, "main");
    update_stack_switcher_visibility (about);
-@@ -919,6 +943,36 @@ gtk_about_dialog_get_property (GObject    *object,
+@@ -919,6 +943,36 @@
      }
  }
  
@@ -199,6 +199,3 @@ index d2a56b6..554fef4 100644
  static gboolean
  gtk_about_dialog_activate_link (GtkAboutDialog *about,
                                  const gchar    *uri)
--- 
-2.0.0.rc4
-

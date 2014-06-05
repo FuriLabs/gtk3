@@ -8,11 +8,11 @@ Description: Allow setting menu item accelerator text directly
 Author: William Hua <william.hua@canonical.com>
 Bug-Ubuntu: https://bugs.launchpad.net/bugs/1208019
 
-Index: gtk+3.0-3.10.7/gtk/gtkmenutrackeritem.c
+Index: gtk+3.0-3.12.2/gtk/gtkmenutrackeritem.c
 ===================================================================
---- gtk+3.0-3.10.7.orig/gtk/gtkmenutrackeritem.c	2014-03-31 10:57:23.969527294 +1300
-+++ gtk+3.0-3.10.7/gtk/gtkmenutrackeritem.c	2014-03-31 11:01:19.941518966 +1300
-@@ -104,6 +104,7 @@
+--- gtk+3.0-3.12.2.orig/gtk/gtkmenutrackeritem.c	2014-06-05 13:15:50.082082965 +0200
++++ gtk+3.0-3.12.2/gtk/gtkmenutrackeritem.c	2014-06-05 13:15:50.074082964 +0200
+@@ -114,6 +114,7 @@
    PROP_ROLE,
    PROP_TOGGLED,
    PROP_ACCEL,
@@ -20,7 +20,7 @@ Index: gtk+3.0-3.10.7/gtk/gtkmenutrackeritem.c
    PROP_SUBMENU_SHOWN,
    N_PROPS
  };
-@@ -174,6 +175,9 @@
+@@ -185,6 +186,9 @@
      case PROP_ACCEL:
        g_value_set_string (value, gtk_menu_tracker_item_get_accel (self));
        break;
@@ -30,7 +30,7 @@ Index: gtk+3.0-3.10.7/gtk/gtkmenutrackeritem.c
      case PROP_SUBMENU_SHOWN:
        g_value_set_boolean (value, gtk_menu_tracker_item_get_submenu_shown (self));
        break;
-@@ -229,6 +233,8 @@
+@@ -240,6 +244,8 @@
      g_param_spec_boolean ("toggled", "", "", FALSE, G_PARAM_STATIC_STRINGS | G_PARAM_READABLE);
    gtk_menu_tracker_item_pspecs[PROP_ACCEL] =
      g_param_spec_string ("accel", "", "", NULL, G_PARAM_STATIC_STRINGS | G_PARAM_READABLE);
@@ -39,8 +39,8 @@ Index: gtk+3.0-3.10.7/gtk/gtkmenutrackeritem.c
    gtk_menu_tracker_item_pspecs[PROP_SUBMENU_SHOWN] =
      g_param_spec_boolean ("submenu-shown", "", "", FALSE, G_PARAM_STATIC_STRINGS | G_PARAM_READABLE);
  
-@@ -551,6 +557,16 @@
-   return accel;
+@@ -663,6 +669,16 @@
+   return special;
  }
  
 +const gchar *
@@ -56,11 +56,11 @@ Index: gtk+3.0-3.10.7/gtk/gtkmenutrackeritem.c
  GMenuModel *
  _gtk_menu_tracker_item_get_submenu (GtkMenuTrackerItem *self)
  {
-Index: gtk+3.0-3.10.7/gtk/gtkmenutrackeritem.h
+Index: gtk+3.0-3.12.2/gtk/gtkmenutrackeritem.h
 ===================================================================
---- gtk+3.0-3.10.7.orig/gtk/gtkmenutrackeritem.h	2014-03-31 10:57:23.969527294 +1300
-+++ gtk+3.0-3.10.7/gtk/gtkmenutrackeritem.h	2014-03-31 10:59:10.013523551 +1300
-@@ -68,6 +68,8 @@
+--- gtk+3.0-3.12.2.orig/gtk/gtkmenutrackeritem.h	2014-06-05 13:15:50.082082965 +0200
++++ gtk+3.0-3.12.2/gtk/gtkmenutrackeritem.h	2014-06-05 13:15:50.074082964 +0200
+@@ -70,6 +70,8 @@
  
  const gchar *           gtk_menu_tracker_item_get_accel                 (GtkMenuTrackerItem *self);
  
@@ -69,10 +69,10 @@ Index: gtk+3.0-3.10.7/gtk/gtkmenutrackeritem.h
  GMenuModel *           _gtk_menu_tracker_item_get_submenu               (GtkMenuTrackerItem *self);
  
  gchar *                _gtk_menu_tracker_item_get_submenu_namespace     (GtkMenuTrackerItem *self);
-Index: gtk+3.0-3.10.7/gtk/gtkmodelmenuitem.c
+Index: gtk+3.0-3.12.2/gtk/gtkmodelmenuitem.c
 ===================================================================
---- gtk+3.0-3.10.7.orig/gtk/gtkmodelmenuitem.c	2014-01-28 11:40:16.000000000 +1300
-+++ gtk+3.0-3.10.7/gtk/gtkmodelmenuitem.c	2014-03-31 11:20:07.301479178 +1300
+--- gtk+3.0-3.12.2.orig/gtk/gtkmodelmenuitem.c	2014-06-05 13:15:50.082082965 +0200
++++ gtk+3.0-3.12.2/gtk/gtkmodelmenuitem.c	2014-06-05 13:15:50.074082964 +0200
 @@ -43,7 +43,8 @@
    PROP_ICON,
    PROP_TEXT,
@@ -128,7 +128,7 @@ Index: gtk+3.0-3.10.7/gtk/gtkmodelmenuitem.c
  void
  gtk_model_menu_item_set_property (GObject *object, guint prop_id,
                                    const GValue *value, GParamSpec *pspec)
-@@ -314,6 +353,10 @@
+@@ -315,6 +354,10 @@
        gtk_model_menu_item_set_accel (item, g_value_get_string (value));
        break;
  
@@ -139,7 +139,7 @@ Index: gtk+3.0-3.10.7/gtk/gtkmodelmenuitem.c
      default:
        g_assert_not_reached ();
      }
-@@ -355,6 +398,9 @@
+@@ -356,6 +399,9 @@
    g_object_class_install_property (object_class, PROP_ACCEL,
                                     g_param_spec_string ("accel", "accel", "accel", NULL,
                                                          G_PARAM_WRITABLE | G_PARAM_STATIC_STRINGS));
@@ -149,11 +149,11 @@ Index: gtk+3.0-3.10.7/gtk/gtkmodelmenuitem.c
  
    gtk_widget_class_set_accessible_role (GTK_WIDGET_CLASS (class), ATK_ROLE_MENU_ITEM);
  }
-Index: gtk+3.0-3.10.7/gtk/gtkmenushell.c
+Index: gtk+3.0-3.12.2/gtk/gtkmenushell.c
 ===================================================================
---- gtk+3.0-3.10.7.orig/gtk/gtkmenushell.c	2014-03-31 10:57:23.969527294 +1300
-+++ gtk+3.0-3.10.7/gtk/gtkmenushell.c	2014-03-31 11:09:20.221502015 +1300
-@@ -2192,6 +2192,7 @@
+--- gtk+3.0-3.12.2.orig/gtk/gtkmenushell.c	2014-06-05 13:15:50.082082965 +0200
++++ gtk+3.0-3.12.2/gtk/gtkmenushell.c	2014-06-05 13:15:50.078082965 +0200
+@@ -2179,6 +2179,7 @@
        g_object_bind_property (item, "role", widget, "action-role", G_BINDING_SYNC_CREATE);
        g_object_bind_property (item, "toggled", widget, "toggled", G_BINDING_SYNC_CREATE);
        g_object_bind_property (item, "accel", widget, "accel", G_BINDING_SYNC_CREATE);
@@ -161,11 +161,11 @@ Index: gtk+3.0-3.10.7/gtk/gtkmenushell.c
  
        g_signal_connect (widget, "activate", G_CALLBACK (gtk_menu_shell_item_activate), item);
      }
-Index: gtk+3.0-3.10.7/gtk/gtkaccellabel.c
+Index: gtk+3.0-3.12.2/gtk/gtkaccellabel.c
 ===================================================================
---- gtk+3.0-3.10.7.orig/gtk/gtkaccellabel.c	2014-01-28 11:40:16.000000000 +1300
-+++ gtk+3.0-3.10.7/gtk/gtkaccellabel.c	2014-03-31 11:34:42.961448273 +1300
-@@ -107,6 +107,8 @@
+--- gtk+3.0-3.12.2.orig/gtk/gtkaccellabel.c	2014-06-05 13:15:50.082082965 +0200
++++ gtk+3.0-3.12.2/gtk/gtkaccellabel.c	2014-06-05 13:15:50.078082965 +0200
+@@ -108,6 +108,8 @@
  
    guint           accel_key;         /* manual accel key specification if != 0 */
    GdkModifierType accel_mods;
@@ -174,7 +174,7 @@ Index: gtk+3.0-3.10.7/gtk/gtkaccellabel.c
  };
  
  static void         gtk_accel_label_set_property (GObject            *object,
-@@ -259,6 +261,7 @@
+@@ -260,6 +262,7 @@
    priv->accel_closure = NULL;
    priv->accel_group = NULL;
    priv->accel_string = NULL;
@@ -182,7 +182,7 @@ Index: gtk+3.0-3.10.7/gtk/gtkaccellabel.c
  }
  
  /**
-@@ -300,6 +303,7 @@
+@@ -301,6 +304,7 @@
    GtkAccelLabel *accel_label = GTK_ACCEL_LABEL (object);
  
    g_free (accel_label->priv->accel_string);
@@ -190,7 +190,7 @@ Index: gtk+3.0-3.10.7/gtk/gtkaccellabel.c
  
    G_OBJECT_CLASS (gtk_accel_label_parent_class)->finalize (object);
  }
-@@ -902,6 +906,12 @@
+@@ -903,6 +907,12 @@
        accel_label->priv->accel_string = NULL;
      }
  
@@ -203,9 +203,9 @@ Index: gtk+3.0-3.10.7/gtk/gtkaccellabel.c
    g_object_get (gtk_widget_get_settings (GTK_WIDGET (accel_label)),
                  "gtk-enable-accels", &enable_accels,
                  NULL);
-@@ -986,3 +996,13 @@
- 
-   gtk_accel_label_reset (accel_label);
+@@ -1011,3 +1021,13 @@
+   *accelerator_key = accel_label->priv->accel_key;
+   *accelerator_mods = accel_label->priv->accel_mods;
  }
 +
 +void
