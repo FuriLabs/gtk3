@@ -13,10 +13,10 @@ https://bugzilla.gnome.org/show_bug.cgi?id=673360
  gtk/gtkcellrendereraccel.h |    3 ++-
  2 files changed, 39 insertions(+), 1 deletions(-)
 
-Index: gtk+-3.6.4/gtk/gtkcellrendereraccel.c
+Index: gtk+3.0-3.12.2/gtk/gtkcellrendereraccel.c
 ===================================================================
---- gtk+-3.6.4.orig/gtk/gtkcellrendereraccel.c	2013-01-10 16:04:04.165595520 +1300
-+++ gtk+-3.6.4/gtk/gtkcellrendereraccel.c	2013-01-10 16:04:04.161595519 +1300
+--- gtk+3.0-3.12.2.orig/gtk/gtkcellrendereraccel.c	2014-06-05 13:15:49.706082952 +0200
++++ gtk+3.0-3.12.2/gtk/gtkcellrendereraccel.c	2014-06-05 13:15:49.702082952 +0200
 @@ -98,6 +98,13 @@
  
    GdkModifierType accel_mods;
@@ -31,7 +31,7 @@ Index: gtk+-3.6.4/gtk/gtkcellrendereraccel.c
    guint accel_key;
    guint keycode;
  };
-@@ -195,6 +202,10 @@
+@@ -193,6 +200,10 @@
     * accepted by GTK+ are allowed, and the accelerators are rendered
     * in the same way as they are in menus.
     *
@@ -42,7 +42,7 @@ Index: gtk+-3.6.4/gtk/gtkcellrendereraccel.c
     * Since: 2.10
     */
    g_object_class_install_property (object_class,
-@@ -444,6 +455,29 @@
+@@ -440,6 +451,29 @@
  
    display = gtk_widget_get_display (widget);
  
@@ -72,7 +72,7 @@ Index: gtk+-3.6.4/gtk/gtkcellrendereraccel.c
    if (event->is_modifier)
      return TRUE;
  
-@@ -724,6 +758,9 @@
+@@ -720,6 +754,9 @@
    g_signal_connect (G_OBJECT (widget), "key-press-event",
                      G_CALLBACK (grab_key_callback),
                      accel);
@@ -82,11 +82,11 @@ Index: gtk+-3.6.4/gtk/gtkcellrendereraccel.c
  
    eventbox = g_object_new (_gtk_cell_editable_event_box_get_type (), NULL);
    priv->edit_widget = eventbox;
-Index: gtk+-3.6.4/gtk/gtkcellrendereraccel.h
+Index: gtk+3.0-3.12.2/gtk/gtkcellrendereraccel.h
 ===================================================================
---- gtk+-3.6.4.orig/gtk/gtkcellrendereraccel.h	2013-01-10 16:04:04.165595520 +1300
-+++ gtk+-3.6.4/gtk/gtkcellrendereraccel.h	2013-01-10 16:04:04.161595519 +1300
-@@ -41,7 +41,8 @@
+--- gtk+3.0-3.12.2.orig/gtk/gtkcellrendereraccel.h	2014-06-05 13:15:49.706082952 +0200
++++ gtk+3.0-3.12.2/gtk/gtkcellrendereraccel.h	2014-06-05 13:15:49.702082952 +0200
+@@ -50,7 +50,8 @@
  typedef enum
  {
    GTK_CELL_RENDERER_ACCEL_MODE_GTK,
