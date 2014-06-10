@@ -1,3 +1,26 @@
+gtk+3.0 (3.12.2-0ubuntu1) UNRELEASED; urgency=medium
+
+  * Update, based on gnome3-staging work
+
+  [ Rico Tzschichholz ]
+  * New upstream release
+  * debian/control.in:
+    - Bump build-deps on libglib2.0-dev (>= 2.39.5),
+      gobject-introspection (>= 1.39.3)
+  * debian/libgtk-3-0.symbols:
+    - updated
+
+  [ Lars Uebernickel ]
+  * debian/patches/gtkdialog-don-t-use-csd-when-use-header-bar-is-FALSE.patch
+    debian/patches/gtkaboutdialog-support-showing-buttons-in-action-are.patch
+    debian/patches/ message-dialog-restore-traditional-look-on-unity.patch
+    - restore titlebars on dialogs
+
+  [ Iain Lane ]
+  * Remove broadway symbols, we don't enable this backend in Ubuntu.
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 05 Jun 2014 11:37:51 +0200
+
 gtk+3.0 (3.10.9-0ubuntu1) utopic; urgency=medium
 
   * New upstream version

@@ -8,11 +8,11 @@ https://bugzilla.gnome.org/show_bug.cgi?id=686174
  gtk/deprecated/gtkuimanager.c | 8 ++++++++
  1 file changed, 8 insertions(+)
 
-diff --git a/gtk/deprecated/gtkuimanager.c b/gtk/deprecated/gtkuimanager.c
-index df84510..a53631d 100644
---- a/gtk/deprecated/gtkuimanager.c
-+++ b/gtk/deprecated/gtkuimanager.c
-@@ -351,6 +351,7 @@ struct _GtkUIManagerPrivate
+Index: gtk+3.0-3.12.2/gtk/deprecated/gtkuimanager.c
+===================================================================
+--- gtk+3.0-3.12.2.orig/gtk/deprecated/gtkuimanager.c	2014-06-05 13:15:49.978082961 +0200
++++ gtk+3.0-3.12.2/gtk/deprecated/gtkuimanager.c	2014-06-05 13:15:49.974082961 +0200
+@@ -326,6 +326,7 @@
    GList *action_groups;
  
    guint last_merge_id;
@@ -20,7 +20,7 @@ index df84510..a53631d 100644
  
    guint update_tag;  
  
-@@ -2574,6 +2575,7 @@ update_node (GtkUIManager *manager,
+@@ -2550,6 +2551,7 @@
    GtkAction *action;
    const gchar *action_name;
    NodeUIReference *ref;
@@ -28,7 +28,7 @@ index df84510..a53631d 100644
    
  #ifdef DEBUG_UI_MANAGER
    GList *tmp;
-@@ -2587,6 +2589,8 @@ update_node (GtkUIManager *manager,
+@@ -2563,6 +2565,8 @@
    if (!info->dirty)
      return;
  
@@ -37,7 +37,7 @@ index df84510..a53631d 100644
    if (info->type == NODE_TYPE_POPUP)
      {
        in_popup = TRUE;
-@@ -3114,6 +3118,8 @@ G_GNUC_END_IGNORE_DEPRECATIONS
+@@ -3090,6 +3094,8 @@
        current = child;
        child = current->next;
        update_node (manager, current, in_popup, popup_accels);
@@ -46,7 +46,7 @@ index df84510..a53631d 100644
      }
    
    if (info->proxy) 
-@@ -3129,6 +3135,7 @@ G_GNUC_END_IGNORE_DEPRECATIONS
+@@ -3105,6 +3111,7 @@
    /* handle cleanup of dead nodes */
    if (node->children == NULL && info->uifiles == NULL)
      {
@@ -54,7 +54,7 @@ index df84510..a53631d 100644
        if (info->proxy)
  	gtk_widget_destroy (info->proxy);
        if (info->extra)
-@@ -3155,6 +3162,7 @@ do_updates (GtkUIManager *manager)
+@@ -3131,6 +3138,7 @@
     *    the proxy is reconnected to the new action (or a new proxy widget
     *    is created and added to the parent container).
     */
@@ -62,6 +62,3 @@ index df84510..a53631d 100644
    update_node (manager, manager->private_data->root_node, FALSE, FALSE);
  
    manager->private_data->update_tag = 0;
--- 
-1.8.3.2
-
