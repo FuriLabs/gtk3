@@ -1,0 +1,26 @@
+From 68c40e919a8668f61dafd41c0235db31dbdd68e7 Mon Sep 17 00:00:00 2001
+From: Lars Uebernickel <lars.uebernickel@canonical.com>
+Date: Wed, 11 Jun 2014 16:44:15 +0200
+Subject: [PATCH] Revert 8520282f7533d76b6c38e041d2f46898140021ff
+
+Dialogs continue to have one child on Ubuntu.
+---
+ testsuite/gtk/builder.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/testsuite/gtk/builder.c b/testsuite/gtk/builder.c
+index 43a0441..f0f1a14 100644
+--- a/testsuite/gtk/builder.c
++++ b/testsuite/gtk/builder.c
+@@ -1028,7 +1028,7 @@ test_children (void)
+   g_assert (dialog != NULL);
+   g_assert (GTK_IS_DIALOG (dialog));
+   children = gtk_container_get_children (GTK_CONTAINER (dialog));
+-  g_assert (g_list_length (children) == 2);
++  g_assert (g_list_length (children) == 1);
+   g_list_free (children);
+   
+   vbox = gtk_builder_get_object (builder, "dialog1-vbox");
+-- 
+2.0.0
+
