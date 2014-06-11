@@ -39,6 +39,7 @@ Build-Depends: debhelper (>= 8.1.3),
                libcolord-dev (>= 0.1.9),
                gobject-introspection (>= 1.32.0),
                libgirepository1.0-dev (>= 1.32.0),
+               gnome-icon-theme-symbolic,
                xvfb,
                libwayland-dev (>= 1.2.0),
 # Previous versions generated overly strict shlibs
@@ -59,7 +60,6 @@ Architecture: any
 Depends: libgtk-3-common (>= ${source:Upstream-Version}),
          ${misc:Depends},
          ${shlibs:Depends},
-         gnome-icon-theme-symbolic,
          shared-mime-info
 Provides: gtk3-binver-3.0.0
 Recommends: hicolor-icon-theme,
