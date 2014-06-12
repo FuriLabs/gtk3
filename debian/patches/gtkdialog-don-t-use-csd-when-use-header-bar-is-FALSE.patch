@@ -1,18 +1,20 @@
-From 3d530366a7af0494841fef1b473d77e7854beee6 Mon Sep 17 00:00:00 2001
+From a56059fbba75919edf7499f35ead842a7edd17c9 Mon Sep 17 00:00:00 2001
 From: Lars Uebernickel <lars.uebernickel@canonical.com>
 Date: Wed, 14 May 2014 13:16:43 +0200
-Subject: [PATCH 1/3] gtkdialog: don't use csd when use-header-bar is FALSE
+Subject: [PATCH 1/2] gtkdialog: don't use csd when use-header-bar is FALSE
 
 https://bugzilla.gnome.org/show_bug.cgi?id=730893
 ---
- gtk/gtkdialog.c | 63 +++++++++++++++++++++++++++------------------------------
- 1 file changed, 30 insertions(+), 33 deletions(-)
+ gtk/gtkdialog.c                 | 65 ++++++++++++++++++++---------------------
+ testsuite/a11y/colorchooser.txt |  3 +-
+ testsuite/gtk/builder.c         |  7 ++++-
+ 3 files changed, 38 insertions(+), 37 deletions(-)
 
-Index: gtk+3.0-3.12.2/gtk/gtkdialog.c
-===================================================================
---- gtk+3.0-3.12.2.orig/gtk/gtkdialog.c	2014-06-05 13:15:50.106082966 +0200
-+++ gtk+3.0-3.12.2/gtk/gtkdialog.c	2014-06-05 13:15:50.102082965 +0200
-@@ -214,6 +214,10 @@
+diff --git a/gtk/gtkdialog.c b/gtk/gtkdialog.c
+index eb342a5..c56c8f4 100644
+--- a/gtk/gtkdialog.c
++++ b/gtk/gtkdialog.c
+@@ -214,6 +214,10 @@ static void      gtk_dialog_buildable_custom_finished    (GtkBuildable  *buildab
                                                            GObject       *child,
                                                            const gchar   *tagname,
                                                            gpointer       user_data);
@@ -23,7 +25,7 @@ Index: gtk+3.0-3.12.2/gtk/gtkdialog.c
  
  
  enum {
-@@ -273,47 +277,17 @@
+@@ -273,47 +277,17 @@ add_cb (GtkContainer *container,
  }
  
  static void
@@ -74,7 +76,17 @@ Index: gtk+3.0-3.12.2/gtk/gtkdialog.c
  }
  
  static void
-@@ -719,6 +693,7 @@
+@@ -490,8 +464,8 @@ gtk_dialog_constructor (GType                  type,
+   if (priv->use_header_bar == -1)
+     priv->use_header_bar = FALSE;
+ 
+-  add_action_widgets (dialog);
+   apply_use_header_bar (dialog);
++  add_action_widgets (dialog);
+ 
+   return object;
+ }
+@@ -719,6 +693,7 @@ gtk_dialog_buildable_interface_init (GtkBuildableIface *iface)
    parent_buildable_iface = g_type_interface_peek_parent (iface);
    iface->custom_tag_start = gtk_dialog_buildable_custom_tag_start;
    iface->custom_finished = gtk_dialog_buildable_custom_finished;
@@ -82,7 +94,7 @@ Index: gtk+3.0-3.12.2/gtk/gtkdialog.c
  }
  
  static gboolean
-@@ -1830,6 +1805,28 @@
+@@ -1830,6 +1805,28 @@ gtk_dialog_buildable_custom_finished (GtkBuildable *buildable,
    g_slice_free (ActionWidgetsSubParserData, parser_data);
  }
  
@@ -111,3 +123,52 @@ Index: gtk+3.0-3.12.2/gtk/gtkdialog.c
  /**
   * gtk_dialog_get_action_area:
   * @dialog: a #GtkDialog
+diff --git a/testsuite/a11y/colorchooser.txt b/testsuite/a11y/colorchooser.txt
+index 6525bfe..59ae57a 100644
+--- a/testsuite/a11y/colorchooser.txt
++++ b/testsuite/a11y/colorchooser.txt
+@@ -1,7 +1,6 @@
+ window1
+   "dialog"
+   index: 0
+-  name: Select a Color
+   state: enabled sensitive showing visible
+   toolkit: gtk
+   <AtkComponent>
+@@ -38,7 +37,7 @@ window1
+       parent: headerbar
+       index: 1
+       name: Select
+-      state: enabled focusable sensitive showing visible default
++      state: enabled focusable sensitive showing visible
+       toolkit: gtk
+       <AtkComponent>
+       layer: widget
+diff --git a/testsuite/gtk/builder.c b/testsuite/gtk/builder.c
+index 43a0441..d8cb221 100644
+--- a/testsuite/gtk/builder.c
++++ b/testsuite/gtk/builder.c
+@@ -1008,6 +1008,11 @@ test_children (void)
+ 
+   GObject *window, *button;
+   GObject *dialog, *vbox, *action_area;
++  gboolean dialogs_use_header;
++
++  g_object_get (gtk_settings_get_default (),
++                "gtk-dialogs-use-header", &dialogs_use_header,
++                NULL);
+   
+   builder = builder_new_from_string (buffer1, -1, NULL);
+   window = gtk_builder_get_object (builder, "window1");
+@@ -1028,7 +1033,7 @@ test_children (void)
+   g_assert (dialog != NULL);
+   g_assert (GTK_IS_DIALOG (dialog));
+   children = gtk_container_get_children (GTK_CONTAINER (dialog));
+-  g_assert (g_list_length (children) == 2);
++  g_assert (g_list_length (children) == dialogs_use_header ? 2 : 1);
+   g_list_free (children);
+   
+   vbox = gtk_builder_get_object (builder, "dialog1-vbox");
+-- 
+2.0.0
+
