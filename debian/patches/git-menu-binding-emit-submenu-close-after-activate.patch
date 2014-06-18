@@ -1,0 +1,97 @@
+From b532e1ff0ab25303c838565220e8d41fb3044a05 Mon Sep 17 00:00:00 2001
+From: Ryan Lortie <desrt@desrt.ca>
+Date: Mon, 16 Jun 2014 14:26:21 -0400
+Subject: [PATCH] menu binding: emit submenu close after activate
+
+We want to make sure that the submenu action is changed back to FALSE
+_after_ the menu item has been activated.  This prevents the menu
+teardown handler from deleting the menu item before it can be activated.
+
+Unfortunately, GtkMenuShell emits "hide" before the item activation.
+This is probably done to prevent the application from doing things like
+showing dialogs when the menu is still holding the grab.
+
+In the case where we are doing an activate, set a boolean flag on each
+of the open menus (following the parent stack) indicating that we'll be
+emitting another signal soon (selection done).  If that flag is set, we
+defer the setting of the submenu action until we receive the second
+signal.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=729820
+---
+ gtk/gtkmenushell.c        | 21 +++++++++++++++++++--
+ gtk/gtkmenushellprivate.h |  5 +++++
+ 2 files changed, 24 insertions(+), 2 deletions(-)
+
+diff --git a/gtk/gtkmenushell.c b/gtk/gtkmenushell.c
+index 18f1542..d1d0c7f 100644
+--- a/gtk/gtkmenushell.c
++++ b/gtk/gtkmenushell.c
+@@ -1360,6 +1360,8 @@ gtk_menu_shell_activate_item (GtkMenuShell *menu_shell,
+ 
+       do
+         {
++          parent_menu_shell->priv->selection_done_coming_soon = TRUE;
++
+           g_object_ref (parent_menu_shell);
+           shells = g_slist_prepend (shells, parent_menu_shell);
+           parent_menu_shell = (GtkMenuShell*) parent_menu_shell->priv->parent_menu_shell;
+@@ -1379,7 +1381,10 @@ gtk_menu_shell_activate_item (GtkMenuShell *menu_shell,
+ 
+   for (slist = shells; slist; slist = slist->next)
+     {
+-      g_signal_emit (slist->data, menu_shell_signals[SELECTION_DONE], 0);
++      GtkMenuShell *parent_menu_shell = slist->data;
++
++      g_signal_emit (parent_menu_shell, menu_shell_signals[SELECTION_DONE], 0);
++      parent_menu_shell->priv->selection_done_coming_soon = FALSE;
+       g_object_unref (slist->data);
+     }
+   g_slist_free (shells);
+@@ -2010,7 +2015,18 @@ gtk_menu_shell_submenu_hidden (GtkWidget *submenu,
+ {
+   GtkMenuTrackerItem *item = user_data;
+ 
+-  gtk_menu_tracker_item_request_submenu_shown (item, FALSE);
++  if (!GTK_MENU_SHELL (submenu)->priv->selection_done_coming_soon)
++    gtk_menu_tracker_item_request_submenu_shown (item, FALSE);
++}
++
++static void
++gtk_menu_shell_submenu_selection_done (GtkWidget *submenu,
++                                       gpointer   user_data)
++{
++  GtkMenuTrackerItem *item = user_data;
++
++  if (GTK_MENU_SHELL (submenu)->priv->selection_done_coming_soon)
++    gtk_menu_tracker_item_request_submenu_shown (item, FALSE);
+ }
+ 
+ static void
+@@ -2091,6 +2107,7 @@ gtk_menu_shell_tracker_insert_func (GtkMenuTrackerItem *item,
+            */
+           g_signal_connect (submenu, "show", G_CALLBACK (gtk_menu_shell_submenu_shown), item);
+           g_signal_connect (submenu, "hide", G_CALLBACK (gtk_menu_shell_submenu_hidden), item);
++          g_signal_connect (submenu, "selection-done", G_CALLBACK (gtk_menu_shell_submenu_selection_done), item);
+         }
+ 
+       gtk_widget_show (widget);
+diff --git a/gtk/gtkmenushellprivate.h b/gtk/gtkmenushellprivate.h
+index 622f0fd..233be34 100644
+--- a/gtk/gtkmenushellprivate.h
++++ b/gtk/gtkmenushellprivate.h
+@@ -61,6 +61,11 @@ struct _GtkMenuShellPrivate
+                                    * the user moves the mouse over
+                                    * an unselectable menuitem.
+                                    */
++
++  guint selection_done_coming_soon : 1; /* Set TRUE when a selection-done
++                                         * signal is coming soon (when checked
++                                         * from inside of a "hide" handler).
++                                         */
+   GtkMnemonicHash *mnemonic_hash;
+   GtkKeyHash *key_hash;
+ 
+-- 
+2.0.0
+
