@@ -1,11 +1,17 @@
 gtk+3.0 (3.12.2-0ubuntu3) UNRELEASED; urgency=medium
 
+  [ Lars Uebernickel ]
   * Remove a11y-tests-disable-color-chooser-and-message-dialog-.patch:
     update title bar and message dialog patches with the proper fixes instead
   * Remove revert-fix-up-builder.patch: Dialogs have one child again:
     included in the title bar patch now
 
- -- Lars Uebernickel <lars.uebernickel@ubuntu.com>  Thu, 12 Jun 2014 11:06:44 +0200
+  [ William Hua ]
+  * Take upstream git-menu-binding-emit-submenu-close-after-activate.patch:
+    - Ensures that menu item activations occur before GMenuModel
+      submenu-action state changes (LP: #1208019)
+
+ -- William Hua <william.hua@canonical.com>  Tue, 17 Jun 2014 10:15:41 -0400
 
 gtk+3.0 (3.12.2-0ubuntu2) utopic; urgency=medium
 
