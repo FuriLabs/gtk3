@@ -1,0 +1,68 @@
+From 6a2ae1bb9058086acfc1e2a9da6f4163b876af1e Mon Sep 17 00:00:00 2001
+From: Benjamin Otte <otte@redhat.com>
+Date: Thu, 10 Jul 2014 14:16:06 +0200
+Subject: [PATCH] reftests: Improve workaround for GtkGrid bug
+
+... so that it works with wide separators. Or rather: with separators
+that don't request 1px size but any other number. Do that by making the
+placeholder request the same size by indeed stuffing (hidden) separators
+in it.
+---
+ testsuite/reftests/separator-size.ui | 36 ++++++++++++++++++++++++++++++------
+ 1 file changed, 30 insertions(+), 6 deletions(-)
+
+diff --git a/testsuite/reftests/separator-size.ui b/testsuite/reftests/separator-size.ui
+index 006c44e..ae109b6 100644
+--- a/testsuite/reftests/separator-size.ui
++++ b/testsuite/reftests/separator-size.ui
+@@ -126,17 +126,41 @@
+         <!-- BEGIN REMOVE WHEN GRID FIXED -->
+ 
+         <child>
+-          <object class="GtkBox" id="remove-me-when-grid-is-fixed">
++          <object class="GtkNotebook" id="notebook1">
+             <property name="visible">True</property>
+-            <property name="can_focus">False</property>
+-            <property name="width-request">1</property>
+-            <property name="height-request">1</property>
++            <property name="can_focus">True</property>
++            <property name="show_tabs">False</property>
++            <property name="show_border">False</property>
++            <child>
++              <object class="GtkBox" id="box5">
++                <property name="visible">True</property>
++                <property name="can_focus">False</property>
++                <property name="orientation">vertical</property>
++              </object>
++            </child>
++            <child>
++              <object class="GtkSeparator" id="separator5">
++                <property name="visible">True</property>
++                <property name="can_focus">False</property>
++              </object>
++              <packing>
++                <property name="position">1</property>
++              </packing>
++            </child>
++            <child>
++              <object class="GtkSeparator" id="separator6">
++                <property name="visible">True</property>
++                <property name="can_focus">False</property>
++                <property name="orientation">vertical</property>
++              </object>
++              <packing>
++                <property name="position">2</property>
++              </packing>
++            </child>
+           </object>
+           <packing>
+             <property name="left_attach">1</property>
+             <property name="top_attach">1</property>
+-            <property name="width">1</property>
+-            <property name="height">1</property>
+           </packing>
+         </child>
+ 
+-- 
+2.0.1
+
