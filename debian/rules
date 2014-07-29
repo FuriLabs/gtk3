@@ -16,6 +16,9 @@ include /usr/share/gnome-pkg-tools/1/rules/gnome-get-source.mk
 # Make a writable HOME for the testsuite
 export HOME=$(CURDIR)/debian/home
 
+# The tests assume this directory exists and is writable
+export XDG_RUNTIME_DIR=$(CURDIR)/debian/tmp-xdg-runtime-dir
+
 GNOME_MODULE = gtk+
 
 # Ensure the build aborts when there are still references to undefined symbols
