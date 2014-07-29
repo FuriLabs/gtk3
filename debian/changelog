@@ -1,9 +1,14 @@
-gtk+3.0 (3.12.2-0ubuntu5) UNRELEASED; urgency=medium
+gtk+3.0 (3.12.2-0ubuntu6) UNRELEASED; urgency=medium
 
+  [ Lars Uebernickel ]
   * debian/patches/git_reftests-Improve-workaround-for-GtkGrid-bug.patch:
     - backport from master (lp: #1339495)
 
- -- Lars Uebernickel <lars.uebernickel@ubuntu.com>  Fri, 11 Jul 2014 12:05:56 +0200
+  [ Robert Ancell ]
+  * debian/rules:
+    - Export XDG_RUNTIME_DIR - some tests can fail without this (LP: #1342398)
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Tue, 29 Jul 2014 20:58:39 +1200
 
 gtk+3.0 (3.12.2-0ubuntu4) utopic; urgency=medium
 
