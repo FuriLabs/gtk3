@@ -75,8 +75,12 @@ DEB_CONFIGURE_FLAGS_shared = \
 			--enable-introspection \
 			--enable-colord \
 			--enable-wayland-backend \
-			--enable-mir-backend \
 			--disable-static
+
+ifneq (,$(filter $(DEB_HOST_ARCH), amd64 arm64 armhf i386))
+	DEB_CONFIGURE_FLAGS_shared += --enable-mir-backend
+endif
+
 
 DEB_CONFIGURE_FLAGS_shared_udeb = \
 			--disable-introspection \
