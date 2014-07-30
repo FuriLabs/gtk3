@@ -1,4 +1,4 @@
-gtk+3.0 (3.12.2-0ubuntu6) UNRELEASED; urgency=medium
+gtk+3.0 (3.12.2-0ubuntu5) UNRELEASED; urgency=medium
 
   [ Lars Uebernickel ]
   * debian/patches/git_reftests-Improve-workaround-for-GtkGrid-bug.patch:
@@ -7,6 +7,14 @@ gtk+3.0 (3.12.2-0ubuntu6) UNRELEASED; urgency=medium
   [ Robert Ancell ]
   * debian/rules:
     - Export XDG_RUNTIME_DIR - some tests can fail without this (LP: #1342398)
+    - Build with --enable-mir-backend
+  * debian/control:
+    - Build depend on libmirclient-dev
+    - libgtk-3-dev depends on libmirclient-dev
+  * debian/libgtk-3-0.symbols:
+    - Updated
+  * debian/patches/mir-backend.patch:
+    - Add Mir backend
 
  -- Robert Ancell <robert.ancell@canonical.com>  Tue, 29 Jul 2014 20:58:39 +1200
 
