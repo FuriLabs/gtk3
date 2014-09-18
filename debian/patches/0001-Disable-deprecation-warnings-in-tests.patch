@@ -1,0 +1,60 @@
+From b9bd7159c0b2ed6a6df4e2e01a91c4848b181414 Mon Sep 17 00:00:00 2001
+From: Matthias Clasen <mclasen@redhat.com>
+Date: Wed, 25 Jun 2014 16:23:57 -0400
+Subject: [PATCH] Disable deprecation warnings in tests
+
+We want to test deprecated properties, so failing the tests with
+warnings is not productive.
+---
+ testsuite/a11y/Makefile.am     | 5 ++++-
+ testsuite/gtk/Makefile.am      | 2 ++
+ testsuite/reftests/Makefile.am | 4 +++-
+ 3 files changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/testsuite/a11y/Makefile.am b/testsuite/a11y/Makefile.am
+index 96e3e8b..b921a37 100644
+--- a/testsuite/a11y/Makefile.am
++++ b/testsuite/a11y/Makefile.am
+@@ -20,7 +20,10 @@ LDADD = \
+ 
+ # work around random file systems showing up in the file chooser,
+ # breaking the 'pickers' test
+-TESTS_ENVIRONMENT = GIO_USE_VOLUME_MONITOR=unix GSETTINGS_BACKEND=memory
++TESTS_ENVIRONMENT = 			\
++	GIO_USE_VOLUME_MONITOR=unix 	\
++	GSETTINGS_BACKEND=memory	\
++	G_ENABLE_DIAGNOSTIC=0
+ 
+ TEST_PROGS += accessibility-dump
+ 
+diff --git a/testsuite/gtk/Makefile.am b/testsuite/gtk/Makefile.am
+index d8031ad..0993b85 100644
+--- a/testsuite/gtk/Makefile.am
++++ b/testsuite/gtk/Makefile.am
+@@ -25,6 +25,8 @@ LDADD = \
+ 
+ noinst_PROGRAMS = $(TEST_PROGS)
+ 
++TESTS_ENVIRONMENT = G_ENABLE_DIAGNOSTIC=0
++
+ TEST_PROGS += 			\
+ 	accel			\
+ 	accessible		\
+diff --git a/testsuite/reftests/Makefile.am b/testsuite/reftests/Makefile.am
+index c9fad6c..702a0fc 100644
+--- a/testsuite/reftests/Makefile.am
++++ b/testsuite/reftests/Makefile.am
+@@ -1,7 +1,9 @@
+ include $(top_srcdir)/Makefile.decl
+ NULL =
+ 
+-TESTS_ENVIRONMENT = GSETTINGS_BACKEND=memory
++TESTS_ENVIRONMENT = 			\
++	GSETTINGS_BACKEND=memory	\
++	G_ENABLE_DIAGNOSTIC=0
+ 
+ TEST_PROGS += gtk-reftest
+ 
+-- 
+2.1.0
+
