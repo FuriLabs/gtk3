@@ -1,3 +1,12 @@
+gtk+3.0 (3.12.2-0ubuntu7) UNRELEASED; urgency=medium
+
+  * debian/patches/0001-Disable-deprecation-warnings-in-tests.patch
+    debian/patches/0001-Fight-deprecation-warnings-in-test.patch: Don't run
+    the testsuite with deprecation warnings. We want to test deprecated
+    properties, and this currently causes FTBFS.
+
+ -- Iain Lane <iain.lane@canonical.com>  Thu, 18 Sep 2014 17:52:09 +0100
+
 gtk+3.0 (3.12.2-0ubuntu6) utopic; urgency=medium
 
   * debian/control.in, debian/libgtk-3-0.symbols, debian/rules:
