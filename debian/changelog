@@ -1,3 +1,11 @@
+gtk+3.0 (3.12.2-0ubuntu11) UNRELEASED; urgency=medium
+
+  * 0001-threads-Do-not-release-the-GDK-lock-if-it-hasn-t-bee.patch:
+    Cherry-pick from upstream to work around abort() inside GLib occuring in
+    applications that do not intialise GDK for threading right. (LP: #1374030)
+
+ -- Iain Lane <iain.lane@canonical.com>  Thu, 02 Oct 2014 13:27:36 +0100
+
 gtk+3.0 (3.12.2-0ubuntu10) utopic; urgency=medium
 
   [ Lars Uebernickel ]
