@@ -148,9 +148,6 @@ clean:: debian/control
 build-indep: $(call dh_subst_files,$(DEB_INDEP_PACKAGES))
 build-arch: $(call dh_subst_files,$(DEB_ARCH_PACKAGES))
 
-build/$(SHARED_PKG)::
-	cd po; intltool-update --pot
-
 binary-install/$(SHARED_PKG)::
 	# Install the binaries with a -3.0 suffix
 	mv debian/$(SHARED_PKG)/$(LIBDIR)/$(SHARED_PKG)/gtk-update-icon-cache \
