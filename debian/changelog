@@ -1,3 +1,46 @@
+gtk+3.0 (3.14.3-0ubuntu1) UNRELEASED; urgency=medium
+
+  * New upstream release
+  * debian/patches/0001-Disable-deprecation-warnings-in-tests.patch,
+    debian/patches/0001-Fight-deprecation-warnings-in-test.patch,
+    debian/patches/0001-threads-Do-not-release-the-GDK-lock-if-it-hasn-t-bee.patch,
+    debian/patches/022_disable-viqr-im-for-vi-locale.patch,
+    debian/patches/git-gtkpopover-set-background-and-popover-css.patch,
+    debian/patches/git-menu-binding-emit-submenu-close-after-activate.patch,
+    debian/patches/git_printing_segfault.patch,
+    debian/patches/git_reftests-Improve-workaround-for-GtkGrid-bug.patch,
+    debian/patches/gtkaboutdialog-support-showing-buttons-in-action-are.patch,
+    debian/patches/gtkdialog-don-t-use-csd-when-use-header-bar-is-FALSE.patch,
+    debian/patches/ubuntu_label_wrap_workaround.patch,
+    debian/patches/ubuntu_translation_template.patch,
+    debian/patches/use-secrets-service-for-cups-auth_info.patch:
+    - dropped, included in the new release
+  * debian/patches/022_disable-viqr-im-for-vi-locale.patch:
+    - dropped, unlikely that we still need it
+  * debian/patches/016_no_offscreen_widgets_grabbing.patch,
+    debian/patches/017_no_offscreen_device_grabbing.patch,
+    debian/patches/018_gdkenumtypes.c_location.patch,
+    debian/patches/032_mips_treeview_row_separator_height.patch,
+    debian/patches/073_treeview_almost_fixed.patch,
+    debian/patches/074_eventbox_scroll_mask.patch,
+    debian/patches/bzg_gtkcellrenderer_grabbing_modifier.patch,
+    debian/patches/message-dialog-restore-traditional-look-on-unity.patch,
+    debian/patches/mir-backend.patch,
+    debian/patches/print-dialog-show-options-of-remote-dnssd-printers.patch,
+    debian/patches/ubuntu_gtk_custom_menu_items.patch,
+    debian/patches/x-canonical-accel.patch:
+    - ported and refreshed
+  * 030_tests_skip_filechooser.patch,
+    042_treeview_single-focus.patch,
+    043_notebook_scroll.patch:
+    - disable, it's not clear why this is needed anymore (as Debian did)
+  * mir-backend.patch:
+    - disable, as it is not building right now
+  * disable-reftests.patch:
+    - multiple reftests fail and it's not clear when upstream will fix them
+
+ -- Lars Uebernickel <lars.uebernickel@ubuntu.com>  Mon, 20 Oct 2014 13:44:53 -0400
+
 gtk+3.0 (3.12.2-0ubuntu14) utopic; urgency=medium
 
   * debian/patches/mir-backend.patch: 
