@@ -1,16 +1,16 @@
-From 9c9626875629093b072f9377b0999ec1407d166c Mon Sep 17 00:00:00 2001
+From 00994b1294b8ce5673dcb7e3107b8dd7d4a1c15a Mon Sep 17 00:00:00 2001
 From: Lars Uebernickel <lars.uebernickel@canonical.com>
-Date: Thu, 29 May 2014 14:52:55 +0200
-Subject: [PATCH 2/2] message dialog: restore traditional look on unity
+Date: Thu, 23 Oct 2014 10:01:04 -0400
+Subject: [PATCH] message dialog: restore traditional look on unity
 
 ---
- gtk/gtkmessagedialog.c               | 36 ++++++++++++++++++-
- gtk/resources/ui/gtkmessagedialog.ui | 17 +++++++++
- testsuite/a11y/messagedialog.txt     | 67 ++++++++----------------------------
- 3 files changed, 67 insertions(+), 53 deletions(-)
+ gtk/gtkmessagedialog.c               | 34 +++++++++++++++++++++++++++++++++-
+ gtk/resources/ui/gtkmessagedialog.ui | 18 ++++++++++++++++++
+ testsuite/a11y/messagedialog.txt     | 15 ++++++++++++++-
+ 3 files changed, 65 insertions(+), 2 deletions(-)
 
 diff --git a/gtk/gtkmessagedialog.c b/gtk/gtkmessagedialog.c
-index e3f8ec4..ca08860 100644
+index 653f3fd..f4df43e 100644
 --- a/gtk/gtkmessagedialog.c
 +++ b/gtk/gtkmessagedialog.c
 @@ -104,6 +104,9 @@ struct _GtkMessageDialogPrivate
@@ -23,7 +23,7 @@ index e3f8ec4..ca08860 100644
  
    guint          has_primary_markup : 1;
    guint          has_secondary_text : 1;
-@@ -298,6 +301,9 @@ gtk_message_dialog_class_init (GtkMessageDialogClass *class)
+@@ -300,6 +303,9 @@ gtk_message_dialog_class_init (GtkMessageDialogClass *class)
    gtk_widget_class_set_template_from_resource (widget_class, "/org/gtk/libgtk/ui/gtkmessagedialog.ui");
    gtk_widget_class_bind_template_child_private (widget_class, GtkMessageDialog, label);
    gtk_widget_class_bind_template_child_private (widget_class, GtkMessageDialog, secondary_label);
@@ -33,7 +33,7 @@ index e3f8ec4..ca08860 100644
    gtk_widget_class_bind_template_child_internal_private (widget_class, GtkMessageDialog, message_area);
  }
  
-@@ -320,7 +326,27 @@ gtk_message_dialog_init (GtkMessageDialog *dialog)
+@@ -323,7 +329,25 @@ gtk_message_dialog_init (GtkMessageDialog *dialog)
  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
    action_area = gtk_dialog_get_action_area (GTK_DIALOG (dialog));
  G_GNUC_END_IGNORE_DEPRECATIONS
@@ -51,26 +51,24 @@ index e3f8ec4..ca08860 100644
 +      gtk_widget_set_margin_end (priv->box, 12);
 +
 +      gtk_widget_set_halign (priv->label, GTK_ALIGN_START);
-+      gtk_misc_set_alignment (GTK_MISC (priv->label), 0, 0);
 +      gtk_widget_set_margin_top (priv->label, 0);
 +
 +      gtk_widget_set_halign (priv->secondary_label, GTK_ALIGN_START);
-+      gtk_misc_set_alignment (GTK_MISC (priv->secondary_label), 0, 0);
 +    }
 +  else
 +    gtk_button_box_set_layout (GTK_BUTTON_BOX (action_area), GTK_BUTTONBOX_EXPAND);
  }
  
  static void
-@@ -360,6 +386,7 @@ setup_type (GtkMessageDialog *dialog,
+@@ -363,6 +387,7 @@ setup_type (GtkMessageDialog *dialog,
  {
    GtkMessageDialogPrivate *priv = dialog->priv;
    const gchar *name = NULL;
 +  const gchar *icon_name = NULL;
    AtkObject *atk_obj;
  
-   priv->message_type = type;
-@@ -368,18 +395,22 @@ setup_type (GtkMessageDialog *dialog,
+   if (priv->message_type == type)
+@@ -374,18 +399,22 @@ setup_type (GtkMessageDialog *dialog,
      {
      case GTK_MESSAGE_INFO:
        name = _("Information");
@@ -93,21 +91,21 @@ index e3f8ec4..ca08860 100644
        break;
  
      case GTK_MESSAGE_OTHER:
-@@ -397,6 +428,9 @@ setup_type (GtkMessageDialog *dialog,
-       if (name)
-         atk_object_set_name (atk_obj, name);
+@@ -396,6 +425,9 @@ setup_type (GtkMessageDialog *dialog,
+       break;
      }
-+
+ 
 +  if (icon_name)
 +    gtk_image_set_from_icon_name (GTK_IMAGE (priv->image), icon_name, GTK_ICON_SIZE_DIALOG);
- }
- 
- static void 
++
+   atk_obj = gtk_widget_get_accessible (GTK_WIDGET (dialog));
+   if (GTK_IS_ACCESSIBLE (atk_obj))
+     {
 diff --git a/gtk/resources/ui/gtkmessagedialog.ui b/gtk/resources/ui/gtkmessagedialog.ui
-index d75a414..a4b0dda 100644
+index b3472ef..7c4577e 100644
 --- a/gtk/resources/ui/gtkmessagedialog.ui
 +++ b/gtk/resources/ui/gtkmessagedialog.ui
-@@ -30,6 +30,23 @@
+@@ -33,6 +33,24 @@
              <property name="margin_end">30</property>
              <property name="spacing">30</property>
              <child>
@@ -119,7 +117,8 @@ index d75a414..a4b0dda 100644
 +                <property name="icon_name">image-missing</property>
 +                <property name="use_fallback">True</property>
 +                <property name="icon_size">6</property>
-+                <property name="xpad">12</property>
++                <property name="margin-start">12</property>
++                <property name="margin-end">12</property>
 +              </object>
 +              <packing>
 +                <property name="expand">False</property>
@@ -132,66 +131,10 @@ index d75a414..a4b0dda 100644
                  <property name="visible">True</property>
                  <property name="can_focus">False</property>
 diff --git a/testsuite/a11y/messagedialog.txt b/testsuite/a11y/messagedialog.txt
-index a934b40..2366f2d 100644
+index 350a116..4e6ff7b 100644
 --- a/testsuite/a11y/messagedialog.txt
 +++ b/testsuite/a11y/messagedialog.txt
-@@ -7,55 +7,6 @@ window1
-   <AtkComponent>
-   layer: window
-   alpha: 1
--  unnamed-GtkContainerAccessible-0
--    "filler"
--    parent: window1
--    index: 1
--    state: enabled horizontal sensitive showing visible
--    toolkit: gtk
--    <AtkComponent>
--    layer: widget
--    alpha: 1
--     
--      "label"
--      parent: unnamed-GtkContainerAccessible-0
--      index: 0
--      name:  
--      state: enabled multi-line sensitive showing visible
--      toolkit: gtk
--      <AtkComponent>
--      layer: widget
--      alpha: 1
--      <AtkText>
--      text:  
--      character count: 1
--      caret offset: 0
--      default attributes: bg-color: <omitted>
--                          bg-full-height: 0
--                          direction: <omitted>
--                          editable: false
--                          family-name: <omitted>
--                          fg-color: <omitted>
--                          indent: 0
--                          invisible: false
--                          justification: left
--                          language: <omitted>
--                          left-margin: 0
--                          pixels-above-lines: 0
--                          pixels-below-lines: 0
--                          pixels-inside-wrap: 0
--                          right-margin: 0
--                          rise: 0
--                          scale: 1
--                          size: <omitted>
--                          stretch: <omitted>
--                          strikethrough: false
--                          style: <omitted>
--                          underline: none
--                          variant: <omitted>
--                          weight: <omitted>
--                          wrap-mode: word
--      <AtkHypertext>
-   dialog-vbox1
-     "filler"
-     parent: window1
-@@ -74,10 +25,23 @@ window1
+@@ -74,10 +74,23 @@ window1
        <AtkComponent>
        layer: widget
        alpha: 1
@@ -216,16 +159,6 @@ index a934b40..2366f2d 100644
          state: enabled sensitive showing vertical visible
          toolkit: gtk
          <AtkComponent>
-@@ -96,8 +60,7 @@ window1
-           <AtkText>
-           text: Information
-           character count: 11
--          caret offset: 11
--          selection 0: (0, 11) Information
-+          caret offset: 0
-           default attributes: bg-color: <omitted>
-                               bg-full-height: 0
-                               direction: <omitted>
 -- 
-2.0.0
+2.1.0
 
