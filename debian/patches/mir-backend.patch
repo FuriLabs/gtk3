@@ -1,7 +1,55 @@
-Index: gtk+3.0-3.14.3/Makefile.am
-===================================================================
---- gtk+3.0-3.14.3.orig/Makefile.am
-+++ gtk+3.0-3.14.3/Makefile.am
+From 08aa1c3a537d20d0ede3a80a75656158950d08fd Mon Sep 17 00:00:00 2001
+From: Ryan Lortie <desrt@desrt.ca>
+Date: Thu, 23 Oct 2014 15:58:32 -0400
+Subject: [PATCH] Gdk: add an experimental backend for mir
+
+Backported from 0f26b26f1d93f002ccd5fe6b6fd636172bfbb24b.
+---
+ Makefile.am                      |    6 +-
+ configure.ac                     |   34 +-
+ docs/reference/gtk/Makefile.am   |    1 +
+ docs/reference/gtk/building.sgml |   11 +-
+ docs/reference/gtk/gtk-docs.sgml |    1 +
+ docs/reference/gtk/mir.xml       |   35 ++
+ docs/reference/gtk/running.sgml  |    5 +
+ gdk/Makefile.am                  |    6 +-
+ gdk/gdkdisplaymanager.c          |    7 +
+ gdk/mir/Makefile.am              |   39 ++
+ gdk/mir/gdkmir-debug.c           |  293 +++++++++
+ gdk/mir/gdkmir-private.h         |   86 +++
+ gdk/mir/gdkmir.h                 |   39 ++
+ gdk/mir/gdkmircursor.c           |   73 +++
+ gdk/mir/gdkmirdevicemanager.c    |  120 ++++
+ gdk/mir/gdkmirdisplay.c          |  572 ++++++++++++++++++
+ gdk/mir/gdkmireventsource.c      |  624 +++++++++++++++++++
+ gdk/mir/gdkmirkeyboard.c         |  173 ++++++
+ gdk/mir/gdkmirkeymap.c           |  466 ++++++++++++++
+ gdk/mir/gdkmirpointer.c          |  250 ++++++++
+ gdk/mir/gdkmirscreen.c           |  720 ++++++++++++++++++++++
+ gdk/mir/gdkmirwindow.c           |   52 ++
+ gdk/mir/gdkmirwindowimpl.c       | 1239 ++++++++++++++++++++++++++++++++++++++
+ gtk/gtktooltip.c                 |   16 +
+ 24 files changed, 4861 insertions(+), 7 deletions(-)
+ create mode 100644 docs/reference/gtk/mir.xml
+ create mode 100644 gdk/mir/Makefile.am
+ create mode 100644 gdk/mir/gdkmir-debug.c
+ create mode 100644 gdk/mir/gdkmir-private.h
+ create mode 100644 gdk/mir/gdkmir.h
+ create mode 100644 gdk/mir/gdkmircursor.c
+ create mode 100644 gdk/mir/gdkmirdevicemanager.c
+ create mode 100644 gdk/mir/gdkmirdisplay.c
+ create mode 100644 gdk/mir/gdkmireventsource.c
+ create mode 100644 gdk/mir/gdkmirkeyboard.c
+ create mode 100644 gdk/mir/gdkmirkeymap.c
+ create mode 100644 gdk/mir/gdkmirpointer.c
+ create mode 100644 gdk/mir/gdkmirscreen.c
+ create mode 100644 gdk/mir/gdkmirwindow.c
+ create mode 100644 gdk/mir/gdkmirwindowimpl.c
+
+diff --git a/Makefile.am b/Makefile.am
+index 2cb7769..37bc9ff 100644
+--- a/Makefile.am
++++ b/Makefile.am
 @@ -33,11 +33,11 @@ MAINTAINERCLEANFILES = \
  
  
@@ -31,10 +79,10 @@ Index: gtk+3.0-3.14.3/Makefile.am
  	gail-3.0.pc			\
  	config.lt
  
-Index: gtk+3.0-3.14.3/configure.ac
-===================================================================
---- gtk+3.0-3.14.3.orig/configure.ac
-+++ gtk+3.0-3.14.3/configure.ac
+diff --git a/configure.ac b/configure.ac
+index 9f4a4af..f95ba8d 100644
+--- a/configure.ac
++++ b/configure.ac
 @@ -329,6 +329,10 @@ AC_ARG_ENABLE(wayland-backend,
                [AS_HELP_STRING([--enable-wayland-backend],
                                [enable the wayland gdk backend])],
@@ -50,7 +98,7 @@ Index: gtk+3.0-3.14.3/configure.ac
    else
      enable_x11_backend=yes
      enable_wayland_backend=maybe
-+    enable_mir_backend=maybe
++    enable_mir_backend=no
    fi
  fi
  
@@ -111,10 +159,10 @@ Index: gtk+3.0-3.14.3/configure.ac
  gdk/gdkversionmacros.h
  gtk/Makefile
  gtk/makefile.msc
-Index: gtk+3.0-3.14.3/docs/reference/gtk/Makefile.am
-===================================================================
---- gtk+3.0-3.14.3.orig/docs/reference/gtk/Makefile.am
-+++ gtk+3.0-3.14.3/docs/reference/gtk/Makefile.am
+diff --git a/docs/reference/gtk/Makefile.am b/docs/reference/gtk/Makefile.am
+index 968384c..74ef369 100644
+--- a/docs/reference/gtk/Makefile.am
++++ b/docs/reference/gtk/Makefile.am
 @@ -145,6 +145,7 @@ content_files =					\
  	osx.sgml				\
  	broadway.xml				\
@@ -123,10 +171,10 @@ Index: gtk+3.0-3.14.3/docs/reference/gtk/Makefile.am
  	question_index.sgml			\
  	resources.sgml				\
  	text_widget.sgml			\
-Index: gtk+3.0-3.14.3/docs/reference/gtk/building.sgml
-===================================================================
---- gtk+3.0-3.14.3.orig/docs/reference/gtk/building.sgml
-+++ gtk+3.0-3.14.3/docs/reference/gtk/building.sgml
+diff --git a/docs/reference/gtk/building.sgml b/docs/reference/gtk/building.sgml
+index b7479e7..445e1fd 100644
+--- a/docs/reference/gtk/building.sgml
++++ b/docs/reference/gtk/building.sgml
 @@ -395,6 +395,11 @@ How to compile GTK+ itself
            </group>
            <sbr/>
@@ -152,10 +200,10 @@ Index: gtk+3.0-3.14.3/docs/reference/gtk/building.sgml
  
          <para>
            Enables specific backends for GDK.  If none of these options
-Index: gtk+3.0-3.14.3/docs/reference/gtk/gtk-docs.sgml
-===================================================================
---- gtk+3.0-3.14.3.orig/docs/reference/gtk/gtk-docs.sgml
-+++ gtk+3.0-3.14.3/docs/reference/gtk/gtk-docs.sgml
+diff --git a/docs/reference/gtk/gtk-docs.sgml b/docs/reference/gtk/gtk-docs.sgml
+index 2e00bae..8f4a8d1 100644
+--- a/docs/reference/gtk/gtk-docs.sgml
++++ b/docs/reference/gtk/gtk-docs.sgml
 @@ -413,6 +413,7 @@
      <xi:include href="osx.sgml" />
      <xi:include href="broadway.xml" />
@@ -164,10 +212,11 @@ Index: gtk+3.0-3.14.3/docs/reference/gtk/gtk-docs.sgml
    </part>
  
    <xi:include href="glossary.xml" />
-Index: gtk+3.0-3.14.3/docs/reference/gtk/mir.xml
-===================================================================
+diff --git a/docs/reference/gtk/mir.xml b/docs/reference/gtk/mir.xml
+new file mode 100644
+index 0000000..3a0a52e
 --- /dev/null
-+++ gtk+3.0-3.14.3/docs/reference/gtk/mir.xml
++++ b/docs/reference/gtk/mir.xml
 @@ -0,0 +1,35 @@
 +<?xml version="1.0"?>
 +<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
@@ -204,10 +253,10 @@ Index: gtk+3.0-3.14.3/docs/reference/gtk/mir.xml
 +</refsect1>
 +
 +</refentry>
-Index: gtk+3.0-3.14.3/docs/reference/gtk/running.sgml
-===================================================================
---- gtk+3.0-3.14.3.orig/docs/reference/gtk/running.sgml
-+++ gtk+3.0-3.14.3/docs/reference/gtk/running.sgml
+diff --git a/docs/reference/gtk/running.sgml b/docs/reference/gtk/running.sgml
+index 321593a..1aa2291 100644
+--- a/docs/reference/gtk/running.sgml
++++ b/docs/reference/gtk/running.sgml
 @@ -487,6 +487,11 @@ nevertheless.
          <listitem><para>Selects the Wayland backend for connecting to Wayland display servers</para></listitem>
        </varlistentry>
@@ -220,10 +269,10 @@ Index: gtk+3.0-3.14.3/docs/reference/gtk/running.sgml
      </variablelist>
      Since 3.10, this environment variable can contain a comma-separated list
      of backend names, which are tried in order. The list may also contain
-Index: gtk+3.0-3.14.3/gdk/Makefile.am
-===================================================================
---- gtk+3.0-3.14.3.orig/gdk/Makefile.am
-+++ gtk+3.0-3.14.3/gdk/Makefile.am
+diff --git a/gdk/Makefile.am b/gdk/Makefile.am
+index 5f0c1e5..1e24b6e 100644
+--- a/gdk/Makefile.am
++++ b/gdk/Makefile.am
 @@ -13,7 +13,7 @@ INTROSPECTION_COMPILER_ARGS = \
  
  SUBDIRS = $(GDK_BACKENDS) .
@@ -244,10 +293,10 @@ Index: gtk+3.0-3.14.3/gdk/Makefile.am
  if HAVE_INTROSPECTION
  
  introspection_files = 		\
-Index: gtk+3.0-3.14.3/gdk/gdkdisplaymanager.c
-===================================================================
---- gtk+3.0-3.14.3.orig/gdk/gdkdisplaymanager.c
-+++ gtk+3.0-3.14.3/gdk/gdkdisplaymanager.c
+diff --git a/gdk/gdkdisplaymanager.c b/gdk/gdkdisplaymanager.c
+index c6813d0..c9afbca 100644
+--- a/gdk/gdkdisplaymanager.c
++++ b/gdk/gdkdisplaymanager.c
 @@ -60,6 +60,10 @@
  #include "wayland/gdkprivate-wayland.h"
  #endif
@@ -269,10 +318,11 @@ Index: gtk+3.0-3.14.3/gdk/gdkdisplaymanager.c
  #ifdef GDK_WINDOWING_BROADWAY
    { "broadway", _gdk_broadway_display_open },
  #endif
-Index: gtk+3.0-3.14.3/gdk/mir/Makefile.am
-===================================================================
+diff --git a/gdk/mir/Makefile.am b/gdk/mir/Makefile.am
+new file mode 100644
+index 0000000..026ce79
 --- /dev/null
-+++ gtk+3.0-3.14.3/gdk/mir/Makefile.am
++++ b/gdk/mir/Makefile.am
 @@ -0,0 +1,39 @@
 +## Process this file with automake to produce Makefile.in
 +include $(top_srcdir)/Makefile.decl
@@ -313,10 +363,11 @@ Index: gtk+3.0-3.14.3/gdk/mir/Makefile.am
 +	gdkmir.h
 +
 +-include $(top_srcdir)/git.mk
-Index: gtk+3.0-3.14.3/gdk/mir/gdkmir-debug.c
-===================================================================
+diff --git a/gdk/mir/gdkmir-debug.c b/gdk/mir/gdkmir-debug.c
+new file mode 100644
+index 0000000..ef57eff
 --- /dev/null
-+++ gtk+3.0-3.14.3/gdk/mir/gdkmir-debug.c
++++ b/gdk/mir/gdkmir-debug.c
 @@ -0,0 +1,293 @@
 +/*
 + * Copyright © 2014 Canonical Ltd
@@ -611,10 +662,11 @@ Index: gtk+3.0-3.14.3/gdk/mir/gdkmir-debug.c
 +      break;
 +    }
 +}
-Index: gtk+3.0-3.14.3/gdk/mir/gdkmir-private.h
-===================================================================
+diff --git a/gdk/mir/gdkmir-private.h b/gdk/mir/gdkmir-private.h
+new file mode 100644
+index 0000000..268295b
 --- /dev/null
-+++ gtk+3.0-3.14.3/gdk/mir/gdkmir-private.h
++++ b/gdk/mir/gdkmir-private.h
 @@ -0,0 +1,86 @@
 +/*
 + * Copyright © 2014 Canonical Ltd
@@ -636,8 +688,6 @@ Index: gtk+3.0-3.14.3/gdk/mir/gdkmir-private.h
 +#ifndef __GDK_PRIVATE_MIR_H__
 +#define __GDK_PRIVATE_MIR_H__
 +
-+#include "config.h"
-+
 +#include "gdkmir.h"
 +#include "gdkdisplay.h"
 +#include "gdkscreen.h"
@@ -650,8 +700,10 @@ Index: gtk+3.0-3.14.3/gdk/mir/gdkmir-private.h
 +typedef struct _GdkMirEventSource GdkMirEventSource;
 +
 +#define GDK_TYPE_MIR_WINDOW_IMPL              (gdk_mir_window_impl_get_type ())
-+#define GDK_MIR_WINDOW_IMPL(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), GDK_TYPE_WINDOW_IMPL_MIR, GdkMirWindowImpl))
-+#define GDK_IS_WINDOW_IMPL_MIR(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), GDK_TYPE_WINDOW_IMPL_MIR))
++#define GDK_MIR_WINDOW_IMPL(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), GDK_TYPE_MIR_WINDOW_IMPL, GdkMirWindowImpl))
++#define GDK_IS_WINDOW_IMPL_MIR(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), GDK_TYPE_MIR_WINDOW_IMPL))
++
++GType gdk_mir_window_impl_get_type (void);
 +
 +GdkDisplay *_gdk_mir_display_open (const gchar *display_name);
 +
@@ -702,10 +754,11 @@ Index: gtk+3.0-3.14.3/gdk/mir/gdkmir-private.h
 +void _gdk_mir_print_event (const MirEvent *event);
 +
 +#endif /* __GDK_PRIVATE_MIR_H__ */
-Index: gtk+3.0-3.14.3/gdk/mir/gdkmir.h
-===================================================================
+diff --git a/gdk/mir/gdkmir.h b/gdk/mir/gdkmir.h
+new file mode 100644
+index 0000000..1ab0a28
 --- /dev/null
-+++ gtk+3.0-3.14.3/gdk/mir/gdkmir.h
++++ b/gdk/mir/gdkmir.h
 @@ -0,0 +1,39 @@
 +/*
 + * Copyright © 2014 Canonical Ltd
@@ -746,10 +799,11 @@ Index: gtk+3.0-3.14.3/gdk/mir/gdkmir.h
 +GType gdk_mir_window_get_type (void);
 +
 +#endif /* __GDK_MIR_H__ */
-Index: gtk+3.0-3.14.3/gdk/mir/gdkmircursor.c
-===================================================================
+diff --git a/gdk/mir/gdkmircursor.c b/gdk/mir/gdkmircursor.c
+new file mode 100644
+index 0000000..bdbce5e
 --- /dev/null
-+++ gtk+3.0-3.14.3/gdk/mir/gdkmircursor.c
++++ b/gdk/mir/gdkmircursor.c
 @@ -0,0 +1,73 @@
 +/*
 + * Copyright © 2014 Canonical Ltd
@@ -824,10 +878,11 @@ Index: gtk+3.0-3.14.3/gdk/mir/gdkmircursor.c
 +
 +  cursor_class->get_surface = gdk_mir_cursor_get_surface;
 +}
-Index: gtk+3.0-3.14.3/gdk/mir/gdkmirdevicemanager.c
-===================================================================
+diff --git a/gdk/mir/gdkmirdevicemanager.c b/gdk/mir/gdkmirdevicemanager.c
+new file mode 100644
+index 0000000..c94f8a3
 --- /dev/null
-+++ gtk+3.0-3.14.3/gdk/mir/gdkmirdevicemanager.c
++++ b/gdk/mir/gdkmirdevicemanager.c
 @@ -0,0 +1,120 @@
 +/*
 + * Copyright © 2014 Canonical Ltd
@@ -949,11 +1004,12 @@ Index: gtk+3.0-3.14.3/gdk/mir/gdkmirdevicemanager.c
 +  device_manager_class->get_client_pointer = gdk_mir_device_manager_get_client_pointer;
 +  object_class->constructed = gdk_mir_device_manager_constructed;
 +}
-Index: gtk+3.0-3.14.3/gdk/mir/gdkmirdisplay.c
-===================================================================
+diff --git a/gdk/mir/gdkmirdisplay.c b/gdk/mir/gdkmirdisplay.c
+new file mode 100644
+index 0000000..92dfcee
 --- /dev/null
-+++ gtk+3.0-3.14.3/gdk/mir/gdkmirdisplay.c
-@@ -0,0 +1,571 @@
++++ b/gdk/mir/gdkmirdisplay.c
+@@ -0,0 +1,572 @@
 +/*
 + * Copyright © 2014 Canonical Ltd
 + *
@@ -979,6 +1035,7 @@ Index: gtk+3.0-3.14.3/gdk/mir/gdkmirdisplay.c
 +#include "gdkmir.h"
 +#include "gdkmir-private.h"
 +
++#define GDK_TYPE_DISPLAY_MIR              (gdk_mir_display_get_type ())
 +#define GDK_MIR_DISPLAY(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), GDK_TYPE_DISPLAY_MIR, GdkMirDisplay))
 +#define GDK_MIR_DISPLAY_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), GDK_TYPE_DISPLAY_MIR, GdkMirDisplayClass))
 +#define GDK_IS_MIR_DISPLAY_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), GDK_TYPE_MIR_DISPLAY))
@@ -1525,10 +1582,11 @@ Index: gtk+3.0-3.14.3/gdk/mir/gdkmirdisplay.c
 +  display_class->text_property_to_utf8_list = gdk_mir_display_text_property_to_utf8_list;
 +  display_class->utf8_to_string_target = gdk_mir_display_utf8_to_string_target;
 +}
-Index: gtk+3.0-3.14.3/gdk/mir/gdkmireventsource.c
-===================================================================
+diff --git a/gdk/mir/gdkmireventsource.c b/gdk/mir/gdkmireventsource.c
+new file mode 100644
+index 0000000..7396eba
 --- /dev/null
-+++ gtk+3.0-3.14.3/gdk/mir/gdkmireventsource.c
++++ b/gdk/mir/gdkmireventsource.c
 @@ -0,0 +1,624 @@
 +/*
 + * Copyright © 2014 Canonical Ltd
@@ -1946,7 +2004,7 @@ Index: gtk+3.0-3.14.3/gdk/mir/gdkmireventsource.c
 +      handle_resize_event (window, &event->resize);
 +      break;
 +    default:
-+      g_warning ("non handled event type");
++      g_assert_not_reached ();
 +      // FIXME?
 +      break;
 +    }
@@ -2154,10 +2212,11 @@ Index: gtk+3.0-3.14.3/gdk/mir/gdkmireventsource.c
 +
 +  g_main_context_wakeup (NULL);
 +}
-Index: gtk+3.0-3.14.3/gdk/mir/gdkmirkeyboard.c
-===================================================================
+diff --git a/gdk/mir/gdkmirkeyboard.c b/gdk/mir/gdkmirkeyboard.c
+new file mode 100644
+index 0000000..86c0d9f
 --- /dev/null
-+++ gtk+3.0-3.14.3/gdk/mir/gdkmirkeyboard.c
++++ b/gdk/mir/gdkmirkeyboard.c
 @@ -0,0 +1,173 @@
 +/*
 + * Copyright © 2014 Canonical Ltd
@@ -2332,10 +2391,11 @@ Index: gtk+3.0-3.14.3/gdk/mir/gdkmirkeyboard.c
 +  device_class->window_at_position = gdk_mir_keyboard_window_at_position;
 +  device_class->select_window_events = gdk_mir_keyboard_select_window_events;
 +}
-Index: gtk+3.0-3.14.3/gdk/mir/gdkmirkeymap.c
-===================================================================
+diff --git a/gdk/mir/gdkmirkeymap.c b/gdk/mir/gdkmirkeymap.c
+new file mode 100644
+index 0000000..3e8c829
 --- /dev/null
-+++ gtk+3.0-3.14.3/gdk/mir/gdkmirkeymap.c
++++ b/gdk/mir/gdkmirkeymap.c
 @@ -0,0 +1,466 @@
 +/*
 + * Copyright © 2014 Canonical Ltd
@@ -2803,10 +2863,11 @@ Index: gtk+3.0-3.14.3/gdk/mir/gdkmirkeymap.c
 +  keymap_class->map_virtual_modifiers = gdk_mir_keymap_map_virtual_modifiers;
 +  keymap_class->get_modifier_state = gdk_mir_keymap_get_modifier_state;
 +}
-Index: gtk+3.0-3.14.3/gdk/mir/gdkmirpointer.c
-===================================================================
+diff --git a/gdk/mir/gdkmirpointer.c b/gdk/mir/gdkmirpointer.c
+new file mode 100644
+index 0000000..96c7e74
 --- /dev/null
-+++ gtk+3.0-3.14.3/gdk/mir/gdkmirpointer.c
++++ b/gdk/mir/gdkmirpointer.c
 @@ -0,0 +1,250 @@
 +/*
 + * Copyright © 2014 Canonical Ltd
@@ -3058,10 +3119,11 @@ Index: gtk+3.0-3.14.3/gdk/mir/gdkmirpointer.c
 +  device_class->window_at_position = gdk_mir_pointer_window_at_position;
 +  device_class->select_window_events = gdk_mir_pointer_select_window_events;
 +}
-Index: gtk+3.0-3.14.3/gdk/mir/gdkmirscreen.c
-===================================================================
+diff --git a/gdk/mir/gdkmirscreen.c b/gdk/mir/gdkmirscreen.c
+new file mode 100644
+index 0000000..befc84c
 --- /dev/null
-+++ gtk+3.0-3.14.3/gdk/mir/gdkmirscreen.c
++++ b/gdk/mir/gdkmirscreen.c
 @@ -0,0 +1,720 @@
 +/*
 + * Copyright © 2014 Canonical Ltd
@@ -3783,10 +3845,11 @@ Index: gtk+3.0-3.14.3/gdk/mir/gdkmirscreen.c
 +  screen_class->query_visual_types = gdk_mir_screen_query_visual_types;
 +  screen_class->get_monitor_scale_factor = gdk_mir_screen_get_monitor_scale_factor;
 +}
-Index: gtk+3.0-3.14.3/gdk/mir/gdkmirwindow.c
-===================================================================
+diff --git a/gdk/mir/gdkmirwindow.c b/gdk/mir/gdkmirwindow.c
+new file mode 100644
+index 0000000..03da7e0
 --- /dev/null
-+++ gtk+3.0-3.14.3/gdk/mir/gdkmirwindow.c
++++ b/gdk/mir/gdkmirwindow.c
 @@ -0,0 +1,52 @@
 +/*
 + * Copyright © 2014 Canonical Ltd
@@ -3840,11 +3903,12 @@ Index: gtk+3.0-3.14.3/gdk/mir/gdkmirwindow.c
 +gdk_mir_window_class_init (GdkMirWindowClass *klass)
 +{
 +}
-Index: gtk+3.0-3.14.3/gdk/mir/gdkmirwindowimpl.c
-===================================================================
+diff --git a/gdk/mir/gdkmirwindowimpl.c b/gdk/mir/gdkmirwindowimpl.c
+new file mode 100644
+index 0000000..2be0ca4
 --- /dev/null
-+++ gtk+3.0-3.14.3/gdk/mir/gdkmirwindowimpl.c
-@@ -0,0 +1,1269 @@
++++ b/gdk/mir/gdkmirwindowimpl.c
+@@ -0,0 +1,1239 @@
 +/*
 + * Copyright © 2014 Canonical Ltd
 + *
@@ -4508,23 +4572,6 @@ Index: gtk+3.0-3.14.3/gdk/mir/gdkmirwindowimpl.c
 +  g_printerr ("gdk_mir_window_impl_input_shape_combine_region window=%p\n", window);
 +}
 +
-+static gboolean
-+gdk_mir_window_impl_set_static_gravities (GdkWindow *window,
-+                                          gboolean   use_static)
-+{
-+  g_printerr ("gdk_mir_window_impl_set_static_gravities window=%p\n", window);
-+  return FALSE;
-+}
-+
-+static gboolean
-+gdk_mir_window_impl_queue_antiexpose (GdkWindow      *window,
-+                                      cairo_region_t *area)
-+{
-+  //g_printerr ("gdk_mir_window_impl_queue_antiexpose window=%p\n", window);
-+  // FIXME: ?
-+  return FALSE;
-+}
-+
 +static void
 +gdk_mir_window_impl_destroy (GdkWindow *window,
 +                             gboolean   recursing,
@@ -4551,16 +4598,6 @@ Index: gtk+3.0-3.14.3/gdk/mir/gdkmirwindowimpl.c
 +gdk_mir_window_impl_destroy_foreign (GdkWindow *window)
 +{
 +  g_printerr ("gdk_mir_window_impl_destroy_foreign window=%p\n", window);
-+}
-+
-+static gboolean
-+gdk_mir_window_impl_resize_cairo_surface (GdkWindow       *window,
-+                                          cairo_surface_t *surface,
-+                                          gint             width,
-+                                          gint             height)
-+{
-+  g_printerr ("gdk_mir_window_impl_resize_cairo_surface window=%p\n", window);
-+  return FALSE;
 +}
 +
 +static void
@@ -5054,11 +5091,8 @@ Index: gtk+3.0-3.14.3/gdk/mir/gdkmirwindowimpl.c
 +  impl_class->get_input_shape = gdk_mir_window_impl_get_input_shape;
 +  impl_class->shape_combine_region = gdk_mir_window_impl_shape_combine_region;
 +  impl_class->input_shape_combine_region = gdk_mir_window_impl_input_shape_combine_region;
-+  impl_class->set_static_gravities = gdk_mir_window_impl_set_static_gravities;
-+  impl_class->queue_antiexpose = gdk_mir_window_impl_queue_antiexpose;
 +  impl_class->destroy = gdk_mir_window_impl_destroy;
 +  impl_class->destroy_foreign = gdk_mir_window_impl_destroy_foreign;
-+  impl_class->resize_cairo_surface = gdk_mir_window_impl_resize_cairo_surface;
 +  impl_class->focus = gdk_mir_window_impl_focus;
 +  impl_class->set_type_hint = gdk_mir_window_impl_set_type_hint;
 +  impl_class->get_type_hint = gdk_mir_window_impl_get_type_hint;
@@ -5114,10 +5148,10 @@ Index: gtk+3.0-3.14.3/gdk/mir/gdkmirwindowimpl.c
 +  impl_class->set_opaque_region = gdk_mir_window_impl_set_opaque_region;
 +  impl_class->set_shadow_width = gdk_mir_window_impl_set_shadow_width;
 +}
-Index: gtk+3.0-3.14.3/gtk/gtktooltip.c
-===================================================================
---- gtk+3.0-3.14.3.orig/gtk/gtktooltip.c
-+++ gtk+3.0-3.14.3/gtk/gtktooltip.c
+diff --git a/gtk/gtktooltip.c b/gtk/gtktooltip.c
+index 103944f..cedddaa 100644
+--- a/gtk/gtktooltip.c
++++ b/gtk/gtktooltip.c
 @@ -39,6 +39,9 @@
  #ifdef GDK_WINDOWING_WAYLAND
  #include "wayland/gdkwayland.h"
@@ -5128,16 +5162,10 @@ Index: gtk+3.0-3.14.3/gtk/gtktooltip.c
  
  
  /**
-@@ -1162,6 +1165,19 @@ found:
-         {
-           GtkWidget *toplevel;
- 
-+          toplevel = gtk_widget_get_toplevel (tooltip->tooltip_widget);
-+          if (GTK_IS_WINDOW (toplevel))
-+            gtk_window_set_transient_for (GTK_WINDOW (tooltip->current_window),
-+                                          GTK_WINDOW (toplevel));
-+        }
-+#endif
+@@ -1168,6 +1171,19 @@ found:
+                                           GTK_WINDOW (toplevel));
+         }
+ #endif
 +#ifdef GDK_WINDOWING_MIR
 +      /* Set the transient parent on the tooltip when running with the Mir
 +       * backend to allow correct positioning of the tooltip windows */
@@ -5145,6 +5173,15 @@ Index: gtk+3.0-3.14.3/gtk/gtktooltip.c
 +        {
 +          GtkWidget *toplevel;
 +
-           toplevel = gtk_widget_get_toplevel (tooltip->tooltip_widget);
-           if (GTK_IS_WINDOW (toplevel))
-             gtk_window_set_transient_for (GTK_WINDOW (tooltip->current_window),
++          toplevel = gtk_widget_get_toplevel (tooltip->tooltip_widget);
++          if (GTK_IS_WINDOW (toplevel))
++            gtk_window_set_transient_for (GTK_WINDOW (tooltip->current_window),
++                                          GTK_WINDOW (toplevel));
++        }
++#endif
+ 
+       x -= border.left;
+       y -= border.top;
+-- 
+2.1.0
+
