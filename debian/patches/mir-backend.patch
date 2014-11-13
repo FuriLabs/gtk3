@@ -1,4 +1,4 @@
-From efd1b55aeb151719fb860033ada8ce50febdc5d1 Mon Sep 17 00:00:00 2001
+From 5808594aaff557dfc9ddef82246ddd4ed902a8c5 Mon Sep 17 00:00:00 2001
 From: Robert Ancell <robert.ancell@canonical.com>
 Date: Tue, 20 May 2014 10:03:30 +1200
 Subject: [PATCH] Gdk: add an experimental backend for mir
@@ -7,32 +7,43 @@ Backported from:
 0f26b26f1d93f002ccd5fe6b6fd636172bfbb24b
 c41231cc0fdc791a7a69cdd77af51c8162f44aa4
 053b65a21af312b8b9361367939a221aa7f474a7
+2fdb266c0d0f038a74decda7440ebbb7bdb02e68
+ec729d06491a2a5bb9ba3f287fbc102b5036bc8f
+92c2e99ddac668d729f42bff501f70fb56fbb76c
+c6de20496c4075a0f1daf8be450d8522aaaea82f
+98a8c66970872c600a3122c53c4a7680276f069d
+c8826ba8c77b25ab9bd59027e0b87fadb49f5a3b
+0d024c2df87c636c419577c0b9046815a16792b5
+a77571c42e6c5c65ae760f16a4f40b7d09aa67d1
+4e4ccb76cd8b5b7dc4342f35fcf64ace30019641
+c7e7e350839b19732a2eea7a2151c0c3a76c2544
+c42146d88c324189a3a70189f1a60156697ad9ab
 ---
  Makefile.am                      |    6 +-
  configure.ac                     |   34 +-
  docs/reference/gtk/Makefile.am   |    1 +
  docs/reference/gtk/building.sgml |   11 +-
  docs/reference/gtk/gtk-docs.sgml |    1 +
- docs/reference/gtk/mir.xml       |   35 ++
+ docs/reference/gtk/mir.xml       |   35 +
  docs/reference/gtk/running.sgml  |    5 +
  gdk/Makefile.am                  |    6 +-
  gdk/gdkdisplaymanager.c          |    7 +
  gdk/mir/Makefile.am              |   39 ++
  gdk/mir/gdkmir-debug.c           |  293 +++++++++
- gdk/mir/gdkmir-private.h         |   86 +++
+ gdk/mir/gdkmir-private.h         |   90 +++
  gdk/mir/gdkmir.h                 |   39 ++
- gdk/mir/gdkmircursor.c           |   73 +++
+ gdk/mir/gdkmircursor.c           |  177 +++++
  gdk/mir/gdkmirdevicemanager.c    |  120 ++++
- gdk/mir/gdkmirdisplay.c          |  572 ++++++++++++++++++
- gdk/mir/gdkmireventsource.c      |  630 +++++++++++++++++++
- gdk/mir/gdkmirkeyboard.c         |  173 ++++++
+ gdk/mir/gdkmirdisplay.c          |  565 ++++++++++++++++
+ gdk/mir/gdkmireventsource.c      |  630 ++++++++++++++++++
+ gdk/mir/gdkmirkeyboard.c         |  173 +++++
  gdk/mir/gdkmirkeymap.c           |  466 ++++++++++++++
  gdk/mir/gdkmirpointer.c          |  250 ++++++++
- gdk/mir/gdkmirscreen.c           |  720 ++++++++++++++++++++++
+ gdk/mir/gdkmirscreen.c           |  801 +++++++++++++++++++++++
  gdk/mir/gdkmirwindow.c           |   52 ++
- gdk/mir/gdkmirwindowimpl.c       | 1239 ++++++++++++++++++++++++++++++++++++++
+ gdk/mir/gdkmirwindowimpl.c       | 1320 ++++++++++++++++++++++++++++++++++++++
  gtk/gtktooltip.c                 |   16 +
- 24 files changed, 4867 insertions(+), 7 deletions(-)
+ 24 files changed, 5130 insertions(+), 7 deletions(-)
  create mode 100644 docs/reference/gtk/mir.xml
  create mode 100644 gdk/mir/Makefile.am
  create mode 100644 gdk/mir/gdkmir-debug.c
@@ -83,7 +94,7 @@ index 2cb7769..37bc9ff 100644
  	config.lt
  
 diff --git a/configure.ac b/configure.ac
-index 9f4a4af..f95ba8d 100644
+index cccdae9..3f8934b 100644
 --- a/configure.ac
 +++ b/configure.ac
 @@ -329,6 +329,10 @@ AC_ARG_ENABLE(wayland-backend,
@@ -667,10 +678,10 @@ index 0000000..ef57eff
 +}
 diff --git a/gdk/mir/gdkmir-private.h b/gdk/mir/gdkmir-private.h
 new file mode 100644
-index 0000000..268295b
+index 0000000..78e3ed3
 --- /dev/null
 +++ b/gdk/mir/gdkmir-private.h
-@@ -0,0 +1,86 @@
+@@ -0,0 +1,90 @@
 +/*
 + * Copyright © 2014 Canonical Ltd
 + *
@@ -724,7 +735,11 @@ index 0000000..268295b
 +
 +void _gdk_mir_pointer_set_location (GdkDevice *pointer, gdouble x, gdouble y, GdkWindow *window, GdkModifierType mask);
 +
-+GdkCursor *_gdk_mir_cursor_new (GdkDisplay *display, GdkCursorType type);
++GdkCursor *_gdk_mir_cursor_new_for_type (GdkDisplay *display, GdkCursorType type);
++
++GdkCursor *_gdk_mir_cursor_new_for_name (GdkDisplay *display, const gchar *name);
++
++const gchar *_gdk_mir_cursor_get_name (GdkCursor *cursor);
 +
 +GdkWindowImpl *_gdk_mir_window_impl_new (void);
 +
@@ -804,10 +819,10 @@ index 0000000..1ab0a28
 +#endif /* __GDK_MIR_H__ */
 diff --git a/gdk/mir/gdkmircursor.c b/gdk/mir/gdkmircursor.c
 new file mode 100644
-index 0000000..bdbce5e
+index 0000000..7ce158a
 --- /dev/null
 +++ b/gdk/mir/gdkmircursor.c
-@@ -0,0 +1,73 @@
+@@ -0,0 +1,177 @@
 +/*
 + * Copyright © 2014 Canonical Ltd
 + *
@@ -845,6 +860,8 @@ index 0000000..bdbce5e
 +struct GdkMirCursor
 +{
 +  GdkCursor parent_instance;
++
++  gchar *name;
 +};
 +
 +struct GdkMirCursorClass
@@ -854,10 +871,100 @@ index 0000000..bdbce5e
 +
 +G_DEFINE_TYPE (GdkMirCursor, gdk_mir_cursor, GDK_TYPE_CURSOR)
 +
-+GdkCursor *
-+_gdk_mir_cursor_new (GdkDisplay *display, GdkCursorType type)
++static const gchar *
++get_cursor_name_for_cursor_type (GdkCursorType cursor_type)
 +{
-+  return g_object_new (GDK_TYPE_MIR_CURSOR, "display", display, "cursor-type", type, NULL);
++  switch (cursor_type)
++    {
++    case GDK_BLANK_CURSOR:
++      return mir_disabled_cursor_name;
++    case GDK_X_CURSOR:
++    case GDK_ARROW:
++    case GDK_CENTER_PTR:
++    case GDK_DRAFT_LARGE:
++    case GDK_DRAFT_SMALL:
++    case GDK_LEFT_PTR:
++    case GDK_RIGHT_PTR:
++    case GDK_TOP_LEFT_ARROW:
++      return mir_arrow_cursor_name;
++    case GDK_CLOCK:
++    case GDK_WATCH:
++      return mir_busy_cursor_name;
++    case GDK_XTERM:
++      return mir_caret_cursor_name;
++    case GDK_HAND1:
++    case GDK_HAND2:
++      return mir_pointing_hand_cursor_name;
++      return mir_open_hand_cursor_name;
++    case GDK_FLEUR:
++      return mir_closed_hand_cursor_name;
++    case GDK_LEFT_SIDE:
++    case GDK_LEFT_TEE:
++    case GDK_RIGHT_SIDE:
++    case GDK_RIGHT_TEE:
++    case GDK_SB_LEFT_ARROW:
++    case GDK_SB_RIGHT_ARROW:
++      return mir_horizontal_resize_cursor_name;
++    case GDK_BASED_ARROW_DOWN:
++    case GDK_BASED_ARROW_UP:
++    case GDK_BOTTOM_SIDE:
++    case GDK_BOTTOM_TEE:
++    case GDK_DOUBLE_ARROW:
++    case GDK_SB_DOWN_ARROW:
++    case GDK_SB_UP_ARROW:
++    case GDK_TOP_SIDE:
++    case GDK_TOP_TEE:
++      return mir_vertical_resize_cursor_name;
++    case GDK_BOTTOM_LEFT_CORNER:
++    case GDK_LL_ANGLE:
++    case GDK_TOP_RIGHT_CORNER:
++    case GDK_UR_ANGLE:
++      return mir_diagonal_resize_bottom_to_top_cursor_name;
++    case GDK_BOTTOM_RIGHT_CORNER:
++    case GDK_LR_ANGLE:
++    case GDK_SIZING:
++    case GDK_TOP_LEFT_CORNER:
++    case GDK_UL_ANGLE:
++      return mir_diagonal_resize_top_to_bottom_cursor_name;
++      return mir_omnidirectional_resize_cursor_name;
++    case GDK_SB_V_DOUBLE_ARROW:
++      return mir_vsplit_resize_cursor_name;
++    case GDK_SB_H_DOUBLE_ARROW:
++      return mir_hsplit_resize_cursor_name;
++    default:
++      return mir_default_cursor_name;
++    }
++}
++
++
++GdkCursor *
++_gdk_mir_cursor_new_for_name (GdkDisplay *display, const gchar *name)
++{
++  GdkMirCursor *cursor;
++
++  cursor = g_object_new (GDK_TYPE_MIR_CURSOR, "display", display, "cursor-type", GDK_CURSOR_IS_PIXMAP, NULL);
++  cursor->name = g_strdup (name);
++
++  return GDK_CURSOR (cursor);
++}
++
++GdkCursor *
++_gdk_mir_cursor_new_for_type (GdkDisplay *display, GdkCursorType type)
++{
++  GdkMirCursor *cursor;
++
++  cursor = g_object_new (GDK_TYPE_MIR_CURSOR, "display", display, "cursor-type", type, NULL);
++  cursor->name = g_strdup (get_cursor_name_for_cursor_type (type));
++
++  return GDK_CURSOR (cursor);
++}
++
++const gchar *
++_gdk_mir_cursor_get_name (GdkCursor *cursor)
++{
++  GdkMirCursor *mir_cursor = GDK_MIR_CURSOR (cursor);
++
++  return mir_cursor->name;
 +}
 +
 +cairo_surface_t *
@@ -875,11 +982,23 @@ index 0000000..bdbce5e
 +}
 +
 +static void
++gdk_mir_cursor_finalize (GObject *object)
++{
++  GdkMirCursor *mir_cursor = GDK_MIR_CURSOR (object);
++
++  g_free (mir_cursor->name);
++
++  G_OBJECT_CLASS (gdk_mir_cursor_parent_class)->finalize (object);
++}
++
++static void
 +gdk_mir_cursor_class_init (GdkMirCursorClass *klass)
 +{
 +  GdkCursorClass *cursor_class = GDK_CURSOR_CLASS (klass);
++  GObjectClass *object_class = G_OBJECT_CLASS (klass);
 +
 +  cursor_class->get_surface = gdk_mir_cursor_get_surface;
++  object_class->finalize = gdk_mir_cursor_finalize;
 +}
 diff --git a/gdk/mir/gdkmirdevicemanager.c b/gdk/mir/gdkmirdevicemanager.c
 new file mode 100644
@@ -1009,10 +1128,10 @@ index 0000000..c94f8a3
 +}
 diff --git a/gdk/mir/gdkmirdisplay.c b/gdk/mir/gdkmirdisplay.c
 new file mode 100644
-index 0000000..92dfcee
+index 0000000..5eee323
 --- /dev/null
 +++ b/gdk/mir/gdkmirdisplay.c
-@@ -0,0 +1,572 @@
+@@ -0,0 +1,565 @@
 +/*
 + * Copyright © 2014 Canonical Ltd
 + *
@@ -1059,8 +1178,6 @@ index 0000000..92dfcee
 +
 +  /* Screen information */
 +  GdkScreen *screen;
-+
-+  GdkCursor *cursor;
 +
 +  GdkKeymap *keymap;
 +} GdkMirDisplay;
@@ -1332,18 +1449,14 @@ index 0000000..92dfcee
 +gdk_mir_display_get_cursor_for_type (GdkDisplay    *display,
 +                                     GdkCursorType  cursor_type)
 +{
-+  //g_printerr ("gdk_mir_display_get_cursor_for_type (%u)\n", cursor_type);
-+  /* We don't support configurable cursors */
-+  return g_object_ref (GDK_MIR_DISPLAY (display)->cursor);
++  return _gdk_mir_cursor_new_for_type (display, cursor_type);
 +}
 +
 +static GdkCursor *
 +gdk_mir_display_get_cursor_for_name (GdkDisplay  *display,
 +                                     const gchar *name)
 +{
-+  g_printerr ("gdk_mir_display_get_cursor_for_name (\"%s\")\n", name);
-+  /* We don't support configurable cursors */
-+  return g_object_ref (GDK_MIR_DISPLAY (display)->cursor);
++  return _gdk_mir_cursor_new_for_name (display, name);
 +}
 +
 +static GdkCursor *
@@ -1527,7 +1640,6 @@ index 0000000..92dfcee
 +gdk_mir_display_init (GdkMirDisplay *display)
 +{
 +  display->event_source = _gdk_mir_event_source_new (GDK_DISPLAY (display));
-+  display->cursor = _gdk_mir_cursor_new (GDK_DISPLAY (display), GDK_ARROW);
 +  display->keymap = _gdk_mir_keymap_new ();
 +}
 +
@@ -3130,10 +3242,10 @@ index 0000000..96c7e74
 +}
 diff --git a/gdk/mir/gdkmirscreen.c b/gdk/mir/gdkmirscreen.c
 new file mode 100644
-index 0000000..befc84c
+index 0000000..82f1ae6
 --- /dev/null
 +++ b/gdk/mir/gdkmirscreen.c
-@@ -0,0 +1,720 @@
+@@ -0,0 +1,801 @@
 +/*
 + * Copyright © 2014 Canonical Ltd
 + *
@@ -3231,6 +3343,29 @@ index 0000000..befc84c
 +}
 +
 +static void
++get_screen_size_mm (MirDisplayConfiguration *config, gint *width, gint *height)
++{
++  uint32_t i;
++
++  *width = 0;
++  *height = 0;
++
++  if (!config)
++    return;
++
++  for (i = 0; i < config->num_outputs; i++)
++    {
++      MirDisplayOutput *o = &config->outputs[i];
++
++      if (!o->used)
++        continue;
++
++      *width += o->physical_width_mm;
++      *height += o->physical_height_mm;
++    }
++}
++
++static void
 +update_display_config (GdkMirScreen *screen)
 +{
 +  gdk_mir_display_get_mir_connection (GDK_DISPLAY (screen->display));
@@ -3260,7 +3395,7 @@ index 0000000..befc84c
 +
 +  screen = g_object_new (GDK_TYPE_MIR_SCREEN, NULL);
 +  screen->display = display;
-+  mir_connection_set_display_config_change_callback (get_connection (screen), config_changed_cb, display);
++  mir_connection_set_display_config_change_callback (get_connection (screen), config_changed_cb, screen);
 +  update_display_config (screen);
 +
 +  return GDK_SCREEN (screen);
@@ -3275,6 +3410,13 @@ index 0000000..befc84c
 +static void
 +gdk_mir_screen_finalize (GObject *object)
 +{
++  GdkMirScreen *screen = GDK_MIR_SCREEN (object);
++
++  mir_connection_set_display_config_change_callback (get_connection (screen), NULL, NULL);
++  mir_display_config_destroy (screen->display_config);
++  g_clear_object (&screen->visual);
++  g_clear_object (&screen->root_window);
++
 +  G_OBJECT_CLASS (gdk_mir_screen_parent_class)->finalize (object);
 +}
 +
@@ -3328,16 +3470,18 @@ index 0000000..befc84c
 +gdk_mir_screen_get_width_mm (GdkScreen *screen)
 +{
 +  g_printerr ("gdk_mir_screen_get_width_mm\n");
-+  // FIXME: A combination of all screens?
-+  return get_output (screen, 0)->physical_width_mm;
++  gint width, height;
++  get_screen_size_mm (GDK_MIR_SCREEN (screen)->display_config, &width, &height);
++  return width;
 +}
 +
 +static gint
 +gdk_mir_screen_get_height_mm (GdkScreen *screen)
 +{
 +  g_printerr ("gdk_mir_screen_get_height_mm\n");
-+  // FIXME: A combination of all screens?
-+  return get_output (screen, 0)->physical_height_mm;
++  gint width, height;
++  get_screen_size_mm (GDK_MIR_SCREEN (screen)->display_config, &width, &height);
++  return height;
 +}
 +
 +static gint
@@ -3389,7 +3533,7 @@ index 0000000..befc84c
 +
 +  for (i = 0; i < config->num_outputs; i++)
 +    if (config->outputs[i].used)
-+      count++;
++      ++count;
 +
 +  return count;
 +}
@@ -3406,7 +3550,8 @@ index 0000000..befc84c
 +                                     gint       monitor_num)
 +{
 +  g_printerr ("gdk_mir_screen_get_monitor_width_mm (%d)\n", monitor_num);
-+  return get_output (screen, monitor_num)->physical_width_mm;
++  MirDisplayOutput *output = get_output (screen, monitor_num);
++  return output ? output->physical_width_mm : 0;
 +}
 +
 +static gint
@@ -3414,7 +3559,8 @@ index 0000000..befc84c
 +                                      gint       monitor_num)
 +{
 +  g_printerr ("gdk_mir_screen_get_monitor_height_mm (%d)\n", monitor_num);
-+  return get_output (screen, monitor_num)->physical_height_mm;
++  MirDisplayOutput *output = get_output (screen, monitor_num);
++  return output ? output->physical_height_mm : 0;
 +}
 +
 +static gchar *
@@ -3422,7 +3568,46 @@ index 0000000..befc84c
 +                                      gint       monitor_num)
 +{
 +  g_printerr ("gdk_mir_screen_get_monitor_plug_name (%d)\n", monitor_num);
-+  return NULL; //?
++  MirDisplayOutput *output = get_output (screen, monitor_num);
++
++  if (output)
++    {
++      switch (output->type)
++        {
++          case mir_display_output_type_unknown:
++            return g_strdup_printf ("UNKNOWN-%u", output->output_id);
++          case mir_display_output_type_vga:
++            return g_strdup_printf ("VGA-%u", output->output_id);
++          case mir_display_output_type_dvii:
++            return g_strdup_printf ("DVII-%u", output->output_id);
++          case mir_display_output_type_dvid:
++            return g_strdup_printf ("DVID-%u", output->output_id);
++          case mir_display_output_type_dvia:
++            return g_strdup_printf ("DVIA-%u", output->output_id);
++          case mir_display_output_type_composite:
++            return g_strdup_printf ("COMPOSITE-%u", output->output_id);
++          case mir_display_output_type_svideo:
++            return g_strdup_printf ("SVIDEO-%u", output->output_id);
++          case mir_display_output_type_lvds:
++            return g_strdup_printf ("LVDS-%u", output->output_id);
++          case mir_display_output_type_component:
++            return g_strdup_printf ("COMPONENT-%u", output->output_id);
++          case mir_display_output_type_ninepindin:
++            return g_strdup_printf ("NINEPINDIN-%u", output->output_id);
++          case mir_display_output_type_displayport:
++            return g_strdup_printf ("DISPLAYPORT-%u", output->output_id);
++          case mir_display_output_type_hdmia:
++            return g_strdup_printf ("HDMIA-%u", output->output_id);
++          case mir_display_output_type_hdmib:
++            return g_strdup_printf ("HDMIB-%u", output->output_id);
++          case mir_display_output_type_tv:
++            return g_strdup_printf ("TV-%u", output->output_id);
++          case mir_display_output_type_edp:
++            return g_strdup_printf ("EDP-%u", output->output_id);
++        }
++    }
++
++  return NULL;
 +}
 +
 +static void
@@ -3435,11 +3620,19 @@ index 0000000..befc84c
 +  MirDisplayMode *mode;
 +
 +  output = get_output (screen, monitor_num);
-+  mode = &output->modes[output->current_mode];
-+  dest->x = output->position_x;
-+  dest->y = output->position_y;
-+  dest->width = mode->horizontal_resolution;
-+  dest->height = mode->vertical_resolution;
++
++  if (output)
++    {
++      mode = &output->modes[output->current_mode];
++      dest->x = output->position_x;
++      dest->y = output->position_y;
++      dest->width = mode->horizontal_resolution;
++      dest->height = mode->vertical_resolution;
++    }
++  else
++    {
++      *dest = {0, 0, 0, 0};
++    }
 +}
 +
 +static void
@@ -3914,10 +4107,10 @@ index 0000000..03da7e0
 +}
 diff --git a/gdk/mir/gdkmirwindowimpl.c b/gdk/mir/gdkmirwindowimpl.c
 new file mode 100644
-index 0000000..2be0ca4
+index 0000000..ec752e2
 --- /dev/null
 +++ b/gdk/mir/gdkmirwindowimpl.c
-@@ -0,0 +1,1239 @@
+@@ -0,0 +1,1320 @@
 +/*
 + * Copyright © 2014 Canonical Ltd
 + *
@@ -3967,7 +4160,7 @@ index 0000000..2be0ca4
 +  GList *transient_children;
 +
 +  /* Desired surface attributes */
-+  MirSurfaceType surface_type; // FIXME
++  MirSurfaceType surface_type;
 +  MirSurfaceState surface_state;
 +
 +  /* Pattern for background */
@@ -4045,6 +4238,8 @@ index 0000000..2be0ca4
 +static void
 +gdk_mir_window_impl_init (GdkMirWindowImpl *impl)
 +{
++  impl->surface_type = mir_surface_type_normal;
++  impl->surface_state = mir_surface_state_unknown;
 +}
 +
 +static MirConnection *
@@ -4057,9 +4252,24 @@ index 0000000..2be0ca4
 +set_surface_state (GdkMirWindowImpl *impl,
 +                   MirSurfaceState state)
 +{
++  if (impl->surface_state == state)
++    return;
++
 +  impl->surface_state = state;
 +  if (impl->surface)
 +    mir_surface_set_state (impl->surface, state);
++}
++
++static void
++set_surface_type (GdkMirWindowImpl *impl,
++                  MirSurfaceType type)
++{
++  if (impl->surface_type == type)
++    return;
++
++  impl->surface_type = type;
++  if (impl->surface)
++    mir_surface_set_type (impl->surface, type);
 +}
 +
 +static void
@@ -4074,7 +4284,7 @@ index 0000000..2be0ca4
 +ensure_surface (GdkWindow *window)
 +{
 +  GdkMirWindowImpl *impl = GDK_MIR_WINDOW_IMPL (window->impl);
-+  MirPixelFormat formats[100], pixel_format = mir_pixel_format_invalid;
++  MirPixelFormat formats[mir_pixel_formats], pixel_format = mir_pixel_format_invalid;
 +  unsigned int n_formats, i;
 +  MirSurfaceParameters parameters;
 +  MirEventDelegate event_delegate = { event_cb, NULL };
@@ -4092,7 +4302,7 @@ index 0000000..2be0ca4
 +
 +  // Should probably calculate this once?
 +  // Should prefer certain formats over others
-+  mir_connection_get_available_surface_formats (get_connection (window), formats, 100, &n_formats);
++  mir_connection_get_available_surface_formats (get_connection (window), formats, mir_pixel_formats, &n_formats);
 +  for (i = 0; i < n_formats; i++)
 +    if (formats[i] == mir_pixel_format_argb_8888)
 +      {
@@ -4122,6 +4332,7 @@ index 0000000..2be0ca4
 +  _gdk_mir_event_source_queue (window_ref, &resize_event);
 +
 +  mir_surface_set_event_handler (impl->surface, &event_delegate); // FIXME: Ignore some events until shown
++  set_surface_type (impl, impl->surface_type);
 +  set_surface_state (impl, impl->surface_state);
 +}
 +
@@ -4477,8 +4688,25 @@ index 0000000..2be0ca4
 +                                       GdkDevice *device,
 +                                       GdkCursor *cursor)
 +{
-+  //g_printerr ("gdk_mir_window_impl_set_device_cursor window=%p\n", window);
-+  /* We don't support cursors yet... */
++  const gchar *cursor_name;
++  MirCursorConfiguration *configuration;
++
++  if (cursor)
++    cursor_name = _gdk_mir_cursor_get_name (cursor);
++  else
++    cursor_name = mir_default_cursor_name;
++
++  configuration = mir_cursor_configuration_from_name (cursor_name);
++
++  if (configuration)
++    {
++      GdkMirWindowImpl *impl = GDK_MIR_WINDOW_IMPL (window->impl);
++
++      if (impl->surface)
++        mir_surface_configure_cursor (impl->surface, configuration);
++
++      mir_cursor_configuration_destroy (configuration);
++    }
 +}
 +
 +static void
@@ -4620,14 +4848,60 @@ index 0000000..2be0ca4
 +gdk_mir_window_impl_set_type_hint (GdkWindow         *window,
 +                                   GdkWindowTypeHint  hint)
 +{
-+  //g_printerr ("gdk_mir_window_impl_set_type_hint window=%p\n", window);
-+  // FIXME: ?
++  MirSurfaceType mir_type = mir_surface_type_normal;
++
++  switch (hint)
++    {
++      case GDK_WINDOW_TYPE_HINT_NORMAL:
++      case GDK_WINDOW_TYPE_HINT_DOCK:
++      case GDK_WINDOW_TYPE_HINT_TOOLBAR:
++      case GDK_WINDOW_TYPE_HINT_DESKTOP:
++        mir_type = mir_surface_type_normal;
++        break;
++      case GDK_WINDOW_TYPE_HINT_DIALOG:
++        mir_type = mir_surface_type_dialog;
++        break;
++      case GDK_WINDOW_TYPE_HINT_UTILITY:
++        mir_type = mir_surface_type_utility;
++        break;
++      case GDK_WINDOW_TYPE_HINT_MENU:
++      case GDK_WINDOW_TYPE_HINT_DROPDOWN_MENU:
++      case GDK_WINDOW_TYPE_HINT_POPUP_MENU:
++      case GDK_WINDOW_TYPE_HINT_COMBO:
++        mir_type = mir_surface_type_popover;
++        break;
++      case GDK_WINDOW_TYPE_HINT_SPLASHSCREEN:
++      case GDK_WINDOW_TYPE_HINT_TOOLTIP:
++      case GDK_WINDOW_TYPE_HINT_DND:
++      case GDK_WINDOW_TYPE_HINT_NOTIFICATION:
++        mir_type = mir_surface_type_overlay;
++        break;
++    }
++
++  mir_surface_set_type (GDK_MIR_WINDOW_IMPL (window->impl), mir_type);
 +}
 +
 +static GdkWindowTypeHint
 +gdk_mir_window_impl_get_type_hint (GdkWindow *window)
 +{
-+  g_printerr ("gdk_mir_window_impl_get_type_hint window=%p\n", window);
++  GdkMirWindowImpl *impl = GDK_MIR_WINDOW_IMPL (window->impl);
++
++  switch (impl->surface_type)
++    {
++      case mir_surface_type_normal:
++      case mir_surface_type_freestyle:
++      case mir_surface_type_inputmethod:
++        return GDK_WINDOW_TYPE_HINT_NORMAL;
++      case mir_surface_type_utility:
++        return GDK_WINDOW_TYPE_HINT_UTILITY;
++      case mir_surface_type_dialog:
++        return GDK_WINDOW_TYPE_HINT_DIALOG;
++      case mir_surface_type_overlay:
++        return GDK_WINDOW_TYPE_HINT_TOOLTIP;
++      case mir_surface_type_popover:
++        return GDK_WINDOW_TYPE_HINT_MENU;
++    }
++
 +  return GDK_WINDOW_TYPE_HINT_NORMAL;
 +}
 +
