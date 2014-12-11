@@ -5,7 +5,6 @@ gtk+3.0 (3.14.5-1ubuntu1) UNRELEASED; urgency=medium
   * debian/patches/0001-Disable-deprecation-warnings-in-tests.patch,
     debian/patches/0001-Fight-deprecation-warnings-in-test.patch,
     debian/patches/0001-threads-Do-not-release-the-GDK-lock-if-it-hasn-t-bee.patch,
-    debian/patches/022_disable-viqr-im-for-vi-locale.patch,
     debian/patches/git-gtkpopover-set-background-and-popover-css.patch,
     debian/patches/git-menu-binding-emit-submenu-close-after-activate.patch,
     debian/patches/git_printing_segfault.patch,
@@ -41,7 +40,22 @@ gtk+3.0 (3.14.5-1ubuntu1) UNRELEASED; urgency=medium
 
   [ Iain Lane ]
   * Re-enable the reftests, they pass in a chroot.
-  * Merge with Debian
+  * Merge with Debian. Remaining changes:
+    + Enable Mir backend.
+    + Set Multi-Arch: same on the library.
+    + Drop 061_multiarch_module_fallback.patch - unneeded in Ubuntu since we
+      cleared all old gtk modules out.
+    + Install the settings.ini file to set our themes.
+    + Ubuntu specific patches:
+      - 073_treeview_almost_fixed.patch
+      - 074_eventbox_scroll_mask.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+  * Don't depend on the adwaita icon theme
   * debian/patches/0001-gtkmodelmenuitem-force-icon-scaling.patch,
     debian/patches/0002-gtkimagemenuitem-force-icon-scaling.patch: Take
     temporary patches from upstream bug #741259 to scale icons in menu items.
