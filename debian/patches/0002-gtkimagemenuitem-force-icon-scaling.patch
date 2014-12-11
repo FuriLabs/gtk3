@@ -1,0 +1,87 @@
+From 28264f65e96b6329bfe291af75b5d8e69057b2e3 Mon Sep 17 00:00:00 2001
+From: Lars Uebernickel <lars.uebernickel@canonical.com>
+Date: Mon, 8 Dec 2014 22:54:56 +0100
+Subject: [PATCH 2/2] gtkimagemenuitem: force icon scaling
+
+GtkIconTheme doesn't scale icons beyond the size specified in the theme
+anymore. This can result in arbitrarily large menu items when a theme
+only provides large icons.
+
+Force icons in to be always the same height as the text in an image menu
+item, and react to font size changes. This can only be ensured when the
+packed icon is a GtkImage or if the menu item was created internally
+from a GtkAction.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=741259
+---
+ gtk/deprecated/gtkimagemenuitem.c | 36 +++++++++++++++++++++++++++++++++++-
+ 1 file changed, 35 insertions(+), 1 deletion(-)
+
+diff --git a/gtk/deprecated/gtkimagemenuitem.c b/gtk/deprecated/gtkimagemenuitem.c
+index e308d51..653a086 100644
+--- a/gtk/deprecated/gtkimagemenuitem.c
++++ b/gtk/deprecated/gtkimagemenuitem.c
+@@ -148,7 +148,8 @@ static void gtk_image_menu_item_update                     (GtkActivatable
+                                                             const gchar          *property_name);
+ static void gtk_image_menu_item_sync_action_properties     (GtkActivatable       *activatable,
+                                                             GtkAction            *action);
+-
++static void gtk_image_menu_item_style_updated        (GtkWidget *widget);
++static void gtk_image_menu_item_update_icon_size     (GtkImageMenuItem *item);
+ 
+ G_DEFINE_TYPE_WITH_CODE (GtkImageMenuItem, gtk_image_menu_item, GTK_TYPE_MENU_ITEM,
+                          G_ADD_PRIVATE (GtkImageMenuItem)
+@@ -171,6 +172,7 @@ gtk_image_menu_item_class_init (GtkImageMenuItemClass *klass)
+   widget_class->get_preferred_height_for_width = gtk_image_menu_item_get_preferred_height_for_width;
+   widget_class->size_allocate = gtk_image_menu_item_size_allocate;
+   widget_class->map = gtk_image_menu_item_map;
++  widget_class->style_updated = gtk_image_menu_item_style_updated;
+ 
+   container_class->forall = gtk_image_menu_item_forall;
+   container_class->remove = gtk_image_menu_item_remove;
+@@ -1126,6 +1128,7 @@ gtk_image_menu_item_set_image (GtkImageMenuItem *image_menu_item,
+                 "visible", show_image (image_menu_item),
+                 "no-show-all", TRUE,
+                 NULL);
++  gtk_image_menu_item_update_icon_size (image_menu_item);
+ 
+   g_object_notify (G_OBJECT (image_menu_item), "image");
+ }
+@@ -1239,3 +1242,34 @@ gtk_image_menu_item_screen_changed (GtkWidget *widget,
+ 
+   show_image_change_notify (GTK_IMAGE_MENU_ITEM (widget));
+ }
++
++static void
++gtk_image_menu_item_style_updated (GtkWidget *widget)
++{
++  GtkImageMenuItem *item = GTK_IMAGE_MENU_ITEM (widget);
++
++  GTK_WIDGET_CLASS (gtk_image_menu_item_parent_class)->style_updated (widget);
++
++  gtk_image_menu_item_update_icon_size (item);
++}
++
++static void
++gtk_image_menu_item_update_icon_size (GtkImageMenuItem *item)
++{
++  if (GTK_IS_IMAGE (item->priv->image))
++    {
++      PangoContext *context;
++      PangoFontMetrics *metrics;
++      gint height;
++
++      context = gtk_widget_get_pango_context (GTK_WIDGET (item));
++      metrics = pango_context_get_metrics (context,
++                                           pango_context_get_font_description (context),
++                                           pango_context_get_language (context));
++      height = (pango_font_metrics_get_ascent (metrics) +
++                pango_font_metrics_get_descent (metrics)) / PANGO_SCALE;
++      gtk_image_set_pixel_size (GTK_IMAGE (item->priv->image), height);
++
++      pango_font_metrics_unref (metrics);
++    }
++}
+-- 
+2.1.3
+
