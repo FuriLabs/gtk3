@@ -1,0 +1,117 @@
+From a59363ccc566176aad4ac26594360dc4f6fb4cc5 Mon Sep 17 00:00:00 2001
+From: Lars Uebernickel <lars.uebernickel@canonical.com>
+Date: Mon, 8 Dec 2014 18:26:57 +0100
+Subject: [PATCH 1/2] gtkmodelmenuitem: force icon scaling
+
+GtkIconTheme doesn't scale icons beyond the size specified in the theme
+anymore. This can result in arbitrarily large menu items when a theme
+only provides large icons.
+
+Force icons to be always the same height as the text in the menu item,
+and react to font size changes.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=741259
+---
+ gtk/gtkmodelmenuitem.c | 47 +++++++++++++++++++++++++++++++++++++++++------
+ 1 file changed, 41 insertions(+), 6 deletions(-)
+
+Index: b/gtk/gtkmodelmenuitem.c
+===================================================================
+--- a/gtk/gtkmodelmenuitem.c
++++ b/gtk/gtkmodelmenuitem.c
+@@ -30,6 +30,7 @@
+   GtkCheckMenuItem parent_instance;
+   GtkMenuTrackerItemRole role;
+   gboolean has_indicator;
++  GtkWidget *image;
+ };
+ 
+ typedef GtkCheckMenuItemClass GtkModelMenuItemClass;
+@@ -68,6 +69,37 @@
+ }
+ 
+ static void
++gtk_model_menu_item_update_icon_size (GtkModelMenuItem *item)
++{
++  if (item->image)
++    {
++      PangoContext *context;
++      PangoFontMetrics *metrics;
++      gint height;
++
++      context = gtk_widget_get_pango_context (GTK_WIDGET (item));
++      metrics = pango_context_get_metrics (context,
++                                           pango_context_get_font_description (context),
++                                           pango_context_get_language (context));
++      height = (pango_font_metrics_get_ascent (metrics) +
++                pango_font_metrics_get_descent (metrics)) / PANGO_SCALE;
++      gtk_image_set_pixel_size (GTK_IMAGE (item->image), height);
++
++      pango_font_metrics_unref (metrics);
++    }
++}
++
++static void
++gtk_model_menu_item_style_updated (GtkWidget *widget)
++{
++  GtkModelMenuItem *item = GTK_MODEL_MENU_ITEM (widget);
++
++  GTK_WIDGET_CLASS (gtk_model_menu_item_parent_class)->style_updated (widget);
++
++  gtk_model_menu_item_update_icon_size (item);
++}
++
++static void
+ gtk_model_menu_item_draw_indicator (GtkCheckMenuItem *check_item,
+                                     cairo_t          *cr)
+ {
+@@ -136,6 +168,7 @@
+   g_return_if_fail (icon == NULL || G_IS_ICON (icon));
+ 
+   child = gtk_bin_get_child (GTK_BIN (item));
++  item->image = NULL;
+ 
+   /* There are only three possibilities here:
+    *
+@@ -197,11 +230,10 @@
+    */
+   if (icon != NULL)
+     {
+-      GtkWidget *image;
+-
+-      image = gtk_image_new_from_gicon (icon, GTK_ICON_SIZE_MENU);
+-      gtk_box_pack_start (GTK_BOX (child), image, FALSE, FALSE, 0);
+-      gtk_widget_show (image);
++      item->image = gtk_image_new_from_gicon (icon, GTK_ICON_SIZE_MENU);
++      gtk_box_pack_start (GTK_BOX (child), item->image, FALSE, FALSE, 0);
++      gtk_widget_show (item->image);
++      gtk_model_menu_item_update_icon_size (item);
+     }
+ 
+   g_object_notify (G_OBJECT (item), "icon");
+@@ -510,6 +542,7 @@
+ {
+   GtkCheckMenuItemClass *check_class = GTK_CHECK_MENU_ITEM_CLASS (class);
+   GtkMenuItemClass *item_class = GTK_MENU_ITEM_CLASS (class);
++  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (class);
+   GObjectClass *object_class = G_OBJECT_CLASS (class);
+ 
+   check_class->draw_indicator = gtk_model_menu_item_draw_indicator;
+@@ -517,6 +550,8 @@
+   item_class->toggle_size_request = gtk_model_menu_item_toggle_size_request;
+   item_class->activate = gtk_model_menu_item_activate;
+ 
++  widget_class->style_updated = gtk_model_menu_item_style_updated;
++
+   object_class->get_property = gtk_model_menu_item_get_property;
+   object_class->set_property = gtk_model_menu_item_set_property;
+ 
+@@ -541,7 +576,7 @@
+                                    g_param_spec_string ("accel-text", "accel-text", "accel-text", NULL,
+                                                         G_PARAM_WRITABLE | G_PARAM_STATIC_STRINGS));
+ 
+-  gtk_widget_class_set_accessible_role (GTK_WIDGET_CLASS (class), ATK_ROLE_MENU_ITEM);
++  gtk_widget_class_set_accessible_role (widget_class, ATK_ROLE_MENU_ITEM);
+ }
+ 
+ GtkWidget *
