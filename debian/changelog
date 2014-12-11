@@ -1,4 +1,4 @@
-gtk+3.0 (3.14.4-1ubuntu1) UNRELEASED; urgency=medium
+gtk+3.0 (3.14.5-1ubuntu1) UNRELEASED; urgency=medium
 
   [ Lars Uebernickel ]
   * New upstream release
@@ -47,6 +47,25 @@ gtk+3.0 (3.14.4-1ubuntu1) UNRELEASED; urgency=medium
     temporary patches from upstream bug #741259 to scale icons in menu items.
 
  -- Lars Uebernickel <lars.uebernickel@ubuntu.com>  Mon, 20 Oct 2014 13:44:53 -0400
+
+gtk+3.0 (3.14.5-1) unstable; urgency=medium
+
+  * New upstream bugfix release.
+  * debian/patches/077_fix_menu_height_calculating.patch:
+    + Dropped, merged upstream.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Tue, 11 Nov 2014 18:55:46 +0100
+
+gtk+3.0 (3.14.4-2) unstable; urgency=medium
+
+  [ Rico Tzschichholz ]
+  * Install org.gtk.Settings.Debug.gschema.xml
+
+  [ Dmitry Shachnev ]
+  * debian/patches/077_fix_menu_height_calculating.patch: backport upstream
+    commit to fix calculation of menu height (closes: #767906).
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 04 Nov 2014 17:19:48 +0300
 
 gtk+3.0 (3.14.4-1) unstable; urgency=medium
 
