@@ -60,11 +60,11 @@ c42146d88c324189a3a70189f1a60156697ad9ab
  create mode 100644 gdk/mir/gdkmirwindow.c
  create mode 100644 gdk/mir/gdkmirwindowimpl.c
 
-diff --git a/Makefile.am b/Makefile.am
-index 2cb7769..37bc9ff 100644
+Index: b/Makefile.am
+===================================================================
 --- a/Makefile.am
 +++ b/Makefile.am
-@@ -33,11 +33,11 @@ MAINTAINERCLEANFILES = \
+@@ -33,11 +33,11 @@
  
  
  ## Copy .pc files to target-specific names
@@ -78,7 +78,7 @@ index 2cb7769..37bc9ff 100644
  	rm -f $@ && \
  	cp gdk-3.0.pc $@
  
-@@ -59,12 +59,14 @@ DISTCLEANFILES = \
+@@ -59,12 +59,14 @@
  	gtk+-quartz-3.0.pc		\
  	gtk+-broadway-3.0.pc		\
  	gtk+-wayland-3.0.pc		\
@@ -93,11 +93,11 @@ index 2cb7769..37bc9ff 100644
  	gail-3.0.pc			\
  	config.lt
  
-diff --git a/configure.ac b/configure.ac
-index cccdae9..3f8934b 100644
+Index: b/configure.ac
+===================================================================
 --- a/configure.ac
 +++ b/configure.ac
-@@ -329,6 +329,10 @@ AC_ARG_ENABLE(wayland-backend,
+@@ -329,6 +329,10 @@
                [AS_HELP_STRING([--enable-wayland-backend],
                                [enable the wayland gdk backend])],
  			      [backend_set=yes])
@@ -108,7 +108,7 @@ index cccdae9..3f8934b 100644
  
  if test -z "$backend_set"; then
    if test "$platform_win32" = yes; then
-@@ -336,6 +340,7 @@ if test -z "$backend_set"; then
+@@ -336,6 +340,7 @@
    else
      enable_x11_backend=yes
      enable_wayland_backend=maybe
@@ -116,7 +116,7 @@ index cccdae9..3f8934b 100644
    fi
  fi
  
-@@ -457,6 +462,30 @@ else
+@@ -457,6 +462,30 @@
    AM_CONDITIONAL(USE_WAYLAND, false)
  fi
  
@@ -147,7 +147,7 @@ index cccdae9..3f8934b 100644
  # strip leading space
  GDK_BACKENDS=${GDK_BACKENDS#* }
  
-@@ -1326,7 +1355,7 @@ CFLAGS="$saved_cflags"
+@@ -1326,7 +1355,7 @@
  LDFLAGS="$saved_ldflags"
  
  GDK_PACKAGES="$PANGO_PACKAGES gdk-pixbuf-2.0 >= gdk_pixbuf_required_version cairo >= cairo_required_version cairo-gobject >= cairo_required_version"
@@ -156,7 +156,7 @@ index cccdae9..3f8934b 100644
  if test "x$enable_x11_backend" = xyes; then
    GDK_PRIVATE_PACKAGES="$GDK_PRIVATE_PACKAGES pangoft2"
  fi
-@@ -1363,7 +1392,7 @@ fi
+@@ -1363,7 +1392,7 @@
  PKG_CHECK_MODULES(ATK, $ATK_PACKAGES)
  
  GTK_PACKAGES="atk >= atk_required_version cairo >= cairo_required_version cairo-gobject >= cairo_required_version gdk-pixbuf-2.0 >= gdk_pixbuf_required_version gio-2.0 >= glib_required_version"
@@ -165,7 +165,7 @@ index cccdae9..3f8934b 100644
  if test "x$enable_x11_backend" = xyes; then
    GTK_PRIVATE_PACKAGES="$GTK_PRIVATE_PACKAGES pangoft2"
  fi
-@@ -1903,6 +1932,7 @@ gdk/win32/rc/Makefile
+@@ -1903,6 +1932,7 @@
  gdk/win32/rc/gdk.rc
  gdk/quartz/Makefile
  gdk/wayland/Makefile
@@ -173,11 +173,11 @@ index cccdae9..3f8934b 100644
  gdk/gdkversionmacros.h
  gtk/Makefile
  gtk/makefile.msc
-diff --git a/docs/reference/gtk/Makefile.am b/docs/reference/gtk/Makefile.am
-index 968384c..74ef369 100644
+Index: b/docs/reference/gtk/Makefile.am
+===================================================================
 --- a/docs/reference/gtk/Makefile.am
 +++ b/docs/reference/gtk/Makefile.am
-@@ -145,6 +145,7 @@ content_files =					\
+@@ -145,6 +145,7 @@
  	osx.sgml				\
  	broadway.xml				\
  	wayland.xml				\
@@ -185,11 +185,11 @@ index 968384c..74ef369 100644
  	question_index.sgml			\
  	resources.sgml				\
  	text_widget.sgml			\
-diff --git a/docs/reference/gtk/building.sgml b/docs/reference/gtk/building.sgml
-index b7479e7..445e1fd 100644
+Index: b/docs/reference/gtk/building.sgml
+===================================================================
 --- a/docs/reference/gtk/building.sgml
 +++ b/docs/reference/gtk/building.sgml
-@@ -395,6 +395,11 @@ How to compile GTK+ itself
+@@ -395,6 +395,11 @@
            </group>
            <sbr/>
            <group>
@@ -201,7 +201,7 @@ index b7479e7..445e1fd 100644
              <arg choice="plain">--enable-introspection=[no/auto/yes]</arg>
            </group>
            <sbr/>
-@@ -595,8 +600,10 @@ How to compile GTK+ itself
+@@ -595,8 +600,10 @@
            <systemitem>--disable-quartz-backend</systemitem>,
            <systemitem>--enable-broadway-backend</systemitem>,
            <systemitem>--disable-broadway-backend</systemitem>,
@@ -214,8 +214,8 @@ index b7479e7..445e1fd 100644
  
          <para>
            Enables specific backends for GDK.  If none of these options
-diff --git a/docs/reference/gtk/gtk-docs.sgml b/docs/reference/gtk/gtk-docs.sgml
-index 2e00bae..8f4a8d1 100644
+Index: b/docs/reference/gtk/gtk-docs.sgml
+===================================================================
 --- a/docs/reference/gtk/gtk-docs.sgml
 +++ b/docs/reference/gtk/gtk-docs.sgml
 @@ -413,6 +413,7 @@
@@ -226,9 +226,8 @@ index 2e00bae..8f4a8d1 100644
    </part>
  
    <xi:include href="glossary.xml" />
-diff --git a/docs/reference/gtk/mir.xml b/docs/reference/gtk/mir.xml
-new file mode 100644
-index 0000000..3a0a52e
+Index: b/docs/reference/gtk/mir.xml
+===================================================================
 --- /dev/null
 +++ b/docs/reference/gtk/mir.xml
 @@ -0,0 +1,35 @@
@@ -267,11 +266,11 @@ index 0000000..3a0a52e
 +</refsect1>
 +
 +</refentry>
-diff --git a/docs/reference/gtk/running.sgml b/docs/reference/gtk/running.sgml
-index 321593a..1aa2291 100644
+Index: b/docs/reference/gtk/running.sgml
+===================================================================
 --- a/docs/reference/gtk/running.sgml
 +++ b/docs/reference/gtk/running.sgml
-@@ -487,6 +487,11 @@ nevertheless.
+@@ -487,6 +487,11 @@
          <listitem><para>Selects the Wayland backend for connecting to Wayland display servers</para></listitem>
        </varlistentry>
  
@@ -283,11 +282,11 @@ index 321593a..1aa2291 100644
      </variablelist>
      Since 3.10, this environment variable can contain a comma-separated list
      of backend names, which are tried in order. The list may also contain
-diff --git a/gdk/Makefile.am b/gdk/Makefile.am
-index 5f0c1e5..1e24b6e 100644
+Index: b/gdk/Makefile.am
+===================================================================
 --- a/gdk/Makefile.am
 +++ b/gdk/Makefile.am
-@@ -13,7 +13,7 @@ INTROSPECTION_COMPILER_ARGS = \
+@@ -13,7 +13,7 @@
  
  SUBDIRS = $(GDK_BACKENDS) .
  
@@ -296,7 +295,7 @@ index 5f0c1e5..1e24b6e 100644
  
  CLEANFILES =
  
-@@ -201,6 +201,10 @@ if USE_WAYLAND
+@@ -201,6 +201,10 @@
  libgdk_3_la_LIBADD += wayland/libgdk-wayland.la
  endif
  
@@ -307,8 +306,8 @@ index 5f0c1e5..1e24b6e 100644
  if HAVE_INTROSPECTION
  
  introspection_files = 		\
-diff --git a/gdk/gdkdisplaymanager.c b/gdk/gdkdisplaymanager.c
-index c6813d0..c9afbca 100644
+Index: b/gdk/gdkdisplaymanager.c
+===================================================================
 --- a/gdk/gdkdisplaymanager.c
 +++ b/gdk/gdkdisplaymanager.c
 @@ -60,6 +60,10 @@
@@ -322,7 +321,7 @@ index c6813d0..c9afbca 100644
  /**
   * SECTION:gdkdisplaymanager
   * @Short_description: Maintains a list of all open GdkDisplays
-@@ -272,6 +276,9 @@ static GdkBackend gdk_backends[] = {
+@@ -272,6 +276,9 @@
  #ifdef GDK_WINDOWING_WAYLAND
    { "wayland",  _gdk_wayland_display_open },
  #endif
@@ -332,9 +331,8 @@ index c6813d0..c9afbca 100644
  #ifdef GDK_WINDOWING_BROADWAY
    { "broadway", _gdk_broadway_display_open },
  #endif
-diff --git a/gdk/mir/Makefile.am b/gdk/mir/Makefile.am
-new file mode 100644
-index 0000000..026ce79
+Index: b/gdk/mir/Makefile.am
+===================================================================
 --- /dev/null
 +++ b/gdk/mir/Makefile.am
 @@ -0,0 +1,39 @@
@@ -377,9 +375,8 @@ index 0000000..026ce79
 +	gdkmir.h
 +
 +-include $(top_srcdir)/git.mk
-diff --git a/gdk/mir/gdkmir-debug.c b/gdk/mir/gdkmir-debug.c
-new file mode 100644
-index 0000000..ef57eff
+Index: b/gdk/mir/gdkmir-debug.c
+===================================================================
 --- /dev/null
 +++ b/gdk/mir/gdkmir-debug.c
 @@ -0,0 +1,293 @@
@@ -676,12 +673,11 @@ index 0000000..ef57eff
 +      break;
 +    }
 +}
-diff --git a/gdk/mir/gdkmir-private.h b/gdk/mir/gdkmir-private.h
-new file mode 100644
-index 0000000..78e3ed3
+Index: b/gdk/mir/gdkmir-private.h
+===================================================================
 --- /dev/null
 +++ b/gdk/mir/gdkmir-private.h
-@@ -0,0 +1,90 @@
+@@ -0,0 +1,92 @@
 +/*
 + * Copyright © 2014 Canonical Ltd
 + *
@@ -745,6 +741,8 @@ index 0000000..78e3ed3
 +
 +void _gdk_mir_window_impl_set_surface_state (GdkMirWindowImpl *impl, MirSurfaceState state);
 +
++void _gdk_mir_window_impl_set_surface_type (GdkMirWindowImpl *impl, MirSurfaceType type);
++
 +void _gdk_mir_window_impl_set_cursor_state (GdkMirWindowImpl *impl, gdouble x, gdouble y, gboolean cursor_inside, MirMotionButton button_state);
 +
 +void _gdk_mir_window_impl_get_cursor_state (GdkMirWindowImpl *impl, gdouble *x, gdouble *y, gboolean *cursor_inside, MirMotionButton *button_state);
@@ -772,9 +770,8 @@ index 0000000..78e3ed3
 +void _gdk_mir_print_event (const MirEvent *event);
 +
 +#endif /* __GDK_PRIVATE_MIR_H__ */
-diff --git a/gdk/mir/gdkmir.h b/gdk/mir/gdkmir.h
-new file mode 100644
-index 0000000..1ab0a28
+Index: b/gdk/mir/gdkmir.h
+===================================================================
 --- /dev/null
 +++ b/gdk/mir/gdkmir.h
 @@ -0,0 +1,39 @@
@@ -817,9 +814,8 @@ index 0000000..1ab0a28
 +GType gdk_mir_window_get_type (void);
 +
 +#endif /* __GDK_MIR_H__ */
-diff --git a/gdk/mir/gdkmircursor.c b/gdk/mir/gdkmircursor.c
-new file mode 100644
-index 0000000..7ce158a
+Index: b/gdk/mir/gdkmircursor.c
+===================================================================
 --- /dev/null
 +++ b/gdk/mir/gdkmircursor.c
 @@ -0,0 +1,177 @@
@@ -1000,9 +996,8 @@ index 0000000..7ce158a
 +  cursor_class->get_surface = gdk_mir_cursor_get_surface;
 +  object_class->finalize = gdk_mir_cursor_finalize;
 +}
-diff --git a/gdk/mir/gdkmirdevicemanager.c b/gdk/mir/gdkmirdevicemanager.c
-new file mode 100644
-index 0000000..c94f8a3
+Index: b/gdk/mir/gdkmirdevicemanager.c
+===================================================================
 --- /dev/null
 +++ b/gdk/mir/gdkmirdevicemanager.c
 @@ -0,0 +1,120 @@
@@ -1126,9 +1121,8 @@ index 0000000..c94f8a3
 +  device_manager_class->get_client_pointer = gdk_mir_device_manager_get_client_pointer;
 +  object_class->constructed = gdk_mir_device_manager_constructed;
 +}
-diff --git a/gdk/mir/gdkmirdisplay.c b/gdk/mir/gdkmirdisplay.c
-new file mode 100644
-index 0000000..5eee323
+Index: b/gdk/mir/gdkmirdisplay.c
+===================================================================
 --- /dev/null
 +++ b/gdk/mir/gdkmirdisplay.c
 @@ -0,0 +1,565 @@
@@ -1697,12 +1691,11 @@ index 0000000..5eee323
 +  display_class->text_property_to_utf8_list = gdk_mir_display_text_property_to_utf8_list;
 +  display_class->utf8_to_string_target = gdk_mir_display_utf8_to_string_target;
 +}
-diff --git a/gdk/mir/gdkmireventsource.c b/gdk/mir/gdkmireventsource.c
-new file mode 100644
-index 0000000..e14df97
+Index: b/gdk/mir/gdkmireventsource.c
+===================================================================
 --- /dev/null
 +++ b/gdk/mir/gdkmireventsource.c
-@@ -0,0 +1,630 @@
+@@ -0,0 +1,631 @@
 +/*
 + * Copyright © 2014 Canonical Ltd
 + *
@@ -2048,6 +2041,7 @@ index 0000000..e14df97
 +  switch (event->attrib)
 +    {
 +    case mir_surface_attrib_type:
++      _gdk_mir_window_impl_set_surface_type (impl, event->value);
 +      break;
 +    case mir_surface_attrib_state:
 +      _gdk_mir_window_impl_set_surface_state (impl, event->value);
@@ -2333,9 +2327,8 @@ index 0000000..e14df97
 +
 +  g_main_context_wakeup (NULL);
 +}
-diff --git a/gdk/mir/gdkmirkeyboard.c b/gdk/mir/gdkmirkeyboard.c
-new file mode 100644
-index 0000000..86c0d9f
+Index: b/gdk/mir/gdkmirkeyboard.c
+===================================================================
 --- /dev/null
 +++ b/gdk/mir/gdkmirkeyboard.c
 @@ -0,0 +1,173 @@
@@ -2512,9 +2505,8 @@ index 0000000..86c0d9f
 +  device_class->window_at_position = gdk_mir_keyboard_window_at_position;
 +  device_class->select_window_events = gdk_mir_keyboard_select_window_events;
 +}
-diff --git a/gdk/mir/gdkmirkeymap.c b/gdk/mir/gdkmirkeymap.c
-new file mode 100644
-index 0000000..3e8c829
+Index: b/gdk/mir/gdkmirkeymap.c
+===================================================================
 --- /dev/null
 +++ b/gdk/mir/gdkmirkeymap.c
 @@ -0,0 +1,466 @@
@@ -2984,9 +2976,8 @@ index 0000000..3e8c829
 +  keymap_class->map_virtual_modifiers = gdk_mir_keymap_map_virtual_modifiers;
 +  keymap_class->get_modifier_state = gdk_mir_keymap_get_modifier_state;
 +}
-diff --git a/gdk/mir/gdkmirpointer.c b/gdk/mir/gdkmirpointer.c
-new file mode 100644
-index 0000000..96c7e74
+Index: b/gdk/mir/gdkmirpointer.c
+===================================================================
 --- /dev/null
 +++ b/gdk/mir/gdkmirpointer.c
 @@ -0,0 +1,250 @@
@@ -3240,12 +3231,11 @@ index 0000000..96c7e74
 +  device_class->window_at_position = gdk_mir_pointer_window_at_position;
 +  device_class->select_window_events = gdk_mir_pointer_select_window_events;
 +}
-diff --git a/gdk/mir/gdkmirscreen.c b/gdk/mir/gdkmirscreen.c
-new file mode 100644
-index 0000000..82f1ae6
+Index: b/gdk/mir/gdkmirscreen.c
+===================================================================
 --- /dev/null
 +++ b/gdk/mir/gdkmirscreen.c
-@@ -0,0 +1,801 @@
+@@ -0,0 +1,804 @@
 +/*
 + * Copyright © 2014 Canonical Ltd
 + *
@@ -3631,7 +3621,10 @@ index 0000000..82f1ae6
 +    }
 +  else
 +    {
-+      *dest = {0, 0, 0, 0};
++      dest->x = 0;
++      dest->y = 0;
++      dest->width = 0;
++      dest->height = 0;
 +    }
 +}
 +
@@ -4047,9 +4040,8 @@ index 0000000..82f1ae6
 +  screen_class->query_visual_types = gdk_mir_screen_query_visual_types;
 +  screen_class->get_monitor_scale_factor = gdk_mir_screen_get_monitor_scale_factor;
 +}
-diff --git a/gdk/mir/gdkmirwindow.c b/gdk/mir/gdkmirwindow.c
-new file mode 100644
-index 0000000..03da7e0
+Index: b/gdk/mir/gdkmirwindow.c
+===================================================================
 --- /dev/null
 +++ b/gdk/mir/gdkmirwindow.c
 @@ -0,0 +1,52 @@
@@ -4105,12 +4097,11 @@ index 0000000..03da7e0
 +gdk_mir_window_class_init (GdkMirWindowClass *klass)
 +{
 +}
-diff --git a/gdk/mir/gdkmirwindowimpl.c b/gdk/mir/gdkmirwindowimpl.c
-new file mode 100644
-index 0000000..ec752e2
+Index: b/gdk/mir/gdkmirwindowimpl.c
+===================================================================
 --- /dev/null
 +++ b/gdk/mir/gdkmirwindowimpl.c
-@@ -0,0 +1,1320 @@
+@@ -0,0 +1,1336 @@
 +/*
 + * Copyright © 2014 Canonical Ltd
 + *
@@ -4203,6 +4194,12 @@ index 0000000..ec752e2
 +_gdk_mir_window_impl_set_surface_state (GdkMirWindowImpl *impl, MirSurfaceState state)
 +{
 +  impl->surface_state = state;
++}
++
++void
++_gdk_mir_window_impl_set_surface_type (GdkMirWindowImpl *impl, MirSurfaceType type)
++{
++  impl->surface_type = type;
 +}
 +
 +void
@@ -4854,7 +4851,6 @@ index 0000000..ec752e2
 +    {
 +      case GDK_WINDOW_TYPE_HINT_NORMAL:
 +      case GDK_WINDOW_TYPE_HINT_DOCK:
-+      case GDK_WINDOW_TYPE_HINT_TOOLBAR:
 +      case GDK_WINDOW_TYPE_HINT_DESKTOP:
 +        mir_type = mir_surface_type_normal;
 +        break;
@@ -4868,17 +4864,22 @@ index 0000000..ec752e2
 +      case GDK_WINDOW_TYPE_HINT_DROPDOWN_MENU:
 +      case GDK_WINDOW_TYPE_HINT_POPUP_MENU:
 +      case GDK_WINDOW_TYPE_HINT_COMBO:
-+        mir_type = mir_surface_type_popover;
++        mir_type = mir_surface_type_menu;
++        break;
++      case GDK_WINDOW_TYPE_HINT_TOOLTIP:
++        mir_type = mir_surface_type_tip;
 +        break;
 +      case GDK_WINDOW_TYPE_HINT_SPLASHSCREEN:
-+      case GDK_WINDOW_TYPE_HINT_TOOLTIP:
 +      case GDK_WINDOW_TYPE_HINT_DND:
 +      case GDK_WINDOW_TYPE_HINT_NOTIFICATION:
 +        mir_type = mir_surface_type_overlay;
 +        break;
++      case GDK_WINDOW_TYPE_HINT_TOOLBAR:
++        mir_type = mir_surface_type_satellite;
++        break;
 +    }
 +
-+  mir_surface_set_type (GDK_MIR_WINDOW_IMPL (window->impl), mir_type);
++  set_surface_type (GDK_MIR_WINDOW_IMPL (window->impl), mir_type);
 +}
 +
 +static GdkWindowTypeHint
@@ -4896,10 +4897,16 @@ index 0000000..ec752e2
 +        return GDK_WINDOW_TYPE_HINT_UTILITY;
 +      case mir_surface_type_dialog:
 +        return GDK_WINDOW_TYPE_HINT_DIALOG;
-+      case mir_surface_type_overlay:
++      case mir_surface_type_tip:
 +        return GDK_WINDOW_TYPE_HINT_TOOLTIP;
-+      case mir_surface_type_popover:
++      case mir_surface_type_menu:
 +        return GDK_WINDOW_TYPE_HINT_MENU;
++      case mir_surface_type_overlay:
++        return GDK_WINDOW_TYPE_HINT_NOTIFICATION;
++      case mir_surface_type_satellite:
++        return GDK_WINDOW_TYPE_HINT_TOOLBAR;
++      case mir_surface_types:
++        break;
 +    }
 +
 +  return GDK_WINDOW_TYPE_HINT_NORMAL;
@@ -5431,8 +5438,8 @@ index 0000000..ec752e2
 +  impl_class->set_opaque_region = gdk_mir_window_impl_set_opaque_region;
 +  impl_class->set_shadow_width = gdk_mir_window_impl_set_shadow_width;
 +}
-diff --git a/gtk/gtktooltip.c b/gtk/gtktooltip.c
-index 103944f..cedddaa 100644
+Index: b/gtk/gtktooltip.c
+===================================================================
 --- a/gtk/gtktooltip.c
 +++ b/gtk/gtktooltip.c
 @@ -39,6 +39,9 @@
@@ -5445,10 +5452,16 @@ index 103944f..cedddaa 100644
  
  
  /**
-@@ -1168,6 +1171,19 @@ found:
-                                           GTK_WINDOW (toplevel));
-         }
- #endif
+@@ -1162,6 +1165,19 @@
+         {
+           GtkWidget *toplevel;
+ 
++          toplevel = gtk_widget_get_toplevel (tooltip->tooltip_widget);
++          if (GTK_IS_WINDOW (toplevel))
++            gtk_window_set_transient_for (GTK_WINDOW (tooltip->current_window),
++                                          GTK_WINDOW (toplevel));
++        }
++#endif
 +#ifdef GDK_WINDOWING_MIR
 +      /* Set the transient parent on the tooltip when running with the Mir
 +       * backend to allow correct positioning of the tooltip windows */
@@ -5456,15 +5469,6 @@ index 103944f..cedddaa 100644
 +        {
 +          GtkWidget *toplevel;
 +
-+          toplevel = gtk_widget_get_toplevel (tooltip->tooltip_widget);
-+          if (GTK_IS_WINDOW (toplevel))
-+            gtk_window_set_transient_for (GTK_WINDOW (tooltip->current_window),
-+                                          GTK_WINDOW (toplevel));
-+        }
-+#endif
- 
-       x -= border.left;
-       y -= border.top;
--- 
-2.1.0
-
+           toplevel = gtk_widget_get_toplevel (tooltip->tooltip_widget);
+           if (GTK_IS_WINDOW (toplevel))
+             gtk_window_set_transient_for (GTK_WINDOW (tooltip->current_window),
