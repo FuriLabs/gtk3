@@ -1,4 +1,4 @@
-From fc1a19cc2e55811154c13194c1c289eb1b224d66 Mon Sep 17 00:00:00 2001
+From 447c406a112e5dd6cc3b49f17bfa779d24e2ef3a Mon Sep 17 00:00:00 2001
 From: William Hua <william@attente.ca>
 Date: Fri, 28 Nov 2014 08:33:03 -0500
 Subject: [PATCH 2/2] mir: unmerged commits from wip/mir2 branch
@@ -22,14 +22,18 @@ f060bfbc338d109cc12f143761bf9d8d235171e7
 52504167c1aeda2b76c24ad701d44a79968f715c
 ada2ed8eca7f3e116a0e171dcbf6c13eda28c9c4
 cc0f748f4d883103b50cfa09acda5c239f1a80d1
+84119c20f297e4d02f4667a3d4d921e785fd77e9
+d4d6d519bc88c79bfca6902f8f9f17a2392ae4ba
+b9890b3d9ee8a8d3cbb31db6d4446910987f63ec
 ---
- gdk/mir/gdkmir-private.h    |  9 +++++
- gdk/mir/gdkmirdisplay.c     | 17 +++++++--
- gdk/mir/gdkmireventsource.c | 91 ++++++++++++++++++++++++++++++---------------
- gdk/mir/gdkmirkeymap.c      | 14 +++++++
- gdk/mir/gdkmirpointer.c     |  6 +++
- gdk/mir/gdkmirwindowimpl.c  | 74 +++++++++++++++++++++++++++++-------
- 6 files changed, 165 insertions(+), 46 deletions(-)
+ gdk/mir/gdkmir-private.h    |   9 ++++
+ gdk/mir/gdkmirdisplay.c     |  17 +++++--
+ gdk/mir/gdkmireventsource.c | 109 ++++++++++++++++++++++++++++++--------------
+ gdk/mir/gdkmirkeymap.c      |  14 ++++++
+ gdk/mir/gdkmirpointer.c     |   6 +++
+ gdk/mir/gdkmirscreen.c      |  22 ++++-----
+ gdk/mir/gdkmirwindowimpl.c  |  86 ++++++++++++++++++++++++++--------
+ 7 files changed, 195 insertions(+), 68 deletions(-)
 
 diff --git a/gdk/mir/gdkmir-private.h b/gdk/mir/gdkmir-private.h
 index 8305096..a5802f7 100644
@@ -85,7 +89,7 @@ index 207342c..13793ec 100644
  
  static GdkKeymap *
 diff --git a/gdk/mir/gdkmireventsource.c b/gdk/mir/gdkmireventsource.c
-index cfe36e8..68b0430 100644
+index cfe36e8..18364b0 100644
 --- a/gdk/mir/gdkmireventsource.c
 +++ b/gdk/mir/gdkmireventsource.c
 @@ -22,6 +22,8 @@
@@ -154,11 +158,29 @@ index cfe36e8..68b0430 100644
  {
    GdkEvent *event;
  
-@@ -164,12 +170,13 @@ generate_scroll_event (GdkWindow *window, gdouble x, gdouble y, gdouble delta_x,
-   event->scroll.direction = GDK_SCROLL_SMOOTH;
-   event->scroll.delta_x = -delta_x;
-   event->scroll.delta_y = -delta_y;
+@@ -161,15 +167,28 @@ generate_scroll_event (GdkWindow *window, gdouble x, gdouble y, gdouble delta_x,
+   event->scroll.x = x;
+   event->scroll.y = y;
+   event->scroll.state = state;
+-  event->scroll.direction = GDK_SCROLL_SMOOTH;
+-  event->scroll.delta_x = -delta_x;
+-  event->scroll.delta_y = -delta_y;
 +  event->scroll.time = event_time;
++
++  if (ABS (delta_x) == 1 && delta_y == 0)
++    {
++      event->scroll.direction = (delta_x < 0) ? GDK_SCROLL_LEFT : GDK_SCROLL_RIGHT;
++    }
++  else if (ABS (delta_y) == 1 && delta_x == 0)
++    {
++      event->scroll.direction = (delta_y < 0) ? GDK_SCROLL_DOWN : GDK_SCROLL_UP;
++    }
++  else
++    {
++      event->scroll.direction = GDK_SCROLL_SMOOTH;
++      event->scroll.delta_x = -delta_x;
++      event->scroll.delta_y = -delta_y;
++    }
  
    send_event (window, get_pointer (window), event);
  }
@@ -169,7 +191,7 @@ index cfe36e8..68b0430 100644
  {
    GdkEvent *event;
  
-@@ -178,12 +185,13 @@ generate_motion_event (GdkWindow *window, gdouble x, gdouble y, guint state)
+@@ -178,12 +197,13 @@ generate_motion_event (GdkWindow *window, gdouble x, gdouble y, guint state)
    event->motion.y = y;
    event->motion.state = state;
    event->motion.is_hint = FALSE;
@@ -184,7 +206,7 @@ index cfe36e8..68b0430 100644
  {
    GdkEvent *event;
  
-@@ -193,6 +201,7 @@ generate_crossing_event (GdkWindow *window, GdkEventType type, gdouble x, gdoubl
+@@ -193,6 +213,7 @@ generate_crossing_event (GdkWindow *window, GdkEventType type, gdouble x, gdoubl
    event->crossing.mode = GDK_CROSSING_NORMAL;
    event->crossing.detail = GDK_NOTIFY_ANCESTOR;
    event->crossing.focus = TRUE;
@@ -192,7 +214,7 @@ index cfe36e8..68b0430 100644
  
    send_event (window, get_pointer (window), event);
  }
-@@ -239,35 +248,30 @@ get_modifier_state (unsigned int modifiers, unsigned int button_state)
+@@ -239,35 +260,30 @@ get_modifier_state (unsigned int modifiers, unsigned int button_state)
    return modifier_state;
  }
  
@@ -237,7 +259,7 @@ index cfe36e8..68b0430 100644
        break;
      default:
      //case mir_key_action_multiple:
-@@ -284,6 +288,7 @@ handle_motion_event (GdkWindow *window, const MirMotionEvent *event)
+@@ -284,6 +300,7 @@ handle_motion_event (GdkWindow *window, const MirMotionEvent *event)
    gboolean cursor_inside;
    MirMotionButton button_state;
    guint modifier_state;
@@ -245,7 +267,7 @@ index cfe36e8..68b0430 100644
    GdkEventType event_type;
    MirMotionButton changed_button_state;
  
-@@ -294,13 +299,14 @@ handle_motion_event (GdkWindow *window, const MirMotionEvent *event)
+@@ -294,13 +311,14 @@ handle_motion_event (GdkWindow *window, const MirMotionEvent *event)
        y = event->pointer_coordinates[0].y;
      }
    modifier_state = get_modifier_state (event->modifiers, event->button_state);
@@ -261,7 +283,7 @@ index cfe36e8..68b0430 100644
      }
  
    /* Update which window has focus */
-@@ -312,23 +318,23 @@ handle_motion_event (GdkWindow *window, const MirMotionEvent *event)
+@@ -312,23 +330,23 @@ handle_motion_event (GdkWindow *window, const MirMotionEvent *event)
        event_type = event->action == mir_motion_action_down ? GDK_BUTTON_PRESS : GDK_BUTTON_RELEASE;
        changed_button_state = button_state ^ event->button_state;
        if (changed_button_state == 0 || (changed_button_state & mir_motion_button_primary) != 0)
@@ -291,7 +313,7 @@ index cfe36e8..68b0430 100644
        break;
      }
  
-@@ -396,9 +402,6 @@ gdk_mir_event_source_queue_event (GdkDisplay     *display,
+@@ -396,9 +414,6 @@ gdk_mir_event_source_queue_event (GdkDisplay     *display,
                                    GdkWindow      *window,
                                    const MirEvent *event)
  {
@@ -301,7 +323,7 @@ index cfe36e8..68b0430 100644
    // FIXME: Only generate events if the window wanted them?
    switch (event->type)
      {
-@@ -459,7 +462,34 @@ gdk_mir_event_source_convert_events (GdkMirEventSource *source)
+@@ -459,7 +474,34 @@ gdk_mir_event_source_convert_events (GdkMirEventSource *source)
         * event was being dispatched...
         */
        if (window != NULL)
@@ -337,7 +359,7 @@ index cfe36e8..68b0430 100644
        else
          g_warning ("window was destroyed before event arrived...");
  
-@@ -554,6 +584,7 @@ _gdk_mir_event_source_new (GdkDisplay *display)
+@@ -554,6 +596,7 @@ _gdk_mir_event_source_new (GdkDisplay *display)
    source = (GdkMirEventSource *) g_source;
    g_mutex_init (&source->mir_event_lock);
    source->display = display;
@@ -401,8 +423,57 @@ index 96c7e74..3937361 100644
  }
  
  static GdkWindow *
+diff --git a/gdk/mir/gdkmirscreen.c b/gdk/mir/gdkmirscreen.c
+index 2b53cef..e29ddb3 100644
+--- a/gdk/mir/gdkmirscreen.c
++++ b/gdk/mir/gdkmirscreen.c
+@@ -327,35 +327,31 @@ gdk_mir_screen_get_monitor_plug_name (GdkScreen *screen,
+       switch (output->type)
+         {
+           case mir_display_output_type_unknown:
+-            return g_strdup_printf ("UNKNOWN-%u", output->output_id);
++            return g_strdup_printf ("None-%u", output->output_id);
+           case mir_display_output_type_vga:
+             return g_strdup_printf ("VGA-%u", output->output_id);
+           case mir_display_output_type_dvii:
+-            return g_strdup_printf ("DVII-%u", output->output_id);
+           case mir_display_output_type_dvid:
+-            return g_strdup_printf ("DVID-%u", output->output_id);
+           case mir_display_output_type_dvia:
+-            return g_strdup_printf ("DVIA-%u", output->output_id);
++            return g_strdup_printf ("DVI-%u", output->output_id);
+           case mir_display_output_type_composite:
+-            return g_strdup_printf ("COMPOSITE-%u", output->output_id);
+-          case mir_display_output_type_svideo:
+-            return g_strdup_printf ("SVIDEO-%u", output->output_id);
++            return g_strdup_printf ("Composite-%u", output->output_id);
+           case mir_display_output_type_lvds:
+             return g_strdup_printf ("LVDS-%u", output->output_id);
+           case mir_display_output_type_component:
+-            return g_strdup_printf ("COMPONENT-%u", output->output_id);
++            return g_strdup_printf ("CTV-%u", output->output_id);
+           case mir_display_output_type_ninepindin:
+-            return g_strdup_printf ("NINEPINDIN-%u", output->output_id);
++            return g_strdup_printf ("DIN-%u", output->output_id);
+           case mir_display_output_type_displayport:
+-            return g_strdup_printf ("DISPLAYPORT-%u", output->output_id);
++            return g_strdup_printf ("DP-%u", output->output_id);
+           case mir_display_output_type_hdmia:
+-            return g_strdup_printf ("HDMIA-%u", output->output_id);
+           case mir_display_output_type_hdmib:
+-            return g_strdup_printf ("HDMIB-%u", output->output_id);
++            return g_strdup_printf ("HDMI-%u", output->output_id);
++          case mir_display_output_type_svideo:
+           case mir_display_output_type_tv:
+             return g_strdup_printf ("TV-%u", output->output_id);
+           case mir_display_output_type_edp:
+-            return g_strdup_printf ("EDP-%u", output->output_id);
++            return g_strdup_printf ("eDP-%u", output->output_id);
+         }
+     }
+ 
 diff --git a/gdk/mir/gdkmirwindowimpl.c b/gdk/mir/gdkmirwindowimpl.c
-index 418724b..b965551 100644
+index 418724b..92521c9 100644
 --- a/gdk/mir/gdkmirwindowimpl.c
 +++ b/gdk/mir/gdkmirwindowimpl.c
 @@ -259,13 +259,22 @@ redraw_transient (GdkWindow *window)
@@ -438,6 +509,26 @@ index 418724b..b965551 100644
      {
        cairo_surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, window->width, window->height);
      }
+@@ -363,13 +372,13 @@ gdk_mir_window_impl_ref_cairo_surface (GdkWindow *window)
+   impl->cairo_surface = cairo_surface_reference (cairo_surface);
+ 
+   /* Draw background */
+-  c = cairo_create (impl->cairo_surface);
+   if (impl->background)
+-    cairo_set_source (c, impl->background);
+-  else
+-    cairo_set_source_rgb (c, 1.0, 0.0, 0.0);
+-  cairo_paint (c);
+-  cairo_destroy (c);
++    {
++      c = cairo_create (impl->cairo_surface);
++      cairo_set_source (c, impl->background);
++      cairo_paint (c);
++      cairo_destroy (c);
++    }
+ 
+   return cairo_surface;
+ }
 @@ -433,10 +442,11 @@ gdk_mir_window_impl_hide (GdkWindow *window)
    //g_printerr ("gdk_mir_window_impl_hide window=%p\n", window);
    GdkMirWindowImpl *impl = GDK_MIR_WINDOW_IMPL (window->impl);
