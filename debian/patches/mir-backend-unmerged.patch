@@ -617,7 +617,7 @@ index 6431ed4..37f96dc 100644
 -  if (impl->transient_for)
 +  if (should_render_in_parent (window))
      {
-       cairo_surface = cairo_image_surface_create (pixel_format, window->width, window->height);
+       cairo_surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, window->width, window->height);
      }
 @@ -373,13 +382,13 @@ gdk_mir_window_impl_ref_cairo_surface (GdkWindow *window)
    impl->cairo_surface = cairo_surface_reference (cairo_surface);
@@ -799,7 +799,7 @@ index 6431ed4..37f96dc 100644
 +  // g_printerr ("gdk_mir_window_impl_set_shadow_width window=%p\n", window);
  }
  
- static gboolean
+ static void
 -- 
 2.1.4
 
