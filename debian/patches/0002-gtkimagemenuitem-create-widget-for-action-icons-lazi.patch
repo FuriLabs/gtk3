@@ -1,0 +1,150 @@
+From 76c667ab721038db7ee72d1d79078e19c89671a6 Mon Sep 17 00:00:00 2001
+From: Lars Uebernickel <lars.uebernickel@canonical.com>
+Date: Mon, 12 Jan 2015 09:04:11 +0100
+Subject: [PATCH 2/2] gtkimagemenuitem: create widget for action icons lazily
+
+GtkImageMenuItem always packs a GtkImage when it is synced with a
+related action. This is unnecessary when the action doesn't have an icon
+set and results in excess padding when a GtkImageMenuItem is put in a
+menu bar (GtkUIManager does this).
+
+Fix this by not creating the GtkImage for icon-less actions.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=742181
+---
+ gtk/deprecated/gtkimagemenuitem.c | 67 +++++++++++++++++++--------------------
+ 1 file changed, 32 insertions(+), 35 deletions(-)
+
+diff --git a/gtk/deprecated/gtkimagemenuitem.c b/gtk/deprecated/gtkimagemenuitem.c
+index 8b6fc96..d150020 100644
+--- a/gtk/deprecated/gtkimagemenuitem.c
++++ b/gtk/deprecated/gtkimagemenuitem.c
+@@ -672,22 +672,35 @@ gtk_image_menu_item_activatable_interface_init (GtkActivatableIface  *iface)
+   iface->sync_action_properties = gtk_image_menu_item_sync_action_properties;
+ }
+ 
++static GtkWidget *
++gtk_image_menu_item_ensure_image (GtkImageMenuItem *item)
++{
++  GtkWidget *image;
++
++  image = gtk_image_menu_item_get_image (item);
++  if (!GTK_IS_IMAGE (image))
++    {
++      image = gtk_image_new ();
++      gtk_widget_show (image);
++      gtk_image_menu_item_set_image (item, image);
++    }
++
++  return image;
++}
++
+ static gboolean
+ activatable_update_stock_id (GtkImageMenuItem *image_menu_item, GtkAction *action)
+ {
+-  GtkWidget   *image;
+   const gchar *stock_id  = gtk_action_get_stock_id (action);
+ 
+-  image = gtk_image_menu_item_get_image (image_menu_item);
+-
+   G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
+ 
+-  if (GTK_IS_IMAGE (image) &&
+-      stock_id && gtk_icon_factory_lookup_default (stock_id))
++  if (stock_id && gtk_icon_factory_lookup_default (stock_id))
+     {
+-      G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
++      GtkWidget *image;
++
++      image = gtk_image_menu_item_ensure_image (image_menu_item);
+       gtk_image_set_from_stock (GTK_IMAGE (image), stock_id, GTK_ICON_SIZE_MENU);
+-      G_GNUC_END_IGNORE_DEPRECATIONS;
+       return TRUE;
+     }
+ 
+@@ -699,7 +712,6 @@ activatable_update_stock_id (GtkImageMenuItem *image_menu_item, GtkAction *actio
+ static gboolean
+ activatable_update_gicon (GtkImageMenuItem *image_menu_item, GtkAction *action)
+ {
+-  GtkWidget   *image;
+   GIcon       *icon = gtk_action_get_gicon (action);
+   const gchar *stock_id;
+   gboolean     ret = FALSE;
+@@ -708,11 +720,11 @@ activatable_update_gicon (GtkImageMenuItem *image_menu_item, GtkAction *action)
+ 
+   G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
+ 
+-  image = gtk_image_menu_item_get_image (image_menu_item);
+-
+-  if (icon && GTK_IS_IMAGE (image) &&
+-      !(stock_id && gtk_icon_factory_lookup_default (stock_id)))
++  if (icon && !(stock_id && gtk_icon_factory_lookup_default (stock_id)))
+     {
++      GtkWidget *image;
++
++      image = gtk_image_menu_item_ensure_image (image_menu_item);
+       gtk_image_set_from_gicon (GTK_IMAGE (image), icon, GTK_ICON_SIZE_MENU);
+       ret = TRUE;
+     }
+@@ -722,20 +734,21 @@ activatable_update_gicon (GtkImageMenuItem *image_menu_item, GtkAction *action)
+   return ret;
+ }
+ 
+-static void
++static gboolean
+ activatable_update_icon_name (GtkImageMenuItem *image_menu_item, GtkAction *action)
+ {
+-  GtkWidget   *image;
+   const gchar *icon_name = gtk_action_get_icon_name (action);
+ 
+-  image = gtk_image_menu_item_get_image (image_menu_item);
+-
+-  if (GTK_IS_IMAGE (image) &&
+-      (gtk_image_get_storage_type (GTK_IMAGE (image)) == GTK_IMAGE_EMPTY ||
+-       gtk_image_get_storage_type (GTK_IMAGE (image)) == GTK_IMAGE_ICON_NAME))
++  if (icon_name)
+     {
++      GtkWidget *image;
++
++      image = gtk_image_menu_item_ensure_image (image_menu_item);
+       gtk_image_set_from_icon_name (GTK_IMAGE (image), icon_name, GTK_ICON_SIZE_MENU);
++      return TRUE;
+     }
++
++  return FALSE;
+ }
+ 
+ static void
+@@ -767,7 +780,6 @@ gtk_image_menu_item_sync_action_properties (GtkActivatable *activatable,
+                                             GtkAction      *action)
+ {
+   GtkImageMenuItem *image_menu_item;
+-  GtkWidget *image;
+   gboolean   use_appearance;
+ 
+   image_menu_item = GTK_IMAGE_MENU_ITEM (activatable);
+@@ -781,21 +793,6 @@ gtk_image_menu_item_sync_action_properties (GtkActivatable *activatable,
+   if (!use_appearance)
+     return;
+ 
+-  image = gtk_image_menu_item_get_image (image_menu_item);
+-  if (image && !GTK_IS_IMAGE (image))
+-    {
+-      gtk_image_menu_item_set_image (image_menu_item, NULL);
+-      image = NULL;
+-    }
+-
+-  if (!image)
+-    {
+-      image = gtk_image_new ();
+-      gtk_widget_show (image);
+-      gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (activatable),
+-                                     image);
+-    }
+-
+   if (!activatable_update_stock_id (image_menu_item, action) &&
+       !activatable_update_gicon (image_menu_item, action))
+     activatable_update_icon_name (image_menu_item, action);
+-- 
+2.1.4
+
