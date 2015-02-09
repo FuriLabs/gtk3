@@ -7,6 +7,11 @@ gtk+3.0 (3.14.8-0ubuntu1) UNRELEASED; urgency=medium
   * 0001-Menu-items-force-loading-16x16-icons.patch,
     0002-gtkimagemenuitem-create-widget-for-action-icons-lazi.patch: Drop,
     applied in this release.
+  * debian/patches/0001-css-Add-gtk-dpi-CSS-property-hack.patch,
+    debian/patches/0002-css-use-pre-3.16-gtk_css_style_property_register.patch:
+    Cherry-pick patches from upstream to fix apps responding to changes to the
+    value of the org.gnome.desktop.interface text-scaling factor key. (LP:
+    #1408212)
 
  -- Iain Lane <iain.lane@canonical.com>  Mon, 09 Feb 2015 16:01:57 +0000
 
