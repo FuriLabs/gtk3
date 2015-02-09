@@ -1,0 +1,25 @@
+From 8842ee8579db2c37c4e592f4dc1798246f6d5c9f Mon Sep 17 00:00:00 2001
+From: Lars Uebernickel <lars.uebernickel@canonical.com>
+Date: Fri, 6 Feb 2015 12:19:31 +0100
+Subject: [PATCH 2/2] css: use pre-3.16 gtk_css_style_property_register
+
+This fixes the backport of the last commit.
+---
+ gtk/gtkcssstylepropertyimpl.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/gtk/gtkcssstylepropertyimpl.c b/gtk/gtkcssstylepropertyimpl.c
+index 230903e..05c3b00 100644
+--- a/gtk/gtkcssstylepropertyimpl.c
++++ b/gtk/gtkcssstylepropertyimpl.c
+@@ -964,7 +964,6 @@ _gtk_css_style_property_init_properties (void)
+                                           GTK_CSS_PROPERTY_DPI,
+                                           G_TYPE_NONE,
+                                           GTK_STYLE_PROPERTY_INHERIT | GTK_STYLE_PROPERTY_ANIMATED,
+-                                          GTK_CSS_AFFECTS_FONT | GTK_CSS_AFFECTS_TEXT | GTK_CSS_AFFECTS_SIZE,
+                                           dpi_parse,
+                                           NULL,
+                                           NULL,
+-- 
+2.1.4
+

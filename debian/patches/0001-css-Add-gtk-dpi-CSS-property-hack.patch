@@ -1,0 +1,139 @@
+From a4c837e09b9ee1d0868827e632a9cb54fd79580e Mon Sep 17 00:00:00 2001
+From: Benjamin Otte <otte@redhat.com>
+Date: Thu, 5 Feb 2015 18:52:59 +0100
+Subject: [PATCH 1/2] css: Add -gtk-dpi CSS property hack
+
+This property is necessary to ensure widgets automatically update after
+the text scale factor is changed desktop-wide.
+
+And if I'm already doing a property like this, I can make it
+overridable. So now you can override the dpi per-widget with CSS like
+GtkSwitch {
+  -gtk-dpi: 48;
+}
+if you want to debug things.
+
+Long-term, we want to get rid of this property and insist on dpi being
+96 everywhere and people can change the font size to get larger fonts.
+---
+ gtk/gtkcssinitialvalue.c      | 13 +++++++++++++
+ gtk/gtkcssstylepropertyimpl.c | 18 +++++++++++++++++-
+ gtk/gtkcsstypesprivate.h      |  1 +
+ gtk/gtkwidget.c               |  8 ++++++--
+ 4 files changed, 37 insertions(+), 3 deletions(-)
+
+diff --git a/gtk/gtkcssinitialvalue.c b/gtk/gtkcssinitialvalue.c
+index c53a5cf..3e4447b 100644
+--- a/gtk/gtkcssinitialvalue.c
++++ b/gtk/gtkcssinitialvalue.c
+@@ -23,6 +23,7 @@
+ #include "gtkcssnumbervalueprivate.h"
+ #include "gtkcssstringvalueprivate.h"
+ #include "gtkcssstylepropertyprivate.h"
++#include "gtksettingsprivate.h"
+ #include "gtkstyleproviderprivate.h"
+ 
+ struct _GtkCssValue {
+@@ -49,6 +50,18 @@ gtk_css_value_initial_compute (GtkCssValue             *value,
+ 
+   switch (property_id)
+     {
++    case GTK_CSS_PROPERTY_DPI:
++      settings = _gtk_style_provider_private_get_settings (provider);
++      if (settings)
++        {
++          GdkScreen *screen = _gtk_settings_get_screen (settings);
++          double resolution = gdk_screen_get_resolution (screen);
++
++          if (resolution > 0.0)
++            return _gtk_css_number_value_new (resolution, GTK_CSS_NUMBER);
++        }
++      break;
++
+     case GTK_CSS_PROPERTY_FONT_FAMILY:
+       settings = _gtk_style_provider_private_get_settings (provider);
+       if (settings)
+diff --git a/gtk/gtkcssstylepropertyimpl.c b/gtk/gtkcssstylepropertyimpl.c
+index 64004d1..230903e 100644
+--- a/gtk/gtkcssstylepropertyimpl.c
++++ b/gtk/gtkcssstylepropertyimpl.c
+@@ -723,6 +723,13 @@ background_image_value_assign (GtkCssStyleProperty *property,
+ }
+ 
+ static GtkCssValue *
++dpi_parse (GtkCssStyleProperty *property,
++	   GtkCssParser        *parser)
++{
++  return _gtk_css_number_value_parse (parser, GTK_CSS_PARSE_NUMBER);
++}
++
++static GtkCssValue *
+ font_size_parse (GtkCssStyleProperty *property,
+                  GtkCssParser        *parser)
+ {
+@@ -941,7 +948,7 @@ background_position_parse (GtkCssStyleProperty *property,
+ void
+ _gtk_css_style_property_init_properties (void)
+ {
+-  /* Initialize "color" and "font-size" first,
++  /* Initialize "color", "-gtk-dpi" and "font-size" first,
+    * so that when computing values later they are
+    * done first. That way, 'currentColor' and font
+    * sizes in em can be looked up properly */
+@@ -953,6 +960,15 @@ _gtk_css_style_property_init_properties (void)
+                                           color_query,
+                                           color_assign,
+                                           _gtk_css_color_value_new_rgba (1, 1, 1, 1));
++  gtk_css_style_property_register        ("-gtk-dpi",
++                                          GTK_CSS_PROPERTY_DPI,
++                                          G_TYPE_NONE,
++                                          GTK_STYLE_PROPERTY_INHERIT | GTK_STYLE_PROPERTY_ANIMATED,
++                                          GTK_CSS_AFFECTS_FONT | GTK_CSS_AFFECTS_TEXT | GTK_CSS_AFFECTS_SIZE,
++                                          dpi_parse,
++                                          NULL,
++                                          NULL,
++                                          _gtk_css_number_value_new (96.0, GTK_CSS_NUMBER));
+   gtk_css_style_property_register        ("font-size",
+                                           GTK_CSS_PROPERTY_FONT_SIZE,
+                                           G_TYPE_DOUBLE,
+diff --git a/gtk/gtkcsstypesprivate.h b/gtk/gtkcsstypesprivate.h
+index ca2faaf..139718b 100644
+--- a/gtk/gtkcsstypesprivate.h
++++ b/gtk/gtkcsstypesprivate.h
+@@ -72,6 +72,7 @@ typedef enum /*< skip >*/ {
+ 
+ enum { /*< skip >*/
+   GTK_CSS_PROPERTY_COLOR,
++  GTK_CSS_PROPERTY_DPI,
+   GTK_CSS_PROPERTY_FONT_SIZE,
+   GTK_CSS_PROPERTY_BACKGROUND_COLOR,
+   GTK_CSS_PROPERTY_FONT_FAMILY,
+diff --git a/gtk/gtkwidget.c b/gtk/gtkwidget.c
+index 7689bbf..c068658 100644
+--- a/gtk/gtkwidget.c
++++ b/gtk/gtkwidget.c
+@@ -10263,6 +10263,12 @@ update_pango_context (GtkWidget    *widget,
+ 			      PANGO_DIRECTION_LTR : PANGO_DIRECTION_RTL);
+ 
+   pango_font_description_free (font_desc);
++
++  pango_cairo_context_set_resolution (context,
++                                      _gtk_css_number_value_get (
++                                          _gtk_style_context_peek_property (style_context,
++                                                                            GTK_CSS_PROPERTY_DPI),
++                                          100));
+ }
+ 
+ static void
+@@ -10279,8 +10285,6 @@ gtk_widget_update_pango_context (GtkWidget *widget)
+       screen = gtk_widget_get_screen_unchecked (widget);
+       if (screen)
+ 	{
+-	  pango_cairo_context_set_resolution (context,
+-					      gdk_screen_get_resolution (screen));
+ 	  pango_cairo_context_set_font_options (context,
+ 						gdk_screen_get_font_options (screen));
+ 	}
+-- 
+2.1.4
+
