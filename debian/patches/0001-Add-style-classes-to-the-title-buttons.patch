@@ -1,0 +1,44 @@
+From b187773053098cca1b7c23e04e096d47fbb65a5f Mon Sep 17 00:00:00 2001
+From: Matthias Clasen <mclasen@redhat.com>
+Date: Sun, 15 Feb 2015 13:03:29 -0500
+Subject: [PATCH] Add style classes to the title buttons
+
+This will let themes treat close/min/max buttons differently,
+if they so desire.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=744400
+---
+ gtk/gtkheaderbar.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/gtk/gtkheaderbar.c b/gtk/gtkheaderbar.c
+index ecc6bea..f2f2878 100644
+--- a/gtk/gtkheaderbar.c
++++ b/gtk/gtkheaderbar.c
+@@ -423,6 +423,7 @@ _gtk_header_bar_update_window_buttons (GtkHeaderBar *bar)
+                   button = gtk_button_new ();
+                   gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
+                   gtk_style_context_add_class (gtk_widget_get_style_context (button), "titlebutton");
++                  gtk_style_context_add_class (gtk_widget_get_style_context (button), "minimize");
+                   image = gtk_image_new_from_icon_name ("window-minimize-symbolic", GTK_ICON_SIZE_MENU);
+                   g_object_set (image, "use-fallback", TRUE, NULL);
+                   gtk_container_add (GTK_CONTAINER (button), image);
+@@ -446,6 +447,7 @@ _gtk_header_bar_update_window_buttons (GtkHeaderBar *bar)
+                   button = gtk_button_new ();
+                   gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
+                   gtk_style_context_add_class (gtk_widget_get_style_context (button), "titlebutton");
++                  gtk_style_context_add_class (gtk_widget_get_style_context (button), "maximize");
+                   image = gtk_image_new_from_icon_name (icon_name, GTK_ICON_SIZE_MENU);
+                   g_object_set (image, "use-fallback", TRUE, NULL);
+                   gtk_container_add (GTK_CONTAINER (button), image);
+@@ -465,6 +467,7 @@ _gtk_header_bar_update_window_buttons (GtkHeaderBar *bar)
+                   gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
+                   image = gtk_image_new_from_icon_name ("window-close-symbolic", GTK_ICON_SIZE_MENU);
+                   gtk_style_context_add_class (gtk_widget_get_style_context (button), "titlebutton");
++                  gtk_style_context_add_class (gtk_widget_get_style_context (button), "close");
+                   g_object_set (image, "use-fallback", TRUE, NULL);
+                   gtk_container_add (GTK_CONTAINER (button), image);
+                   gtk_widget_set_can_focus (button, FALSE);
+-- 
+2.1.4
+
