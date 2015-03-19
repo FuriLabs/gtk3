@@ -1,3 +1,22 @@
+gtk+3.0 (3.14.9-0ubuntu1) UNRELEASED; urgency=medium
+
+  * New upstream release.
+    + GtkScrolledWindow
+      - Avoid 'jumping' when zoom scrolling kicks in
+      - Make zoom scrolling less easy to trigger
+    + Bugs fixed:
+      - avahi-discovered CUPS printers don't work
+      - Wayland: Clients won't work on compositors that support wl_...
+      - Tooltips should have ATK_ROLE_TOOL_TIP (like they did before)
+      - quartz: Avoid segfaulting when calling gdk_window_ensure_native
+      - Fix loading of GResource SVGs
+      - Icon theme code assumes directories with mtime 0 don't exist
+      - Fix crash and miscalculation in css bitmask manipulation
+      - Fix a crash due to too large surfaces
+      - Update on text scale factor changes
+
+ -- Iain Lane <iain.lane@canonical.com>  Thu, 19 Mar 2015 17:49:41 +0000
+
 gtk+3.0 (3.14.8-0ubuntu2) vivid; urgency=medium
 
   * debian/patches/message-dialog-restore-traditional-look-on-unity.patch:
