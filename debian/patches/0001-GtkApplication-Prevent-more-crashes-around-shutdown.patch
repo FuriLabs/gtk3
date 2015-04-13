@@ -1,0 +1,39 @@
+From d59f435057797181108e64ce85cba69ad088d32e Mon Sep 17 00:00:00 2001
+From: Matthias Clasen <mclasen@redhat.com>
+Date: Fri, 10 Apr 2015 08:03:24 -0400
+Subject: [PATCH] GtkApplication: Prevent more crashes around shutdown
+
+gtk_application_shutdown clears the impl member, so all
+callbacks, signal handlers, etc that might still be triggered
+between a shutdown call and the return from the mainloop
+better be prepared to deal with impl being NULL.
+---
+ gtk/gtkapplication.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/gtk/gtkapplication.c b/gtk/gtkapplication.c
+index 57dc881..84306a2 100644
+--- a/gtk/gtkapplication.c
++++ b/gtk/gtkapplication.c
+@@ -1776,14 +1776,16 @@ void
+ gtk_application_handle_window_realize (GtkApplication *application,
+                                        GtkWindow      *window)
+ {
+-  gtk_application_impl_handle_window_realize (application->priv->impl, window);
++  if (application->priv->impl)
++    gtk_application_impl_handle_window_realize (application->priv->impl, window);
+ }
+ 
+ void
+ gtk_application_handle_window_map (GtkApplication *application,
+                                    GtkWindow      *window)
+ {
+-  gtk_application_impl_handle_window_map (application->priv->impl, window);
++  if (application->priv->impl)
++    gtk_application_impl_handle_window_map (application->priv->impl, window);
+ }
+ 
+ /**
+-- 
+2.1.4
+
