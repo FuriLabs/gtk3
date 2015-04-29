@@ -59,7 +59,7 @@ EXAMPLES_PKG := gtk-$(APIVER)-examples
 NEWS := NEWS$(shell find -maxdepth 1 -size +4k -name NEWS -exec echo ".gz" \;)
 README := README$(shell find -maxdepth 1 -size +4k -name README -exec echo ".gz" \;)
 
-DEB_DH_INSTALL_ARGS += --sourcedir=debian/install/shared
+DEB_DH_INSTALL_ARGS += --sourcedir=debian/install/shared --fail-missing -X.la
 DEB_DH_INSTALL_ARGS_$(UDEB_PKG) += --sourcedir=debian/install/shared_udeb
 
 DEB_CONFIGURE_EXTRA_FLAGS = \
