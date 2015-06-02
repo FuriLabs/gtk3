@@ -1,18 +1,59 @@
-gtk+3.0 (3.16.3-0ubuntu1) UNRELEASED; urgency=medium
+gtk+3.0 (3.16.3-2ubuntu1) UNRELEASED; urgency=medium
 
-  * New upstream release 3.16.3
-  * debian/control{,.in}: Update BDs in line with configure.ac.
-  * debian/rules: Skip a reftest which is broken upstream.
-  * debian/libgtk-3-0.symbols: Add new symbols for 3.16.
-  * Tweak some deps, thanks ricotz.
-  * Install missing manpages, icons and desktop files for some utilities,
-    thanks again ricotz.
-  * Build with --fail-missing so that we always install everything.
-  * Don't use the listmissing.pl script any more, given the above.
-  * debian/patches/allow-overriding-WM_CLASS-from-the-command-line.patch:
-    Drop, applied upstream.
+  * Merge with Debian. Remaining changes:
+    + clean up reftest .known_fail fails which we create in pre-build
+    + Install missing manpages, icons and desktop files for some utilities,
+      thanks ricotz.
+    + Build with --fail-missing so that we always install everything.
+    + Don't use the listmissing.pl script any more, given the above.
+    + Enable Mir backend.
+    + Drop 022_disable-viqr-im-for-vi-locale.patch
+    + Drop 061_multiarch_module_fallback.patch - unneeded in Ubuntu since we
+      cleared all old gtk modules out.
+    + Install the settings.ini file to set our themes.
+    + Enable parallel builds
+    + Ubuntu specific patches:
+      - 073_treeview_almost_fixed.patch
+      - 074_eventbox_scroll_mask.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
 
- -- Iain Lane <iain.lane@canonical.com>  Thu, 14 May 2015 10:44:03 +0100
+ -- Iain Lane <iain.lane@canonical.com>  Mon, 01 Jun 2015 17:36:57 +0100
+
+gtk+3.0 (3.16.3-2) experimental; urgency=medium
+
+  * d/p/015_default-fallback-icon-theme.patch: Replace gnome with Adwaita.
+  * Update libgtk-3-dev dependencies according to its pkg-config file.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sun, 24 May 2015 19:26:07 +0300
+
+gtk+3.0 (3.16.3-1) experimental; urgency=medium
+
+  [ Sjoerd Simons ]
+  * New upstream release 3.16.2.
+  * debian/patches/044_tracker_fts.patch:
+    + Dropped, upstream also defaults to FTS tracker queries now
+  * debian/control: Update build-dependency versions
+  * debian/control: Add libexpoxy and libegl1-mesa-dev to build-depencies
+  * debian/libgtk-3-0.symbols: Updated
+  * d/p/notify-test-Don-t-test-object-relying-on-dbus-connec.patch:
+    + Added. Fix test failure when no session bus is running (bgo#749009)
+  * debian/rules: Add label-text-shadow-changes-modify-clip.ui to known
+    reftest failures
+
+  [ Emilio Pozuelo Monfort ]
+  * New upstream release 3.16.3.
+  * debian/patches:
+    + Refreshed.
+  * debian/patches/notify-test-Don-t-test-object-relying-on-dbus-connec.patch:
+    + Dropped, included upstream.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Fri, 22 May 2015 18:23:50 +0200
 
 gtk+3.0 (3.14.12-0ubuntu2) vivid; urgency=medium
 

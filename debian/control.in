@@ -15,15 +15,15 @@ Build-Depends: debhelper (>= 8.1.3),
                autotools-dev,
                dbus-x11,
                gsettings-desktop-schemas,
-               adwaita-icon-theme (>= 3.14.0-2ubuntu7~),
+               adwaita-icon-theme,
                at-spi2-core,
                libglib2.0-dev (>= 2.43.4),
                libgdk-pixbuf2.0-dev (>= 2.30.0),
                libpango1.0-dev (>= 1.36.7),
                libatk1.0-dev (>= 2.15.1),
                libatk-bridge2.0-dev,
-               libegl1-mesa-dev,
-               libepoxy-dev (>= 1.0),
+               libegl1-mesa-dev [linux-any],
+               libepoxy-dev,
                libwayland-dev (>= 1.5.91) [linux-any],
                libxkbcommon-dev (>= 0.2.0),
                libx11-dev (>= 2:1.3.3-2),
@@ -108,7 +108,7 @@ Package: @COMMON_PKG@
 Section: misc
 Architecture: all
 Multi-Arch: foreign
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, adwaita-icon-theme (>= ${gnome:Version})
 Recommends: @SHARED_PKG@
 Breaks: @SHARED_PKG@ (<< 3.5.4)
 Replaces: @SHARED_PKG@ (<< 3.5.4)
@@ -146,11 +146,12 @@ Depends: @SHARED_PKG@ (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends},
          libglib2.0-dev (>= 2.43.4),
-         libgdk-pixbuf2.0-dev (>= 2.27.1),
+         libgdk-pixbuf2.0-dev (>= 2.30.0),
          libpango1.0-dev (>= 1.36.7),
          libatk1.0-dev (>= 2.15.1),
          libatk-bridge2.0-dev,
          libcairo2-dev (>= 1.14.0),
+         libepoxy-dev (>= 1.0),
          libx11-dev,
          libxext-dev,
          libxinerama-dev,
@@ -161,9 +162,8 @@ Depends: @SHARED_PKG@ (= ${binary:Version}),
          libxcomposite-dev,
          libxdamage-dev,
          pkg-config (>= 0.26-1),
-         libegl1-mesa-dev,
-         libepoxy-dev (>= 1.0),
-         libwayland-dev (>= 1.4.0) [linux-any],
+         libegl1-mesa-dev [linux-any],
+         libwayland-dev (>= 1.5.91) [linux-any],
          libxkbcommon-dev,
          libmirclient-dev [amd64 arm64 armhf i386],
 Suggests: @DOC_PKG@
@@ -180,7 +180,6 @@ Package: @DEBUG_PKG@
 Section: debug
 Priority: extra
 Architecture: any
-Multi-Arch: same
 Depends: @SHARED_PKG@ (= ${binary:Version}),
          @COMMON_PKG@,
          ${misc:Depends}
@@ -271,7 +270,7 @@ Depends: ${misc:Depends},
          libgail-3-0 (= ${binary:Version}),
          @DEV_PKG@ (= ${binary:Version}),
          pkg-config (>= 0.26-1),
-         libatk1.0-dev (>= 2.15.1)
+         libatk1.0-dev (>= 2.2.0)
 Suggests: libgail-3-doc
 Description: GNOME Accessibility Implementation Library -- development files
  Gail implements ATK interfaces for GTK+ widgets which are dynamically
