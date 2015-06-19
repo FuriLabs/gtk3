@@ -1,3 +1,57 @@
+gtk+3.0 (3.16.4-2ubuntu1) UNRELEASED; urgency=low
+
+  * Merge with Debian. Remaining changes:
+    + Enable Mir backend.
+    + Drop 022_disable-viqr-im-for-vi-locale.patch
+    + Drop 061_multiarch_module_fallback.patch - unneeded in Ubuntu since we
+      cleared all old gtk modules out.
+    + Install the settings.ini file to set our themes.
+    + Enable parallel builds
+    + Ubuntu specific patches:
+      - 073_treeview_almost_fixed.patch
+      - 074_eventbox_scroll_mask.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+    + Add Breaks on gnome-shell << 3.16 - this needs to be updated at the same
+      time.
+    + Add Breaks on old overlay-scrollbar versions which still provided the gtk3
+      module - we don't want to use this any more with GTK 3.16.
+    + Update Mir backend from upstream git.
+
+ -- Iain Lane <iain.lane@canonical.com>  Fri, 19 Jun 2015 18:27:18 +0100
+
+gtk+3.0 (3.16.4-2) unstable; urgency=medium
+
+  * Merge changes from 3.14.13-1.
+  * debian/README.Debian:
+    + Removed, that's for gtk+2.0. Closes: #622913.
+  * debian/control.in:
+    + Drop versioned dependency on pkg-config. The version is satisfied
+      in oldstable and that helps other packages that provide pkg-config.
+      Closes: #734481.
+  * Upload to unstable.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Sun, 14 Jun 2015 13:30:06 +0200
+
+gtk+3.0 (3.16.4-1) experimental; urgency=medium
+
+  [ Iain Lane ]
+  * build with --fail-missing when doing an indep build
+  * Install some utilities and missing icons, desktop files and manpages into
+    gtk-3-examples (for want of a better package).
+  * clean up reftest known_fail files in clean target which we create in
+    pre-build
+
+  [ Emilio Pozuelo Monfort ]
+  * New upstream release.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Fri, 12 Jun 2015 00:06:44 +0200
+
 gtk+3.0 (3.16.3-2ubuntu3) wily; urgency=medium
 
   * debian/patches/restore_filechooser_typeaheadfind: Restore type-ahead find
@@ -76,6 +130,12 @@ gtk+3.0 (3.16.3-1) experimental; urgency=medium
     + Dropped, included upstream.
 
  -- Emilio Pozuelo Monfort <pochu@debian.org>  Fri, 22 May 2015 18:23:50 +0200
+
+gtk+3.0 (3.14.13-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Wed, 10 Jun 2015 18:19:44 +0200
 
 gtk+3.0 (3.14.12-0ubuntu2) vivid; urgency=medium
 
