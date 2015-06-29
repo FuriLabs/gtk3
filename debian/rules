@@ -74,15 +74,12 @@ DEB_CONFIGURE_EXTRA_FLAGS = \
 DEB_CONFIGURE_FLAGS_shared = \
 			--enable-broadway-backend \
 			--enable-x11-backend \
+			--enable-mir-backend \
 			--enable-gtk-doc \
 			--enable-shared \
 			--enable-introspection \
 			--enable-cloudprint \
 			--disable-static
-
-ifneq (,$(filter $(DEB_HOST_ARCH), amd64 arm64 armhf i386))
-	DEB_CONFIGURE_FLAGS_shared += --enable-mir-backend
-endif
 
 ifeq (,$(filter stage1,$(DEB_BUILD_PROFILES)))
 DEB_CONFIGURE_FLAGS_shared += --enable-colord
