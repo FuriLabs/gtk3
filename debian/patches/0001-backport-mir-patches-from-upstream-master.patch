@@ -1,16 +1,36 @@
-From 0cfb9f1d7376e5fd5ea1eda9e5f9aa26e6411730 Mon Sep 17 00:00:00 2001
+From a4a3dbe3550c272187e3cb27dade41bc37e18d20 Mon Sep 17 00:00:00 2001
 From: William Hua <william.hua@canonical.com>
 Date: Tue, 7 Apr 2015 10:33:35 -0400
-Subject: [PATCH] Stable mir patches from git master.
+Subject: [PATCH] backport mir patches from upstream master
 
+61f3399f980288a9a9e4b03b50dd147a8af55a8d
+ea190a339a9e61a52db9d307568f12e0a234f52b
+6a51ac59f05b01d2fd1def67a6df589de4b423a5
+d43f5258ffc4fc0ef22e47eb00b5a3742e3716da
+a43efc665576c0da58771931774f56d4faffb1b8
+e6b3bae7871df3d5b03dae0e36e4748c41971d1b
+aebac40d3819114d55bf33301d30ff5a2fd6ad1a
+a57636f057c6c9bc16a6b60a51b973c9dc8573ca
+e1c958e70df7227b598d6d16adf9770e95a9f998
+f1c11740c1e5c7d429a3d33c9847a52974aa5b3f
+d37f94a524c7109cf1990eb864006111150f20fe
+9800d83a721fd21b34df6dd36684d3e0e2a9fd7b
+be068607f68b185483154371548e0ea2123b0fcb
+19f66c781f41ab44c2ed4b33b7bf9b4943833acd
+2374a1b50b6b54b8818a37e70ecef4d0e06bebba
+8fac1f688e662de9fdbbcf370a32adfe7c78151a
+e083eb42e916dbd2f75e213956a4e513e892d165
+da14dbe4e5a40fccf9155f4cd87c97457f9439d6
+2d223facdc0bf7ed0342da3b40d6ddb658cd3cb4
+1e6c7e3af09c5ec0aed5297fc285d13cff76e720
 ---
- gdk/mir/gdkmir-debug.c      | 263 +++++++++-----------------
+ gdk/mir/gdkmir-debug.c      | 263 +++++++++----------------
  gdk/mir/gdkmir-private.h    |  20 +-
  gdk/mir/gdkmirdisplay.c     |  72 +++----
- gdk/mir/gdkmireventsource.c | 325 +++++++++++++++++---------------
- gdk/mir/gdkmirscreen.c      |  42 ++---
- gdk/mir/gdkmirwindowimpl.c  | 446 +++++++++++++++++---------------------------
- 6 files changed, 498 insertions(+), 670 deletions(-)
+ gdk/mir/gdkmireventsource.c | 317 ++++++++++++++++--------------
+ gdk/mir/gdkmirscreen.c      |  42 ++--
+ gdk/mir/gdkmirwindowimpl.c  | 462 ++++++++++++++++++--------------------------
+ 6 files changed, 504 insertions(+), 672 deletions(-)
 
 diff --git a/gdk/mir/gdkmir-debug.c b/gdk/mir/gdkmir-debug.c
 index 4dd3ece..a135f1b 100644
@@ -716,7 +736,7 @@ index cc92a53..6eda352 100644
  }
  
 diff --git a/gdk/mir/gdkmireventsource.c b/gdk/mir/gdkmireventsource.c
-index b908366..c088ca4 100644
+index b908366..5732f2b 100644
 --- a/gdk/mir/gdkmireventsource.c
 +++ b/gdk/mir/gdkmireventsource.c
 @@ -32,7 +32,7 @@ struct _GdkMirWindowReference {
@@ -728,9 +748,15 @@ index b908366..c088ca4 100644
  } GdkMirQueuedEvent;
  
  struct _GdkMirEventSource
-@@ -240,50 +240,66 @@ get_modifier_state (unsigned int modifiers, unsigned int button_state)
+@@ -236,54 +236,60 @@ generate_focus_event (GdkWindow *window, gboolean focused)
+ }
+ 
+ static guint
+-get_modifier_state (unsigned int modifiers, unsigned int button_state)
++get_modifier_state (unsigned int modifiers, guint button_state)
  {
-   guint modifier_state = 0;
+-  guint modifier_state = 0;
++  guint modifier_state = button_state;
  
 -  if ((modifiers & mir_key_modifier_alt) != 0)
 +  if ((modifiers & (mir_input_event_modifier_alt |
@@ -757,19 +783,11 @@ index b908366..c088ca4 100644
 +  if ((modifiers & mir_input_event_modifier_caps_lock) != 0)
      modifier_state |= GDK_LOCK_MASK;
 -  if ((button_state & mir_motion_button_primary) != 0)
-+  if ((button_state & mir_pointer_button_primary) != 0)
-     modifier_state |= GDK_BUTTON1_MASK;
+-    modifier_state |= GDK_BUTTON1_MASK;
 -  if ((button_state & mir_motion_button_secondary) != 0)
 -    modifier_state |= GDK_BUTTON3_MASK;
 -  if ((button_state & mir_motion_button_tertiary) != 0)
-+  if ((button_state & mir_pointer_button_secondary) != 0)
-     modifier_state |= GDK_BUTTON2_MASK;
-+  if ((button_state & mir_pointer_button_tertiary) != 0)
-+    modifier_state |= GDK_BUTTON3_MASK;
-+  if ((button_state & mir_pointer_button_back) != 0)
-+    modifier_state |= GDK_BUTTON4_MASK;
-+  if ((button_state & mir_pointer_button_forward) != 0)
-+    modifier_state |= GDK_BUTTON5_MASK;
+-    modifier_state |= GDK_BUTTON2_MASK;
  
    return modifier_state;
  }
@@ -784,11 +802,11 @@ index b908366..c088ca4 100644
    guint modifier_state;
 -  MirMotionButton button_state;
 +  guint button_state;
-+
-+  if (!keyboard_event)
-+    return;
  
 -  switch (event->action)
++  if (!keyboard_event)
++    return;
++
 +  switch (mir_keyboard_event_action (keyboard_event))
      {
 -    case mir_key_action_down:
@@ -816,7 +834,7 @@ index b908366..c088ca4 100644
        break;
      default:
      //case mir_key_action_multiple:
-@@ -292,143 +308,100 @@ handle_key_event (GdkWindow *window, const MirKeyEvent *event)
+@@ -292,143 +298,98 @@ handle_key_event (GdkWindow *window, const MirKeyEvent *event)
      }
  }
  
@@ -838,12 +856,21 @@ index b908366..c088ca4 100644
 -static void
 -leave_windows_except (GdkWindow *window,
 -                      gpointer   user_data)
--{
++static guint
++get_button_state (const MirPointerEvent *event)
+ {
 -  LeaveInfo info = *((LeaveInfo *) user_data);
--
++  guint state = 0;
+ 
 -  info.x -= window->x;
 -  info.y -= window->y;
--
++  if (mir_pointer_event_button_state (event, mir_pointer_button_primary)) /* left */
++    state |= GDK_BUTTON1_MASK;
++  if (mir_pointer_event_button_state (event, mir_pointer_button_secondary)) /* right */
++    state |= GDK_BUTTON3_MASK;
++  if (mir_pointer_event_button_state (event, mir_pointer_button_tertiary)) /* middle */
++    state |= GDK_BUTTON2_MASK;
+ 
 -  _gdk_mir_window_transient_children_foreach (window, leave_windows_except, &info);
 -
 -  if (window != info.except)
@@ -859,23 +886,7 @@ index b908366..c088ca4 100644
 -
 -      _gdk_mir_window_impl_set_cursor_state (impl, info.x, info.y, FALSE, button_state);
 -    }
-+static guint
-+mir_pointer_event_get_button_state (const MirPointerEvent *event)
-+{
-+  guint button_state = 0;
-+
-+  if (mir_pointer_event_button_state (event, mir_pointer_button_primary))
-+    button_state |= mir_pointer_button_primary;
-+  if (mir_pointer_event_button_state (event, mir_pointer_button_secondary))
-+    button_state |= mir_pointer_button_secondary;
-+  if (mir_pointer_event_button_state (event, mir_pointer_button_tertiary))
-+    button_state |= mir_pointer_button_tertiary;
-+  if (mir_pointer_event_button_state (event, mir_pointer_button_back))
-+    button_state |= mir_pointer_button_back;
-+  if (mir_pointer_event_button_state (event, mir_pointer_button_forward))
-+    button_state |= mir_pointer_button_forward;
-+
-+  return button_state;
++  return state;
  }
  
  static void
@@ -888,11 +899,13 @@ index b908366..c088ca4 100644
    gboolean cursor_inside;
 -  MirMotionButton button_state;
 +  guint button_state;
++  guint new_button_state;
    guint modifier_state;
    guint32 event_time;
    GdkEventType event_type;
 -  MirMotionButton changed_button_state;
--
++  guint changed_button_state;
+ 
 -  _gdk_mir_window_impl_get_cursor_state (impl, &x, &y, &cursor_inside, &button_state);
 -  if (event->pointer_count > 0)
 -    {
@@ -918,7 +931,9 @@ index b908366..c088ca4 100644
 -  else
 -    {
 -      LeaveInfo info;
--
++  if (!pointer_event)
++    return;
+ 
 -      info.x = x;
 -      info.y = y;
 -      info.time = event_time;
@@ -928,8 +943,7 @@ index b908366..c088ca4 100644
 -      _gdk_mir_window_transient_children_foreach (window, leave_windows_except, &info);
 -
 -      window = info.except;
-+  guint changed_button_state;
- 
+-
 -      if (window)
 -        {
 -          /* Enter the pointer window. */
@@ -937,9 +951,7 @@ index b908366..c088ca4 100644
 -
 -          impl = GDK_MIR_WINDOW_IMPL (window->impl);
 -          _gdk_mir_window_impl_get_cursor_state (impl, NULL, NULL, &cursor_inside_pointer_window, NULL);
-+  if (!pointer_event)
-+    return;
- 
+-
 -          if (!cursor_inside_pointer_window)
 -            {
 -              generate_crossing_event (window, GDK_ENTER_NOTIFY, x, y, event_time);
@@ -948,7 +960,8 @@ index b908366..c088ca4 100644
 -        }
 -    }
 +  _gdk_mir_window_impl_get_cursor_state (impl, &x, &y, &cursor_inside, &button_state);
-+  modifier_state = get_modifier_state (mir_pointer_event_modifiers (pointer_event), mir_pointer_event_get_button_state (pointer_event));
++  new_button_state = get_button_state (pointer_event);
++  modifier_state = get_modifier_state (mir_pointer_event_modifiers (pointer_event), new_button_state);
 +  event_time = NANO_TO_MILLI (mir_input_event_get_event_time (event));
  
    if (window)
@@ -971,17 +984,18 @@ index b908366..c088ca4 100644
 +        case mir_pointer_action_button_up:
 +        case mir_pointer_action_button_down:
 +          event_type = mir_pointer_event_action (pointer_event) == mir_pointer_action_button_down ? GDK_BUTTON_PRESS : GDK_BUTTON_RELEASE;
-+          changed_button_state = button_state ^ mir_pointer_event_get_button_state (pointer_event);
-+          if (changed_button_state == 0 || (changed_button_state & mir_pointer_button_primary) != 0)
++          changed_button_state = button_state ^ new_button_state;
++          if (changed_button_state == 0 || (changed_button_state & GDK_BUTTON1_MASK) != 0)
              generate_button_event (window, event_type, x, y, GDK_BUTTON_PRIMARY, modifier_state, event_time);
 -          if ((changed_button_state & mir_motion_button_secondary) != 0)
-+          if ((changed_button_state & mir_pointer_button_secondary) != 0)
-             generate_button_event (window, event_type, x, y, GDK_BUTTON_SECONDARY, modifier_state, event_time);
+-            generate_button_event (window, event_type, x, y, GDK_BUTTON_SECONDARY, modifier_state, event_time);
 -          if ((changed_button_state & mir_motion_button_tertiary) != 0)
-+          if ((changed_button_state & mir_pointer_button_tertiary) != 0)
++          if ((changed_button_state & GDK_BUTTON2_MASK) != 0)
              generate_button_event (window, event_type, x, y, GDK_BUTTON_MIDDLE, modifier_state, event_time);
 -          button_state = event->button_state;
-+          button_state = mir_pointer_event_get_button_state (pointer_event);
++          if ((changed_button_state & GDK_BUTTON3_MASK) != 0)
++            generate_button_event (window, event_type, x, y, GDK_BUTTON_SECONDARY, modifier_state, event_time);
++          button_state = new_button_state;
            break;
 -        case mir_motion_action_scroll:
 -          generate_scroll_event (window, x, y, event->pointer_coordinates[0].hscroll, event->pointer_coordinates[0].vscroll, modifier_state, event_time);
@@ -1024,7 +1038,7 @@ index b908366..c088ca4 100644
          }
  
        _gdk_mir_window_impl_set_cursor_state (impl, x, y, cursor_inside, button_state);
-@@ -439,20 +412,56 @@ static void
+@@ -439,20 +400,56 @@ static void
  handle_surface_event (GdkWindow *window, const MirSurfaceEvent *event)
  {
    GdkMirWindowImpl *impl = GDK_MIR_WINDOW_IMPL (window->impl);
@@ -1086,7 +1100,7 @@ index b908366..c088ca4 100644
        break;
      default:
        break;
-@@ -478,11 +487,11 @@ static void
+@@ -478,11 +475,11 @@ static void
  handle_resize_event (GdkWindow            *window,
                       const MirResizeEvent *event)
  {
@@ -1101,7 +1115,7 @@ index b908366..c088ca4 100644
  }
  
  static void
-@@ -496,7 +505,7 @@ handle_close_event (GdkWindow                  *window,
+@@ -496,7 +493,7 @@ handle_close_event (GdkWindow                  *window,
  typedef struct
  {
    GdkWindow *window;
@@ -1110,7 +1124,7 @@ index b908366..c088ca4 100644
  } EventData;
  
  static void
-@@ -504,20 +513,39 @@ gdk_mir_event_source_queue_event (GdkDisplay     *display,
+@@ -504,20 +501,39 @@ gdk_mir_event_source_queue_event (GdkDisplay     *display,
                                    GdkWindow      *window,
                                    const MirEvent *event)
  {
@@ -1155,7 +1169,7 @@ index b908366..c088ca4 100644
        break;
      case mir_event_type_prompt_session_state_change:
        // FIXME?
-@@ -526,10 +554,10 @@ gdk_mir_event_source_queue_event (GdkDisplay     *display,
+@@ -526,10 +542,10 @@ gdk_mir_event_source_queue_event (GdkDisplay     *display,
        // FIXME?
        break;
      case mir_event_type_close_surface:
@@ -1168,7 +1182,7 @@ index b908366..c088ca4 100644
        // FIXME?
        break;
      }
-@@ -551,6 +579,7 @@ static void
+@@ -551,6 +567,7 @@ static void
  gdk_mir_queued_event_free (GdkMirQueuedEvent *event)
  {
    _gdk_mir_window_reference_unref (event->window_ref);
@@ -1176,7 +1190,7 @@ index b908366..c088ca4 100644
    g_slice_free (GdkMirQueuedEvent, event);
  }
  
-@@ -569,9 +598,9 @@ gdk_mir_event_source_convert_events (GdkMirEventSource *source)
+@@ -569,9 +586,9 @@ gdk_mir_event_source_convert_events (GdkMirEventSource *source)
        if (window != NULL)
          {
            if (source->log_events)
@@ -1188,7 +1202,7 @@ index b908366..c088ca4 100644
          }
        else
          g_warning ("window was destroyed before event arrived...");
-@@ -735,7 +764,7 @@ _gdk_mir_event_source_queue (GdkMirWindowReference *window_ref,
+@@ -735,7 +752,7 @@ _gdk_mir_event_source_queue (GdkMirWindowReference *window_ref,
    queued_event = g_slice_new (GdkMirQueuedEvent);
    g_atomic_int_inc (&window_ref->ref_count);
    queued_event->window_ref = window_ref;
@@ -1387,7 +1401,7 @@ index e29ddb3..d31c5a4 100644
    *visual_types = supported_visual_types;
    *count = 1;
 diff --git a/gdk/mir/gdkmirwindowimpl.c b/gdk/mir/gdkmirwindowimpl.c
-index 666a1d0..ba2e70f 100644
+index 666a1d0..16035a0 100644
 --- a/gdk/mir/gdkmirwindowimpl.c
 +++ b/gdk/mir/gdkmirwindowimpl.c
 @@ -46,11 +46,8 @@ struct _GdkMirWindowImpl
@@ -1478,8 +1492,12 @@ index 666a1d0..ba2e70f 100644
  event_cb (MirSurface     *surface,
            const MirEvent *event,
            void           *context)
-@@ -179,18 +163,87 @@ event_cb (MirSurface     *surface,
+@@ -177,20 +161,105 @@ event_cb (MirSurface     *surface,
+   _gdk_mir_event_source_queue (context, event);
+ }
  
++static void ensure_surface (GdkWindow *window);
++
  static MirSurface *
  create_mir_surface (GdkDisplay *display,
 +                    GdkWindow *parent,
@@ -1490,7 +1508,7 @@ index 666a1d0..ba2e70f 100644
 +                    GdkWindowTypeHint type,
                      MirBufferUsage buffer_usage)
  {
-+  GdkMirWindowImpl *parent_impl;
++  MirSurface *parent_surface = NULL;
    MirSurfaceSpec *spec;
    MirConnection *connection;
    MirPixelFormat format;
@@ -1501,10 +1519,24 @@ index 666a1d0..ba2e70f 100644
    format = _gdk_mir_display_get_pixel_format (display, buffer_usage);
 -  spec = mir_connection_create_spec_for_normal_surface (connection, width, height, format);
 +
-+  if (parent)
-+    parent_impl = GDK_MIR_WINDOW_IMPL (parent->impl);
-+  else
-+    parent_impl = NULL;
++  if (parent && parent->impl)
++    {
++      ensure_surface (parent);
++      parent_surface = GDK_MIR_WINDOW_IMPL (parent->impl)->surface;
++    }
++
++  if (!parent_surface)
++    {
++      switch (type)
++        {
++          case GDK_WINDOW_TYPE_HINT_SPLASHSCREEN:
++          case GDK_WINDOW_TYPE_HINT_UTILITY:
++            type = GDK_WINDOW_TYPE_HINT_DIALOG;
++            break;
++          default:
++            break;
++        }
++    }
 +
 +  switch (type)
 +    {
@@ -1528,7 +1560,7 @@ index 666a1d0..ba2e70f 100644
 +                                                    width,
 +                                                    height,
 +                                                    format,
-+                                                    parent_impl ? parent_impl->surface : NULL,
++                                                    parent_surface,
 +                                                    &rect,
 +                                                    mir_edge_attachment_any);
 +        break;
@@ -1538,7 +1570,7 @@ index 666a1d0..ba2e70f 100644
 +                                                            width,
 +                                                            height,
 +                                                            format,
-+                                                            parent_impl ? parent_impl->surface : NULL);
++                                                            parent_surface);
 +        break;
 +      case GDK_WINDOW_TYPE_HINT_DND:
 +      case GDK_WINDOW_TYPE_HINT_TOOLTIP:
@@ -1551,7 +1583,7 @@ index 666a1d0..ba2e70f 100644
 +                                                       width,
 +                                                       height,
 +                                                       format,
-+                                                       parent_impl ? parent_impl->surface : NULL,
++                                                       parent_surface,
 +                                                       &rect);
 +        break;
 +      case GDK_WINDOW_TYPE_HINT_NORMAL:
@@ -1567,7 +1599,7 @@ index 666a1d0..ba2e70f 100644
    mir_surface_spec_set_name (spec, g_get_prgname ());
    mir_surface_spec_set_buffer_usage (spec, buffer_usage);
    surface = mir_surface_create_sync (spec);
-@@ -199,13 +252,41 @@ create_mir_surface (GdkDisplay *display,
+@@ -199,13 +268,41 @@ create_mir_surface (GdkDisplay *display,
    return surface;
  }
  
@@ -1614,7 +1646,7 @@ index 666a1d0..ba2e70f 100644
  }
  
  static void
-@@ -213,10 +294,9 @@ ensure_surface_full (GdkWindow *window,
+@@ -213,10 +310,9 @@ ensure_surface_full (GdkWindow *window,
                       MirBufferUsage buffer_usage)
  {
    GdkMirWindowImpl *impl = GDK_MIR_WINDOW_IMPL (window->impl);
@@ -1626,7 +1658,7 @@ index 666a1d0..ba2e70f 100644
      return;
  
    /* no destroy notify -- we must leak for now
-@@ -224,25 +304,29 @@ ensure_surface_full (GdkWindow *window,
+@@ -224,25 +320,29 @@ ensure_surface_full (GdkWindow *window,
     */
    window_ref = _gdk_mir_event_source_get_window_reference (window);
  
@@ -1663,7 +1695,7 @@ index 666a1d0..ba2e70f 100644
  }
  
  static void
-@@ -280,66 +364,18 @@ ensure_no_surface (GdkWindow *window)
+@@ -280,66 +380,18 @@ ensure_no_surface (GdkWindow *window)
            eglDestroySurface (egl_display, impl->dummy_egl_surface);
            impl->dummy_egl_surface = NULL;
          }
@@ -1731,7 +1763,7 @@ index 666a1d0..ba2e70f 100644
  
    /* The Cairo context is no longer valid */
    g_clear_pointer (&impl->cairo_surface, cairo_surface_destroy);
-@@ -362,7 +398,7 @@ gdk_mir_window_impl_ref_cairo_surface (GdkWindow *window)
+@@ -362,7 +414,7 @@ gdk_mir_window_impl_ref_cairo_surface (GdkWindow *window)
      }
  
    /* Transient windows get rendered into a buffer and copied onto their parent */
@@ -1740,7 +1772,7 @@ index 666a1d0..ba2e70f 100644
      {
        cairo_surface = cairo_image_surface_create (pixel_format, window->width, window->height);
      }
-@@ -370,7 +406,7 @@ gdk_mir_window_impl_ref_cairo_surface (GdkWindow *window)
+@@ -370,7 +422,7 @@ gdk_mir_window_impl_ref_cairo_surface (GdkWindow *window)
      {
        ensure_surface (window);
  
@@ -1749,7 +1781,7 @@ index 666a1d0..ba2e70f 100644
        g_assert (region.pixel_format == mir_pixel_format_argb_8888);
  
        cairo_surface = cairo_image_surface_create_for_data ((unsigned char *) region.vaddr,
-@@ -408,13 +444,6 @@ static void
+@@ -408,13 +460,6 @@ static void
  gdk_mir_window_impl_finalize (GObject *object)
  {
    GdkMirWindowImpl *impl = GDK_MIR_WINDOW_IMPL (object);
@@ -1763,7 +1795,7 @@ index 666a1d0..ba2e70f 100644
  
    if (impl->background)
      cairo_pattern_destroy (impl->background);
-@@ -422,7 +451,6 @@ gdk_mir_window_impl_finalize (GObject *object)
+@@ -422,7 +467,6 @@ gdk_mir_window_impl_finalize (GObject *object)
      mir_surface_release_sync (impl->surface);
    if (impl->cairo_surface)
      cairo_surface_destroy (impl->cairo_surface);
@@ -1771,7 +1803,7 @@ index 666a1d0..ba2e70f 100644
  
    G_OBJECT_CLASS (gdk_mir_window_impl_parent_class)->finalize (object);
  }
-@@ -459,9 +487,6 @@ gdk_mir_window_impl_hide (GdkWindow *window)
+@@ -459,9 +503,6 @@ gdk_mir_window_impl_hide (GdkWindow *window)
    impl->cursor_inside = FALSE;
    impl->visible = FALSE;
    ensure_no_surface (window);
@@ -1781,7 +1813,7 @@ index 666a1d0..ba2e70f 100644
  }
  
  static void
-@@ -473,9 +498,6 @@ gdk_mir_window_impl_withdraw (GdkWindow *window)
+@@ -473,9 +514,6 @@ gdk_mir_window_impl_withdraw (GdkWindow *window)
    impl->cursor_inside = FALSE;
    impl->visible = FALSE;
    ensure_no_surface (window);
@@ -1791,7 +1823,7 @@ index 666a1d0..ba2e70f 100644
  }
  
  static void
-@@ -529,19 +551,10 @@ gdk_mir_window_impl_move_resize (GdkWindow *window,
+@@ -529,19 +567,10 @@ gdk_mir_window_impl_move_resize (GdkWindow *window,
    GdkMirWindowImpl *impl = GDK_MIR_WINDOW_IMPL (window->impl);
    gboolean recreate_surface = FALSE;
  
@@ -1812,7 +1844,7 @@ index 666a1d0..ba2e70f 100644
          {
            impl->transient_x = x;
            impl->transient_y = y;
-@@ -563,10 +576,6 @@ gdk_mir_window_impl_move_resize (GdkWindow *window,
+@@ -563,10 +592,6 @@ gdk_mir_window_impl_move_resize (GdkWindow *window,
        ensure_no_surface (window);
        ensure_surface (window);
      }
@@ -1823,7 +1855,7 @@ index 666a1d0..ba2e70f 100644
  }
  
  static void
-@@ -602,7 +611,7 @@ gdk_mir_window_impl_reparent (GdkWindow *window,
+@@ -602,7 +627,7 @@ gdk_mir_window_impl_reparent (GdkWindow *window,
                                gint       x,
                                gint       y)
  {
@@ -1832,7 +1864,7 @@ index 666a1d0..ba2e70f 100644
    return FALSE;
  }
  
-@@ -702,14 +711,14 @@ gdk_mir_window_impl_end_paint (GdkWindow *window)
+@@ -702,14 +727,14 @@ gdk_mir_window_impl_end_paint (GdkWindow *window)
  static cairo_region_t *
  gdk_mir_window_impl_get_shape (GdkWindow *window)
  {
@@ -1849,7 +1881,7 @@ index 666a1d0..ba2e70f 100644
    return NULL;
  }
  
-@@ -719,7 +728,7 @@ gdk_mir_window_impl_shape_combine_region (GdkWindow            *window,
+@@ -719,7 +744,7 @@ gdk_mir_window_impl_shape_combine_region (GdkWindow            *window,
                                            gint                  offset_x,
                                            gint                  offset_y)
  {
@@ -1858,7 +1890,7 @@ index 666a1d0..ba2e70f 100644
  }
  
  static void
-@@ -741,70 +750,32 @@ gdk_mir_window_impl_destroy (GdkWindow *window,
+@@ -741,70 +766,32 @@ gdk_mir_window_impl_destroy (GdkWindow *window,
  
    impl->visible = FALSE;
    ensure_no_surface (window);
@@ -1935,7 +1967,7 @@ index 666a1d0..ba2e70f 100644
  }
  
  static GdkWindowTypeHint
-@@ -812,29 +783,7 @@ gdk_mir_window_impl_get_type_hint (GdkWindow *window)
+@@ -812,29 +799,7 @@ gdk_mir_window_impl_get_type_hint (GdkWindow *window)
  {
    GdkMirWindowImpl *impl = GDK_MIR_WINDOW_IMPL (window->impl);
  
@@ -1966,7 +1998,7 @@ index 666a1d0..ba2e70f 100644
  }
  
  void
-@@ -849,21 +798,21 @@ static void
+@@ -849,21 +814,21 @@ static void
  gdk_mir_window_impl_set_skip_taskbar_hint (GdkWindow *window,
                                             gboolean   skips_taskbar)
  {
@@ -1991,7 +2023,7 @@ index 666a1d0..ba2e70f 100644
  }
  
  static void
-@@ -886,21 +835,21 @@ static void
+@@ -886,21 +851,21 @@ static void
  gdk_mir_window_impl_set_role (GdkWindow   *window,
                                const gchar *role)
  {
@@ -2016,7 +2048,7 @@ index 666a1d0..ba2e70f 100644
    GdkMirWindowImpl *impl = GDK_MIR_WINDOW_IMPL (window->impl);
  
    if (impl->transient_for == parent)
-@@ -910,78 +859,20 @@ gdk_mir_window_impl_set_transient_for (GdkWindow *window,
+@@ -910,78 +875,20 @@ gdk_mir_window_impl_set_transient_for (GdkWindow *window,
  
    /* Link this window to the parent */
    impl->transient_for = parent;
@@ -2097,7 +2129,7 @@ index 666a1d0..ba2e70f 100644
  }
  
  static void
-@@ -1012,7 +903,7 @@ static void
+@@ -1012,7 +919,7 @@ static void
  gdk_mir_window_impl_set_icon_name (GdkWindow   *window,
                                     const gchar *name)
  {
@@ -2106,7 +2138,7 @@ index 666a1d0..ba2e70f 100644
  }
  
  static void
-@@ -1096,7 +987,7 @@ gdk_mir_window_impl_set_keep_below (GdkWindow *window,
+@@ -1096,7 +1003,7 @@ gdk_mir_window_impl_set_keep_below (GdkWindow *window,
  static GdkWindow *
  gdk_mir_window_impl_get_group (GdkWindow *window)
  {
@@ -2115,7 +2147,7 @@ index 666a1d0..ba2e70f 100644
    return NULL;
  }
  
-@@ -1104,21 +995,21 @@ static void
+@@ -1104,21 +1011,21 @@ static void
  gdk_mir_window_impl_set_group (GdkWindow *window,
                                 GdkWindow *leader)
  {
@@ -2140,7 +2172,7 @@ index 666a1d0..ba2e70f 100644
    return FALSE;
  }
  
-@@ -1126,7 +1017,7 @@ static void
+@@ -1126,7 +1033,7 @@ static void
  gdk_mir_window_impl_set_functions (GdkWindow     *window,
                                     GdkWMFunction  functions)
  {
@@ -2149,7 +2181,7 @@ index 666a1d0..ba2e70f 100644
  }
  
  static void
-@@ -1138,7 +1029,7 @@ gdk_mir_window_impl_begin_resize_drag (GdkWindow     *window,
+@@ -1138,7 +1045,7 @@ gdk_mir_window_impl_begin_resize_drag (GdkWindow     *window,
                                         gint           root_y,
                                         guint32        timestamp)
  {
@@ -2158,7 +2190,7 @@ index 666a1d0..ba2e70f 100644
  }
  
  static void
-@@ -1149,19 +1040,19 @@ gdk_mir_window_impl_begin_move_drag (GdkWindow *window,
+@@ -1149,19 +1056,19 @@ gdk_mir_window_impl_begin_move_drag (GdkWindow *window,
                                       gint       root_y,
                                       guint32    timestamp)
  {
@@ -2181,7 +2213,7 @@ index 666a1d0..ba2e70f 100644
  }
  
  static void
-@@ -1176,27 +1067,27 @@ static void
+@@ -1176,27 +1083,27 @@ static void
  gdk_mir_window_impl_set_composited (GdkWindow *window,
                                      gboolean   composited)
  {
@@ -2213,7 +2245,7 @@ index 666a1d0..ba2e70f 100644
  }
  
  static GdkDragContext *
-@@ -1204,7 +1095,7 @@ gdk_mir_window_impl_drag_begin (GdkWindow *window,
+@@ -1204,7 +1111,7 @@ gdk_mir_window_impl_drag_begin (GdkWindow *window,
                                  GdkDevice *device,
                                  GList     *targets)
  {
@@ -2222,7 +2254,7 @@ index 666a1d0..ba2e70f 100644
    return NULL;
  }
  
-@@ -1228,7 +1119,7 @@ gdk_mir_window_impl_process_updates_recurse (GdkWindow      *window,
+@@ -1228,7 +1135,7 @@ gdk_mir_window_impl_process_updates_recurse (GdkWindow      *window,
  static void
  gdk_mir_window_impl_sync_rendering (GdkWindow *window)
  {
@@ -2231,7 +2263,7 @@ index 666a1d0..ba2e70f 100644
    // FIXME: Only used for benchmarking
  }
  
-@@ -1240,7 +1131,7 @@ gdk_mir_window_impl_simulate_key (GdkWindow       *window,
+@@ -1240,7 +1147,7 @@ gdk_mir_window_impl_simulate_key (GdkWindow       *window,
                                    GdkModifierType  modifiers,
                                    GdkEventType     key_pressrelease)
  {
@@ -2240,7 +2272,7 @@ index 666a1d0..ba2e70f 100644
    return FALSE;
  }
  
-@@ -1252,7 +1143,7 @@ gdk_mir_window_impl_simulate_button (GdkWindow       *window,
+@@ -1252,7 +1159,7 @@ gdk_mir_window_impl_simulate_button (GdkWindow       *window,
                                       GdkModifierType  modifiers,
                                       GdkEventType     button_pressrelease)
  {
@@ -2249,7 +2281,7 @@ index 666a1d0..ba2e70f 100644
    return FALSE;
  }
  
-@@ -1268,7 +1159,7 @@ gdk_mir_window_impl_get_property (GdkWindow   *window,
+@@ -1268,7 +1175,7 @@ gdk_mir_window_impl_get_property (GdkWindow   *window,
                                    gint        *actual_length,
                                    guchar     **data)
  {
@@ -2258,7 +2290,7 @@ index 666a1d0..ba2e70f 100644
    return FALSE;
  }
  
-@@ -1281,7 +1172,7 @@ gdk_mir_window_impl_change_property (GdkWindow    *window,
+@@ -1281,7 +1188,7 @@ gdk_mir_window_impl_change_property (GdkWindow    *window,
                                       const guchar *data,
                                       gint          nelements)
  {
@@ -2267,7 +2299,7 @@ index 666a1d0..ba2e70f 100644
  }
  
  static void
-@@ -1508,7 +1399,7 @@ _gdk_mir_window_get_egl_surface (GdkWindow *window,
+@@ -1508,7 +1415,7 @@ _gdk_mir_window_get_egl_surface (GdkWindow *window,
        ensure_surface_full (window, mir_buffer_usage_hardware);
  
        egl_display = _gdk_mir_display_get_egl_display (gdk_window_get_display (window));
@@ -2276,7 +2308,7 @@ index 666a1d0..ba2e70f 100644
  
        impl->egl_surface =
          eglCreateWindowSurface (egl_display, config, egl_window, NULL);
-@@ -1532,11 +1423,8 @@ _gdk_mir_window_get_dummy_egl_surface (GdkWindow *window,
+@@ -1532,11 +1439,8 @@ _gdk_mir_window_get_dummy_egl_surface (GdkWindow *window,
        EGLNativeWindowType egl_window;
  
        display = gdk_window_get_display (window);
