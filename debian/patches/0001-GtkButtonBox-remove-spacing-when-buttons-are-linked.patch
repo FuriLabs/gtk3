@@ -1,0 +1,97 @@
+From 2dda89cbd52e09cfbc24a9139caa7a65a5f73f2c Mon Sep 17 00:00:00 2001
+From: Lars Uebernickel <lars.uebernickel@canonical.com>
+Date: Wed, 8 Jul 2015 16:36:07 +0200
+Subject: [PATCH] GtkButtonBox: remove spacing when buttons are linked
+
+GtkButtonBox adds the "linked" class to its style context when its
+layout is set to GTK_BUTTONBOX_EXPAND. It shouldn't ever make sense to
+have spacing between buttons in that case, as themes generally draw
+linked elements with a continuous border.
+
+Thus, always set spacing to 0 and ignore GtkDialog's button-spacing
+style property when the layout is set to EXPAND.
+
+Also remove the now-redundant css rules which set button-spacing to 0
+for message dialogs.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=752131
+---
+ gtk/gtkbbox.c                       | 1 +
+ gtk/gtkbbox.h                       | 5 ++++-
+ gtk/gtkdialog.c                     | 5 +++--
+ gtk/theme/Adwaita/_common.scss      | 2 --
+ gtk/theme/HighContrast/_common.scss | 1 -
+ 5 files changed, 8 insertions(+), 6 deletions(-)
+
+diff --git a/gtk/gtkbbox.c b/gtk/gtkbbox.c
+index 260e1c7..68ec484 100644
+--- a/gtk/gtkbbox.c
++++ b/gtk/gtkbbox.c
+@@ -359,6 +359,7 @@ gtk_button_box_set_layout (GtkButtonBox      *widget,
+       if (priv->layout_style == GTK_BUTTONBOX_EXPAND)
+         {
+           gtk_style_context_add_class (gtk_widget_get_style_context (GTK_WIDGET (widget)), "linked");
++          gtk_box_set_spacing (GTK_BOX (widget), 0);
+           gtk_box_set_homogeneous (GTK_BOX (widget), TRUE);
+         }
+       else
+diff --git a/gtk/gtkbbox.h b/gtk/gtkbbox.h
+index 46f1e59..a191feb 100644
+--- a/gtk/gtkbbox.h
++++ b/gtk/gtkbbox.h
+@@ -81,7 +81,10 @@ struct _GtkButtonBoxClass
+  * @GTK_BUTTONBOX_END: Buttons are grouped towards the end of the box,
+  *   (on the right for a HBox, or the bottom for a VBox).
+  * @GTK_BUTTONBOX_CENTER: Buttons are centered in the box. Since 2.12.
+- * @GTK_BUTTONBOX_EXPAND: Buttons expand to fill the box. Since 3.12.
++ * @GTK_BUTTONBOX_EXPAND: Buttons expand to fill the box. This entails giving
++ *   buttons a "linked" appearance, making button sizes homogeneous, and
++ *   setting spacing to 0 (same as calling gtk_box_set_homogeneous() and
++ *   gtk_box_set_spacing() manually). Since 3.12.
+  *
+  * Used to dictate the style that a #GtkButtonBox uses to layout the buttons it
+  * contains.
+diff --git a/gtk/gtkdialog.c b/gtk/gtkdialog.c
+index 78ee012..21cc18b 100644
+--- a/gtk/gtkdialog.c
++++ b/gtk/gtkdialog.c
+@@ -696,8 +696,9 @@ update_spacings (GtkDialog *dialog)
+       _gtk_box_set_spacing_set (GTK_BOX (priv->vbox), FALSE);
+     }
+ 
+-  gtk_box_set_spacing (GTK_BOX (priv->action_area),
+-                       button_spacing);
++  /* don't set spacing when buttons are linked */
++  if (gtk_button_box_get_layout (GTK_BUTTON_BOX (priv->action_area)) != GTK_BUTTONBOX_EXPAND)
++    gtk_box_set_spacing (GTK_BOX (priv->action_area), button_spacing);
+ 
+   if (!_gtk_container_get_border_width_set (GTK_CONTAINER (priv->action_area)))
+     {
+diff --git a/gtk/theme/Adwaita/_common.scss b/gtk/theme/Adwaita/_common.scss
+index fe888c7..58ebbf4 100644
+--- a/gtk/theme/Adwaita/_common.scss
++++ b/gtk/theme/Adwaita/_common.scss
+@@ -2761,8 +2761,6 @@ GtkCalendar {
+ }
+ 
+ .message-dialog { // Message Dialog styling
+-  -GtkDialog-button-spacing: 0;
+-
+   @if $variant==light {
+     // the bright variant as a slightly darker bg which in this case clashes with the window decoration, overriding
+     &.background { background-color: $bg_color; }
+diff --git a/gtk/theme/HighContrast/_common.scss b/gtk/theme/HighContrast/_common.scss
+index c7eef9d..50dcdf7 100644
+--- a/gtk/theme/HighContrast/_common.scss
++++ b/gtk/theme/HighContrast/_common.scss
+@@ -1998,7 +1998,6 @@ GtkCalendar {
+ }
+ 
+ .message-dialog { // Message Dialog styling
+-  -GtkDialog-button-spacing: 0;
+   .titlebar {
+     border-style: none;
+     box-shadow: inset 0 1px $borders_edge;
+-- 
+2.1.4
+
