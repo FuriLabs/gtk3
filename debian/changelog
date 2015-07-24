@@ -1,3 +1,40 @@
+gtk+3.0 (3.16.6-1ubuntu1) UNRELEASED; urgency=medium
+
+  * Merge with Debian. Remaining changes:
+    + Enable Mir backend.
+    + Drop 022_disable-viqr-im-for-vi-locale.patch
+    + Drop 061_multiarch_module_fallback.patch - unneeded in Ubuntu since we
+      cleared all old gtk modules out.
+    + Install the settings.ini file to set our themes.
+    + Enable parallel builds
+    + Ubuntu specific patches:
+      - 073_treeview_almost_fixed.patch
+      - 074_eventbox_scroll_mask.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+    + Add Breaks on gnome-shell << 3.16 - this needs to be updated at the same
+      time.
+    + Add Breaks on old overlay-scrollbar versions which still provided the gtk3
+      module - we don't want to use this any more with GTK 3.16.
+    + Update Mir backend from upstream git.
+
+ -- Iain Lane <iain.lane@canonical.com>  Fri, 24 Jul 2015 12:06:29 +0100
+
+gtk+3.0 (3.16.6-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Refresh patches.
+  * Drop obsolete Breaks from pre-wheezy.
+  * Remove debian/libgtk-3-common.preinst.in, this file is a leftover from
+    gtk+2.0 and not necessary anymore.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 22 Jul 2015 21:29:11 +0200
+
 gtk+3.0 (3.16.5-1ubuntu2) wily; urgency=medium
 
   * debian/control.in:
