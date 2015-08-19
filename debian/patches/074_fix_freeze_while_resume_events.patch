@@ -1,0 +1,59 @@
+Description: This patch fixes a bug causing gtk applications to freeze
+ every now and then.
+ .
+ It deserves to be applied in Jessie because the bug will and has caused users
+ to lose their work. One common consequence of the bug is that all open
+ gnome-terminal instances may suddenly crash at the same time.
+Author: Ruben Undheim <ruben.undheim@gmail.com>
+Bug-Debian: https://bugs.debian.org/787419
+Origin: upstream
+Bug: https://bugzilla.gnome.org/show_bug.cgi?id=742636
+Last-Update: 2015-08-17
+
+Index: gtk+3.0-3.14.5/gdk/gdkinternals.h
+===================================================================
+--- gtk+3.0-3.14.5.orig/gdk/gdkinternals.h
++++ gtk+3.0-3.14.5/gdk/gdkinternals.h
+@@ -240,6 +240,7 @@ struct _GdkWindow
+   guint in_update : 1;
+   guint geometry_dirty : 1;
+   guint event_compression : 1;
++  guint frame_clock_events_paused : 1;
+
+   /* The GdkWindow that has the impl, ref:ed if another window.
+    * This ref is required to keep the wrapper of the impl window alive
+Index: gtk+3.0-3.14.5/gdk/gdkwindow.c
+===================================================================
+--- gtk+3.0-3.14.5.orig/gdk/gdkwindow.c
++++ gtk+3.0-3.14.5/gdk/gdkwindow.c
+@@ -10603,6 +10603,8 @@ gdk_window_flush_events (GdkFrameClock *
+   _gdk_display_pause_events (display);
+
+   gdk_frame_clock_request_phase (clock, GDK_FRAME_CLOCK_PHASE_RESUME_EVENTS);
++
++  window->frame_clock_events_paused = TRUE;
+ }
+
+ static void
+@@ -10629,6 +10631,8 @@ gdk_window_resume_events (GdkFrameClock
+
+   display = gdk_window_get_display (window);
+   _gdk_display_unpause_events (display);
++
++  window->frame_clock_events_paused = FALSE;
+ }
+
+ static void
+@@ -10661,6 +10665,9 @@ gdk_window_set_frame_clock (GdkWindow
+
+   if (window->frame_clock)
+     {
++     if (window->frame_clock_events_paused)
++       gdk_window_resume_events (window->frame_clock, G_OBJECT (window));
++
+       g_signal_handlers_disconnect_by_func (G_OBJECT (window->frame_clock),
+                                             G_CALLBACK (gdk_window_flush_events),
+                                             window);
+
+
+

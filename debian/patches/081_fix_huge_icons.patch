@@ -1,0 +1,36 @@
+Description: Backporting a fix for a bug which cause trouble with icon sizes
+ in GTK applications
+ .
+ It deserves to be applied in Jessie mainly because the bug is quite annoying
+ and the fix is very small and hence little chance of any regression.
+Author: Ruben Undheim <ruben.undheim@gmail.com>
+Bug-Debian: https://bugs.debian.org/773135
+Origin: upstream
+Bug: https://bugzilla.gnome.org/show_bug.cgi?id=741259
+Last-Update: 2015-08-17
+
+Index: gtk-bugfix/gtk/deprecated/gtkimagemenuitem.c
+===================================================================
+--- gtk-bugfix.orig/gtk/deprecated/gtkimagemenuitem.c
++++ gtk-bugfix/gtk/deprecated/gtkimagemenuitem.c
+@@ -1099,6 +1099,8 @@ gtk_image_menu_item_set_image (GtkImageM
+                 "no-show-all", TRUE,
+                 NULL);
+ 
++  gtk_image_set_pixel_size (GTK_IMAGE (image), 16);
++
+   g_object_notify (G_OBJECT (image_menu_item), "image");
+ }
+ 
+Index: gtk-bugfix/gtk/gtkmodelmenuitem.c
+===================================================================
+--- gtk-bugfix.orig/gtk/gtkmodelmenuitem.c
++++ gtk-bugfix/gtk/gtkmodelmenuitem.c
+@@ -199,6 +199,7 @@ gtk_model_menu_item_set_icon (GtkModelMe
+       GtkWidget *image;
+ 
+       image = gtk_image_new_from_gicon (icon, GTK_ICON_SIZE_MENU);
++      gtk_image_set_pixel_size (GTK_IMAGE (image), 16);
+       gtk_box_pack_start (GTK_BOX (child), image, FALSE, FALSE, 0);
+       gtk_widget_show (image);
+     }
