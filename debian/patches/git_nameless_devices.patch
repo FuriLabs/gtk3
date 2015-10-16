@@ -1,0 +1,44 @@
+From 4c675d08a86f5c723e3b9bb431949ad14bf55fce Mon Sep 17 00:00:00 2001
+From: Matthias Clasen <mclasen@redhat.com>
+Date: Thu, 15 Oct 2015 16:06:15 -0400
+Subject: scrolled window: Protect against nameless devices
+
+It seems that gdk_device_get_name() can return NULL.
+We should not crash if that happens.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=756625
+---
+ gtk/gtkscrolledwindow.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+Index: gtk+3.0-3.16.7/gtk/gtkscrolledwindow.c
+===================================================================
+--- gtk+3.0-3.16.7.orig/gtk/gtkscrolledwindow.c
++++ gtk+3.0-3.16.7/gtk/gtkscrolledwindow.c
+@@ -1094,6 +1094,7 @@ captured_event_cb (GtkWidget *widget,
+   GdkDevice *source_device;
+   GtkWidget *event_widget;
+   gboolean on_scrollbar;
++  const gchar *device_name;
+ 
+   sw = GTK_SCROLLED_WINDOW (widget);
+   priv = sw->priv;
+@@ -1124,6 +1125,7 @@ captured_event_cb (GtkWidget *widget,
+ 
+   source_device = gdk_event_get_source_device (event);
+   input_source = gdk_device_get_source (source_device);
++  device_name = gdk_device_get_name (source_device);
+ 
+   if (input_source == GDK_SOURCE_KEYBOARD ||
+       input_source == GDK_SOURCE_TOUCHSCREEN)
+@@ -1149,8 +1151,8 @@ captured_event_cb (GtkWidget *widget,
+         }
+       else if (input_source == GDK_SOURCE_PEN ||
+                input_source == GDK_SOURCE_ERASER ||
+-               strstr (gdk_device_get_name (source_device), "TrackPoint") ||
+-               strstr (gdk_device_get_name (source_device), "DualPoint Stick"))
++               (device_name != NULL && strstr (device_name, "TrackPoint")) ||
++               (device_name != NULL && strstr (device_name, "DualPoint Stick")))
+         {
+           indicator_set_over (&priv->hindicator, TRUE);
+           indicator_set_over (&priv->vindicator, TRUE);
