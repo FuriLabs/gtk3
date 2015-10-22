@@ -1,0 +1,24 @@
+Description: Ensure that tooltips are drawn on a rgba surface in Unity
+ This has to be removed once better unity/CSD integration has landed
+Author: Marco Trevisan <marco.trevisan@canonical.com>
+Bug-Ubuntu: https://bugs.launchpad.net/bugs/1508357
+
+Index: gtk+3.0-3.16.7/gtk/gtktooltip.c
+===================================================================
+--- gtk+3.0-3.16.7.orig/gtk/gtktooltip.c
++++ gtk+3.0-3.16.7/gtk/gtktooltip.c
+@@ -197,6 +197,14 @@ gtk_tooltip_init (GtkTooltip *tooltip)
+   context = gtk_widget_get_style_context (window);
+   gtk_style_context_add_class (context, GTK_STYLE_CLASS_TOOLTIP);
+ 
++  if (g_strcmp0 (g_getenv ("XDG_CURRENT_DESKTOP"), "Unity") == 0)
++    {
++      GdkVisual *visual;
++      visual = gdk_screen_get_rgba_visual (gtk_widget_get_screen (window));
++      if (visual)
++        gtk_widget_set_visual (GTK_WIDGET (window), visual);
++    }
++
+   atk_obj = gtk_widget_get_accessible (window);
+   if (GTK_IS_ACCESSIBLE (atk_obj))
+     atk_object_set_role (atk_obj, ATK_ROLE_TOOL_TIP);
