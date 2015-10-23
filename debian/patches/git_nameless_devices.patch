@@ -11,11 +11,11 @@ https://bugzilla.gnome.org/show_bug.cgi?id=756625
  gtk/gtkscrolledwindow.c | 6 ++++--
  1 file changed, 4 insertions(+), 2 deletions(-)
 
-Index: gtk+3.0-3.16.7/gtk/gtkscrolledwindow.c
+Index: b/gtk/gtkscrolledwindow.c
 ===================================================================
---- gtk+3.0-3.16.7.orig/gtk/gtkscrolledwindow.c
-+++ gtk+3.0-3.16.7/gtk/gtkscrolledwindow.c
-@@ -1094,6 +1094,7 @@ captured_event_cb (GtkWidget *widget,
+--- a/gtk/gtkscrolledwindow.c
++++ b/gtk/gtkscrolledwindow.c
+@@ -1224,6 +1224,7 @@
    GdkDevice *source_device;
    GtkWidget *event_widget;
    gboolean on_scrollbar;
@@ -23,15 +23,15 @@ Index: gtk+3.0-3.16.7/gtk/gtkscrolledwindow.c
  
    sw = GTK_SCROLLED_WINDOW (widget);
    priv = sw->priv;
-@@ -1124,6 +1125,7 @@ captured_event_cb (GtkWidget *widget,
+@@ -1243,6 +1244,7 @@
+     return GDK_EVENT_PROPAGATE;
  
-   source_device = gdk_event_get_source_device (event);
    input_source = gdk_device_get_source (source_device);
 +  device_name = gdk_device_get_name (source_device);
  
    if (input_source == GDK_SOURCE_KEYBOARD ||
        input_source == GDK_SOURCE_TOUCHSCREEN)
-@@ -1149,8 +1151,8 @@ captured_event_cb (GtkWidget *widget,
+@@ -1268,8 +1270,8 @@
          }
        else if (input_source == GDK_SOURCE_PEN ||
                 input_source == GDK_SOURCE_ERASER ||
