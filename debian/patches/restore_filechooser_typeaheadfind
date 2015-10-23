@@ -7,27 +7,27 @@ Index: b/gtk/ui/gtkfilechooserwidget.ui
 ===================================================================
 --- a/gtk/ui/gtkfilechooserwidget.ui
 +++ b/gtk/ui/gtkfilechooserwidget.ui
-@@ -193,7 +193,7 @@
-                             <property name="visible">True</property>
-                             <property name="can_focus">True</property>
-                             <property name="has_tooltip">True</property>
--                            <property name="enable-search">False</property>
-+                            <property name="enable-search">True</property>
-                             <child internal-child="accessible">
-                               <object class="AtkObject" id="browse_files_tree_view-atkobject">
-                                 <property name="AtkObject::accessible-name" translatable="yes">Files</property>
+@@ -161,7 +161,7 @@
+                                   <object class="GtkTreeView" id="browse_files_tree_view">
+                                     <property name="visible">1</property>
+                                     <property name="has_tooltip">1</property>
+-                                    <property name="enable-search">0</property>
++                                    <property name="enable-search">1</property>
+                                     <child internal-child="accessible">
+                                       <object class="AtkObject" id="browse_files_tree_view-atkobject">
+                                         <property name="AtkObject::accessible-name" translatable="yes">Files</property>
 Index: b/gtk/gtkfilechooserwidget.c
 ===================================================================
 --- a/gtk/gtkfilechooserwidget.c
 +++ b/gtk/gtkfilechooserwidget.c
-@@ -1895,12 +1895,12 @@
+@@ -2453,12 +2453,12 @@
  {
    GtkFileChooserWidgetPrivate *priv = impl->priv;
  
 -  gtk_tree_view_set_search_column (GTK_TREE_VIEW (priv->browse_files_tree_view), -1);
 -
    gtk_tree_view_column_set_sort_column_id (priv->list_name_column, MODEL_COL_NAME);
-   gtk_tree_view_column_set_sort_column_id (priv->list_mtime_column, MODEL_COL_MTIME);
+   gtk_tree_view_column_set_sort_column_id (priv->list_time_column, MODEL_COL_TIME);
    gtk_tree_view_column_set_sort_column_id (priv->list_size_column, MODEL_COL_SIZE);
    gtk_tree_view_column_set_sort_column_id (priv->list_location_column, MODEL_COL_LOCATION_TEXT);
 +
