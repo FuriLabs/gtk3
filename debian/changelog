@@ -1,7 +1,5 @@
 gtk+3.0 (3.18.2-1ubuntu1) UNRELEASED; urgency=low
 
-  ** WIP **
-
   [ Iain Lane ]
   * Merge with Debian. Remaining changes:
     + Install the settings.ini file to set our themes.
@@ -24,6 +22,8 @@ gtk+3.0 (3.18.2-1ubuntu1) UNRELEASED; urgency=low
       time.
     + Add Breaks on old overlay-scrollbar versions which still provided the gtk3
       module - we don't want to use this any more with GTK 3.16.
+  * Include changes from 3.16.7-0ubuntu5 which aren't yet in gtk 3.18, but
+    will be in 3.18.3.
 
   [ Marco Trevisan (Treviño) ]
   * debian/patches/unity_rbga_tooltips.patch:
@@ -126,6 +126,16 @@ gtk+3.0 (3.17.9-1) experimental; urgency=medium
   * Update debian/libgtk-3-0.symbols with many new additions.
 
  -- Andreas Henriksson <andreas@fatal.se>  Thu, 17 Sep 2015 13:12:35 +0200
+
+gtk+3.0 (3.16.7-0ubuntu5) xenial; urgency=medium
+
+  * debian/patches/git_non_uri_dnd_segfault.patch:
+    - placessidebar: do not crash if uris is NULL, (lp: #1283426)
+  * debian/patches/git_screenshot_hidpi.patch:
+    - gdk_pixbuf_get_from_window: honor device scale, that fixes screenshots
+      not looking right on hidpi screens, thanks Lars (lp: #1512290)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 02 Nov 2015 15:10:07 +0100
 
 gtk+3.0 (3.16.7-0ubuntu3) wily; urgency=medium
 
