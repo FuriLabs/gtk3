@@ -169,6 +169,9 @@ Depends: libgtk-3-0 (= ${binary:Version}),
          libwayland-dev (>= 1.5.91) [linux-any],
          libxkbcommon-dev,
          libmirclient-dev (>= 0.13.3),
+         libmircookie-dev (>= 0.17.0),
+# workaround for broken libmircookie-dev deps, drop asap
+         nettle-dev,
 Suggests: libgtk-3-doc
 Description: development files for the GTK+ library
  GTK+ is a multi-platform toolkit for creating graphical user
