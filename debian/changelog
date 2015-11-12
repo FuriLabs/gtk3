@@ -1,3 +1,45 @@
+gtk+3.0 (3.18.3-2ubuntu1) xenial; urgency=low
+
+  * Merge with Debian. Remaining changes:
+    + Install the settings.ini file to set our themes.
+    + Enable parallel builds
+    + Ubuntu specific patches:
+      - 073_treeview_almost_fixed.patch
+      - 074_eventbox_scroll_mask.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - git_icon_fallback.patch
+    + Add Breaks on gnome-shell << 3.16 - this needs to be updated at the same
+      time.
+    + Add Breaks on old overlay-scrollbar versions which still provided the gtk3
+      module - we don't want to use this any more with GTK 3.16.
+  * Dropped some git_ patches which were upstream.
+
+ -- Iain Lane <iain@orangesquash.org.uk>  Thu, 12 Nov 2015 16:01:17 +0000
+
+gtk+3.0 (3.18.3-2) unstable; urgency=medium
+
+  * The placesview API was not supposed to be public, so those symbols were
+    removed. Update the libgtk-3-0.symbols file accordingly.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 11 Nov 2015 02:39:56 +0100
+
+gtk+3.0 (3.18.3-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Refresh patches.
+  * Drop Recommends on hicolor-icon-theme from libgtk-3-0 as libgtk-3-common
+    already has a Depends on adwaita-icon-theme.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 11 Nov 2015 01:41:11 +0100
+
 gtk+3.0 (3.18.2-1ubuntu2) xenial; urgency=medium
 
   * debian/control{,.in}: Add deps on mircookie from libgtk-3-dev, and
@@ -6966,3 +7008,4 @@ gtk+2.0 (2.0.0-1) unstable; urgency=low
   * Initial Release.
 
  -- Akira TAGOH <tagoh@debian.org>  Wed, 13 Mar 2002 00:07:25 +0900
+
