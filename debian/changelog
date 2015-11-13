@@ -1,3 +1,44 @@
+gtk+3.0 (3.18.4-1ubuntu1) UNRELEASED; urgency=medium
+
+  * Merge with Debian. Remaining changes:
+    + Install the settings.ini file to set our themes.
+    + Enable parallel builds
+    + Ubuntu specific patches:
+      - 073_treeview_almost_fixed.patch
+      - 074_eventbox_scroll_mask.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - git_icon_fallback.patch
+    + Add Breaks on gnome-shell << 3.16 - this needs to be updated at the same
+      time.
+    + Add Breaks on old overlay-scrollbar versions which still provided the gtk3
+      module - we don't want to use this any more with GTK 3.16.
+
+ -- Iain Lane <iain.lane@canonical.com>  Fri, 13 Nov 2015 13:37:38 +0000
+
+gtk+3.0 (3.18.4-1) unstable; urgency=medium
+
+  * New upstream stable release 3.18.4
+    + Revert a GtkTextBuffer change that broke binding API
+      - Remove downstream cherry-picks for this change.
+    + Properly refresh styles when widget names change
+
+ -- Iain Lane <laney@debian.org>  Fri, 13 Nov 2015 13:19:47 +0000
+
+gtk+3.0 (3.18.3-3) unstable; urgency=medium
+
+  * Revert "textbuffer: nicer get_iter functions" and related commits since
+    this broke the bindings API. (Closes: #804798)
+
+ -- Michael Biebl <biebl@debian.org>  Thu, 12 Nov 2015 18:50:55 +0100
+
 gtk+3.0 (3.18.3-2ubuntu2) UNRELEASED; urgency=medium
 
   * Bah, remove trailing newline from d/control
