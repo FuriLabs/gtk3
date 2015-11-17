@@ -1,5 +1,6 @@
 gtk+3.0 (3.18.5-1ubuntu1) UNRELEASED; urgency=medium
 
+  [ Iain Lane ]
   * Merge with Debian. Remaining changes:
     + Install the settings.ini file to set our themes.
     + Enable parallel builds
@@ -20,6 +21,10 @@ gtk+3.0 (3.18.5-1ubuntu1) UNRELEASED; urgency=medium
       time.
     + Add Breaks on old overlay-scrollbar versions which still provided the gtk3
       module - we don't want to use this any more with GTK 3.16.
+
+  [ Lars Uebernickel ]
+  * Add debian/patches/0001-gtkwindow-continue-calling-gtk_style_context_set_bac.patch:
+    - fixes black flickering when new windows are created (LP: #1515561)
 
  -- Iain Lane <iain.lane@canonical.com>  Tue, 17 Nov 2015 14:18:53 +0000
 
