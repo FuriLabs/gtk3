@@ -1,0 +1,32 @@
+From fd6f15aad530f8244301fd43acbd23cde920f9b1 Mon Sep 17 00:00:00 2001
+From: William Hua <william.hua@canonical.com>
+Date: Tue, 2 Feb 2016 15:33:33 -0500
+Subject: [PATCH] x11: don't apply scaling factor twice
+
+The fallback behaviour of get_work_area () divides the
+screen width and height by the window scaling factor, but
+those values are already scaled down.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=761474
+---
+ gdk/x11/gdkscreen-x11.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gdk/x11/gdkscreen-x11.c b/gdk/x11/gdkscreen-x11.c
+index 44bb69f..abd3cae 100644
+--- a/gdk/x11/gdkscreen-x11.c
++++ b/gdk/x11/gdkscreen-x11.c
+@@ -328,8 +328,8 @@ get_work_area (GdkScreen    *screen,
+   /* Defaults in case of error */
+   area->x = 0;
+   area->y = 0;
+-  area->width = gdk_screen_get_width (screen) / x11_screen->window_scale;
+-  area->height = gdk_screen_get_height (screen) / x11_screen->window_scale;
++  area->width = gdk_screen_get_width (screen);
++  area->height = gdk_screen_get_height (screen);
+ 
+   if (!gdk_x11_screen_supports_net_wm_hint (screen,
+                                             gdk_atom_intern_static_string ("_NET_WORKAREA")))
+-- 
+2.7.0
+
