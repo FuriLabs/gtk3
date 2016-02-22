@@ -1,0 +1,30 @@
+From 7fc1fcde1e5fe7839c9d8d578d2e6d270a74f23b Mon Sep 17 00:00:00 2001
+From: Matthias Clasen <mclasen@redhat.com>
+Date: Sat, 20 Feb 2016 11:26:19 -0500
+Subject: assistant: Add margin to action area
+
+We are no longer setting a margin on the content area, so put
+one on the action area itself to prevent the buttons from touching
+the edge.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=762315
+---
+ gtk/ui/gtkassistant.ui | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/gtk/ui/gtkassistant.ui b/gtk/ui/gtkassistant.ui
+index a77d3fd..6fe8b98 100644
+--- a/gtk/ui/gtkassistant.ui
++++ b/gtk/ui/gtkassistant.ui
+@@ -51,6 +51,7 @@
+                 <property name="visible">1</property>
+                 <property name="halign">end</property>
+                 <property name="spacing">6</property>
++                <property name="margin">6</property>
+                 <child>
+                   <object class="GtkButton" id="apply">
+                     <property name="label" translatable="yes">_Apply</property>
+-- 
+cgit v0.12
+
+
