@@ -3,15 +3,46 @@ Description: Ensure that tooltips are drawn on a rgba surface in Unity
 Author: Marco Trevisan <marco.trevisan@canonical.com>
 Bug-Ubuntu: https://bugs.launchpad.net/bugs/1508357
 
-Index: gtk+3.0-3.16.7/gtk/gtktooltip.c
+Index: gtk+3.0-3.18.8/gtk/gtktooltip.c
 ===================================================================
---- gtk+3.0-3.16.7.orig/gtk/gtktooltip.c
-+++ gtk+3.0-3.16.7/gtk/gtktooltip.c
-@@ -197,6 +197,14 @@ gtk_tooltip_init (GtkTooltip *tooltip)
+--- gtk+3.0-3.18.8.orig/gtk/gtktooltip.c
++++ gtk+3.0-3.18.8/gtk/gtktooltip.c
+@@ -166,6 +166,30 @@ gtk_tooltip_class_init (GtkTooltipClass
+   quark_current_tooltip = g_quark_from_static_string ("gdk-display-current-tooltip");
+ }
+ 
++static gboolean
++in_desktop (const gchar *name)
++{
++  const gchar *desktop_name_list;
++  gchar **names;
++  gboolean in_list = FALSE;
++  gint i;
++
++  desktop_name_list = g_getenv ("XDG_CURRENT_DESKTOP");
++  if (!desktop_name_list)
++    return FALSE;
++
++  names = g_strsplit (desktop_name_list, ":", -1);
++  for (i = 0; names[i] && !in_list; i++)
++    if (strcmp (names[i], name) == 0)
++      {
++        in_list = TRUE;
++        break;
++      }
++  g_strfreev (names);
++
++  return in_list;
++}
++
+ static void
+ gtk_tooltip_init (GtkTooltip *tooltip)
+ {
+@@ -200,6 +224,14 @@ gtk_tooltip_init (GtkTooltip *tooltip)
    context = gtk_widget_get_style_context (window);
    gtk_style_context_add_class (context, GTK_STYLE_CLASS_TOOLTIP);
  
-+  if (g_strcmp0 (g_getenv ("XDG_CURRENT_DESKTOP"), "Unity") == 0)
++  if (in_desktop ("Unity") == 0)
 +    {
 +      GdkVisual *visual;
 +      visual = gdk_screen_get_rgba_visual (gtk_widget_get_screen (window));
