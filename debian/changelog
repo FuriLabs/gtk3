@@ -1,11 +1,19 @@
-gtk+3.0 (3.18.8-1ubuntu2) UNRELEASED; urgency=medium
+gtk+3.0 (3.18.8-1ubuntu3) UNRELEASED; urgency=medium
 
   * debian/patches/unity-border-radius.patch:
     - Export windows corners radius as an X11 property in unity (LP: #1516403)
-  * debian/patches/unity_rbga_tooltips.patch.
+  * debian/patches/unity_rbga_tooltips.patch:
     - Removed as it's now included in the border-radius patch
 
- -- Marco Trevisan (Treviño) <marco@ubuntu.com>  Mon, 07 Mar 2016 19:23:30 +0100
+ -- Marco Trevisan (Treviño) <marco@ubuntu.com>  Thu, 10 Mar 2016 21:34:44 +0100
+
+gtk+3.0 (3.18.8-1ubuntu2) xenial; urgency=medium
+
+  * debian/patches/message-dialog-restore-traditional-look-on-unity.patch:
+  * debian/patches/unity_rbga_tooltips.patch:
+    - Correctly handle XDG_CURRENT_DESKTOP (LP: #1554878)
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Thu, 10 Mar 2016 13:49:54 +1300
 
 gtk+3.0 (3.18.8-1ubuntu1) xenial; urgency=medium
 
