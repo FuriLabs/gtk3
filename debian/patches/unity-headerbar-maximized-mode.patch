@@ -26,7 +26,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
  
    GList *children;
  
-@@ -311,6 +316,19 @@ _gtk_header_bar_update_window_buttons (G
+@@ -311,6 +316,21 @@ _gtk_header_bar_update_window_buttons (G
    if (!priv->shows_wm_decorations)
      return;
  
@@ -36,17 +36,19 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
 +    {
 +      if (gtk_window_is_maximized (window))
 +        {
++          gtk_widget_hide (priv->title_label);
 +          gtk_style_context_add_class (gtk_widget_get_style_context (widget), "toolbar-mode");
 +          return;
 +        }
 +
++      gtk_widget_show (priv->title_label);
 +      gtk_style_context_remove_class (gtk_widget_get_style_context (widget), "toolbar-mode");
 +    }
 +
    direction = gtk_widget_get_direction (widget);
  
    g_object_get (gtk_widget_get_settings (widget),
-@@ -324,7 +342,6 @@ _gtk_header_bar_update_window_buttons (G
+@@ -324,7 +344,6 @@ _gtk_header_bar_update_window_buttons (G
        layout_desc = g_strdup (priv->decoration_layout);
      }
  
@@ -54,7 +56,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
  
    if (!shown_by_shell && gtk_window_get_application (window))
      menu = gtk_application_get_app_menu (gtk_window_get_application (window));
-@@ -1808,6 +1825,22 @@ gtk_header_bar_realize (GtkWidget *widge
+@@ -1808,6 +1827,22 @@ gtk_header_bar_realize (GtkWidget *widge
  
    GTK_WIDGET_CLASS (gtk_header_bar_parent_class)->realize (widget);
  
