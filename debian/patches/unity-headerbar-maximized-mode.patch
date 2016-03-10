@@ -1,5 +1,6 @@
-Description: Hide window buttons when running in Unity and the window is maximized.
- Plus define the "toolbar-mode" style class on maximized windows.
+Description: Hide Headerbar window buttons and title when running in Unity
+ and the window is maximized.
+ Plus define the "toolbar-mode" style class on these maximized bars.
 Author: Marco Trevisan <marco.trevisan@canonical.com>
 Bug-Ubuntu: https://launchpad.net/bugs/1515810
 
@@ -59,7 +60,22 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
  
    if (!shown_by_shell && gtk_window_get_application (window))
      menu = gtk_application_get_app_menu (gtk_window_get_application (window));
-@@ -1808,6 +1830,22 @@ gtk_header_bar_realize (GtkWidget *widge
+@@ -580,6 +602,14 @@ construct_label_box (GtkHeaderBar *bar)
+                                       &priv->subtitle_label);
+   gtk_header_bar_reorder_css_node (bar, GTK_PACK_START, priv->label_box);
+   gtk_widget_set_parent (priv->label_box, GTK_WIDGET (bar));
++
++  if (priv->unity_environment && priv->title_label)
++    {
++      GtkWidget *window = gtk_widget_get_toplevel (GTK_WIDGET (bar));
++
++      if (GTK_IS_WINDOW (window) && gtk_window_is_maximized (GTK_WINDOW (window)))
++        gtk_widget_hide (priv->title_label);
++    }
+ }
+ 
+ static void
+@@ -1808,6 +1838,22 @@ gtk_header_bar_realize (GtkWidget *widge
  
    GTK_WIDGET_CLASS (gtk_header_bar_parent_class)->realize (widget);
  
