@@ -175,7 +175,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkwindow.c
  
    if (priv->title_box != NULL)
      {
-@@ -4043,7 +4178,7 @@ gtk_window_enable_csd (GtkWindow *window
+@@ -4043,13 +4178,16 @@ gtk_window_enable_csd (GtkWindow *window
    GdkVisual *visual;
  
    /* We need a visual with alpha for client shadows */
@@ -184,7 +184,16 @@ Index: gtk+3.0-3.18.8/gtk/gtkwindow.c
      {
        visual = gdk_screen_get_rgba_visual (gtk_widget_get_screen (widget));
        if (visual != NULL)
-@@ -4118,6 +4253,7 @@ gtk_window_set_titlebar (GtkWindow *wind
+         gtk_widget_set_visual (widget, visual);
+ 
+       gtk_style_context_add_class (gtk_widget_get_style_context (widget), GTK_STYLE_CLASS_CSD);
++
++      if (priv->use_unity_border_radius)
++        gtk_style_context_add_class (gtk_widget_get_style_context (widget), "unity-csd");
+     }
+   else
+     {
+@@ -4118,6 +4256,7 @@ gtk_window_set_titlebar (GtkWindow *wind
      }
  
    priv->use_client_shadow = gtk_window_supports_client_shadow (window);
@@ -192,7 +201,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkwindow.c
  
    gtk_window_enable_csd (window);
    priv->title_box = titlebar;
-@@ -4129,6 +4265,8 @@ gtk_window_set_titlebar (GtkWindow *wind
+@@ -4129,6 +4268,8 @@ gtk_window_set_titlebar (GtkWindow *wind
        on_titlebar_title_notify (GTK_HEADER_BAR (titlebar), NULL, window);
      }
  
@@ -201,7 +210,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkwindow.c
    gtk_style_context_add_class (gtk_widget_get_style_context (titlebar),
                                 GTK_STYLE_CLASS_TITLEBAR);
  
-@@ -5857,13 +5995,19 @@ create_decoration (GtkWidget *widget)
+@@ -5857,13 +5998,19 @@ create_decoration (GtkWidget *widget)
    GtkWindowPrivate *priv = window->priv;
  
    priv->use_client_shadow = gtk_window_supports_client_shadow (window);
@@ -224,7 +233,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkwindow.c
  
    if (priv->title_box == NULL)
      {
-@@ -5871,6 +6015,8 @@ create_decoration (GtkWidget *widget)
+@@ -5871,6 +6018,8 @@ create_decoration (GtkWidget *widget)
        gtk_widget_set_parent (priv->titlebar, widget);
        gtk_widget_show_all (priv->titlebar);
        priv->title_box = priv->titlebar;
@@ -233,7 +242,30 @@ Index: gtk+3.0-3.18.8/gtk/gtkwindow.c
      }
  
    update_window_buttons (window);
-@@ -7223,6 +7369,9 @@ gtk_window_realize (GtkWidget *widget)
+@@ -6547,9 +6696,12 @@ get_shadow_width (GtkWindow *window,
+   if (!priv->decorated)
+     return;
+ 
++  if (priv->client_decorated && priv->use_unity_border_radius)
++    return;
++
+   if (!priv->client_decorated &&
+       !(gtk_window_should_use_csd (window) &&
+-        gtk_window_supports_client_shadow (window)))
++        (gtk_window_supports_client_shadow (window))))
+     return;
+ 
+   if (priv->maximized ||
+@@ -7141,7 +7293,7 @@ gtk_window_realize (GtkWidget *widget)
+ 
+   attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL;
+ 
+-  if (priv->client_decorated && priv->type == GTK_WINDOW_TOPLEVEL)
++  if (priv->client_decorated && priv->type == GTK_WINDOW_TOPLEVEL && !priv->use_unity_border_radius)
+     {
+       const gchar *cursor[8] = {
+         "nw-resize", "n-resize", "ne-resize",
+@@ -7223,6 +7375,9 @@ gtk_window_realize (GtkWidget *widget)
      }
  #endif
  
@@ -243,7 +275,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkwindow.c
    child_allocation.x = 0;
    child_allocation.y = 0;
    child_allocation.width = allocation.width;
-@@ -10587,7 +10736,7 @@ gtk_window_set_screen (GtkWindow *window
+@@ -10587,7 +10742,7 @@ gtk_window_set_screen (GtkWindow *window
      }
    g_object_notify_by_pspec (G_OBJECT (window), window_props[PROP_SCREEN]);
  
