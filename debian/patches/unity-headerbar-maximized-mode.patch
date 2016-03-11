@@ -27,7 +27,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
  
    GList *children;
  
-@@ -276,6 +281,37 @@ _gtk_header_bar_update_separator_visibil
+@@ -276,6 +281,34 @@ _gtk_header_bar_update_separator_visibil
      gtk_widget_set_visible (priv->titlebar_end_separator, have_visible_at_end);
  }
  
@@ -35,7 +35,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
 +check_title_visibility (GtkHeaderBar *bar)
 +{
 +  GtkHeaderBarPrivate *priv = gtk_header_bar_get_instance_private (bar);
-+  gboolean show = TRUE;
++  gboolean visible = TRUE;
 +
 +  if (!priv->title_label)
 +    return;
@@ -51,21 +51,18 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
 +          if (gtk_window_is_maximized (window) &&
 +              g_strcmp0 (gtk_window_get_title (window), priv->title) == 0)
 +            {
-+              show = FALSE;
++              visible = FALSE;
 +            }
 +        }
 +    }
 +
-+  if (show)
-+    gtk_widget_show (priv->title_label);
-+  else
-+    gtk_widget_hide (priv->title_label);
++  gtk_widget_set_visible (priv->title_label, visible);
 +}
 +
  void
  _gtk_header_bar_update_window_buttons (GtkHeaderBar *bar)
  {
-@@ -307,6 +343,20 @@ _gtk_header_bar_update_window_buttons (G
+@@ -307,6 +340,20 @@ _gtk_header_bar_update_window_buttons (G
      }
  
    priv->titlebar_icon = NULL;
@@ -86,7 +83,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
  
    if (!priv->shows_wm_decorations)
      return;
-@@ -324,7 +374,6 @@ _gtk_header_bar_update_window_buttons (G
+@@ -324,7 +371,6 @@ _gtk_header_bar_update_window_buttons (G
        layout_desc = g_strdup (priv->decoration_layout);
      }
  
@@ -94,7 +91,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
  
    if (!shown_by_shell && gtk_window_get_application (window))
      menu = gtk_application_get_app_menu (gtk_window_get_application (window));
-@@ -580,6 +629,8 @@ construct_label_box (GtkHeaderBar *bar)
+@@ -580,6 +626,8 @@ construct_label_box (GtkHeaderBar *bar)
                                        &priv->subtitle_label);
    gtk_header_bar_reorder_css_node (bar, GTK_PACK_START, priv->label_box);
    gtk_widget_set_parent (priv->label_box, GTK_WIDGET (bar));
@@ -103,7 +100,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
  }
  
  static void
-@@ -1214,6 +1265,7 @@ gtk_header_bar_set_title (GtkHeaderBar *
+@@ -1214,6 +1262,7 @@ gtk_header_bar_set_title (GtkHeaderBar *
      }
  
    g_object_notify_by_pspec (G_OBJECT (bar), header_bar_props[PROP_TITLE]);
@@ -111,7 +108,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
  }
  
  /**
-@@ -1808,6 +1860,22 @@ gtk_header_bar_realize (GtkWidget *widge
+@@ -1808,6 +1857,22 @@ gtk_header_bar_realize (GtkWidget *widge
  
    GTK_WIDGET_CLASS (gtk_header_bar_parent_class)->realize (widget);
  
@@ -134,7 +131,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
    settings = gtk_widget_get_settings (widget);
    g_signal_connect_swapped (settings, "notify::gtk-shell-shows-app-menu",
                              G_CALLBACK (_gtk_header_bar_update_window_buttons), widget);
-@@ -1842,6 +1910,14 @@ window_state_changed (GtkWidget
+@@ -1842,6 +1907,14 @@ window_state_changed (GtkWidget
  }
  
  static void
@@ -149,7 +146,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
  gtk_header_bar_hierarchy_changed (GtkWidget *widget,
                                    GtkWidget *previous_toplevel)
  {
-@@ -1850,12 +1926,20 @@ gtk_header_bar_hierarchy_changed (GtkWid
+@@ -1850,12 +1923,20 @@ gtk_header_bar_hierarchy_changed (GtkWid
    toplevel = gtk_widget_get_toplevel (widget);
  
    if (previous_toplevel)
