@@ -27,7 +27,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
  
    GList *children;
  
-@@ -276,6 +281,34 @@ _gtk_header_bar_update_separator_visibil
+@@ -276,6 +281,36 @@ _gtk_header_bar_update_separator_visibil
      gtk_widget_set_visible (priv->titlebar_end_separator, have_visible_at_end);
  }
  
@@ -40,16 +40,18 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
 +  if (!priv->title_label)
 +    return;
 +
++
 +  if (priv->unity_environment)
 +    {
-+      GtkWidget *toplevel = gtk_widget_get_toplevel (GTK_WIDGET (bar));
++      GtkWidget *widget = GTK_WIDGET (bar);
++      GtkWidget *toplevel = gtk_widget_get_toplevel (widget);
 +
 +      if (GTK_IS_WINDOW (toplevel))
 +        {
 +          GtkWindow *window = GTK_WINDOW (toplevel);
 +
 +          if (gtk_window_is_maximized (window) &&
-+              g_strcmp0 (gtk_window_get_title (window), priv->title) == 0)
++              gtk_window_get_titlebar (window) == widget)
 +            {
 +              visible = FALSE;
 +            }
@@ -62,7 +64,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
  void
  _gtk_header_bar_update_window_buttons (GtkHeaderBar *bar)
  {
-@@ -307,6 +340,20 @@ _gtk_header_bar_update_window_buttons (G
+@@ -307,6 +342,20 @@ _gtk_header_bar_update_window_buttons (G
      }
  
    priv->titlebar_icon = NULL;
@@ -83,7 +85,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
  
    if (!priv->shows_wm_decorations)
      return;
-@@ -324,7 +371,6 @@ _gtk_header_bar_update_window_buttons (G
+@@ -324,7 +373,6 @@ _gtk_header_bar_update_window_buttons (G
        layout_desc = g_strdup (priv->decoration_layout);
      }
  
@@ -91,7 +93,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
  
    if (!shown_by_shell && gtk_window_get_application (window))
      menu = gtk_application_get_app_menu (gtk_window_get_application (window));
-@@ -580,6 +626,8 @@ construct_label_box (GtkHeaderBar *bar)
+@@ -580,6 +628,8 @@ construct_label_box (GtkHeaderBar *bar)
                                        &priv->subtitle_label);
    gtk_header_bar_reorder_css_node (bar, GTK_PACK_START, priv->label_box);
    gtk_widget_set_parent (priv->label_box, GTK_WIDGET (bar));
@@ -100,15 +102,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
  }
  
  static void
-@@ -1214,6 +1262,7 @@ gtk_header_bar_set_title (GtkHeaderBar *
-     }
- 
-   g_object_notify_by_pspec (G_OBJECT (bar), header_bar_props[PROP_TITLE]);
-+  check_title_visibility (bar);
- }
- 
- /**
-@@ -1808,6 +1857,22 @@ gtk_header_bar_realize (GtkWidget *widge
+@@ -1808,6 +1858,22 @@ gtk_header_bar_realize (GtkWidget *widge
  
    GTK_WIDGET_CLASS (gtk_header_bar_parent_class)->realize (widget);
  
@@ -131,43 +125,12 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
    settings = gtk_widget_get_settings (widget);
    g_signal_connect_swapped (settings, "notify::gtk-shell-shows-app-menu",
                              G_CALLBACK (_gtk_header_bar_update_window_buttons), widget);
-@@ -1842,6 +1907,14 @@ window_state_changed (GtkWidget
- }
- 
- static void
-+on_window_title_changed (GObject      *window,
-+                         GParamSpec   *pspec,
-+                         GtkHeaderBar *bar)
-+{
-+  check_title_visibility (bar);
-+}
-+
-+static void
- gtk_header_bar_hierarchy_changed (GtkWidget *widget,
-                                   GtkWidget *previous_toplevel)
- {
-@@ -1850,12 +1923,20 @@ gtk_header_bar_hierarchy_changed (GtkWid
-   toplevel = gtk_widget_get_toplevel (widget);
- 
-   if (previous_toplevel)
--    g_signal_handlers_disconnect_by_func (previous_toplevel,
--                                          window_state_changed, widget);
-+    {
-+      g_signal_handlers_disconnect_by_func (previous_toplevel,
-+                                            window_state_changed, widget);
-+      g_signal_handlers_disconnect_by_func (previous_toplevel,
-+                                            on_window_title_changed, widget);
-+    }
- 
+@@ -1856,6 +1922,8 @@ gtk_header_bar_hierarchy_changed (GtkWid
    if (toplevel)
--    g_signal_connect_after (toplevel, "window-state-event",
--                            G_CALLBACK (window_state_changed), widget);
-+    {
-+      g_signal_connect_after (toplevel, "window-state-event",
-+                              G_CALLBACK (window_state_changed), widget);
-+      g_signal_connect (toplevel, "notify::title",
-+                        G_CALLBACK (on_window_title_changed), widget);
-+    }
+     g_signal_connect_after (toplevel, "window-state-event",
+                             G_CALLBACK (window_state_changed), widget);
++
++  check_title_visibility (GTK_HEADER_BAR (widget));
  }
  
  static void
