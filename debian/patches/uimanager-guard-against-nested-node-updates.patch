@@ -25,9 +25,9 @@ Index: gtk+3.0-3.12.2/gtk/deprecated/gtkuimanager.c
    const gchar *action_name;
    NodeUIReference *ref;
 +  guint update_id;
-   
- #ifdef DEBUG_UI_MANAGER
-   GList *tmp;
+ 
+   g_return_if_fail (node != NULL);
+   g_return_if_fail (NODE_INFO (node) != NULL);
 @@ -2563,6 +2565,8 @@
    if (!info->dirty)
      return;

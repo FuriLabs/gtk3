@@ -23,7 +23,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkmessagedialog.c
  
    guint          has_primary_markup : 1;
    guint          has_secondary_text : 1;
-@@ -300,9 +303,36 @@ gtk_message_dialog_class_init (GtkMessag
+@@ -300,11 +303,38 @@ gtk_message_dialog_class_init (GtkMessag
    gtk_widget_class_set_template_from_resource (widget_class, "/org/gtk/libgtk/ui/gtkmessagedialog.ui");
    gtk_widget_class_bind_template_child_private (widget_class, GtkMessageDialog, label);
    gtk_widget_class_bind_template_child_private (widget_class, GtkMessageDialog, secondary_label);
@@ -31,6 +31,8 @@ Index: gtk+3.0-3.18.8/gtk/gtkmessagedialog.c
 +  gtk_widget_class_bind_template_child_private (widget_class, GtkMessageDialog, box);
 +  gtk_widget_class_bind_template_child_full (widget_class, "dialog-vbox1", FALSE, G_PRIVATE_OFFSET (GtkMessageDialog, vbox));
    gtk_widget_class_bind_template_child_internal_private (widget_class, GtkMessageDialog, message_area);
+ 
+   gtk_widget_class_set_css_name (widget_class, "messagedialog");
  }
  
 +static gboolean
@@ -84,9 +86,9 @@ Index: gtk+3.0-3.18.8/gtk/gtkmessagedialog.c
 +    }
 +  else
 +    gtk_button_box_set_layout (GTK_BUTTON_BOX (action_area), GTK_BUTTONBOX_EXPAND);
- }
  
- static void
+   settings = gtk_widget_get_settings (GTK_WIDGET (dialog));
+   g_object_get (settings, "gtk-keynav-use-caret", &use_caret, NULL);
 @@ -363,6 +411,7 @@ setup_type (GtkMessageDialog *dialog,
  {
    GtkMessageDialogPrivate *priv = dialog->priv;

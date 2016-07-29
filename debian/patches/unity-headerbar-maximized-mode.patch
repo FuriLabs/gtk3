@@ -4,11 +4,11 @@ Description: Hide Headerbar window buttons and title when running in Unity
 Author: Marco Trevisan <marco.trevisan@canonical.com>
 Bug-Ubuntu: https://launchpad.net/bugs/1515810
 
-Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
+Index: b/gtk/gtkheaderbar.c
 ===================================================================
---- gtk+3.0-3.18.8.orig/gtk/gtkheaderbar.c
-+++ gtk+3.0-3.18.8/gtk/gtkheaderbar.c
-@@ -31,6 +31,10 @@
+--- a/gtk/gtkheaderbar.c
++++ b/gtk/gtkheaderbar.c
+@@ -34,6 +34,10 @@
  
  #include <string.h>
  
@@ -19,7 +19,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
  /**
   * SECTION:gtkheaderbar
   * @Short_description: A box with a centered child
-@@ -65,6 +69,7 @@ struct _GtkHeaderBarPrivate
+@@ -68,6 +72,7 @@
    GtkWidget *custom_title;
    gint spacing;
    gboolean has_subtitle;
@@ -27,7 +27,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
  
    GList *children;
  
-@@ -276,6 +281,36 @@ _gtk_header_bar_update_separator_visibil
+@@ -262,6 +267,35 @@
      gtk_widget_set_visible (priv->titlebar_end_separator, have_visible_at_end);
  }
  
@@ -39,7 +39,6 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
 +
 +  if (!priv->title_label)
 +    return;
-+
 +
 +  if (priv->unity_environment)
 +    {
@@ -64,11 +63,11 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
  void
  _gtk_header_bar_update_window_buttons (GtkHeaderBar *bar)
  {
-@@ -307,6 +342,20 @@ _gtk_header_bar_update_window_buttons (G
+@@ -294,6 +328,20 @@
      }
  
    priv->titlebar_icon = NULL;
-+  window = GTK_WINDOW (gtk_widget_get_toplevel (widget));
++  window = GTK_WINDOW (toplevel);
 +
 +  if (priv->unity_environment)
 +    {
@@ -85,15 +84,16 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
  
    if (!priv->shows_wm_decorations)
      return;
-@@ -324,7 +373,6 @@ _gtk_header_bar_update_window_buttons (G
+@@ -311,8 +359,6 @@
        layout_desc = g_strdup (priv->decoration_layout);
      }
  
--  window = GTK_WINDOW (gtk_widget_get_toplevel (widget));
- 
+-  window = GTK_WINDOW (toplevel);
+-
    if (!shown_by_shell && gtk_window_get_application (window))
      menu = gtk_application_get_app_menu (gtk_window_get_application (window));
-@@ -580,6 +628,8 @@ construct_label_box (GtkHeaderBar *bar)
+   else
+@@ -568,6 +614,8 @@
                                        &priv->subtitle_label);
    gtk_header_bar_reorder_css_node (bar, GTK_PACK_START, priv->label_box);
    gtk_widget_set_parent (priv->label_box, GTK_WIDGET (bar));
@@ -101,8 +101,8 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
 +  check_title_visibility (bar);
  }
  
- static void
-@@ -1808,6 +1858,22 @@ gtk_header_bar_realize (GtkWidget *widge
+ static gint
+@@ -1815,6 +1863,22 @@
  
    GTK_WIDGET_CLASS (gtk_header_bar_parent_class)->realize (widget);
  
@@ -125,12 +125,3 @@ Index: gtk+3.0-3.18.8/gtk/gtkheaderbar.c
    settings = gtk_widget_get_settings (widget);
    g_signal_connect_swapped (settings, "notify::gtk-shell-shows-app-menu",
                              G_CALLBACK (_gtk_header_bar_update_window_buttons), widget);
-@@ -1856,6 +1922,8 @@ gtk_header_bar_hierarchy_changed (GtkWid
-   if (toplevel)
-     g_signal_connect_after (toplevel, "window-state-event",
-                             G_CALLBACK (window_state_changed), widget);
-+
-+  check_title_visibility (GTK_HEADER_BAR (widget));
- }
- 
- static void
