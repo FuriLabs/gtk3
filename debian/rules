@@ -4,7 +4,6 @@ DEB_BUILDDIR = debian/build
 DEB_MAKE_DESTDIRSKEL = $(CURDIR)/debian/install/@FLAVOR@
 DEB_MAKE_FLAVORS = shared shared_udeb
 DISABLE_UPDATE_UPLOADERS = 1
-DEB_BUILD_PARALLEL = yes
 
 include /usr/share/cdbs/1/rules/autoreconf.mk
 include /usr/share/cdbs/1/rules/debhelper.mk
@@ -73,8 +72,8 @@ DEB_CONFIGURE_EXTRA_FLAGS = \
 
 DEB_CONFIGURE_FLAGS_shared = \
 			--enable-broadway-backend \
-			--enable-x11-backend \
 			--enable-mir-backend \
+			--enable-x11-backend \
 			--enable-gtk-doc \
 			--enable-shared \
 			--enable-introspection \
@@ -111,6 +110,12 @@ export HOME=$(CURDIR)/debian/build
 export XDG_RUNTIME_DIR=$(HOME)
 # So that gsettings can find the (uninstalled) gtk schemas
 export XDG_DATA_DIRS=/usr/share:$(CURDIR)/debian/build
+# Put these back to their defaults if we are not running with a clean
+# environment, so that they are based on the temporary $HOME above
+unexport XDG_CACHE_HOME
+unexport XDG_CONFIG_DIRS
+unexport XDG_CONFIG_HOME
+unexport XDG_DATA_HOME
 # Get failing tests' stdout/err so we have some information when a build fails
 export VERBOSE=1
 

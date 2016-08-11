@@ -1,0 +1,64 @@
+From a01ee5a7b0a9a7170d4be3c64314ee51dd502cab Mon Sep 17 00:00:00 2001
+From: Ondrej Holy <oholy@redhat.com>
+Date: Mon, 2 May 2016 12:55:56 +0200
+Subject: Improve external drives detection
+
+Use g_drive_is_removable for external drives detection. Current heuristic
+fails in some cases (e.g. when removable drive is attached before login),
+see Bug 765457.
+
+Bump GLib version accordingly.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=765924
+---
+ configure.ac           | 4 ++--
+ gtk/gtkplacessidebar.c | 4 +---
+ gtk/gtkplacesview.c    | 4 +---
+ 3 files changed, 4 insertions(+), 8 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index 89722cd..194ced1 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -42,8 +42,8 @@ m4_define([gtk_binary_version], [3.0.0])
+ 
+ # required versions of other packages
+ m4_define([glib_required_major], [2])
+-m4_define([glib_required_minor], [45])
+-m4_define([glib_required_micro], [8])
++m4_define([glib_required_minor], [49])
++m4_define([glib_required_micro], [1])
+ m4_define([glib_required_version],
+           [glib_required_major.glib_required_minor.glib_required_micro])
+ m4_define([glib_min_required_minor],
+diff --git a/gtk/gtkplacessidebar.c b/gtk/gtkplacessidebar.c
+index 309cc58..016d85d 100644
+--- a/gtk/gtkplacessidebar.c
++++ b/gtk/gtkplacessidebar.c
+@@ -876,9 +876,7 @@ is_external_volume (GVolume *volume)
+   is_external |= !id;
+ 
+   if (drive)
+-    is_external |= g_drive_can_eject (drive) ||
+-                   g_drive_is_media_removable (drive) ||
+-                   g_drive_can_stop (drive);
++    is_external |= g_drive_is_removable (drive);
+ 
+   g_clear_object (&drive);
+   g_free (id);
+diff --git a/gtk/gtkplacesview.c b/gtk/gtkplacesview.c
+index 162434a..5388a1a 100644
+--- a/gtk/gtkplacesview.c
++++ b/gtk/gtkplacesview.c
+@@ -474,9 +474,7 @@ is_external_volume (GVolume *volume)
+   is_external |= !id;
+ 
+   if (drive)
+-    is_external |= g_drive_can_eject (drive) ||
+-                   g_drive_is_media_removable (drive) ||
+-                   g_drive_can_stop (drive);
++    is_external |= g_drive_is_removable (drive);
+ 
+   g_clear_object (&drive);
+   g_free (id);
+
