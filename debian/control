@@ -70,6 +70,8 @@ Multi-Arch: same
 Depends: libgtk-3-common (>= ${source:Version}),
          ${misc:Depends},
          ${shlibs:Depends},
+         hicolor-icon-theme,
+         adwaita-icon-theme,
          shared-mime-info
 Provides: gtk3-binver-3.0.0
 Recommends: libgtk-3-bin
@@ -110,7 +112,6 @@ Section: misc
 Architecture: all
 Multi-Arch: foreign
 Depends: ${misc:Depends},
-         adwaita-icon-theme (>= ${gnome:Version})
 Recommends: libgtk-3-0
 Breaks: libgtk-3-0 (<< 3.5.4)
 Replaces: libgtk-3-0 (<< 3.5.4)
@@ -261,9 +262,9 @@ Multi-Arch: foreign
 Depends: ${misc:Depends},
          ${shlibs:Depends}
 Breaks: libgtk2.0-bin (<< 2.24.30-2),
-        libgtk-3-bin (<< 3.20.5-2)
+        libgtk-3-bin (<< 3.20.6-1)
 Replaces: libgtk2.0-bin (<< 2.24.30-2),
-          libgtk-3-bin (<< 3.20.5-2)
+          libgtk-3-bin (<< 3.20.6-1)
 Description: icon theme caching utility
  gtk-update-icon-cache creates mmap()able cache files for icon themes.
  .

@@ -1,3 +1,70 @@
+gtk+3.0 (3.20.8-1ubuntu1) UNRELEASED; urgency=medium
+
+  * New upstream version
+    - Fix popover issue seen in the Files app (LP: #1610200)
+  * Merge with Debian. Remaining changes:
+    + Install the settings.ini file to set our themes
+    + Enable parallel builds
+    + Ubuntu specific patches:
+      - 073_treeview_almost_fixed.patch
+      - 074_eventbox_scroll_mask.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - ubuntu_fileselector_behaviour.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+    + Install a gsettings override to start filechoosers in the cwd
+    + Enable Mir backend
+  * debian/control.in:
+    - Drop unnecessary version number from dependency on adwaita-icon-theme
+      (LP: #1610005)
+  * debian/patches/0001-Improve-external-drives-detection.patch:
+    - Include path from 3.20.7 dropped in 3.20.8 because yakkety does have
+      glib 2.49.1
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Thu, 04 Aug 2016 18:38:47 -0400
+
+gtk+3.0 (3.20.7-1) unstable; urgency=medium
+
+  [ Laurent Bigonville ]
+  * debian/control.in: Add hicolor-icon-theme as a hard dependency, the
+    package is small and only provides the directory structure of the theme.
+  * debian/control.in: Move adwaita-icon-theme dependency to the main package.
+
+  [ Emilio Pozuelo Monfort ]
+  * New upstream release.
+  * debian/patches/0001-Revert-Improve-external-drives-detection.patch:
+    + Revert upstream change that requires unstable glib 2.49.1.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Thu, 04 Aug 2016 19:07:21 +0200
+
+gtk+3.0 (3.20.6-2) unstable; urgency=medium
+
+  * Team upload
+
+  [ Laurent Bigonville ]
+  * Drop patches/015_default-fallback-icon-theme.patch: The default icon theme
+    is already defined as Adwaita, not need to also define the fallback theme.
+
+  [ Simon McVittie ]
+  * d/rules: reset XDG_CONFIG_HOME, XDG_CACHE_HOME, XDG_DATA_HOME so that
+    they are based on the temporary HOME
+  * Backport patch from upstream to mark tiled Mutter/Shell windows
+    as GDK_WINDOW_STATE_TILED under Wayland (with mutter >= 3.20.2-2)
+  * Add my patch from upstream bug 755947 to disable character-cell-based
+    size contraints for TILED windows, so that gnome-terminal can snap to
+    half the screen under Wayland
+
+ -- Simon McVittie <smcv@debian.org>  Sat, 25 Jun 2016 00:19:51 +0100
+
 gtk+3.0 (3.20.6-1ubuntu1) yakkety; urgency=medium
 
   * Merge with Debian (LP: #1576576). Remaining changes:

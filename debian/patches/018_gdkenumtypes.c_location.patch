@@ -18,11 +18,11 @@ Bug-Ubuntu: https://launchpad.net/bugs/769256
  gdk/Makefile.am |   17 +++++++----------
  1 files changed, 7 insertions(+), 10 deletions(-)
 
-Index: gtk+3.0-3.14.3/gdk/Makefile.am
+Index: gtk+-3.20.3/gdk/Makefile.am
 ===================================================================
---- gtk+3.0-3.14.3.orig/gdk/Makefile.am
-+++ gtk+3.0-3.14.3/gdk/Makefile.am
-@@ -206,8 +206,8 @@ if HAVE_INTROSPECTION
+--- gtk+-3.20.3.orig/gdk/Makefile.am	2016-04-16 20:12:22.574432906 +0200
++++ gtk+-3.20.3/gdk/Makefile.am	2016-04-16 20:12:22.570432846 +0200
+@@ -222,8 +222,8 @@
  introspection_files = 		\
  	$(filter-out gdkkeysyms-compat.h, $(gdk_h_sources))	\
  	$(gdk_c_sources)	\
@@ -33,7 +33,7 @@ Index: gtk+3.0-3.14.3/gdk/Makefile.am
  
  Gdk-3.0.gir: libgdk-3.la Makefile
  Gdk_3_0_gir_SCANNERFLAGS = 	\
-@@ -374,7 +374,7 @@ endif
+@@ -388,7 +388,7 @@
  
  lib_LTLIBRARIES = libgdk-3.la
  
@@ -42,21 +42,21 @@ Index: gtk+3.0-3.14.3/gdk/Makefile.am
  EXTRA_DIST += \
  	$(gdk_built_sources)	\
  	fallback-c89.c
-@@ -388,18 +388,15 @@ BUILT_SOURCES = \
+@@ -402,18 +402,15 @@
  	$(gdk_built_sources)			\
  	gdkconfig.h
  
 -gdkenumtypes.h: stamp-gdkenumtypes.h
 -	@true
 -stamp-gdkenumtypes.h: $(gdk_h_sources) gdkenumtypes.h.template
-+gdkenumtypes.h: $(gdk_h_sources) $(srcdir)/gdkenumtypes.h.template
++gdkenumtypes.h: $(gdk_public_h_sources) $(srcdir)/gdkenumtypes.h.template
  	$(AM_V_GEN) ( cd $(srcdir) && $(GLIB_MKENUMS) --template gdkenumtypes.h.template \
  		$(gdk_h_sources) ) >> xgen-geth \
 -	&& (cmp -s xgen-geth gdkenumtypes.h || cp xgen-geth gdkenumtypes.h ) \
 -	&& rm -f xgen-geth \
 -	&& echo timestamp > $(@F)
 +	&& (cmp -s xgen-geth gdkenumtypes.h || cp xgen-geth $(srcdir)/gdkenumtypes.h ) \
-+	&& rm -f xgen-geth
++	&& rm -f xgen-geth 
  gdkenumtypes.c: $(gdk_h_sources) gdkenumtypes.c.template
  	$(AM_V_GEN) ( cd $(srcdir) && $(GLIB_MKENUMS) --template gdkenumtypes.c.template \
  		$(gdk_h_sources) ) > xgen-getc \
