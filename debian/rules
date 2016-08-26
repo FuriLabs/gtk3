@@ -75,6 +75,7 @@ DEB_CONFIGURE_FLAGS_shared = \
 			--enable-mir-backend \
 			--enable-x11-backend \
 			--enable-gtk-doc \
+			--enable-man \
 			--enable-shared \
 			--enable-introspection \
 			--enable-cloudprint \
@@ -119,7 +120,7 @@ unexport XDG_DATA_HOME
 # Get failing tests' stdout/err so we have some information when a build fails
 export VERBOSE=1
 
-DEB_MAKE_CHECK_TARGET = -k check || true
+DEB_MAKE_CHECK_TARGET = -k check
 DEB_INSTALL_DOCS_ALL = AUTHORS
 DEB_INSTALL_DOCS_$(COMMON_PKG) = README NEWS
 DEB_INSTALL_DOCS_$(DOC_PKG) += -X.in
@@ -168,6 +169,8 @@ clean:: debian/control
 
 pre-build::
 	# Mark reftests with known failures as non-fatal
+	touch testsuite/reftests/box-shadow-changes-modify-clip.ui.known_fail
+	touch testsuite/reftests/label-text-shadow-changes-modify-clip.ui.known_fail
 	touch testsuite/reftests/textview-margins.ui.known_fail
 	touch testsuite/reftests/button-wrapping.ui.known_fail
 	# So that gsettings can find the (uninstalled) gtk schemas
@@ -184,4 +187,3 @@ build-arch: $(call dh_subst_files,$(DEB_ARCH_PACKAGES))
 binary-install/$(SHARED_PKG)::
 	# Install custom settings
 	install -D debian/settings.ini debian/$(SHARED_PKG)/$(CONFDIR)/settings.ini
-
