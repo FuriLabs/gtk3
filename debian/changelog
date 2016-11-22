@@ -1,24 +1,5 @@
-gtk+3.0 (3.22.2-0ubuntu1) zesty; urgency=medium
+gtk+3.0 (3.22.4-1ubuntu1) UNRELEASED; urgency=medium
 
-  * New upstream release
-
- -- Jeremy Bicha <jbicha@ubuntu.com>  Mon, 24 Oct 2016 12:41:43 -0400
-
-gtk+3.0 (3.22.1-1ubuntu3) zesty; urgency=medium
-
-  * Add missing comma to fix build failure
-
- -- Jeremy Bicha <jbicha@ubuntu.com>  Mon, 24 Oct 2016 11:01:33 -0400
-
-gtk+3.0 (3.22.1-1ubuntu2) zesty; urgency=medium
-
-  * Add Mir dependencies to -dev package, accidentally dropped in last merge
-
- -- Jeremy Bicha <jbicha@ubuntu.com>  Mon, 24 Oct 2016 10:34:37 -0400
-
-gtk+3.0 (3.22.1-1ubuntu1) zesty; urgency=medium
-
-  [ Jeremy Bicha ]
   * Merge with Debian. Remaining changes:
     + Install the settings.ini file to set our themes
     + Install a gsettings override to start filechoosers in the cwd
@@ -44,18 +25,39 @@ gtk+3.0 (3.22.1-1ubuntu1) zesty; urgency=medium
       - ubuntu_fileselector_behaviour.patch
       - unity-border-radius.patch
       - unity-headerbar-maximized-mode.patch
-  * Drop patches applied in new release:
-    - 0001-Update-the-GDK-Mir-backend-to-fix-a-few-problems.patch
-    - 0001-Improve-external-drives-detection.patch
-    - 0002-Fix-other-locations-with-glib-249.patch
-    - 0003-use-null-for-generic-marshallers.patch
+  * debian/rules: Use dh_strip --dbgsym-migration for proper upgrades
 
-  [ Rico Tzschichholz ]
-  * Refresh patches:
-    - restore_filechooser_typeaheadfind
-    - message-dialog-restore-traditional-look-on-unity.patch 
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Tue, 22 Nov 2016 06:33:44 -0400
 
- -- Jeremy Bicha <jbicha@ubuntu.com>  Mon, 24 Oct 2016 08:33:44 -0400
+gtk+3.0 (3.22.4-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Drop d/p/cssshadowvalue-scale-the-blur-surface-by-the-same-fa.patch
+    - now included in upstream release.
+  * Update debian/libgtk-3-0.symbols with one addition.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Sun, 20 Nov 2016 19:22:12 +0100
+
+gtk+3.0 (3.22.3-2) unstable; urgency=medium
+
+  * d/p/cssshadowvalue-scale-the-blur-surface-by-the-same-fa.patch
+    - Added. Improve the rendering of shadow around GTK windows, this turns out
+      to be a big performance improvement for HiDPI on wayland (From upstream
+      git, bgo#772075)
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Thu, 10 Nov 2016 22:58:59 +0100
+
+gtk+3.0 (3.22.3-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 08 Nov 2016 17:32:27 +0100
+
+gtk+3.0 (3.22.2-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 25 Oct 2016 00:10:32 +0200
 
 gtk+3.0 (3.22.1-1) unstable; urgency=medium
 
