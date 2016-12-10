@@ -1,6 +1,6 @@
-gtk+3.0 (3.22.4-1ubuntu1) zesty; urgency=medium
+gtk+3.0 (3.22.5-1ubuntu1) UNRELEASED; urgency=medium
 
-  * Merge with Debian. Remaining changes:
+  * Merge with Debian (LP: #1647174). Remaining changes:
     + Install the settings.ini file to set our themes
     + Install a gsettings override to start filechoosers in the cwd
     + Enable Mir backend
@@ -25,9 +25,19 @@ gtk+3.0 (3.22.4-1ubuntu1) zesty; urgency=medium
       - ubuntu_fileselector_behaviour.patch
       - unity-border-radius.patch
       - unity-headerbar-maximized-mode.patch
-  * debian/rules: Use dh_strip --dbgsym-migration for proper upgrades
+  * Drop 'Use dh_strip --dbgsym-migration for proper upgrades'
+    added in 3.22.4-1ubuntu1 since there is no file conflict here.
+    Anyone with obsolete -dbg packages installed will need to manually
+    remove the old -dbg packages, enable the ddebs repository, and
+    install the appropriate -dbgsym packages instead.
 
- -- Jeremy Bicha <jbicha@ubuntu.com>  Tue, 22 Nov 2016 16:18:55 -0500
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Sat, 10 Dec 2016 12:25:48 -0500
+
+gtk+3.0 (3.22.5-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Michael Biebl <biebl@debian.org>  Sat, 10 Dec 2016 17:00:03 +0100
 
 gtk+3.0 (3.22.4-1) unstable; urgency=medium
 
