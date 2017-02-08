@@ -1,0 +1,76 @@
+From 5d7db3246e503016462fa28d34b1b3eafe4754d0 Mon Sep 17 00:00:00 2001
+From: William Hua <william.hua@canonical.com>
+Date: Thu, 12 Jan 2017 17:16:27 -0500
+Subject: [PATCH 32/38] mir: use modal window hint
+
+---
+ gdk/mir/gdkmirwindowimpl.c | 25 +++++++++++++++++++++++--
+ 1 file changed, 23 insertions(+), 2 deletions(-)
+
+diff --git a/gdk/mir/gdkmirwindowimpl.c b/gdk/mir/gdkmirwindowimpl.c
+index 8a15816..1f48dfb 100644
+--- a/gdk/mir/gdkmirwindowimpl.c
++++ b/gdk/mir/gdkmirwindowimpl.c
+@@ -88,6 +88,7 @@ struct _GdkMirWindowImpl
+   /* Desired surface attributes */
+   GdkWindowTypeHint type_hint;
+   MirSurfaceState surface_state;
++  gboolean modal;
+ 
+   /* Pattern for background */
+   cairo_pattern_t *background;
+@@ -305,6 +306,7 @@ create_window_type_spec (GdkDisplay *display,
+                          gint y,
+                          gint width,
+                          gint height,
++                         gboolean modal,
+                          GdkWindowTypeHint type,
+                          const MirRectangle *rect,
+                          MirEdgeAttachment edge,
+@@ -358,6 +360,17 @@ create_window_type_spec (GdkDisplay *display,
+   switch (type)
+     {
+       case GDK_WINDOW_TYPE_HINT_DIALOG:
++        if (modal)
++          return mir_connection_create_spec_for_modal_dialog (connection,
++                                                              width,
++                                                              height,
++                                                              format,
++                                                              parent_surface);
++        else
++          return mir_connection_create_spec_for_dialog (connection,
++                                                        width,
++                                                        height,
++                                                        format);
+       case GDK_WINDOW_TYPE_HINT_DOCK:
+         return mir_connection_create_spec_for_dialog (connection,
+                                                       width,
+@@ -430,6 +443,7 @@ create_spec (GdkWindow *window, GdkMirWindowImpl *impl)
+                                   impl->transient_for,
+                                   impl->transient_x, impl->transient_y,
+                                   window->width, window->height,
++                                  impl->modal,
+                                   impl->type_hint,
+                                   impl->has_rect ? &impl->rect : NULL,
+                                   impl->has_rect ? impl->edge : mir_edge_attachment_any,
+@@ -1133,8 +1147,15 @@ void
+ gdk_mir_window_impl_set_modal_hint (GdkWindow *window,
+                                     gboolean   modal)
+ {
+-  //g_printerr ("gdk_mir_window_impl_set_modal_hint window=%p\n", window);
+-  /* Mir doesn't support modal windows */
++  GdkMirWindowImpl *impl = GDK_MIR_WINDOW_IMPL (window->impl);
++
++  if (modal != impl->modal)
++    {
++      impl->modal = modal;
++
++      if (impl->surface && !impl->pending_spec_update)
++        update_surface_spec (window);
++    }
+ }
+ 
+ static void
+-- 
+2.10.2
+
