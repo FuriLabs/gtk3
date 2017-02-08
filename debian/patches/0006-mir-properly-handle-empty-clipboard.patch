@@ -1,0 +1,37 @@
+From 248ef2d6a0f97cbb71d10c0bb37a3183f13ea19f Mon Sep 17 00:00:00 2001
+From: William Hua <william.hua@canonical.com>
+Date: Mon, 9 Jan 2017 12:04:48 -0500
+Subject: [PATCH 06/38] mir: properly handle empty clipboard
+
+https://bugzilla.gnome.org/show_bug.cgi?id=775732
+---
+ gdk/mir/gdkmirdisplay.c | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
+
+diff --git a/gdk/mir/gdkmirdisplay.c b/gdk/mir/gdkmirdisplay.c
+index 21967ac..62f36ee 100644
+--- a/gdk/mir/gdkmirdisplay.c
++++ b/gdk/mir/gdkmirdisplay.c
+@@ -703,10 +703,16 @@ gdk_mir_display_real_convert_selection (GdkDisplay *display,
+ 
+   paste_data = g_variant_get_fixed_array (mir_display->paste_data, &paste_size, sizeof (guchar));
+   paste_header = (const gint *) paste_data;
+-  paste_formats = g_ptr_array_new_full (paste_header[0], g_free);
+ 
+-  for (i = 0; i < paste_header[0]; i++)
+-    g_ptr_array_add (paste_formats, g_strndup (paste_data + paste_header[1 + 4 * i], paste_header[2 + 4 * i]));
++  if (paste_data)
++    {
++      paste_formats = g_ptr_array_new_full (paste_header[0], g_free);
++
++      for (i = 0; i < paste_header[0]; i++)
++        g_ptr_array_add (paste_formats, g_strndup (paste_data + paste_header[1 + 4 * i], paste_header[2 + 4 * i]));
++    }
++  else
++    paste_formats = g_ptr_array_new_with_free_func (g_free);
+ 
+   if (target == gdk_atom_intern_static_string ("TARGETS"))
+     {
+-- 
+2.10.2
+
