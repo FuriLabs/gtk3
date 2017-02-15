@@ -1,3 +1,33 @@
+gtk+3.0 (3.22.8-1ubuntu1) UNRELEASED; urgency=medium
+
+  * New upstream release
+  * Drop the mir patches that have been applied in new release
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Wed, 15 Feb 2017 08:25:08 -0500
+
+gtk+3.0 (3.22.8-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Stop patching gtk-doc.make and instead run gtkdocize via the upstream
+    provided autogen.sh on autoreconf. The gtk-doc-tools version in Debian has
+    been fixed to properly handle the installation of HTML images for
+    out-of-tree builds.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 15 Feb 2017 12:17:29 +0100
+
+gtk+3.0 (3.22.7-2) unstable; urgency=medium
+
+  * Team upload
+  * d/p/gdk-x11-Check-if-we-have-access-to-GL-before-using-G.patch:
+    add proposed patch from upstream Bugzilla to let GDK X11
+    initialization complete successfully when libGL.so.1 is not
+    available (Closes: #847366)
+  * Override Lintian error source-is-missing for
+    debian/missing-sources/zlib.js-0.1.6/deps.js. It is a generated
+    file, but the script to generate it is also present.
+
+ -- Simon McVittie <smcv@debian.org>  Sat, 21 Jan 2017 15:38:15 +0000
+
 gtk+3.0 (3.22.7-1ubuntu4) zesty; urgency=medium
 
   * Have libgtk-3-dev depend on libcontent-hub-glib-dev,
