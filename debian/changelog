@@ -1,9 +1,41 @@
-gtk+3.0 (3.22.9-2ubuntu1) UNRELEASED; urgency=medium
+gtk+3.0 (3.22.9-3ubuntu1) UNRELEASED; urgency=medium
 
-  * New upstream release
+  * Merge with Debian. Remaining changes:
+    + Install the settings.ini file to set our themes
+    + Install a gsettings override to start filechoosers in the cwd
+    + Enable Mir backend
+    + debian/control.in:
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + debian/rules: Mark additional known test failures:
+      - box-shadow-changes-modify-clip.ui
+      - label-text-shadow-changes-modify-clip.ui
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - 074_eventbox_scroll_mask.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - ubuntu_fileselector_behaviour.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+      - gtksocket-unscale-before-sending-configurenotify.patch
   * Drop the mir patches that have been applied in new release
 
  -- Jeremy Bicha <jbicha@ubuntu.com>  Wed, 01 Mar 2017 14:25:08 -0500
+
+gtk+3.0 (3.22.9-3) unstable; urgency=medium
+
+  * Revert move of .flat from frame > border to frame as it broke existing
+    themes which relied on that behaviour.
+
+ -- Michael Biebl <biebl@debian.org>  Sun, 05 Mar 2017 21:40:15 +0100
 
 gtk+3.0 (3.22.9-2) unstable; urgency=medium
 
