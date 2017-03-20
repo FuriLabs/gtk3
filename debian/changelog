@@ -1,4 +1,4 @@
-gtk+3.0 (3.22.9-4ubuntu1) UNRELEASED; urgency=medium
+gtk+3.0 (3.22.11-0ubuntu1) UNRELEASED; urgency=medium
 
   [ Jeremy Bicha ]
   * Merge with Debian. Remaining changes:
@@ -33,8 +33,12 @@ gtk+3.0 (3.22.9-4ubuntu1) UNRELEASED; urgency=medium
   * Turn off the mir backend on s390x. This is a *temporary* *hack* that will
     be *dropped before 17.04* once the dependency in question
     (libcontent-hub-glib-dev) is fixed to be installable on s390x.
+  * New upstream release 3.22.11.
+  * Drop patches applied in this release (or .10):
+    - wayland-make-sure-to-clear-up-the-number-of-keys.patch
+    - Revert-move-of-.flat-from-frame-border-to-frame.patch
 
- -- Jeremy Bicha <jbicha@ubuntu.com>  Wed, 15 Mar 2017 14:25:08 -0500
+ -- Iain Lane <iain.lane@canonical.com>  Mon, 20 Mar 2017 15:16:58 +0000
 
 gtk+3.0 (3.22.9-4) unstable; urgency=medium
 
