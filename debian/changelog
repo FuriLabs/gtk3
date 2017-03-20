@@ -1,5 +1,6 @@
 gtk+3.0 (3.22.9-4ubuntu1) UNRELEASED; urgency=medium
 
+  [ Jeremy Bicha ]
   * Merge with Debian. Remaining changes:
     + Install the settings.ini file to set our themes
     + Install a gsettings override to start filechoosers in the cwd
@@ -27,6 +28,11 @@ gtk+3.0 (3.22.9-4ubuntu1) UNRELEASED; urgency=medium
       - unity-headerbar-maximized-mode.patch
       - gtksocket-unscale-before-sending-configurenotify.patch
   * Drop the mir patches that have been applied in new release
+
+  [ Iain Lane ]
+  * Turn off the mir backend on s390x. This is a *temporary* *hack* that will
+    be *dropped before 17.04* once the dependency in question
+    (libcontent-hub-glib-dev) is fixed to be installable on s390x.
 
  -- Jeremy Bicha <jbicha@ubuntu.com>  Wed, 15 Mar 2017 14:25:08 -0500
 
