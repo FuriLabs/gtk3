@@ -1,14 +1,17 @@
-From 01b73072961f8c62255cf2b66dba4e55d36fd646 Mon Sep 17 00:00:00 2001
+From ec70eb8ae0c2e941d0677803f4b1bdf9f7273be6 Mon Sep 17 00:00:00 2001
 From: William Hua <william.hua@canonical.com>
 Date: Fri, 31 Mar 2017 15:14:16 -0400
 Subject: [PATCH 24/32] mir: re-write settings implementation
 
+This is a squash of commits
+01b73072961f8c62255cf2b66dba4e55d36fd646 and
+6e711beb0bdc2a30bfd948e5a6a077cd6fe82493.
 ---
- gdk/mir/gdkmirscreen.c | 764 +++++++++++++++++++++++++++++++++++++------------
- 1 file changed, 577 insertions(+), 187 deletions(-)
+ gdk/mir/gdkmirscreen.c | 679 +++++++++++++++++++++++++++++++++++--------------
+ 1 file changed, 492 insertions(+), 187 deletions(-)
 
 diff --git a/gdk/mir/gdkmirscreen.c b/gdk/mir/gdkmirscreen.c
-index c1a189908e..e4ead2f9b8 100644
+index c1a189908e..0ddcb8787a 100644
 --- a/gdk/mir/gdkmirscreen.c
 +++ b/gdk/mir/gdkmirscreen.c
 @@ -48,9 +48,15 @@ struct GdkMirScreen
@@ -39,7 +42,7 @@ index c1a189908e..e4ead2f9b8 100644
    G_OBJECT_CLASS (gdk_mir_screen_parent_class)->dispose (object);
  }
  
-@@ -459,262 +470,638 @@ gdk_mir_screen_broadcast_client_message (GdkScreen *screen,
+@@ -459,260 +470,551 @@ gdk_mir_screen_broadcast_client_message (GdkScreen *screen,
    // FIXME
  }
  
@@ -496,15 +499,10 @@ index c1a189908e..e4ead2f9b8 100644
      {
 -      g_value_set_boolean (value, FALSE);
 -      return TRUE;
--    }
 +      for (i = 0; SETTINGS_MAP[i].name; i++)
 +        if (!g_strcmp0 (name, SETTINGS_MAP[i].name))
 +          break;
- 
--  if (g_str_equal (name, "gtk-error-bell"))
--    {
--      g_value_set_boolean (value, FALSE);
--      return TRUE;
++
 +      if (!SETTINGS_MAP[i].name)
 +        return;
 +
@@ -517,7 +515,7 @@ index c1a189908e..e4ead2f9b8 100644
 +        }
      }
  
--  if (g_str_equal (name, "gtk-label-select-on-focus"))
+-  if (g_str_equal (name, "gtk-error-bell"))
 +  if (!g_strcmp0 (name, "gtk-xft-antialias"))
      {
 -      g_value_set_boolean (value, FALSE);
@@ -527,20 +525,20 @@ index c1a189908e..e4ead2f9b8 100644
 +      variant = g_variant_ref_sink (g_variant_new_int32 (gtk_xft_antialias ? 1 : 0));
      }
 -
--  if (g_str_equal (name, "gtk-decoration-layout"))
+-  if (g_str_equal (name, "gtk-label-select-on-focus"))
 +  else if (!g_strcmp0 (name, "gtk-xft-hinting"))
      {
--      g_value_set_string (value, "menu:minimize,maximize,close");
+-      g_value_set_boolean (value, FALSE);
 -      return TRUE;
 +      gtk_xft_hinting = g_strcmp0 (g_variant_get_string (variant, NULL), "none");
 +      g_variant_unref (variant);
 +      variant = g_variant_ref_sink (g_variant_new_int32 (gtk_xft_hinting ? 1 : 0));
      }
 -
--  if (g_str_equal (name, "gtk-dnd-drag-threshold"))
+-  if (g_str_equal (name, "gtk-decoration-layout"))
 +  else if (!g_strcmp0 (name, "gtk-xft-hintstyle"))
      {
--      g_value_set_int (value, 8);
+-      g_value_set_string (value, "menu:minimize,maximize,close");
 -      return TRUE;
 +      if (!g_strcmp0 (g_variant_get_string (variant, NULL), "none"))
 +        {
@@ -584,37 +582,37 @@ index c1a189908e..e4ead2f9b8 100644
 +          variant = g_variant_ref_sink (g_variant_new_string ("rgb"));
 +        }
  
--  if (g_str_equal (name, "gtk-dialogs-use-header"))
+-  if (g_str_equal (name, "gtk-dnd-drag-threshold"))
 +      g_variant_unref (antialiasing_variant);
 +    }
 +  else if (!g_strcmp0 (name, "gtk-xft-dpi"))
      {
--      g_value_set_boolean (value, FALSE);
+-      g_value_set_int (value, 8);
 -      return TRUE;
 +      text_scaling_factor = g_variant_get_double (variant);
 +      g_variant_unref (variant);
 +      variant = g_variant_ref_sink (g_variant_new_int32 (1024 * get_scaling_factor (screen) * text_scaling_factor + 0.5));
      }
 -
--  if (g_str_equal (name, "gtk-long-press-time"))
+-  if (g_str_equal (name, "gtk-dialogs-use-header"))
 +  else if (!g_strcmp0 (name, "gtk-cursor-theme-size"))
      {
--      g_value_set_uint (value, 500);
+-      g_value_set_boolean (value, FALSE);
 -      return TRUE;
 +      cursor_size = g_variant_get_int32 (variant);
 +      g_variant_unref (variant);
 +      variant = g_variant_ref_sink (g_variant_new_int32 (get_scaling_factor (screen) * cursor_size));
      }
 -
--  if (g_str_equal (name, "gtk-primary-button-warps-slider"))
+-  if (g_str_equal (name, "gtk-long-press-time"))
 +  else if (!g_strcmp0 (name, "gtk-enable-animations"))
      {
--      g_value_set_boolean (value, TRUE);
+-      g_value_set_uint (value, 500);
 -      return TRUE;
 +      /* TODO: disable under vnc/vino/llvmpipe */
      }
  
--  if (g_str_equal (name, "gtk-recent-files-max-age"))
+-  if (g_str_equal (name, "gtk-primary-button-warps-slider"))
 +  change_setting (screen, name, variant);
 +  g_variant_unref (variant);
 +}
@@ -635,7 +633,7 @@ index c1a189908e..e4ead2f9b8 100644
 +
 +  if (!g_strcmp0 (schema_id, "org.gnome.settings-daemon.plugins.xsettings"))
      {
--      g_value_set_int (value, 30);
+-      g_value_set_boolean (value, TRUE);
 -      return TRUE;
 +      if (!g_strcmp0 (key, "enabled-gtk-modules"))
 +        update_setting (screen, "gtk-modules");
@@ -645,10 +643,10 @@ index c1a189908e..e4ead2f9b8 100644
 +        update_setting (screen, "rgba-order");
      }
 -
--  if (g_str_equal (name, "gtk-titlebar-double-click"))
+-  if (g_str_equal (name, "gtk-recent-files-max-age"))
 +  else if (!g_strcmp0 (schema_id, "org.gnome.desktop.interface"))
      {
--      g_value_set_string (value, "toggle-maximize");
+-      g_value_set_int (value, 30);
 -      return TRUE;
 +      if (!g_strcmp0 (key, "scaling-factor"))
 +        {
@@ -657,183 +655,98 @@ index c1a189908e..e4ead2f9b8 100644
 +        }
      }
  
--  g_warning ("unknown property %s", name);
+-  if (g_str_equal (name, "gtk-titlebar-double-click"))
 +  g_free (schema_id);
 +}
 +
-+static gboolean
-+is_known_setting (const gchar *name)
++static const gchar * const KNOWN_SETTINGS[] =
 +{
-+  if (!g_strcmp0 (name, "gtk-double-click-time"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-double-click-distance"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-cursor-blink"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-cursor-blink-time"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-cursor-blink-timeout"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-split-cursor"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-theme-name"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-icon-theme-name"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-fallback-icon-theme"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-key-theme-name"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-menu-bar-accel"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-dnd-drag-threshold"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-font-name"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-icon-sizes"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-modules"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-xft-antialias"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-xft-hinting"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-xft-hintstyle"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-xft-rgba"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-xft-dpi"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-cursor-theme-name"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-cursor-theme-size"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-alternative-button-order"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-alternative-sort-arrows"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-show-input-method-menu"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-show-unicode-menu"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-timeout-initial"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-timeout-repeat"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-timeout-expand"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-color-scheme"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-enable-animations"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-touchscreen-mode"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-tooltip-timeout"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-tooltip-browse-timeout"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-tooltip-browse-mode-timeout"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-keynav-cursor-only"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-keynav-wrap-around"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-error-bell"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "color-hash"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-file-chooser-backend"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-print-backends"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-print-preview-command"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-enable-mnemonics"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-enable-accels"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-recent-files-limit"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-im-module"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-recent-files-max-age"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-fontconfig-timestamp"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-sound-theme-name"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-enable-input-feedback-sounds"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-enable-event-sounds"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-enable-tooltips"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-toolbar-style"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-toolbar-icon-size"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-auto-mnemonics"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-primary-button-warps-slider"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-visible-focus"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-application-prefer-dark-theme"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-button-images"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-entry-select-on-focus"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-entry-password-hint-timeout"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-menu-images"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-menu-bar-popup-delay"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-scrolled-window-placement"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-can-change-accels"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-menu-popup-delay"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-menu-popdown-delay"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-label-select-on-focus"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-color-palette"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-im-preedit-style"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-im-status-style"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-shell-shows-app-menu"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-shell-shows-menubar"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-shell-shows-desktop"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-decoration-layout"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-titlebar-double-click"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-titlebar-middle-click"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-titlebar-right-click"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-dialogs-use-header"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-enable-primary-paste"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-recent-files-enabled"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-long-press-time"))
-+    return TRUE;
-+  if (!g_strcmp0 (name, "gtk-keynav-use-caret"))
-+    return TRUE;
- 
-   return FALSE;
- }
- 
++  "gtk-double-click-time",
++  "gtk-double-click-distance",
++  "gtk-cursor-blink",
++  "gtk-cursor-blink-time",
++  "gtk-cursor-blink-timeout",
++  "gtk-split-cursor",
++  "gtk-theme-name",
++  "gtk-icon-theme-name",
++  "gtk-fallback-icon-theme",
++  "gtk-key-theme-name",
++  "gtk-menu-bar-accel",
++  "gtk-dnd-drag-threshold",
++  "gtk-font-name",
++  "gtk-icon-sizes",
++  "gtk-modules",
++  "gtk-xft-antialias",
++  "gtk-xft-hinting",
++  "gtk-xft-hintstyle",
++  "gtk-xft-rgba",
++  "gtk-xft-dpi",
++  "gtk-cursor-theme-name",
++  "gtk-cursor-theme-size",
++  "gtk-alternative-button-order",
++  "gtk-alternative-sort-arrows",
++  "gtk-show-input-method-menu",
++  "gtk-show-unicode-menu",
++  "gtk-timeout-initial",
++  "gtk-timeout-repeat",
++  "gtk-timeout-expand",
++  "gtk-color-scheme",
++  "gtk-enable-animations",
++  "gtk-touchscreen-mode",
++  "gtk-tooltip-timeout",
++  "gtk-tooltip-browse-timeout",
++  "gtk-tooltip-browse-mode-timeout",
++  "gtk-keynav-cursor-only",
++  "gtk-keynav-wrap-around",
++  "gtk-error-bell",
++  "color-hash",
++  "gtk-file-chooser-backend",
++  "gtk-print-backends",
++  "gtk-print-preview-command",
++  "gtk-enable-mnemonics",
++  "gtk-enable-accels",
++  "gtk-recent-files-limit",
++  "gtk-im-module",
++  "gtk-recent-files-max-age",
++  "gtk-fontconfig-timestamp",
++  "gtk-sound-theme-name",
++  "gtk-enable-input-feedback-sounds",
++  "gtk-enable-event-sounds",
++  "gtk-enable-tooltips",
++  "gtk-toolbar-style",
++  "gtk-toolbar-icon-size",
++  "gtk-auto-mnemonics",
++  "gtk-primary-button-warps-slider",
++  "gtk-visible-focus",
++  "gtk-application-prefer-dark-theme",
++  "gtk-button-images",
++  "gtk-entry-select-on-focus",
++  "gtk-entry-password-hint-timeout",
++  "gtk-menu-images",
++  "gtk-menu-bar-popup-delay",
++  "gtk-scrolled-window-placement",
++  "gtk-can-change-accels",
++  "gtk-menu-popup-delay",
++  "gtk-menu-popdown-delay",
++  "gtk-label-select-on-focus",
++  "gtk-color-palette",
++  "gtk-im-preedit-style",
++  "gtk-im-status-style",
++  "gtk-shell-shows-app-menu",
++  "gtk-shell-shows-menubar",
++  "gtk-shell-shows-desktop",
++  "gtk-decoration-layout",
++  "gtk-titlebar-double-click",
++  "gtk-titlebar-middle-click",
++  "gtk-titlebar-right-click",
++  "gtk-dialogs-use-header",
++  "gtk-enable-primary-paste",
++  "gtk-recent-files-enabled",
++  "gtk-long-press-time",
++  "gtk-keynav-use-caret",
++  NULL
++};
++
 +static gboolean
 +gdk_mir_screen_get_setting (GdkScreen   *screen,
 +                            const gchar *name,
@@ -851,21 +764,24 @@ index c1a189908e..e4ead2f9b8 100644
 +  variant = g_hash_table_lookup (mir_screen->current_settings, name);
 +
 +  if (!variant)
-+    {
-+      if (!is_known_setting (name))
+     {
+-      g_value_set_string (value, "toggle-maximize");
+-      return TRUE;
+-    }
++      if (!g_strv_contains (KNOWN_SETTINGS, name))
 +        g_warning ("unknown setting: %s", name);
-+
+ 
+-  g_warning ("unknown property %s", name);
 +      return FALSE;
 +    }
-+
+ 
+-  return FALSE;
 +  g_dbus_gvariant_to_gvalue (variant, value);
 +  return TRUE;
-+}
-+
+ }
+ 
  static gint
- gdk_mir_screen_visual_get_best_depth (GdkScreen *screen)
- {
-@@ -790,6 +1177,9 @@ gdk_mir_screen_init (GdkMirScreen *screen)
+@@ -790,6 +1092,9 @@ gdk_mir_screen_init (GdkMirScreen *screen)
    screen->visual->screen = GDK_SCREEN (screen);
    screen->visual->type = VISUAL_TYPE;
    screen->visual->depth = VISUAL_DEPTH;
