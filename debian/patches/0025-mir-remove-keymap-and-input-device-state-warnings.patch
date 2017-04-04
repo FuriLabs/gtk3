@@ -1,0 +1,30 @@
+From ecf9c06adaaa6f6d8d60b87282aeb0f37fe73bde Mon Sep 17 00:00:00 2001
+From: William Hua <william.hua@canonical.com>
+Date: Fri, 31 Mar 2017 17:35:49 -0400
+Subject: [PATCH 25/32] mir: remove keymap and input device state warnings
+
+---
+ gdk/mir/gdkmireventsource.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/gdk/mir/gdkmireventsource.c b/gdk/mir/gdkmireventsource.c
+index 8b239be191..ea0cc52819 100644
+--- a/gdk/mir/gdkmireventsource.c
++++ b/gdk/mir/gdkmireventsource.c
+@@ -605,9 +605,13 @@ gdk_mir_event_source_queue_event (GdkDisplay     *display,
+     case mir_event_type_close_window:
+       handle_close_event (window);
+       break;
++    case mir_event_type_keymap:
++      break;
+     case mir_event_type_window_output:
+       handle_window_output_event (window, mir_event_get_window_output_event (event));
+       break;
++    case mir_event_type_input_device_state:
++      break;
+     case mir_event_type_window_placement:
+       handle_window_placement_event (window, mir_event_get_window_placement_event (event));
+       break;
+-- 
+2.11.0
+
