@@ -1,24 +1,5 @@
-gtk+3.0 (3.22.11-0ubuntu3) zesty; urgency=medium
+gtk+3.0 (3.22.12-1ubuntu1) UNRELEASED; urgency=medium
 
-  * debian/patches/series:
-  * debian/patches/0001-mir-always-emit-a-resize-when-creating-windows.patch:
-  * debian/patches/0024-mir-re-write-settings-implementation.patch:
-  * debian/patches/0025-mir-remove-keymap-and-input-device-state-warnings.patch:
-  * debian/patches/0026-mir-set-application-name-when-creating-connection.patch:
-    - Add upstream patches from gtk-3-22 branch
-    - Fix LP: #1670390, LP: #1666435, LP: #1618298
-
- -- William Hua <william@attente.ca>  Tue, 04 Apr 2017 14:31:11 -0400
-
-gtk+3.0 (3.22.11-0ubuntu2) zesty; urgency=medium
-
-  * Drop hack to disable Mir backend on s390x
-
- -- Jeremy Bicha <jbicha@ubuntu.com>  Thu, 23 Mar 2017 21:32:35 -0400
-
-gtk+3.0 (3.22.11-0ubuntu1) zesty; urgency=medium
-
-  [ Jeremy Bicha ]
   * Merge with Debian. Remaining changes:
     + Install the settings.ini file to set our themes
     + Install a gsettings override to start filechoosers in the cwd
@@ -47,16 +28,20 @@ gtk+3.0 (3.22.11-0ubuntu1) zesty; urgency=medium
       - gtksocket-unscale-before-sending-configurenotify.patch
   * Drop the mir patches that have been applied in new release
 
-  [ Iain Lane ]
-  * Turn off the mir backend on s390x. This is a *temporary* *hack* that will
-    be *dropped before 17.04* once the dependency in question
-    (libcontent-hub-glib-dev) is fixed to be installable on s390x.
-  * New upstream release 3.22.11.
-  * Drop patches applied in this release (or .10):
-    - wayland-make-sure-to-clear-up-the-number-of-keys.patch
-    - Revert-move-of-.flat-from-frame-border-to-frame.patch
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Sun, 30 Apr 2017 23:03:11 -0400
 
- -- Iain Lane <iain.lane@canonical.com>  Mon, 20 Mar 2017 16:25:54 +0000
+gtk+3.0 (3.22.12-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Thu, 13 Apr 2017 06:41:09 +0200
+
+gtk+3.0 (3.22.11-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Drop patches which have been merged upstream.
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 24 Mar 2017 02:27:48 +0100
 
 gtk+3.0 (3.22.9-4) unstable; urgency=medium
 
@@ -111,70 +96,6 @@ gtk+3.0 (3.22.7-2) unstable; urgency=medium
     file, but the script to generate it is also present.
 
  -- Simon McVittie <smcv@debian.org>  Sat, 21 Jan 2017 15:38:15 +0000
-
-gtk+3.0 (3.22.7-1ubuntu4) zesty; urgency=medium
-
-  * Have libgtk-3-dev depend on libcontent-hub-glib-dev,
-    thanks Ken VanDine!
-
- -- Jeremy Bicha <jbicha@ubuntu.com>  Wed, 08 Feb 2017 15:38:44 -0500
-
-gtk+3.0 (3.22.7-1ubuntu3) zesty; urgency=medium
-
-  * debian/control:
-  * debian/control.in:
-    - Build depend on libcontent-hub-glib-dev
-  * debian/patches/series:
-  * debian/patches/0001-mir-implement-window-properties.patch:
-  * debian/patches/0002-mir-track-focused-window.patch:
-  * debian/patches/0003-mir-connect-to-content-hub.patch:
-  * debian/patches/0004-mir-copy-clipboard-data-to-content-hub.patch:
-  * debian/patches/0005-mir-paste-clipboard-data-from-content-hub.patch:
-  * debian/patches/0006-mir-properly-handle-empty-clipboard.patch:
-  * debian/patches/0031-mir-fix-compile-time-warnings.patch:
-  * debian/patches/0032-mir-use-modal-window-hint.patch:
-  * debian/patches/0036-mir-use-mir_surface_spec_set_placement-for-menus.patch:
-  * debian/patches/0037-mir-handle-surface-placement-events.patch:
-    - Add upstream patches from gtk-3-22 branch
-
- -- William Hua <william.hua@canonical.com>  Wed, 08 Feb 2017 10:27:45 -0500
-
-gtk+3.0 (3.22.7-1ubuntu2) zesty; urgency=medium
-
-  * Restore gtksocket-unscale-before-sending-configurenotify.patch:
-    - Accidentally dropped in 3.22.6-1ubuntu1 (LP: #1572331)
-
- -- Jeremy Bicha <jbicha@ubuntu.com>  Mon, 23 Jan 2017 09:44:28 -0500
-
-gtk+3.0 (3.22.7-1ubuntu1) zesty; urgency=medium
-
-  * Merge with Debian. Remaining changes:
-    + Install the settings.ini file to set our themes
-    + Install a gsettings override to start filechoosers in the cwd
-    + Enable Mir backend
-    + debian/control.in:
-      - Build-depend on adwaita-icon-theme-full for icon name check test
-    + debian/rules: Mark additional known test failures:
-      - box-shadow-changes-modify-clip.ui
-      - label-text-shadow-changes-modify-clip.ui
-    + Ubuntu-specific patches:
-      - 073_treeview_almost_fixed.patch
-      - 074_eventbox_scroll_mask.patch
-      - bzg_gtkcellrenderer_grabbing_modifier.patch
-      - ubuntu_gtk_custom_menu_items.patch
-      - print-dialog-show-options-of-remote-dnssd-printers.patch
-      - uimanager-guard-against-nested-node-updates.patch
-      - x-canonical-accel.patch
-      - message-dialog-restore-traditional-look-on-unity.patch
-      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
-      - restore_filechooser_typeaheadfind
-      - 0001-calendar-always-emit-day-selected-once.patch
-      - 0001-gtkwindow-set-transparent-background-color.patch
-      - ubuntu_fileselector_behaviour.patch
-      - unity-border-radius.patch
-      - unity-headerbar-maximized-mode.patch
-
- -- Jeremy Bicha <jbicha@ubuntu.com>  Tue, 17 Jan 2017 16:03:41 -0500
 
 gtk+3.0 (3.22.7-1) unstable; urgency=medium
 
