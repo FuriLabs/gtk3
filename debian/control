@@ -3,7 +3,7 @@ Section: libs
 Priority: optional
 Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
-Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Jeremy Bicha <jbicha@ubuntu.com>, Michael Biebl <biebl@debian.org>
+Uploaders: Andreas Henriksson <andreas@fatal.se>, Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Jeremy Bicha <jbicha@ubuntu.com>, Michael Biebl <biebl@debian.org>
 Build-Depends: debhelper (>= 9.20141010),
                cdbs (>= 0.4.93),
                gnome-pkg-tools (>= 0.11),
@@ -20,7 +20,7 @@ Build-Depends: debhelper (>= 9.20141010),
                at-spi2-core <!nocheck>,
                libglib2.0-dev (>= 2.49.4),
                libgdk-pixbuf2.0-dev (>= 2.30.0),
-               libpango1.0-dev (>= 1.37.3),
+               libpango1.0-dev (>= 1.40.5),
                libatk1.0-dev (>= 2.15.1),
                libatk-bridge2.0-dev,
                libegl1-mesa-dev [linux-any],
@@ -28,7 +28,7 @@ Build-Depends: debhelper (>= 9.20141010),
                libfontconfig1-dev,
                libharfbuzz-dev (>= 0.9),
                libwayland-dev (>= 1.9.91) [linux-any],
-               wayland-protocols (>= 1.7) [linux-any],
+               wayland-protocols (>= 1.9) [linux-any],
                libxkbcommon-dev (>= 0.2.0),
                libx11-dev,
                libxext-dev,
@@ -152,7 +152,7 @@ Depends: libgtk-3-0 (= ${binary:Version}),
          libgdk-pixbuf2.0-dev (>= 2.30.0),
          libmirclient-dev (>= 0.13.3),
          libmircookie-dev (>= 0.17.0),
-         libpango1.0-dev (>= 1.37.3),
+         libpango1.0-dev (>= 1.40.5),
          libatk1.0-dev (>= 2.15.1),
          libatk-bridge2.0-dev,
          libcairo2-dev (>= 1.14.0),
@@ -170,7 +170,7 @@ Depends: libgtk-3-0 (= ${binary:Version}),
          pkg-config,
          libegl1-mesa-dev [linux-any],
          libwayland-dev (>= 1.9.91) [linux-any],
-         wayland-protocols (>= 1.7) [linux-any],
+         wayland-protocols (>= 1.9) [linux-any],
          libxkbcommon-dev
 Suggests: libgtk-3-doc
 Description: development files for the GTK+ library
