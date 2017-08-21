@@ -1,3 +1,53 @@
+gtk+3.0 (3.22.18-1ubuntu1) UNRELEASED; urgency=medium
+
+  * Merge with Debian (LP: #1710521). Remaining changes:
+    + Install a settings.ini file to set our themes
+    + Enable Mir backend
+    + debian/control.in:
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + debian/rules: Mark additional known test failures:
+      - box-shadow-changes-modify-clip.ui
+      - label-text-shadow-changes-modify-clip.ui
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - 074_eventbox_scroll_mask.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - ubuntu_fileselector_behaviour.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+      - gtksocket-unscale-before-sending-configurenotify.patch
+      - no_content_hub.patch
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Sat, 19 Aug 2017 15:39:24 -0400
+
+gtk+3.0 (3.22.18-1) unstable; urgency=medium
+
+  * Hi from Debconf
+  * New upstream release!
+    + Support entering emoji by name, using Ctrl-Shift-E (note there is a
+      whitelist for this currently - see GtkImContext docs)
+    + Wayland:
+     - Add support for the shortcut inhibitor protocol
+     - Support Wacome tablet wheel scrolling
+  * debian/control{,.in}: Bump wayland-protocols to 1.9, per upstream.
+
+ -- Iain Lane <laney@debian.org>  Thu, 10 Aug 2017 16:34:47 +0100
+
+gtk+3.0 (3.22.17-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Wed, 26 Jul 2017 18:59:22 +0200
+
 gtk+3.0 (3.22.17-0ubuntu2) artful; urgency=medium
 
   * remove debian/libgtk-3-common.gsettings-override, in the ubuntu-settings
@@ -10,6 +60,12 @@ gtk+3.0 (3.22.17-0ubuntu1) artful; urgency=medium
   * New upstream release
 
  -- Jeremy Bicha <jbicha@ubuntu.com>  Sun, 23 Jul 2017 09:02:40 -0400
+
+gtk+3.0 (3.22.16-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Thu, 22 Jun 2017 20:24:11 +0200
 
 gtk+3.0 (3.22.15-0ubuntu2) artful; urgency=medium
 
