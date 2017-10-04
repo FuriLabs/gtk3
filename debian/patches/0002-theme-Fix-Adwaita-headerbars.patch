@@ -1,0 +1,146 @@
+From 7ab6dd64de6c4bfe4172629a99c301c1adfb51eb Mon Sep 17 00:00:00 2001
+From: Georges Basile Stavracas Neto <georges.stavracas@gmail.com>
+Date: Wed, 4 Oct 2017 14:46:02 -0300
+Subject: [PATCH 2/3] theme: Fix Adwaita headerbars
+
+We were not detecting correctly the cases where we should have
+a rounded or a squared headerbar.
+---
+ gtk/theme/Adwaita/_common.scss           | 32 ++++++++++++++++++--------------
+ gtk/theme/Adwaita/gtk-contained-dark.css | 14 +++++++-------
+ gtk/theme/Adwaita/gtk-contained.css      | 14 +++++++-------
+ 3 files changed, 32 insertions(+), 28 deletions(-)
+
+diff --git a/gtk/theme/Adwaita/_common.scss b/gtk/theme/Adwaita/_common.scss
+index c4fb80c232..87a842d2ea 100644
+--- a/gtk/theme/Adwaita/_common.scss
++++ b/gtk/theme/Adwaita/_common.scss
+@@ -1590,6 +1590,9 @@ headerbar {
+   // squared corners when the window is maximized, tiled, or fullscreen
+   .tiled &,
+   .tiled-top &,
++  .tiled-right &,
++  .tiled-bottom &,
++  .tiled-left &,
+   .maximized &,
+   .fullscreen & {
+     &:backdrop, & {
+@@ -1597,14 +1600,6 @@ headerbar {
+     }
+   }
+ 
+-  .tiled-left & {
+-    border-top-left-radius: 0;
+-  }
+-
+-  .tiled-right & {
+-    border-top-right-radius: 0;
+-  }
+-
+   &.default-decoration {
+     min-height: 28px;
+     padding: 4px;
+@@ -1668,9 +1663,10 @@ headerbar {
+ headerbar { // headerbar border rounding
+ 
+   window separator:first-child + &,
+-  window stack &,
+-  &:first-child,
+-  &:last-child {
++  window &:first-child { &:backdrop, & { border-top-left-radius: 7px; }}
++  window &:last-child { &:backdrop, & { border-top-right-radius: 7px; }}
++
++  window stack & { // tackles the stacked headerbars case
+     &:first-child, &:last-child {
+       &:backdrop, & {
+         border-top-left-radius: 7px;
+@@ -1685,9 +1681,17 @@ headerbar { // headerbar border rounding
+   window.tiled-bottom &,
+   window.tiled-left &,
+   window.maximized &,
+-  window.fullscreen & {
+-    border-top-left-radius: 0;
+-    border-top-right-radius: 0;
++  window.fullscreen &,
++  window.solid-csd & {
++    &, &:backdrop {
++      &,
++      &:first-child,
++      &:last-child,
++      &:only-child {
++        border-top-left-radius: 0;
++        border-top-right-radius: 0;
++      }
++    }
+   }
+ }
+ 
+diff --git a/gtk/theme/Adwaita/gtk-contained-dark.css b/gtk/theme/Adwaita/gtk-contained-dark.css
+index 0fc08f7a88..f9a1d5df59 100644
+--- a/gtk/theme/Adwaita/gtk-contained-dark.css
++++ b/gtk/theme/Adwaita/gtk-contained-dark.css
+@@ -648,11 +648,7 @@ searchbar, .location-bar { border-width: 0 0 1px; padding: 3px; }
+ 
+ .selection-mode.titlebar:not(headerbar) .selection-menu:backdrop .arrow, .selection-mode.titlebar:not(headerbar) .selection-menu .arrow, headerbar.selection-mode .selection-menu:backdrop .arrow, headerbar.selection-mode .selection-menu .arrow { -gtk-icon-source: -gtk-icontheme("pan-down-symbolic"); color: rgba(255, 255, 255, 0.5); -gtk-icon-shadow: none; }
+ 
+-.tiled .titlebar:backdrop:not(headerbar), .tiled .titlebar:not(headerbar), .tiled-top .titlebar:backdrop:not(headerbar), .tiled-top .titlebar:not(headerbar), .maximized .titlebar:backdrop:not(headerbar), .maximized .titlebar:not(headerbar), .fullscreen .titlebar:backdrop:not(headerbar), .fullscreen .titlebar:not(headerbar), .tiled headerbar:backdrop, .tiled headerbar, .tiled-top headerbar:backdrop, .tiled-top headerbar, .maximized headerbar:backdrop, .maximized headerbar, .fullscreen headerbar:backdrop, .fullscreen headerbar { border-radius: 0; }
+-
+-.tiled-left .titlebar:not(headerbar), .tiled-left headerbar { border-top-left-radius: 0; }
+-
+-.tiled-right .titlebar:not(headerbar), .tiled-right headerbar { border-top-right-radius: 0; }
++.tiled .titlebar:backdrop:not(headerbar), .tiled .titlebar:not(headerbar), .tiled-top .titlebar:backdrop:not(headerbar), .tiled-top .titlebar:not(headerbar), .tiled-right .titlebar:backdrop:not(headerbar), .tiled-right .titlebar:not(headerbar), .tiled-bottom .titlebar:backdrop:not(headerbar), .tiled-bottom .titlebar:not(headerbar), .tiled-left .titlebar:backdrop:not(headerbar), .tiled-left .titlebar:not(headerbar), .maximized .titlebar:backdrop:not(headerbar), .maximized .titlebar:not(headerbar), .fullscreen .titlebar:backdrop:not(headerbar), .fullscreen .titlebar:not(headerbar), .tiled headerbar:backdrop, .tiled headerbar, .tiled-top headerbar:backdrop, .tiled-top headerbar, .tiled-right headerbar:backdrop, .tiled-right headerbar, .tiled-bottom headerbar:backdrop, .tiled-bottom headerbar, .tiled-left headerbar:backdrop, .tiled-left headerbar, .maximized headerbar:backdrop, .maximized headerbar, .fullscreen headerbar:backdrop, .fullscreen headerbar { border-radius: 0; }
+ 
+ .default-decoration.titlebar:not(headerbar), headerbar.default-decoration { min-height: 28px; padding: 4px; }
+ 
+@@ -668,9 +664,13 @@ headerbar switch { margin-top: 9px; margin-bottom: 9px; }
+ 
+ .background.tiled .titlebar:backdrop, .background.tiled .titlebar, .background.tiled-top .titlebar:backdrop, .background.tiled-top .titlebar, .background.tiled-right .titlebar:backdrop, .background.tiled-right .titlebar, .background.tiled-bottom .titlebar:backdrop, .background.tiled-bottom .titlebar, .background.tiled-left .titlebar:backdrop, .background.tiled-left .titlebar, .background.maximized .titlebar:backdrop, .background.maximized .titlebar, .background.solid-csd .titlebar:backdrop, .background.solid-csd .titlebar { border-top-left-radius: 0; border-top-right-radius: 0; }
+ 
+-window separator:first-child + headerbar:first-child:backdrop, window separator:first-child + headerbar:first-child, window separator:first-child + headerbar:last-child:backdrop, window separator:first-child + headerbar:last-child, window stack headerbar:first-child:backdrop, window stack headerbar:first-child, window stack headerbar:last-child:backdrop, window stack headerbar:last-child, headerbar:first-child:first-child:backdrop, headerbar:first-child:first-child, headerbar:first-child:last-child:backdrop, headerbar:first-child:last-child, headerbar:last-child:first-child:backdrop, headerbar:last-child:first-child, headerbar:last-child:last-child:backdrop, headerbar:last-child:last-child { border-top-left-radius: 7px; border-top-right-radius: 7px; }
++window separator:first-child + headerbar:backdrop, window separator:first-child + headerbar, window headerbar:first-child:backdrop, window headerbar:first-child { border-top-left-radius: 7px; }
++
++window headerbar:last-child:backdrop, window headerbar:last-child { border-top-right-radius: 7px; }
++
++window stack headerbar:first-child:backdrop, window stack headerbar:first-child, window stack headerbar:last-child:backdrop, window stack headerbar:last-child { border-top-left-radius: 7px; border-top-right-radius: 7px; }
+ 
+-window.tiled headerbar, window.tiled-top headerbar, window.tiled-right headerbar, window.tiled-bottom headerbar, window.tiled-left headerbar, window.maximized headerbar, window.fullscreen headerbar { border-top-left-radius: 0; border-top-right-radius: 0; }
++window.tiled headerbar, window.tiled headerbar:first-child, window.tiled headerbar:last-child, window.tiled headerbar:only-child, window.tiled headerbar:backdrop, window.tiled headerbar:backdrop:first-child, window.tiled headerbar:backdrop:last-child, window.tiled headerbar:backdrop:only-child, window.tiled-top headerbar, window.tiled-top headerbar:first-child, window.tiled-top headerbar:last-child, window.tiled-top headerbar:only-child, window.tiled-top headerbar:backdrop, window.tiled-top headerbar:backdrop:first-child, window.tiled-top headerbar:backdrop:last-child, window.tiled-top headerbar:backdrop:only-child, window.tiled-right headerbar, window.tiled-right headerbar:first-child, window.tiled-right headerbar:last-child, window.tiled-right headerbar:only-child, window.tiled-right headerbar:backdrop, window.tiled-right headerbar:backdrop:first-child, window.tiled-right headerbar:backdrop:last-child, window.tiled-right headerbar:backdrop:only-child, window.tiled-bottom headerbar, window.tiled-bottom headerbar:first-child, window.tiled-bottom headerbar:last-child, window.tiled-bottom headerbar:only-child, window.tiled-bottom headerbar:backdrop, window.tiled-bottom headerbar:backdrop:first-child, window.tiled-bottom headerbar:backdrop:last-child, window.tiled-bottom headerbar:backdrop:only-child, window.tiled-left headerbar, window.tiled-left headerbar:first-child, window.tiled-left headerbar:last-child, window.tiled-left headerbar:only-child, window.tiled-left headerbar:backdrop, window.tiled-left headerbar:backdrop:first-child, window.tiled-left headerbar:backdrop:last-child, window.tiled-left headerbar:backdrop:only-child, window.maximized headerbar, window.maximized headerbar:first-child, window.maximized headerbar:last-child, window.maximized headerbar:only-child, window.maximized headerbar:backdrop, window.maximized headerbar:backdrop:first-child, window.maximized headerbar:backdrop:last-child, window.maximized headerbar:backdrop:only-child, window.fullscreen headerbar, window.fullscreen headerbar:first-child, window.fullscreen headerbar:last-child, window.fullscreen headerbar:only-child, window.fullscreen headerbar:backdrop, window.fullscreen headerbar:backdrop:first-child, window.fullscreen headerbar:backdrop:last-child, window.fullscreen headerbar:backdrop:only-child, window.solid-csd headerbar, window.solid-csd headerbar:first-child, window.solid-csd headerbar:last-child, window.solid-csd headerbar:only-child, window.solid-csd headerbar:backdrop, window.solid-csd headerbar:backdrop:first-child, window.solid-csd headerbar:backdrop:last-child, window.solid-csd headerbar:backdrop:only-child { border-top-left-radius: 0; border-top-right-radius: 0; }
+ 
+ window.csd > .titlebar:not(headerbar) { padding: 0; background-color: transparent; background-image: none; border-style: none; border-color: transparent; box-shadow: none; }
+ 
+diff --git a/gtk/theme/Adwaita/gtk-contained.css b/gtk/theme/Adwaita/gtk-contained.css
+index 762fc03391..d2c8fafa78 100644
+--- a/gtk/theme/Adwaita/gtk-contained.css
++++ b/gtk/theme/Adwaita/gtk-contained.css
+@@ -656,11 +656,7 @@ searchbar, .location-bar { border-width: 0 0 1px; padding: 3px; }
+ 
+ .selection-mode.titlebar:not(headerbar) .selection-menu:backdrop .arrow, .selection-mode.titlebar:not(headerbar) .selection-menu .arrow, headerbar.selection-mode .selection-menu:backdrop .arrow, headerbar.selection-mode .selection-menu .arrow { -gtk-icon-source: -gtk-icontheme("pan-down-symbolic"); color: rgba(255, 255, 255, 0.5); -gtk-icon-shadow: none; }
+ 
+-.tiled .titlebar:backdrop:not(headerbar), .tiled .titlebar:not(headerbar), .tiled-top .titlebar:backdrop:not(headerbar), .tiled-top .titlebar:not(headerbar), .maximized .titlebar:backdrop:not(headerbar), .maximized .titlebar:not(headerbar), .fullscreen .titlebar:backdrop:not(headerbar), .fullscreen .titlebar:not(headerbar), .tiled headerbar:backdrop, .tiled headerbar, .tiled-top headerbar:backdrop, .tiled-top headerbar, .maximized headerbar:backdrop, .maximized headerbar, .fullscreen headerbar:backdrop, .fullscreen headerbar { border-radius: 0; }
+-
+-.tiled-left .titlebar:not(headerbar), .tiled-left headerbar { border-top-left-radius: 0; }
+-
+-.tiled-right .titlebar:not(headerbar), .tiled-right headerbar { border-top-right-radius: 0; }
++.tiled .titlebar:backdrop:not(headerbar), .tiled .titlebar:not(headerbar), .tiled-top .titlebar:backdrop:not(headerbar), .tiled-top .titlebar:not(headerbar), .tiled-right .titlebar:backdrop:not(headerbar), .tiled-right .titlebar:not(headerbar), .tiled-bottom .titlebar:backdrop:not(headerbar), .tiled-bottom .titlebar:not(headerbar), .tiled-left .titlebar:backdrop:not(headerbar), .tiled-left .titlebar:not(headerbar), .maximized .titlebar:backdrop:not(headerbar), .maximized .titlebar:not(headerbar), .fullscreen .titlebar:backdrop:not(headerbar), .fullscreen .titlebar:not(headerbar), .tiled headerbar:backdrop, .tiled headerbar, .tiled-top headerbar:backdrop, .tiled-top headerbar, .tiled-right headerbar:backdrop, .tiled-right headerbar, .tiled-bottom headerbar:backdrop, .tiled-bottom headerbar, .tiled-left headerbar:backdrop, .tiled-left headerbar, .maximized headerbar:backdrop, .maximized headerbar, .fullscreen headerbar:backdrop, .fullscreen headerbar { border-radius: 0; }
+ 
+ .default-decoration.titlebar:not(headerbar), headerbar.default-decoration { min-height: 28px; padding: 4px; }
+ 
+@@ -676,9 +672,13 @@ headerbar switch { margin-top: 9px; margin-bottom: 9px; }
+ 
+ .background.tiled .titlebar:backdrop, .background.tiled .titlebar, .background.tiled-top .titlebar:backdrop, .background.tiled-top .titlebar, .background.tiled-right .titlebar:backdrop, .background.tiled-right .titlebar, .background.tiled-bottom .titlebar:backdrop, .background.tiled-bottom .titlebar, .background.tiled-left .titlebar:backdrop, .background.tiled-left .titlebar, .background.maximized .titlebar:backdrop, .background.maximized .titlebar, .background.solid-csd .titlebar:backdrop, .background.solid-csd .titlebar { border-top-left-radius: 0; border-top-right-radius: 0; }
+ 
+-window separator:first-child + headerbar:first-child:backdrop, window separator:first-child + headerbar:first-child, window separator:first-child + headerbar:last-child:backdrop, window separator:first-child + headerbar:last-child, window stack headerbar:first-child:backdrop, window stack headerbar:first-child, window stack headerbar:last-child:backdrop, window stack headerbar:last-child, headerbar:first-child:first-child:backdrop, headerbar:first-child:first-child, headerbar:first-child:last-child:backdrop, headerbar:first-child:last-child, headerbar:last-child:first-child:backdrop, headerbar:last-child:first-child, headerbar:last-child:last-child:backdrop, headerbar:last-child:last-child { border-top-left-radius: 7px; border-top-right-radius: 7px; }
++window separator:first-child + headerbar:backdrop, window separator:first-child + headerbar, window headerbar:first-child:backdrop, window headerbar:first-child { border-top-left-radius: 7px; }
++
++window headerbar:last-child:backdrop, window headerbar:last-child { border-top-right-radius: 7px; }
++
++window stack headerbar:first-child:backdrop, window stack headerbar:first-child, window stack headerbar:last-child:backdrop, window stack headerbar:last-child { border-top-left-radius: 7px; border-top-right-radius: 7px; }
+ 
+-window.tiled headerbar, window.tiled-top headerbar, window.tiled-right headerbar, window.tiled-bottom headerbar, window.tiled-left headerbar, window.maximized headerbar, window.fullscreen headerbar { border-top-left-radius: 0; border-top-right-radius: 0; }
++window.tiled headerbar, window.tiled headerbar:first-child, window.tiled headerbar:last-child, window.tiled headerbar:only-child, window.tiled headerbar:backdrop, window.tiled headerbar:backdrop:first-child, window.tiled headerbar:backdrop:last-child, window.tiled headerbar:backdrop:only-child, window.tiled-top headerbar, window.tiled-top headerbar:first-child, window.tiled-top headerbar:last-child, window.tiled-top headerbar:only-child, window.tiled-top headerbar:backdrop, window.tiled-top headerbar:backdrop:first-child, window.tiled-top headerbar:backdrop:last-child, window.tiled-top headerbar:backdrop:only-child, window.tiled-right headerbar, window.tiled-right headerbar:first-child, window.tiled-right headerbar:last-child, window.tiled-right headerbar:only-child, window.tiled-right headerbar:backdrop, window.tiled-right headerbar:backdrop:first-child, window.tiled-right headerbar:backdrop:last-child, window.tiled-right headerbar:backdrop:only-child, window.tiled-bottom headerbar, window.tiled-bottom headerbar:first-child, window.tiled-bottom headerbar:last-child, window.tiled-bottom headerbar:only-child, window.tiled-bottom headerbar:backdrop, window.tiled-bottom headerbar:backdrop:first-child, window.tiled-bottom headerbar:backdrop:last-child, window.tiled-bottom headerbar:backdrop:only-child, window.tiled-left headerbar, window.tiled-left headerbar:first-child, window.tiled-left headerbar:last-child, window.tiled-left headerbar:only-child, window.tiled-left headerbar:backdrop, window.tiled-left headerbar:backdrop:first-child, window.tiled-left headerbar:backdrop:last-child, window.tiled-left headerbar:backdrop:only-child, window.maximized headerbar, window.maximized headerbar:first-child, window.maximized headerbar:last-child, window.maximized headerbar:only-child, window.maximized headerbar:backdrop, window.maximized headerbar:backdrop:first-child, window.maximized headerbar:backdrop:last-child, window.maximized headerbar:backdrop:only-child, window.fullscreen headerbar, window.fullscreen headerbar:first-child, window.fullscreen headerbar:last-child, window.fullscreen headerbar:only-child, window.fullscreen headerbar:backdrop, window.fullscreen headerbar:backdrop:first-child, window.fullscreen headerbar:backdrop:last-child, window.fullscreen headerbar:backdrop:only-child, window.solid-csd headerbar, window.solid-csd headerbar:first-child, window.solid-csd headerbar:last-child, window.solid-csd headerbar:only-child, window.solid-csd headerbar:backdrop, window.solid-csd headerbar:backdrop:first-child, window.solid-csd headerbar:backdrop:last-child, window.solid-csd headerbar:backdrop:only-child { border-top-left-radius: 0; border-top-right-radius: 0; }
+ 
+ window.csd > .titlebar:not(headerbar) { padding: 0; background-color: transparent; background-image: none; border-style: none; border-color: transparent; box-shadow: none; }
+ 
+-- 
+2.14.1
+
