@@ -1,0 +1,28 @@
+From 5cd0118b6b83e112685e567ad75a3ffcf2f7e9b5 Mon Sep 17 00:00:00 2001
+From: Carlos Garnacho <carlosg@gnome.org>
+Date: Fri, 6 Oct 2017 01:06:03 +0200
+Subject: [PATCH] gdk/wayland: Avoid idempotent wl_subsurface.set_position
+ calls
+
+These may not result on wl_surface.frame callbacks, yet we do trigger
+a frame clock tick that would get stuck on the lack of such callback.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=784314
+---
+ gdk/wayland/gdkwindow-wayland.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/gdk/wayland/gdkwindow-wayland.c b/gdk/wayland/gdkwindow-wayland.c
+index e25c782d0f..53e5af1cd3 100644
+--- a/gdk/wayland/gdkwindow-wayland.c
++++ b/gdk/wayland/gdkwindow-wayland.c
+@@ -2663,7 +2663,8 @@ gdk_window_wayland_move_resize (GdkWindow *window,
+   if (with_move)
+     {
+       /* Each toplevel has in its own "root" coordinate system */
+-      if (GDK_WINDOW_TYPE (window) != GDK_WINDOW_TOPLEVEL)
++      if (GDK_WINDOW_TYPE (window) != GDK_WINDOW_TOPLEVEL &&
++          (window->x != x || window->y != y))
+         {
+           window->x = x;
+           window->y = y;
