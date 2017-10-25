@@ -1,0 +1,32 @@
+Description: (gdk) Clear GL context when window is withdrawn
+ Some clients (e.g. gnome-online-accounts) quickly unmap and map
+ a window. With some backends the backend surface will be replaced
+ causing the application to crash because the GL context is still
+ using the old surface. Clearing the GL context when a window is
+ withdrawn fixes this.
+Author: Andrea Azzarone <andrea.azzarone@canonical.com>
+Origin: ubuntu
+Bug: https://bugzilla.gnome.org/show_bug.cgi?id=789141
+Bug-Ubuntu: https://bugs.launchpad.net/ubuntu/+source/gnome-control-center/+bug/1720400
+
+--- a/gdk/gdkwindow.c
++++ b/gdk/gdkwindow.c
+@@ -5744,6 +5744,7 @@
+ {
+   GdkWindowImplClass *impl_class;
+   gboolean was_mapped;
++  GdkGLContext *current_context;
+ 
+   g_return_if_fail (GDK_IS_WINDOW (window));
+ 
+@@ -5768,6 +5769,10 @@
+ 	  _gdk_synthesize_crossing_events_for_geometry_change (window->parent);
+ 	}
+ 
++      current_context = gdk_gl_context_get_current ();
++      if (current_context != NULL && gdk_gl_context_get_window (current_context) == window)
++        gdk_gl_context_clear_current ();
++
+       recompute_visible_regions (window, FALSE);
+       gdk_window_clear_old_updated_area (window);
+     }
