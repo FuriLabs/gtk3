@@ -1,9 +1,17 @@
-gtk+3.0 (3.22.24-0ubuntu2.1) artful; urgency=medium
+gtk+3.0 (3.22.25-0ubuntu1) UNRELEASED; urgency=medium
 
-  [ Andrea Azzarone ]
-  * Add clear_glcontext_on_window_withdraw.patch:
-    - Apply proposed fix for a segmentation fault when
-      adding Google online account (LP: #1720400)
+  [ Simon McVittie ]
+  * New upstream release (LP: #1728421)
+    - Fix tiling behaviour with Mutter/Shell 3.26 (Closes: #879566)
+    - Fix crash when adding Google online account (LP: #1720400)
+    - Update symbols file
+    - d/p/0001-Adwaita-Fix-typo-.backgrounf-.background.patch,
+      d/p/0002-theme-Fix-Adwaita-headerbars.patch,
+      d/p/0003-display-x11-Unset-tiled-state-if-_GTK_EDGE_CONSTRAIN.patch:
+      Drop patches, applied upstream
+    - d/p/gdk-wayland-protocol-server-decoration.patch:
+      Add server-decoration.xml from upstream git. It is missing from the
+      tarball release.
 
   [ Jeremy Bicha ]
   * Drop 0004_fix-gtkentry-wayland-regression.path:
