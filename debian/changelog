@@ -1,66 +1,6 @@
-gtk+3.0 (3.22.25-0ubuntu1) bionic; urgency=medium
+gtk+3.0 (3.22.26-1ubuntu1) UNRELEASED; urgency=medium
 
-  [ Simon McVittie ]
-  * New upstream release (LP: #1728421)
-    - Fix tiling behaviour with Mutter/Shell 3.26 (Closes: #879566)
-    - Fix crash when adding Google online account (LP: #1720400)
-    - Update symbols file
-    - d/p/0001-Adwaita-Fix-typo-.backgrounf-.background.patch,
-      d/p/0002-theme-Fix-Adwaita-headerbars.patch,
-      d/p/0003-display-x11-Unset-tiled-state-if-_GTK_EDGE_CONSTRAIN.patch:
-      Drop patches, applied upstream
-    - d/p/gdk-wayland-protocol-server-decoration.patch:
-      Add server-decoration.xml from upstream git. It is missing from the
-      tarball release.
-
-  [ Jeremy Bicha ]
-  * Drop 0004_fix-gtkentry-wayland-regression.path:
-    Because this caused a totem regression, we're fixing the
-    bug in mutter instead.
-
- -- Andrea Azzarone <andrea.azzarone@canonical.com>  Wed, 25 Oct 2017 11:16:44 +0000
-
-gtk+3.0 (3.22.24-0ubuntu2) artful; urgency=medium
-
-  * Add 0004_fix-gtkentry-wayland-regression.patch:
-    - Cherry-pick fix for lag with Epiphany's address bar (Closes: #875826)
-      (LP: #1719043)
-
- -- Jeremy Bicha <jbicha@ubuntu.com>  Tue, 17 Oct 2017 11:22:54 -0400
-
-gtk+3.0 (3.22.24-0ubuntu1) artful; urgency=medium
-
-  * New upstream release (LP: #1712011, #1719047)
-  * Cherry-pick fixes committed after the 3.22.24 release:
-    - 0001-Adwaita-Fix-typo-.backgrounf-.background.patch
-    - 0002-theme-Fix-Adwaita-headerbars.patch
-    - 0003-display-x11-Unset-tiled-state-if-_GTK_EDGE_CONSTRAIN.patch
-
- -- Jeremy Bicha <jbicha@ubuntu.com>  Wed, 04 Oct 2017 19:37:55 -0400
-
-gtk+3.0 (3.22.21-0ubuntu1) artful; urgency=medium
-
-  * New upstream release.
-  * debian/patches/fix-gtk-menu-sliders.patch:
-    + Removed, applied upstream.
-
- -- Jeremy Bicha <jbicha@ubuntu.com>  Sat, 16 Sep 2017 21:00:45 -0400
-
-gtk+3.0 (3.22.19-0ubuntu1) artful; urgency=medium
-
-  * New upstream release
-  * debian/libgtk-3-common.install.in:
-    Install EmojiChooser gsettings schemas
-  * Add fix-gtk-menu-sliders.patch:
-    - Add patch from Bugzilla to fix regression with clicking on sliders in
-      menus, such as with Unity's sound indicator (LP: #1712701)
-      (Closes: #872687)
-
- -- Jeremy Bicha <jbicha@ubuntu.com>  Wed, 23 Aug 2017 22:38:55 -0400
-
-gtk+3.0 (3.22.18-1ubuntu1) artful; urgency=medium
-
-  * Merge with Debian (LP: #1710521). Remaining changes:
+  * Sync with Debian. Remaining changes:
     + Install a settings.ini file to set our themes
     + Enable Mir backend
     + debian/control.in:
@@ -78,7 +18,7 @@ gtk+3.0 (3.22.18-1ubuntu1) artful; urgency=medium
       - x-canonical-accel.patch
       - message-dialog-restore-traditional-look-on-unity.patch
       - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
-      - restore_filechooser_typeaheadfind
+      - restore_filechooser_typeaheadfind.patch
       - 0001-calendar-always-emit-day-selected-once.patch
       - 0001-gtkwindow-set-transparent-background-color.patch
       - ubuntu_fileselector_behaviour.patch
@@ -87,7 +27,121 @@ gtk+3.0 (3.22.18-1ubuntu1) artful; urgency=medium
       - gtksocket-unscale-before-sending-configurenotify.patch
       - no_content_hub.patch
 
- -- Jeremy Bicha <jbicha@ubuntu.com>  Sat, 19 Aug 2017 15:39:24 -0400
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Sun, 12 Nov 2017 20:25:59 -0500
+
+gtk+3.0 (3.22.26-1) unstable; urgency=medium
+
+  [ Simon McVittie ]
+  * Move examples, udebs from Priority: extra to optional
+
+  [ Michael Biebl ]
+  * New upstream release
+  * Rebase patches
+  * Update symbols file for libgtk-3-0
+  * Bump Standards-Version to 4.1.1
+  * Drop no longer needed Breaks/Replaces
+  * Add (versioned) Provides to gir1.2-gtk-3.0 to follow the latest changes in
+    the GObject introspection policy wrt bundled typelibs.
+
+ -- Michael Biebl <biebl@debian.org>  Mon, 13 Nov 2017 00:54:47 +0100
+
+gtk+3.0 (3.22.25-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release
+    - Fix tiling behaviour with Mutter/Shell 3.26 (Closes: #879566)
+    - Update symbols file
+    - d/p/0001-Adwaita-Fix-typo-.backgrounf-.background.patch,
+      d/p/0002-theme-Fix-Adwaita-headerbars.patch,
+      d/p/0003-display-x11-Unset-tiled-state-if-_GTK_EDGE_CONSTRAIN.patch:
+      Drop patches, applied upstream
+    - d/p/gdk-wayland-protocol-server-decoration.patch:
+      Add server-decoration.xml from upstream git. It is missing from the
+      tarball release.
+
+ -- Simon McVittie <smcv@debian.org>  Sun, 29 Oct 2017 17:21:51 +0000
+
+gtk+3.0 (3.22.24-3) unstable; urgency=medium
+
+  [ Jeremy Bicha ]
+  * Drop 0004_fix-gtkentry-wayland-regression.patch:
+    - Reverted upstream since it caused a totem regression. Epiphany
+      issue was fixed in mutter instead.
+
+  [ Michael Biebl ]
+  * Force update of GResource files so the changes to the CSS files from
+    0002-theme-Fix-Adwaita-headerbars.patch are actually applied.
+
+ -- Michael Biebl <biebl@debian.org>  Sun, 22 Oct 2017 13:22:16 +0200
+
+gtk+3.0 (3.22.24-2) unstable; urgency=medium
+
+  [ Jeremy Bicha ]
+  * Add 0004_fix-gtkentry-wayland-regression.patch:
+    - Cherry-pick fix for lag with Epiphany's address bar (Closes: #875826)
+
+  [ Michael Biebl ]
+  * Switch from XC-Package-Type to Package-Type which is an official field
+    name since dpkg-dev 1.15.7.
+
+ -- Jeremy Bicha <jbicha@debian.org>  Mon, 16 Oct 2017 08:26:07 -0400
+
+gtk+3.0 (3.22.24-1) unstable; urgency=low
+
+  * New upstream release (LP: #1712011, #1719047)
+  * Cherry-pick fixes committed after the 3.22.24 release:
+    - 0001-Adwaita-Fix-typo-.backgrounf-.background.patch
+    - 0002-theme-Fix-Adwaita-headerbars.patch
+    - 0003-display-x11-Unset-tiled-state-if-_GTK_EDGE_CONSTRAIN.patch
+
+ -- Jeremy Bicha <jbicha@debian.org>  Wed, 04 Oct 2017 19:07:15 -0400
+
+gtk+3.0 (3.22.22-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/copyright: Mark Scheme Widget Library as SWL rather than 'other'.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Tue, 03 Oct 2017 20:02:52 +0200
+
+gtk+3.0 (3.22.21-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump to debhelper compat 10.
+    + Drop dh-autoreconf and autotools-dev build-deps, no longer needed as
+      debhelper guarantees them now.
+  * Switch from CDBS to dh.
+    Only regression is that we don't run --fail-missing on arch:all builds.
+  * Don't build the docs when not building the -doc packages. Saves some
+    time on arch-only builds.
+  * Skip the udeb build when not building the -udeb package. Saves a lot
+    of time on the arch:all builds.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Tue, 12 Sep 2017 00:38:15 +0200
+
+gtk+3.0 (3.22.20-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/patches/fix-gtk-menu-sliders.patch:
+    + Removed, applied upstream.
+  * Bump Standards-Version to 4.1.0; no changes needed.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Sat, 09 Sep 2017 15:11:12 +0200
+
+gtk+3.0 (3.22.19-1) unstable; urgency=medium
+
+  [ Jeremy Bicha ]
+  * New upstream release
+  * debian/libgtk-3-common.install.in:
+    Install EmojiChooser gsettings schemas
+  * Add fix-gtk-menu-sliders.patch:
+    - Cherry-pick patch to fix regression with clicking on sliders in menus,
+      such as with Unity's sound indicator (LP: #1712701) (Closes: #872687)
+
+  [ Ken VanDine ]
+  * debian/control.in:
+    - Bump libpango1.0-dev Build-Depends to >= 1.40.5 for colornames test
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Mon, 28 Aug 2017 20:39:28 -0400
 
 gtk+3.0 (3.22.18-1) unstable; urgency=medium
 
@@ -108,86 +162,11 @@ gtk+3.0 (3.22.17-1) unstable; urgency=medium
 
  -- Emilio Pozuelo Monfort <pochu@debian.org>  Wed, 26 Jul 2017 18:59:22 +0200
 
-gtk+3.0 (3.22.17-0ubuntu2) artful; urgency=medium
-
-  * remove debian/libgtk-3-common.gsettings-override, in the ubuntu-settings
-    package now, per session.
-
- -- Didier Roche <didrocks@ubuntu.com>  Tue, 08 Aug 2017 10:49:49 +0200
-
-gtk+3.0 (3.22.17-0ubuntu1) artful; urgency=medium
-
-  * New upstream release
-
- -- Jeremy Bicha <jbicha@ubuntu.com>  Sun, 23 Jul 2017 09:02:40 -0400
-
 gtk+3.0 (3.22.16-1) unstable; urgency=medium
 
   * New upstream release.
 
  -- Emilio Pozuelo Monfort <pochu@debian.org>  Thu, 22 Jun 2017 20:24:11 +0200
-
-gtk+3.0 (3.22.15-0ubuntu2) artful; urgency=medium
-
-  * debian/control.in
-    - Bumped libpango1.0-dev build depends to >= 1.40.5 needed for 
-      colornames test
-    - Added build depends needed for the mir backend
-  * debian/rules
-    - re-enable mir backend
-  * debian/libgtk-3-0.symbols
-    - Refreshed
-  * patches/no_content_hub.patch
-    - Removed content-hub related code
-
- -- Ken VanDine <ken.vandine@canonical.com>  Mon, 22 May 2017 10:16:57 -0400
-
-gtk+3.0 (3.22.15-0ubuntu1) artful; urgency=medium
-
-  [ Ken VanDine ]
-  * debian/rules
-    - Disable mir backend
-  * debian/control.in
-    - Dropped build depends for mir and content-hub
-  * debian/libgtk-3-0.symbols
-    - Refreshed
-
-  [ Iain Lane ]
-  * New upstream release 3.12.15 (also includes 14, 13).
-
- -- Iain Lane <iain.lane@canonical.com>  Mon, 15 May 2017 13:17:19 +0100
-
-gtk+3.0 (3.22.12-1ubuntu1) artful; urgency=medium
-
-  * Merge with Debian. Remaining changes:
-    + Install the settings.ini file to set our themes
-    + Install a gsettings override to start filechoosers in the cwd
-    + Enable Mir backend
-    + debian/control.in:
-      - Build-depend on adwaita-icon-theme-full for icon name check test
-    + debian/rules: Mark additional known test failures:
-      - box-shadow-changes-modify-clip.ui
-      - label-text-shadow-changes-modify-clip.ui
-    + Ubuntu-specific patches:
-      - 073_treeview_almost_fixed.patch
-      - 074_eventbox_scroll_mask.patch
-      - bzg_gtkcellrenderer_grabbing_modifier.patch
-      - ubuntu_gtk_custom_menu_items.patch
-      - print-dialog-show-options-of-remote-dnssd-printers.patch
-      - uimanager-guard-against-nested-node-updates.patch
-      - x-canonical-accel.patch
-      - message-dialog-restore-traditional-look-on-unity.patch
-      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
-      - restore_filechooser_typeaheadfind
-      - 0001-calendar-always-emit-day-selected-once.patch
-      - 0001-gtkwindow-set-transparent-background-color.patch
-      - ubuntu_fileselector_behaviour.patch
-      - unity-border-radius.patch
-      - unity-headerbar-maximized-mode.patch
-      - gtksocket-unscale-before-sending-configurenotify.patch
-  * Drop the mir patches that have been applied in new release
-
- -- Jeremy Bicha <jbicha@ubuntu.com>  Sun, 30 Apr 2017 23:03:11 -0400
 
 gtk+3.0 (3.22.12-1) unstable; urgency=medium
 
