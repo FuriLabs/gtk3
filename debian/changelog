@@ -10,7 +10,6 @@ gtk+3.0 (3.22.26-2ubuntu1) UNRELEASED; urgency=medium
       - label-text-shadow-changes-modify-clip.ui
     + Ubuntu-specific patches:
       - 073_treeview_almost_fixed.patch
-      - 074_eventbox_scroll_mask.patch
       - bzg_gtkcellrenderer_grabbing_modifier.patch
       - ubuntu_gtk_custom_menu_items.patch
       - print-dialog-show-options-of-remote-dnssd-printers.patch
@@ -26,6 +25,8 @@ gtk+3.0 (3.22.26-2ubuntu1) UNRELEASED; urgency=medium
       - unity-headerbar-maximized-mode.patch
       - gtksocket-unscale-before-sending-configurenotify.patch
       - no_content_hub.patch
+  * Drop Ubuntu-specific 074_eventbox_scroll_mask.patch
+    which introduced a bug seen in the Lollypop music app (LP: #1728617)
 
  -- Jeremy Bicha <jbicha@ubuntu.com>  Tue, 28 Nov 2017 17:47:08 -0500
 
