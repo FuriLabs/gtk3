@@ -12,9 +12,6 @@ binaries := $(shell dh_listpackages)
 # currently fails at least in the im-multipress im module
 #LDFLAGS += -Wl,-z,defs
 
-# Make the linker work a bit harder so dynamic loading can be done faster
-LDFLAGS += -Wl,-O1
-
 APIVER := 3
 SONAME := 0
 
