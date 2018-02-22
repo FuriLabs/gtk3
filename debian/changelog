@@ -1,3 +1,14 @@
+gtk+3.0 (3.22.28-1ubuntu3) UNRELEASED; urgency=medium
+
+  * debian/control.in, debian/libgtk-3-0.symbols, debian/rules:
+    - disable the MIR backend, it's unmaintained and the mir team 
+      confirmed they don't it since they talk wayland now.
+      That removes the dependency of mir libraries (lp: #1701747)
+  * debian/patches/no_content_hub.patch:
+    - removed, that was only needed to be able to build the mir backend
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 22 Feb 2018 15:30:11 +0100
+
 gtk+3.0 (3.22.28-1ubuntu2) bionic; urgency=medium
 
   * No change rebuild to import the current translations (lp: #1750628)
