@@ -8,10 +8,10 @@ Description: Allow setting menu item accelerator text directly
 Author: William Hua <william.hua@canonical.com>
 Bug-Ubuntu: https://bugs.launchpad.net/bugs/1208019
 
-Index: b/gtk/gtkmenutrackeritem.c
+Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkmenutrackeritem.c
 ===================================================================
---- a/gtk/gtkmenutrackeritem.c
-+++ b/gtk/gtkmenutrackeritem.c
+--- gtk+3.0-3.22.29-2ubuntu1.orig/gtk/gtkmenutrackeritem.c
++++ gtk+3.0-3.22.29-2ubuntu1/gtk/gtkmenutrackeritem.c
 @@ -115,6 +115,7 @@
    PROP_ROLE,
    PROP_TOGGLED,
@@ -39,7 +39,7 @@ Index: b/gtk/gtkmenutrackeritem.c
    gtk_menu_tracker_item_pspecs[PROP_SUBMENU_SHOWN] =
      g_param_spec_boolean ("submenu-shown", "", "", FALSE, G_PARAM_STATIC_STRINGS | G_PARAM_READABLE);
    gtk_menu_tracker_item_pspecs[PROP_IS_VISIBLE] =
-@@ -725,6 +731,16 @@
+@@ -736,6 +742,16 @@
    return text_direction;
  }
  
@@ -56,11 +56,11 @@ Index: b/gtk/gtkmenutrackeritem.c
  GMenuModel *
  _gtk_menu_tracker_item_get_link (GtkMenuTrackerItem *self,
                                   const gchar        *link_name)
-Index: b/gtk/gtkmenutrackeritem.h
+Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkmenutrackeritem.h
 ===================================================================
---- a/gtk/gtkmenutrackeritem.h
-+++ b/gtk/gtkmenutrackeritem.h
-@@ -74,6 +74,8 @@
+--- gtk+3.0-3.22.29-2ubuntu1.orig/gtk/gtkmenutrackeritem.h
++++ gtk+3.0-3.22.29-2ubuntu1/gtk/gtkmenutrackeritem.h
+@@ -76,6 +76,8 @@
  
  const gchar *           gtk_menu_tracker_item_get_accel                 (GtkMenuTrackerItem *self);
  
@@ -69,11 +69,11 @@ Index: b/gtk/gtkmenutrackeritem.h
  GMenuModel *           _gtk_menu_tracker_item_get_link                  (GtkMenuTrackerItem *self,
                                                                           const gchar        *link_name);
  
-Index: b/gtk/gtkmodelmenuitem.c
+Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkmodelmenuitem.c
 ===================================================================
---- a/gtk/gtkmodelmenuitem.c
-+++ b/gtk/gtkmodelmenuitem.c
-@@ -43,7 +43,8 @@
+--- gtk+3.0-3.22.29-2ubuntu1.orig/gtk/gtkmodelmenuitem.c
++++ gtk+3.0-3.22.29-2ubuntu1/gtk/gtkmodelmenuitem.c
+@@ -44,7 +44,8 @@
    PROP_ICON,
    PROP_TEXT,
    PROP_TOGGLED,
@@ -83,7 +83,7 @@ Index: b/gtk/gtkmodelmenuitem.c
  };
  
  static void
-@@ -426,6 +427,41 @@
+@@ -427,6 +428,41 @@
  }
  
  static void
@@ -125,7 +125,7 @@ Index: b/gtk/gtkmodelmenuitem.c
  gtk_model_menu_item_set_property (GObject      *object,
                                    guint         prop_id,
                                    const GValue *value,
-@@ -456,6 +492,10 @@
+@@ -457,6 +493,10 @@
        gtk_model_menu_item_set_accel (item, g_value_get_string (value));
        break;
  
@@ -136,7 +136,7 @@ Index: b/gtk/gtkmodelmenuitem.c
      default:
        g_assert_not_reached ();
      }
-@@ -498,6 +538,9 @@
+@@ -499,6 +539,9 @@
    g_object_class_install_property (object_class, PROP_ACCEL,
                                     g_param_spec_string ("accel", "accel", "accel", NULL,
                                                          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY));
@@ -146,11 +146,11 @@ Index: b/gtk/gtkmodelmenuitem.c
  
    gtk_widget_class_set_accessible_role (GTK_WIDGET_CLASS (class), ATK_ROLE_MENU_ITEM);
  }
-Index: b/gtk/gtkmenushell.c
+Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkmenushell.c
 ===================================================================
---- a/gtk/gtkmenushell.c
-+++ b/gtk/gtkmenushell.c
-@@ -2196,6 +2196,7 @@
+--- gtk+3.0-3.22.29-2ubuntu1.orig/gtk/gtkmenushell.c
++++ gtk+3.0-3.22.29-2ubuntu1/gtk/gtkmenushell.c
+@@ -2195,6 +2195,7 @@
        g_object_bind_property (item, "role", widget, "action-role", G_BINDING_SYNC_CREATE);
        g_object_bind_property (item, "toggled", widget, "toggled", G_BINDING_SYNC_CREATE);
        g_object_bind_property (item, "accel", widget, "accel", G_BINDING_SYNC_CREATE);
@@ -158,11 +158,11 @@ Index: b/gtk/gtkmenushell.c
  
        g_signal_connect (widget, "activate", G_CALLBACK (gtk_menu_shell_item_activate), item);
        gtk_widget_show (widget);
-Index: b/gtk/gtkaccellabel.c
+Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkaccellabel.c
 ===================================================================
---- a/gtk/gtkaccellabel.c
-+++ b/gtk/gtkaccellabel.c
-@@ -110,6 +110,8 @@
+--- gtk+3.0-3.22.29-2ubuntu1.orig/gtk/gtkaccellabel.c
++++ gtk+3.0-3.22.29-2ubuntu1/gtk/gtkaccellabel.c
+@@ -127,6 +127,8 @@
  
    guint           accel_key;         /* manual accel key specification if != 0 */
    GdkModifierType accel_mods;
@@ -171,7 +171,7 @@ Index: b/gtk/gtkaccellabel.c
  };
  
  GParamSpec *props[LAST_PROP] = { NULL, };
-@@ -265,6 +267,7 @@
+@@ -294,6 +296,7 @@
    priv->accel_closure = NULL;
    priv->accel_group = NULL;
    priv->accel_string = NULL;
@@ -179,7 +179,7 @@ Index: b/gtk/gtkaccellabel.c
  
    widget_node = gtk_widget_get_css_node (GTK_WIDGET (accel_label));
    priv->accel_node = gtk_css_node_new ();
-@@ -306,6 +309,7 @@
+@@ -343,6 +346,7 @@
    GtkAccelLabel *accel_label = GTK_ACCEL_LABEL (object);
  
    g_free (accel_label->priv->accel_string);
@@ -187,7 +187,7 @@ Index: b/gtk/gtkaccellabel.c
  
    G_OBJECT_CLASS (gtk_accel_label_parent_class)->finalize (object);
  }
-@@ -892,6 +896,12 @@
+@@ -942,6 +946,12 @@
  
    g_clear_pointer (&accel_label->priv->accel_string, g_free);
  
@@ -200,7 +200,7 @@ Index: b/gtk/gtkaccellabel.c
    g_object_get (gtk_widget_get_settings (GTK_WIDGET (accel_label)),
                  "gtk-enable-accels", &enable_accels,
                  NULL);
-@@ -1000,3 +1010,13 @@
+@@ -1048,3 +1058,13 @@
    *accelerator_key = accel_label->priv->accel_key;
    *accelerator_mods = accel_label->priv->accel_mods;
  }

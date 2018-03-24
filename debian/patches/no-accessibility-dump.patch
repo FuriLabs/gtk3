@@ -1,4 +1,5 @@
 From: Andreas Henriksson <andreas@fatal.se>
+Date: Wed, 23 Mar 2016 14:10:27 +0100
 Subject: disable a11y test accessibility-dump
 
 Temporarily disable this test until someone figures out how
@@ -6,11 +7,16 @@ to make it run with GTK_CSD=1 properly so it gives output
 matching the expected test data in all cases, not just
 for installed-tests.
 
-Index: gtk+-3.21.6/testsuite/a11y/Makefile.am
-===================================================================
---- gtk+-3.21.6.orig/testsuite/a11y/Makefile.am	2016-09-14 04:19:54.932561342 +0200
-+++ gtk+-3.21.6/testsuite/a11y/Makefile.am	2016-09-14 04:19:54.928561280 +0200
-@@ -28,7 +28,7 @@
+Forwarded: no
+---
+ testsuite/a11y/Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/testsuite/a11y/Makefile.am b/testsuite/a11y/Makefile.am
+index c51e55e..fc1fe30 100644
+--- a/testsuite/a11y/Makefile.am
++++ b/testsuite/a11y/Makefile.am
+@@ -28,7 +28,7 @@ TESTS_ENVIRONMENT = 			\
  	GTK_CSD=1			\
  	G_ENABLE_DIAGNOSTIC=0
  

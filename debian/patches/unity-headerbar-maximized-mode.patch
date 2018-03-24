@@ -4,10 +4,10 @@ Description: Hide Headerbar window buttons and title when running in Unity
 Author: Marco Trevisan <marco.trevisan@canonical.com>
 Bug-Ubuntu: https://launchpad.net/bugs/1515810
 
-Index: b/gtk/gtkheaderbar.c
+Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkheaderbar.c
 ===================================================================
---- a/gtk/gtkheaderbar.c
-+++ b/gtk/gtkheaderbar.c
+--- gtk+3.0-3.22.29-2ubuntu1.orig/gtk/gtkheaderbar.c
++++ gtk+3.0-3.22.29-2ubuntu1/gtk/gtkheaderbar.c
 @@ -34,6 +34,10 @@
  
  #include <string.h>
@@ -19,7 +19,7 @@ Index: b/gtk/gtkheaderbar.c
  /**
   * SECTION:gtkheaderbar
   * @Short_description: A box with a centered child
-@@ -68,6 +72,7 @@
+@@ -72,6 +76,7 @@
    GtkWidget *custom_title;
    gint spacing;
    gboolean has_subtitle;
@@ -27,7 +27,7 @@ Index: b/gtk/gtkheaderbar.c
  
    GList *children;
  
-@@ -262,6 +267,35 @@
+@@ -267,6 +272,35 @@
      gtk_widget_set_visible (priv->titlebar_end_separator, have_visible_at_end);
  }
  
@@ -63,7 +63,7 @@ Index: b/gtk/gtkheaderbar.c
  void
  _gtk_header_bar_update_window_buttons (GtkHeaderBar *bar)
  {
-@@ -294,6 +328,20 @@
+@@ -299,6 +333,20 @@
      }
  
    priv->titlebar_icon = NULL;
@@ -84,7 +84,7 @@ Index: b/gtk/gtkheaderbar.c
  
    if (!priv->shows_wm_decorations)
      return;
-@@ -311,8 +359,6 @@
+@@ -316,8 +364,6 @@
        layout_desc = g_strdup (priv->decoration_layout);
      }
  
@@ -93,7 +93,7 @@ Index: b/gtk/gtkheaderbar.c
    if (!shown_by_shell && gtk_window_get_application (window))
      menu = gtk_application_get_app_menu (gtk_window_get_application (window));
    else
-@@ -568,6 +614,8 @@
+@@ -588,6 +634,8 @@
                                        &priv->subtitle_label);
    gtk_header_bar_reorder_css_node (bar, GTK_PACK_START, priv->label_box);
    gtk_widget_set_parent (priv->label_box, GTK_WIDGET (bar));
@@ -102,7 +102,7 @@ Index: b/gtk/gtkheaderbar.c
  }
  
  static gint
-@@ -1815,6 +1863,22 @@
+@@ -1908,6 +1956,22 @@
  
    GTK_WIDGET_CLASS (gtk_header_bar_parent_class)->realize (widget);
  
