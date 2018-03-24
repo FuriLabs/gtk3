@@ -16,11 +16,11 @@ https://bugzilla.gnome.org/show_bug.cgi?id=755941
  gtk/gtkcalendar.c | 72 +++++++++++++++++++++++++++++++++----------------------
  1 file changed, 43 insertions(+), 29 deletions(-)
 
-diff --git a/gtk/gtkcalendar.c b/gtk/gtkcalendar.c
-index b4ef543..2d338ef 100644
---- a/gtk/gtkcalendar.c
-+++ b/gtk/gtkcalendar.c
-@@ -876,11 +876,15 @@ calendar_queue_refresh (GtkCalendar *calendar)
+Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkcalendar.c
+===================================================================
+--- gtk+3.0-3.22.29-2ubuntu1.orig/gtk/gtkcalendar.c
++++ gtk+3.0-3.22.29-2ubuntu1/gtk/gtkcalendar.c
+@@ -887,11 +887,15 @@
  }
  
  static void
@@ -37,7 +37,7 @@ index b4ef543..2d338ef 100644
    if (priv->display_flags & GTK_CALENDAR_NO_MONTH_CHANGE)
      return;
  
-@@ -902,13 +906,13 @@ calendar_set_month_next (GtkCalendar *calendar)
+@@ -913,13 +917,13 @@
  
    month_len = month_length[leap (priv->year)][priv->month + 1];
  
@@ -53,7 +53,7 @@ index b4ef543..2d338ef 100644
  
    calendar_queue_refresh (calendar);
  }
-@@ -1298,11 +1302,15 @@ calendar_day_rectangle (GtkCalendar  *calendar,
+@@ -1312,11 +1316,15 @@
  }
  
  static void
@@ -70,7 +70,7 @@ index b4ef543..2d338ef 100644
    if (priv->display_flags & GTK_CALENDAR_NO_MONTH_CHANGE)
      return;
  
-@@ -1325,16 +1333,16 @@ calendar_set_month_prev (GtkCalendar *calendar)
+@@ -1339,16 +1347,16 @@
                   gtk_calendar_signals[MONTH_CHANGED_SIGNAL],
                   0);
  
@@ -91,7 +91,7 @@ index b4ef543..2d338ef 100644
      }
  
    calendar_queue_refresh (calendar);
-@@ -2811,10 +2819,10 @@ calendar_arrow_action (GtkCalendar *calendar,
+@@ -2842,10 +2850,10 @@
        calendar_set_year_next (calendar);
        break;
      case ARROW_MONTH_LEFT:
@@ -104,7 +104,7 @@ index b4ef543..2d338ef 100644
        break;
      default:;
        /* do nothing */
-@@ -2913,21 +2921,27 @@ calendar_main_button_press (GtkCalendar    *calendar,
+@@ -2944,21 +2952,27 @@
        day = priv->day[row][col];
  
        if (day_month == MONTH_PREV)
@@ -143,7 +143,7 @@ index b4ef543..2d338ef 100644
      }
    else if (event->type == GDK_2BUTTON_PRESS)
      {
-@@ -3098,13 +3112,13 @@ gtk_calendar_scroll (GtkWidget      *widget,
+@@ -3129,13 +3143,13 @@
      {
        if (!gtk_widget_has_focus (widget))
          gtk_widget_grab_focus (widget);
@@ -159,7 +159,7 @@ index b4ef543..2d338ef 100644
      }
    else
      return FALSE;
-@@ -3179,7 +3193,7 @@ gtk_calendar_key_press (GtkWidget   *widget,
+@@ -3210,7 +3224,7 @@
      case GDK_KEY_Left:
        return_val = TRUE;
        if (event->state & GDK_CONTROL_MASK)
@@ -168,7 +168,7 @@ index b4ef543..2d338ef 100644
        else
          {
            move_focus (calendar, -1);
-@@ -3192,7 +3206,7 @@ gtk_calendar_key_press (GtkWidget   *widget,
+@@ -3223,7 +3237,7 @@
      case GDK_KEY_Right:
        return_val = TRUE;
        if (event->state & GDK_CONTROL_MASK)
@@ -177,7 +177,7 @@ index b4ef543..2d338ef 100644
        else
          {
            move_focus (calendar, 1);
-@@ -3246,11 +3260,11 @@ gtk_calendar_key_press (GtkWidget   *widget,
+@@ -3277,11 +3291,11 @@
  
            day = priv->day[row][col];
            if (priv->day_month[row][col] == MONTH_PREV)
@@ -193,6 +193,3 @@ index b4ef543..2d338ef 100644
          }
      }
  
--- 
-2.5.0
-

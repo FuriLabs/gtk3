@@ -1,6 +1,19 @@
+From: Ubuntu Core Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Date: Tue, 3 Mar 2009 21:58:20 -0300
+Subject: Disable VIQR IM for vi locale
+
+[TODO: why? The Debian changelog just says "imported from Ubuntu"]
+
+Forwarded: no
+---
+ modules/input/imviqr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/modules/input/imviqr.c b/modules/input/imviqr.c
+index d9572f5..bfa4462 100644
 --- a/modules/input/imviqr.c
 +++ b/modules/input/imviqr.c
-@@ -242,7 +242,7 @@
+@@ -242,7 +242,7 @@ static const GtkIMContextInfo viqr_info = {
    NC_("input method menu", "Vietnamese (VIQR)"), /* Human readable name */
    GETTEXT_PACKAGE,	   /* Translation domain */
     GTK_LOCALEDIR,	   /* Dir for bindtextdomain (not strictly needed for "gtk+") */

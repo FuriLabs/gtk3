@@ -9,11 +9,11 @@ Subject: [PATCH] message dialog: restore traditional look on unity
  testsuite/a11y/messagedialog.txt     | 15 ++++++++++++++-
  3 files changed, 65 insertions(+), 2 deletions(-)
 
-Index: gtk+3.0-3.18.8/gtk/gtkmessagedialog.c
+Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkmessagedialog.c
 ===================================================================
---- gtk+3.0-3.18.8.orig/gtk/gtkmessagedialog.c
-+++ gtk+3.0-3.18.8/gtk/gtkmessagedialog.c
-@@ -104,6 +104,9 @@ struct _GtkMessageDialogPrivate
+--- gtk+3.0-3.22.29-2ubuntu1.orig/gtk/gtkmessagedialog.c
++++ gtk+3.0-3.22.29-2ubuntu1/gtk/gtkmessagedialog.c
+@@ -104,6 +104,9 @@
    GtkWidget     *label;
    GtkWidget     *message_area; /* vbox for the primary and secondary labels, and any extra content from the caller */
    GtkWidget     *secondary_label;
@@ -23,7 +23,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkmessagedialog.c
  
    guint          has_primary_markup : 1;
    guint          has_secondary_text : 1;
-@@ -300,11 +303,38 @@ gtk_message_dialog_class_init (GtkMessag
+@@ -300,11 +303,38 @@
    gtk_widget_class_set_template_from_resource (widget_class, "/org/gtk/libgtk/ui/gtkmessagedialog.ui");
    gtk_widget_class_bind_template_child_private (widget_class, GtkMessageDialog, label);
    gtk_widget_class_bind_template_child_private (widget_class, GtkMessageDialog, secondary_label);
@@ -62,7 +62,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkmessagedialog.c
  static void
  gtk_message_dialog_init (GtkMessageDialog *dialog)
  {
-@@ -323,7 +353,25 @@ gtk_message_dialog_init (GtkMessageDialo
+@@ -327,7 +357,25 @@
  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
    action_area = gtk_dialog_get_action_area (GTK_DIALOG (dialog));
  G_GNUC_END_IGNORE_DEPRECATIONS
@@ -89,7 +89,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkmessagedialog.c
  
    settings = gtk_widget_get_settings (GTK_WIDGET (dialog));
    g_object_get (settings, "gtk-keynav-use-caret", &use_caret, NULL);
-@@ -363,6 +411,7 @@ setup_type (GtkMessageDialog *dialog,
+@@ -372,6 +420,7 @@
  {
    GtkMessageDialogPrivate *priv = dialog->priv;
    const gchar *name = NULL;
@@ -97,7 +97,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkmessagedialog.c
    AtkObject *atk_obj;
  
    if (priv->message_type == type)
-@@ -374,18 +423,22 @@ setup_type (GtkMessageDialog *dialog,
+@@ -383,18 +432,22 @@
      {
      case GTK_MESSAGE_INFO:
        name = _("Information");
@@ -120,7 +120,7 @@ Index: gtk+3.0-3.18.8/gtk/gtkmessagedialog.c
        break;
  
      case GTK_MESSAGE_OTHER:
-@@ -396,6 +449,11 @@ setup_type (GtkMessageDialog *dialog,
+@@ -405,6 +458,11 @@
        break;
      }
  
@@ -132,11 +132,11 @@ Index: gtk+3.0-3.18.8/gtk/gtkmessagedialog.c
    atk_obj = gtk_widget_get_accessible (GTK_WIDGET (dialog));
    if (GTK_IS_ACCESSIBLE (atk_obj))
      {
-Index: gtk+3.0-3.18.8/gtk/ui/gtkmessagedialog.ui
+Index: gtk+3.0-3.22.29-2ubuntu1/gtk/ui/gtkmessagedialog.ui
 ===================================================================
---- gtk+3.0-3.18.8.orig/gtk/ui/gtkmessagedialog.ui
-+++ gtk+3.0-3.18.8/gtk/ui/gtkmessagedialog.ui
-@@ -26,6 +26,24 @@
+--- gtk+3.0-3.22.29-2ubuntu1.orig/gtk/ui/gtkmessagedialog.ui
++++ gtk+3.0-3.22.29-2ubuntu1/gtk/ui/gtkmessagedialog.ui
+@@ -23,6 +23,24 @@
              <property name="margin-end">30</property>
              <property name="spacing">30</property>
              <child>
@@ -161,11 +161,11 @@ Index: gtk+3.0-3.18.8/gtk/ui/gtkmessagedialog.ui
                <object class="GtkBox" id="message_area">
                  <property name="visible">1</property>
                  <property name="orientation">vertical</property>
-Index: gtk+3.0-3.18.8/testsuite/a11y/messagedialog.txt
+Index: gtk+3.0-3.22.29-2ubuntu1/testsuite/a11y/messagedialog.txt
 ===================================================================
---- gtk+3.0-3.18.8.orig/testsuite/a11y/messagedialog.txt
-+++ gtk+3.0-3.18.8/testsuite/a11y/messagedialog.txt
-@@ -74,10 +74,23 @@ window1
+--- gtk+3.0-3.22.29-2ubuntu1.orig/testsuite/a11y/messagedialog.txt
++++ gtk+3.0-3.22.29-2ubuntu1/testsuite/a11y/messagedialog.txt
+@@ -75,10 +75,23 @@
        <AtkComponent>
        layer: widget
        alpha: 1

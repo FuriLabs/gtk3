@@ -1,7 +1,6 @@
-From 1fb5f0aed9976437d8c9c82071efe9a447d73de1 Mon Sep 17 00:00:00 2001
 From: Emmanuele Bassi <ebassi@gnome.org>
 Date: Fri, 20 Jan 2017 18:07:01 +0000
-Subject: [PATCH] gdk/x11: Check if we have access to GL before using GLX API
+Subject: gdk/x11: Check if we have access to GL before using GLX API
 
 If the platform does not have access to libGL then any call to GL and
 GLX API through libepoxy will fail with an assertion. Until such time
@@ -12,12 +11,13 @@ ourselves and do a symbol check.
 
 Bug: https://bugzilla.gnome.org/show_bug.cgi?id=775279
 Bug-Debian: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=847366
+Applied-upstream: no, GTK+ 4 added a dependency on newer libepoxy instead
 ---
  gdk/x11/gdkglcontext-x11.c | 26 ++++++++++++++++++++++++++
  1 file changed, 26 insertions(+)
 
 diff --git a/gdk/x11/gdkglcontext-x11.c b/gdk/x11/gdkglcontext-x11.c
-index 0819f89648..d8ddf0fe19 100644
+index 0819f89..d8ddf0f 100644
 --- a/gdk/x11/gdkglcontext-x11.c
 +++ b/gdk/x11/gdkglcontext-x11.c
 @@ -854,6 +854,32 @@ gdk_x11_screen_init_gl (GdkScreen *screen)
@@ -53,6 +53,3 @@ index 0819f89648..d8ddf0fe19 100644
    dpy = gdk_x11_display_get_xdisplay (display);
  
    if (!glXQueryExtension (dpy, &error_base, &event_base))
--- 
-2.11.0
-
