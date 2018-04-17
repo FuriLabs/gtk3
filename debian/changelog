@@ -1,3 +1,48 @@
+gtk+3.0 (3.22.29-3ubuntu1) bionic; urgency=low
+
+  * Merge from Debian unstable.  Remaining changes:
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0.symbols
+    + debian/control.in:
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + debian/rules: Mark additional known test failures:
+      - box-shadow-changes-modify-clip.ui
+      - label-text-shadow-changes-modify-clip.ui
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+      - gtksocket-unscale-before-sending-configurenotify.patch
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Wed, 04 Apr 2018 12:16:41 +0200
+
+gtk+3.0 (3.22.29-3) unstable; urgency=medium
+
+  * Team upload
+  * Allow stderr in autopkgtests. They produce harmless diagnostics.
+  * d/p/0013-wayland-Drop-cairo-surfaces-when-withdrawing.patch:
+    Add patch from upstream fixing a Wayland client crash if it unmaps
+    a window while gdk is processing updates
+  * d/p/0014-AM_PATH_GTK_3_0-Use-AC_PATH_TOOL-to-find-pkg-config.patch,
+    d/p/0015-m4macros-Fix-underquoting-in-AC_PATH_TOOL.patch:
+    Use AC_PATH_TOOL to find pkg-config in the deprecated AM_PATH_GTK_3_0
+    macro (Closes: #894069)
+  * d/p/0016-imwayland-destroy-objects-only-if-it-matches-our-man.patch:
+    Add patch proposed upstream to fix crashes on screen blank in some
+    dual-monitor configurations (Closes: #894388)
+
+ -- Simon McVittie <smcv@debian.org>  Tue, 03 Apr 2018 08:41:09 +0100
+
 gtk+3.0 (3.22.29-2ubuntu1) bionic; urgency=low
 
   * Merge from Debian unstable.  Remaining changes:
@@ -5139,4 +5184,3 @@ gtk+2.0 (2.0.0-1) unstable; urgency=low
   * Initial Release.
 
  -- Akira TAGOH <tagoh@debian.org>  Wed, 13 Mar 2002 00:07:25 +0900
-

@@ -1,0 +1,36 @@
+From: Simon McVittie <smcv@debian.org>
+Date: Mon, 26 Mar 2018 08:56:56 +0100
+Subject: m4macros: Fix underquoting in AC_PATH_TOOL
+
+While these lines are being changed anyway, they might as well be
+more correct.
+
+Signed-off-by: Simon McVittie <smcv@debian.org>
+Bug: https://gitlab.gnome.org/GNOME/gtk/issues/133
+Applied-upstream: 3.22.30, commit:323d86b6e4bb19f252328a78e93fda03e1d9c0df
+---
+ m4macros/gtk-3.0.m4 | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/m4macros/gtk-3.0.m4 b/m4macros/gtk-3.0.m4
+index eb4f381..6424687 100644
+--- a/m4macros/gtk-3.0.m4
++++ b/m4macros/gtk-3.0.m4
+@@ -25,7 +25,7 @@ AC_ARG_ENABLE(gtktest, [  --disable-gtktest       do not try to compile and run
+ 
+   no_gtk=""
+ 
+-  AC_PATH_TOOL(PKG_CONFIG, pkg-config, no)
++  AC_PATH_TOOL([PKG_CONFIG], [pkg-config], [no])
+ 
+   if test x$PKG_CONFIG != xno ; then
+     if $PKG_CONFIG --atleast-pkgconfig-version 0.7 ; then
+@@ -201,7 +201,7 @@ AC_DEFUN([GTK_CHECK_BACKEND],
+   min_gtk_version=ifelse([$2],,3.0.0,$2)
+   pkg_config_args="$pkg_config_args >= $min_gtk_version"
+ 
+-  AC_PATH_TOOL(PKG_CONFIG, [pkg-config], [AC_MSG_ERROR([No pkg-config found])])
++  AC_PATH_TOOL([PKG_CONFIG], [pkg-config], [AC_MSG_ERROR([No pkg-config found])])
+ 
+   if $PKG_CONFIG $pkg_config_args ; then
+     target_found=yes
