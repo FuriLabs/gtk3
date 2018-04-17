@@ -1,9 +1,25 @@
-From: Ubuntu Core Developers <ubuntu-devel-discuss@lists.ubuntu.com>
-Date: Tue, 3 Mar 2009 21:58:20 -0300
-Subject: Disable VIQR IM for vi locale
+From: Ming Hua <minghua@ubuntu.com>
+Date: Thu, 13 Mar 2008 18:09:25 -0500
+Subject: Do not use VIQR input method for vi locale by default
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-[TODO: why? The Debian changelog just says "imported from Ubuntu"]
+In the Vietnamese Quoted-Readable input method, punctuation following a
+base letter is converted into diacritical marks, for example a( → ă.
+(See <https://en.wikipedia.org/wiki/Vietnamese_Quoted-Readable>.)
+A 2008 bug report in Ubuntu argued that this is a problematic default,
+particularly when typing passwords, where the effect of the punctuation
+is non-obvious.
 
+According to the bug reporter, VIQR is popular with Vietnamese users
+living elsewhere in the world, where Vietnamese keyboards are unlikely
+to be readily available, but is not a popular choice within Vietnam,
+where the Telex or VNI input modes are preferred.
+
+[smcv: Add a summary of the Ubuntu bug]
+Bug-Debian: https://bugs.debian.org/895043
+Bug-Ubuntu: https://bugs.launchpad.net/ubuntu/+source/gtk+2.0/+bug/191451
 Forwarded: no
 ---
  modules/input/imviqr.c | 2 +-
