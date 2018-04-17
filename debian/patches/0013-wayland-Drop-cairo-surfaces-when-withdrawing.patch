@@ -1,0 +1,42 @@
+From: Olivier Fourdan <ofourdan@redhat.com>
+Date: Tue, 30 Jan 2018 13:57:35 +0100
+Subject: wayland: Drop cairo surfaces when withdrawing
+
+If a window is unmapped by the client while gdk is processing updates,
+(for example Firefox un-mapping its window on Expose events), the
+windowing backend resources might be lost (for example with Wayland)
+which can cause a crash in end_paint().
+
+Make sure we drop the cairo surfaces as well when hiding the surface,
+that will avoid the crash in gdk_window_impl_wayland_end_paint() when
+trying to attach the staging cairo surface to a released wl_surface,
+these will be recreated when needed when the surface becomes visible
+again and there is no need to keep such buffers around for a surface
+which is not visible anyway.
+
+Bug: https://bugzilla.gnome.org/show_bug.cgi?id=793062
+Origin: upstream, 3.22.30, commit:3bd7b379c8d2c7e57ce22501420791c4bfcf24ca
+---
+ gdk/wayland/gdkwindow-wayland.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gdk/wayland/gdkwindow-wayland.c b/gdk/wayland/gdkwindow-wayland.c
+index 9ee4fe2..38c23c2 100644
+--- a/gdk/wayland/gdkwindow-wayland.c
++++ b/gdk/wayland/gdkwindow-wayland.c
+@@ -2600,6 +2600,7 @@ gdk_wayland_window_hide_surface (GdkWindow *window)
+   unset_transient_for_exported (window);
+ 
+   _gdk_wayland_window_clear_saved_size (window);
++  drop_cairo_surfaces (window);
+   impl->pending_commit = FALSE;
+   impl->mapped = FALSE;
+ }
+@@ -2916,7 +2917,6 @@ gdk_wayland_window_destroy (GdkWindow *window,
+   g_return_if_fail (!foreign_destroy);
+ 
+   gdk_wayland_window_hide_surface (window);
+-  drop_cairo_surfaces (window);
+ }
+ 
+ static void

@@ -1,0 +1,39 @@
+From: Helmut Grohne <helmut@subdivi.de>
+Date: Mon, 26 Mar 2018 06:28:44 +0200
+Subject: AM_PATH_GTK_3_0: Use AC_PATH_TOOL to find pkg-config
+
+AM_PATH_GTK_3_0 uses AC_PATH_PROG for finding pkg-config. Unfortunately,
+that will find the build architecture pkg-config which in turn will miss
+the host architecture gtk+3.0. What must be used here is the host
+architecture pkg-config and that is found with AC_PATH_TOOL.
+
+Bug-Debian: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=894069
+Reviewed-by: Simon McVittie <smcv@debian.org>
+Bug: https://gitlab.gnome.org/GNOME/gtk/issues/133
+Applied-upstream: 3.22.30, commit:3a7fbb3b30f6ed8f65f9f5862c2fd30035a1a1ed
+---
+ m4macros/gtk-3.0.m4 | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/m4macros/gtk-3.0.m4 b/m4macros/gtk-3.0.m4
+index 4fc9906..eb4f381 100644
+--- a/m4macros/gtk-3.0.m4
++++ b/m4macros/gtk-3.0.m4
+@@ -25,7 +25,7 @@ AC_ARG_ENABLE(gtktest, [  --disable-gtktest       do not try to compile and run
+ 
+   no_gtk=""
+ 
+-  AC_PATH_PROG(PKG_CONFIG, pkg-config, no)
++  AC_PATH_TOOL(PKG_CONFIG, pkg-config, no)
+ 
+   if test x$PKG_CONFIG != xno ; then
+     if $PKG_CONFIG --atleast-pkgconfig-version 0.7 ; then
+@@ -201,7 +201,7 @@ AC_DEFUN([GTK_CHECK_BACKEND],
+   min_gtk_version=ifelse([$2],,3.0.0,$2)
+   pkg_config_args="$pkg_config_args >= $min_gtk_version"
+ 
+-  AC_PATH_PROG(PKG_CONFIG, [pkg-config], [AC_MSG_ERROR([No pkg-config found])])
++  AC_PATH_TOOL(PKG_CONFIG, [pkg-config], [AC_MSG_ERROR([No pkg-config found])])
+ 
+   if $PKG_CONFIG $pkg_config_args ; then
+     target_found=yes
