@@ -1,3 +1,31 @@
+gtk+3.0 (3.22.30-2ubuntu1) cosmic; urgency=low
+
+  * Merge from Debian Sid. Remaining changes:
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0.symbols
+    + debian/control.in:
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + debian/rules: Mark additional known test failures:
+      - box-shadow-changes-modify-clip.ui
+      - label-text-shadow-changes-modify-clip.ui
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+      - gtksocket-unscale-before-sending-configurenotify.patch
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Sun, 01 Jul 2018 01:47:22 -0500
+
 gtk+3.0 (3.22.30-2) unstable; urgency=medium
 
   * Team upload
@@ -13,6 +41,36 @@ gtk+3.0 (3.22.30-2) unstable; urgency=medium
 
  -- Simon McVittie <smcv@debian.org>  Wed, 27 Jun 2018 09:55:28 +0100
 
+gtk+3.0 (3.22.30-1ubuntu1) bionic; urgency=low
+
+  * Merge from Debian unstable.  Remaining changes:
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0.symbols
+    + debian/control.in:
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + debian/rules: Mark additional known test failures:
+      - box-shadow-changes-modify-clip.ui
+      - label-text-shadow-changes-modify-clip.ui
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+      - gtksocket-unscale-before-sending-configurenotify.patch
+  * New release includes fix for crash on container unrealize
+    (LP: #1759468, #1764548)
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Mon, 16 Apr 2018 20:23:45 -0400
+
 gtk+3.0 (3.22.30-1) unstable; urgency=medium
 
   [ Jeremy Bicha ]
@@ -26,6 +84,34 @@ gtk+3.0 (3.22.30-1) unstable; urgency=medium
     (see #895043)
 
  -- Jeremy Bicha <jbicha@debian.org>  Mon, 16 Apr 2018 19:55:32 -0400
+
+gtk+3.0 (3.22.29-3ubuntu1) bionic; urgency=low
+
+  * Merge from Debian unstable.  Remaining changes:
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0.symbols
+    + debian/control.in:
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + debian/rules: Mark additional known test failures:
+      - box-shadow-changes-modify-clip.ui
+      - label-text-shadow-changes-modify-clip.ui
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+      - gtksocket-unscale-before-sending-configurenotify.patch
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Wed, 04 Apr 2018 12:16:41 +0200
 
 gtk+3.0 (3.22.29-3) unstable; urgency=medium
 
@@ -43,6 +129,36 @@ gtk+3.0 (3.22.29-3) unstable; urgency=medium
     dual-monitor configurations (Closes: #894388)
 
  -- Simon McVittie <smcv@debian.org>  Tue, 03 Apr 2018 08:41:09 +0100
+
+gtk+3.0 (3.22.29-2ubuntu1) bionic; urgency=low
+
+  * Merge from Debian unstable.  Remaining changes:
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0.symbols
+    + debian/control.in:
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + debian/rules: Mark additional known test failures:
+      - box-shadow-changes-modify-clip.ui
+      - label-text-shadow-changes-modify-clip.ui
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+      - gtksocket-unscale-before-sending-configurenotify.patch
+  * Dropped MIR changes
+  * Dropped ubuntu_fileselector_behaviour.patch, upstream
+ 
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Sat, 24 Mar 2018 20:04:11 +0100
 
 gtk+3.0 (3.22.29-2) unstable; urgency=medium
 
@@ -72,6 +188,54 @@ gtk+3.0 (3.22.29-1) unstable; urgency=medium
 
  -- Jeremy Bicha <jbicha@debian.org>  Thu, 15 Mar 2018 07:42:30 -0400
 
+gtk+3.0 (3.22.28-1ubuntu3) bionic; urgency=medium
+
+  * debian/control.in, debian/libgtk-3-0.symbols, debian/rules:
+    - disable the MIR backend, it's unmaintained and the mir team 
+      confirmed they don't it since they talk wayland now.
+      That removes the dependency of mir libraries (lp: #1701747)
+  * debian/patches/no_content_hub.patch:
+    - removed, that was only needed to be able to build the mir backend
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 22 Feb 2018 16:00:01 +0100
+
+gtk+3.0 (3.22.28-1ubuntu2) bionic; urgency=medium
+
+  * No change rebuild to import the current translations (lp: #1750628)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 22 Feb 2018 10:46:52 +0100
+
+gtk+3.0 (3.22.28-1ubuntu1) bionic; urgency=medium
+
+  * Merge with Debian. Remaining changes:
+    + Install a settings.ini file to set our themes
+    + Enable Mir backend
+    + Update debian/libgtk-3-0.symbols
+    + debian/control.in:
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + debian/rules: Mark additional known test failures:
+      - box-shadow-changes-modify-clip.ui
+      - label-text-shadow-changes-modify-clip.ui
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - ubuntu_fileselector_behaviour.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+      - gtksocket-unscale-before-sending-configurenotify.patch
+      - no_content_hub.patch
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Thu, 15 Feb 2018 10:15:34 -0500
+
 gtk+3.0 (3.22.28-1) unstable; urgency=medium
 
   * New upstream release (LP: #1698270) (LP: #1714518)
@@ -82,6 +246,38 @@ gtk+3.0 (3.22.28-1) unstable; urgency=medium
   * Drop git_text-view-support-emoji-chooser.patch: Applied in new release
 
  -- Jeremy Bicha <jbicha@debian.org>  Thu, 15 Feb 2018 05:23:44 -0500
+
+gtk+3.0 (3.22.26-2ubuntu1) bionic; urgency=medium
+
+  * Merge with Debian. Remaining changes:
+    + Install a settings.ini file to set our themes
+    + Enable Mir backend
+    + debian/control.in:
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + debian/rules: Mark additional known test failures:
+      - box-shadow-changes-modify-clip.ui
+      - label-text-shadow-changes-modify-clip.ui
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - ubuntu_fileselector_behaviour.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+      - gtksocket-unscale-before-sending-configurenotify.patch
+      - no_content_hub.patch
+  * Drop Ubuntu-specific 074_eventbox_scroll_mask.patch
+    which introduced a bug seen in the Lollypop music app (LP: #1728617)
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Tue, 28 Nov 2017 17:56:41 -0500
 
 gtk+3.0 (3.22.26-2) unstable; urgency=medium
 
@@ -96,6 +292,43 @@ gtk+3.0 (3.22.26-2) unstable; urgency=medium
     - Offer right-click "Insert Emoji" menu item for GtkTextView too
 
  -- Jeremy Bicha <jbicha@debian.org>  Tue, 28 Nov 2017 17:16:13 -0500
+
+gtk+3.0 (3.22.26-1ubuntu2) bionic; urgency=medium
+
+  * Refresh debian/control
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Mon, 13 Nov 2017 00:23:38 -0500
+
+gtk+3.0 (3.22.26-1ubuntu1) bionic; urgency=medium
+
+  * Sync with Debian. Remaining changes:
+    + Install a settings.ini file to set our themes
+    + Enable Mir backend
+    + debian/control.in:
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + debian/rules: Mark additional known test failures:
+      - box-shadow-changes-modify-clip.ui
+      - label-text-shadow-changes-modify-clip.ui
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - 074_eventbox_scroll_mask.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - ubuntu_fileselector_behaviour.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+      - gtksocket-unscale-before-sending-configurenotify.patch
+      - no_content_hub.patch
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Sun, 12 Nov 2017 20:25:59 -0500
 
 gtk+3.0 (3.22.26-1) unstable; urgency=medium
 

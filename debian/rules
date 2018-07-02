@@ -92,6 +92,7 @@ configure_flags_common = \
 
 configure_flags_deb = \
 	--enable-broadway-backend \
+	--disable-mir-backend \
 	--enable-x11-backend \
 	--enable-gtk-doc \
 	--enable-man \
@@ -118,6 +119,7 @@ endif
 
 configure_flags_udeb = \
 	--disable-broadway-backend \
+	--disable-mir-backend \
 	--disable-wayland-backend \
 	--enable-x11-backend \
 	--disable-introspection \
@@ -173,6 +175,8 @@ endif
 
 override_dh_auto_test:
 	# Mark reftests with known failures as non-fatal
+	touch testsuite/reftests/box-shadow-changes-modify-clip.ui.known_fail
+	touch testsuite/reftests/label-text-shadow-changes-modify-clip.ui.known_fail
 	touch testsuite/reftests/nonresizable-size.ui.known_fail
 	touch testsuite/reftests/window-show-contents-on-map.ui.known_fail
 	touch testsuite/reftests/inherit-and-initial.ui.known_fail
@@ -191,6 +195,9 @@ ifneq ($(filter %-udeb,$(binaries)),)
 endif
 
 override_dh_install:
+	# Install custom settings
+	mkdir -p debian/$(SHARED_PKG)/$(CONFDIR)
+	cp debian/settings.ini debian/$(SHARED_PKG)/$(CONFDIR)
 	dh_install -p$(UDEB_PKG) --sourcedir=debian/install/udeb
 	dh_install --remaining-packages --sourcedir=debian/install/deb
 
