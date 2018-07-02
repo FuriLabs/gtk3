@@ -1,3 +1,46 @@
+gtk+3.0 (3.22.30-2ubuntu1) cosmic; urgency=low
+
+  * Merge from Debian Sid. Remaining changes:
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0.symbols
+    + debian/control.in:
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + debian/rules: Mark additional known test failures:
+      - box-shadow-changes-modify-clip.ui
+      - label-text-shadow-changes-modify-clip.ui
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+      - gtksocket-unscale-before-sending-configurenotify.patch
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Sun, 01 Jul 2018 01:47:22 -0500
+
+gtk+3.0 (3.22.30-2) unstable; urgency=medium
+
+  * Team upload
+
+  [ Jeremy Bicha ]
+  * Bump minimum wayland-protocols to 1.12
+
+  [ Simon McVittie ]
+  * d/p/m4macros-Set-a-serial-number.patch:
+    Add patch from upstream to give gtk-3.0.m4 a serial number so that
+    it will override older copies bundled with other packages, typically
+    in the m4 directory (GTK+ 3 version of #895018)
+
+ -- Simon McVittie <smcv@debian.org>  Wed, 27 Jun 2018 09:55:28 +0100
+
 gtk+3.0 (3.22.30-1ubuntu1) bionic; urgency=low
 
   * Merge from Debian unstable.  Remaining changes:
@@ -5228,3 +5271,4 @@ gtk+2.0 (2.0.0-1) unstable; urgency=low
   * Initial Release.
 
  -- Akira TAGOH <tagoh@debian.org>  Wed, 13 Mar 2002 00:07:25 +0900
+
