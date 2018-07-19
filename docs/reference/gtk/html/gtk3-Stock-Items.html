@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Stock Items: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="DeprecatedObjects.html" title="Deprecated">
 <link rel="prev" href="GtkMisc.html" title="GtkMisc">
@@ -27,7 +27,8 @@
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2><span class="refentrytitle"><a name="gtk3-Stock-Items.top_of_page"></a>Stock Items</span></h2>
-<p>Stock Items — Prebuilt common menu/toolbar items and corresponding icons</p>
+<p>Stock Items — Prebuilt common menu/toolbar items and corresponding
+                    icons</p>
 </td>
 <td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
@@ -540,6 +541,9 @@
 </div>
 <div class="refsect1">
 <a name="gtk3-Stock-Items.description"></a><h2>Description</h2>
+<div class="blockquote"><blockquote class="blockquote"><p>Since GTK+ 3.10, stock items are deprecated. You should instead set
+up whatever labels and/or icons you need using normal widget API,
+rather than relying on GTK+ providing ready-made combinations of these.</p></blockquote></div>
 <p>Stock items represent commonly-used menu or toolbar items such as
 “Open” or “Exit”. Each stock item is identified by a stock ID;
 stock IDs are just strings, but macros such as <a class="link" href="gtk3-Stock-Items.html#GTK-STOCK-OPEN:CAPS" title="GTK_STOCK_OPEN"><span class="type">GTK_STOCK_OPEN</span></a> are
@@ -762,53 +766,27 @@ to use strings different from the actual gettext translation domain
 of your application for this, as long as your <a class="link" href="GtkActionGroup.html#GtkTranslateFunc" title="GtkTranslateFunc ()"><span class="type">GtkTranslateFunc</span></a> uses
 the correct domain when calling <code class="function">dgettext()</code>. This can be useful, e.g.
 when dealing with message contexts:</p>
-<div class="informalexample">
-  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
-    <tbody>
-      <tr>
-        <td class="listing_lines" align="right"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkStockItem</span><span class="normal"> items</span><span class="symbol">[]</span><span class="normal"> </span><span class="symbol">=</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal"> </span>
-<span class="normal"> </span><span class="cbracket">{</span><span class="normal"> MY_ITEM1</span><span class="symbol">,</span><span class="normal"> </span><span class="function">NC_</span><span class="symbol">(</span><span class="string">"odd items"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Item 1"</span><span class="symbol">),</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"odd-item-domain"</span><span class="normal"> </span><span class="cbracket">}</span><span class="symbol">,</span>
-<span class="normal"> </span><span class="cbracket">{</span><span class="normal"> MY_ITEM2</span><span class="symbol">,</span><span class="normal"> </span><span class="function">NC_</span><span class="symbol">(</span><span class="string">"even items"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Item 2"</span><span class="symbol">),</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"even-item-domain"</span><span class="normal"> </span><span class="cbracket">}</span><span class="symbol">,</span>
-<span class="cbracket">}</span><span class="symbol">;</span>
+<div class="informalexample"><pre class="programlisting">
+GtkStockItem items[] = { 
+ { MY_ITEM1, NC_("odd items", "Item 1"), 0, 0, "odd-item-domain" },
+ { MY_ITEM2, NC_("even items", "Item 2"), 0, 0, "even-item-domain" },
+};
 
-<span class="normal">gchar </span><span class="symbol">*</span>
-<span class="function">my_translate_func</span><span class="normal"> </span><span class="symbol">(</span><span class="keyword">const</span><span class="normal"> </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">msgid</span><span class="symbol">,</span>
-<span class="normal">                   </span><span class="usertype">gpointer</span><span class="normal">     data</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">msgctxt </span><span class="symbol">=</span><span class="normal"> data</span><span class="symbol">;</span>
+gchar *
+my_translate_func (const gchar *msgid,
+                   gpointer     data)
+{
+  gchar *msgctxt = data;
 
-<span class="normal">  </span><span class="keyword">return</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gchar</span><span class="symbol">*)</span><span class="function">g_dpgettext2</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">GETTEXT_PACKAGE</span><span class="symbol">,</span><span class="normal"> msgctxt</span><span class="symbol">,</span><span class="normal"> msgid</span><span class="symbol">);</span>
-<span class="cbracket">}</span>
+  return (gchar*)g_dpgettext2 (GETTEXT_PACKAGE, msgctxt, msgid);
+}
 
-<span class="symbol">...</span>
+...
 
-<span class="function"><a href="gtk3-Stock-Items.html#gtk-stock-add">gtk_stock_add</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">items</span><span class="symbol">,</span><span class="normal"> </span><span class="function">G_N_ELEMENTS</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">items</span><span class="symbol">));</span>
-<span class="function"><a href="gtk3-Stock-Items.html#gtk-stock-set-translate-func">gtk_stock_set_translate_func</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"odd-item-domain"</span><span class="symbol">,</span><span class="normal"> my_translate_func</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"odd items"</span><span class="symbol">);</span><span class="normal"> </span>
-<span class="function"><a href="gtk3-Stock-Items.html#gtk-stock-set-translate-func">gtk_stock_set_translate_func</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"even-item-domain"</span><span class="symbol">,</span><span class="normal"> my_translate_func</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"even items"</span><span class="symbol">);</span></pre></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
+gtk_stock_add (items, G_N_ELEMENTS (items));
+gtk_stock_set_translate_func ("odd-item-domain", my_translate_func, "odd items"); 
+gtk_stock_set_translate_func ("even-item-domain", my_translate_func, "even items"); 
+</pre></div>
 <p></p>
 <div class="refsect3">
 <a name="gtk-stock-set-translate-func.parameters"></a><h4>Parameters</h4>
@@ -882,7 +860,7 @@ no longer needed</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
 <tr>
-<td class="struct_member_name"><p><span class="type">GdkModifierType</span> <em class="structfield"><code><a name="GtkStockItem.modifier"></a>modifier</code></em>;</p></td>
+<td class="struct_member_name"><p><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> <em class="structfield"><code><a name="GtkStockItem.modifier"></a>modifier</code></em>;</p></td>
 <td class="struct_member_description"><p>Modifier type for keyboard accelerator</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>

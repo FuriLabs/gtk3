@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkButton: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="ButtonWidgets.html" title="Buttons and Toggles">
 <link rel="prev" href="ButtonWidgets.html" title="Buttons and Toggles">
@@ -269,7 +269,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<span class="returnvalue">GdkWindow</span> *
+<a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="returnvalue">GdkWindow</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkButton.html#gtk-button-get-event-window" title="gtk_button_get_event_window ()">gtk_button_get_event_window</a> <span class="c_punctuation">()</span>
@@ -469,7 +469,7 @@
 <a name="GtkButton.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 GtkButton implements
- AtkImplementorIface,  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>,  <a class="link" href="GtkActionable.html" title="GtkActionable">GtkActionable</a> and  <a class="link" href="GtkActivatable.html" title="GtkActivatable">GtkActivatable</a>.</p>
+ AtkImplementor,  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>,  <a class="link" href="GtkActionable.html" title="GtkActionable">GtkActionable</a> and  <a class="link" href="GtkActivatable.html" title="GtkActivatable">GtkActivatable</a>.</p>
 </div>
 <div class="refsect1">
 <a name="GtkButton.includes"></a><h2>Includes</h2>
@@ -618,9 +618,11 @@ will be updated appropriately.</p>
 gtk_button_new_from_stock (<em class="parameter"><code>const <span class="type">gchar</span> *stock_id</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gtk_button_new_from_stock</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p>
-<p>Use <a class="link" href="GtkButton.html#gtk-button-new-with-label" title="gtk_button_new_with_label ()"><code class="function">gtk_button_new_with_label()</code></a> instead.</p>
+<p>Stock items are deprecated. Use <a class="link" href="GtkButton.html#gtk-button-new-with-label" title="gtk_button_new_with_label ()"><code class="function">gtk_button_new_with_label()</code></a>
+instead.</p>
 </div>
-<p>Creates a new <a class="link" href="GtkButton.html" title="GtkButton"><span class="type">GtkButton</span></a> containing the image and text from a stock item.
+<p>Creates a new <a class="link" href="GtkButton.html" title="GtkButton"><span class="type">GtkButton</span></a> containing the image and text from a
+stock item.
 Some stock ids have preprocessor macros like <a class="link" href="gtk3-Stock-Items.html#GTK-STOCK-OK:CAPS" title="GTK_STOCK_OK"><span class="type">GTK_STOCK_OK</span></a> and
 <a class="link" href="gtk3-Stock-Items.html#GTK-STOCK-APPLY:CAPS" title="GTK_STOCK_APPLY"><span class="type">GTK_STOCK_APPLY</span></a>.</p>
 <p>If <em class="parameter"><code>stock_id</code></em>
@@ -1368,7 +1370,7 @@ setting and always show the image, if available.</p>
 <hr>
 <div class="refsect2">
 <a name="gtk-button-get-event-window"></a><h3>gtk_button_get_event_window ()</h3>
-<pre class="programlisting"><span class="returnvalue">GdkWindow</span> *
+<pre class="programlisting"><a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="returnvalue">GdkWindow</span></a> *
 gtk_button_get_event_window (<em class="parameter"><code><a class="link" href="GtkButton.html" title="GtkButton"><span class="type">GtkButton</span></a> *button</code></em>);</pre>
 <p>Returns the button’s event window if it is realized, <code class="literal">NULL</code> otherwise.
 This function should be rarely needed.</p>

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Events: GDK 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="GDK 3 Reference Manual">
 <link rel="up" href="reference.html" title="API Reference">
 <link rel="prev" href="GdkGLContext.html" title="GdkGLContext">
@@ -1141,29 +1141,15 @@ request further motion notifies, because it also works for extension
 events where motion notifies are provided for devices other than the
 core pointer. Coordinate extraction, processing and requesting more
 motion events from a <a class="link" href="gdk3-Events.html#GDK-MOTION-NOTIFY:CAPS"><code class="literal">GDK_MOTION_NOTIFY</code></a> event usually works like this:</p>
-<div class="informalexample">
-  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
-    <tbody>
-      <tr>
-        <td class="listing_lines" align="right"><pre>1
-2
-3
-4
-5
-6
-7</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="cbracket">{</span>
-<span class="normal">  </span><span class="comment">// motion_event handler</span>
-<span class="normal">  x </span><span class="symbol">=</span><span class="normal"> motion_event</span><span class="symbol">-&gt;</span><span class="normal">x</span><span class="symbol">;</span>
-<span class="normal">  y </span><span class="symbol">=</span><span class="normal"> motion_event</span><span class="symbol">-&gt;</span><span class="normal">y</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="comment">// handle (x,y) motion</span>
-<span class="normal">  </span><span class="function"><a href="gdk3-Events.html#gdk-event-request-motions">gdk_event_request_motions</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">motion_event</span><span class="symbol">);</span><span class="normal"> </span><span class="comment">// handles is_hint events</span>
-<span class="cbracket">}</span></pre></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
+<div class="informalexample"><pre class="programlisting">
+{
+  // motion_event handler
+  x = motion_event-&gt;x;
+  y = motion_event-&gt;y;
+  // handle (x,y) motion
+  gdk_event_request_motions (motion_event); // handles is_hint events
+}
+</pre></div>
 <p></p>
 <div class="refsect3">
 <a name="gdk-event-request-motions.parameters"></a><h4>Parameters</h4>

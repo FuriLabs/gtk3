@@ -35,6 +35,8 @@
 #include "gtkintl.h"
 #include "gtkprivate.h"
 
+#define BOX_SPACE 6
+
 typedef struct {
   GtkWidget *box;
   GtkWidget *heading;
@@ -124,7 +126,7 @@ scroll_to_section (GtkButton *button,
   if (section->heading)
     gtk_widget_get_allocation (section->heading, &alloc);
 
-  gtk_adjustment_animate_to_value (adj, alloc.y);
+  gtk_adjustment_animate_to_value (adj, alloc.y - BOX_SPACE);
 }
 
 static void
@@ -142,6 +144,7 @@ populate_recent_section (GtkEmojiChooser *chooser)
   GVariant *variant;
   GVariant *item;
   GVariantIter iter;
+  gboolean empty = FALSE;
 
   variant = g_settings_get_value (chooser->settings, "recent-emoji");
   g_variant_iter_init (&iter, variant);
@@ -155,6 +158,13 @@ populate_recent_section (GtkEmojiChooser *chooser)
       add_emoji (chooser->recent.box, FALSE, emoji_data, modifier, chooser);
       g_variant_unref (emoji_data);
       g_variant_unref (item);
+      empty = FALSE;
+    }
+
+  if (!empty)
+    {
+      gtk_widget_show (chooser->recent.box);
+      gtk_widget_set_sensitive (chooser->recent.button, TRUE);
     }
   g_variant_unref (variant);
 }
@@ -196,6 +206,10 @@ add_recent_item (GtkEmojiChooser *chooser,
   g_list_free (children);
 
   add_emoji (chooser->recent.box, TRUE, item, modifier, chooser);
+
+  /* Enable recent */
+  gtk_widget_show (chooser->recent.box);
+  gtk_widget_set_sensitive (chooser->recent.button, TRUE);
 
   g_settings_set_value (chooser->settings, "recent-emoji", g_variant_builder_end (&builder));
 
@@ -493,7 +507,7 @@ adj_value_changed (GtkAdjustment *adj,
       else
         gtk_widget_get_allocation (section->box, &alloc);
 
-      if (value < alloc.y)
+      if (value < alloc.y - BOX_SPACE)
         break;
 
       select_section = section;
@@ -535,7 +549,7 @@ filter_func (GtkFlowBoxChild *child,
     goto out;
 
   g_variant_get_child (emoji_data, 1, "&s", &name);
-  res = strstr (name, text) != NULL;
+  res = g_str_match_string (text, name, TRUE);
 
 out:
   if (res)

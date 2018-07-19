@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>General: GDK 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="GDK 3 Reference Manual">
 <link rel="up" href="reference.html" title="API Reference">
 <link rel="prev" href="reference.html" title="API Reference">
@@ -522,17 +522,9 @@ gdk_set_allowed_backends (<em class="parameter"><code>const <span class="type">g
 work with certain GDK backends.</p>
 <p>By default, GDK tries all included backends.</p>
 <p>For example,</p>
-<div class="informalexample">
-  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
-    <tbody>
-      <tr>
-        <td class="listing_lines" align="right"><pre>1</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="function"><a href="gdk3-General.html#gdk-set-allowed-backends">gdk_set_allowed_backends</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"wayland,quartz,*"</span><span class="symbol">);</span></pre></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
+<div class="informalexample"><pre class="programlisting">
+gdk_set_allowed_backends ("wayland,quartz,*");
+</pre></div>
 <p>
 instructs GDK to try the Wayland backend first,
 followed by the Quartz backend, and then all
@@ -989,33 +981,17 @@ to block and wait for the error to arrive from the X server.</p>
 on only a single display.</p>
 <div class="refsect3">
 <a name="id-1.2.2.7.24.8"></a><h4>Trapping an X error</h4>
-<div class="informalexample">
-  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
-    <tbody>
-      <tr>
-        <td class="listing_lines" align="right"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="function"><a href="gdk3-General.html#gdk-error-trap-push">gdk_error_trap_push</a></span><span class="normal"> </span><span class="symbol">();</span>
+<div class="informalexample"><pre class="programlisting">
+gdk_error_trap_push ();
 
-<span class="normal"> </span><span class="comment">// ... Call the X function which may cause an error here ...</span>
+ // ... Call the X function which may cause an error here ...
 
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="gdk3-General.html#gdk-error-trap-pop">gdk_error_trap_pop</a></span><span class="normal"> </span><span class="symbol">())</span>
-<span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">   </span><span class="comment">// ... Handle the error here ...</span>
-<span class="normal"> </span><span class="cbracket">}</span></pre></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
+if (gdk_error_trap_pop ())
+ {
+   // ... Handle the error here ...
+ }
+</pre></div>
 <p></p>
 </div>
 </div>

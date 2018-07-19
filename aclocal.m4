@@ -23,6 +23,9 @@ To do so, use the procedure documented by the package, typically 'autoreconf'.])
 # Configure paths for GLIB
 # Owen Taylor     1997-2001
 
+# Increment this whenever this file is changed.
+#serial 1
+
 dnl AM_PATH_GLIB_2_0([MINIMUM-VERSION, [ACTION-IF-FOUND [, ACTION-IF-NOT-FOUND [, MODULES]]]])
 dnl Test for GLIB, and define GLIB_CFLAGS and GLIB_LIBS, if gmodule, gobject,
 dnl gthread, or gio is specified in MODULES, pass to pkg-config
@@ -112,7 +115,7 @@ dnl
 #include <stdlib.h>
 
 int 
-main ()
+main (void)
 {
   unsigned int major, minor, micro;
 
@@ -231,6 +234,9 @@ main ()
   AC_SUBST(GLIB_COMPILE_RESOURCES)
   rm -f conf.glibtest
 ])
+
+# Increment this whenever this file is changed.
+#serial 1
 
 dnl GLIB_GSETTINGS
 dnl Defines GSETTINGS_SCHEMAS_INSTALL which controls whether

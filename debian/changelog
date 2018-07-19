@@ -1,3 +1,70 @@
+gtk+3.0 (3.23.1-1ubuntu1) UNRELEASED; urgency=medium
+
+  * Merge from Debian Sid. Remaining changes:
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0.symbols
+    + debian/control.in:
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + debian/rules: Mark additional known test failures:
+      - box-shadow-changes-modify-clip.ui
+      - label-text-shadow-changes-modify-clip.ui
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+  * gtksocket-unscale-before-sending-configurenotify.patch: Drop, this is done
+    upstream.
+
+ -- Iain Lane <laney@debian.org>  Thu, 19 Jul 2018 18:43:15 +0100
+
+gtk+3.0 (3.23.1-1) experimental; urgency=medium
+
+  * debian/{control{,.in},gbp.conf,watch}: Update for experimental
+  * New upstream development releases (!!!) 3.23.0 & 3.23.1:
+    + New font chooser features:
+     - Allow setting OpenType font features
+     - Show examples for OpenType font features
+     - Allow selecting OpenType font variations
+     - Support levels of details for selection
+    + New Emoji features:
+     - Support a completion popup for Emoji
+     - Drop Ctrl-Shift-e shortcut
+    + Other new apis:
+     - gdk_window_move_to_rect
+    + Backported event controllers from GTK+ 4:
+     - GtkEventControllerScroll
+     - GtkEventControllerMotion
+     - GtkEventControllerKey
+     - GtkGestureStylus
+    + Support markup in GtkModelButtons
+    + Themes
+     - The Raleigh theme has been removed
+     - Expander size in HighContrast has been increased
+    + Wayland
+     - Update cursor scale when needed
+     - Decoration negotiation protocol fixes
+  * debian/patches/m4macros-Set-a-serial-number.patch: Drop, included in this
+    release.
+  * debian/control{,.in}: Bump libepoxy (1.4) and pango (1.41.0) per upstream.
+  * debian/patches/gdk-x11-Check-if-we-have-access-to-GL-before-using-G.patch:
+    Drop - GTK now calls epoxy_has_glx() directly so this bypassed approach
+    isn't necessary.
+  * debian/libgail-3-0.symbols: New symbols from both releases.
+  * debian/patches/0008-defaultvalue-Ignore-more-style-properties-that-Adwai.patch:
+    Cherry-pick test fix patch from upstream !253.
+
+ -- Iain Lane <laney@debian.org>  Thu, 19 Jul 2018 17:55:42 +0100
+
 gtk+3.0 (3.22.30-2ubuntu1) cosmic; urgency=low
 
   * Merge from Debian Sid. Remaining changes:

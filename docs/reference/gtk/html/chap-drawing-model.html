@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>The GTK+ Drawing Model: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="gtk.html" title="Part I. GTK+ Overview">
 <link rel="prev" href="gtk-question-index.html" title="Common Questions">
@@ -92,7 +92,7 @@
 <p>
         The windowing system generates events for native windows. The GDK
         interface to the windowing system translates such native events into
-        <span class="structname">GdkEvent</span>
+        <a href="../html/gdk3-Event-Structures.html#GdkEvent"><span class="structname">GdkEvent</span></a>
         structures and sends them on to the GTK layer.  In turn, the GTK layer
         finds the widget that corresponds to a particular
         <code class="classname">GdkWindow</code> and emits the corresponding event
@@ -305,33 +305,17 @@
       </p>
 <div class="example">
 <a name="disabling-double-buffering"></a><p class="title"><b>Example 5. Disabling automatic double buffering</b></p>
-<div class="example-contents">
-  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
-    <tbody>
-      <tr>
-        <td class="listing_lines" align="right"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
-<span class="function">my_widget_init</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">MyWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">widget</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="symbol">...</span>
+<div class="example-contents"><pre class="programlisting">
+static void
+my_widget_init (MyWidget *widget)
+{
+  ...
 
-<span class="normal">  </span><span class="function"><a href="GtkWidget.html#gtk-widget-set-double-buffered">gtk_widget_set_double_buffered</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">);</span>
+  gtk_widget_set_double_buffered (widget, FALSE);
 
-<span class="normal">  </span><span class="symbol">...</span>
-<span class="cbracket">}</span></pre></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
+  ...
+}
+	</pre></div>
 </div>
 <br class="example-break"><p>
 	When is it convenient to disable double buffering?  Generally,

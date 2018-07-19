@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkEntry: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="NumericEntry.html" title="Numeric and Text Data Entry">
 <link rel="prev" href="NumericEntry.html" title="Numeric and Text Data Entry">
@@ -699,6 +699,11 @@
 </tr>
 <tr>
 <td class="property_type"><span class="type">gboolean</span></td>
+<td class="property_name"><a class="link" href="GtkEntry.html#GtkEntry--enable-emoji-completion" title="The “enable-emoji-completion” property">enable-emoji-completion</a></td>
+<td class="property_flags">Read / Write</td>
+</tr>
+<tr>
+<td class="property_type"><span class="type">gboolean</span></td>
 <td class="property_name"><a class="link" href="GtkEntry.html#GtkEntry--has-frame" title="The “has-frame” property">has-frame</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -1093,7 +1098,7 @@
 <a name="GtkEntry.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 GtkEntry implements
- AtkImplementorIface,  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>,  <a class="link" href="GtkEditable.html" title="GtkEditable">GtkEditable</a> and  <a class="link" href="GtkCellEditable.html" title="GtkCellEditable">GtkCellEditable</a>.</p>
+ AtkImplementor,  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>,  <a class="link" href="GtkEditable.html" title="GtkEditable">GtkEditable</a> and  <a class="link" href="GtkCellEditable.html" title="GtkCellEditable">GtkCellEditable</a>.</p>
 </div>
 <div class="refsect1">
 <a name="GtkEntry.includes"></a><h2>Includes</h2>
@@ -1135,31 +1140,16 @@ that any such functionality should also be available by other means, e.g.
 via the context menu of the entry.</p>
 <div class="refsect2">
 <a name="id-1.3.10.2.11.7"></a><h3>CSS nodes</h3>
-<div class="informalexample">
-  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
-    <tbody>
-      <tr>
-        <td class="listing_lines" align="right"><pre>1
-2
-3
-4
-5
-6
-7
-8</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">entry</span>
-<span class="normal">├── image</span><span class="symbol">.</span><span class="normal">left</span>
-<span class="normal">├── image</span><span class="symbol">.</span><span class="normal">right</span>
-<span class="normal">├── undershoot</span><span class="symbol">.</span><span class="normal">left</span>
-<span class="normal">├── undershoot</span><span class="symbol">.</span><span class="normal">right</span>
-<span class="normal">├── </span><span class="symbol">[</span><span class="normal">selection</span><span class="symbol">]</span>
-<span class="normal">├── </span><span class="symbol">[</span><span class="normal">progress</span><span class="symbol">[.</span><span class="normal">pulse</span><span class="symbol">]]</span>
-<span class="normal">╰── </span><span class="symbol">[</span><span class="normal">window</span><span class="symbol">.</span><span class="normal">popup</span><span class="symbol">]</span></pre></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
+<div class="informalexample"><pre class="programlisting">
+entry[.read-only][.flat][.warning][.error]
+├── image.left
+├── image.right
+├── undershoot.left
+├── undershoot.right
+├── [selection]
+├── [progress[.pulse]]
+╰── [window.popup]
+</pre></div>
 <p></p>
 <p>GtkEntry has a main node with the name entry. Depending on the properties
 of the entry, the style classes .read-only and .flat may appear. The style
@@ -1383,7 +1373,7 @@ in <a class="link" href="GtkEntry.html" title="GtkEntry"><span class="type">GtkE
 <a name="gtk-entry-get-text-area"></a><h3>gtk_entry_get_text_area ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_entry_get_text_area (<em class="parameter"><code><a class="link" href="GtkEntry.html" title="GtkEntry"><span class="type">GtkEntry</span></a> *entry</code></em>,
-                         <em class="parameter"><code><span class="type">GdkRectangle</span> *text_area</code></em>);</pre>
+                         <em class="parameter"><code><a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *text_area</code></em>);</pre>
 <p>Gets the area where the entry’s text is drawn. This function is
 useful when drawing something to the entry in a draw callback.</p>
 <p>If the entry is not realized, <em class="parameter"><code>text_area</code></em>
@@ -2663,7 +2653,7 @@ where a block bounces back and forth. Each call to
 <a name="gtk-entry-im-context-filter-keypress"></a><h3>gtk_entry_im_context_filter_keypress ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_entry_im_context_filter_keypress (<em class="parameter"><code><a class="link" href="GtkEntry.html" title="GtkEntry"><span class="type">GtkEntry</span></a> *entry</code></em>,
-                                      <em class="parameter"><code><span class="type">GdkEventKey</span> *event</code></em>);</pre>
+                                      <em class="parameter"><code><a href="../html/gdk3-Event-Structures.html#GdkEventKey"><span class="type">GdkEventKey</span></a> *event</code></em>);</pre>
 <p>Allow the <a class="link" href="GtkEntry.html" title="GtkEntry"><span class="type">GtkEntry</span></a> input method to internally handle key press
 and release events. If this function returns <code class="literal">TRUE</code>, then no further
 processing should be done for this key event. See
@@ -3522,7 +3512,7 @@ string with <code class="function">g_free()</code> when done. </p>
 gtk_entry_set_icon_drag_source (<em class="parameter"><code><a class="link" href="GtkEntry.html" title="GtkEntry"><span class="type">GtkEntry</span></a> *entry</code></em>,
                                 <em class="parameter"><code><a class="link" href="GtkEntry.html#GtkEntryIconPosition" title="enum GtkEntryIconPosition"><span class="type">GtkEntryIconPosition</span></a> icon_pos</code></em>,
                                 <em class="parameter"><code><a class="link" href="gtk3-Selections.html#GtkTargetList"><span class="type">GtkTargetList</span></a> *target_list</code></em>,
-                                <em class="parameter"><code><span class="type">GdkDragAction</span> actions</code></em>);</pre>
+                                <em class="parameter"><code><a href="../html/gdk3-Drag-and-Drop.html#GdkDragAction"><span class="type">GdkDragAction</span></a> actions</code></em>);</pre>
 <p>Sets up the icon at the given position so that GTK+ will start a drag
 operation when the user clicks and drags the icon.</p>
 <p>To handle the drag operation, you need to connect to the usual
@@ -3606,7 +3596,7 @@ DND operation, or -1.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_entry_get_icon_area (<em class="parameter"><code><a class="link" href="GtkEntry.html" title="GtkEntry"><span class="type">GtkEntry</span></a> *entry</code></em>,
                          <em class="parameter"><code><a class="link" href="GtkEntry.html#GtkEntryIconPosition" title="enum GtkEntryIconPosition"><span class="type">GtkEntryIconPosition</span></a> icon_pos</code></em>,
-                         <em class="parameter"><code><span class="type">GdkRectangle</span> *icon_area</code></em>);</pre>
+                         <em class="parameter"><code><a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *icon_area</code></em>);</pre>
 <p>Gets the area where entry’s icon at <em class="parameter"><code>icon_pos</code></em>
  is drawn.
 This function is useful when drawing something to the
@@ -4258,6 +4248,14 @@ other purpose.</p>
 <p>Whether the entry contents can be edited.</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkEntry--enable-emoji-completion"></a><h3>The <code class="literal">“enable-emoji-completion”</code> property</h3>
+<pre class="programlisting">  “enable-emoji-completion”  <span class="type">gboolean</span></pre>
+<p>Whether to suggest Emoji replacements.</p>
+<p>Flags: Read / Write</p>
+<p>Default value: FALSE</p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4968,7 +4966,7 @@ units to delete</p></td>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkEntry.html" title="GtkEntry"><span class="type">GtkEntry</span></a>            *entry,
                <a class="link" href="GtkEntry.html#GtkEntryIconPosition" title="enum GtkEntryIconPosition"><span class="type">GtkEntryIconPosition</span></a> icon_pos,
-               <span class="type">GdkEvent</span>            *event,
+               <a href="../html/gdk3-Event-Structures.html#GdkEvent"><span class="type">GdkEvent</span></a>            *event,
                <span class="type">gpointer</span>             user_data)</pre>
 <p>The ::icon-press signal is emitted when an activatable icon
 is clicked.</p>
@@ -5013,7 +5011,7 @@ is clicked.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkEntry.html" title="GtkEntry"><span class="type">GtkEntry</span></a>            *entry,
                <a class="link" href="GtkEntry.html#GtkEntryIconPosition" title="enum GtkEntryIconPosition"><span class="type">GtkEntryIconPosition</span></a> icon_pos,
-               <span class="type">GdkEvent</span>            *event,
+               <a href="../html/gdk3-Event-Structures.html#GdkEvent"><span class="type">GdkEvent</span></a>            *event,
                <span class="type">gpointer</span>             user_data)</pre>
 <p>The ::icon-release signal is emitted on the button release from a
 mouse click over an activatable icon.</p>

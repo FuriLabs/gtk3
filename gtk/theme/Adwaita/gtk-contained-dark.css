@@ -418,13 +418,15 @@ button.circular:hover:not(:checked):not(:active):not(:disabled):not(:backdrop) {
 
 .inline-toolbar toolbutton > button:backdrop:disabled:active label, .inline-toolbar toolbutton > button:backdrop:disabled:checked label { color: #566164; }
 
-toolbar.inline-toolbar toolbutton > button.flat, toolbar.inline-toolbar toolbutton:backdrop > button.flat, .linked:not(.vertical) > spinbutton:not(.vertical), .linked:not(.vertical) > entry, .inline-toolbar button, .inline-toolbar button:backdrop, .linked > button, .linked > button:hover, .linked > button:active, .linked > button:checked, .linked > button:backdrop, .linked > combobox > box > button.combo:dir(ltr), .linked > combobox > box > button.combo:dir(rtl) { border-radius: 0; border-right-style: none; }
+toolbar.inline-toolbar toolbutton > button.flat, toolbar.inline-toolbar toolbutton:backdrop > button.flat, .linked:not(.vertical) > spinbutton:not(.vertical), .linked:not(.vertical) > entry, .inline-toolbar button, .inline-toolbar button:backdrop, .linked > button, .linked > button:hover, .linked > button:active, .linked > button:checked, .linked > button:backdrop, filechooser .path-bar.linked > button, .linked > combobox > box > button.combo:dir(ltr), .linked > combobox > box > button.combo:dir(rtl) { border-radius: 0; border-right-style: none; }
 
-.linked:not(.vertical) > spinbutton:first-child:not(.vertical), .linked:not(.vertical) > entry:first-child, .inline-toolbar button:first-child, .linked > button:first-child, toolbar.inline-toolbar toolbutton:first-child > button.flat, toolbar.inline-toolbar toolbutton:backdrop:first-child > button.flat, combobox.linked button:nth-child(2):dir(rtl), .linked:not(.vertical) > combobox:first-child > box > button.combo { border-top-left-radius: 3px; border-bottom-left-radius: 3px; }
+.linked:not(.vertical) > spinbutton:first-child:not(.vertical), .linked:not(.vertical) > entry:first-child, .inline-toolbar button:first-child, .linked > button:first-child, toolbar.inline-toolbar toolbutton:first-child > button.flat, toolbar.inline-toolbar toolbutton:backdrop:first-child > button.flat, combobox.linked button:nth-child(2):dir(rtl), .linked:not(.vertical) > combobox:first-child > box > button.combo, filechooser .path-bar.linked > button:dir(ltr):first-child, filechooser .path-bar.linked > button:dir(rtl):last-child { border-top-left-radius: 3px; border-bottom-left-radius: 3px; border-top-right-radius: 0; border-bottom-right-radius: 0; border-right-style: none; }
 
-.linked:not(.vertical) > spinbutton:last-child:not(.vertical), .linked:not(.vertical) > entry:last-child, .inline-toolbar button:last-child, .linked > button:last-child, toolbar.inline-toolbar toolbutton:last-child > button.flat, toolbar.inline-toolbar toolbutton:backdrop:last-child > button.flat, combobox.linked button:nth-child(2):dir(ltr), .linked:not(.vertical) > combobox:last-child > box > button.combo { border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-right-style: solid; }
+.linked:not(.vertical) > spinbutton:last-child:not(.vertical), .linked:not(.vertical) > entry:last-child, .inline-toolbar button:last-child, .linked > button:last-child, toolbar.inline-toolbar toolbutton:last-child > button.flat, toolbar.inline-toolbar toolbutton:backdrop:last-child > button.flat, combobox.linked button:nth-child(2):dir(ltr), .linked:not(.vertical) > combobox:last-child > box > button.combo, filechooser .path-bar.linked > button:dir(ltr):last-child, filechooser .path-bar.linked > button:dir(rtl):first-child { border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-right-style: solid; }
 
 .linked:not(.vertical) > spinbutton:only-child:not(.vertical), .linked:not(.vertical) > entry:only-child, .inline-toolbar button:only-child, .linked > button:only-child, toolbar.inline-toolbar toolbutton:only-child > button.flat, toolbar.inline-toolbar toolbutton:backdrop:only-child > button.flat, .linked:not(.vertical) > combobox:only-child > box > button.combo { border-radius: 3px; border-style: solid; }
+
+filechooser .path-bar.linked > button:only-child { border-radius: 3px; border-style: solid; }
 
 .linked.vertical > spinbutton:not(.vertical), .linked.vertical > entry, .linked.vertical > button, .linked.vertical > button:hover, .linked.vertical > button:active, .linked.vertical > button:checked, .linked.vertical > button:backdrop, .linked.vertical > combobox > box > button.combo { border-style: solid solid none solid; border-radius: 0; }
 
@@ -1175,9 +1177,9 @@ scale trough, scale fill, progressbar trough { border: 1px solid #1b1f20; border
 
 scale trough:disabled, scale fill:disabled, progressbar trough:disabled { background-color: #2d3234; }
 
-scale trough:backdrop, scale fill:backdrop, progressbar trough:backdrop, progressbar:backdrop trough { background-color: #2c3233; border-color: #202425; transition: 200ms ease-out; }
+scale trough:backdrop, scale fill:backdrop, progressbar trough:backdrop { background-color: #2c3233; border-color: #202425; transition: 200ms ease-out; }
 
-scale trough:backdrop:disabled, scale fill:backdrop:disabled, progressbar trough:backdrop:disabled, progressbar:backdrop trough:disabled { background-color: #2d3234; }
+scale trough:backdrop:disabled, scale fill:backdrop:disabled, progressbar trough:backdrop:disabled { background-color: #2d3234; }
 
 row:selected scale trough:disabled, scale row:selected trough:disabled, row:selected scale fill:disabled, scale row:selected fill:disabled, row:selected progressbar trough:disabled, progressbar row:selected trough:disabled, row:selected scale trough, scale row:selected trough, row:selected scale fill, scale row:selected fill, row:selected progressbar trough, progressbar row:selected trough { border-color: #0f2b48; }
 
@@ -1189,9 +1191,9 @@ scale highlight, progressbar progress { border: 1px solid #0f2b48; border-radius
 
 scale highlight:disabled, progressbar progress:disabled { background-color: transparent; border-color: transparent; }
 
-scale highlight:backdrop, progressbar progress:backdrop, progressbar:backdrop progress { border-color: #0f2b48; }
+scale highlight:backdrop, progressbar progress:backdrop { border-color: #0f2b48; }
 
-scale highlight:backdrop:disabled, progressbar progress:backdrop:disabled, progressbar:backdrop progress:disabled { background-color: transparent; border-color: transparent; }
+scale highlight:backdrop:disabled, progressbar progress:backdrop:disabled { background-color: transparent; border-color: transparent; }
 
 row:selected scale highlight:disabled, scale row:selected highlight:disabled, row:selected progressbar progress:disabled, progressbar row:selected progress:disabled, row:selected scale highlight, scale row:selected highlight, row:selected progressbar progress, progressbar row:selected progress { border-color: #0f2b48; }
 
@@ -1928,9 +1930,15 @@ button.emoji-section:hover label { opacity: 0.775; }
 
 button.emoji-section:checked label { opacity: 1; }
 
-.emoji { font-size: x-large; padding: 6px; border-radius: 6px; }
+popover.emoji-picker .emoji { font-size: x-large; padding: 6px; border-radius: 6px; }
 
-.emoji :hover { background: #215d9c; }
+popover.emoji-picker .emoji :hover { background: #215d9c; }
+
+popover.emoji-completion arrow { border: none; background: none; }
+
+popover.emoji-completion contents row box { padding: 2px 10px; }
+
+popover.emoji-completion .emoji:hover { background: #3f4649; }
 
 /* GTK NAMED COLORS ---------------- use responsibly! */
 /*

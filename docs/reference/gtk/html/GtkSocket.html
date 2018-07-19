@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkSocket: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="PlugSocket.html" title="Cross-process Embedding">
 <link rel="prev" href="GtkPlug.html" title="GtkPlug">
@@ -68,7 +68,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<span class="returnvalue">GdkWindow</span> *
+<a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="returnvalue">GdkWindow</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkSocket.html#gtk-socket-get-plug-window" title="gtk_socket_get_plug_window ()">gtk_socket_get_plug_window</a> <span class="c_punctuation">()</span>
@@ -125,7 +125,7 @@
 <a name="GtkSocket.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 GtkSocket implements
- AtkImplementorIface and  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>.</p>
+ AtkImplementor and  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>.</p>
 </div>
 <div class="refsect1">
 <a name="GtkSocket.includes"></a><h2>Includes</h2>
@@ -145,33 +145,17 @@ Before using this function, the socket must have been realized,
 and for hence, have been added to its parent.</p>
 <div class="refsect3">
 <a name="id-1.3.21.3.9.4"></a><h4>Obtaining the window ID of a socket.</h4>
-<div class="informalexample">
-  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
-    <tbody>
-      <tr>
-        <td class="listing_lines" align="right"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">socket </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkSocket.html#gtk-socket-new">gtk_socket_new</a></span><span class="normal"> </span><span class="symbol">();</span>
-<span class="function"><a href="GtkWidget.html#gtk-widget-show">gtk_widget_show</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">socket</span><span class="symbol">);</span>
-<span class="function"><a href="GtkContainer.html#gtk-container-add">gtk_container_add</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_CONTAINER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">parent</span><span class="symbol">),</span><span class="normal"> socket</span><span class="symbol">);</span>
+<div class="informalexample"><pre class="programlisting">
+GtkWidget *socket = gtk_socket_new ();
+gtk_widget_show (socket);
+gtk_container_add (GTK_CONTAINER (parent), socket);
 
-<span class="comment">// The following call is only necessary if one of</span>
-<span class="comment">// the ancestors of the socket is not yet visible.</span>
-<span class="function"><a href="GtkWidget.html#gtk-widget-realize">gtk_widget_realize</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">socket</span><span class="symbol">);</span>
-<span class="function">g_print</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"The ID of the sockets window is %#x</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span>
-<span class="normal">         </span><span class="function"><a href="GtkSocket.html#gtk-socket-get-id">gtk_socket_get_id</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">socket</span><span class="symbol">));</span></pre></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
+// The following call is only necessary if one of
+// the ancestors of the socket is not yet visible.
+gtk_widget_realize (socket);
+g_print ("The ID of the sockets window is %#x\n",
+         gtk_socket_get_id (socket));
+</pre></div>
 <p></p>
 <p>Note that if you pass the window ID of the socket to another
 process that will create a plug in the socket, you must make
@@ -193,7 +177,7 @@ This protocol has also been implemented in other toolkits, e.g. Qt,
 allowing the same level of integration when embedding a Qt widget
 in GTK or vice versa.</p>
 <p>The <a class="link" href="GtkPlug.html" title="GtkPlug"><span class="type">GtkPlug</span></a> and <a class="link" href="GtkSocket.html" title="GtkSocket"><span class="type">GtkSocket</span></a> widgets are only available when GTK+
-is compiled for the X11 platform and <code class="literal">GDK_WINDOWING_X11</code> is defined.
+is compiled for the X11 platform and <a href="../html/gdk3-General.html#GDK-WINDOWING-X11:CAPS"><code class="literal">GDK_WINDOWING_X11</code></a> is defined.
 They can only be used on a <span class="type">GdkX11Display</span>. To use <a class="link" href="GtkPlug.html" title="GtkPlug"><span class="type">GtkPlug</span></a> and
 <a class="link" href="GtkSocket.html" title="GtkSocket"><span class="type">GtkSocket</span></a>, you need to include the <code class="literal">gtk/gtkx.h</code> header.</p>
 </div>
@@ -282,7 +266,7 @@ before you can make this call.</p>
 <hr>
 <div class="refsect2">
 <a name="gtk-socket-get-plug-window"></a><h3>gtk_socket_get_plug_window ()</h3>
-<pre class="programlisting"><span class="returnvalue">GdkWindow</span> *
+<pre class="programlisting"><a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="returnvalue">GdkWindow</span></a> *
 gtk_socket_get_plug_window (<em class="parameter"><code><a class="link" href="GtkSocket.html" title="GtkSocket"><span class="type">GtkSocket</span></a> *socket_</code></em>);</pre>
 <p>Retrieves the window of the plug. Use this to check if the plug has
 been created inside of the socket.</p>

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkMenuButton: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="ButtonWidgets.html" title="Buttons and Toggles">
 <link rel="prev" href="GtkLinkButton.html" title="GtkLinkButton">
@@ -230,7 +230,7 @@
 <a name="GtkMenuButton.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 GtkMenuButton implements
- AtkImplementorIface,  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>,  <a class="link" href="GtkActionable.html" title="GtkActionable">GtkActionable</a> and  <a class="link" href="GtkActivatable.html" title="GtkActivatable">GtkActivatable</a>.</p>
+ AtkImplementor,  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>,  <a class="link" href="GtkActionable.html" title="GtkActionable">GtkActionable</a> and  <a class="link" href="GtkActivatable.html" title="GtkActivatable">GtkActivatable</a>.</p>
 </div>
 <div class="refsect1">
 <a name="GtkMenuButton.includes"></a><h2>Includes</h2>
@@ -353,9 +353,12 @@ with another <a class="link" href="GtkWidget.html" title="GtkWidget"><span class
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_menu_button_set_popup (<em class="parameter"><code><a class="link" href="GtkMenuButton.html" title="GtkMenuButton"><span class="type">GtkMenuButton</span></a> *menu_button</code></em>,
                            <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *menu</code></em>);</pre>
-<p>Sets the <a class="link" href="GtkMenu.html" title="GtkMenu"><span class="type">GtkMenu</span></a> that will be popped up when the button is clicked,
-or <code class="literal">NULL</code> to disable the button. If <a class="link" href="GtkMenuButton.html#GtkMenuButton--menu-model" title="The “menu-model” property"><span class="type">“menu-model”</span></a> or
-<a class="link" href="GtkMenuButton.html#GtkMenuButton--popover" title="The “popover” property"><span class="type">“popover”</span></a> are set, they will be set to <code class="literal">NULL</code>.</p>
+<p>Sets the <a class="link" href="GtkMenu.html" title="GtkMenu"><span class="type">GtkMenu</span></a> that will be popped up when the <em class="parameter"><code>menu_button</code></em>
+ is clicked, or
+<code class="literal">NULL</code> to dissociate any existing menu and disable the button.</p>
+<p>If <a class="link" href="GtkMenuButton.html#GtkMenuButton--menu-model" title="The “menu-model” property"><span class="type">“menu-model”</span></a> or <a class="link" href="GtkMenuButton.html#GtkMenuButton--popover" title="The “popover” property"><span class="type">“popover”</span></a> are set, those objects
+are dissociated from the <em class="parameter"><code>menu_button</code></em>
+, and those properties are set to <code class="literal">NULL</code>.</p>
 <div class="refsect3">
 <a name="gtk-menu-button-set-popup.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -372,8 +375,8 @@ or <code class="literal">NULL</code> to disable the button. If <a class="link" h
 </tr>
 <tr>
 <td class="parameter_name"><p>menu</p></td>
-<td class="parameter_description"><p>a <a class="link" href="GtkMenu.html" title="GtkMenu"><span class="type">GtkMenu</span></a>. </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+<td class="parameter_description"><p>a <a class="link" href="GtkMenu.html" title="GtkMenu"><span class="type">GtkMenu</span></a>, or <code class="literal">NULL</code> to unset and disable the button. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
@@ -416,9 +419,12 @@ returns <code class="literal">NULL</code>.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_menu_button_set_popover (<em class="parameter"><code><a class="link" href="GtkMenuButton.html" title="GtkMenuButton"><span class="type">GtkMenuButton</span></a> *menu_button</code></em>,
                              <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *popover</code></em>);</pre>
-<p>Sets the <a class="link" href="GtkPopover.html" title="GtkPopover"><span class="type">GtkPopover</span></a> that will be popped up when the button is
-clicked, or <code class="literal">NULL</code> to disable the button. If <a class="link" href="GtkMenuButton.html#GtkMenuButton--menu-model" title="The “menu-model” property"><span class="type">“menu-model”</span></a>
-or <a class="link" href="GtkMenuButton.html#GtkMenuButton--popup" title="The “popup” property"><span class="type">“popup”</span></a> are set, they will be set to <code class="literal">NULL</code>.</p>
+<p>Sets the <a class="link" href="GtkPopover.html" title="GtkPopover"><span class="type">GtkPopover</span></a> that will be popped up when the <em class="parameter"><code>menu_button</code></em>
+ is clicked,
+or <code class="literal">NULL</code> to dissociate any existing popover and disable the button.</p>
+<p>If <a class="link" href="GtkMenuButton.html#GtkMenuButton--menu-model" title="The “menu-model” property"><span class="type">“menu-model”</span></a> or <a class="link" href="GtkMenuButton.html#GtkMenuButton--popup" title="The “popup” property"><span class="type">“popup”</span></a> are set, those objects
+are dissociated from the <em class="parameter"><code>menu_button</code></em>
+, and those properties are set to <code class="literal">NULL</code>.</p>
 <div class="refsect3">
 <a name="gtk-menu-button-set-popover.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -435,8 +441,8 @@ or <a class="link" href="GtkMenuButton.html#GtkMenuButton--popup" title="The “
 </tr>
 <tr>
 <td class="parameter_name"><p>popover</p></td>
-<td class="parameter_description"><p>a <a class="link" href="GtkPopover.html" title="GtkPopover"><span class="type">GtkPopover</span></a>. </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+<td class="parameter_description"><p>a <a class="link" href="GtkPopover.html" title="GtkPopover"><span class="type">GtkPopover</span></a>, or <code class="literal">NULL</code> to unset and disable the button. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
@@ -480,13 +486,15 @@ returns <code class="literal">NULL</code>.</p>
 gtk_menu_button_set_menu_model (<em class="parameter"><code><a class="link" href="GtkMenuButton.html" title="GtkMenuButton"><span class="type">GtkMenuButton</span></a> *menu_button</code></em>,
                                 <em class="parameter"><code><span class="type">GMenuModel</span> *menu_model</code></em>);</pre>
 <p>Sets the <span class="type">GMenuModel</span> from which the popup will be constructed,
-or <code class="literal">NULL</code> to disable the button.</p>
+or <code class="literal">NULL</code> to dissociate any existing menu model and disable the button.</p>
 <p>Depending on the value of <a class="link" href="GtkMenuButton.html#GtkMenuButton--use-popover" title="The “use-popover” property"><span class="type">“use-popover”</span></a>, either a
 <a class="link" href="GtkMenu.html" title="GtkMenu"><span class="type">GtkMenu</span></a> will be created with <a class="link" href="GtkMenu.html#gtk-menu-new-from-model" title="gtk_menu_new_from_model ()"><code class="function">gtk_menu_new_from_model()</code></a>, or a
 <a class="link" href="GtkPopover.html" title="GtkPopover"><span class="type">GtkPopover</span></a> with <a class="link" href="GtkPopover.html#gtk-popover-new-from-model" title="gtk_popover_new_from_model ()"><code class="function">gtk_popover_new_from_model()</code></a>. In either case,
 actions will be connected as documented for these functions.</p>
-<p>If <a class="link" href="GtkMenuButton.html#GtkMenuButton--popup" title="The “popup” property"><span class="type">“popup”</span></a> or <a class="link" href="GtkMenuButton.html#GtkMenuButton--popover" title="The “popover” property"><span class="type">“popover”</span></a> are already set,
-their content will be lost and replaced by the newly created popup.</p>
+<p>If <a class="link" href="GtkMenuButton.html#GtkMenuButton--popup" title="The “popup” property"><span class="type">“popup”</span></a> or <a class="link" href="GtkMenuButton.html#GtkMenuButton--popover" title="The “popover” property"><span class="type">“popover”</span></a> are already set, those
+widgets are dissociated from the <em class="parameter"><code>menu_button</code></em>
+, and those properties are set
+to <code class="literal">NULL</code>.</p>
 <div class="refsect3">
 <a name="gtk-menu-button-set-menu-model.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -503,8 +511,9 @@ their content will be lost and replaced by the newly created popup.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>menu_model</p></td>
-<td class="parameter_description"><p>a <span class="type">GMenuModel</span>. </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+<td class="parameter_description"><p>a <span class="type">GMenuModel</span>, or <code class="literal">NULL</code> to unset and disable the
+button. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>

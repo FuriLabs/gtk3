@@ -160,11 +160,11 @@ am__gtk3_demo_SOURCES_DIST = application_demo.c assistant.c builder.c \
 	css_multiplebgs.c css_pixbufs.c css_shadows.c cursors.c \
 	dialog.c drawingarea.c editable_cells.c entry_buffer.c \
 	entry_completion.c event_axes.c expander.c filtermodel.c \
-	fishbowl.c widgetbowl.c foreigndrawing.c gestures.c glarea.c \
-	headerbar.c hypertext.c iconview.c iconview_edit.c images.c \
-	infobar.c links.c listbox.c flowbox.c list_store.c markup.c \
-	menus.c modelbutton.c offscreen_window.c offscreen_window2.c \
-	overlay.c overlay2.c panes.c pickers.c pixbufs.c popover.c \
+	fishbowl.c foreigndrawing.c gestures.c glarea.c headerbar.c \
+	hypertext.c iconview.c iconview_edit.c images.c infobar.c \
+	links.c listbox.c flowbox.c list_store.c markup.c menus.c \
+	modelbutton.c offscreen_window.c offscreen_window2.c overlay.c \
+	overlay2.c paint.c panes.c pickers.c pixbufs.c popover.c \
 	printing.c revealer.c rotated_text.c scale.c search_entry.c \
 	search_entry2.c shortcuts.c sidebar.c sizegroup.c spinbutton.c \
 	spinner.c stack.c tabs.c textmask.c textview.c textscroll.c \
@@ -181,14 +181,14 @@ am__objects_1 = application_demo.$(OBJEXT) assistant.$(OBJEXT) \
 	editable_cells.$(OBJEXT) entry_buffer.$(OBJEXT) \
 	entry_completion.$(OBJEXT) event_axes.$(OBJEXT) \
 	expander.$(OBJEXT) filtermodel.$(OBJEXT) fishbowl.$(OBJEXT) \
-	widgetbowl.$(OBJEXT) foreigndrawing.$(OBJEXT) \
-	gestures.$(OBJEXT) glarea.$(OBJEXT) headerbar.$(OBJEXT) \
-	hypertext.$(OBJEXT) iconview.$(OBJEXT) iconview_edit.$(OBJEXT) \
-	images.$(OBJEXT) infobar.$(OBJEXT) links.$(OBJEXT) \
-	listbox.$(OBJEXT) flowbox.$(OBJEXT) list_store.$(OBJEXT) \
-	markup.$(OBJEXT) menus.$(OBJEXT) modelbutton.$(OBJEXT) \
-	offscreen_window.$(OBJEXT) offscreen_window2.$(OBJEXT) \
-	overlay.$(OBJEXT) overlay2.$(OBJEXT) panes.$(OBJEXT) \
+	foreigndrawing.$(OBJEXT) gestures.$(OBJEXT) glarea.$(OBJEXT) \
+	headerbar.$(OBJEXT) hypertext.$(OBJEXT) iconview.$(OBJEXT) \
+	iconview_edit.$(OBJEXT) images.$(OBJEXT) infobar.$(OBJEXT) \
+	links.$(OBJEXT) listbox.$(OBJEXT) flowbox.$(OBJEXT) \
+	list_store.$(OBJEXT) markup.$(OBJEXT) menus.$(OBJEXT) \
+	modelbutton.$(OBJEXT) offscreen_window.$(OBJEXT) \
+	offscreen_window2.$(OBJEXT) overlay.$(OBJEXT) \
+	overlay2.$(OBJEXT) paint.$(OBJEXT) panes.$(OBJEXT) \
 	pickers.$(OBJEXT) pixbufs.$(OBJEXT) popover.$(OBJEXT) \
 	printing.$(OBJEXT) revealer.$(OBJEXT) rotated_text.$(OBJEXT) \
 	scale.$(OBJEXT) search_entry.$(OBJEXT) search_entry2.$(OBJEXT) \
@@ -460,6 +460,7 @@ INTROSPECTION_MAKEFILE = @INTROSPECTION_MAKEFILE@
 INTROSPECTION_REQUIRED_VERSION = @INTROSPECTION_REQUIRED_VERSION@
 INTROSPECTION_SCANNER = @INTROSPECTION_SCANNER@
 INTROSPECTION_TYPELIBDIR = @INTROSPECTION_TYPELIBDIR@
+ISO_CODES_PREFIX = @ISO_CODES_PREFIX@
 JSON_GLIB_CFLAGS = @JSON_GLIB_CFLAGS@
 JSON_GLIB_LIBS = @JSON_GLIB_LIBS@
 LD = @LD@
@@ -651,7 +652,6 @@ demos_base = \
 	expander.c  				\
         filtermodel.c				\
 	fishbowl.c				\
-	widgetbowl.c 				\
 	foreigndrawing.c			\
 	gestures.c				\
 	glarea.c				\
@@ -672,6 +672,7 @@ demos_base = \
 	offscreen_window2.c			\
 	overlay.c				\
 	overlay2.c				\
+	paint.c					\
 	panes.c					\
 	pickers.c				\
 	pixbufs.c				\
@@ -918,6 +919,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/overlay.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/overlay2.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pagesetup.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/paint.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/panes.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pickers.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pixbufs.Po@am__quote@
@@ -942,7 +944,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/toolpalette.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/transparent.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/tree_store.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/widgetbowl.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\

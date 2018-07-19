@@ -331,6 +331,7 @@ INTROSPECTION_MAKEFILE = @INTROSPECTION_MAKEFILE@
 INTROSPECTION_REQUIRED_VERSION = @INTROSPECTION_REQUIRED_VERSION@
 INTROSPECTION_SCANNER = @INTROSPECTION_SCANNER@
 INTROSPECTION_TYPELIBDIR = @INTROSPECTION_TYPELIBDIR@
+ISO_CODES_PREFIX = @ISO_CODES_PREFIX@
 JSON_GLIB_CFLAGS = @JSON_GLIB_CFLAGS@
 JSON_GLIB_LIBS = @JSON_GLIB_LIBS@
 LD = @LD@
@@ -466,9 +467,9 @@ GTESTER = gtester -k		# in $PATH for non-GLIB packages
 GTESTER_REPORT = gtester-report		# in $PATH for non-GLIB packages
 
 # initialize variables for unconditional += appending
-EXTRA_DIST = detectenv-msvc.mak introspection-msvc.mak \
-	gtk-introspection-msvc.mak replace.py pc_base.py gtkpc.py \
-	$(GENERATED_ITEMS)
+EXTRA_DIST = detectenv-msvc.mak gentypefuncs.py \
+	gtk-introspection-msvc.mak introspection-msvc.mak replace.py \
+	pc_base.py gtkpc.py README_EGL_MSVC.txt $(GENERATED_ITEMS)
 TEST_PROGS = 
 
 ### testing rules

@@ -246,6 +246,9 @@
       </sub>
       <sub name="Gestures and event handling" link="Gestures.html">
         <sub name="GtkEventController" link="GtkEventController.html"/>
+        <sub name="GtkEventControllerKey" link="GtkEventControllerKey.html"/>
+        <sub name="GtkEventControllerScroll" link="GtkEventControllerScroll.html"/>
+        <sub name="GtkEventControllerMotion" link="GtkEventControllerMotion.html"/>
         <sub name="GtkGesture" link="GtkGesture.html"/>
         <sub name="GtkGestureSingle" link="GtkGestureSingle.html"/>
         <sub name="GtkGestureDrag" link="GtkGestureDrag.html"/>
@@ -255,6 +258,7 @@
         <sub name="GtkGestureSwipe" link="GtkGestureSwipe.html"/>
         <sub name="GtkGestureRotate" link="GtkGestureRotate.html"/>
         <sub name="GtkGestureZoom" link="GtkGestureZoom.html"/>
+        <sub name="GtkGestureStylus" link="GtkGestureStylus.html"/>
         <sub name="GtkPadController" link="GtkPadController.html"/>
       </sub>
       <sub name="Deprecated" link="DeprecatedObjects.html">
@@ -433,6 +437,7 @@
     <sub name="Index of new symbols in 3.18" link="api-index-3-18.html"/>
     <sub name="Index of new symbols in 3.20" link="api-index-3-20.html"/>
     <sub name="Index of new symbols in 3.22" link="api-index-3-22.html"/>
+    <sub name="Index of new symbols in 3.24" link="api-index-3-24.html"/>
     <sub name="Annotation Glossary" link="annotation-glossary.html"/>
   </chapters>
   <functions>
@@ -1464,6 +1469,8 @@
     <keyword type="function" name="gtk_info_bar_get_content_area ()" link="GtkInfoBar.html#gtk-info-bar-get-content-area" since="2.18"/>
     <keyword type="function" name="gtk_info_bar_get_show_close_button ()" link="GtkInfoBar.html#gtk-info-bar-get-show-close-button" since="3.10"/>
     <keyword type="function" name="gtk_info_bar_set_show_close_button ()" link="GtkInfoBar.html#gtk-info-bar-set-show-close-button" since="3.10"/>
+    <keyword type="function" name="gtk_info_bar_get_revealed ()" link="GtkInfoBar.html#gtk-info-bar-get-revealed" since="3.22.29"/>
+    <keyword type="function" name="gtk_info_bar_set_revealed ()" link="GtkInfoBar.html#gtk-info-bar-set-revealed" since="3.22.29"/>
     <keyword type="struct" name="struct GtkInfoBar" link="GtkInfoBar.html#GtkInfoBar-struct"/>
     <keyword type="property" name="The “message-type” property" link="GtkInfoBar.html#GtkInfoBar--message-type"/>
     <keyword type="property" name="The “revealed” property" link="GtkInfoBar.html#GtkInfoBar--revealed"/>
@@ -1555,7 +1562,7 @@
     <keyword type="function" name="gtk_button_new_with_label ()" link="GtkButton.html#gtk-button-new-with-label"/>
     <keyword type="function" name="gtk_button_new_with_mnemonic ()" link="GtkButton.html#gtk-button-new-with-mnemonic"/>
     <keyword type="function" name="gtk_button_new_from_icon_name ()" link="GtkButton.html#gtk-button-new-from-icon-name" since="3.10"/>
-    <keyword type="function" name="gtk_button_new_from_stock ()" link="GtkButton.html#gtk-button-new-from-stock" deprecated="3.10: Use gtk_button_new_with_label() instead."/>
+    <keyword type="function" name="gtk_button_new_from_stock ()" link="GtkButton.html#gtk-button-new-from-stock" deprecated=""/>
     <keyword type="function" name="gtk_button_pressed ()" link="GtkButton.html#gtk-button-pressed" deprecated="2.20: Use the #GtkWidget::button-press-event signal."/>
     <keyword type="function" name="gtk_button_released ()" link="GtkButton.html#gtk-button-released" deprecated="2.20: Use the #GtkWidget::button-release-event signal."/>
     <keyword type="function" name="gtk_button_clicked ()" link="GtkButton.html#gtk-button-clicked"/>
@@ -1724,6 +1731,7 @@
     <keyword type="property" name="The “menu-name” property" link="GtkModelButton.html#GtkModelButton--menu-name"/>
     <keyword type="property" name="The “role” property" link="GtkModelButton.html#GtkModelButton--role"/>
     <keyword type="property" name="The “text” property" link="GtkModelButton.html#GtkModelButton--text"/>
+    <keyword type="property" name="The “use-markup” property" link="GtkModelButton.html#GtkModelButton--use-markup"/>
     <keyword type="function" name="gtk_entry_new ()" link="GtkEntry.html#gtk-entry-new"/>
     <keyword type="function" name="gtk_entry_new_with_buffer ()" link="GtkEntry.html#gtk-entry-new-with-buffer" since="2.18"/>
     <keyword type="function" name="gtk_entry_get_buffer ()" link="GtkEntry.html#gtk-entry-get-buffer" since="2.18"/>
@@ -1812,6 +1820,7 @@
     <keyword type="property" name="The “completion” property" link="GtkEntry.html#GtkEntry--completion"/>
     <keyword type="property" name="The “cursor-position” property" link="GtkEntry.html#GtkEntry--cursor-position"/>
     <keyword type="property" name="The “editable” property" link="GtkEntry.html#GtkEntry--editable"/>
+    <keyword type="property" name="The “enable-emoji-completion” property" link="GtkEntry.html#GtkEntry--enable-emoji-completion"/>
     <keyword type="property" name="The “has-frame” property" link="GtkEntry.html#GtkEntry--has-frame"/>
     <keyword type="property" name="The “im-module” property" link="GtkEntry.html#GtkEntry--im-module"/>
     <keyword type="property" name="The “inner-border” property" link="GtkEntry.html#GtkEntry--inner-border"/>
@@ -3353,9 +3362,9 @@
     <keyword type="function" name="gtk_menu_set_screen ()" link="GtkMenu.html#gtk-menu-set-screen" since="2.2"/>
     <keyword type="function" name="gtk_menu_reorder_child ()" link="GtkMenu.html#gtk-menu-reorder-child"/>
     <keyword type="function" name="gtk_menu_attach ()" link="GtkMenu.html#gtk-menu-attach" since="2.4"/>
-    <keyword type="function" name="gtk_menu_popup_at_rect ()" link="GtkMenu.html#gtk-menu-popup-at-rect" since="3.22" stability="Unstable"/>
-    <keyword type="function" name="gtk_menu_popup_at_widget ()" link="GtkMenu.html#gtk-menu-popup-at-widget" since="3.22" stability="Unstable"/>
-    <keyword type="function" name="gtk_menu_popup_at_pointer ()" link="GtkMenu.html#gtk-menu-popup-at-pointer" since="3.22" stability="Unstable"/>
+    <keyword type="function" name="gtk_menu_popup_at_rect ()" link="GtkMenu.html#gtk-menu-popup-at-rect" since="3.22"/>
+    <keyword type="function" name="gtk_menu_popup_at_widget ()" link="GtkMenu.html#gtk-menu-popup-at-widget" since="3.22"/>
+    <keyword type="function" name="gtk_menu_popup_at_pointer ()" link="GtkMenu.html#gtk-menu-popup-at-pointer" since="3.22"/>
     <keyword type="function" name="gtk_menu_popup_for_device ()" link="GtkMenu.html#gtk-menu-popup-for-device" deprecated="" since="3.0"/>
     <keyword type="function" name="gtk_menu_popup ()" link="GtkMenu.html#gtk-menu-popup" deprecated=""/>
     <keyword type="function" name="gtk_menu_set_accel_group ()" link="GtkMenu.html#gtk-menu-set-accel-group"/>
@@ -3907,9 +3916,17 @@
     <keyword type="function" name="gtk_font_chooser_set_filter_func ()" link="GtkFontChooser.html#gtk-font-chooser-set-filter-func" since="3.2"/>
     <keyword type="function" name="gtk_font_chooser_set_font_map ()" link="GtkFontChooser.html#gtk-font-chooser-set-font-map" since="3.18"/>
     <keyword type="function" name="gtk_font_chooser_get_font_map ()" link="GtkFontChooser.html#gtk-font-chooser-get-font-map" since="3.18"/>
+    <keyword type="function" name="gtk_font_chooser_set_level ()" link="GtkFontChooser.html#gtk-font-chooser-set-level" since="3.24"/>
+    <keyword type="function" name="gtk_font_chooser_get_level ()" link="GtkFontChooser.html#gtk-font-chooser-get-level" since="3.24"/>
+    <keyword type="function" name="gtk_font_chooser_get_font_features ()" link="GtkFontChooser.html#gtk-font-chooser-get-font-features" since="3.24"/>
+    <keyword type="function" name="gtk_font_chooser_set_language ()" link="GtkFontChooser.html#gtk-font-chooser-set-language" since="3.24"/>
+    <keyword type="function" name="gtk_font_chooser_get_language ()" link="GtkFontChooser.html#gtk-font-chooser-get-language" since="3.24"/>
     <keyword type="struct" name="GtkFontChooser" link="GtkFontChooser.html#GtkFontChooser-struct"/>
     <keyword type="property" name="The “font” property" link="GtkFontChooser.html#GtkFontChooser--font"/>
     <keyword type="property" name="The “font-desc” property" link="GtkFontChooser.html#GtkFontChooser--font-desc"/>
+    <keyword type="property" name="The “font-features” property" link="GtkFontChooser.html#GtkFontChooser--font-features"/>
+    <keyword type="property" name="The “language” property" link="GtkFontChooser.html#GtkFontChooser--language"/>
+    <keyword type="property" name="The “level” property" link="GtkFontChooser.html#GtkFontChooser--level"/>
     <keyword type="property" name="The “preview-text” property" link="GtkFontChooser.html#GtkFontChooser--preview-text"/>
     <keyword type="property" name="The “show-preview-entry” property" link="GtkFontChooser.html#GtkFontChooser--show-preview-entry"/>
     <keyword type="signal" name="The “font-activated” signal" link="GtkFontChooser.html#GtkFontChooser-font-activated"/>
@@ -3938,6 +3955,7 @@
     <keyword type="function" name="gtk_font_chooser_widget_new ()" link="GtkFontChooserWidget.html#gtk-font-chooser-widget-new" since="3.2"/>
     <keyword type="struct" name="struct GtkFontChooserWidget" link="GtkFontChooserWidget.html#GtkFontChooserWidget-struct"/>
     <keyword type="struct" name="struct GtkFontChooserWidgetClass" link="GtkFontChooserWidget.html#GtkFontChooserWidgetClass"/>
+    <keyword type="property" name="The “tweak-action” property" link="GtkFontChooserWidget.html#GtkFontChooserWidget--tweak-action"/>
     <keyword type="function" name="gtk_font_chooser_dialog_new ()" link="GtkFontChooserDialog.html#gtk-font-chooser-dialog-new" since="3.2"/>
     <keyword type="struct" name="struct GtkFontChooserDialog" link="GtkFontChooserDialog.html#GtkFontChooserDialog-struct"/>
     <keyword type="struct" name="struct GtkFontChooserDialogClass" link="GtkFontChooserDialog.html#GtkFontChooserDialogClass"/>
@@ -5434,6 +5452,29 @@
     <keyword type="enum" name="enum GtkPropagationPhase" link="GtkEventController.html#GtkPropagationPhase" since="3.14"/>
     <keyword type="property" name="The “propagation-phase” property" link="GtkEventController.html#GtkEventController--propagation-phase"/>
     <keyword type="property" name="The “widget” property" link="GtkEventController.html#GtkEventController--widget"/>
+    <keyword type="function" name="gtk_event_controller_key_new ()" link="GtkEventControllerKey.html#gtk-event-controller-key-new"/>
+    <keyword type="struct" name="GtkEventControllerKey" link="GtkEventControllerKey.html#GtkEventControllerKey-struct"/>
+    <keyword type="signal" name="The “focus-in” signal" link="GtkEventControllerKey.html#GtkEventControllerKey-focus-in"/>
+    <keyword type="signal" name="The “focus-out” signal" link="GtkEventControllerKey.html#GtkEventControllerKey-focus-out"/>
+    <keyword type="signal" name="The “im-update” signal" link="GtkEventControllerKey.html#GtkEventControllerKey-im-update"/>
+    <keyword type="signal" name="The “key-pressed” signal" link="GtkEventControllerKey.html#GtkEventControllerKey-key-pressed"/>
+    <keyword type="signal" name="The “key-released” signal" link="GtkEventControllerKey.html#GtkEventControllerKey-key-released"/>
+    <keyword type="signal" name="The “modifiers” signal" link="GtkEventControllerKey.html#GtkEventControllerKey-modifiers"/>
+    <keyword type="function" name="gtk_event_controller_scroll_new ()" link="GtkEventControllerScroll.html#gtk-event-controller-scroll-new" since="3.24"/>
+    <keyword type="function" name="gtk_event_controller_scroll_set_flags ()" link="GtkEventControllerScroll.html#gtk-event-controller-scroll-set-flags" since="3.24"/>
+    <keyword type="function" name="gtk_event_controller_scroll_get_flags ()" link="GtkEventControllerScroll.html#gtk-event-controller-scroll-get-flags" since="3.24"/>
+    <keyword type="struct" name="GtkEventControllerScroll" link="GtkEventControllerScroll.html#GtkEventControllerScroll-struct"/>
+    <keyword type="enum" name="enum GtkEventControllerScrollFlags" link="GtkEventControllerScroll.html#GtkEventControllerScrollFlags" since="3.24"/>
+    <keyword type="property" name="The “flags” property" link="GtkEventControllerScroll.html#GtkEventControllerScroll--flags"/>
+    <keyword type="signal" name="The “decelerate” signal" link="GtkEventControllerScroll.html#GtkEventControllerScroll-decelerate"/>
+    <keyword type="signal" name="The “scroll” signal" link="GtkEventControllerScroll.html#GtkEventControllerScroll-scroll"/>
+    <keyword type="signal" name="The “scroll-begin” signal" link="GtkEventControllerScroll.html#GtkEventControllerScroll-scroll-begin"/>
+    <keyword type="signal" name="The “scroll-end” signal" link="GtkEventControllerScroll.html#GtkEventControllerScroll-scroll-end"/>
+    <keyword type="function" name="gtk_event_controller_motion_new ()" link="GtkEventControllerMotion.html#gtk-event-controller-motion-new" since="3.24"/>
+    <keyword type="struct" name="GtkEventControllerMotion" link="GtkEventControllerMotion.html#GtkEventControllerMotion-struct"/>
+    <keyword type="signal" name="The “enter” signal" link="GtkEventControllerMotion.html#GtkEventControllerMotion-enter"/>
+    <keyword type="signal" name="The “leave” signal" link="GtkEventControllerMotion.html#GtkEventControllerMotion-leave"/>
+    <keyword type="signal" name="The “motion” signal" link="GtkEventControllerMotion.html#GtkEventControllerMotion-motion"/>
     <keyword type="function" name="gtk_gesture_get_device ()" link="GtkGesture.html#gtk-gesture-get-device" since="3.14"/>
     <keyword type="function" name="gtk_gesture_get_window ()" link="GtkGesture.html#gtk-gesture-get-window" since="3.14"/>
     <keyword type="function" name="gtk_gesture_set_window ()" link="GtkGesture.html#gtk-gesture-set-window" since="3.14"/>
@@ -5512,6 +5553,15 @@
     <keyword type="function" name="gtk_gesture_zoom_get_scale_delta ()" link="GtkGestureZoom.html#gtk-gesture-zoom-get-scale-delta" since="3.14"/>
     <keyword type="struct" name="GtkGestureZoom" link="GtkGestureZoom.html#GtkGestureZoom-struct"/>
     <keyword type="signal" name="The “scale-changed” signal" link="GtkGestureZoom.html#GtkGestureZoom-scale-changed"/>
+    <keyword type="function" name="gtk_gesture_stylus_new ()" link="GtkGestureStylus.html#gtk-gesture-stylus-new" since="3.24"/>
+    <keyword type="function" name="gtk_gesture_stylus_get_axis ()" link="GtkGestureStylus.html#gtk-gesture-stylus-get-axis" since="3.24"/>
+    <keyword type="function" name="gtk_gesture_stylus_get_axes ()" link="GtkGestureStylus.html#gtk-gesture-stylus-get-axes" since="3.24"/>
+    <keyword type="function" name="gtk_gesture_stylus_get_device_tool ()" link="GtkGestureStylus.html#gtk-gesture-stylus-get-device-tool" since="3.24"/>
+    <keyword type="struct" name="GtkGestureStylus" link="GtkGestureStylus.html#GtkGestureStylus-struct"/>
+    <keyword type="signal" name="The “down” signal" link="GtkGestureStylus.html#GtkGestureStylus-down"/>
+    <keyword type="signal" name="The “motion” signal" link="GtkGestureStylus.html#GtkGestureStylus-motion"/>
+    <keyword type="signal" name="The “proximity” signal" link="GtkGestureStylus.html#GtkGestureStylus-proximity"/>
+    <keyword type="signal" name="The “up” signal" link="GtkGestureStylus.html#GtkGestureStylus-up"/>
     <keyword type="function" name="gtk_pad_controller_new ()" link="GtkPadController.html#gtk-pad-controller-new" since="3.22"/>
     <keyword type="function" name="gtk_pad_controller_set_action_entries ()" link="GtkPadController.html#gtk-pad-controller-set-action-entries" since="3.22"/>
     <keyword type="function" name="gtk_pad_controller_set_action ()" link="GtkPadController.html#gtk-pad-controller-set-action" since="3.22"/>
@@ -7326,6 +7376,12 @@
     <keyword type="constant" name="GTK_PHASE_CAPTURE" link="GtkEventController.html#GTK-PHASE-CAPTURE:CAPS"/>
     <keyword type="constant" name="GTK_PHASE_BUBBLE" link="GtkEventController.html#GTK-PHASE-BUBBLE:CAPS"/>
     <keyword type="constant" name="GTK_PHASE_TARGET" link="GtkEventController.html#GTK-PHASE-TARGET:CAPS"/>
+    <keyword type="constant" name="GTK_EVENT_CONTROLLER_SCROLL_NONE" link="GtkEventControllerScroll.html#GTK-EVENT-CONTROLLER-SCROLL-NONE:CAPS"/>
+    <keyword type="constant" name="GTK_EVENT_CONTROLLER_SCROLL_VERTICAL" link="GtkEventControllerScroll.html#GTK-EVENT-CONTROLLER-SCROLL-VERTICAL:CAPS"/>
+    <keyword type="constant" name="GTK_EVENT_CONTROLLER_SCROLL_HORIZONTAL" link="GtkEventControllerScroll.html#GTK-EVENT-CONTROLLER-SCROLL-HORIZONTAL:CAPS"/>
+    <keyword type="constant" name="GTK_EVENT_CONTROLLER_SCROLL_DISCRETE" link="GtkEventControllerScroll.html#GTK-EVENT-CONTROLLER-SCROLL-DISCRETE:CAPS"/>
+    <keyword type="constant" name="GTK_EVENT_CONTROLLER_SCROLL_KINETIC" link="GtkEventControllerScroll.html#GTK-EVENT-CONTROLLER-SCROLL-KINETIC:CAPS"/>
+    <keyword type="constant" name="GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES" link="GtkEventControllerScroll.html#GTK-EVENT-CONTROLLER-SCROLL-BOTH-AXES:CAPS"/>
     <keyword type="constant" name="GTK_EVENT_SEQUENCE_NONE" link="GtkGesture.html#GTK-EVENT-SEQUENCE-NONE:CAPS"/>
     <keyword type="constant" name="GTK_EVENT_SEQUENCE_CLAIMED" link="GtkGesture.html#GTK-EVENT-SEQUENCE-CLAIMED:CAPS"/>
     <keyword type="constant" name="GTK_EVENT_SEQUENCE_DENIED" link="GtkGesture.html#GTK-EVENT-SEQUENCE-DENIED:CAPS"/>

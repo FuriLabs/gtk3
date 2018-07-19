@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GdkGLContext: GDK 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="GDK 3 Reference Manual">
 <link rel="up" href="reference.html" title="API Reference">
 <link rel="prev" href="GdkDrawingContext.html" title="GdkDrawingContext">
@@ -277,17 +277,9 @@ before issuing OpenGL calls; the system sends OpenGL commands to
 whichever context is current. It is possible to have multiple
 contexts, so you always need to ensure that the one which you
 want to draw with is the current one before issuing commands:</p>
-<div class="informalexample">
-  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
-    <tbody>
-      <tr>
-        <td class="listing_lines" align="right"><pre>1</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="function"><a href="GdkGLContext.html#gdk-gl-context-make-current">gdk_gl_context_make_current</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">);</span></pre></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
+<div class="informalexample"><pre class="programlisting">
+  gdk_gl_context_make_current (context);
+</pre></div>
 <p></p>
 <p>You can now perform your drawing using OpenGL commands.</p>
 <p>You can check which <a class="link" href="GdkGLContext.html" title="GdkGLContext"><span class="type">GdkGLContext</span></a> is the current one by using

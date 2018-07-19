@@ -3,7 +3,7 @@ Section: libs
 Priority: optional
 Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
-Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Jeremy Bicha <jbicha@debian.org>
+Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Iain Lane <laney@debian.org>, Jeremy Bicha <jbicha@debian.org>
 Build-Depends: debhelper (>= 10.3~),
                gnome-pkg-tools (>= 0.11),
                gtk-doc-tools (>= 1.20),
@@ -14,11 +14,11 @@ Build-Depends: debhelper (>= 10.3~),
                at-spi2-core <!nocheck>,
                libglib2.0-dev (>= 2.49.4),
                libgdk-pixbuf2.0-dev (>= 2.30.0),
-               libpango1.0-dev (>= 1.40.5),
+               libpango1.0-dev (>= 1.41.0),
                libatk1.0-dev (>= 2.15.1),
                libatk-bridge2.0-dev,
                libegl1-mesa-dev [linux-any],
-               libepoxy-dev,
+               libepoxy-dev (>= 1.4),
                libfontconfig1-dev,
                libharfbuzz-dev (>= 0.9),
                libwayland-dev (>= 1.9.91) [linux-any],
@@ -53,8 +53,8 @@ Build-Depends-Indep: libglib2.0-doc,
                      xsltproc,
 Rules-Requires-Root: no
 Standards-Version: 4.1.3
-XS-Debian-Vcs-Browser: https://salsa.debian.org/gnome-team/gtk3
-XS-Debian-Vcs-Git: https://salsa.debian.org/gnome-team/gtk3.git
+XS-Debian-Vcs-Browser: https://salsa.debian.org/gnome-team/gtk3/tree/debian/experimental
+XS-Debian-Vcs-Git: https://salsa.debian.org/gnome-team/gtk3.git -b debian/experimental
 Vcs-Browser: https://git.launchpad.net/~ubuntu-desktop/ubuntu/+source/gtk+3.0
 Vcs-Git: https://git.launchpad.net/~ubuntu-desktop/ubuntu/+source/gtk+3.0
 Homepage: https://www.gtk.org/
@@ -140,7 +140,7 @@ Depends: libgtk-3-0 (= ${binary:Version}),
          ${shlibs:Depends},
          libglib2.0-dev (>= 2.49.4),
          libgdk-pixbuf2.0-dev (>= 2.30.0),
-         libpango1.0-dev (>= 1.40.5),
+         libpango1.0-dev (>= 1.41),
          libatk1.0-dev (>= 2.15.1),
          libatk-bridge2.0-dev,
          libcairo2-dev (>= 1.14.0),

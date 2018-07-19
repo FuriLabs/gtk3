@@ -120,6 +120,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@WIN32_GLES_TRUE@am__append_1 = "-DGDK_WIN32_ENABLE_EGL=1"
 subdir = gdk/win32
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_prog_cc_for_build.m4 \
@@ -432,6 +433,7 @@ INTROSPECTION_MAKEFILE = @INTROSPECTION_MAKEFILE@
 INTROSPECTION_REQUIRED_VERSION = @INTROSPECTION_REQUIRED_VERSION@
 INTROSPECTION_SCANNER = @INTROSPECTION_SCANNER@
 INTROSPECTION_TYPELIBDIR = @INTROSPECTION_TYPELIBDIR@
+ISO_CODES_PREFIX = @ISO_CODES_PREFIX@
 JSON_GLIB_CFLAGS = @JSON_GLIB_CFLAGS@
 JSON_GLIB_LIBS = @JSON_GLIB_LIBS@
 LD = @LD@
@@ -598,19 +600,11 @@ XVFB_START = \
 
 libgdkincludedir = $(includedir)/gtk-3.0/gdk
 libgdkwin32includedir = $(includedir)/gtk-3.0/gdk/win32
-AM_CPPFLAGS = \
-	-DG_LOG_DOMAIN=\"Gdk\"		\
-	-DG_LOG_USE_STRUCTURED=1	\
-	-DINSIDE_GDK_WIN32		\
-	-I$(top_srcdir)			\
-	-I$(top_srcdir)/gdk		\
-	-I$(top_builddir)/gdk		\
-	$(GDK_HIDDEN_VISIBILITY_CFLAGS) \
-	$(GTK_DEBUG_FLAGS) 		\
-	$(GDK_DEP_CFLAGS)		\
-	$(GDK_WIN32_EXTRA_CFLAGS)	\
-	-DGDK_COMPILATION
-
+AM_CPPFLAGS = -DG_LOG_DOMAIN=\"Gdk\" -DG_LOG_USE_STRUCTURED=1 \
+	-DINSIDE_GDK_WIN32 -I$(top_srcdir) -I$(top_srcdir)/gdk \
+	-I$(top_builddir)/gdk $(GDK_HIDDEN_VISIBILITY_CFLAGS) \
+	$(GTK_DEBUG_FLAGS) $(GDK_DEP_CFLAGS) $(GDK_WIN32_EXTRA_CFLAGS) \
+	-DGDK_COMPILATION $(am__append_1)
 LDADDS = $(GDK_DEP_LIBS)
 noinst_LTLIBRARIES = libgdk-win32.la
 SUBDIRS = rc

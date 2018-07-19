@@ -217,6 +217,9 @@ copy ..\..\..\gtk\gtkentrycompletion.h $(CopyDir)\include\gtk-3.0\gtk\gtkentryco
 copy ..\..\..\gtk\gtkenums.h $(CopyDir)\include\gtk-3.0\gtk\gtkenums.h
 copy ..\..\..\gtk\gtkeventbox.h $(CopyDir)\include\gtk-3.0\gtk\gtkeventbox.h
 copy ..\..\..\gtk\gtkeventcontroller.h $(CopyDir)\include\gtk-3.0\gtk\gtkeventcontroller.h
+copy ..\..\..\gtk\gtkeventcontrollerkey.h $(CopyDir)\include\gtk-3.0\gtk\gtkeventcontrollerkey.h
+copy ..\..\..\gtk\gtkeventcontrollermotion.h $(CopyDir)\include\gtk-3.0\gtk\gtkeventcontrollermotion.h
+copy ..\..\..\gtk\gtkeventcontrollerscroll.h $(CopyDir)\include\gtk-3.0\gtk\gtkeventcontrollerscroll.h
 copy ..\..\..\gtk\gtkexpander.h $(CopyDir)\include\gtk-3.0\gtk\gtkexpander.h
 copy ..\..\..\gtk\gtkfilechooser.h $(CopyDir)\include\gtk-3.0\gtk\gtkfilechooser.h
 copy ..\..\..\gtk\gtkfilechooserbutton.h $(CopyDir)\include\gtk-3.0\gtk\gtkfilechooserbutton.h
@@ -238,6 +241,7 @@ copy ..\..\..\gtk\gtkgesturemultipress.h $(CopyDir)\include\gtk-3.0\gtk\gtkgestu
 copy ..\..\..\gtk\gtkgesturepan.h $(CopyDir)\include\gtk-3.0\gtk\gtkgesturepan.h
 copy ..\..\..\gtk\gtkgesturerotate.h $(CopyDir)\include\gtk-3.0\gtk\gtkgesturerotate.h
 copy ..\..\..\gtk\gtkgesturesingle.h $(CopyDir)\include\gtk-3.0\gtk\gtkgesturesingle.h
+copy ..\..\..\gtk\gtkgesturestylus.h $(CopyDir)\include\gtk-3.0\gtk\gtkgesturestylus.h
 copy ..\..\..\gtk\gtkgestureswipe.h $(CopyDir)\include\gtk-3.0\gtk\gtkgestureswipe.h
 copy ..\..\..\gtk\gtkgesturezoom.h $(CopyDir)\include\gtk-3.0\gtk\gtkgesturezoom.h
 copy ..\..\..\gtk\gtkglarea.h $(CopyDir)\include\gtk-3.0\gtk\gtkglarea.h
@@ -490,7 +494,7 @@ echo "Generating icon cache......"
 $(CopyDir)\bin\gtk-update-icon-cache.exe --ignore-theme-index --force "$(CopyDir)\share\icons\hicolor"
     </GtkPostInstall>
     <GenerateGtkPC>$(PythonDir)\python ..\gtkpc.py --prefix=$(CopyDir) --version=$(GtkVersion) --host=i686-pc-vs$(VSVer)</GenerateGtkPC>
-    <GenerateGtkPCX64>$(PythonDirX64)\python ..\gtkpc.py --prefix=$(CopyDir) --version=$(GtkVersion) --host=x86_64-pc-vs$(VSVer)</GenerateGtkPCX64>
+    <GenerateGtkPCX64>$(PythonDir)\python ..\gtkpc.py --prefix=$(CopyDir) --version=$(GtkVersion) --host=x86_64-pc-vs$(VSVer)</GenerateGtkPCX64>
     <GtkPCFiles>..\gdk-3.0.pc;..\gtk+-3.0.pc;..\gail-3.0.pc</GtkPCFiles>
   </PropertyGroup>
   <PropertyGroup>

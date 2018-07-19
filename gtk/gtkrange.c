@@ -949,6 +949,24 @@ should_invert (GtkRange *range)
     return priv->inverted;
 }
 
+static gboolean
+should_invert_move (GtkRange       *range,
+                    GtkOrientation  move_orientation)
+{
+  GtkRangePrivate *priv = range->priv;
+
+  /* If the move is parallel to the range, use general check for inversion */
+  if (move_orientation == priv->orientation)
+    return should_invert (range);
+
+  /* H scale/V move: Always invert, so down/up always dec/increase the value */
+  if (priv->orientation == GTK_ORIENTATION_HORIZONTAL && GTK_IS_SCALE (range))
+    return TRUE;
+
+  /* V range/H move: Left/right always dec/increase the value */
+  return FALSE;
+}
+
 static void
 update_highlight_position (GtkRange *range)
 {
@@ -3037,12 +3055,23 @@ _gtk_range_get_wheel_delta (GtkRange       *range,
   gdouble page_increment;
   gdouble scroll_unit;
   GdkScrollDirection direction;
+  GtkOrientation move_orientation;
 
   page_size = gtk_adjustment_get_page_size (adjustment);
   page_increment = gtk_adjustment_get_page_increment (adjustment);
 
   if (GTK_IS_SCROLLBAR (range))
-    scroll_unit = pow (page_size, 2.0 / 3.0);
+    {
+      gdouble pow_unit = pow (page_size, 2.0 / 3.0);
+
+      /* for very small page sizes of < 1.0, the effect of pow() is
+       * the opposite of what's intended and the scroll steps become
+       * unusably large, make sure we never get a scroll_unit larger
+       * than page_size / 2.0, which used to be the default before the
+       * pow() magic was introduced.
+       */
+      scroll_unit = MIN (pow_unit, page_size / 2.0);
+    }
   else
     scroll_unit = page_increment;
 
@@ -3052,22 +3081,31 @@ _gtk_range_get_wheel_delta (GtkRange       *range,
       scroll_unit = 1;
 #endif
 
-      if (gtk_orientable_get_orientation (GTK_ORIENTABLE (range)) == GTK_ORIENTATION_HORIZONTAL)
-        delta = (dx ? dx : -dy) * scroll_unit;
+      if (priv->orientation == GTK_ORIENTATION_HORIZONTAL && dx != 0)
+        {
+          move_orientation = GTK_ORIENTATION_HORIZONTAL;
+          delta = dx * scroll_unit;
+        }
       else
-        delta = dy * scroll_unit;
+        {
+          move_orientation = GTK_ORIENTATION_VERTICAL;
+          delta = dy * scroll_unit;
+        }
     }
   else if (gdk_event_get_scroll_direction ((GdkEvent *) event, &direction))
     {
-      if (direction == GDK_SCROLL_LEFT ||
-          (priv->orientation == GTK_ORIENTATION_VERTICAL && direction == GDK_SCROLL_UP) ||
-          (priv->orientation == GTK_ORIENTATION_HORIZONTAL && direction == GDK_SCROLL_DOWN))
+      if (direction == GDK_SCROLL_LEFT || direction == GDK_SCROLL_RIGHT)
+        move_orientation = GTK_ORIENTATION_HORIZONTAL;
+      else
+        move_orientation = GTK_ORIENTATION_VERTICAL;
+
+      if (direction == GDK_SCROLL_LEFT || direction == GDK_SCROLL_UP)
         delta = - scroll_unit;
       else
         delta = scroll_unit;
     }
 
-  if (priv->inverted)
+  if (delta != 0 && should_invert_move (range, move_orientation))
     delta = - delta;
 
   return delta;
@@ -3079,18 +3117,12 @@ gtk_range_scroll_event (GtkWidget      *widget,
 {
   GtkRange *range = GTK_RANGE (widget);
   GtkRangePrivate *priv = range->priv;
+  double delta = _gtk_range_get_wheel_delta (range, event);
+  gboolean handled;
 
-  if (gtk_widget_get_realized (widget))
-    {
-      gdouble delta;
-      gboolean handled;
-
-      delta = _gtk_range_get_wheel_delta (range, event);
-
-      g_signal_emit (range, signals[CHANGE_VALUE], 0,
-                     GTK_SCROLL_JUMP, gtk_adjustment_get_value (priv->adjustment) + delta,
-                     &handled);
-    }
+  g_signal_emit (range, signals[CHANGE_VALUE], 0,
+                 GTK_SCROLL_JUMP, gtk_adjustment_get_value (priv->adjustment) + delta,
+                 &handled);
 
   return GDK_EVENT_STOP;
 }

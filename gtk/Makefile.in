@@ -386,8 +386,10 @@ am__libgtk_3_la_SOURCES_DIST = a11y/gtkaccessibility.c \
 	gtkcssunsetvalue.c gtkcsstypes.c gtkcssvalue.c \
 	gtkcsswidgetnode.c gtkcsswin32sizevalue.c gtkdialog.c \
 	gtkdragsource.c gtkdrawingarea.c gtkeditable.c \
-	gtkemojichooser.c gtkentry.c gtkentrybuffer.c \
-	gtkentrycompletion.c gtkeventbox.c gtkeventcontroller.c \
+	gtkemojichooser.c gtkemojicompletion.c gtkentry.c \
+	gtkentrybuffer.c gtkentrycompletion.c gtkeventbox.c \
+	gtkeventcontroller.c gtkeventcontrollerkey.c \
+	gtkeventcontrollermotion.c gtkeventcontrollerscroll.c \
 	gtkexpander.c gtkfilechooser.c gtkfilechooserbutton.c \
 	gtkfilechooserdialog.c gtkfilechooserembed.c \
 	gtkfilechooserentry.c gtkfilechoosernative.c \
@@ -398,15 +400,15 @@ am__libgtk_3_la_SOURCES_DIST = a11y/gtkaccessibility.c \
 	gtkfontchooserwidget.c gtkframe.c gtkgladecatalog.c \
 	gtkgesture.c gtkgesturedrag.c gtkgesturelongpress.c \
 	gtkgesturemultipress.c gtkgesturepan.c gtkgesturerotate.c \
-	gtkgesturesingle.c gtkgestureswipe.c gtkgesturezoom.c \
-	gtkglarea.c gtkgrid.c gtkheaderbar.c gtkhsla.c gtkicon.c \
-	gtkiconcache.c gtkiconcachevalidator.c gtkiconhelper.c \
-	gtkicontheme.c gtkiconview.c gtkimage.c gtkimagedefinition.c \
-	gtkimcontext.c gtkimcontextsimple.c gtkimmodule.c \
-	gtkimmulticontext.c gtkinfobar.c gtkinvisible.c gtkkeyhash.c \
-	gtkkineticscrolling.c gtklabel.c gtklayout.c gtklevelbar.c \
-	gtklinkbutton.c gtklistbox.c gtkliststore.c gtklockbutton.c \
-	gtkmain.c gtkmagnifier.c gtkmarshalers.c gtkmenu.c \
+	gtkgesturesingle.c gtkgesturestylus.c gtkgestureswipe.c \
+	gtkgesturezoom.c gtkglarea.c gtkgrid.c gtkheaderbar.c \
+	gtkhsla.c gtkicon.c gtkiconcache.c gtkiconcachevalidator.c \
+	gtkiconhelper.c gtkicontheme.c gtkiconview.c gtkimage.c \
+	gtkimagedefinition.c gtkimcontext.c gtkimcontextsimple.c \
+	gtkimmodule.c gtkimmulticontext.c gtkinfobar.c gtkinvisible.c \
+	gtkkeyhash.c gtkkineticscrolling.c gtklabel.c gtklayout.c \
+	gtklevelbar.c gtklinkbutton.c gtklistbox.c gtkliststore.c \
+	gtklockbutton.c gtkmain.c gtkmagnifier.c gtkmenu.c \
 	gtkmenubar.c gtkmenubutton.c gtkmenuitem.c gtkmenusectionbox.c \
 	gtkmenushell.c gtkmenutracker.c gtkmenutrackeritem.c \
 	gtkmenutoolbutton.c gtkmessagedialog.c gtkmnemonichash.c \
@@ -418,14 +420,14 @@ am__libgtk_3_la_SOURCES_DIST = a11y/gtkaccessibility.c \
 	gtkplacesview.c gtkplacesviewrow.c gtkprintcontext.c \
 	gtkprintoperation.c gtkprintoperationpreview.c \
 	gtkprintsettings.c gtkprintutils.c gtkprivate.c \
-	gtkprivatetypebuiltins.c gtkprogressbar.c gtkprogresstracker.c \
-	gtkpixelcache.c gtkpopover.c gtkpopovermenu.c gtkradiobutton.c \
+	gtkprogressbar.c gtkprogresstracker.c gtkpixelcache.c \
+	gtkpopover.c gtkpopovermenu.c gtkradiobutton.c \
 	gtkradiomenuitem.c gtkradiotoolbutton.c gtkrange.c gtkrbtree.c \
 	gtkrecentchooserdefault.c gtkrecentchooserdialog.c \
 	gtkrecentchoosermenu.c gtkrecentchooserwidget.c \
 	gtkrecentchooserutils.c gtkrecentchooser.c gtkrecentfilter.c \
 	gtkrecentmanager.c gtkrender.c gtkrenderbackground.c \
-	gtkrenderborder.c gtkrendericon.c gtkresources.c gtkrevealer.c \
+	gtkrenderborder.c gtkrendericon.c gtkrevealer.c \
 	gtkroundedbox.c gtkscale.c gtkscalebutton.c gtkscrollable.c \
 	gtkscrollbar.c gtkscrolledwindow.c gtkselection.c \
 	gtkseparator.c gtkseparatormenuitem.c gtkseparatortoolitem.c \
@@ -449,14 +451,14 @@ am__libgtk_3_la_SOURCES_DIST = a11y/gtkaccessibility.c \
 	gtktrashmonitor.c gtktreedatalist.c gtktreednd.c gtktreemenu.c \
 	gtktreemodel.c gtktreemodelfilter.c gtktreemodelsort.c \
 	gtktreeselection.c gtktreesortable.c gtktreestore.c \
-	gtktreeview.c gtktreeviewcolumn.c gtktypebuiltins.c gtkutils.c \
-	gtkvolumebutton.c gtkviewport.c gtkwidget.c gtkwidgetpath.c \
-	gtkwindow.c gtkwindowgroup.c gtkwin32draw.c gtkwin32theme.c \
-	gdkpixbufutils.c gtkclipboard-quartz.c gtkdnd-quartz.c \
-	gtkclipboard.c gtkdnd.c gtkdragdest.c \
-	gtkcustompaperunixdialog.c gtkpagesetupunixdialog.c \
-	gtkprinter.c gtkprinteroption.c gtkprinteroptionset.c \
-	gtkprinteroptionwidget.c gtkprintjob.c \
+	gtktreeview.c gtktreeviewcolumn.c gtkutils.c gtkvolumebutton.c \
+	gtkviewport.c gtkwidget.c gtkwidgetpath.c gtkwindow.c \
+	gtkwindowgroup.c gtkwin32draw.c gtkwin32theme.c \
+	gdkpixbufutils.c language-names.c script-names.c \
+	gtkclipboard-quartz.c gtkdnd-quartz.c gtkclipboard.c gtkdnd.c \
+	gtkdragdest.c gtkcustompaperunixdialog.c \
+	gtkpagesetupunixdialog.c gtkprinter.c gtkprinteroption.c \
+	gtkprinteroptionset.c gtkprinteroptionwidget.c gtkprintjob.c \
 	gtkprintoperation-unix.c gtkprintoperation-portal.h \
 	gtkprintoperation-portal.c gtkprintunixdialog.c \
 	gtkprintbackend.c gtksearchenginetracker.c gtkprint-win32.c \
@@ -707,10 +709,14 @@ am__objects_6 = $(am__objects_1) $(am__objects_2) $(am__objects_3) \
 	libgtk_3_la-gtkcsswin32sizevalue.lo libgtk_3_la-gtkdialog.lo \
 	libgtk_3_la-gtkdragsource.lo libgtk_3_la-gtkdrawingarea.lo \
 	libgtk_3_la-gtkeditable.lo libgtk_3_la-gtkemojichooser.lo \
-	libgtk_3_la-gtkentry.lo libgtk_3_la-gtkentrybuffer.lo \
+	libgtk_3_la-gtkemojicompletion.lo libgtk_3_la-gtkentry.lo \
+	libgtk_3_la-gtkentrybuffer.lo \
 	libgtk_3_la-gtkentrycompletion.lo libgtk_3_la-gtkeventbox.lo \
-	libgtk_3_la-gtkeventcontroller.lo libgtk_3_la-gtkexpander.lo \
-	libgtk_3_la-gtkfilechooser.lo \
+	libgtk_3_la-gtkeventcontroller.lo \
+	libgtk_3_la-gtkeventcontrollerkey.lo \
+	libgtk_3_la-gtkeventcontrollermotion.lo \
+	libgtk_3_la-gtkeventcontrollerscroll.lo \
+	libgtk_3_la-gtkexpander.lo libgtk_3_la-gtkfilechooser.lo \
 	libgtk_3_la-gtkfilechooserbutton.lo \
 	libgtk_3_la-gtkfilechooserdialog.lo \
 	libgtk_3_la-gtkfilechooserembed.lo \
@@ -731,7 +737,8 @@ am__objects_6 = $(am__objects_1) $(am__objects_2) $(am__objects_3) \
 	libgtk_3_la-gtkgesturelongpress.lo \
 	libgtk_3_la-gtkgesturemultipress.lo \
 	libgtk_3_la-gtkgesturepan.lo libgtk_3_la-gtkgesturerotate.lo \
-	libgtk_3_la-gtkgesturesingle.lo libgtk_3_la-gtkgestureswipe.lo \
+	libgtk_3_la-gtkgesturesingle.lo \
+	libgtk_3_la-gtkgesturestylus.lo libgtk_3_la-gtkgestureswipe.lo \
 	libgtk_3_la-gtkgesturezoom.lo libgtk_3_la-gtkglarea.lo \
 	libgtk_3_la-gtkgrid.lo libgtk_3_la-gtkheaderbar.lo \
 	libgtk_3_la-gtkhsla.lo libgtk_3_la-gtkicon.lo \
@@ -748,10 +755,10 @@ am__objects_6 = $(am__objects_1) $(am__objects_2) $(am__objects_3) \
 	libgtk_3_la-gtklinkbutton.lo libgtk_3_la-gtklistbox.lo \
 	libgtk_3_la-gtkliststore.lo libgtk_3_la-gtklockbutton.lo \
 	libgtk_3_la-gtkmain.lo libgtk_3_la-gtkmagnifier.lo \
-	libgtk_3_la-gtkmarshalers.lo libgtk_3_la-gtkmenu.lo \
-	libgtk_3_la-gtkmenubar.lo libgtk_3_la-gtkmenubutton.lo \
-	libgtk_3_la-gtkmenuitem.lo libgtk_3_la-gtkmenusectionbox.lo \
-	libgtk_3_la-gtkmenushell.lo libgtk_3_la-gtkmenutracker.lo \
+	libgtk_3_la-gtkmenu.lo libgtk_3_la-gtkmenubar.lo \
+	libgtk_3_la-gtkmenubutton.lo libgtk_3_la-gtkmenuitem.lo \
+	libgtk_3_la-gtkmenusectionbox.lo libgtk_3_la-gtkmenushell.lo \
+	libgtk_3_la-gtkmenutracker.lo \
 	libgtk_3_la-gtkmenutrackeritem.lo \
 	libgtk_3_la-gtkmenutoolbutton.lo \
 	libgtk_3_la-gtkmessagedialog.lo libgtk_3_la-gtkmnemonichash.lo \
@@ -769,9 +776,7 @@ am__objects_6 = $(am__objects_1) $(am__objects_2) $(am__objects_3) \
 	libgtk_3_la-gtkprintoperation.lo \
 	libgtk_3_la-gtkprintoperationpreview.lo \
 	libgtk_3_la-gtkprintsettings.lo libgtk_3_la-gtkprintutils.lo \
-	libgtk_3_la-gtkprivate.lo \
-	libgtk_3_la-gtkprivatetypebuiltins.lo \
-	libgtk_3_la-gtkprogressbar.lo \
+	libgtk_3_la-gtkprivate.lo libgtk_3_la-gtkprogressbar.lo \
 	libgtk_3_la-gtkprogresstracker.lo libgtk_3_la-gtkpixelcache.lo \
 	libgtk_3_la-gtkpopover.lo libgtk_3_la-gtkpopovermenu.lo \
 	libgtk_3_la-gtkradiobutton.lo libgtk_3_la-gtkradiomenuitem.lo \
@@ -786,11 +791,11 @@ am__objects_6 = $(am__objects_1) $(am__objects_2) $(am__objects_3) \
 	libgtk_3_la-gtkrecentmanager.lo libgtk_3_la-gtkrender.lo \
 	libgtk_3_la-gtkrenderbackground.lo \
 	libgtk_3_la-gtkrenderborder.lo libgtk_3_la-gtkrendericon.lo \
-	libgtk_3_la-gtkresources.lo libgtk_3_la-gtkrevealer.lo \
-	libgtk_3_la-gtkroundedbox.lo libgtk_3_la-gtkscale.lo \
-	libgtk_3_la-gtkscalebutton.lo libgtk_3_la-gtkscrollable.lo \
-	libgtk_3_la-gtkscrollbar.lo libgtk_3_la-gtkscrolledwindow.lo \
-	libgtk_3_la-gtkselection.lo libgtk_3_la-gtkseparator.lo \
+	libgtk_3_la-gtkrevealer.lo libgtk_3_la-gtkroundedbox.lo \
+	libgtk_3_la-gtkscale.lo libgtk_3_la-gtkscalebutton.lo \
+	libgtk_3_la-gtkscrollable.lo libgtk_3_la-gtkscrollbar.lo \
+	libgtk_3_la-gtkscrolledwindow.lo libgtk_3_la-gtkselection.lo \
+	libgtk_3_la-gtkseparator.lo \
 	libgtk_3_la-gtkseparatormenuitem.lo \
 	libgtk_3_la-gtkseparatortoolitem.lo libgtk_3_la-gtksettings.lo \
 	libgtk_3_la-gtkshortcutsgroup.lo \
@@ -831,14 +836,13 @@ am__objects_6 = $(am__objects_1) $(am__objects_2) $(am__objects_3) \
 	libgtk_3_la-gtktreemodelsort.lo \
 	libgtk_3_la-gtktreeselection.lo libgtk_3_la-gtktreesortable.lo \
 	libgtk_3_la-gtktreestore.lo libgtk_3_la-gtktreeview.lo \
-	libgtk_3_la-gtktreeviewcolumn.lo \
-	libgtk_3_la-gtktypebuiltins.lo libgtk_3_la-gtkutils.lo \
+	libgtk_3_la-gtktreeviewcolumn.lo libgtk_3_la-gtkutils.lo \
 	libgtk_3_la-gtkvolumebutton.lo libgtk_3_la-gtkviewport.lo \
 	libgtk_3_la-gtkwidget.lo libgtk_3_la-gtkwidgetpath.lo \
 	libgtk_3_la-gtkwindow.lo libgtk_3_la-gtkwindowgroup.lo \
 	libgtk_3_la-gtkwin32draw.lo libgtk_3_la-gtkwin32theme.lo \
-	libgtk_3_la-gdkpixbufutils.lo $(am__objects_4) \
-	$(am__objects_5)
+	libgtk_3_la-gdkpixbufutils.lo libgtk_3_la-language-names.lo \
+	libgtk_3_la-script-names.lo $(am__objects_4) $(am__objects_5)
 am__objects_7 = libgtk_3_la-gtkcustompaperunixdialog.lo \
 	libgtk_3_la-gtkpagesetupunixdialog.lo \
 	libgtk_3_la-gtkprinter.lo libgtk_3_la-gtkprinteroption.lo \
@@ -884,8 +888,13 @@ am__objects_23 = $(am__objects_6) $(am__objects_8) $(am__objects_10) \
 	$(am__objects_18) $(am__objects_20) $(am__objects_22)
 am_libgtk_3_la_OBJECTS = $(am__objects_23)
 am__objects_24 = libgtk_3_la-gtkdbusgenerated.lo
-am__objects_25 = $(am__objects_24)
-nodist_libgtk_3_la_OBJECTS = $(am__objects_25)
+am__objects_25 =
+am__objects_26 = $(am__objects_25) $(am__objects_25) \
+	libgtk_3_la-gtkresources.lo libgtk_3_la-gtktypebuiltins.lo \
+	libgtk_3_la-gtkmarshalers.lo \
+	libgtk_3_la-gtkprivatetypebuiltins.lo
+am__objects_27 = $(am__objects_24) $(am__objects_26)
+nodist_libgtk_3_la_OBJECTS = $(am__objects_27)
 libgtk_3_la_OBJECTS = $(am_libgtk_3_la_OBJECTS) \
 	$(nodist_libgtk_3_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -1147,6 +1156,7 @@ INTROSPECTION_MAKEFILE = @INTROSPECTION_MAKEFILE@
 INTROSPECTION_REQUIRED_VERSION = @INTROSPECTION_REQUIRED_VERSION@
 INTROSPECTION_SCANNER = @INTROSPECTION_SCANNER@
 INTROSPECTION_TYPELIBDIR = @INTROSPECTION_TYPELIBDIR@
+ISO_CODES_PREFIX = @ISO_CODES_PREFIX@
 JSON_GLIB_CFLAGS = @JSON_GLIB_CFLAGS@
 JSON_GLIB_LIBS = @JSON_GLIB_LIBS@
 LD = @LD@
@@ -1345,6 +1355,7 @@ AM_CPPFLAGS = \
 	$(GTK_BASE_CFLAGS_DEFINES)			\
 	$(GTK_PLAT_CFLAGS_DEFINES)			\
 	-DX11_DATA_PREFIX=\"$(X11_PREFIX)\"		\
+	-DISO_CODES_PREFIX=\"$(ISO_CODES_PREFIX)\"	\
 	-I$(top_builddir)				\
 	-I$(top_builddir)/gtk				\
 	-I$(top_srcdir) 				\
@@ -1751,6 +1762,9 @@ gtk_public_h_sources = \
 	gtkenums.h		\
 	gtkeventbox.h		\
 	gtkeventcontroller.h	\
+	gtkeventcontrollerkey.h	\
+	gtkeventcontrollermotion.h	\
+	gtkeventcontrollerscroll.h	\
 	gtkexpander.h		\
 	gtkfilechooser.h	\
 	gtkfilechooserbutton.h	\
@@ -1772,6 +1786,7 @@ gtk_public_h_sources = \
 	gtkgesturepan.h		\
 	gtkgesturerotate.h	\
 	gtkgesturesingle.h	\
+	gtkgesturestylus.h	\
 	gtkgestureswipe.h	\
 	gtkgesturezoom.h	\
 	gtkglarea.h		\
@@ -1973,16 +1988,17 @@ gtk_private_h_sources = $(inspector_h_sources) \
 	gtkcssvalueprivate.h gtkcsswin32sizevalueprivate.h \
 	gtkcsswidgetnodeprivate.h gtkcustompaperunixdialog.h \
 	gtkdialogprivate.h gtkdndprivate.h gtkemojichooser.h \
-	gtkentryprivate.h gtkeventcontrollerprivate.h \
-	gtkfilechooserembed.h gtkfilechooserentry.h \
-	gtkfilechooserprivate.h gtkfilechoosernativeprivate.h \
-	gtkfilechooserwidgetprivate.h gtkfilechooserutils.h \
-	gtkfilefilterprivate.h gtkfilesystem.h gtkfilesystemmodel.h \
-	gtkfontchooserprivate.h gtkfontchooserutils.h \
-	gtkfontchooserwidgetprivate.h gtkgestureprivate.h \
-	gtkgesturedragprivate.h gtkgesturelongpressprivate.h \
-	gtkgesturemultipressprivate.h gtkgesturepanprivate.h \
-	gtkgesturerotateprivate.h gtkgesturesingleprivate.h \
+	gtkemojicompletion.h gtkentryprivate.h \
+	gtkeventcontrollerprivate.h gtkfilechooserembed.h \
+	gtkfilechooserentry.h gtkfilechooserprivate.h \
+	gtkfilechoosernativeprivate.h gtkfilechooserwidgetprivate.h \
+	gtkfilechooserutils.h gtkfilefilterprivate.h gtkfilesystem.h \
+	gtkfilesystemmodel.h gtkfontchooserprivate.h \
+	gtkfontchooserutils.h gtkfontchooserwidgetprivate.h \
+	gtkgestureprivate.h gtkgesturedragprivate.h \
+	gtkgesturelongpressprivate.h gtkgesturemultipressprivate.h \
+	gtkgesturepanprivate.h gtkgesturerotateprivate.h \
+	gtkgesturesingleprivate.h gtkgesturestylusprivate.h \
 	gtkgestureswipeprivate.h gtkgesturezoomprivate.h \
 	gtkheaderbarprivate.h gtkhslaprivate.h gtkiconcache.h \
 	gtkiconhelperprivate.h gtkiconprivate.h gtkiconthemeprivate.h \
@@ -2025,6 +2041,7 @@ gtk_private_h_sources = $(inspector_h_sources) \
 	gtkutilsprivate.h gtkwidgetprivate.h gtkwidgetpathprivate.h \
 	gtkwin32drawprivate.h gtkwin32themeprivate.h \
 	gtkwindowprivate.h gtktreemenu.h gdkpixbufutilsprivate.h \
+	open-type-layout.h language-names.h script-names.h \
 	$(am__append_5) $(am__append_7) $(am__append_10) \
 	$(am__append_14) $(am__append_16)
 
@@ -2082,8 +2099,10 @@ gtk_base_c_sources = $(a11y_c_sources) $(deprecated_c_sources) \
 	gtkcssunsetvalue.c gtkcsstypes.c gtkcssvalue.c \
 	gtkcsswidgetnode.c gtkcsswin32sizevalue.c gtkdialog.c \
 	gtkdragsource.c gtkdrawingarea.c gtkeditable.c \
-	gtkemojichooser.c gtkentry.c gtkentrybuffer.c \
-	gtkentrycompletion.c gtkeventbox.c gtkeventcontroller.c \
+	gtkemojichooser.c gtkemojicompletion.c gtkentry.c \
+	gtkentrybuffer.c gtkentrycompletion.c gtkeventbox.c \
+	gtkeventcontroller.c gtkeventcontrollerkey.c \
+	gtkeventcontrollermotion.c gtkeventcontrollerscroll.c \
 	gtkexpander.c gtkfilechooser.c gtkfilechooserbutton.c \
 	gtkfilechooserdialog.c gtkfilechooserembed.c \
 	gtkfilechooserentry.c gtkfilechoosernative.c \
@@ -2094,15 +2113,15 @@ gtk_base_c_sources = $(a11y_c_sources) $(deprecated_c_sources) \
 	gtkfontchooserwidget.c gtkframe.c gtkgladecatalog.c \
 	gtkgesture.c gtkgesturedrag.c gtkgesturelongpress.c \
 	gtkgesturemultipress.c gtkgesturepan.c gtkgesturerotate.c \
-	gtkgesturesingle.c gtkgestureswipe.c gtkgesturezoom.c \
-	gtkglarea.c gtkgrid.c gtkheaderbar.c gtkhsla.c gtkicon.c \
-	gtkiconcache.c gtkiconcachevalidator.c gtkiconhelper.c \
-	gtkicontheme.c gtkiconview.c gtkimage.c gtkimagedefinition.c \
-	gtkimcontext.c gtkimcontextsimple.c gtkimmodule.c \
-	gtkimmulticontext.c gtkinfobar.c gtkinvisible.c gtkkeyhash.c \
-	gtkkineticscrolling.c gtklabel.c gtklayout.c gtklevelbar.c \
-	gtklinkbutton.c gtklistbox.c gtkliststore.c gtklockbutton.c \
-	gtkmain.c gtkmagnifier.c gtkmarshalers.c gtkmenu.c \
+	gtkgesturesingle.c gtkgesturestylus.c gtkgestureswipe.c \
+	gtkgesturezoom.c gtkglarea.c gtkgrid.c gtkheaderbar.c \
+	gtkhsla.c gtkicon.c gtkiconcache.c gtkiconcachevalidator.c \
+	gtkiconhelper.c gtkicontheme.c gtkiconview.c gtkimage.c \
+	gtkimagedefinition.c gtkimcontext.c gtkimcontextsimple.c \
+	gtkimmodule.c gtkimmulticontext.c gtkinfobar.c gtkinvisible.c \
+	gtkkeyhash.c gtkkineticscrolling.c gtklabel.c gtklayout.c \
+	gtklevelbar.c gtklinkbutton.c gtklistbox.c gtkliststore.c \
+	gtklockbutton.c gtkmain.c gtkmagnifier.c gtkmenu.c \
 	gtkmenubar.c gtkmenubutton.c gtkmenuitem.c gtkmenusectionbox.c \
 	gtkmenushell.c gtkmenutracker.c gtkmenutrackeritem.c \
 	gtkmenutoolbutton.c gtkmessagedialog.c gtkmnemonichash.c \
@@ -2114,14 +2133,14 @@ gtk_base_c_sources = $(a11y_c_sources) $(deprecated_c_sources) \
 	gtkplacesview.c gtkplacesviewrow.c gtkprintcontext.c \
 	gtkprintoperation.c gtkprintoperationpreview.c \
 	gtkprintsettings.c gtkprintutils.c gtkprivate.c \
-	gtkprivatetypebuiltins.c gtkprogressbar.c gtkprogresstracker.c \
-	gtkpixelcache.c gtkpopover.c gtkpopovermenu.c gtkradiobutton.c \
+	gtkprogressbar.c gtkprogresstracker.c gtkpixelcache.c \
+	gtkpopover.c gtkpopovermenu.c gtkradiobutton.c \
 	gtkradiomenuitem.c gtkradiotoolbutton.c gtkrange.c gtkrbtree.c \
 	gtkrecentchooserdefault.c gtkrecentchooserdialog.c \
 	gtkrecentchoosermenu.c gtkrecentchooserwidget.c \
 	gtkrecentchooserutils.c gtkrecentchooser.c gtkrecentfilter.c \
 	gtkrecentmanager.c gtkrender.c gtkrenderbackground.c \
-	gtkrenderborder.c gtkrendericon.c gtkresources.c gtkrevealer.c \
+	gtkrenderborder.c gtkrendericon.c gtkrevealer.c \
 	gtkroundedbox.c gtkscale.c gtkscalebutton.c gtkscrollable.c \
 	gtkscrollbar.c gtkscrolledwindow.c gtkselection.c \
 	gtkseparator.c gtkseparatormenuitem.c gtkseparatortoolitem.c \
@@ -2145,11 +2164,12 @@ gtk_base_c_sources = $(a11y_c_sources) $(deprecated_c_sources) \
 	gtktrashmonitor.c gtktreedatalist.c gtktreednd.c gtktreemenu.c \
 	gtktreemodel.c gtktreemodelfilter.c gtktreemodelsort.c \
 	gtktreeselection.c gtktreesortable.c gtktreestore.c \
-	gtktreeview.c gtktreeviewcolumn.c gtktypebuiltins.c gtkutils.c \
-	gtkvolumebutton.c gtkviewport.c gtkwidget.c gtkwidgetpath.c \
-	gtkwindow.c gtkwindowgroup.c gtkwin32draw.c gtkwin32theme.c \
-	gdkpixbufutils.c $(am__append_3) $(am__append_4)
-nodist_gtk_c_sources = $(gtk_dbus_built_sources)
+	gtktreeview.c gtktreeviewcolumn.c gtkutils.c gtkvolumebutton.c \
+	gtkviewport.c gtkwidget.c gtkwidgetpath.c gtkwindow.c \
+	gtkwindowgroup.c gtkwin32draw.c gtkwin32theme.c \
+	gdkpixbufutils.c language-names.c script-names.c \
+	$(am__append_3) $(am__append_4)
+nodist_gtk_c_sources = $(gtk_dbus_built_sources) $(gtk_built_sources)
 gtk_c_sources = $(gtk_base_c_sources) $(am__append_6) $(am__append_8) \
 	$(am__append_9) $(am__append_11) $(am__append_12) \
 	$(am__append_13) $(am__append_15) $(am__append_17)
@@ -2251,7 +2271,6 @@ gtk_built_sources = \
 	gtkresources.c				\
 	gtk.gresource.xml			\
 	gtktypebuiltins.c			\
-	gtktypefuncs.c				\
 	gtkmarshalers.c				\
 	gtkprivatetypebuiltins.c
 
@@ -2381,8 +2400,7 @@ theme_sources = \
 	theme/HighContrast/gtk-contained.css 	\
 	theme/HighContrast/gtk-contained-inverse.css \
 	theme/HighContrast/gtk.css 		\
-	theme/HighContrast/gtk-inverse.css 	\
-	theme/Raleigh/gtk-default.css
+	theme/HighContrast/gtk-inverse.css
 
 resource_files = $(shell $(GLIB_COMPILE_RESOURCES) --sourcedir=$(srcdir) --generate-dependencies $(builddir)/gtk.gresource.xml)
 
@@ -2408,7 +2426,8 @@ gtk_3_FILES = \
 	$(gtk_base_c_sources)		\
 	$(gtk_os_win32_c_sources)	\
 	$(gtk_use_win32_c_sources)	\
-	$(gtk_dbus_built_sources)
+	$(gtk_dbus_built_sources)	\
+	$(gtk_built_sources)
 
 gtk_3_EXCLUDES = dummy
 gtk_3_HEADERS_DIR = $(gtkincludedir)
@@ -3185,11 +3204,15 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkdrawingarea.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkeditable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkemojichooser.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkemojicompletion.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkentry.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkentrybuffer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkentrycompletion.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkeventbox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkeventcontroller.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkeventcontrollerkey.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkeventcontrollermotion.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkeventcontrollerscroll.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkexpander.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkfilechooser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkfilechooserbutton.Plo@am__quote@
@@ -3220,6 +3243,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkgesturepan.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkgesturerotate.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkgesturesingle.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkgesturestylus.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkgestureswipe.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkgesturezoom.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkgladecatalog.Plo@am__quote@
@@ -3427,6 +3451,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkwindow.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkwindowgroup.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-gtkxembed.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-language-names.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgtk_3_la-script-names.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/queryimmodules.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/updateiconcache.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkaccessibility.Plo@am__quote@
@@ -5490,6 +5516,13 @@ libgtk_3_la-gtkemojichooser.lo: gtkemojichooser.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-gtkemojichooser.lo `test -f 'gtkemojichooser.c' || echo '$(srcdir)/'`gtkemojichooser.c
 
+libgtk_3_la-gtkemojicompletion.lo: gtkemojicompletion.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT libgtk_3_la-gtkemojicompletion.lo -MD -MP -MF $(DEPDIR)/libgtk_3_la-gtkemojicompletion.Tpo -c -o libgtk_3_la-gtkemojicompletion.lo `test -f 'gtkemojicompletion.c' || echo '$(srcdir)/'`gtkemojicompletion.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgtk_3_la-gtkemojicompletion.Tpo $(DEPDIR)/libgtk_3_la-gtkemojicompletion.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gtkemojicompletion.c' object='libgtk_3_la-gtkemojicompletion.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-gtkemojicompletion.lo `test -f 'gtkemojicompletion.c' || echo '$(srcdir)/'`gtkemojicompletion.c
+
 libgtk_3_la-gtkentry.lo: gtkentry.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT libgtk_3_la-gtkentry.lo -MD -MP -MF $(DEPDIR)/libgtk_3_la-gtkentry.Tpo -c -o libgtk_3_la-gtkentry.lo `test -f 'gtkentry.c' || echo '$(srcdir)/'`gtkentry.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgtk_3_la-gtkentry.Tpo $(DEPDIR)/libgtk_3_la-gtkentry.Plo
@@ -5524,6 +5557,27 @@ libgtk_3_la-gtkeventcontroller.lo: gtkeventcontroller.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gtkeventcontroller.c' object='libgtk_3_la-gtkeventcontroller.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-gtkeventcontroller.lo `test -f 'gtkeventcontroller.c' || echo '$(srcdir)/'`gtkeventcontroller.c
+
+libgtk_3_la-gtkeventcontrollerkey.lo: gtkeventcontrollerkey.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT libgtk_3_la-gtkeventcontrollerkey.lo -MD -MP -MF $(DEPDIR)/libgtk_3_la-gtkeventcontrollerkey.Tpo -c -o libgtk_3_la-gtkeventcontrollerkey.lo `test -f 'gtkeventcontrollerkey.c' || echo '$(srcdir)/'`gtkeventcontrollerkey.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgtk_3_la-gtkeventcontrollerkey.Tpo $(DEPDIR)/libgtk_3_la-gtkeventcontrollerkey.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gtkeventcontrollerkey.c' object='libgtk_3_la-gtkeventcontrollerkey.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-gtkeventcontrollerkey.lo `test -f 'gtkeventcontrollerkey.c' || echo '$(srcdir)/'`gtkeventcontrollerkey.c
+
+libgtk_3_la-gtkeventcontrollermotion.lo: gtkeventcontrollermotion.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT libgtk_3_la-gtkeventcontrollermotion.lo -MD -MP -MF $(DEPDIR)/libgtk_3_la-gtkeventcontrollermotion.Tpo -c -o libgtk_3_la-gtkeventcontrollermotion.lo `test -f 'gtkeventcontrollermotion.c' || echo '$(srcdir)/'`gtkeventcontrollermotion.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgtk_3_la-gtkeventcontrollermotion.Tpo $(DEPDIR)/libgtk_3_la-gtkeventcontrollermotion.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gtkeventcontrollermotion.c' object='libgtk_3_la-gtkeventcontrollermotion.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-gtkeventcontrollermotion.lo `test -f 'gtkeventcontrollermotion.c' || echo '$(srcdir)/'`gtkeventcontrollermotion.c
+
+libgtk_3_la-gtkeventcontrollerscroll.lo: gtkeventcontrollerscroll.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT libgtk_3_la-gtkeventcontrollerscroll.lo -MD -MP -MF $(DEPDIR)/libgtk_3_la-gtkeventcontrollerscroll.Tpo -c -o libgtk_3_la-gtkeventcontrollerscroll.lo `test -f 'gtkeventcontrollerscroll.c' || echo '$(srcdir)/'`gtkeventcontrollerscroll.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgtk_3_la-gtkeventcontrollerscroll.Tpo $(DEPDIR)/libgtk_3_la-gtkeventcontrollerscroll.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gtkeventcontrollerscroll.c' object='libgtk_3_la-gtkeventcontrollerscroll.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-gtkeventcontrollerscroll.lo `test -f 'gtkeventcontrollerscroll.c' || echo '$(srcdir)/'`gtkeventcontrollerscroll.c
 
 libgtk_3_la-gtkexpander.lo: gtkexpander.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT libgtk_3_la-gtkexpander.lo -MD -MP -MF $(DEPDIR)/libgtk_3_la-gtkexpander.Tpo -c -o libgtk_3_la-gtkexpander.lo `test -f 'gtkexpander.c' || echo '$(srcdir)/'`gtkexpander.c
@@ -5727,6 +5781,13 @@ libgtk_3_la-gtkgesturesingle.lo: gtkgesturesingle.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gtkgesturesingle.c' object='libgtk_3_la-gtkgesturesingle.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-gtkgesturesingle.lo `test -f 'gtkgesturesingle.c' || echo '$(srcdir)/'`gtkgesturesingle.c
+
+libgtk_3_la-gtkgesturestylus.lo: gtkgesturestylus.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT libgtk_3_la-gtkgesturestylus.lo -MD -MP -MF $(DEPDIR)/libgtk_3_la-gtkgesturestylus.Tpo -c -o libgtk_3_la-gtkgesturestylus.lo `test -f 'gtkgesturestylus.c' || echo '$(srcdir)/'`gtkgesturestylus.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgtk_3_la-gtkgesturestylus.Tpo $(DEPDIR)/libgtk_3_la-gtkgesturestylus.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gtkgesturestylus.c' object='libgtk_3_la-gtkgesturestylus.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-gtkgesturestylus.lo `test -f 'gtkgesturestylus.c' || echo '$(srcdir)/'`gtkgesturestylus.c
 
 libgtk_3_la-gtkgestureswipe.lo: gtkgestureswipe.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT libgtk_3_la-gtkgestureswipe.lo -MD -MP -MF $(DEPDIR)/libgtk_3_la-gtkgestureswipe.Tpo -c -o libgtk_3_la-gtkgestureswipe.lo `test -f 'gtkgestureswipe.c' || echo '$(srcdir)/'`gtkgestureswipe.c
@@ -5944,13 +6005,6 @@ libgtk_3_la-gtkmagnifier.lo: gtkmagnifier.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gtkmagnifier.c' object='libgtk_3_la-gtkmagnifier.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-gtkmagnifier.lo `test -f 'gtkmagnifier.c' || echo '$(srcdir)/'`gtkmagnifier.c
-
-libgtk_3_la-gtkmarshalers.lo: gtkmarshalers.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT libgtk_3_la-gtkmarshalers.lo -MD -MP -MF $(DEPDIR)/libgtk_3_la-gtkmarshalers.Tpo -c -o libgtk_3_la-gtkmarshalers.lo `test -f 'gtkmarshalers.c' || echo '$(srcdir)/'`gtkmarshalers.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgtk_3_la-gtkmarshalers.Tpo $(DEPDIR)/libgtk_3_la-gtkmarshalers.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gtkmarshalers.c' object='libgtk_3_la-gtkmarshalers.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-gtkmarshalers.lo `test -f 'gtkmarshalers.c' || echo '$(srcdir)/'`gtkmarshalers.c
 
 libgtk_3_la-gtkmenu.lo: gtkmenu.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT libgtk_3_la-gtkmenu.lo -MD -MP -MF $(DEPDIR)/libgtk_3_la-gtkmenu.Tpo -c -o libgtk_3_la-gtkmenu.lo `test -f 'gtkmenu.c' || echo '$(srcdir)/'`gtkmenu.c
@@ -6204,13 +6258,6 @@ libgtk_3_la-gtkprivate.lo: gtkprivate.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-gtkprivate.lo `test -f 'gtkprivate.c' || echo '$(srcdir)/'`gtkprivate.c
 
-libgtk_3_la-gtkprivatetypebuiltins.lo: gtkprivatetypebuiltins.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT libgtk_3_la-gtkprivatetypebuiltins.lo -MD -MP -MF $(DEPDIR)/libgtk_3_la-gtkprivatetypebuiltins.Tpo -c -o libgtk_3_la-gtkprivatetypebuiltins.lo `test -f 'gtkprivatetypebuiltins.c' || echo '$(srcdir)/'`gtkprivatetypebuiltins.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgtk_3_la-gtkprivatetypebuiltins.Tpo $(DEPDIR)/libgtk_3_la-gtkprivatetypebuiltins.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gtkprivatetypebuiltins.c' object='libgtk_3_la-gtkprivatetypebuiltins.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-gtkprivatetypebuiltins.lo `test -f 'gtkprivatetypebuiltins.c' || echo '$(srcdir)/'`gtkprivatetypebuiltins.c
-
 libgtk_3_la-gtkprogressbar.lo: gtkprogressbar.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT libgtk_3_la-gtkprogressbar.lo -MD -MP -MF $(DEPDIR)/libgtk_3_la-gtkprogressbar.Tpo -c -o libgtk_3_la-gtkprogressbar.lo `test -f 'gtkprogressbar.c' || echo '$(srcdir)/'`gtkprogressbar.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgtk_3_la-gtkprogressbar.Tpo $(DEPDIR)/libgtk_3_la-gtkprogressbar.Plo
@@ -6364,13 +6411,6 @@ libgtk_3_la-gtkrendericon.lo: gtkrendericon.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gtkrendericon.c' object='libgtk_3_la-gtkrendericon.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-gtkrendericon.lo `test -f 'gtkrendericon.c' || echo '$(srcdir)/'`gtkrendericon.c
-
-libgtk_3_la-gtkresources.lo: gtkresources.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT libgtk_3_la-gtkresources.lo -MD -MP -MF $(DEPDIR)/libgtk_3_la-gtkresources.Tpo -c -o libgtk_3_la-gtkresources.lo `test -f 'gtkresources.c' || echo '$(srcdir)/'`gtkresources.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgtk_3_la-gtkresources.Tpo $(DEPDIR)/libgtk_3_la-gtkresources.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gtkresources.c' object='libgtk_3_la-gtkresources.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-gtkresources.lo `test -f 'gtkresources.c' || echo '$(srcdir)/'`gtkresources.c
 
 libgtk_3_la-gtkrevealer.lo: gtkrevealer.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT libgtk_3_la-gtkrevealer.lo -MD -MP -MF $(DEPDIR)/libgtk_3_la-gtkrevealer.Tpo -c -o libgtk_3_la-gtkrevealer.lo `test -f 'gtkrevealer.c' || echo '$(srcdir)/'`gtkrevealer.c
@@ -6897,13 +6937,6 @@ libgtk_3_la-gtktreeviewcolumn.lo: gtktreeviewcolumn.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-gtktreeviewcolumn.lo `test -f 'gtktreeviewcolumn.c' || echo '$(srcdir)/'`gtktreeviewcolumn.c
 
-libgtk_3_la-gtktypebuiltins.lo: gtktypebuiltins.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT libgtk_3_la-gtktypebuiltins.lo -MD -MP -MF $(DEPDIR)/libgtk_3_la-gtktypebuiltins.Tpo -c -o libgtk_3_la-gtktypebuiltins.lo `test -f 'gtktypebuiltins.c' || echo '$(srcdir)/'`gtktypebuiltins.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgtk_3_la-gtktypebuiltins.Tpo $(DEPDIR)/libgtk_3_la-gtktypebuiltins.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gtktypebuiltins.c' object='libgtk_3_la-gtktypebuiltins.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-gtktypebuiltins.lo `test -f 'gtktypebuiltins.c' || echo '$(srcdir)/'`gtktypebuiltins.c
-
 libgtk_3_la-gtkutils.lo: gtkutils.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT libgtk_3_la-gtkutils.lo -MD -MP -MF $(DEPDIR)/libgtk_3_la-gtkutils.Tpo -c -o libgtk_3_la-gtkutils.lo `test -f 'gtkutils.c' || echo '$(srcdir)/'`gtkutils.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgtk_3_la-gtkutils.Tpo $(DEPDIR)/libgtk_3_la-gtkutils.Plo
@@ -6973,6 +7006,20 @@ libgtk_3_la-gdkpixbufutils.lo: gdkpixbufutils.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gdkpixbufutils.c' object='libgtk_3_la-gdkpixbufutils.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-gdkpixbufutils.lo `test -f 'gdkpixbufutils.c' || echo '$(srcdir)/'`gdkpixbufutils.c
+
+libgtk_3_la-language-names.lo: language-names.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT libgtk_3_la-language-names.lo -MD -MP -MF $(DEPDIR)/libgtk_3_la-language-names.Tpo -c -o libgtk_3_la-language-names.lo `test -f 'language-names.c' || echo '$(srcdir)/'`language-names.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgtk_3_la-language-names.Tpo $(DEPDIR)/libgtk_3_la-language-names.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='language-names.c' object='libgtk_3_la-language-names.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-language-names.lo `test -f 'language-names.c' || echo '$(srcdir)/'`language-names.c
+
+libgtk_3_la-script-names.lo: script-names.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT libgtk_3_la-script-names.lo -MD -MP -MF $(DEPDIR)/libgtk_3_la-script-names.Tpo -c -o libgtk_3_la-script-names.lo `test -f 'script-names.c' || echo '$(srcdir)/'`script-names.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgtk_3_la-script-names.Tpo $(DEPDIR)/libgtk_3_la-script-names.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='script-names.c' object='libgtk_3_la-script-names.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-script-names.lo `test -f 'script-names.c' || echo '$(srcdir)/'`script-names.c
 
 libgtk_3_la-gtkclipboard-quartz.lo: gtkclipboard-quartz.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT libgtk_3_la-gtkclipboard-quartz.lo -MD -MP -MF $(DEPDIR)/libgtk_3_la-gtkclipboard-quartz.Tpo -c -o libgtk_3_la-gtkclipboard-quartz.lo `test -f 'gtkclipboard-quartz.c' || echo '$(srcdir)/'`gtkclipboard-quartz.c
@@ -7239,6 +7286,34 @@ libgtk_3_la-gtkdbusgenerated.lo: gtkdbusgenerated.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gtkdbusgenerated.c' object='libgtk_3_la-gtkdbusgenerated.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-gtkdbusgenerated.lo `test -f 'gtkdbusgenerated.c' || echo '$(srcdir)/'`gtkdbusgenerated.c
+
+libgtk_3_la-gtkresources.lo: gtkresources.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT libgtk_3_la-gtkresources.lo -MD -MP -MF $(DEPDIR)/libgtk_3_la-gtkresources.Tpo -c -o libgtk_3_la-gtkresources.lo `test -f 'gtkresources.c' || echo '$(srcdir)/'`gtkresources.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgtk_3_la-gtkresources.Tpo $(DEPDIR)/libgtk_3_la-gtkresources.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gtkresources.c' object='libgtk_3_la-gtkresources.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-gtkresources.lo `test -f 'gtkresources.c' || echo '$(srcdir)/'`gtkresources.c
+
+libgtk_3_la-gtktypebuiltins.lo: gtktypebuiltins.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT libgtk_3_la-gtktypebuiltins.lo -MD -MP -MF $(DEPDIR)/libgtk_3_la-gtktypebuiltins.Tpo -c -o libgtk_3_la-gtktypebuiltins.lo `test -f 'gtktypebuiltins.c' || echo '$(srcdir)/'`gtktypebuiltins.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgtk_3_la-gtktypebuiltins.Tpo $(DEPDIR)/libgtk_3_la-gtktypebuiltins.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gtktypebuiltins.c' object='libgtk_3_la-gtktypebuiltins.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-gtktypebuiltins.lo `test -f 'gtktypebuiltins.c' || echo '$(srcdir)/'`gtktypebuiltins.c
+
+libgtk_3_la-gtkmarshalers.lo: gtkmarshalers.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT libgtk_3_la-gtkmarshalers.lo -MD -MP -MF $(DEPDIR)/libgtk_3_la-gtkmarshalers.Tpo -c -o libgtk_3_la-gtkmarshalers.lo `test -f 'gtkmarshalers.c' || echo '$(srcdir)/'`gtkmarshalers.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgtk_3_la-gtkmarshalers.Tpo $(DEPDIR)/libgtk_3_la-gtkmarshalers.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gtkmarshalers.c' object='libgtk_3_la-gtkmarshalers.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-gtkmarshalers.lo `test -f 'gtkmarshalers.c' || echo '$(srcdir)/'`gtkmarshalers.c
+
+libgtk_3_la-gtkprivatetypebuiltins.lo: gtkprivatetypebuiltins.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT libgtk_3_la-gtkprivatetypebuiltins.lo -MD -MP -MF $(DEPDIR)/libgtk_3_la-gtkprivatetypebuiltins.Tpo -c -o libgtk_3_la-gtkprivatetypebuiltins.lo `test -f 'gtkprivatetypebuiltins.c' || echo '$(srcdir)/'`gtkprivatetypebuiltins.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgtk_3_la-gtkprivatetypebuiltins.Tpo $(DEPDIR)/libgtk_3_la-gtkprivatetypebuiltins.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gtkprivatetypebuiltins.c' object='libgtk_3_la-gtkprivatetypebuiltins.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o libgtk_3_la-gtkprivatetypebuiltins.lo `test -f 'gtkprivatetypebuiltins.c' || echo '$(srcdir)/'`gtkprivatetypebuiltins.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -7811,10 +7886,6 @@ gtk.gresource.xml: Makefile.am inspector/Makefile.inc
 	$(AM_V_GEN) echo "<?xml version='1.0' encoding='UTF-8'?>" > $@; \
 	echo "<gresources>" >> $@; \
 	echo "  <gresource prefix='/org/gtk/libgtk'>" >> $@; \
-	for f in $(srcdir)/theme/Raleigh/*.css; do \
-	  n=`basename $$f`; \
-	  echo "    <file alias='theme/Raleigh/gtk.css'>theme/Raleigh/$$n</file>" >> $@; \
-	done; \
         echo "    <file>theme/Adwaita/gtk.css</file>" >> $@; \
         echo "    <file>theme/Adwaita/gtk-dark.css</file>" >> $@; \
         echo "    <file>theme/Adwaita/gtk-contained.css</file>" >> $@; \
@@ -7851,7 +7922,7 @@ gtk.gresource.xml: Makefile.am inspector/Makefile.inc
 	done; \
 	for f in $(srcdir)/ui/*.ui; do \
 	  n=`basename $$f`; \
-	  echo "    <file compressed='true'>ui/$$n</file>" >> $@; \
+	  echo "    <file preprocess='xml-stripblanks'>ui/$$n</file>" >> $@; \
 	done; \
 	for s in 16x16 22x22 24x24 32x32 48x48; do \
 	  for c in actions status; do \
@@ -7864,7 +7935,7 @@ gtk.gresource.xml: Makefile.am inspector/Makefile.inc
 	done; \
 	for f in $(srcdir)/inspector/*.ui; do \
 	  n=`basename $$f`; \
-	  echo "    <file compressed='true'>inspector/$$n</file>" >> $@; \
+	  echo "    <file compressed='true' preprocess='xml-stripblanks'>inspector/$$n</file>" >> $@; \
 	done; \
 	echo "    <file>inspector/logo.png</file>" >> $@; \
 	echo "    <file>emoji/emoji.data</file>" >> $@; \
@@ -7912,7 +7983,7 @@ gtktypefuncs.c: stamp-gtktypebuiltins.h stamp-gtkprivatetypebuiltins.h $(top_src
 	  sort | uniq | \
 	  $(SED) '{ s/^/*tp++ = /; s/$$/();/; s/^.*\(gdk_x11\|gtk_plug_\|gtk_socket_\).*$$/#ifdef GDK_WINDOWING_X11\n&\n#endif/; }' >> xgen-gtf \
 	&& cp xgen-gtf $@ && rm -f xgen-gtf
-gtktestutils.c: gtktypefuncs.c
+$(srcdir)/gtktestutils.c: gtktypefuncs.c
 
 install-exec-hook:
 @DISABLE_EXPLICIT_DEPS_TRUE@	$(SHELL) $(top_srcdir)/sanitize-la.sh $(DESTDIR)$(libdir)/libgtk-3.la

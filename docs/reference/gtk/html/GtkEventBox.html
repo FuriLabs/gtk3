@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkEventBox: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="MiscObjects.html" title="Miscellaneous">
 <link rel="prev" href="GtkGLArea.html" title="GtkGLArea">
@@ -141,7 +141,7 @@
 <a name="GtkEventBox.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 GtkEventBox implements
- AtkImplementorIface and  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>.</p>
+ AtkImplementor and  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>.</p>
 </div>
 <div class="refsect1">
 <a name="GtkEventBox.includes"></a><h2>Includes</h2>
@@ -241,10 +241,10 @@ gtk_event_box_set_visible_window (<em class="parameter"><code><a class="link" hr
 <p>Set whether the event box uses a visible or invisible child
 window. The default is to use visible windows.</p>
 <p>In an invisible window event box, the window that the
-event box creates is a <code class="literal">GDK_INPUT_ONLY</code> window, which
+event box creates is a <a href="../html/gdk3-Windows.html#GDK-INPUT-ONLY:CAPS"><code class="literal">GDK_INPUT_ONLY</code></a> window, which
 means that it is invisible and only serves to receive
 events.</p>
-<p>A visible window event box creates a visible (<code class="literal">GDK_INPUT_OUTPUT</code>)
+<p>A visible window event box creates a visible (<a href="../html/gdk3-Windows.html#GDK-INPUT-OUTPUT:CAPS"><code class="literal">GDK_INPUT_OUTPUT</code></a>)
 window that acts as the parent window for all the widgets
 contained in the event box.</p>
 <p>You should generally make your event box invisible if

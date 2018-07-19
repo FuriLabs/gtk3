@@ -1378,6 +1378,25 @@ gtk_popover_constraint_get_type (void)
     }
     return etype;
 }
+/* enumerations from "gtkeventcontrollerscroll.h" */
+GType
+gtk_event_controller_scroll_flags_get_type (void)
+{
+    static GType etype = 0;
+    if (G_UNLIKELY(etype == 0)) {
+        static const GFlagsValue values[] = {
+            { GTK_EVENT_CONTROLLER_SCROLL_NONE, "GTK_EVENT_CONTROLLER_SCROLL_NONE", "none" },
+            { GTK_EVENT_CONTROLLER_SCROLL_VERTICAL, "GTK_EVENT_CONTROLLER_SCROLL_VERTICAL", "vertical" },
+            { GTK_EVENT_CONTROLLER_SCROLL_HORIZONTAL, "GTK_EVENT_CONTROLLER_SCROLL_HORIZONTAL", "horizontal" },
+            { GTK_EVENT_CONTROLLER_SCROLL_DISCRETE, "GTK_EVENT_CONTROLLER_SCROLL_DISCRETE", "discrete" },
+            { GTK_EVENT_CONTROLLER_SCROLL_KINETIC, "GTK_EVENT_CONTROLLER_SCROLL_KINETIC", "kinetic" },
+            { GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES, "GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES", "both-axes" },
+            { 0, NULL, NULL }
+        };
+        etype = g_flags_register_static (g_intern_static_string ("GtkEventControllerScrollFlags"), values);
+    }
+    return etype;
+}
 /* enumerations from "gtkfilechooser.h" */
 GType
 gtk_file_chooser_action_get_type (void)
@@ -1440,6 +1459,24 @@ gtk_file_filter_flags_get_type (void)
             { 0, NULL, NULL }
         };
         etype = g_flags_register_static (g_intern_static_string ("GtkFileFilterFlags"), values);
+    }
+    return etype;
+}
+/* enumerations from "gtkfontchooser.h" */
+GType
+gtk_font_chooser_level_get_type (void)
+{
+    static GType etype = 0;
+    if (G_UNLIKELY(etype == 0)) {
+        static const GFlagsValue values[] = {
+            { GTK_FONT_CHOOSER_LEVEL_FAMILY, "GTK_FONT_CHOOSER_LEVEL_FAMILY", "family" },
+            { GTK_FONT_CHOOSER_LEVEL_STYLE, "GTK_FONT_CHOOSER_LEVEL_STYLE", "style" },
+            { GTK_FONT_CHOOSER_LEVEL_SIZE, "GTK_FONT_CHOOSER_LEVEL_SIZE", "size" },
+            { GTK_FONT_CHOOSER_LEVEL_VARIATIONS, "GTK_FONT_CHOOSER_LEVEL_VARIATIONS", "variations" },
+            { GTK_FONT_CHOOSER_LEVEL_FEATURES, "GTK_FONT_CHOOSER_LEVEL_FEATURES", "features" },
+            { 0, NULL, NULL }
+        };
+        etype = g_flags_register_static (g_intern_static_string ("GtkFontChooserLevel"), values);
     }
     return etype;
 }

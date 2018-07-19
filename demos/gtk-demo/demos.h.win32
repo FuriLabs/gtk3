@@ -35,7 +35,6 @@ GtkWidget *do_event_axes (GtkWidget *do_widget);
 GtkWidget *do_expander (GtkWidget *do_widget);
 GtkWidget *do_filtermodel (GtkWidget *do_widget);
 GtkWidget *do_fishbowl (GtkWidget *do_widget);
-GtkWidget *do_widgetbowl (GtkWidget *do_widget);
 GtkWidget *do_foreigndrawing (GtkWidget *do_widget);
 GtkWidget *do_gestures (GtkWidget *do_widget);
 GtkWidget *do_glarea (GtkWidget *do_widget);
@@ -56,6 +55,7 @@ GtkWidget *do_offscreen_window (GtkWidget *do_widget);
 GtkWidget *do_offscreen_window2 (GtkWidget *do_widget);
 GtkWidget *do_overlay (GtkWidget *do_widget);
 GtkWidget *do_overlay2 (GtkWidget *do_widget);
+GtkWidget *do_paint (GtkWidget *do_widget);
 GtkWidget *do_panes (GtkWidget *do_widget);
 GtkWidget *do_pickers (GtkWidget *do_widget);
 GtkWidget *do_pixbufs (GtkWidget *do_widget);
@@ -110,7 +110,6 @@ Demo child2[] = {
 
 Demo child3[] = {
   { "fishbowl", "Fishbowl", "fishbowl.c", do_fishbowl, NULL },
-  { "widgetbowl", "Widgetbowl", "widgetbowl.c", do_widgetbowl, NULL },
   { NULL } 
 };
 
@@ -182,6 +181,7 @@ Demo gtk_demos[] = {
   { NULL, "Offscreen Windows", NULL, NULL, child6 }, 
   { "glarea", "OpenGL Area", "glarea.c", do_glarea, NULL }, 
   { NULL, "Overlay", NULL, NULL, child7 }, 
+  { "paint", "Paint", "paint.c", do_paint, NULL }, 
   { "panes", "Paned Widgets", "panes.c", do_panes, NULL }, 
   { NULL, "Pango", NULL, NULL, child9 }, 
   { "pickers", "Pickers", "pickers.c", do_pickers, NULL }, 
