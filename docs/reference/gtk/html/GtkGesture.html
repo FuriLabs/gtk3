@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkGesture: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="Gestures.html" title="Gestures and event handling">
 <link rel="prev" href="GtkEventControllerMotion.html" title="GtkEventControllerMotion">
 <link rel="next" href="GtkGestureSingle.html" title="GtkGestureSingle">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -44,7 +44,7 @@
 <tbody>
 <tr>
 <td class="function_type">
-<a href="../html/GdkDevice.html#GdkDevice-struct"><span class="returnvalue">GdkDevice</span></a> *
+<span class="returnvalue">GdkDevice</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkGesture.html#gtk-gesture-get-device" title="gtk_gesture_get_device ()">gtk_gesture_get_device</a> <span class="c_punctuation">()</span>
@@ -52,7 +52,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="returnvalue">GdkWindow</span></a> *
+<span class="returnvalue">GdkWindow</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkGesture.html#gtk-gesture-get-window" title="gtk_gesture_get_window ()">gtk_gesture_get_window</a> <span class="c_punctuation">()</span>
@@ -124,14 +124,14 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="../html/gdk3-Events.html#GdkEventSequence"><span class="returnvalue">GdkEventSequence</span></a> *
+<span class="returnvalue">GdkEventSequence</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkGesture.html#gtk-gesture-get-last-updated-sequence" title="gtk_gesture_get_last_updated_sequence ()">gtk_gesture_get_last_updated_sequence</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 <tr>
-<td class="function_type">const <a href="../html/gdk3-Event-Structures.html#GdkEvent"><span class="returnvalue">GdkEvent</span></a> *
+<td class="function_type">const <span class="returnvalue">GdkEvent</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkGesture.html#gtk-gesture-get-last-event" title="gtk_gesture_get_last_event ()">gtk_gesture_get_last_event</a> <span class="c_punctuation">()</span>
@@ -212,7 +212,7 @@
 </tr>
 <tr>
 <td class="property_type">
-<a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a> *</td>
+<span class="type">GdkWindow</span> *</td>
 <td class="property_name"><a class="link" href="GtkGesture.html#GtkGesture--window" title="The “window” property">window</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -295,7 +295,7 @@
 <p><a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a> is the base object for gesture recognition, although this
 object is quite generalized to serve as a base for multi-touch gestures,
 it is suitable to implement single-touch and pointer-based gestures (using
-the special <code class="literal">NULL</code> <a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a> value for these).</p>
+the special <code class="literal">NULL</code> <span class="type">GdkEventSequence</span> value for these).</p>
 <p>The number of touches that a <a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a> need to be recognized is controlled
 by the <a class="link" href="GtkGesture.html#GtkGesture--n-points" title="The “n-points” property"><span class="type">“n-points”</span></a> property, if a gesture is keeping track of less
 or more than that number of sequences, it won't check wether the gesture
@@ -332,7 +332,7 @@ a chance to interact with events that have not been handled yet.</p>
 <a href="GtkGesture.html#GtkGesture-struct"><span class="type">GtkGestures</span></a>, both across the parents of the widget receiving the event and
 in parallel within an individual widget. It is a responsibility of the
 widgets using those gestures to set the state of touch sequences accordingly
-in order to enable cooperation of gestures around the <a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequences</span></a>
+in order to enable cooperation of gestures around the <span class="type">GdkEventSequences</span>
 triggering those.</p>
 <p>Within a widget, gestures can be grouped through <a class="link" href="GtkGesture.html#gtk-gesture-group" title="gtk_gesture_group ()"><code class="function">gtk_gesture_group()</code></a>,
 grouped gestures synchronize the state of sequences, so calling
@@ -356,13 +356,13 @@ propagation chain.</p></li>
 <li class="listitem"><p>Stopping event propagation after the gesture group handles the event.</p></li>
 </ul></div>
 <p>Note: if a sequence is set early to <a class="link" href="GtkGesture.html#GTK-EVENT-SEQUENCE-CLAIMED:CAPS"><span class="type">GTK_EVENT_SEQUENCE_CLAIMED</span></a> on
-<a href="../html/gdk3-Events.html#GDK-TOUCH-BEGIN:CAPS"><span class="type">GDK_TOUCH_BEGIN</span></a>/<a href="../html/gdk3-Events.html#GDK-BUTTON-PRESS:CAPS"><span class="type">GDK_BUTTON_PRESS</span></a> (so those events are captured before
+<span class="type">GDK_TOUCH_BEGIN</span>/<span class="type">GDK_BUTTON_PRESS</span> (so those events are captured before
 reaching the event widget, this implies <a class="link" href="GtkEventController.html#GTK-PHASE-CAPTURE:CAPS"><span class="type">GTK_PHASE_CAPTURE</span></a>), one similar
 event will emulated if the sequence changes to <a class="link" href="GtkGesture.html#GTK-EVENT-SEQUENCE-DENIED:CAPS"><span class="type">GTK_EVENT_SEQUENCE_DENIED</span></a>.
 This way event coherence is preserved before event propagation is unstopped
 again.</p>
 <p>Sequence states can't be changed freely, see <a class="link" href="GtkGesture.html#gtk-gesture-set-sequence-state" title="gtk_gesture_set_sequence_state ()"><code class="function">gtk_gesture_set_sequence_state()</code></a>
-to know about the possible lifetimes of a <a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a>.</p>
+to know about the possible lifetimes of a <span class="type">GdkEventSequence</span>.</p>
 </div>
 <div class="refsect3">
 <a name="id-1.3.24.6.9.9"></a><h4>Touchpad gestures</h4>
@@ -370,9 +370,9 @@ to know about the possible lifetimes of a <a href="../html/gdk3-Events.html#GdkE
 touchpad gesture events. The only precautions users of <a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a> should do
 to enable this support are:</p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
-<li class="listitem"><p>Enabling <a href="../html/gdk3-Events.html#GDK-TOUCHPAD-GESTURE-MASK:CAPS"><code class="literal">GDK_TOUCHPAD_GESTURE_MASK</code></a> on their <a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindows</span></a></p></li>
+<li class="listitem"><p>Enabling <code class="literal">GDK_TOUCHPAD_GESTURE_MASK</code> on their <span class="type">GdkWindows</span></p></li>
 <li class="listitem"><p>If the gesture has <a class="link" href="GtkEventController.html#GTK-PHASE-NONE:CAPS"><code class="literal">GTK_PHASE_NONE</code></a>, ensuring events of type
-<a href="../html/gdk3-Events.html#GDK-TOUCHPAD-SWIPE:CAPS"><code class="literal">GDK_TOUCHPAD_SWIPE</code></a> and <a href="../html/gdk3-Events.html#GDK-TOUCHPAD-PINCH:CAPS"><code class="literal">GDK_TOUCHPAD_PINCH</code></a> are handled by the <a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a></p></li>
+<code class="literal">GDK_TOUCHPAD_SWIPE</code> and <code class="literal">GDK_TOUCHPAD_PINCH</code> are handled by the <a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a></p></li>
 </ul></div>
 </div>
 </div>
@@ -380,9 +380,9 @@ to enable this support are:</p>
 <a name="GtkGesture.functions_details"></a><h2>Functions</h2>
 <div class="refsect2">
 <a name="gtk-gesture-get-device"></a><h3>gtk_gesture_get_device ()</h3>
-<pre class="programlisting"><a href="../html/GdkDevice.html#GdkDevice-struct"><span class="returnvalue">GdkDevice</span></a> *
+<pre class="programlisting"><span class="returnvalue">GdkDevice</span> *
 gtk_gesture_get_device (<em class="parameter"><code><a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a> *gesture</code></em>);</pre>
-<p>Returns the master <a href="../html/GdkDevice.html#GdkDevice-struct"><span class="type">GdkDevice</span></a> that is currently operating
+<p>Returns the master <span class="type">GdkDevice</span> that is currently operating
 on <em class="parameter"><code>gesture</code></em>
 , or <code class="literal">NULL</code> if the gesture is not being interacted.</p>
 <div class="refsect3">
@@ -402,7 +402,7 @@ on <em class="parameter"><code>gesture</code></em>
 </div>
 <div class="refsect3">
 <a name="gtk-gesture-get-device.returns"></a><h4>Returns</h4>
-<p>a <a href="../html/GdkDevice.html#GdkDevice-struct"><span class="type">GdkDevice</span></a>, or <code class="literal">NULL</code>. </p>
+<p>a <span class="type">GdkDevice</span>, or <code class="literal">NULL</code>. </p>
 <p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-14.html#api-index-3.14">3.14</a></p>
@@ -410,7 +410,7 @@ on <em class="parameter"><code>gesture</code></em>
 <hr>
 <div class="refsect2">
 <a name="gtk-gesture-get-window"></a><h3>gtk_gesture_get_window ()</h3>
-<pre class="programlisting"><a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="returnvalue">GdkWindow</span></a> *
+<pre class="programlisting"><span class="returnvalue">GdkWindow</span> *
 gtk_gesture_get_window (<em class="parameter"><code><a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a> *gesture</code></em>);</pre>
 <p>Returns the user-defined window that receives the events
 handled by <em class="parameter"><code>gesture</code></em>
@@ -443,7 +443,7 @@ information.</p>
 <a name="gtk-gesture-set-window"></a><h3>gtk_gesture_set_window ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_gesture_set_window (<em class="parameter"><code><a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a> *gesture</code></em>,
-                        <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a> *window</code></em>);</pre>
+                        <em class="parameter"><code><span class="type">GdkWindow</span> *window</code></em>);</pre>
 <p>Sets a specific window to receive events about, so <em class="parameter"><code>gesture</code></em>
 
 will effectively handle only events targeting <em class="parameter"><code>window</code></em>
@@ -466,7 +466,7 @@ a child of it. <em class="parameter"><code>window</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>window</p></td>
-<td class="parameter_description"><p>a <a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a>, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <span class="type">GdkWindow</span>, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -539,7 +539,7 @@ returned <code class="literal">TRUE</code> for the sequences being currently int
 <a name="gtk-gesture-get-sequence-state"></a><h3>gtk_gesture_get_sequence_state ()</h3>
 <pre class="programlisting"><a class="link" href="GtkGesture.html#GtkEventSequenceState" title="enum GtkEventSequenceState"><span class="returnvalue">GtkEventSequenceState</span></a>
 gtk_gesture_get_sequence_state (<em class="parameter"><code><a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a> *gesture</code></em>,
-                                <em class="parameter"><code><a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a> *sequence</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GdkEventSequence</span> *sequence</code></em>);</pre>
 <p>Returns the <em class="parameter"><code>sequence</code></em>
  state, as seen by <em class="parameter"><code>gesture</code></em>
 .</p>
@@ -559,7 +559,7 @@ gtk_gesture_get_sequence_state (<em class="parameter"><code><a class="link" href
 </tr>
 <tr>
 <td class="parameter_name"><p>sequence</p></td>
-<td class="parameter_description"><p>a <a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GdkEventSequence</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -577,7 +577,7 @@ gtk_gesture_get_sequence_state (<em class="parameter"><code><a class="link" href
 <a name="gtk-gesture-set-sequence-state"></a><h3>gtk_gesture_set_sequence_state ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_gesture_set_sequence_state (<em class="parameter"><code><a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a> *gesture</code></em>,
-                                <em class="parameter"><code><a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a> *sequence</code></em>,
+                                <em class="parameter"><code><span class="type">GdkEventSequence</span> *sequence</code></em>,
                                 <em class="parameter"><code><a class="link" href="GtkGesture.html#GtkEventSequenceState" title="enum GtkEventSequenceState"><span class="type">GtkEventSequenceState</span></a> state</code></em>);</pre>
 <p>Sets the state of <em class="parameter"><code>sequence</code></em>
  in <em class="parameter"><code>gesture</code></em>
@@ -598,25 +598,49 @@ set the state on another gesture within a <a class="link" href="GtkGesture.html#
 signal handler, as the callback might be executed before
 the other gesture knows about the sequence. A safe way to
 perform this could be:</p>
-<div class="informalexample"><pre class="programlisting">
-static void
-first_gesture_begin_cb (GtkGesture       *first_gesture,
-                        GdkEventSequence *sequence,
-                        gpointer          user_data)
-{
-  gtk_gesture_set_sequence_state (first_gesture, sequence, GTK_EVENT_SEQUENCE_CLAIMED);
-  gtk_gesture_set_sequence_state (second_gesture, sequence, GTK_EVENT_SEQUENCE_DENIED);
-}
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">first_gesture_begin_cb</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkGesture</span><span class="normal">       </span><span class="symbol">*</span><span class="normal">first_gesture</span><span class="symbol">,</span>
+<span class="normal">                        </span><span class="usertype">GdkEventSequence</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">sequence</span><span class="symbol">,</span>
+<span class="normal">                        </span><span class="usertype">gpointer</span><span class="normal">          user_data</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="function"><a href="GtkGesture.html#gtk-gesture-set-sequence-state">gtk_gesture_set_sequence_state</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">first_gesture</span><span class="symbol">,</span><span class="normal"> sequence</span><span class="symbol">,</span><span class="normal"> <a href="GtkGesture.html#GTK-EVENT-SEQUENCE-CLAIMED:CAPS">GTK_EVENT_SEQUENCE_CLAIMED</a></span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function"><a href="GtkGesture.html#gtk-gesture-set-sequence-state">gtk_gesture_set_sequence_state</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">second_gesture</span><span class="symbol">,</span><span class="normal"> sequence</span><span class="symbol">,</span><span class="normal"> <a href="GtkGesture.html#GTK-EVENT-SEQUENCE-DENIED:CAPS">GTK_EVENT_SEQUENCE_DENIED</a></span><span class="symbol">);</span>
+<span class="cbracket">}</span>
 
-static void
-second_gesture_begin_cb (GtkGesture       *second_gesture,
-                         GdkEventSequence *sequence,
-                         gpointer          user_data)
-{
-  if (gtk_gesture_get_sequence_state (first_gesture, sequence) == GTK_EVENT_SEQUENCE_CLAIMED)
-    gtk_gesture_set_sequence_state (second_gesture, sequence, GTK_EVENT_SEQUENCE_DENIED);
-}
-</pre></div>
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">second_gesture_begin_cb</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkGesture</span><span class="normal">       </span><span class="symbol">*</span><span class="normal">second_gesture</span><span class="symbol">,</span>
+<span class="normal">                         </span><span class="usertype">GdkEventSequence</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">sequence</span><span class="symbol">,</span>
+<span class="normal">                         </span><span class="usertype">gpointer</span><span class="normal">          user_data</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GtkGesture.html#gtk-gesture-get-sequence-state">gtk_gesture_get_sequence_state</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">first_gesture</span><span class="symbol">,</span><span class="normal"> sequence</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">==</span><span class="normal"> <a href="GtkGesture.html#GTK-EVENT-SEQUENCE-CLAIMED:CAPS">GTK_EVENT_SEQUENCE_CLAIMED</a></span><span class="symbol">)</span>
+<span class="normal">    </span><span class="function"><a href="GtkGesture.html#gtk-gesture-set-sequence-state">gtk_gesture_set_sequence_state</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">second_gesture</span><span class="symbol">,</span><span class="normal"> sequence</span><span class="symbol">,</span><span class="normal"> <a href="GtkGesture.html#GTK-EVENT-SEQUENCE-DENIED:CAPS">GTK_EVENT_SEQUENCE_DENIED</a></span><span class="symbol">);</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>If both gestures are in the same group, just set the state on
 the gesture emitting the event, the sequence will be already
@@ -638,7 +662,7 @@ gesture processes the event.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>sequence</p></td>
-<td class="parameter_description"><p>a <a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GdkEventSequence</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -702,7 +726,7 @@ was changed successfully</p>
 <a name="gtk-gesture-get-sequences"></a><h3>gtk_gesture_get_sequences ()</h3>
 <pre class="programlisting"><span class="returnvalue">GList</span> *
 gtk_gesture_get_sequences (<em class="parameter"><code><a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a> *gesture</code></em>);</pre>
-<p>Returns the list of <a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequences</span></a> currently being interpreted
+<p>Returns the list of <span class="type">GdkEventSequences</span> currently being interpreted
 by <em class="parameter"><code>gesture</code></em>
 .</p>
 <div class="refsect3">
@@ -723,7 +747,7 @@ by <em class="parameter"><code>gesture</code></em>
 <div class="refsect3">
 <a name="gtk-gesture-get-sequences.returns"></a><h4>Returns</h4>
 <p>A list
-of <a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequences</span></a>, the list elements are owned by GTK+
+of <span class="type">GdkEventSequences</span>, the list elements are owned by GTK+
 and must not be freed or modified, the list itself must be deleted
 through <code class="function">g_list_free()</code>. </p>
 <p><span class="annotation">[<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GdkEventSequence]</span></p>
@@ -735,7 +759,7 @@ through <code class="function">g_list_free()</code>. </p>
 <a name="gtk-gesture-handles-sequence"></a><h3>gtk_gesture_handles_sequence ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_gesture_handles_sequence (<em class="parameter"><code><a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a> *gesture</code></em>,
-                              <em class="parameter"><code><a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a> *sequence</code></em>);</pre>
+                              <em class="parameter"><code><span class="type">GdkEventSequence</span> *sequence</code></em>);</pre>
 <p>Returns <code class="literal">TRUE</code> if <em class="parameter"><code>gesture</code></em>
  is currently handling events corresponding to
 <em class="parameter"><code>sequence</code></em>
@@ -756,7 +780,7 @@ gtk_gesture_handles_sequence (<em class="parameter"><code><a class="link" href="
 </tr>
 <tr>
 <td class="parameter_name"><p>sequence</p></td>
-<td class="parameter_description"><p>a <a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a> or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <span class="type">GdkEventSequence</span> or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -773,9 +797,9 @@ is handling <em class="parameter"><code>sequence</code></em>
 <hr>
 <div class="refsect2">
 <a name="gtk-gesture-get-last-updated-sequence"></a><h3>gtk_gesture_get_last_updated_sequence ()</h3>
-<pre class="programlisting"><a href="../html/gdk3-Events.html#GdkEventSequence"><span class="returnvalue">GdkEventSequence</span></a> *
+<pre class="programlisting"><span class="returnvalue">GdkEventSequence</span> *
 gtk_gesture_get_last_updated_sequence (<em class="parameter"><code><a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a> *gesture</code></em>);</pre>
-<p>Returns the <a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a> that was last updated on <em class="parameter"><code>gesture</code></em>
+<p>Returns the <span class="type">GdkEventSequence</span> that was last updated on <em class="parameter"><code>gesture</code></em>
 .</p>
 <div class="refsect3">
 <a name="gtk-gesture-get-last-updated-sequence.parameters"></a><h4>Parameters</h4>
@@ -802,9 +826,9 @@ gtk_gesture_get_last_updated_sequence (<em class="parameter"><code><a class="lin
 <hr>
 <div class="refsect2">
 <a name="gtk-gesture-get-last-event"></a><h3>gtk_gesture_get_last_event ()</h3>
-<pre class="programlisting">const <a href="../html/gdk3-Event-Structures.html#GdkEvent"><span class="returnvalue">GdkEvent</span></a> *
+<pre class="programlisting">const <span class="returnvalue">GdkEvent</span> *
 gtk_gesture_get_last_event (<em class="parameter"><code><a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a> *gesture</code></em>,
-                            <em class="parameter"><code><a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a> *sequence</code></em>);</pre>
+                            <em class="parameter"><code><span class="type">GdkEventSequence</span> *sequence</code></em>);</pre>
 <p>Returns the last event that was processed for <em class="parameter"><code>sequence</code></em>
 .</p>
 <p>Note that the returned pointer is only valid as long as the <em class="parameter"><code>sequence</code></em>
@@ -828,7 +852,7 @@ a copy of the event.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>sequence</p></td>
-<td class="parameter_description"><p>a <a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a>. </p></td>
+<td class="parameter_description"><p>a <span class="type">GdkEventSequence</span>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -846,7 +870,7 @@ a copy of the event.</p>
 <a name="gtk-gesture-get-point"></a><h3>gtk_gesture_get_point ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_gesture_get_point (<em class="parameter"><code><a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a> *gesture</code></em>,
-                       <em class="parameter"><code><a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a> *sequence</code></em>,
+                       <em class="parameter"><code><span class="type">GdkEventSequence</span> *sequence</code></em>,
                        <em class="parameter"><code><span class="type">gdouble</span> *x</code></em>,
                        <em class="parameter"><code><span class="type">gdouble</span> *y</code></em>);</pre>
 <p>If <em class="parameter"><code>sequence</code></em>
@@ -873,7 +897,7 @@ widget allocation.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>sequence</p></td>
-<td class="parameter_description"><p>a <a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a>, or <code class="literal">NULL</code> for pointer events. </p></td>
+<td class="parameter_description"><p>a <span class="type">GdkEventSequence</span>, or <code class="literal">NULL</code> for pointer events. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -901,7 +925,7 @@ is currently interpreted</p>
 <a name="gtk-gesture-get-bounding-box"></a><h3>gtk_gesture_get_bounding_box ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_gesture_get_bounding_box (<em class="parameter"><code><a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a> *gesture</code></em>,
-                              <em class="parameter"><code><a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *rect</code></em>);</pre>
+                              <em class="parameter"><code><span class="type">GdkRectangle</span> *rect</code></em>);</pre>
 <p>If there are touch sequences being currently handled by <em class="parameter"><code>gesture</code></em>
 ,
 this function returns <code class="literal">TRUE</code> and fills in <em class="parameter"><code>rect</code></em>
@@ -999,11 +1023,11 @@ gtk_gesture_group (<em class="parameter"><code><a class="link" href="GtkGesture.
  to the same group than <em class="parameter"><code>group_gesture</code></em>
 . Gestures
 are by default isolated in their own groups.</p>
-<p>When gestures are grouped, the state of <a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequences</span></a>
+<p>When gestures are grouped, the state of <span class="type">GdkEventSequences</span>
 is kept in sync for all of those, so calling <a class="link" href="GtkGesture.html#gtk-gesture-set-sequence-state" title="gtk_gesture_set_sequence_state ()"><code class="function">gtk_gesture_set_sequence_state()</code></a>,
 on one will transfer the same value to the others.</p>
 <p>Groups also perform an "implicit grabbing" of sequences, if a
-<a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a> state is set to <a class="link" href="GtkGesture.html#GTK-EVENT-SEQUENCE-CLAIMED:CAPS"><span class="type">GTK_EVENT_SEQUENCE_CLAIMED</span></a> on one group,
+<span class="type">GdkEventSequence</span> state is set to <a class="link" href="GtkGesture.html#GTK-EVENT-SEQUENCE-CLAIMED:CAPS"><span class="type">GTK_EVENT_SEQUENCE_CLAIMED</span></a> on one group,
 every other gesture group attached to the same <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> will switch the
 state for that sequence to <a class="link" href="GtkGesture.html#GTK-EVENT-SEQUENCE-DENIED:CAPS"><span class="type">GTK_EVENT_SEQUENCE_DENIED</span></a>.</p>
 <div class="refsect3">
@@ -1130,7 +1154,7 @@ gtk_gesture_is_grouped_with (<em class="parameter"><code><a class="link" href="G
 <hr>
 <div class="refsect2">
 <a name="GtkEventSequenceState"></a><h3>enum GtkEventSequenceState</h3>
-<p>Describes the state of a <a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a> in a <a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a>.</p>
+<p>Describes the state of a <span class="type">GdkEventSequence</span> in a <a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a>.</p>
 <div class="refsect3">
 <a name="GtkEventSequenceState.members"></a><h4>Members</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1181,9 +1205,9 @@ gtk_gesture_is_grouped_with (<em class="parameter"><code><a class="link" href="G
 <hr>
 <div class="refsect2">
 <a name="GtkGesture--window"></a><h3>The <code class="literal">“window”</code> property</h3>
-<pre class="programlisting">  “window”                   <a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a> *</pre>
+<pre class="programlisting">  “window”                   <span class="type">GdkWindow</span> *</pre>
 <p>If non-<code class="literal">NULL</code>, the gesture will only listen for events that happen on
-this <a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a>, or a child of it.</p>
+this <span class="type">GdkWindow</span>, or a child of it.</p>
 <p>Flags: Read / Write</p>
 <p class="since">Since: <a class="link" href="api-index-3-14.html#api-index-3.14">3.14</a></p>
 </div>
@@ -1194,7 +1218,7 @@ this <a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="type">Gdk
 <a name="GtkGesture-begin"></a><h3>The <code class="literal">“begin”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a>       *gesture,
-               <a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a> *sequence,
+               <span class="type">GdkEventSequence</span> *sequence,
                <span class="type">gpointer</span>          user_data)</pre>
 <p>This signal is emitted when the gesture is recognized. This means the
 number of touch sequences matches <a class="link" href="GtkGesture.html#GtkGesture--n-points" title="The “n-points” property"><span class="type">“n-points”</span></a>, and the <span class="type">“check”</span>
@@ -1219,7 +1243,7 @@ to the current set of active touches, so don't rely on this being true.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>sequence</p></td>
-<td class="parameter_description"><p>the <a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a> that made the gesture to be recognized</p></td>
+<td class="parameter_description"><p>the <span class="type">GdkEventSequence</span> that made the gesture to be recognized</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -1238,7 +1262,7 @@ to the current set of active touches, so don't rely on this being true.</p>
 <a name="GtkGesture-cancel"></a><h3>The <code class="literal">“cancel”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a>       *gesture,
-               <a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a> *sequence,
+               <span class="type">GdkEventSequence</span> *sequence,
                <span class="type">gpointer</span>          user_data)</pre>
 <p>This signal is emitted whenever a sequence is cancelled. This usually
 happens on active touches when <a class="link" href="GtkEventController.html#gtk-event-controller-reset" title="gtk_event_controller_reset ()"><code class="function">gtk_event_controller_reset()</code></a> is called
@@ -1265,7 +1289,7 @@ was claimed by parent widgets' controllers (see <a class="link" href="GtkGesture
 </tr>
 <tr>
 <td class="parameter_name"><p>sequence</p></td>
-<td class="parameter_description"><p>the <a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a> that was cancelled</p></td>
+<td class="parameter_description"><p>the <span class="type">GdkEventSequence</span> that was cancelled</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -1284,7 +1308,7 @@ was claimed by parent widgets' controllers (see <a class="link" href="GtkGesture
 <a name="GtkGesture-end"></a><h3>The <code class="literal">“end”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a>       *gesture,
-               <a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a> *sequence,
+               <span class="type">GdkEventSequence</span> *sequence,
                <span class="type">gpointer</span>          user_data)</pre>
 <p>This signal is emitted when <em class="parameter"><code>gesture</code></em>
  either stopped recognizing the event
@@ -1313,7 +1337,7 @@ by checking through <a class="link" href="GtkGesture.html#gtk-gesture-handles-se
 </tr>
 <tr>
 <td class="parameter_name"><p>sequence</p></td>
-<td class="parameter_description"><p>the <a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a> that made gesture recognition to finish</p></td>
+<td class="parameter_description"><p>the <span class="type">GdkEventSequence</span> that made gesture recognition to finish</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -1332,7 +1356,7 @@ by checking through <a class="link" href="GtkGesture.html#gtk-gesture-handles-se
 <a name="GtkGesture-sequence-state-changed"></a><h3>The <code class="literal">“sequence-state-changed”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a>           *gesture,
-               <a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a>     *sequence,
+               <span class="type">GdkEventSequence</span>     *sequence,
                <a class="link" href="GtkGesture.html#GtkEventSequenceState" title="enum GtkEventSequenceState"><span class="type">GtkEventSequenceState</span></a> state,
                <span class="type">gpointer</span>              user_data)</pre>
 <p>This signal is emitted whenever a sequence state changes. See
@@ -1354,7 +1378,7 @@ sequence lifetimes.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>sequence</p></td>
-<td class="parameter_description"><p>the <a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a> that was cancelled</p></td>
+<td class="parameter_description"><p>the <span class="type">GdkEventSequence</span> that was cancelled</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -1378,7 +1402,7 @@ sequence lifetimes.</p>
 <a name="GtkGesture-update"></a><h3>The <code class="literal">“update”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a>       *gesture,
-               <a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a> *sequence,
+               <span class="type">GdkEventSequence</span> *sequence,
                <span class="type">gpointer</span>          user_data)</pre>
 <p>This signal is emitted whenever an event is handled while the gesture is
 recognized. <em class="parameter"><code>sequence</code></em>
@@ -1399,7 +1423,7 @@ recognized. <em class="parameter"><code>sequence</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>sequence</p></td>
-<td class="parameter_description"><p>the <a href="../html/gdk3-Events.html#GdkEventSequence"><span class="type">GdkEventSequence</span></a> that was updated</p></td>
+<td class="parameter_description"><p>the <span class="type">GdkEventSequence</span> that was updated</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -1420,6 +1444,6 @@ recognized. <em class="parameter"><code>sequence</code></em>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

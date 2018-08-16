@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkTextBuffer: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="TextWidgetObjects.html" title="Multiline Text Editor">
 <link rel="prev" href="GtkTextMark.html" title="GtkTextMark">
 <link rel="next" href="GtkTextTag.html" title="GtkTextTag">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -564,7 +564,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="returnvalue">GdkAtom</span></a> *
+<span class="returnvalue">GdkAtom</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkTextBuffer.html#gtk-text-buffer-get-deserialize-formats" title="gtk_text_buffer_get_deserialize_formats ()">gtk_text_buffer_get_deserialize_formats</a> <span class="c_punctuation">()</span>
@@ -580,7 +580,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="returnvalue">GdkAtom</span></a> *
+<span class="returnvalue">GdkAtom</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkTextBuffer.html#gtk-text-buffer-get-serialize-formats" title="gtk_text_buffer_get_serialize_formats ()">gtk_text_buffer_get_serialize_formats</a> <span class="c_punctuation">()</span>
@@ -588,7 +588,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="returnvalue">GdkAtom</span></a>
+<span class="returnvalue">GdkAtom</span>
 </td>
 <td class="function_name">
 <a class="link" href="GtkTextBuffer.html#gtk-text-buffer-register-deserialize-format" title="gtk_text_buffer_register_deserialize_format ()">gtk_text_buffer_register_deserialize_format</a> <span class="c_punctuation">()</span>
@@ -596,7 +596,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="returnvalue">GdkAtom</span></a>
+<span class="returnvalue">GdkAtom</span>
 </td>
 <td class="function_name">
 <a class="link" href="GtkTextBuffer.html#gtk-text-buffer-register-deserialize-tagset" title="gtk_text_buffer_register_deserialize_tagset ()">gtk_text_buffer_register_deserialize_tagset</a> <span class="c_punctuation">()</span>
@@ -604,7 +604,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="returnvalue">GdkAtom</span></a>
+<span class="returnvalue">GdkAtom</span>
 </td>
 <td class="function_name">
 <a class="link" href="GtkTextBuffer.html#gtk-text-buffer-register-serialize-format" title="gtk_text_buffer_register_serialize_format ()">gtk_text_buffer_register_serialize_format</a> <span class="c_punctuation">()</span>
@@ -612,7 +612,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="returnvalue">GdkAtom</span></a>
+<span class="returnvalue">GdkAtom</span>
 </td>
 <td class="function_name">
 <a class="link" href="GtkTextBuffer.html#gtk-text-buffer-register-serialize-tagset" title="gtk_text_buffer_register_serialize_tagset ()">gtk_text_buffer_register_serialize_tagset</a> <span class="c_punctuation">()</span>
@@ -3355,7 +3355,7 @@ gtk_text_buffer_add_selection_clipboard
 contents of <em class="parameter"><code>buffer</code></em>
  are available. In most cases, <em class="parameter"><code>clipboard</code></em>
  will be 
-the <a class="link" href="gtk3-Clipboards.html#GtkClipboard"><span class="type">GtkClipboard</span></a> of type <a href="../html/gdk3-Selections.html#GDK-SELECTION-PRIMARY:CAPS"><code class="literal">GDK_SELECTION_PRIMARY</code></a> for a view of <em class="parameter"><code>buffer</code></em>
+the <a class="link" href="gtk3-Clipboards.html#GtkClipboard"><span class="type">GtkClipboard</span></a> of type <code class="literal">GDK_SELECTION_PRIMARY</code> for a view of <em class="parameter"><code>buffer</code></em>
 .</p>
 <div class="refsect3">
 <a name="gtk-text-buffer-add-selection-clipboard.parameters"></a><h4>Parameters</h4>
@@ -3493,7 +3493,7 @@ serialized with <a class="link" href="GtkTextBuffer.html#gtk-text-buffer-seriali
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_text_buffer_deserialize (<em class="parameter"><code><a class="link" href="GtkTextBuffer.html" title="GtkTextBuffer"><span class="type">GtkTextBuffer</span></a> *register_buffer</code></em>,
                              <em class="parameter"><code><a class="link" href="GtkTextBuffer.html" title="GtkTextBuffer"><span class="type">GtkTextBuffer</span></a> *content_buffer</code></em>,
-                             <em class="parameter"><code><a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="type">GdkAtom</span></a> format</code></em>,
+                             <em class="parameter"><code><span class="type">GdkAtom</span> format</code></em>,
                              <em class="parameter"><code><a class="link" href="GtkTextIter.html" title="GtkTextIter"><span class="type">GtkTextIter</span></a> *iter</code></em>,
                              <em class="parameter"><code>const <span class="type">guint8</span> *data</code></em>,
                              <em class="parameter"><code><span class="type">gsize</span> length</code></em>,
@@ -3567,7 +3567,7 @@ is registered with</p></td>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_text_buffer_deserialize_get_can_create_tags
                                (<em class="parameter"><code><a class="link" href="GtkTextBuffer.html" title="GtkTextBuffer"><span class="type">GtkTextBuffer</span></a> *buffer</code></em>,
-                                <em class="parameter"><code><a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="type">GdkAtom</span></a> format</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GdkAtom</span> format</code></em>);</pre>
 <p>This functions returns the value set with
 <a class="link" href="GtkTextBuffer.html#gtk-text-buffer-deserialize-set-can-create-tags" title="gtk_text_buffer_deserialize_set_can_create_tags ()"><code class="function">gtk_text_buffer_deserialize_set_can_create_tags()</code></a></p>
 <div class="refsect3">
@@ -3586,7 +3586,7 @@ gtk_text_buffer_deserialize_get_can_create_tags
 </tr>
 <tr>
 <td class="parameter_name"><p>format</p></td>
-<td class="parameter_description"><p>a <a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="type">GdkAtom</span></a> representing a registered rich text format</p></td>
+<td class="parameter_description"><p>a <span class="type">GdkAtom</span> representing a registered rich text format</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -3604,7 +3604,7 @@ gtk_text_buffer_deserialize_get_can_create_tags
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_text_buffer_deserialize_set_can_create_tags
                                (<em class="parameter"><code><a class="link" href="GtkTextBuffer.html" title="GtkTextBuffer"><span class="type">GtkTextBuffer</span></a> *buffer</code></em>,
-                                <em class="parameter"><code><a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="type">GdkAtom</span></a> format</code></em>,
+                                <em class="parameter"><code><span class="type">GdkAtom</span> format</code></em>,
                                 <em class="parameter"><code><span class="type">gboolean</span> can_create_tags</code></em>);</pre>
 <p>Use this function to allow a rich text deserialization function to
 create new tags in the receiving buffer. Note that using this
@@ -3637,7 +3637,7 @@ handle the newly created tags.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>format</p></td>
-<td class="parameter_description"><p>a <a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="type">GdkAtom</span></a> representing a registered rich text format</p></td>
+<td class="parameter_description"><p>a <span class="type">GdkAtom</span> representing a registered rich text format</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -3686,7 +3686,7 @@ using <a class="link" href="gtk3-Selections.html#gtk-target-list-add-rich-text-t
 <hr>
 <div class="refsect2">
 <a name="gtk-text-buffer-get-deserialize-formats"></a><h3>gtk_text_buffer_get_deserialize_formats ()</h3>
-<pre class="programlisting"><a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="returnvalue">GdkAtom</span></a> *
+<pre class="programlisting"><span class="returnvalue">GdkAtom</span> *
 gtk_text_buffer_get_deserialize_formats
                                (<em class="parameter"><code><a class="link" href="GtkTextBuffer.html" title="GtkTextBuffer"><span class="type">GtkTextBuffer</span></a> *buffer</code></em>,
                                 <em class="parameter"><code><span class="type">gint</span> *n_formats</code></em>);</pre>
@@ -3719,7 +3719,7 @@ with <em class="parameter"><code>buffer</code></em>
 <div class="refsect3">
 <a name="gtk-text-buffer-get-deserialize-formats.returns"></a><h4>Returns</h4>
 <p>an array of
-<a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="type">GdkAtoms</span></a> representing the registered formats. </p>
+<span class="type">GdkAtoms</span> representing the registered formats. </p>
 <p><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> length=n_formats][<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.10</p>
@@ -3760,7 +3760,7 @@ using <a class="link" href="gtk3-Selections.html#gtk-target-list-add-rich-text-t
 <hr>
 <div class="refsect2">
 <a name="gtk-text-buffer-get-serialize-formats"></a><h3>gtk_text_buffer_get_serialize_formats ()</h3>
-<pre class="programlisting"><a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="returnvalue">GdkAtom</span></a> *
+<pre class="programlisting"><span class="returnvalue">GdkAtom</span> *
 gtk_text_buffer_get_serialize_formats (<em class="parameter"><code><a class="link" href="GtkTextBuffer.html" title="GtkTextBuffer"><span class="type">GtkTextBuffer</span></a> *buffer</code></em>,
                                        <em class="parameter"><code><span class="type">gint</span> *n_formats</code></em>);</pre>
 <p>This function returns the rich text serialize formats registered
@@ -3792,7 +3792,7 @@ with <em class="parameter"><code>buffer</code></em>
 <div class="refsect3">
 <a name="gtk-text-buffer-get-serialize-formats.returns"></a><h4>Returns</h4>
 <p>an array of
-<a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="type">GdkAtoms</span></a> representing the registered formats. </p>
+<span class="type">GdkAtoms</span> representing the registered formats. </p>
 <p><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> length=n_formats][<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.10</p>
@@ -3800,7 +3800,7 @@ with <em class="parameter"><code>buffer</code></em>
 <hr>
 <div class="refsect2">
 <a name="gtk-text-buffer-register-deserialize-format"></a><h3>gtk_text_buffer_register_deserialize_format ()</h3>
-<pre class="programlisting"><a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="returnvalue">GdkAtom</span></a>
+<pre class="programlisting"><span class="returnvalue">GdkAtom</span>
 gtk_text_buffer_register_deserialize_format
                                (<em class="parameter"><code><a class="link" href="GtkTextBuffer.html" title="GtkTextBuffer"><span class="type">GtkTextBuffer</span></a> *buffer</code></em>,
                                 <em class="parameter"><code>const <span class="type">gchar</span> *mime_type</code></em>,
@@ -3853,7 +3853,7 @@ is no longer needed</p></td>
 </div>
 <div class="refsect3">
 <a name="gtk-text-buffer-register-deserialize-format.returns"></a><h4>Returns</h4>
-<p>the <a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="type">GdkAtom</span></a> that corresponds to the
+<p>the <span class="type">GdkAtom</span> that corresponds to the
 newly registered format’s mime-type. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -3862,7 +3862,7 @@ newly registered format’s mime-type. </p>
 <hr>
 <div class="refsect2">
 <a name="gtk-text-buffer-register-deserialize-tagset"></a><h3>gtk_text_buffer_register_deserialize_tagset ()</h3>
-<pre class="programlisting"><a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="returnvalue">GdkAtom</span></a>
+<pre class="programlisting"><span class="returnvalue">GdkAtom</span>
 gtk_text_buffer_register_deserialize_tagset
                                (<em class="parameter"><code><a class="link" href="GtkTextBuffer.html" title="GtkTextBuffer"><span class="type">GtkTextBuffer</span></a> *buffer</code></em>,
                                 <em class="parameter"><code>const <span class="type">gchar</span> *tagset_name</code></em>);</pre>
@@ -3894,7 +3894,7 @@ format with the passed <em class="parameter"><code>buffer</code></em>
 </div>
 <div class="refsect3">
 <a name="gtk-text-buffer-register-deserialize-tagset.returns"></a><h4>Returns</h4>
-<p>the <a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="type">GdkAtom</span></a> that corresponds to the
+<p>the <span class="type">GdkAtom</span> that corresponds to the
 newly registered format’s mime-type. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -3903,7 +3903,7 @@ newly registered format’s mime-type. </p>
 <hr>
 <div class="refsect2">
 <a name="gtk-text-buffer-register-serialize-format"></a><h3>gtk_text_buffer_register_serialize_format ()</h3>
-<pre class="programlisting"><a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="returnvalue">GdkAtom</span></a>
+<pre class="programlisting"><span class="returnvalue">GdkAtom</span>
 gtk_text_buffer_register_serialize_format
                                (<em class="parameter"><code><a class="link" href="GtkTextBuffer.html" title="GtkTextBuffer"><span class="type">GtkTextBuffer</span></a> *buffer</code></em>,
                                 <em class="parameter"><code>const <span class="type">gchar</span> *mime_type</code></em>,
@@ -3956,7 +3956,7 @@ is no longer needed</p></td>
 </div>
 <div class="refsect3">
 <a name="gtk-text-buffer-register-serialize-format.returns"></a><h4>Returns</h4>
-<p>the <a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="type">GdkAtom</span></a> that corresponds to the
+<p>the <span class="type">GdkAtom</span> that corresponds to the
 newly registered format’s mime-type. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -3965,7 +3965,7 @@ newly registered format’s mime-type. </p>
 <hr>
 <div class="refsect2">
 <a name="gtk-text-buffer-register-serialize-tagset"></a><h3>gtk_text_buffer_register_serialize_tagset ()</h3>
-<pre class="programlisting"><a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="returnvalue">GdkAtom</span></a>
+<pre class="programlisting"><span class="returnvalue">GdkAtom</span>
 gtk_text_buffer_register_serialize_tagset
                                (<em class="parameter"><code><a class="link" href="GtkTextBuffer.html" title="GtkTextBuffer"><span class="type">GtkTextBuffer</span></a> *buffer</code></em>,
                                 <em class="parameter"><code>const <span class="type">gchar</span> *tagset_name</code></em>);</pre>
@@ -4012,7 +4012,7 @@ receiving buffer to deal with with pasting of arbitrary tags.</p>
 </div>
 <div class="refsect3">
 <a name="gtk-text-buffer-register-serialize-tagset.returns"></a><h4>Returns</h4>
-<p>the <a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="type">GdkAtom</span></a> that corresponds to the
+<p>the <span class="type">GdkAtom</span> that corresponds to the
 newly registered format’s mime-type. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -4085,7 +4085,7 @@ the serialized data, or <code class="literal">NULL</code> if an error occurred. 
 <pre class="programlisting"><span class="returnvalue">guint8</span> *
 gtk_text_buffer_serialize (<em class="parameter"><code><a class="link" href="GtkTextBuffer.html" title="GtkTextBuffer"><span class="type">GtkTextBuffer</span></a> *register_buffer</code></em>,
                            <em class="parameter"><code><a class="link" href="GtkTextBuffer.html" title="GtkTextBuffer"><span class="type">GtkTextBuffer</span></a> *content_buffer</code></em>,
-                           <em class="parameter"><code><a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="type">GdkAtom</span></a> format</code></em>,
+                           <em class="parameter"><code><span class="type">GdkAtom</span> format</code></em>,
                            <em class="parameter"><code>const <a class="link" href="GtkTextIter.html" title="GtkTextIter"><span class="type">GtkTextIter</span></a> *start</code></em>,
                            <em class="parameter"><code>const <a class="link" href="GtkTextIter.html" title="GtkTextIter"><span class="type">GtkTextIter</span></a> *end</code></em>,
                            <em class="parameter"><code><span class="type">gsize</span> *length</code></em>);</pre>
@@ -4156,7 +4156,7 @@ data, encoded as <em class="parameter"><code>format</code></em>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_text_buffer_unregister_deserialize_format
                                (<em class="parameter"><code><a class="link" href="GtkTextBuffer.html" title="GtkTextBuffer"><span class="type">GtkTextBuffer</span></a> *buffer</code></em>,
-                                <em class="parameter"><code><a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="type">GdkAtom</span></a> format</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GdkAtom</span> format</code></em>);</pre>
 <p>This function unregisters a rich text format that was previously
 registered using <a class="link" href="GtkTextBuffer.html#gtk-text-buffer-register-deserialize-format" title="gtk_text_buffer_register_deserialize_format ()"><code class="function">gtk_text_buffer_register_deserialize_format()</code></a> or
 <a class="link" href="GtkTextBuffer.html#gtk-text-buffer-register-deserialize-tagset" title="gtk_text_buffer_register_deserialize_tagset ()"><code class="function">gtk_text_buffer_register_deserialize_tagset()</code></a>.</p>
@@ -4176,7 +4176,7 @@ registered using <a class="link" href="GtkTextBuffer.html#gtk-text-buffer-regist
 </tr>
 <tr>
 <td class="parameter_name"><p>format</p></td>
-<td class="parameter_description"><p>a <a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="type">GdkAtom</span></a> representing a registered rich text format.</p></td>
+<td class="parameter_description"><p>a <span class="type">GdkAtom</span> representing a registered rich text format.</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -4190,7 +4190,7 @@ registered using <a class="link" href="GtkTextBuffer.html#gtk-text-buffer-regist
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_text_buffer_unregister_serialize_format
                                (<em class="parameter"><code><a class="link" href="GtkTextBuffer.html" title="GtkTextBuffer"><span class="type">GtkTextBuffer</span></a> *buffer</code></em>,
-                                <em class="parameter"><code><a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="type">GdkAtom</span></a> format</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GdkAtom</span> format</code></em>);</pre>
 <p>This function unregisters a rich text format that was previously
 registered using <a class="link" href="GtkTextBuffer.html#gtk-text-buffer-register-serialize-format" title="gtk_text_buffer_register_serialize_format ()"><code class="function">gtk_text_buffer_register_serialize_format()</code></a> or
 <a class="link" href="GtkTextBuffer.html#gtk-text-buffer-register-serialize-tagset" title="gtk_text_buffer_register_serialize_tagset ()"><code class="function">gtk_text_buffer_register_serialize_tagset()</code></a></p>
@@ -4210,7 +4210,7 @@ registered using <a class="link" href="GtkTextBuffer.html#gtk-text-buffer-regist
 </tr>
 <tr>
 <td class="parameter_name"><p>format</p></td>
-<td class="parameter_description"><p>a <a href="../html/gdk3-Properties-and-Atoms.html#GdkAtom"><span class="type">GdkAtom</span></a> representing a registered rich text format.</p></td>
+<td class="parameter_description"><p>a <span class="type">GdkAtom</span> representing a registered rich text format.</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -5108,6 +5108,6 @@ invalidate the <em class="parameter"><code>start</code></em>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

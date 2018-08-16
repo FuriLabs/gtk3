@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Themeable Stock Images: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="DeprecatedObjects.html" title="Deprecated">
 <link rel="prev" href="gtk3-Stock-Items.html" title="Stock Items">
 <link rel="next" href="GtkNumerableIcon.html" title="GtkNumerableIcon">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -418,7 +418,7 @@
 </div>
 <div class="refsect1">
 <a name="gtk3-Themeable-Stock-Images.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="/usr/share/gtk-doc/html/gobject/gobject-Boxed-Types.html">GBoxed</a>
+<pre class="screen">    GBoxed
     <span class="lineart">╰──</span> GtkIconSet
     GObject
     <span class="lineart">╰──</span> GtkIconFactory
@@ -490,21 +490,41 @@ attribute is optional.</p>
 </ul></div>
 <div class="refsect3">
 <a name="id-1.3.25.35.10.4.4"></a><h4>A <a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconFactory"><span class="type">GtkIconFactory</span></a> UI definition fragment.</h4>
-<div class="informalexample"><pre class="programlisting">
-&lt;object class="GtkIconFactory" id="iconfactory1"&gt;
-  &lt;sources&gt;
-    &lt;source stock-id="apple-red" filename="apple-red.png"/&gt;
-  &lt;/sources&gt;
-&lt;/object&gt;
-&lt;object class="GtkWindow" id="window1"&gt;
-  &lt;child&gt;
-    &lt;object class="GtkButton" id="apple_button"&gt;
-      &lt;property name="label"&gt;apple-red&lt;/property&gt;
-      &lt;property name="use-stock"&gt;True&lt;/property&gt;
-    &lt;/object&gt;
-  &lt;/child&gt;
-&lt;/object&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkIconFactory"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"iconfactory1"</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">sources</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">source</span><span class="normal"> stock</span><span class="symbol">-</span><span class="normal">id</span><span class="symbol">=</span><span class="string">"apple-red"</span><span class="normal"> filename</span><span class="symbol">=</span><span class="string">"apple-red.png"</span><span class="symbol">/&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">sources</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkWindow"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"window1"</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkButton"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"apple_button"</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"label"</span><span class="symbol">&gt;</span><span class="normal">apple</span><span class="symbol">-</span><span class="normal">red</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"use-stock"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 </div>
 </div>
@@ -1028,7 +1048,7 @@ means render at the size of the source and don’t scale. </p></td>
 <td class="parameter_name"><p>widget</p></td>
 <td class="parameter_description"><p>widget that will display the icon, or <code class="literal">NULL</code>.
 The only use that is typically made of this
-is to determine the appropriate <a href="../html/GdkScreen.html#GdkScreen-struct"><span class="type">GdkScreen</span></a>. </p></td>
+is to determine the appropriate <span class="type">GdkScreen</span>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -1107,7 +1127,7 @@ gtk_icon_set_render_icon_surface (<em class="parameter"><code><a class="link" hr
                                   <em class="parameter"><code><a class="link" href="GtkStyleContext.html" title="GtkStyleContext"><span class="type">GtkStyleContext</span></a> *context</code></em>,
                                   <em class="parameter"><code><a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSize" title="enum GtkIconSize"><span class="type">GtkIconSize</span></a> size</code></em>,
                                   <em class="parameter"><code><span class="type">int</span> scale</code></em>,
-                                  <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a> *for_window</code></em>);</pre>
+                                  <em class="parameter"><code><span class="type">GdkWindow</span> *for_window</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gtk_icon_set_render_icon_surface</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="GtkIconTheme.html" title="GtkIconTheme"><span class="type">GtkIconTheme</span></a> instead.</p>
@@ -1149,7 +1169,7 @@ means render at the size of the source and don’t scale. </p></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>for_window</p></td>
-<td class="parameter_description"><p><a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a> to optimize drawing for, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p><span class="type">GdkWindow</span> to optimize drawing for, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -2278,6 +2298,6 @@ that match exactly.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

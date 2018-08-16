@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Migrating from libunique to GApplication or GtkApplication: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="migrating.html" title="Part V. Migrating from Previous Versions of GTK+">
 <link rel="prev" href="gtk-migrating-GtkStyleContext-bonus-points.html" title="Bonus points">
 <link rel="next" href="ch28s02.html" title="Commands and Messages">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -41,80 +41,161 @@
 <div class="example-contents">
 <p>Here is a simple application using libunique:
   </p>
-<div class="informalexample"><pre class="programlisting">
-int
-main (int argc, char *argv[])
-{
-  UniqueApp *app;
-  GtkWidget *window;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="type">int</span>
+<span class="function">main</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> argc</span><span class="symbol">,</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">argv</span><span class="symbol">[])</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">UniqueApp</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">app</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">window</span><span class="symbol">;</span>
 
-  gtk_init (&amp;argc, &amp;argv);
+<span class="normal">  </span><span class="function"><a href="gtk3-General.html#gtk-init">gtk_init</a></span><span class="normal"> </span><span class="symbol">(&amp;</span><span class="normal">argc</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">argv</span><span class="symbol">);</span>
 
-  app = unique_app_new ("org.gtk.TestApplication", NULL);
+<span class="normal">  app </span><span class="symbol">=</span><span class="normal"> </span><span class="function">unique_app_new</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"org.gtk.TestApplication"</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
 
-  if (unique_app_is_running (app))
-    {
-      UniqueResponse response;
+<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function">unique_app_is_running</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">app</span><span class="symbol">))</span>
+<span class="normal">    </span><span class="cbracket">{</span>
+<span class="normal">      </span><span class="usertype">UniqueResponse</span><span class="normal"> response</span><span class="symbol">;</span>
 
-      response = unique_app_send_message (app, UNIQUE_ACTIVATE, NULL);
-      g_object_unref (app);
+<span class="normal">      response </span><span class="symbol">=</span><span class="normal"> </span><span class="function">unique_app_send_message</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">app</span><span class="symbol">,</span><span class="normal"> UNIQUE_ACTIVATE</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
+<span class="normal">      </span><span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">app</span><span class="symbol">);</span>
 
-      return response == UNIQUE_RESPONSE_OK ? 0 : 1;
-    }
+<span class="normal">      </span><span class="keyword">return</span><span class="normal"> response </span><span class="symbol">==</span><span class="normal"> UNIQUE_RESPONSE_OK </span><span class="symbol">?</span><span class="normal"> </span><span class="number">0</span><span class="normal"> </span><span class="symbol">:</span><span class="normal"> </span><span class="number">1</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
 
-  window = create_my_window ();
+<span class="normal">  window </span><span class="symbol">=</span><span class="normal"> </span><span class="function">create_my_window</span><span class="normal"> </span><span class="symbol">();</span>
 
-  unique_app_watch_window (app, GTK_WINDOW (window));
+<span class="normal">  </span><span class="function">unique_app_watch_window</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">app</span><span class="symbol">,</span><span class="normal"> </span><span class="function">GTK_WINDOW</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">));</span>
 
-  gtk_widget_show (window);
+<span class="normal">  </span><span class="function"><a href="GtkWidget.html#gtk-widget-show">gtk_widget_show</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">);</span>
 
-  gtk_main ();
+<span class="normal">  </span><span class="function"><a href="gtk3-General.html#gtk-main">gtk_main</a></span><span class="normal"> </span><span class="symbol">();</span>
 
-  g_object_unref (app);
+<span class="normal">  </span><span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">app</span><span class="symbol">);</span>
 
-  return 0;
-}
-</pre></div>
+<span class="normal">  </span><span class="keyword">return</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 The same application using GtkApplication:
 </p>
-<div class="informalexample"><pre class="programlisting">
-static void
-activate (GtkApplication *app)
-{
-  GList *list;
-  GtkWidget *window;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">activate</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkApplication</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">app</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">GList</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">list</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">window</span><span class="symbol">;</span>
 
-  list = gtk_application_get_windows (app);
+<span class="normal">  list </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkApplication.html#gtk-application-get-windows">gtk_application_get_windows</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">app</span><span class="symbol">);</span>
 
-  if (list)
-    {
-      gtk_window_present (GTK_WINDOW (list-&gt;data));
-    }
-  else
-    {
-      window = create_my_window ();
-      gtk_window_set_application (GTK_WINDOW (window), app);
-      gtk_widget_show (window);
-    }
-}
+<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">list</span><span class="symbol">)</span>
+<span class="normal">    </span><span class="cbracket">{</span>
+<span class="normal">      </span><span class="function"><a href="GtkWindow.html#gtk-window-present">gtk_window_present</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_WINDOW</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">list</span><span class="symbol">-&gt;</span><span class="normal">data</span><span class="symbol">));</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+<span class="normal">  </span><span class="keyword">else</span>
+<span class="normal">    </span><span class="cbracket">{</span>
+<span class="normal">      window </span><span class="symbol">=</span><span class="normal"> </span><span class="function">create_my_window</span><span class="normal"> </span><span class="symbol">();</span>
+<span class="normal">      </span><span class="function"><a href="GtkWindow.html#gtk-window-set-application">gtk_window_set_application</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_WINDOW</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">),</span><span class="normal"> app</span><span class="symbol">);</span>
+<span class="normal">      </span><span class="function"><a href="GtkWidget.html#gtk-widget-show">gtk_widget_show</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+<span class="cbracket">}</span>
 
-int
-main (int argc, char *argv[])
-{
-  GtkApplication *app;
-  gint status;
+<span class="type">int</span>
+<span class="function">main</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> argc</span><span class="symbol">,</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">argv</span><span class="symbol">[])</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">GtkApplication</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">app</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="usertype">gint</span><span class="normal"> status</span><span class="symbol">;</span>
 
-  app = gtk_application_new ("org.gtk.TestApplication", 0);
-  g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);
+<span class="normal">  app </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkApplication.html#gtk-application-new">gtk_application_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"org.gtk.TestApplication"</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function">g_signal_connect</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">app</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"activate"</span><span class="symbol">,</span><span class="normal"> </span><span class="function">G_CALLBACK</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">activate</span><span class="symbol">),</span><span class="normal"> NULL</span><span class="symbol">);</span>
 
-  status = g_application_run (G_APPLICATION (app), argc, argv);
+<span class="normal">  status </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_application_run</span><span class="normal"> </span><span class="symbol">(</span><span class="function">G_APPLICATION</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">app</span><span class="symbol">),</span><span class="normal"> argc</span><span class="symbol">,</span><span class="normal"> argv</span><span class="symbol">);</span>
 
-  g_object_unref (app);
+<span class="normal">  </span><span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">app</span><span class="symbol">);</span>
 
-  return status;
-}
-</pre></div>
+<span class="normal">  </span><span class="keyword">return</span><span class="normal"> status</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 </p>
 </div>
@@ -141,6 +222,6 @@ main (int argc, char *argv[])
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkTreeModel: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="TreeWidgetObjects.html" title="Tree, List and Icon Grid Widgets">
 <link rel="prev" href="TreeWidget.html" title="Tree and List Widget Overview">
 <link rel="next" href="GtkTreeSelection.html" title="GtkTreeSelection">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -601,10 +601,10 @@
 </div>
 <div class="refsect1">
 <a name="GtkTreeModel.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="/usr/share/gtk-doc/html/gobject/gobject-Boxed-Types.html">GBoxed</a>
+<pre class="screen">    GBoxed
     <span class="lineart">├──</span> GtkTreeIter
     <span class="lineart">╰──</span> GtkTreePath
-    <a href="/usr/share/gtk-doc/html/gobject/GTypeModule.html">GInterface</a>
+    GInterface
     <span class="lineart">╰──</span> GtkTreeModel
 </pre>
 </div>
@@ -705,32 +705,63 @@ callbacks.</p>
 <div class="refsect3">
 <a name="id-1.3.12.3.13.11"></a><h4>Acquiring a <a class="link" href="GtkTreeModel.html#GtkTreeIter-struct" title="struct GtkTreeIter"><span class="type">GtkTreeIter</span></a>
 </h4>
-<div class="informalexample"><pre class="programlisting">
-// Three ways of getting the iter pointing to the location
-GtkTreePath *path;
-GtkTreeIter iter;
-GtkTreeIter parent_iter;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="comment">// Three ways of getting the iter pointing to the location</span>
+<span class="usertype">GtkTreePath</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">path</span><span class="symbol">;</span>
+<span class="usertype">GtkTreeIter</span><span class="normal"> iter</span><span class="symbol">;</span>
+<span class="usertype">GtkTreeIter</span><span class="normal"> parent_iter</span><span class="symbol">;</span>
 
-// get the iterator from a string
-gtk_tree_model_get_iter_from_string (model,
-                                     &amp;iter,
-                                     "3:2:5");
+<span class="comment">// get the iterator from a string</span>
+<span class="function"><a href="GtkTreeModel.html#gtk-tree-model-get-iter-from-string">gtk_tree_model_get_iter_from_string</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">model</span><span class="symbol">,</span>
+<span class="normal">                                     </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">,</span>
+<span class="normal">                                     </span><span class="string">"3:2:5"</span><span class="symbol">);</span>
 
-// get the iterator from a path
-path = gtk_tree_path_new_from_string ("3:2:5");
-gtk_tree_model_get_iter (model, &amp;iter, path);
-gtk_tree_path_free (path);
+<span class="comment">// get the iterator from a path</span>
+<span class="normal">path </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkTreeModel.html#gtk-tree-path-new-from-string">gtk_tree_path_new_from_string</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"3:2:5"</span><span class="symbol">);</span>
+<span class="function"><a href="GtkTreeModel.html#gtk-tree-model-get-iter">gtk_tree_model_get_iter</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">model</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">,</span><span class="normal"> path</span><span class="symbol">);</span>
+<span class="function"><a href="GtkTreeModel.html#gtk-tree-path-free">gtk_tree_path_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">path</span><span class="symbol">);</span>
 
-// walk the tree to find the iterator
-gtk_tree_model_iter_nth_child (model, &amp;iter,
-                               NULL, 3);
-parent_iter = iter;
-gtk_tree_model_iter_nth_child (model, &amp;iter,
-                               &amp;parent_iter, 2);
-parent_iter = iter;
-gtk_tree_model_iter_nth_child (model, &amp;iter,
-                               &amp;parent_iter, 5);
-</pre></div>
+<span class="comment">// walk the tree to find the iterator</span>
+<span class="function"><a href="GtkTreeModel.html#gtk-tree-model-iter-nth-child">gtk_tree_model_iter_nth_child</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">model</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">,</span>
+<span class="normal">                               NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="number">3</span><span class="symbol">);</span>
+<span class="normal">parent_iter </span><span class="symbol">=</span><span class="normal"> iter</span><span class="symbol">;</span>
+<span class="function"><a href="GtkTreeModel.html#gtk-tree-model-iter-nth-child">gtk_tree_model_iter_nth_child</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">model</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">,</span>
+<span class="normal">                               </span><span class="symbol">&amp;</span><span class="normal">parent_iter</span><span class="symbol">,</span><span class="normal"> </span><span class="number">2</span><span class="symbol">);</span>
+<span class="normal">parent_iter </span><span class="symbol">=</span><span class="normal"> iter</span><span class="symbol">;</span>
+<span class="function"><a href="GtkTreeModel.html#gtk-tree-model-iter-nth-child">gtk_tree_model_iter_nth_child</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">model</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">,</span>
+<span class="normal">                               </span><span class="symbol">&amp;</span><span class="normal">parent_iter</span><span class="symbol">,</span><span class="normal"> </span><span class="number">5</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>This second example shows a quick way of iterating through a list
 and getting a string and an integer from each row. The
@@ -741,55 +772,109 @@ how to write such a function, see the <a class="link" href="GtkListStore.html" t
 <div class="refsect3">
 <a name="id-1.3.12.3.13.12"></a><h4>Reading data from a <a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span class="type">GtkTreeModel</span></a>
 </h4>
-<div class="informalexample"><pre class="programlisting">
-enum
-{
-  STRING_COLUMN,
-  INT_COLUMN,
-  N_COLUMNS
-};
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">enum</span>
+<span class="cbracket">{</span>
+<span class="normal">  STRING_COLUMN</span><span class="symbol">,</span>
+<span class="normal">  INT_COLUMN</span><span class="symbol">,</span>
+<span class="normal">  N_COLUMNS</span>
+<span class="cbracket">}</span><span class="symbol">;</span>
 
-...
+<span class="symbol">...</span>
 
-GtkTreeModel *list_store;
-GtkTreeIter iter;
-gboolean valid;
-gint row_count = 0;
+<span class="usertype">GtkTreeModel</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">list_store</span><span class="symbol">;</span>
+<span class="usertype">GtkTreeIter</span><span class="normal"> iter</span><span class="symbol">;</span>
+<span class="usertype">gboolean</span><span class="normal"> valid</span><span class="symbol">;</span>
+<span class="usertype">gint</span><span class="normal"> row_count </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span>
 
-// make a new list_store
-list_store = gtk_list_store_new (N_COLUMNS,
-                                 G_TYPE_STRING,
-                                 G_TYPE_INT);
+<span class="comment">// make a new list_store</span>
+<span class="normal">list_store </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkListStore.html#gtk-list-store-new">gtk_list_store_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">N_COLUMNS</span><span class="symbol">,</span>
+<span class="normal">                                 G_TYPE_STRING</span><span class="symbol">,</span>
+<span class="normal">                                 G_TYPE_INT</span><span class="symbol">);</span>
 
-// Fill the list store with data
-populate_model (list_store);
+<span class="comment">// Fill the list store with data</span>
+<span class="function">populate_model</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">list_store</span><span class="symbol">);</span>
 
-// Get the first iter in the list, check it is valid and walk
-// through the list, reading each row.
+<span class="comment">// Get the first iter in the list, check it is valid and walk</span>
+<span class="comment">// through the list, reading each row.</span>
 
-valid = gtk_tree_model_get_iter_first (list_store,
-                                       &amp;iter);
-while (valid)
- {
-   gchar *str_data;
-   gint   int_data;
+<span class="normal">valid </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkTreeModel.html#gtk-tree-model-get-iter-first">gtk_tree_model_get_iter_first</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">list_store</span><span class="symbol">,</span>
+<span class="normal">                                       </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">);</span>
+<span class="keyword">while</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">valid</span><span class="symbol">)</span>
+<span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">   </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">str_data</span><span class="symbol">;</span>
+<span class="normal">   </span><span class="usertype">gint</span><span class="normal">   int_data</span><span class="symbol">;</span>
 
-   // Make sure you terminate calls to gtk_tree_model_get() with a “-1” value
-   gtk_tree_model_get (list_store, &amp;iter,
-                       STRING_COLUMN, &amp;str_data,
-                       INT_COLUMN, &amp;int_data,
-                       -1);
+<span class="normal">   </span><span class="comment">// Make sure you terminate calls to gtk_tree_model_get() with a “-1” value</span>
+<span class="normal">   </span><span class="function"><a href="GtkTreeModel.html#gtk-tree-model-get">gtk_tree_model_get</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">list_store</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">,</span>
+<span class="normal">                       STRING_COLUMN</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">str_data</span><span class="symbol">,</span>
+<span class="normal">                       INT_COLUMN</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">int_data</span><span class="symbol">,</span>
+<span class="normal">                       </span><span class="symbol">-</span><span class="number">1</span><span class="symbol">);</span>
 
-   // Do something with the data
-   g_print ("Row %d: (%s,%d)\n",
-            row_count, str_data, int_data);
-   g_free (str_data);
+<span class="normal">   </span><span class="comment">// Do something with the data</span>
+<span class="normal">   </span><span class="function">g_print</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Row %d: (%s,%d)</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span>
+<span class="normal">            row_count</span><span class="symbol">,</span><span class="normal"> str_data</span><span class="symbol">,</span><span class="normal"> int_data</span><span class="symbol">);</span>
+<span class="normal">   </span><span class="function">g_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">str_data</span><span class="symbol">);</span>
 
-   valid = gtk_tree_model_iter_next (list_store,
-                                     &amp;iter);
-   row_count++;
- }
-</pre></div>
+<span class="normal">   valid </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkTreeModel.html#gtk-tree-model-iter-next">gtk_tree_model_iter_next</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">list_store</span><span class="symbol">,</span>
+<span class="normal">                                     </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">);</span>
+<span class="normal">   row_count</span><span class="symbol">++;</span>
+<span class="normal"> </span><span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>The <a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span class="type">GtkTreeModel</span></a> interface contains two methods for reference
 counting: <a class="link" href="GtkTreeModel.html#gtk-tree-model-ref-node" title="gtk_tree_model_ref_node ()"><code class="function">gtk_tree_model_ref_node()</code></a> and <a class="link" href="GtkTreeModel.html#gtk-tree-model-unref-node" title="gtk_tree_model_unref_node ()"><code class="function">gtk_tree_model_unref_node()</code></a>.
@@ -3550,6 +3635,6 @@ i.e. <em class="parameter"><code>new_order</code></em>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

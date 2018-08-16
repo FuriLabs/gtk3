@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkComboBox: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="MenusAndCombos.html" title="Menus, Combo Box, Toolbar">
 <link rel="prev" href="MenusAndCombos.html" title="Menus, Combo Box, Toolbar">
 <link rel="next" href="GtkComboBoxText.html" title="GtkComboBoxText">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -574,7 +574,7 @@
 <a name="GtkComboBox.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 GtkComboBox implements
- AtkImplementor,  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>,  <a class="link" href="GtkCellLayout.html" title="GtkCellLayout">GtkCellLayout</a> and  <a class="link" href="GtkCellEditable.html" title="GtkCellEditable">GtkCellEditable</a>.</p>
+ AtkImplementorIface,  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>,  <a class="link" href="GtkCellLayout.html" title="GtkCellLayout">GtkCellLayout</a> and  <a class="link" href="GtkCellEditable.html" title="GtkCellEditable">GtkCellEditable</a>.</p>
 </div>
 <div class="refsect1">
 <a name="GtkComboBox.includes"></a><h2>Includes</h2>
@@ -605,28 +605,56 @@ simple alternative. Both GtkComboBox and <a class="link" href="GtkComboBoxText.h
 an entry.</p>
 <div class="refsect2">
 <a name="id-1.3.13.2.11.6"></a><h3>CSS nodes</h3>
-<div class="informalexample"><pre class="programlisting">
-combobox
-├── box.linked
-│   ╰── button.combo
-│       ╰── box
-│           ├── cellview
-│           ╰── arrow
-╰── window.popup
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">combobox</span>
+<span class="normal">├── box</span><span class="symbol">.</span><span class="normal">linked</span>
+<span class="normal">│   ╰── button</span><span class="symbol">.</span><span class="normal">combo</span>
+<span class="normal">│       ╰── box</span>
+<span class="normal">│           ├── cellview</span>
+<span class="normal">│           ╰── arrow</span>
+<span class="normal">╰── window</span><span class="symbol">.</span><span class="normal">popup</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>A normal combobox contains a box with the .linked class, a button
 with the .combo class and inside those buttons, there are a cellview and
 an arrow.</p>
-<div class="informalexample"><pre class="programlisting">
-combobox
-├── box.linked
-│   ├── entry.combo
-│   ╰── button.combo
-│       ╰── box
-│           ╰── arrow
-╰── window.popup
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">combobox</span>
+<span class="normal">├── box</span><span class="symbol">.</span><span class="normal">linked</span>
+<span class="normal">│   ├── entry</span><span class="symbol">.</span><span class="normal">combo</span>
+<span class="normal">│   ╰── button</span><span class="symbol">.</span><span class="normal">combo</span>
+<span class="normal">│       ╰── box</span>
+<span class="normal">│           ╰── arrow</span>
+<span class="normal">╰── window</span><span class="symbol">.</span><span class="normal">popup</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>A GtkComboBox with an entry has a single CSS node with name combobox. It
 contains a box with the .linked class. That box contains an entry and a
@@ -1325,12 +1353,12 @@ cell renderers for the new model.</p>
 <a name="gtk-combo-box-popup-for-device"></a><h3>gtk_combo_box_popup_for_device ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_combo_box_popup_for_device (<em class="parameter"><code><a class="link" href="GtkComboBox.html" title="GtkComboBox"><span class="type">GtkComboBox</span></a> *combo_box</code></em>,
-                                <em class="parameter"><code><a href="../html/GdkDevice.html#GdkDevice-struct"><span class="type">GdkDevice</span></a> *device</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GdkDevice</span> *device</code></em>);</pre>
 <p>Pops up the menu or dropdown list of <em class="parameter"><code>combo_box</code></em>
 , the popup window
 will be grabbed so only <em class="parameter"><code>device</code></em>
  and its associated pointer/keyboard
-are the only <a href="../html/GdkDevice.html#GdkDevice-struct"><span class="type">GdkDevices</span></a> able to send events to it.</p>
+are the only <span class="type">GdkDevices</span> able to send events to it.</p>
 <div class="refsect3">
 <a name="gtk-combo-box-popup-for-device.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1347,7 +1375,7 @@ are the only <a href="../html/GdkDevice.html#GdkDevice-struct"><span class="type
 </tr>
 <tr>
 <td class="parameter_name"><p>device</p></td>
-<td class="parameter_description"><p>a <a href="../html/GdkDevice.html#GdkDevice-struct"><span class="type">GdkDevice</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GdkDevice</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -2268,26 +2296,51 @@ The default signal handler uses the text from the GtkComboBox::entry-text-column
 model column.</p>
 <p>Here's an example signal handler which fetches data from the model and
 displays it in the entry.</p>
-<div class="informalexample"><pre class="programlisting">
-static gchar*
-format_entry_text_callback (GtkComboBox *combo,
-                            const gchar *path,
-                            gpointer     user_data)
-{
-  GtkTreeIter iter;
-  GtkTreeModel model;
-  gdouble      value;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> gchar</span><span class="symbol">*</span>
+<span class="function">format_entry_text_callback</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkComboBox</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">combo</span><span class="symbol">,</span>
+<span class="normal">                            </span><span class="keyword">const</span><span class="normal"> </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">path</span><span class="symbol">,</span>
+<span class="normal">                            </span><span class="usertype">gpointer</span><span class="normal">     user_data</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">GtkTreeIter</span><span class="normal"> iter</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="usertype">GtkTreeModel</span><span class="normal"> model</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="usertype">gdouble</span><span class="normal">      value</span><span class="symbol">;</span>
 
-  model = gtk_combo_box_get_model (combo);
+<span class="normal">  model </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkComboBox.html#gtk-combo-box-get-model">gtk_combo_box_get_model</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">combo</span><span class="symbol">);</span>
 
-  gtk_tree_model_get_iter_from_string (model, &amp;iter, path);
-  gtk_tree_model_get (model, &amp;iter,
-                      THE_DOUBLE_VALUE_COLUMN, &amp;value,
-                      -1);
+<span class="normal">  </span><span class="function"><a href="GtkTreeModel.html#gtk-tree-model-get-iter-from-string">gtk_tree_model_get_iter_from_string</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">model</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">,</span><span class="normal"> path</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function"><a href="GtkTreeModel.html#gtk-tree-model-get">gtk_tree_model_get</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">model</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">,</span>
+<span class="normal">                      THE_DOUBLE_VALUE_COLUMN</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">value</span><span class="symbol">,</span>
+<span class="normal">                      </span><span class="symbol">-</span><span class="number">1</span><span class="symbol">);</span>
 
-  return g_strdup_printf ("%g", value);
-}
-</pre></div>
+<span class="normal">  </span><span class="keyword">return</span><span class="normal"> </span><span class="function">g_strdup_printf</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"%g"</span><span class="symbol">,</span><span class="normal"> value</span><span class="symbol">);</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <div class="refsect3">
 <a name="GtkComboBox-format-entry-text.parameters"></a><h4>Parameters</h4>
@@ -2442,6 +2495,6 @@ which gets emitted to popup the combo box list.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkEditable: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="NumericEntry.html" title="Numeric and Text Data Entry">
 <link rel="prev" href="GtkSearchBar.html" title="GtkSearchBar">
 <link rel="next" href="TextWidgetObjects.html" title="Multiline Text Editor">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -191,7 +191,7 @@
 </div>
 <div class="refsect1">
 <a name="GtkEditable.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="/usr/share/gtk-doc/html/gobject/GTypeModule.html">GInterface</a>
+<pre class="screen">    GInterface
     <span class="lineart">╰──</span> GtkEditable
 </pre>
 </div>
@@ -218,29 +218,57 @@ the following handler to <a class="link" href="GtkEditable.html#GtkEditable-inse
 can convert all entry into a widget into uppercase.</p>
 <div class="refsect3">
 <a name="id-1.3.10.9.9.4"></a><h4>Forcing entry to uppercase.</h4>
-<div class="informalexample"><pre class="programlisting">
-#include &lt;ctype.h&gt;;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="preproc">#include</span><span class="normal"> </span><span class="string">&lt;ctype.h&gt;</span><span class="normal">;</span>
 
-void
-insert_text_handler (GtkEditable *editable,
-                     const gchar *text,
-                     gint         length,
-                     gint        *position,
-                     gpointer     data)
-{
-  gchar *result = g_utf8_strup (text, length);
+<span class="type">void</span>
+<span class="function">insert_text_handler</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkEditable</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">editable</span><span class="symbol">,</span>
+<span class="normal">                     </span><span class="keyword">const</span><span class="normal"> </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">text</span><span class="symbol">,</span>
+<span class="normal">                     </span><span class="usertype">gint</span><span class="normal">         length</span><span class="symbol">,</span>
+<span class="normal">                     </span><span class="usertype">gint</span><span class="normal">        </span><span class="symbol">*</span><span class="normal">position</span><span class="symbol">,</span>
+<span class="normal">                     </span><span class="usertype">gpointer</span><span class="normal">     data</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">result </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_utf8_strup</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">text</span><span class="symbol">,</span><span class="normal"> length</span><span class="symbol">);</span>
 
-  g_signal_handlers_block_by_func (editable,
-                               (gpointer) insert_text_handler, data);
-  gtk_editable_insert_text (editable, result, length, position);
-  g_signal_handlers_unblock_by_func (editable,
-                                     (gpointer) insert_text_handler, data);
+<span class="normal">  </span><span class="function">g_signal_handlers_block_by_func</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">editable</span><span class="symbol">,</span>
+<span class="normal">                               </span><span class="symbol">(</span><span class="normal">gpointer</span><span class="symbol">)</span><span class="normal"> insert_text_handler</span><span class="symbol">,</span><span class="normal"> data</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function"><a href="GtkEditable.html#gtk-editable-insert-text">gtk_editable_insert_text</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">editable</span><span class="symbol">,</span><span class="normal"> result</span><span class="symbol">,</span><span class="normal"> length</span><span class="symbol">,</span><span class="normal"> position</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function">g_signal_handlers_unblock_by_func</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">editable</span><span class="symbol">,</span>
+<span class="normal">                                     </span><span class="symbol">(</span><span class="normal">gpointer</span><span class="symbol">)</span><span class="normal"> insert_text_handler</span><span class="symbol">,</span><span class="normal"> data</span><span class="symbol">);</span>
 
-  g_signal_stop_emission_by_name (editable, "insert_text");
+<span class="normal">  </span><span class="function">g_signal_stop_emission_by_name</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">editable</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"insert_text"</span><span class="symbol">);</span>
 
-  g_free (result);
-}
-</pre></div>
+<span class="normal">  </span><span class="function">g_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">result</span><span class="symbol">);</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 </div>
 </div>
@@ -858,6 +886,6 @@ should point after the newly inserted text. </p></td>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

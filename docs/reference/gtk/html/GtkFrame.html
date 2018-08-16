@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkFrame: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="Ornaments.html" title="Ornaments">
 <link rel="prev" href="Ornaments.html" title="Ornaments">
 <link rel="next" href="GtkSeparator.html" title="GtkSeparator">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -189,7 +189,7 @@
 <a name="GtkFrame.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 GtkFrame implements
- AtkImplementor and  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>.</p>
+ AtkImplementorIface and  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>.</p>
 </div>
 <div class="refsect1">
 <a name="GtkFrame.includes"></a><h2>Includes</h2>
@@ -209,27 +209,53 @@ placing a child in the label position by specifying “label” as the
 “type” attribute of a &lt;child&gt; element. A normal content child can
 be specified without specifying a &lt;child&gt; type attribute.</p>
 <p>An example of a UI definition fragment with GtkFrame:</p>
-<div class="informalexample"><pre class="programlisting">
-&lt;object class="GtkFrame"&gt;
-  &lt;child type="label"&gt;
-    &lt;object class="GtkLabel" id="frame-label"/&gt;
-  &lt;/child&gt;
-  &lt;child&gt;
-    &lt;object class="GtkEntry" id="frame-content"/&gt;
-  &lt;/child&gt;
-&lt;/object&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkFrame"</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="usertype">child</span><span class="normal"> type</span><span class="symbol">=</span><span class="string">"label"</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkLabel"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"frame-label"</span><span class="symbol">/&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkEntry"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"frame-content"</span><span class="symbol">/&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="id-1.3.15.2.9.4"></a><h3>CSS nodes</h3>
-<div class="informalexample"><pre class="programlisting">
-frame 
-├── border[.flat]
-├── &lt;label widget&gt;
-╰── &lt;child&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">frame </span>
+<span class="normal">├── border</span><span class="symbol">[.</span><span class="normal">flat</span><span class="symbol">]</span>
+<span class="normal">├── </span><span class="symbol">&lt;</span><span class="usertype">label</span><span class="normal"> widget</span><span class="symbol">&gt;</span>
+<span class="normal">╰── </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>GtkFrame has a main CSS node named “frame” and a subnode named “border”. The
 “border” node is used to draw the visible border. You can set the appearance
@@ -617,6 +643,6 @@ gtk_frame_get_shadow_type (<em class="parameter"><code><a class="link" href="Gtk
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

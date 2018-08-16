@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Windows: GDK 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GDK 3 Reference Manual">
 <link rel="up" href="reference.html" title="API Reference">
 <link rel="prev" href="gdk3-Cursors.html" title="Cursors">
 <link rel="next" href="GdkFrameClock.html" title="Frame clock">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -8035,23 +8035,45 @@ terminal will have a 1x1 character terminal area, and only terminal sizes on
 the “character grid” will be allowed.</p>
 <p>Here’s an example of how the terminal example would be implemented, assuming
 a terminal area widget called “terminal” and a toplevel window “toplevel”:</p>
-<div class="informalexample"><pre class="programlisting">
-	GdkGeometry hints;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">GdkGeometry</span><span class="normal"> hints</span><span class="symbol">;</span>
 
-	hints.base_width = terminal-&gt;char_width;
-        hints.base_height = terminal-&gt;char_height;
-        hints.min_width = terminal-&gt;char_width;
-        hints.min_height = terminal-&gt;char_height;
-        hints.width_inc = terminal-&gt;char_width;
-        hints.height_inc = terminal-&gt;char_height;
+<span class="normal">hints</span><span class="symbol">.</span><span class="normal">base_width </span><span class="symbol">=</span><span class="normal"> terminal</span><span class="symbol">-&gt;</span><span class="normal">char_width</span><span class="symbol">;</span>
+<span class="normal">        hints</span><span class="symbol">.</span><span class="normal">base_height </span><span class="symbol">=</span><span class="normal"> terminal</span><span class="symbol">-&gt;</span><span class="normal">char_height</span><span class="symbol">;</span>
+<span class="normal">        hints</span><span class="symbol">.</span><span class="normal">min_width </span><span class="symbol">=</span><span class="normal"> terminal</span><span class="symbol">-&gt;</span><span class="normal">char_width</span><span class="symbol">;</span>
+<span class="normal">        hints</span><span class="symbol">.</span><span class="normal">min_height </span><span class="symbol">=</span><span class="normal"> terminal</span><span class="symbol">-&gt;</span><span class="normal">char_height</span><span class="symbol">;</span>
+<span class="normal">        hints</span><span class="symbol">.</span><span class="normal">width_inc </span><span class="symbol">=</span><span class="normal"> terminal</span><span class="symbol">-&gt;</span><span class="normal">char_width</span><span class="symbol">;</span>
+<span class="normal">        hints</span><span class="symbol">.</span><span class="normal">height_inc </span><span class="symbol">=</span><span class="normal"> terminal</span><span class="symbol">-&gt;</span><span class="normal">char_height</span><span class="symbol">;</span>
 
- gtk_window_set_geometry_hints (GTK_WINDOW (toplevel),
-                                GTK_WIDGET (terminal),
-                                &amp;hints,
-                                GDK_HINT_RESIZE_INC |
-                                GDK_HINT_MIN_SIZE |
-                                GDK_HINT_BASE_SIZE);
-</pre></div>
+<span class="normal"> </span><span class="function">gtk_window_set_geometry_hints</span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_WINDOW</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">toplevel</span><span class="symbol">),</span>
+<span class="normal">                                </span><span class="function">GTK_WIDGET</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">terminal</span><span class="symbol">),</span>
+<span class="normal">                                </span><span class="symbol">&amp;</span><span class="normal">hints</span><span class="symbol">,</span>
+<span class="normal">                                <a href="gdk3-Windows.html#GDK-HINT-RESIZE-INC:CAPS">GDK_HINT_RESIZE_INC</a> </span><span class="symbol">|</span>
+<span class="normal">                                <a href="gdk3-Windows.html#GDK-HINT-MIN-SIZE:CAPS">GDK_HINT_MIN_SIZE</a> </span><span class="symbol">|</span>
+<span class="normal">                                <a href="gdk3-Windows.html#GDK-HINT-BASE-SIZE:CAPS">GDK_HINT_BASE_SIZE</a></span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>The other useful fields are the <em class="parameter"><code>min_aspect</code></em>
  and <em class="parameter"><code>max_aspect</code></em>
@@ -9614,6 +9636,6 @@ coordinate in the embedder window. </p></td>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

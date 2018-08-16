@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkModelButton: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="ButtonWidgets.html" title="Buttons and Toggles">
 <link rel="prev" href="GtkLockButton.html" title="GtkLockButton">
 <link rel="next" href="NumericEntry.html" title="Numeric and Text Data Entry">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -145,7 +145,7 @@
 <a name="GtkModelButton.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 GtkModelButton implements
- AtkImplementor,  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>,  <a class="link" href="GtkActionable.html" title="GtkActionable">GtkActionable</a> and  <a class="link" href="GtkActivatable.html" title="GtkActivatable">GtkActivatable</a>.</p>
+ AtkImplementorIface,  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>,  <a class="link" href="GtkActionable.html" title="GtkActionable">GtkActionable</a> and  <a class="link" href="GtkActivatable.html" title="GtkActivatable">GtkActivatable</a>.</p>
 </div>
 <div class="refsect1">
 <a name="GtkModelButton.includes"></a><h2>Includes</h2>
@@ -179,70 +179,146 @@ back to the parent menu, you should set the <a class="link" href="GtkModelButton
 property to place the submenu indicator at the opposite side.</p>
 <div class="refsect2">
 <a name="id-1.3.9.12.9.8"></a><h3>Example</h3>
-<div class="informalexample"><pre class="programlisting">
-&lt;object class="GtkPopoverMenu"&gt;
-  &lt;child&gt;
-    &lt;object class="GtkBox"&gt;
-      &lt;property name="visible"&gt;True&lt;/property&gt;
-      &lt;property name="margin"&gt;10&lt;/property&gt;
-      &lt;child&gt;
-        &lt;object class="GtkModelButton"&gt;
-          &lt;property name="visible"&gt;True&lt;/property&gt;
-          &lt;property name="action-name"&gt;view.cut&lt;/property&gt;
-          &lt;property name="text" translatable="yes"&gt;Cut&lt;/property&gt;
-        &lt;/object&gt;
-      &lt;/child&gt;
-      &lt;child&gt;
-        &lt;object class="GtkModelButton"&gt;
-          &lt;property name="visible"&gt;True&lt;/property&gt;
-          &lt;property name="action-name"&gt;view.copy&lt;/property&gt;
-          &lt;property name="text" translatable="yes"&gt;Copy&lt;/property&gt;
-        &lt;/object&gt;
-      &lt;/child&gt;
-      &lt;child&gt;
-        &lt;object class="GtkModelButton"&gt;
-          &lt;property name="visible"&gt;True&lt;/property&gt;
-          &lt;property name="action-name"&gt;view.paste&lt;/property&gt;
-          &lt;property name="text" translatable="yes"&gt;Paste&lt;/property&gt;
-        &lt;/object&gt;
-      &lt;/child&gt;
-    &lt;/object&gt;
-  &lt;/child&gt;
-&lt;/object&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkPopoverMenu"</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkBox"</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"margin"</span><span class="symbol">&gt;</span><span class="number">10</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkModelButton"</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"action-name"</span><span class="symbol">&gt;</span><span class="normal">view</span><span class="symbol">.</span><span class="normal">cut</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"text"</span><span class="normal"> translatable</span><span class="symbol">=</span><span class="string">"yes"</span><span class="symbol">&gt;</span><span class="normal">Cut</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkModelButton"</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"action-name"</span><span class="symbol">&gt;</span><span class="normal">view</span><span class="symbol">.</span><span class="normal">copy</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"text"</span><span class="normal"> translatable</span><span class="symbol">=</span><span class="string">"yes"</span><span class="symbol">&gt;</span><span class="normal">Copy</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkModelButton"</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"action-name"</span><span class="symbol">&gt;</span><span class="normal">view</span><span class="symbol">.</span><span class="normal">paste</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"text"</span><span class="normal"> translatable</span><span class="symbol">=</span><span class="string">"yes"</span><span class="symbol">&gt;</span><span class="normal">Paste</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="id-1.3.9.12.9.9"></a><h3>CSS nodes</h3>
-<div class="informalexample"><pre class="programlisting">
-modelbutton
-├── &lt;child&gt;
-╰── check
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">modelbutton</span>
+<span class="normal">├── </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">╰── check</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
-<div class="informalexample"><pre class="programlisting">
-modelbutton
-├── &lt;child&gt;
-╰── radio
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">modelbutton</span>
+<span class="normal">├── </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">╰── radio</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
-<div class="informalexample"><pre class="programlisting">
-modelbutton
-├── &lt;child&gt;
-╰── arrow
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">modelbutton</span>
+<span class="normal">├── </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">╰── arrow</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>GtkModelButton has a main CSS node with name modelbutton, and a subnode,
 which will have the name check, radio or arrow, depending on the role
 of the button and whether it has a menu name set.</p>
 <p>The subnode is positioned before or after the content nodes and gets the
 .left or .right style class, depending on where it is located.</p>
-<div class="informalexample"><pre class="programlisting">
-button.model
-├── &lt;child&gt;
-╰── check
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">button</span><span class="symbol">.</span><span class="normal">model</span>
+<span class="normal">├── </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">╰── check</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>Iconic model buttons (see <a class="link" href="GtkModelButton.html#GtkModelButton--iconic" title="The “iconic” property"><span class="type">“iconic”</span></a>) change the name of
 their main node to button and add a .model style class to it. The indicator
@@ -404,6 +480,6 @@ text will be displayed verbatim.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Common Questions: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="gtk.html" title="Part I. GTK+ Overview">
 <link rel="prev" href="gtk-resources.html" title="Mailing lists and bug reports">
 <link rel="next" href="chap-drawing-model.html" title="The GTK+ Drawing Model">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -144,10 +144,19 @@ after creating it ?
 <p>
 If <span class="structname">GtkFoo</span> isn't a toplevel window, then
 </p>
-<div class="informalexample"><pre class="programlisting">
- foo = gtk_foo_new ();
- gtk_widget_destroy (foo);
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">foo </span><span class="symbol">=</span><span class="normal"> </span><span class="function">gtk_foo_new</span><span class="normal"> </span><span class="symbol">();</span>
+<span class="function"><a href="GtkWidget.html#gtk-widget-destroy">gtk_widget_destroy</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">foo</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 is a memory leak, because no one assumed the initial floating
 reference. If you are using a widget and you aren't immediately
@@ -159,19 +168,37 @@ To get this, you must acquire a reference to the widget and drop the
 floating reference (<span class="quote">“<span class="quote">ref and sink</span>”</span> in GTK+ parlance) after
 creating it:
 </p>
-<div class="informalexample"><pre class="programlisting">
- foo = gtk_foo_new ();
- g_object_ref_sink (foo);
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">foo </span><span class="symbol">=</span><span class="normal"> </span><span class="function">gtk_foo_new</span><span class="normal"> </span><span class="symbol">();</span>
+<span class="function">g_object_ref_sink</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">foo</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 When you want to get rid of the widget, you must call <a class="link" href="GtkWidget.html#gtk-widget-destroy" title="gtk_widget_destroy ()"><code class="function">gtk_widget_destroy()</code></a>
 to break any external connections to the widget before dropping your
 reference:
 </p>
-<div class="informalexample"><pre class="programlisting">
- gtk_widget_destroy (foo);
- g_object_unref (foo);
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="function"><a href="GtkWidget.html#gtk-widget-destroy">gtk_widget_destroy</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">foo</span><span class="symbol">);</span>
+<span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">foo</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 When you immediately add a widget to a container, it takes care of
 assuming the initial floating reference and you don't have to worry
@@ -225,11 +252,21 @@ request that all translated strings are returned in UTF-8, then call
 convenience.
 Conventionally, people define macros as follows for convenience:
 </p>
-<div class="informalexample"><pre class="programlisting">
-  #define  _(x)     gettext (x)
-  #define N_(x)     x
-  #define C_(ctx,x) pgettext (ctx, x)
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="preproc">#define</span><span class="normal">  </span><span class="function">_</span><span class="symbol">(</span><span class="normal">x</span><span class="symbol">)</span><span class="normal">     </span><span class="function">gettext</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">x</span><span class="symbol">)</span>
+<span class="preproc">#define</span><span class="normal"> </span><span class="function">N_</span><span class="symbol">(</span><span class="normal">x</span><span class="symbol">)</span><span class="normal">     x</span>
+<span class="preproc">#define</span><span class="normal"> </span><span class="function">C_</span><span class="symbol">(</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal">x</span><span class="symbol">)</span><span class="normal"> </span><span class="function">pgettext</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">ctx</span><span class="symbol">,</span><span class="normal"> x</span><span class="symbol">)</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 You use <code class="function">N_()</code> (N stands for no-op) to mark a string for translation in
 a location where a function call to <code class="function">gettext()</code> is not allowed, such as
@@ -245,21 +282,41 @@ parts of your program.
 <p>
 Code using these macros ends up looking like this:
 </p>
-<div class="informalexample"><pre class="programlisting">
- #include &lt;gi18n.h&gt;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="preproc">#include</span><span class="normal"> </span><span class="string">&lt;gi18n.h&gt;</span>
 
- static const char *global_variable = N_("Translate this string");
+<span class="keyword">static</span><span class="normal"> </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">global_variable </span><span class="symbol">=</span><span class="normal"> </span><span class="function">N_</span><span class="symbol">(</span><span class="string">"Translate this string"</span><span class="symbol">);</span>
 
- static void
- make_widgets (void)
- {
-    GtkWidget *label1;
-    GtkWidget *label2;
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">make_widgets</span><span class="normal"> </span><span class="symbol">(</span><span class="type">void</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">   </span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">label1</span><span class="symbol">;</span>
+<span class="normal">   </span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">label2</span><span class="symbol">;</span>
 
-    label1 = gtk_label_new (_("Another string to translate"));
-    label2 = gtk_label_new (_(global_variable));
-...
-</pre></div>
+<span class="normal">   label1 </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkLabel.html#gtk-label-new">gtk_label_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">_</span><span class="symbol">(</span><span class="string">"Another string to translate"</span><span class="symbol">));</span>
+<span class="normal">   label2 </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkLabel.html#gtk-label-new">gtk_label_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">_</span><span class="symbol">(</span><span class="normal">global_variable</span><span class="symbol">));</span>
+<span class="symbol">...</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 </p>
 <p>
@@ -274,9 +331,17 @@ defined to hold your libraries translation domain,
 <code class="filename">gi18n-lib.h</code> can be included to provide
 the following convenience:
 </p>
-<div class="informalexample"><pre class="programlisting">
-  #define _(x) dgettext (GETTEXT_PACKAGE, x)
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="preproc">#define</span><span class="normal"> </span><span class="function">_</span><span class="symbol">(</span><span class="normal">x</span><span class="symbol">)</span><span class="normal"> </span><span class="function">dgettext</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">GETTEXT_PACKAGE</span><span class="symbol">,</span><span class="normal"> x</span><span class="symbol">)</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 </p>
 </td>
@@ -324,26 +389,51 @@ converted to UTF-8 before being handed over to GTK+. The following example
 writes the content of a IS0-8859-1 encoded text file to
 <code class="literal">stdout</code>:
 </p>
-<div class="informalexample"><pre class="programlisting">
-gchar *text, *utf8_text;
-gsize length;
-GError *error = NULL;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">text</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">utf8_text</span><span class="symbol">;</span>
+<span class="usertype">gsize</span><span class="normal"> length</span><span class="symbol">;</span>
+<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
 
-if (g_file_get_contents (filename, &amp;text, &amp;length, NULL))
-  {
-     utf8_text = g_convert (text, length, "UTF-8", "ISO-8859-1",
-                            NULL, NULL, &amp;error);
-     if (error != NULL)
-       {
-         fprintf ("Couldn't convert file %s to UTF-8\n", filename);
-         g_error_free (error);
-       }
-     else
-       g_print (utf8_text);
-  }
-else
-  fprintf (stderr, "Unable to read file %s\n", filename);
-</pre></div>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function">g_file_get_contents</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">filename</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">text</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">length</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">))</span>
+<span class="normal">  </span><span class="cbracket">{</span>
+<span class="normal">     utf8_text </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_convert</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">text</span><span class="symbol">,</span><span class="normal"> length</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"UTF-8"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"ISO-8859-1"</span><span class="symbol">,</span>
+<span class="normal">                            NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">     </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span>
+<span class="normal">       </span><span class="cbracket">{</span>
+<span class="normal">         </span><span class="function">fprintf</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Couldn't convert file %s to UTF-8</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span><span class="normal"> filename</span><span class="symbol">);</span>
+<span class="normal">         </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">       </span><span class="cbracket">}</span>
+<span class="normal">     </span><span class="keyword">else</span>
+<span class="normal">       </span><span class="function">g_print</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">utf8_text</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="cbracket">}</span>
+<span class="keyword">else</span>
+<span class="normal">  </span><span class="function">fprintf</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">stderr</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Unable to read file %s</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span><span class="normal"> filename</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 </p>
 <p>
@@ -394,13 +484,25 @@ Here is an example showing the three approaches using the copyright sign
 in UTF-8 by the two bytes 194, 169, or <code class="literal">"\302\251"</code> as
 a string literal:
 </p>
-<div class="informalexample"><pre class="programlisting">
-g_print ("direct UTF-8: ©");
-g_print ("escaped UTF-8: \302\251");
-text = g_convert ("runtime conversion: ©", -1, "ISO-8859-1", "UTF-8", NULL, NULL, NULL);
-g_print(text);
-g_free (text);
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="function">g_print</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"direct UTF-8: ©"</span><span class="symbol">);</span>
+<span class="function">g_print</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"escaped UTF-8: </span><span class="specialchar">\3</span><span class="string">02</span><span class="specialchar">\2</span><span class="string">51"</span><span class="symbol">);</span>
+<span class="normal">text </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_convert</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"runtime conversion: ©"</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">-</span><span class="number">1</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"ISO-8859-1"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"UTF-8"</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
+<span class="function">g_print</span><span class="symbol">(</span><span class="normal">text</span><span class="symbol">);</span>
+<span class="function">g_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">text</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 </p>
 <p>
@@ -439,17 +541,35 @@ C++ will not implicitly convert an integer to an enumeration.
 This comes up when using bitfields; in C you can write the following
 code:
 </p>
-<div class="informalexample"><pre class="programlisting">
-  gdk_window_set_events (gdk_window,
-                         GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK);
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="function">gdk_window_set_events</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gdk_window</span><span class="symbol">,</span>
+<span class="normal">                       GDK_BUTTON_PRESS_MASK </span><span class="symbol">|</span><span class="normal"> GDK_BUTTON_RELEASE_MASK</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 while in C++ you must write:
 </p>
-<div class="informalexample"><pre class="programlisting">
-  gdk_window_set_events (gdk_window,
-                         (GdkEventMask) GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK);
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="function">gdk_window_set_events</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gdk_window</span><span class="symbol">,</span>
+<span class="normal">                       </span><span class="symbol">(</span><span class="normal">GdkEventMask</span><span class="symbol">)</span><span class="normal"> GDK_BUTTON_PRESS_MASK </span><span class="symbol">|</span><span class="normal"> GDK_BUTTON_RELEASE_MASK</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 There are very few functions that require this cast, however.
 </p>
@@ -510,14 +630,27 @@ How do I draw text ?
 <p>
 To draw a piece of text, use a Pango layout and <code class="function">pango_cairo_show_layout()</code>.
 </p>
-<div class="informalexample"><pre class="programlisting">
- layout = gtk_widget_create_pango_layout (widget, text);
- fontdesc = pango_font_description_from_string ("Luxi Mono 12");
- pango_layout_set_font_description (layout, fontdesc);
- pango_cairo_show_layout (cr, layout);
- pango_font_description_free (fontdesc);
- g_object_unref (layout);
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">layout </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkWidget.html#gtk-widget-create-pango-layout">gtk_widget_create_pango_layout</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">,</span><span class="normal"> text</span><span class="symbol">);</span>
+<span class="normal">fontdesc </span><span class="symbol">=</span><span class="normal"> </span><span class="function">pango_font_description_from_string</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Luxi Mono 12"</span><span class="symbol">);</span>
+<span class="function">pango_layout_set_font_description</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">layout</span><span class="symbol">,</span><span class="normal"> fontdesc</span><span class="symbol">);</span>
+<span class="function">pango_cairo_show_layout</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> layout</span><span class="symbol">);</span>
+<span class="function">pango_font_description_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">fontdesc</span><span class="symbol">);</span>
+<span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">layout</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 </p>
 <p>
@@ -542,14 +675,27 @@ How do I measure the size of a piece of text ?
 To obtain the size of a piece of text, use a Pango layout and
 <code class="function">pango_layout_get_pixel_size()</code>, using code like the following:
 </p>
-<div class="informalexample"><pre class="programlisting">
- layout = gtk_widget_create_pango_layout (widget, text);
- fontdesc = pango_font_description_from_string ("Luxi Mono 12");
- pango_layout_set_font_description (layout, fontdesc);
- pango_layout_get_pixel_size (layout, &amp;width, &amp;height);
- pango_font_description_free (fontdesc);
- g_object_unref (layout);
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">layout </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkWidget.html#gtk-widget-create-pango-layout">gtk_widget_create_pango_layout</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">,</span><span class="normal"> text</span><span class="symbol">);</span>
+<span class="normal">fontdesc </span><span class="symbol">=</span><span class="normal"> </span><span class="function">pango_font_description_from_string</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Luxi Mono 12"</span><span class="symbol">);</span>
+<span class="function">pango_layout_set_font_description</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">layout</span><span class="symbol">,</span><span class="normal"> fontdesc</span><span class="symbol">);</span>
+<span class="function">pango_layout_get_pixel_size</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">layout</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">width</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">height</span><span class="symbol">);</span>
+<span class="function">pango_font_description_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">fontdesc</span><span class="symbol">);</span>
+<span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">layout</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 </p>
 <p>
@@ -581,9 +727,17 @@ the call away if it appears that the value is not being used.
 A common workaround for this problem is to store the result in a volatile
 variable, which keeps the compiler from optimizing the call away.
 </p>
-<div class="informalexample"><pre class="programlisting">
-volatile GType dummy = GTK_TYPE_BLAH;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">volatile</span><span class="normal"> </span><span class="usertype">GType</span><span class="normal"> dummy </span><span class="symbol">=</span><span class="normal"> GTK_TYPE_BLAH</span><span class="symbol">;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 </p>
 </td>
@@ -602,22 +756,36 @@ How do I create a transparent toplevel window ?
 <p>
 To make a window transparent, it needs to use a visual which supports that.
 This is done by getting the RGBA visual of the screen with
-<a href="../html/GdkScreen.html#gdk-screen-get-rgba-visual"><code class="function">gdk_screen_get_rgba_visual()</code></a> and setting it on the window. Note that
-<a href="../html/GdkScreen.html#gdk-screen-get-rgba-visual"><code class="function">gdk_screen_get_rgba_visual()</code></a> will return <code class="literal">NULL</code> if transparent windows
+<code class="function">gdk_screen_get_rgba_visual()</code> and setting it on the window. Note that
+<code class="function">gdk_screen_get_rgba_visual()</code> will return <code class="literal">NULL</code> if transparent windows
 are not supported on the screen, you should fall back to
-<a href="../html/GdkScreen.html#gdk-screen-get-system-visual"><code class="function">gdk_screen_get_system_visual()</code></a> in that case. Additionally, note that this
+<code class="function">gdk_screen_get_system_visual()</code> in that case. Additionally, note that this
 will change from screen to screen, so it needs to be repeated whenever the
 window is moved to a different screen.
 </p>
-<div class="informalexample"><pre class="programlisting">
-GdkVisual *visual;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">GdkVisual</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">visual</span><span class="symbol">;</span>
 
-visual = gdk_screen_get_rgba_visual (screen);
-if (visual == NULL)
-  visual = gdk_screen_get_system_visual (screen);
+<span class="normal">visual </span><span class="symbol">=</span><span class="normal"> </span><span class="function">gdk_screen_get_rgba_visual</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">screen</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">visual </span><span class="symbol">==</span><span class="normal"> NULL</span><span class="symbol">)</span>
+<span class="normal">  visual </span><span class="symbol">=</span><span class="normal"> </span><span class="function">gdk_screen_get_system_visual</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">screen</span><span class="symbol">);</span>
 
-gtk_widget_set_visual (GTK_WIDGET (window), visual);
-</pre></div>
+<span class="function"><a href="GtkWidget.html#gtk-widget-set-visual">gtk_widget_set_visual</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_WIDGET</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">),</span><span class="normal"> visual</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 To fill the alpha channel on the window simply use cairos
 RGBA drawing capabilities.
@@ -744,21 +912,40 @@ How do I change the font of a widget?
 This has several possible answers, depending on what exactly you want to
 achieve. One option is <a class="link" href="GtkWidget.html#gtk-widget-override-font" title="gtk_widget_override_font ()"><code class="function">gtk_widget_override_font()</code></a>.
 </p>
-<div class="informalexample"><pre class="programlisting">
- PangoFontDesc *font_desc = pango_font_description_new ();
- pango_font_description_set_size (font_desc, 40);
- gtk_widget_override_font (widget, font);
- pango_font_description_free (font_desc);
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">PangoFontDesc</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">font_desc </span><span class="symbol">=</span><span class="normal"> </span><span class="function">pango_font_description_new</span><span class="normal"> </span><span class="symbol">();</span>
+<span class="function">pango_font_description_set_size</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">font_desc</span><span class="symbol">,</span><span class="normal"> </span><span class="number">40</span><span class="symbol">);</span>
+<span class="function"><a href="GtkWidget.html#gtk-widget-override-font">gtk_widget_override_font</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">,</span><span class="normal"> font</span><span class="symbol">);</span>
+<span class="function">pango_font_description_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">font_desc</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 </p>
 <p>
 If you want to make the text of a label larger, you can use
 <a class="link" href="GtkLabel.html#gtk-label-set-markup" title="gtk_label_set_markup ()"><code class="function">gtk_label_set_markup()</code></a>:
 </p>
-<div class="informalexample"><pre class="programlisting">
-gtk_label_set_markup (label, "&lt;big&gt;big text&lt;/big&gt;");
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="function"><a href="GtkLabel.html#gtk-label-set-markup">gtk_label_set_markup</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">label</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"&lt;big&gt;big text&lt;/big&gt;"</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 This is preferred for many apps because it's a relative size to the
 user's chosen font size. See <code class="function">g_markup_escape_text()</code> if you are
@@ -816,17 +1003,33 @@ or <a class="link" href="GtkTextIter.html#gtk-text-iter-get-text" title="gtk_tex
 </p>
 <p>
 </p>
-<div class="informalexample"><pre class="programlisting">
-  GtkTextIter start, end;
-  GtkTextBuffer *buffer;
-  char *text;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkTextIter</span><span class="normal"> start</span><span class="symbol">,</span><span class="normal"> end</span><span class="symbol">;</span>
+<span class="usertype">GtkTextBuffer</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">buffer</span><span class="symbol">;</span>
+<span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">text</span><span class="symbol">;</span>
 
-  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
-  gtk_text_buffer_get_bounds (buffer, &amp;start, &amp;end);
-  text = gtk_text_iter_get_text (&amp;start, &amp;end);
-  /* use text */
-  g_free (text);
-</pre></div>
+<span class="normal">buffer </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkTextView.html#gtk-text-view-get-buffer">gtk_text_view_get_buffer</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_TEXT_VIEW</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">text_view</span><span class="symbol">));</span>
+<span class="function"><a href="GtkTextBuffer.html#gtk-text-buffer-get-bounds">gtk_text_buffer_get_bounds</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">buffer</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">start</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">end</span><span class="symbol">);</span>
+<span class="normal">text </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkTextIter.html#gtk-text-iter-get-text">gtk_text_iter_get_text</a></span><span class="normal"> </span><span class="symbol">(&amp;</span><span class="normal">start</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">end</span><span class="symbol">);</span>
+<span class="comment">/* use text */</span>
+<span class="function">g_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">text</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 </p>
 </td>
@@ -956,72 +1159,143 @@ from number to string yourself (with, say, <code class="function">g_strdup_print
 <p>
 The following example demonstrates this:
 </p>
-<div class="informalexample"><pre class="programlisting">
-enum
-{
-  DOUBLE_COLUMN,
-  N_COLUMNS
-};
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">enum</span>
+<span class="cbracket">{</span>
+<span class="normal">  DOUBLE_COLUMN</span><span class="symbol">,</span>
+<span class="normal">  N_COLUMNS</span>
+<span class="cbracket">}</span><span class="symbol">;</span>
 
-GtkListStore *mycolumns;
-GtkTreeView *treeview;
+<span class="usertype">GtkListStore</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">mycolumns</span><span class="symbol">;</span>
+<span class="usertype">GtkTreeView</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">treeview</span><span class="symbol">;</span>
 
-void
-my_cell_double_to_text (GtkTreeViewColumn *tree_column,
-	                GtkCellRenderer   *cell,
-                        GtkTreeModel      *tree_model,
-	                GtkTreeIter       *iter,
-                        gpointer           data)
-{
-  GtkCellRendererText *cell_text = (GtkCellRendererText *)cell;
-  gdouble d;
-  gchar *text;
+<span class="type">void</span>
+<span class="function">my_cell_double_to_text</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkTreeViewColumn</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">tree_column</span><span class="symbol">,</span>
+<span class="normal">                    </span><span class="usertype">GtkCellRenderer</span><span class="normal">   </span><span class="symbol">*</span><span class="normal">cell</span><span class="symbol">,</span>
+<span class="normal">                        </span><span class="usertype">GtkTreeModel</span><span class="normal">      </span><span class="symbol">*</span><span class="normal">tree_model</span><span class="symbol">,</span>
+<span class="normal">                    </span><span class="usertype">GtkTreeIter</span><span class="normal">       </span><span class="symbol">*</span><span class="normal">iter</span><span class="symbol">,</span>
+<span class="normal">                        </span><span class="usertype">gpointer</span><span class="normal">           data</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">GtkCellRendererText</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">cell_text </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="GtkCellRendererText.html#GtkCellRendererText-struct">GtkCellRendererText</a> </span><span class="symbol">*)</span><span class="normal">cell</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="usertype">gdouble</span><span class="normal"> d</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">text</span><span class="symbol">;</span>
 
-  /* Get the double value from the model. */
-  gtk_tree_model_get (tree_model, iter, (gint)data, &amp;d, -1);
-  /* Now we can format the value ourselves. */
-  text = g_strdup_printf ("%.2f", d);
-  g_object_set (cell, "text", text, NULL);
-  g_free (text);
-}
+<span class="normal">  </span><span class="comment">/* Get the double value from the model. */</span>
+<span class="normal">  </span><span class="function"><a href="GtkTreeModel.html#gtk-tree-model-get">gtk_tree_model_get</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">tree_model</span><span class="symbol">,</span><span class="normal"> iter</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gint</span><span class="symbol">)</span><span class="normal">data</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">d</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">-</span><span class="number">1</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="comment">/* Now we can format the value ourselves. */</span>
+<span class="normal">  text </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_strdup_printf</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"%.2f"</span><span class="symbol">,</span><span class="normal"> d</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function">g_object_set</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cell</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"text"</span><span class="symbol">,</span><span class="normal"> text</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function">g_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">text</span><span class="symbol">);</span>
+<span class="cbracket">}</span>
 
-void
-set_up_new_columns (GtkTreeView *myview)
-{
-  GtkCellRendererText *renderer;
-  GtkTreeViewColumn *column;
-  GtkListStore *mycolumns;
+<span class="type">void</span>
+<span class="function">set_up_new_columns</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkTreeView</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">myview</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">GtkCellRendererText</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">renderer</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="usertype">GtkTreeViewColumn</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">column</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="usertype">GtkListStore</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">mycolumns</span><span class="symbol">;</span>
 
-  /* Create the data model and associate it with the given TreeView */
-  mycolumns = gtk_list_store_new (N_COLUMNS, G_TYPE_DOUBLE);
-  gtk_tree_view_set_model (myview, GTK_TREE_MODEL (mycolumns));
+<span class="normal">  </span><span class="comment">/* Create the data model and associate it with the given TreeView */</span>
+<span class="normal">  mycolumns </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkListStore.html#gtk-list-store-new">gtk_list_store_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">N_COLUMNS</span><span class="symbol">,</span><span class="normal"> G_TYPE_DOUBLE</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function"><a href="GtkTreeView.html#gtk-tree-view-set-model">gtk_tree_view_set_model</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">myview</span><span class="symbol">,</span><span class="normal"> </span><span class="function">GTK_TREE_MODEL</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">mycolumns</span><span class="symbol">));</span>
 
-  /* Create a GtkCellRendererText */
-  renderer = gtk_cell_renderer_text_new ();
+<span class="normal">  </span><span class="comment">/* Create a GtkCellRendererText */</span>
+<span class="normal">  renderer </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkCellRendererText.html#gtk-cell-renderer-text-new">gtk_cell_renderer_text_new</a></span><span class="normal"> </span><span class="symbol">();</span>
 
-  /* Create a new column that has a title ("Example column"),
-   * uses the above created renderer that will render the double
-   * value into text from the associated model's rows.
-   */
-  column = gtk_tree_view_column_new ();
-  gtk_tree_view_column_set_title  (column, "Example column");
-  renderer = gtk_cell_renderer_text_new ();
-  gtk_tree_view_column_pack_start (column, renderer, TRUE);
+<span class="normal">  </span><span class="comment">/* Create a new column that has a title ("Example column"),</span>
+<span class="comment">   * uses the above created renderer that will render the double</span>
+<span class="comment">   * value into text from the associated model's rows.</span>
+<span class="comment">   */</span>
+<span class="normal">  column </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkTreeViewColumn.html#gtk-tree-view-column-new">gtk_tree_view_column_new</a></span><span class="normal"> </span><span class="symbol">();</span>
+<span class="normal">  </span><span class="function"><a href="GtkTreeViewColumn.html#gtk-tree-view-column-set-title">gtk_tree_view_column_set_title</a></span><span class="normal">  </span><span class="symbol">(</span><span class="normal">column</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Example column"</span><span class="symbol">);</span>
+<span class="normal">  renderer </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkCellRendererText.html#gtk-cell-renderer-text-new">gtk_cell_renderer_text_new</a></span><span class="normal"> </span><span class="symbol">();</span>
+<span class="normal">  </span><span class="function"><a href="GtkTreeViewColumn.html#gtk-tree-view-column-pack-start">gtk_tree_view_column_pack_start</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">column</span><span class="symbol">,</span><span class="normal"> renderer</span><span class="symbol">,</span><span class="normal"> TRUE</span><span class="symbol">);</span>
 
-  /* Append the new column after the GtkTreeView's previous columns. */
-  gtk_tree_view_append_column (GTK_TREE_VIEW (myview), column);
-  /* Since we created the column by hand, we can set it up for our
-   * needs, e.g. set its minimum and maximum width, etc.
-   */
-  /* Set up a custom function that will be called when the column content
-   * is rendered. We use the func_data pointer as an index into our
-   * model. This is convenient when using multi column lists.
-   */
-  gtk_tree_view_column_set_cell_data_func (column, renderer,
-	                                   my_cell_double_to_text,
-                                           (gpointer)DOUBLE_COLUMN, NULL);
-}
-</pre></div>
+<span class="normal">  </span><span class="comment">/* Append the new column after the GtkTreeView's previous columns. */</span>
+<span class="normal">  </span><span class="function"><a href="GtkTreeView.html#gtk-tree-view-append-column">gtk_tree_view_append_column</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_TREE_VIEW</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">myview</span><span class="symbol">),</span><span class="normal"> column</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="comment">/* Since we created the column by hand, we can set it up for our</span>
+<span class="comment">   * needs, e.g. set its minimum and maximum width, etc.</span>
+<span class="comment">   */</span>
+<span class="normal">  </span><span class="comment">/* Set up a custom function that will be called when the column content</span>
+<span class="comment">   * is rendered. We use the func_data pointer as an index into our</span>
+<span class="comment">   * model. This is convenient when using multi column lists.</span>
+<span class="comment">   */</span>
+<span class="normal">  </span><span class="function"><a href="GtkTreeViewColumn.html#gtk-tree-view-column-set-cell-data-func">gtk_tree_view_column_set_cell_data_func</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">column</span><span class="symbol">,</span><span class="normal"> renderer</span><span class="symbol">,</span>
+<span class="normal">                                       my_cell_double_to_text</span><span class="symbol">,</span>
+<span class="normal">                                           </span><span class="symbol">(</span><span class="normal">gpointer</span><span class="symbol">)</span><span class="normal">DOUBLE_COLUMN</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 </p>
 </td>
@@ -1115,6 +1389,6 @@ a failed load yourself, use <code class="function">gdk_pixbuf_new_from_file()</c
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

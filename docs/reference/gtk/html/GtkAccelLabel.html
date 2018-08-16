@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkAccelLabel: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="DisplayWidgets.html" title="Display Widgets">
 <link rel="prev" href="GtkStatusbar.html" title="GtkStatusbar">
 <link rel="next" href="ButtonWidgets.html" title="Buttons and Toggles">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -160,7 +160,7 @@
 <a name="GtkAccelLabel.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 GtkAccelLabel implements
- AtkImplementor and  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>.</p>
+ AtkImplementorIface and  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>.</p>
 </div>
 <div class="refsect1">
 <a name="GtkAccelLabel.includes"></a><h2>Includes</h2>
@@ -191,37 +191,74 @@ A <a class="link" href="GtkAccelLabel.html" title="GtkAccelLabel"><span class="t
 though it is almost always used to display just one accelerator key.</p>
 <div class="refsect3">
 <a name="id-1.3.8.9.9.7"></a><h4>Creating a simple menu item with an accelerator key.</h4>
-<div class="informalexample"><pre class="programlisting">
-  GtkWidget *window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  GtkWidget *menu = gtk_menu_new ();
-  GtkWidget *save_item;
-  GtkAccelGroup *accel_group;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">window </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkWindow.html#gtk-window-new">gtk_window_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="GtkWindow.html#GTK-WINDOW-TOPLEVEL:CAPS">GTK_WINDOW_TOPLEVEL</a></span><span class="symbol">);</span>
+<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">menu </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkMenu.html#gtk-menu-new">gtk_menu_new</a></span><span class="normal"> </span><span class="symbol">();</span>
+<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">save_item</span><span class="symbol">;</span>
+<span class="usertype">GtkAccelGroup</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">accel_group</span><span class="symbol">;</span>
 
-  // Create a GtkAccelGroup and add it to the window.
-  accel_group = gtk_accel_group_new ();
-  gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
+<span class="comment">// Create a GtkAccelGroup and add it to the window.</span>
+<span class="normal">accel_group </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="gtk3-Keyboard-Accelerators.html#gtk-accel-group-new">gtk_accel_group_new</a></span><span class="normal"> </span><span class="symbol">();</span>
+<span class="function"><a href="GtkWindow.html#gtk-window-add-accel-group">gtk_window_add_accel_group</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_WINDOW</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">),</span><span class="normal"> accel_group</span><span class="symbol">);</span>
 
-  // Create the menu item using the convenience function.
-  save_item = gtk_menu_item_new_with_label ("Save");
-  gtk_widget_show (save_item);
-  gtk_container_add (GTK_CONTAINER (menu), save_item);
+<span class="comment">// Create the menu item using the convenience function.</span>
+<span class="normal">save_item </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkMenuItem.html#gtk-menu-item-new-with-label">gtk_menu_item_new_with_label</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Save"</span><span class="symbol">);</span>
+<span class="function"><a href="GtkWidget.html#gtk-widget-show">gtk_widget_show</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">save_item</span><span class="symbol">);</span>
+<span class="function"><a href="GtkContainer.html#gtk-container-add">gtk_container_add</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_CONTAINER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">menu</span><span class="symbol">),</span><span class="normal"> save_item</span><span class="symbol">);</span>
 
-  // Now add the accelerator to the GtkMenuItem. Note that since we
-  // called gtk_menu_item_new_with_label() to create the GtkMenuItem
-  // the GtkAccelLabel is automatically set up to display the
-  // GtkMenuItem accelerators. We just need to make sure we use
-  // GTK_ACCEL_VISIBLE here.
-  gtk_widget_add_accelerator (save_item, "activate", accel_group,
-                              GDK_KEY_s, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-</pre></div>
+<span class="comment">// Now add the accelerator to the GtkMenuItem. Note that since we</span>
+<span class="comment">// called gtk_menu_item_new_with_label() to create the GtkMenuItem</span>
+<span class="comment">// the GtkAccelLabel is automatically set up to display the</span>
+<span class="comment">// GtkMenuItem accelerators. We just need to make sure we use</span>
+<span class="comment">// GTK_ACCEL_VISIBLE here.</span>
+<span class="function"><a href="GtkWidget.html#gtk-widget-add-accelerator">gtk_widget_add_accelerator</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">save_item</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"activate"</span><span class="symbol">,</span><span class="normal"> accel_group</span><span class="symbol">,</span>
+<span class="normal">                            GDK_KEY_s</span><span class="symbol">,</span><span class="normal"> GDK_CONTROL_MASK</span><span class="symbol">,</span><span class="normal"> <a href="gtk3-Keyboard-Accelerators.html#GTK-ACCEL-VISIBLE:CAPS">GTK_ACCEL_VISIBLE</a></span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 </div>
 <div class="refsect2">
 <a name="id-1.3.8.9.9.8"></a><h3>CSS nodes</h3>
-<div class="informalexample"><pre class="programlisting">
-label
-╰── accelerator
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">label</span>
+<span class="normal">╰── accelerator</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>Like <a class="link" href="GtkLabel.html" title="GtkLabel"><span class="type">GtkLabel</span></a>, GtkAccelLabel has a main CSS node with the name label.
 It adds a subnode with name accelerator.</p>
@@ -385,7 +422,7 @@ be needed by applications.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_accel_label_set_accel (<em class="parameter"><code><a class="link" href="GtkAccelLabel.html" title="GtkAccelLabel"><span class="type">GtkAccelLabel</span></a> *accel_label</code></em>,
                            <em class="parameter"><code><span class="type">guint</span> accelerator_key</code></em>,
-                           <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> accelerator_mods</code></em>);</pre>
+                           <em class="parameter"><code><span class="type">GdkModifierType</span> accelerator_mods</code></em>);</pre>
 <p>Manually sets a keyval and modifier mask as the accelerator rendered
 by <em class="parameter"><code>accel_label</code></em>
 .</p>
@@ -428,7 +465,7 @@ used regardless of any associated accel closure or widget.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_accel_label_get_accel (<em class="parameter"><code><a class="link" href="GtkAccelLabel.html" title="GtkAccelLabel"><span class="type">GtkAccelLabel</span></a> *accel_label</code></em>,
                            <em class="parameter"><code><span class="type">guint</span> *accelerator_key</code></em>,
-                           <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> *accelerator_mods</code></em>);</pre>
+                           <em class="parameter"><code><span class="type">GdkModifierType</span> *accelerator_mods</code></em>);</pre>
 <p>Gets the keyval and modifier mask set with
 <a class="link" href="GtkAccelLabel.html#gtk-accel-label-set-accel" title="gtk_accel_label_set_accel ()"><code class="function">gtk_accel_label_set_accel()</code></a>.</p>
 <div class="refsect3">
@@ -520,6 +557,6 @@ should be accessed using the functions below.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

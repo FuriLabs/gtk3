@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkTreeModelFilter: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="TreeWidgetObjects.html" title="Tree, List and Icon Grid Widgets">
 <link rel="prev" href="GtkTreeModelSort.html" title="GtkTreeModelSort">
 <link rel="next" href="GtkCellLayout.html" title="GtkCellLayout">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -427,24 +427,47 @@ of the model up-to-date.</p>
  is called whenever a row is inserted, when it may still
 be empty. The visible function should therefore take special care of empty
 rows, like in the example below.</p>
-<div class="informalexample"><pre class="programlisting">
-static gboolean
-visible_func (GtkTreeModel *model,
-              GtkTreeIter  *iter,
-              gpointer      data)
-{
-  // Visible if row is non-empty and first column is “HI”
-  gchar *str;
-  gboolean visible = FALSE;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> gboolean</span>
+<span class="function">visible_func</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkTreeModel</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">model</span><span class="symbol">,</span>
+<span class="normal">              </span><span class="usertype">GtkTreeIter</span><span class="normal">  </span><span class="symbol">*</span><span class="normal">iter</span><span class="symbol">,</span>
+<span class="normal">              </span><span class="usertype">gpointer</span><span class="normal">      data</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="comment">// Visible if row is non-empty and first column is “HI”</span>
+<span class="normal">  </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">str</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="usertype">gboolean</span><span class="normal"> visible </span><span class="symbol">=</span><span class="normal"> FALSE</span><span class="symbol">;</span>
 
-  gtk_tree_model_get (model, iter, 0, &amp;str, -1);
-  if (str &amp;&amp; strcmp (str, "HI") == 0)
-    visible = TRUE;
-  g_free (str);
+<span class="normal">  </span><span class="function"><a href="GtkTreeModel.html#gtk-tree-model-get">gtk_tree_model_get</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">model</span><span class="symbol">,</span><span class="normal"> iter</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">str</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">-</span><span class="number">1</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">str </span><span class="symbol">&amp;&amp;</span><span class="normal"> </span><span class="function">strcmp</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">str</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"HI"</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">==</span><span class="normal"> </span><span class="number">0</span><span class="symbol">)</span>
+<span class="normal">    visible </span><span class="symbol">=</span><span class="normal"> TRUE</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="function">g_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">str</span><span class="symbol">);</span>
 
-  return visible;
-}
-</pre></div>
+<span class="normal">  </span><span class="keyword">return</span><span class="normal"> visible</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>Note that <a class="link" href="GtkTreeModelFilter.html#gtk-tree-model-filter-set-visible-func" title="gtk_tree_model_filter_set_visible_func ()"><code class="function">gtk_tree_model_filter_set_visible_func()</code></a> or
 <a class="link" href="GtkTreeModelFilter.html#gtk-tree-model-filter-set-visible-column" title="gtk_tree_model_filter_set_visible_column ()"><code class="function">gtk_tree_model_filter_set_visible_column()</code></a> can only be called
@@ -889,6 +912,6 @@ all unreffed iters will be invalid.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

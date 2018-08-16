@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Resource Files: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="DeprecatedObjects.html" title="Deprecated">
 <link rel="prev" href="gtk3-GtkGradient.html" title="GtkGradient">
 <link rel="next" href="GtkStyle.html" title="GtkStyle">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -318,9 +318,17 @@ attaches them to particular widgets. The attachment is done
 by the <code class="literal">widget</code>, <code class="literal">widget_class</code>,
 and <code class="literal">class</code> declarations. As an example
 of such a statement:</p>
-<div class="informalexample"><pre class="programlisting">
-widget "mywindow.*.GtkEntry" style "my-entry-class"
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">widget </span><span class="string">"mywindow.*.GtkEntry"</span><span class="normal"> style </span><span class="string">"my-entry-class"</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>attaches the style <code class="literal">"my-entry-class"</code> to all
 widgets  whose “widget path” matches the
@@ -341,9 +349,17 @@ always used.</p>
 <p>Since GTK+ 2.10, <code class="literal">widget_class</code> paths can also contain &lt;classname&gt;
 substrings, which are matching the class with the given name and any
 derived classes. For instance,</p>
-<div class="informalexample"><pre class="programlisting">
-widget_class "*&lt;GtkMenuItem&gt;.GtkLabel" style "my-style"
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">widget_class </span><span class="string">"*&lt;GtkMenuItem&gt;.GtkLabel"</span><span class="normal"> style </span><span class="string">"my-style"</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 will match <a class="link" href="GtkLabel.html" title="GtkLabel"><span class="type">GtkLabel</span></a> widgets which are contained in any kind of menu item.</p>
 <p>So, if you have a <a class="link" href="GtkEntry.html" title="GtkEntry"><span class="type">GtkEntry</span></a> named <code class="literal">"myentry"</code>, inside of a horizontal
@@ -353,9 +369,17 @@ box in a window named <code class="literal">"mywindow"</code>, then the widget p
 <p>Matching against class is a little different. The pattern match is done
 against all class names in the widgets class hierarchy (not the layout
 hierarchy) in sequence, so the pattern:</p>
-<div class="informalexample"><pre class="programlisting">
-class "GtkButton" style "my-style"
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">class </span><span class="string">"GtkButton"</span><span class="normal"> style </span><span class="string">"my-style"</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 will match not just <a class="link" href="GtkButton.html" title="GtkButton"><span class="type">GtkButton</span></a> widgets, but also <a class="link" href="GtkToggleButton.html" title="GtkToggleButton"><span class="type">GtkToggleButton</span></a> and
 <a class="link" href="GtkCheckButton.html" title="GtkCheckButton"><span class="type">GtkCheckButton</span></a> widgets, since those classes derive from <a class="link" href="GtkButton.html" title="GtkButton"><span class="type">GtkButton</span></a>.</p>
@@ -412,18 +436,38 @@ This reduces the overall amount of RC styles that have to be considered
 for a match across a group of applications.</p></li>
 <li class="listitem">
 <p>Merge multiple styles which use the same matching rule, for instance:</p>
-<div class="informalexample"><pre class="programlisting">
- style "Foo" { foo_content }
- class "X" style "Foo"
- style "Bar" { bar_content }
- class "X" style "Bar"
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">style </span><span class="string">"Foo"</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal"> foo_content </span><span class="cbracket">}</span>
+<span class="normal">class </span><span class="string">"X"</span><span class="normal"> style </span><span class="string">"Foo"</span>
+<span class="normal">style </span><span class="string">"Bar"</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal"> bar_content </span><span class="cbracket">}</span>
+<span class="normal">class </span><span class="string">"X"</span><span class="normal"> style </span><span class="string">"Bar"</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 is faster to match as:</p>
-<div class="informalexample"><pre class="programlisting">
- style "FooBar" { foo_content bar_content }
- class "X" style "FooBar"
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">style </span><span class="string">"FooBar"</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal"> </span><span class="usertype">foo_content</span><span class="normal"> bar_content </span><span class="cbracket">}</span>
+<span class="normal">class </span><span class="string">"X"</span><span class="normal"> style </span><span class="string">"FooBar"</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 </li>
 <li class="listitem"><p>Use of wildcards should be avoided, this can reduce the individual RC style
@@ -691,11 +735,21 @@ colors. The following expressions are currently supported:</p>
 </li>
 </ul></div>
 <p>Here are some examples of color expressions:</p>
-<div class="informalexample"><pre class="programlisting">
- mix (0.5, "red", "blue")
- shade (1.5, mix (0.3, "#0abbc0", { 0.3, 0.5, 0.9 }))
- lighter (@foreground)
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="function">mix</span><span class="normal"> </span><span class="symbol">(</span><span class="number">0.5</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"red"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"blue"</span><span class="symbol">)</span>
+<span class="function">shade</span><span class="normal"> </span><span class="symbol">(</span><span class="number">1.5</span><span class="symbol">,</span><span class="normal"> </span><span class="function">mix</span><span class="normal"> </span><span class="symbol">(</span><span class="number">0.3</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"#0abbc0"</span><span class="symbol">,</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal"> </span><span class="number">0.3</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.5</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.9</span><span class="normal"> </span><span class="cbracket">}</span><span class="symbol">))</span>
+<span class="function">lighter</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">@foreground</span><span class="symbol">)</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>In a <code class="literal">stock</code> definition, icon sources are specified as a
 4-tuple of image filename or icon name, text direction, widget state, and size, in that
@@ -708,46 +762,96 @@ The <code class="literal">*</code> character can be used as a
 wildcard, and if direction/state/size are omitted they default to
 <code class="literal">*</code>. So for example, the following specifies different icons to
 use for left-to-right and right-to-left languages:</p>
-<div class="informalexample"><pre class="programlisting">
-stock["my-stock-item"] =
-{
-  { "itemltr.png", LTR, *, * },
-  { "itemrtl.png", RTL, *, * }
-}
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">stock</span><span class="symbol">[</span><span class="string">"my-stock-item"</span><span class="symbol">]</span><span class="normal"> </span><span class="symbol">=</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"itemltr.png"</span><span class="symbol">,</span><span class="normal"> LTR</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal"> </span><span class="cbracket">}</span><span class="symbol">,</span>
+<span class="normal">  </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"itemrtl.png"</span><span class="symbol">,</span><span class="normal"> RTL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal"> </span><span class="cbracket">}</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>This could be abbreviated as follows:</p>
-<div class="informalexample"><pre class="programlisting">
-stock["my-stock-item"] =
-{
-  { "itemltr.png", LTR },
-  { "itemrtl.png", RTL }
-}
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">stock</span><span class="symbol">[</span><span class="string">"my-stock-item"</span><span class="symbol">]</span><span class="normal"> </span><span class="symbol">=</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"itemltr.png"</span><span class="symbol">,</span><span class="normal"> LTR </span><span class="cbracket">}</span><span class="symbol">,</span>
+<span class="normal">  </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"itemrtl.png"</span><span class="symbol">,</span><span class="normal"> RTL </span><span class="cbracket">}</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>You can specify custom icons for specific sizes, as follows:</p>
-<div class="informalexample"><pre class="programlisting">
-stock["my-stock-item"] =
-{
-  { "itemmenusize.png", *, *, "gtk-menu" },
-  { "itemtoolbarsize.png", *, *, "gtk-large-toolbar" }
-  { "itemgeneric.png" } // implicit *, *, * as a fallback
-}
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">stock</span><span class="symbol">[</span><span class="string">"my-stock-item"</span><span class="symbol">]</span><span class="normal"> </span><span class="symbol">=</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"itemmenusize.png"</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*,</span><span class="normal"> </span><span class="symbol">*,</span><span class="normal"> </span><span class="string">"gtk-menu"</span><span class="normal"> </span><span class="cbracket">}</span><span class="symbol">,</span>
+<span class="normal">  </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"itemtoolbarsize.png"</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*,</span><span class="normal"> </span><span class="symbol">*,</span><span class="normal"> </span><span class="string">"gtk-large-toolbar"</span><span class="normal"> </span><span class="cbracket">}</span>
+<span class="normal">  </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"itemgeneric.png"</span><span class="normal"> </span><span class="cbracket">}</span><span class="normal"> </span><span class="comment">// implicit *, *, * as a fallback</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>The sizes that come with GTK+ itself are <code class="literal">"gtk-menu"</code>,
 <code class="literal">"gtk-small-toolbar"</code>, <code class="literal">"gtk-large-toolbar"</code>,
 <code class="literal">"gtk-button"</code>, <code class="literal">"gtk-dialog"</code>. Applications
 can define other sizes.</p>
 <p>It’s also possible to use custom icons for a given state, for example:</p>
-<div class="informalexample"><pre class="programlisting">
-stock["my-stock-item"] =
-{
-  { "itemprelight.png", *, PRELIGHT },
-  { "iteminsensitive.png", *, INSENSITIVE },
-  { "itemgeneric.png" } // implicit *, *, * as a fallback
-}
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">stock</span><span class="symbol">[</span><span class="string">"my-stock-item"</span><span class="symbol">]</span><span class="normal"> </span><span class="symbol">=</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"itemprelight.png"</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*,</span><span class="normal"> PRELIGHT </span><span class="cbracket">}</span><span class="symbol">,</span>
+<span class="normal">  </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"iteminsensitive.png"</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*,</span><span class="normal"> INSENSITIVE </span><span class="cbracket">}</span><span class="symbol">,</span>
+<span class="normal">  </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"itemgeneric.png"</span><span class="normal"> </span><span class="cbracket">}</span><span class="normal"> </span><span class="comment">// implicit *, *, * as a fallback</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>When selecting an icon source to use, GTK+ will consider text direction most
 important, state second, and size third. It will select the best match based on
@@ -763,15 +867,29 @@ match the state and size the user requested.</p>
 <p>Key bindings allow the user to specify actions to be
 taken on particular key presses. The form of a binding
 set declaration is:</p>
-<div class="informalexample"><pre class="programlisting">
-binding name {
-  bind key {
-    signalname (param, ...)
-    ...
-  }
-  ...
-}
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">binding</span><span class="normal"> name </span><span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">bind</span><span class="normal"> key </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function">signalname</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">param</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">...)</span>
+<span class="normal">    </span><span class="symbol">...</span>
+<span class="normal">  </span><span class="cbracket">}</span>
+<span class="normal">  </span><span class="symbol">...</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p><code class="literal">key</code> is a string consisting of a series of modifiers followed by
 the name of a key. The modifiers can be:</p>
@@ -874,13 +992,25 @@ when creating pseudo-widgets that should be themed like widgets but
 don’t actually have corresponding GTK+ widgets. An example of this
 would be items inside a GNOME canvas widget.</p>
 <p>The action of <a class="link" href="gtk3-Resource-Files.html#gtk-rc-get-style" title="gtk_rc_get_style ()"><code class="function">gtk_rc_get_style()</code></a> is similar to:</p>
-<div class="informalexample"><pre class="programlisting">
- gtk_widget_path (widget, NULL, &amp;path, NULL);
- gtk_widget_class_path (widget, NULL, &amp;class_path, NULL);
- gtk_rc_get_style_by_paths (gtk_widget_get_settings (widget),
-                            path, class_path,
-                            G_OBJECT_TYPE (widget));
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="function"><a href="GtkWidget.html#gtk-widget-path">gtk_widget_path</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">path</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
+<span class="function"><a href="GtkWidget.html#gtk-widget-class-path">gtk_widget_class_path</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">class_path</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
+<span class="function"><a href="gtk3-Resource-Files.html#gtk-rc-get-style-by-paths">gtk_rc_get_style_by_paths</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GtkWidget.html#gtk-widget-get-settings">gtk_widget_get_settings</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">),</span>
+<span class="normal">                           path</span><span class="symbol">,</span><span class="normal"> class_path</span><span class="symbol">,</span>
+<span class="normal">                           </span><span class="function">G_OBJECT_TYPE</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">));</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <div class="refsect3">
 <a name="gtk-rc-get-style-by-paths.parameters"></a><h4>Parameters</h4>
@@ -1050,7 +1180,7 @@ gtk_rc_reset_styles (<em class="parameter"><code><a class="link" href="GtkSettin
 </div>
 <p>This function recomputes the styles for all widgets that use a
 particular <a class="link" href="GtkSettings.html" title="Settings"><span class="type">GtkSettings</span></a> object. (There is one <a class="link" href="GtkSettings.html" title="Settings"><span class="type">GtkSettings</span></a> object
-per <a href="../html/GdkScreen.html#GdkScreen-struct"><span class="type">GdkScreen</span></a>, see <a class="link" href="GtkSettings.html#gtk-settings-get-for-screen" title="gtk_settings_get_for_screen ()"><code class="function">gtk_settings_get_for_screen()</code></a>); It is useful
+per <span class="type">GdkScreen</span>, see <a class="link" href="GtkSettings.html#gtk-settings-get-for-screen" title="gtk_settings_get_for_screen ()"><code class="function">gtk_settings_get_for_screen()</code></a>); It is useful
 when some global parameter has changed that affects the appearance
 of all widgets, because when a widget gets a new style, it will
 both redraw and recompute any cached information about its
@@ -1155,7 +1285,7 @@ end of <a class="link" href="gtk3-General.html#gtk-init" title="gtk_init ()"><c
 <a name="gtk-rc-parse-color"></a><h3>gtk_rc_parse_color ()</h3>
 <pre class="programlisting"><span class="returnvalue">guint</span>
 gtk_rc_parse_color (<em class="parameter"><code><span class="type">GScanner</span> *scanner</code></em>,
-                    <em class="parameter"><code><a href="../html/gdk3-Colors.html#GdkColor"><span class="type">GdkColor</span></a> *color</code></em>);</pre>
+                    <em class="parameter"><code><span class="type">GdkColor</span> *color</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gtk_rc_parse_color</code> has been deprecated since version 3.0 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="GtkCssProvider.html" title="GtkCssProvider"><span class="type">GtkCssProvider</span></a> instead</p>
@@ -1180,7 +1310,7 @@ order to support symbolic colors.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>color</p></td>
-<td class="parameter_description"><p>a pointer to a <a href="../html/gdk3-Colors.html#GdkColor"><span class="type">GdkColor</span></a> in which to store
+<td class="parameter_description"><p>a pointer to a <span class="type">GdkColor</span> in which to store
 the result. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span></td>
 </tr>
@@ -1199,7 +1329,7 @@ that was expected but not found</p>
 <pre class="programlisting"><span class="returnvalue">guint</span>
 gtk_rc_parse_color_full (<em class="parameter"><code><span class="type">GScanner</span> *scanner</code></em>,
                          <em class="parameter"><code><a class="link" href="gtk3-Resource-Files.html#GtkRcStyle"><span class="type">GtkRcStyle</span></a> *style</code></em>,
-                         <em class="parameter"><code><a href="../html/gdk3-Colors.html#GdkColor"><span class="type">GdkColor</span></a> *color</code></em>);</pre>
+                         <em class="parameter"><code><span class="type">GdkColor</span> *color</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gtk_rc_parse_color_full</code> has been deprecated since version 3.0 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="GtkCssProvider.html" title="GtkCssProvider"><span class="type">GtkCssProvider</span></a> instead</p>
@@ -1229,7 +1359,7 @@ references to symbolic colors.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>color</p></td>
-<td class="parameter_description"><p>a pointer to a <a href="../html/gdk3-Colors.html#GdkColor"><span class="type">GdkColor</span></a> in which to store
+<td class="parameter_description"><p>a pointer to a <span class="type">GdkColor</span> in which to store
 the result. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span></td>
 </tr>
@@ -1584,22 +1714,22 @@ This can later be composited together with other
 <td class="struct_member_annotations"> </td>
 </tr>
 <tr>
-<td class="struct_member_name"><p><a href="../html/gdk3-Colors.html#GdkColor"><span class="type">GdkColor</span></a> <em class="structfield"><code><a name="GtkRcStyle-struct.fg"></a>fg</code></em>[5];</p></td>
+<td class="struct_member_name"><p><span class="type">GdkColor</span> <em class="structfield"><code><a name="GtkRcStyle-struct.fg"></a>fg</code></em>[5];</p></td>
 <td class="struct_member_description"><p>Foreground colors</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
 <tr>
-<td class="struct_member_name"><p><a href="../html/gdk3-Colors.html#GdkColor"><span class="type">GdkColor</span></a> <em class="structfield"><code><a name="GtkRcStyle-struct.bg"></a>bg</code></em>[5];</p></td>
+<td class="struct_member_name"><p><span class="type">GdkColor</span> <em class="structfield"><code><a name="GtkRcStyle-struct.bg"></a>bg</code></em>[5];</p></td>
 <td class="struct_member_description"><p>Background colors</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
 <tr>
-<td class="struct_member_name"><p><a href="../html/gdk3-Colors.html#GdkColor"><span class="type">GdkColor</span></a> <em class="structfield"><code><a name="GtkRcStyle-struct.text"></a>text</code></em>[5];</p></td>
+<td class="struct_member_name"><p><span class="type">GdkColor</span> <em class="structfield"><code><a name="GtkRcStyle-struct.text"></a>text</code></em>[5];</p></td>
 <td class="struct_member_description"><p>Text colors</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
 <tr>
-<td class="struct_member_name"><p><a href="../html/gdk3-Colors.html#GdkColor"><span class="type">GdkColor</span></a> <em class="structfield"><code><a name="GtkRcStyle-struct.base"></a>base</code></em>[5];</p></td>
+<td class="struct_member_name"><p><span class="type">GdkColor</span> <em class="structfield"><code><a name="GtkRcStyle-struct.base"></a>base</code></em>[5];</p></td>
 <td class="struct_member_description"><p>Base colors</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
@@ -2136,6 +2266,6 @@ See also <a class="link" href="gtk3-Bindings.html#gtk-binding-set-add-path" titl
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

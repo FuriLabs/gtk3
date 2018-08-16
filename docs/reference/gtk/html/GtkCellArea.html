@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkCellArea: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="TreeWidgetObjects.html" title="Tree, List and Icon Grid Widgets">
 <link rel="prev" href="GtkCellLayout.html" title="GtkCellLayout">
 <link rel="next" href="GtkCellAreaBox.html" title="GtkCellAreaBox">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -585,21 +585,41 @@ was used to request the sizes for a given <a class="link" href="GtkTreeModel.htm
 used when rendering or processing events for that row.</p>
 <p>In order to request the width of all the rows at the root level
 of a <a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span class="type">GtkTreeModel</span></a> one would do the following:</p>
-<div class="informalexample"><pre class="programlisting">
-GtkTreeIter iter;
-gint        minimum_width;
-gint        natural_width;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkTreeIter</span><span class="normal"> iter</span><span class="symbol">;</span>
+<span class="usertype">gint</span><span class="normal">        minimum_width</span><span class="symbol">;</span>
+<span class="usertype">gint</span><span class="normal">        natural_width</span><span class="symbol">;</span>
 
-valid = gtk_tree_model_get_iter_first (model, &amp;iter);
-while (valid)
-  {
-    gtk_cell_area_apply_attributes (area, model, &amp;iter, FALSE, FALSE);
-    gtk_cell_area_get_preferred_width (area, context, widget, NULL, NULL);
+<span class="normal">valid </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkTreeModel.html#gtk-tree-model-get-iter-first">gtk_tree_model_get_iter_first</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">model</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">);</span>
+<span class="keyword">while</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">valid</span><span class="symbol">)</span>
+<span class="normal">  </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="GtkCellArea.html#gtk-cell-area-apply-attributes">gtk_cell_area_apply_attributes</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">area</span><span class="symbol">,</span><span class="normal"> model</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="GtkCellArea.html#gtk-cell-area-get-preferred-width">gtk_cell_area_get_preferred_width</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">area</span><span class="symbol">,</span><span class="normal"> context</span><span class="symbol">,</span><span class="normal"> widget</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
 
-    valid = gtk_tree_model_iter_next (model, &amp;iter);
-  }
-gtk_cell_area_context_get_preferred_width (context, &amp;minimum_width, &amp;natural_width);
-</pre></div>
+<span class="normal">    valid </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkTreeModel.html#gtk-tree-model-iter-next">gtk_tree_model_iter_next</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">model</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="cbracket">}</span>
+<span class="function"><a href="GtkCellAreaContext.html#gtk-cell-area-context-get-preferred-width">gtk_cell_area_context_get_preferred_width</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">minimum_width</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">natural_width</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>Note that in this example it’s not important to observe the
 returned minimum and natural width of the area for each row
@@ -617,20 +637,39 @@ it can simply consult the width accumulated so far in the
 <a class="link" href="GtkCellAreaContext.html" title="GtkCellAreaContext"><span class="type">GtkCellAreaContext</span></a> object.</p>
 <p>A simple example where rows are rendered from top to bottom and
 take up the full width of the layouting widget would look like:</p>
-<div class="informalexample"><pre class="programlisting">
-static void
-foo_get_preferred_width (GtkWidget       *widget,
-                         gint            *minimum_size,
-                         gint            *natural_size)
-{
-  Foo        *foo  = FOO (widget);
-  FooPrivate *priv = foo-&gt;priv;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">foo_get_preferred_width</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkWidget</span><span class="normal">       </span><span class="symbol">*</span><span class="normal">widget</span><span class="symbol">,</span>
+<span class="normal">                         </span><span class="usertype">gint</span><span class="normal">            </span><span class="symbol">*</span><span class="normal">minimum_size</span><span class="symbol">,</span>
+<span class="normal">                         </span><span class="usertype">gint</span><span class="normal">            </span><span class="symbol">*</span><span class="normal">natural_size</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">Foo</span><span class="normal">        </span><span class="symbol">*</span><span class="normal">foo  </span><span class="symbol">=</span><span class="normal"> </span><span class="function">FOO</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="usertype">FooPrivate</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">priv </span><span class="symbol">=</span><span class="normal"> foo</span><span class="symbol">-&gt;</span><span class="normal">priv</span><span class="symbol">;</span>
 
-  foo_ensure_at_least_one_handfull_of_rows_have_been_requested (foo);
+<span class="normal">  </span><span class="function">foo_ensure_at_least_one_handfull_of_rows_have_been_requested</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">foo</span><span class="symbol">);</span>
 
-  gtk_cell_area_context_get_preferred_width (priv-&gt;context, minimum_size, natural_size);
-}
-</pre></div>
+<span class="normal">  </span><span class="function"><a href="GtkCellAreaContext.html#gtk-cell-area-context-get-preferred-width">gtk_cell_area_context_get_preferred_width</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">priv</span><span class="symbol">-&gt;</span><span class="normal">context</span><span class="symbol">,</span><span class="normal"> minimum_size</span><span class="symbol">,</span><span class="normal"> natural_size</span><span class="symbol">);</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>In the above example the Foo widget has to make sure that some
 row sizes have been calculated (the amount of rows that Foo judged
@@ -645,29 +684,57 @@ widget to render each row of data with the appropriate height and
 width which was requested by the <a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a>).</p>
 <p>In order to request the height for width of all the rows at the
 root level of a <a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span class="type">GtkTreeModel</span></a> one would do the following:</p>
-<div class="informalexample"><pre class="programlisting">
-GtkTreeIter iter;
-gint        minimum_height;
-gint        natural_height;
-gint        full_minimum_height = 0;
-gint        full_natural_height = 0;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkTreeIter</span><span class="normal"> iter</span><span class="symbol">;</span>
+<span class="usertype">gint</span><span class="normal">        minimum_height</span><span class="symbol">;</span>
+<span class="usertype">gint</span><span class="normal">        natural_height</span><span class="symbol">;</span>
+<span class="usertype">gint</span><span class="normal">        full_minimum_height </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span>
+<span class="usertype">gint</span><span class="normal">        full_natural_height </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span>
 
-valid = gtk_tree_model_get_iter_first (model, &amp;iter);
-while (valid)
-  {
-    gtk_cell_area_apply_attributes (area, model, &amp;iter, FALSE, FALSE);
-    gtk_cell_area_get_preferred_height_for_width (area, context, widget,
-                                                  width, &amp;minimum_height, &amp;natural_height);
+<span class="normal">valid </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkTreeModel.html#gtk-tree-model-get-iter-first">gtk_tree_model_get_iter_first</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">model</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">);</span>
+<span class="keyword">while</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">valid</span><span class="symbol">)</span>
+<span class="normal">  </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function"><a href="GtkCellArea.html#gtk-cell-area-apply-attributes">gtk_cell_area_apply_attributes</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">area</span><span class="symbol">,</span><span class="normal"> model</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="GtkCellArea.html#gtk-cell-area-get-preferred-height-for-width">gtk_cell_area_get_preferred_height_for_width</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">area</span><span class="symbol">,</span><span class="normal"> context</span><span class="symbol">,</span><span class="normal"> widget</span><span class="symbol">,</span>
+<span class="normal">                                                  width</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">minimum_height</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">natural_height</span><span class="symbol">);</span>
 
-    if (width_is_for_allocation)
-       cache_row_height (&amp;iter, minimum_height, natural_height);
+<span class="normal">    </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">width_is_for_allocation</span><span class="symbol">)</span>
+<span class="normal">       </span><span class="function">cache_row_height</span><span class="normal"> </span><span class="symbol">(&amp;</span><span class="normal">iter</span><span class="symbol">,</span><span class="normal"> minimum_height</span><span class="symbol">,</span><span class="normal"> natural_height</span><span class="symbol">);</span>
 
-    full_minimum_height += minimum_height;
-    full_natural_height += natural_height;
+<span class="normal">    full_minimum_height </span><span class="symbol">+=</span><span class="normal"> minimum_height</span><span class="symbol">;</span>
+<span class="normal">    full_natural_height </span><span class="symbol">+=</span><span class="normal"> natural_height</span><span class="symbol">;</span>
 
-    valid = gtk_tree_model_iter_next (model, &amp;iter);
-  }
-</pre></div>
+<span class="normal">    valid </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkTreeModel.html#gtk-tree-model-iter-next">gtk_tree_model_iter_next</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">model</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>Note that in the above example we would need to cache the heights
 returned for each row so that we would know what sizes to render the
@@ -697,30 +764,59 @@ visible area of the layouting widget they can be rendered at
 <a class="link" href="GtkWidget.html#GtkWidgetClass.draw"><code class="function">GtkWidgetClass.draw()</code></a> time.</p>
 <p>A crude example of how to render all the rows at the root level
 runs as follows:</p>
-<div class="informalexample"><pre class="programlisting">
-GtkAllocation allocation;
-GdkRectangle  cell_area = { 0, };
-GtkTreeIter   iter;
-gint          minimum_width;
-gint          natural_width;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkAllocation</span><span class="normal"> allocation</span><span class="symbol">;</span>
+<span class="usertype">GdkRectangle</span><span class="normal">  cell_area </span><span class="symbol">=</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="cbracket">}</span><span class="symbol">;</span>
+<span class="usertype">GtkTreeIter</span><span class="normal">   iter</span><span class="symbol">;</span>
+<span class="usertype">gint</span><span class="normal">          minimum_width</span><span class="symbol">;</span>
+<span class="usertype">gint</span><span class="normal">          natural_width</span><span class="symbol">;</span>
 
-gtk_widget_get_allocation (widget, &amp;allocation);
-cell_area.width = allocation.width;
+<span class="function"><a href="GtkWidget.html#gtk-widget-get-allocation">gtk_widget_get_allocation</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">allocation</span><span class="symbol">);</span>
+<span class="normal">cell_area</span><span class="symbol">.</span><span class="normal">width </span><span class="symbol">=</span><span class="normal"> allocation</span><span class="symbol">.</span><span class="normal">width</span><span class="symbol">;</span>
 
-valid = gtk_tree_model_get_iter_first (model, &amp;iter);
-while (valid)
-  {
-    cell_area.height = get_cached_height_for_row (&amp;iter);
+<span class="normal">valid </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkTreeModel.html#gtk-tree-model-get-iter-first">gtk_tree_model_get_iter_first</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">model</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">);</span>
+<span class="keyword">while</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">valid</span><span class="symbol">)</span>
+<span class="normal">  </span><span class="cbracket">{</span>
+<span class="normal">    cell_area</span><span class="symbol">.</span><span class="normal">height </span><span class="symbol">=</span><span class="normal"> </span><span class="function">get_cached_height_for_row</span><span class="normal"> </span><span class="symbol">(&amp;</span><span class="normal">iter</span><span class="symbol">);</span>
 
-    gtk_cell_area_apply_attributes (area, model, &amp;iter, FALSE, FALSE);
-    gtk_cell_area_render (area, context, widget, cr,
-                          &amp;cell_area, &amp;cell_area, state_flags, FALSE);
+<span class="normal">    </span><span class="function"><a href="GtkCellArea.html#gtk-cell-area-apply-attributes">gtk_cell_area_apply_attributes</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">area</span><span class="symbol">,</span><span class="normal"> model</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="GtkCellArea.html#gtk-cell-area-render">gtk_cell_area_render</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">area</span><span class="symbol">,</span><span class="normal"> context</span><span class="symbol">,</span><span class="normal"> widget</span><span class="symbol">,</span><span class="normal"> cr</span><span class="symbol">,</span>
+<span class="normal">                          </span><span class="symbol">&amp;</span><span class="normal">cell_area</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">cell_area</span><span class="symbol">,</span><span class="normal"> state_flags</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">);</span>
 
-    cell_area.y += cell_area.height;
+<span class="normal">    cell_area</span><span class="symbol">.</span><span class="normal">y </span><span class="symbol">+=</span><span class="normal"> cell_area</span><span class="symbol">.</span><span class="normal">height</span><span class="symbol">;</span>
 
-    valid = gtk_tree_model_iter_next (model, &amp;iter);
-  }
-</pre></div>
+<span class="normal">    valid </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkTreeModel.html#gtk-tree-model-iter-next">gtk_tree_model_iter_next</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">model</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>Note that the cached height in this example really depends on how
 the layouting widget works. The layouting widget might decide to
@@ -756,63 +852,125 @@ and then observe the GtkDirectionType to pass the focus to adjacent
 rows and areas.</p>
 <p>A basic example of how the <a class="link" href="GtkWidget.html#GtkWidgetClass.focus"><code class="function">GtkWidgetClass.focus()</code></a> virtual method
 should be implemented:</p>
-<div class="informalexample"><pre class="programlisting">
-static gboolean
-foo_focus (GtkWidget       *widget,
-           GtkDirectionType direction)
-{
-  Foo        *foo  = FOO (widget);
-  FooPrivate *priv = foo-&gt;priv;
-  gint        focus_row;
-  gboolean    have_focus = FALSE;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> gboolean</span>
+<span class="function">foo_focus</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkWidget</span><span class="normal">       </span><span class="symbol">*</span><span class="normal">widget</span><span class="symbol">,</span>
+<span class="normal">           </span><span class="usertype">GtkDirectionType</span><span class="normal"> direction</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">Foo</span><span class="normal">        </span><span class="symbol">*</span><span class="normal">foo  </span><span class="symbol">=</span><span class="normal"> </span><span class="function">FOO</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="usertype">FooPrivate</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">priv </span><span class="symbol">=</span><span class="normal"> foo</span><span class="symbol">-&gt;</span><span class="normal">priv</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="usertype">gint</span><span class="normal">        focus_row</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="usertype">gboolean</span><span class="normal">    have_focus </span><span class="symbol">=</span><span class="normal"> FALSE</span><span class="symbol">;</span>
 
-  focus_row = priv-&gt;focus_row;
+<span class="normal">  focus_row </span><span class="symbol">=</span><span class="normal"> priv</span><span class="symbol">-&gt;</span><span class="normal">focus_row</span><span class="symbol">;</span>
 
-  if (!gtk_widget_has_focus (widget))
-    gtk_widget_grab_focus (widget);
+<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(!</span><span class="function"><a href="GtkWidget.html#gtk-widget-has-focus">gtk_widget_has_focus</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">))</span>
+<span class="normal">    </span><span class="function"><a href="GtkWidget.html#gtk-widget-grab-focus">gtk_widget_grab_focus</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">);</span>
 
-  valid = gtk_tree_model_iter_nth_child (priv-&gt;model, &amp;iter, NULL, priv-&gt;focus_row);
-  while (valid)
-    {
-      gtk_cell_area_apply_attributes (priv-&gt;area, priv-&gt;model, &amp;iter, FALSE, FALSE);
+<span class="normal">  valid </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkTreeModel.html#gtk-tree-model-iter-nth-child">gtk_tree_model_iter_nth_child</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">priv</span><span class="symbol">-&gt;</span><span class="normal">model</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> priv</span><span class="symbol">-&gt;</span><span class="normal">focus_row</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="keyword">while</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">valid</span><span class="symbol">)</span>
+<span class="normal">    </span><span class="cbracket">{</span>
+<span class="normal">      </span><span class="function"><a href="GtkCellArea.html#gtk-cell-area-apply-attributes">gtk_cell_area_apply_attributes</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">priv</span><span class="symbol">-&gt;</span><span class="normal">area</span><span class="symbol">,</span><span class="normal"> priv</span><span class="symbol">-&gt;</span><span class="normal">model</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">);</span>
 
-      if (gtk_cell_area_focus (priv-&gt;area, direction))
-        {
-           priv-&gt;focus_row = focus_row;
-           have_focus = TRUE;
-           break;
-        }
-      else
-        {
-          if (direction == GTK_DIR_RIGHT ||
-              direction == GTK_DIR_LEFT)
-            break;
-          else if (direction == GTK_DIR_UP ||
-                   direction == GTK_DIR_TAB_BACKWARD)
-           {
-              if (focus_row == 0)
-                break;
-              else
-               {
-                  focus_row--;
-                  valid = gtk_tree_model_iter_nth_child (priv-&gt;model, &amp;iter, NULL, focus_row);
-               }
-            }
-          else
-            {
-              if (focus_row == last_row)
-                break;
-              else
-                {
-                  focus_row++;
-                  valid = gtk_tree_model_iter_next (priv-&gt;model, &amp;iter);
-                }
-            }
-        }
-    }
-    return have_focus;
-}
-</pre></div>
+<span class="normal">      </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GtkCellArea.html#gtk-cell-area-focus">gtk_cell_area_focus</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">priv</span><span class="symbol">-&gt;</span><span class="normal">area</span><span class="symbol">,</span><span class="normal"> direction</span><span class="symbol">))</span>
+<span class="normal">        </span><span class="cbracket">{</span>
+<span class="normal">           priv</span><span class="symbol">-&gt;</span><span class="normal">focus_row </span><span class="symbol">=</span><span class="normal"> focus_row</span><span class="symbol">;</span>
+<span class="normal">           have_focus </span><span class="symbol">=</span><span class="normal"> TRUE</span><span class="symbol">;</span>
+<span class="normal">           </span><span class="keyword">break</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="cbracket">}</span>
+<span class="normal">      </span><span class="keyword">else</span>
+<span class="normal">        </span><span class="cbracket">{</span>
+<span class="normal">          </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">direction </span><span class="symbol">==</span><span class="normal"> <a href="gtk3-Standard-Enumerations.html#GTK-DIR-RIGHT:CAPS">GTK_DIR_RIGHT</a> </span><span class="symbol">||</span>
+<span class="normal">              direction </span><span class="symbol">==</span><span class="normal"> <a href="gtk3-Standard-Enumerations.html#GTK-DIR-LEFT:CAPS">GTK_DIR_LEFT</a></span><span class="symbol">)</span>
+<span class="normal">            </span><span class="keyword">break</span><span class="symbol">;</span>
+<span class="normal">          </span><span class="keyword">else</span><span class="normal"> </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">direction </span><span class="symbol">==</span><span class="normal"> <a href="gtk3-Standard-Enumerations.html#GTK-DIR-UP:CAPS">GTK_DIR_UP</a> </span><span class="symbol">||</span>
+<span class="normal">                   direction </span><span class="symbol">==</span><span class="normal"> <a href="gtk3-Standard-Enumerations.html#GTK-DIR-TAB-BACKWARD:CAPS">GTK_DIR_TAB_BACKWARD</a></span><span class="symbol">)</span>
+<span class="normal">           </span><span class="cbracket">{</span>
+<span class="normal">              </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">focus_row </span><span class="symbol">==</span><span class="normal"> </span><span class="number">0</span><span class="symbol">)</span>
+<span class="normal">                </span><span class="keyword">break</span><span class="symbol">;</span>
+<span class="normal">              </span><span class="keyword">else</span>
+<span class="normal">               </span><span class="cbracket">{</span>
+<span class="normal">                  focus_row</span><span class="symbol">--;</span>
+<span class="normal">                  valid </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkTreeModel.html#gtk-tree-model-iter-nth-child">gtk_tree_model_iter_nth_child</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">priv</span><span class="symbol">-&gt;</span><span class="normal">model</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> focus_row</span><span class="symbol">);</span>
+<span class="normal">               </span><span class="cbracket">}</span>
+<span class="normal">            </span><span class="cbracket">}</span>
+<span class="normal">          </span><span class="keyword">else</span>
+<span class="normal">            </span><span class="cbracket">{</span>
+<span class="normal">              </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">focus_row </span><span class="symbol">==</span><span class="normal"> last_row</span><span class="symbol">)</span>
+<span class="normal">                </span><span class="keyword">break</span><span class="symbol">;</span>
+<span class="normal">              </span><span class="keyword">else</span>
+<span class="normal">                </span><span class="cbracket">{</span>
+<span class="normal">                  focus_row</span><span class="symbol">++;</span>
+<span class="normal">                  valid </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkTreeModel.html#gtk-tree-model-iter-next">gtk_tree_model_iter_next</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">priv</span><span class="symbol">-&gt;</span><span class="normal">model</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">);</span>
+<span class="normal">                </span><span class="cbracket">}</span>
+<span class="normal">            </span><span class="cbracket">}</span>
+<span class="normal">        </span><span class="cbracket">}</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+<span class="normal">    </span><span class="keyword">return</span><span class="normal"> have_focus</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>Note that the layouting widget is responsible for matching the
 GtkDirectionType values to the way it lays out its cells.</p>
@@ -880,8 +1038,8 @@ the cell renderers of a <a class="link" href="GtkCellArea.html" title="GtkCellAr
 <a name="GtkCellAllocCallback"></a><h3>GtkCellAllocCallback ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 <span class="c_punctuation">(</span>*GtkCellAllocCallback<span class="c_punctuation">)</span> (<em class="parameter"><code><a class="link" href="GtkCellRenderer.html" title="GtkCellRenderer"><span class="type">GtkCellRenderer</span></a> *renderer</code></em>,
-                         <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *cell_area</code></em>,
-                         <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *cell_background</code></em>,
+                         <em class="parameter"><code>const <span class="type">GdkRectangle</span> *cell_area</code></em>,
+                         <em class="parameter"><code>const <span class="type">GdkRectangle</span> *cell_background</code></em>,
                          <em class="parameter"><code><span class="type">gpointer</span> data</code></em>);</pre>
 <p>The type of the callback functions used for iterating over the
 cell renderers and their allocated areas inside a <a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a>,
@@ -1115,8 +1273,8 @@ gtk_cell_area_foreach (<em class="parameter"><code><a class="link" href="GtkCell
 gtk_cell_area_foreach_alloc (<em class="parameter"><code><a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a> *area</code></em>,
                              <em class="parameter"><code><a class="link" href="GtkCellAreaContext.html" title="GtkCellAreaContext"><span class="type">GtkCellAreaContext</span></a> *context</code></em>,
                              <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
-                             <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *cell_area</code></em>,
-                             <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *background_area</code></em>,
+                             <em class="parameter"><code>const <span class="type">GdkRectangle</span> *cell_area</code></em>,
+                             <em class="parameter"><code>const <span class="type">GdkRectangle</span> *background_area</code></em>,
                              <em class="parameter"><code><a class="link" href="GtkCellArea.html#GtkCellAllocCallback" title="GtkCellAllocCallback ()"><span class="type">GtkCellAllocCallback</span></a> callback</code></em>,
                              <em class="parameter"><code><span class="type">gpointer</span> callback_data</code></em>);</pre>
 <p>Calls <em class="parameter"><code>callback</code></em>
@@ -1184,8 +1342,8 @@ relative coordinates of the background area</p></td>
 gtk_cell_area_event (<em class="parameter"><code><a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a> *area</code></em>,
                      <em class="parameter"><code><a class="link" href="GtkCellAreaContext.html" title="GtkCellAreaContext"><span class="type">GtkCellAreaContext</span></a> *context</code></em>,
                      <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
-                     <em class="parameter"><code><a href="../html/gdk3-Event-Structures.html#GdkEvent"><span class="type">GdkEvent</span></a> *event</code></em>,
-                     <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *cell_area</code></em>,
+                     <em class="parameter"><code><span class="type">GdkEvent</span> *event</code></em>,
+                     <em class="parameter"><code>const <span class="type">GdkRectangle</span> *cell_area</code></em>,
                      <em class="parameter"><code><a class="link" href="GtkCellRenderer.html#GtkCellRendererState" title="enum GtkCellRendererState"><span class="type">GtkCellRendererState</span></a> flags</code></em>);</pre>
 <p>Delegates event handling to a <a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a>.</p>
 <div class="refsect3">
@@ -1215,7 +1373,7 @@ is rendering to</p></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>event</p></td>
-<td class="parameter_description"><p>the <a href="../html/gdk3-Event-Structures.html#GdkEvent"><span class="type">GdkEvent</span></a> to handle</p></td>
+<td class="parameter_description"><p>the <span class="type">GdkEvent</span> to handle</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -1249,8 +1407,8 @@ gtk_cell_area_render (<em class="parameter"><code><a class="link" href="GtkCellA
                       <em class="parameter"><code><a class="link" href="GtkCellAreaContext.html" title="GtkCellAreaContext"><span class="type">GtkCellAreaContext</span></a> *context</code></em>,
                       <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
                       <em class="parameter"><code><span class="type">cairo_t</span> *cr</code></em>,
-                      <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *background_area</code></em>,
-                      <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *cell_area</code></em>,
+                      <em class="parameter"><code>const <span class="type">GdkRectangle</span> *background_area</code></em>,
+                      <em class="parameter"><code>const <span class="type">GdkRectangle</span> *cell_area</code></em>,
                       <em class="parameter"><code><a class="link" href="GtkCellRenderer.html#GtkCellRendererState" title="enum GtkCellRendererState"><span class="type">GtkCellRendererState</span></a> flags</code></em>,
                       <em class="parameter"><code><span class="type">gboolean</span> paint_focus</code></em>);</pre>
 <p>Renders <em class="parameter"><code>area</code></em>
@@ -1327,8 +1485,8 @@ gtk_cell_area_get_cell_allocation (<em class="parameter"><code><a class="link" h
                                    <em class="parameter"><code><a class="link" href="GtkCellAreaContext.html" title="GtkCellAreaContext"><span class="type">GtkCellAreaContext</span></a> *context</code></em>,
                                    <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
                                    <em class="parameter"><code><a class="link" href="GtkCellRenderer.html" title="GtkCellRenderer"><span class="type">GtkCellRenderer</span></a> *renderer</code></em>,
-                                   <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *cell_area</code></em>,
-                                   <em class="parameter"><code><a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *allocation</code></em>);</pre>
+                                   <em class="parameter"><code>const <span class="type">GdkRectangle</span> *cell_area</code></em>,
+                                   <em class="parameter"><code><span class="type">GdkRectangle</span> *allocation</code></em>);</pre>
 <p>Derives the allocation of <em class="parameter"><code>renderer</code></em>
  inside <em class="parameter"><code>area</code></em>
  if <em class="parameter"><code>area</code></em>
@@ -1391,10 +1549,10 @@ for this row</p></td>
 gtk_cell_area_get_cell_at_position (<em class="parameter"><code><a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a> *area</code></em>,
                                     <em class="parameter"><code><a class="link" href="GtkCellAreaContext.html" title="GtkCellAreaContext"><span class="type">GtkCellAreaContext</span></a> *context</code></em>,
                                     <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
-                                    <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *cell_area</code></em>,
+                                    <em class="parameter"><code>const <span class="type">GdkRectangle</span> *cell_area</code></em>,
                                     <em class="parameter"><code><span class="type">gint</span> x</code></em>,
                                     <em class="parameter"><code><span class="type">gint</span> y</code></em>,
-                                    <em class="parameter"><code><a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *alloc_area</code></em>);</pre>
+                                    <em class="parameter"><code><span class="type">GdkRectangle</span> *alloc_area</code></em>);</pre>
 <p>Gets the <a class="link" href="GtkCellRenderer.html" title="GtkCellRenderer"><span class="type">GtkCellRenderer</span></a> at <em class="parameter"><code>x</code></em>
  and <em class="parameter"><code>y</code></em>
  coordinates inside <em class="parameter"><code>area</code></em>
@@ -2538,7 +2696,7 @@ can do anything when activated.</p>
 gtk_cell_area_activate (<em class="parameter"><code><a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a> *area</code></em>,
                         <em class="parameter"><code><a class="link" href="GtkCellAreaContext.html" title="GtkCellAreaContext"><span class="type">GtkCellAreaContext</span></a> *context</code></em>,
                         <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
-                        <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *cell_area</code></em>,
+                        <em class="parameter"><code>const <span class="type">GdkRectangle</span> *cell_area</code></em>,
                         <em class="parameter"><code><a class="link" href="GtkCellRenderer.html#GtkCellRendererState" title="enum GtkCellRendererState"><span class="type">GtkCellRendererState</span></a> flags</code></em>,
                         <em class="parameter"><code><span class="type">gboolean</span> edit_only</code></em>);</pre>
 <p>Activates <em class="parameter"><code>area</code></em>
@@ -2992,8 +3150,8 @@ to edit the currently edited cell.</p>
 gtk_cell_area_activate_cell (<em class="parameter"><code><a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a> *area</code></em>,
                              <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
                              <em class="parameter"><code><a class="link" href="GtkCellRenderer.html" title="GtkCellRenderer"><span class="type">GtkCellRenderer</span></a> *renderer</code></em>,
-                             <em class="parameter"><code><a href="../html/gdk3-Event-Structures.html#GdkEvent"><span class="type">GdkEvent</span></a> *event</code></em>,
-                             <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *cell_area</code></em>,
+                             <em class="parameter"><code><span class="type">GdkEvent</span> *event</code></em>,
+                             <em class="parameter"><code>const <span class="type">GdkRectangle</span> *cell_area</code></em>,
                              <em class="parameter"><code><a class="link" href="GtkCellRenderer.html#GtkCellRendererState" title="enum GtkCellRendererState"><span class="type">GtkCellRendererState</span></a> flags</code></em>);</pre>
 <p>This is used by <a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a> subclasses when handling events
 to activate cells, the base <a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a> class activates cells
@@ -3027,12 +3185,12 @@ to activate</p></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>event</p></td>
-<td class="parameter_description"><p>the <a href="../html/gdk3-Event-Structures.html#GdkEvent"><span class="type">GdkEvent</span></a> for which cell activation should occur</p></td>
+<td class="parameter_description"><p>the <span class="type">GdkEvent</span> for which cell activation should occur</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cell_area</p></td>
-<td class="parameter_description"><p>the <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> in <em class="parameter"><code>widget</code></em>
+<td class="parameter_description"><p>the <span class="type">GdkRectangle</span> in <em class="parameter"><code>widget</code></em>
 relative coordinates
 of <em class="parameter"><code>renderer</code></em>
 for the current row.</p></td>
@@ -3096,8 +3254,8 @@ edit widget.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_cell_area_inner_cell_area (<em class="parameter"><code><a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a> *area</code></em>,
                                <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
-                               <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *cell_area</code></em>,
-                               <em class="parameter"><code><a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *inner_area</code></em>);</pre>
+                               <em class="parameter"><code>const <span class="type">GdkRectangle</span> *cell_area</code></em>,
+                               <em class="parameter"><code><span class="type">GdkRectangle</span> *inner_area</code></em>);</pre>
 <p>This is a convenience function for <a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a> implementations
 to get the inner area where a given <a class="link" href="GtkCellRenderer.html" title="GtkCellRenderer"><span class="type">GtkCellRenderer</span></a> will be
 rendered. It removes any padding previously added by <a class="link" href="GtkCellArea.html#gtk-cell-area-request-renderer" title="gtk_cell_area_request_renderer ()"><code class="function">gtk_cell_area_request_renderer()</code></a>.</p>
@@ -3504,7 +3662,7 @@ a result of a call <a class="link" href="GtkCellArea.html#gtk-cell-area-activate
 user_function (<a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a>     *area,
                <a class="link" href="GtkCellRenderer.html" title="GtkCellRenderer"><span class="type">GtkCellRenderer</span></a> *renderer,
                <a class="link" href="GtkCellEditable.html" title="GtkCellEditable"><span class="type">GtkCellEditable</span></a> *editable,
-               <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a>    *cell_area,
+               <span class="type">GdkRectangle</span>    *cell_area,
                <span class="type">gchar</span>           *path,
                <span class="type">gpointer</span>         user_data)</pre>
 <p>Indicates that editing has started on <em class="parameter"><code>renderer</code></em>
@@ -3538,7 +3696,7 @@ should be added to the owning cell-layouting widget at <em class="parameter"><co
 </tr>
 <tr>
 <td class="parameter_name"><p>cell_area</p></td>
-<td class="parameter_description"><p>the <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> relative <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> coordinates
+<td class="parameter_description"><p>the <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> relative <span class="type">GdkRectangle</span> coordinates
 where <em class="parameter"><code>editable</code></em>
 should be added</p></td>
 <td class="parameter_annotations"> </td>
@@ -3719,6 +3877,6 @@ should be removed from the owning cell-layouting widget.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkDialog: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="WindowWidgets.html" title="Windows">
 <link rel="prev" href="GtkWindow.html" title="GtkWindow">
 <link rel="next" href="GtkMessageDialog.html" title="GtkMessageDialog">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -305,7 +305,7 @@
 <a name="GtkDialog.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 GtkDialog implements
- AtkImplementor and  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>.</p>
+ AtkImplementorIface and  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>.</p>
 </div>
 <div class="refsect1">
 <a name="GtkDialog.includes"></a><h2>Includes</h2>
@@ -354,38 +354,75 @@ use <a class="link" href="GtkMessageDialog.html" title="GtkMessageDialog"><span 
 create the dialog contents manually if you had more than a simple message
 in the dialog.</p>
 <p>An example for simple GtkDialog usage:</p>
-<div class="informalexample"><pre class="programlisting">
-// Function to open a dialog box with a message
-void
-quick_message (GtkWindow *parent, gchar *message)
-{
- GtkWidget *dialog, *label, *content_area;
- GtkDialogFlags flags;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="comment">// Function to open a dialog box with a message</span>
+<span class="type">void</span>
+<span class="function">quick_message</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkWindow</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">parent</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">message</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal"> </span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">dialog</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">label</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">content_area</span><span class="symbol">;</span>
+<span class="normal"> </span><span class="usertype">GtkDialogFlags</span><span class="normal"> flags</span><span class="symbol">;</span>
 
- // Create the widgets
- flags = GTK_DIALOG_DESTROY_WITH_PARENT;
- dialog = gtk_dialog_new_with_buttons ("Message",
-                                       parent,
-                                       flags,
-                                       _("_OK"),
-                                       GTK_RESPONSE_NONE,
-                                       NULL);
- content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
- label = gtk_label_new (message);
+<span class="normal"> </span><span class="comment">// Create the widgets</span>
+<span class="normal"> flags </span><span class="symbol">=</span><span class="normal"> <a href="GtkDialog.html#GTK-DIALOG-DESTROY-WITH-PARENT:CAPS">GTK_DIALOG_DESTROY_WITH_PARENT</a></span><span class="symbol">;</span>
+<span class="normal"> dialog </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkDialog.html#gtk-dialog-new-with-buttons">gtk_dialog_new_with_buttons</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Message"</span><span class="symbol">,</span>
+<span class="normal">                                       parent</span><span class="symbol">,</span>
+<span class="normal">                                       flags</span><span class="symbol">,</span>
+<span class="normal">                                       </span><span class="function">_</span><span class="symbol">(</span><span class="string">"_OK"</span><span class="symbol">),</span>
+<span class="normal">                                       <a href="GtkDialog.html#GTK-RESPONSE-NONE:CAPS">GTK_RESPONSE_NONE</a></span><span class="symbol">,</span>
+<span class="normal">                                       NULL</span><span class="symbol">);</span>
+<span class="normal"> content_area </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkDialog.html#gtk-dialog-get-content-area">gtk_dialog_get_content_area</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_DIALOG</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">dialog</span><span class="symbol">));</span>
+<span class="normal"> label </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkLabel.html#gtk-label-new">gtk_label_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">message</span><span class="symbol">);</span>
 
- // Ensure that the dialog box is destroyed when the user responds
+<span class="normal"> </span><span class="comment">// Ensure that the dialog box is destroyed when the user responds</span>
 
- g_signal_connect_swapped (dialog,
-                           "response",
-                           G_CALLBACK (gtk_widget_destroy),
-                           dialog);
+<span class="normal"> </span><span class="function">g_signal_connect_swapped</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">dialog</span><span class="symbol">,</span>
+<span class="normal">                           </span><span class="string">"response"</span><span class="symbol">,</span>
+<span class="normal">                           </span><span class="function">G_CALLBACK</span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="GtkWidget.html#gtk-widget-destroy">gtk_widget_destroy</a></span><span class="symbol">),</span>
+<span class="normal">                           dialog</span><span class="symbol">);</span>
 
- // Add the label, and show everything we’ve added
+<span class="normal"> </span><span class="comment">// Add the label, and show everything we’ve added</span>
 
- gtk_container_add (GTK_CONTAINER (content_area), label);
- gtk_widget_show_all (dialog);
-}
-</pre></div>
+<span class="normal"> </span><span class="function"><a href="GtkContainer.html#gtk-container-add">gtk_container_add</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_CONTAINER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">content_area</span><span class="symbol">),</span><span class="normal"> label</span><span class="symbol">);</span>
+<span class="normal"> </span><span class="function"><a href="GtkWidget.html#gtk-widget-show-all">gtk_widget_show_all</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">dialog</span><span class="symbol">);</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <div class="refsect2">
 <a name="id-1.3.6.3.11.13"></a><h3>GtkDialog as GtkBuildable</h3>
@@ -407,22 +444,43 @@ either to the action area or the headerbar of the dialog, depending
 on the “use-header-bar“ property. The response id has to be associated
 with the action widget using the &lt;action-widgets&gt; element.</p>
 <p>An example of a <a class="link" href="GtkDialog.html" title="GtkDialog"><span class="type">GtkDialog</span></a> UI definition fragment:</p>
-<div class="informalexample"><pre class="programlisting">
-&lt;object class="GtkDialog" id="dialog1"&gt;
-  &lt;child type="action"&gt;
-    &lt;object class="GtkButton" id="button_cancel"/&gt;
-  &lt;/child&gt;
-  &lt;child type="action"&gt;
-    &lt;object class="GtkButton" id="button_ok"&gt;
-      &lt;property name="can-default"&gt;True&lt;/property&gt;
-    &lt;/object&gt;
-  &lt;/child&gt;
-  &lt;action-widgets&gt;
-    &lt;action-widget response="cancel"&gt;button_cancel&lt;/action-widget&gt;
-    &lt;action-widget response="ok" default="true"&gt;button_ok&lt;/action-widget&gt;
-  &lt;/action-widgets&gt;
-&lt;/object&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkDialog"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"dialog1"</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="usertype">child</span><span class="normal"> type</span><span class="symbol">=</span><span class="string">"action"</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkButton"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"button_cancel"</span><span class="symbol">/&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="usertype">child</span><span class="normal"> type</span><span class="symbol">=</span><span class="string">"action"</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkButton"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"button_ok"</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"can-default"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">action</span><span class="symbol">-</span><span class="normal">widgets</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">action</span><span class="symbol">-</span><span class="usertype">widget</span><span class="normal"> response</span><span class="symbol">=</span><span class="string">"cancel"</span><span class="symbol">&gt;</span><span class="normal">button_cancel</span><span class="symbol">&lt;/</span><span class="normal">action</span><span class="symbol">-</span><span class="normal">widget</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">action</span><span class="symbol">-</span><span class="usertype">widget</span><span class="normal"> response</span><span class="symbol">=</span><span class="string">"ok"</span><span class="normal"> </span><span class="keyword">default</span><span class="symbol">=</span><span class="string">"true"</span><span class="symbol">&gt;</span><span class="normal">button_ok</span><span class="symbol">&lt;/</span><span class="normal">action</span><span class="symbol">-</span><span class="normal">widget</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">action</span><span class="symbol">-</span><span class="normal">widgets</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 </div>
 </div>
@@ -473,19 +531,37 @@ so be careful relying on ::response when using the
 <a class="link" href="GtkDialog.html#GTK-DIALOG-DESTROY-WITH-PARENT:CAPS"><span class="type">GTK_DIALOG_DESTROY_WITH_PARENT</span></a> flag. Buttons are from left to right,
 so the first button in the list will be the leftmost button in the dialog.</p>
 <p>Here’s a simple example:</p>
-<div class="informalexample"><pre class="programlisting">
- GtkWidget *main_app_window; // Window the dialog should show up on
- GtkWidget *dialog;
- GtkDialogFlags flags = GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT;
- dialog = gtk_dialog_new_with_buttons ("My dialog",
-                                       main_app_window,
-                                       flags,
-                                       _("_OK"),
-                                       GTK_RESPONSE_ACCEPT,
-                                       _("_Cancel"),
-                                       GTK_RESPONSE_REJECT,
-                                       NULL);
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">main_app_window</span><span class="symbol">;</span><span class="normal"> </span><span class="comment">// Window the dialog should show up on</span>
+<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">dialog</span><span class="symbol">;</span>
+<span class="usertype">GtkDialogFlags</span><span class="normal"> flags </span><span class="symbol">=</span><span class="normal"> <a href="GtkDialog.html#GTK-DIALOG-MODAL:CAPS">GTK_DIALOG_MODAL</a> </span><span class="symbol">|</span><span class="normal"> <a href="GtkDialog.html#GTK-DIALOG-DESTROY-WITH-PARENT:CAPS">GTK_DIALOG_DESTROY_WITH_PARENT</a></span><span class="symbol">;</span>
+<span class="normal">dialog </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkDialog.html#gtk-dialog-new-with-buttons">gtk_dialog_new_with_buttons</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"My dialog"</span><span class="symbol">,</span>
+<span class="normal">                                      main_app_window</span><span class="symbol">,</span>
+<span class="normal">                                      flags</span><span class="symbol">,</span>
+<span class="normal">                                      </span><span class="function">_</span><span class="symbol">(</span><span class="string">"_OK"</span><span class="symbol">),</span>
+<span class="normal">                                      <a href="GtkDialog.html#GTK-RESPONSE-ACCEPT:CAPS">GTK_RESPONSE_ACCEPT</a></span><span class="symbol">,</span>
+<span class="normal">                                      </span><span class="function">_</span><span class="symbol">(</span><span class="string">"_Cancel"</span><span class="symbol">),</span>
+<span class="normal">                                      <a href="GtkDialog.html#GTK-RESPONSE-REJECT:CAPS">GTK_RESPONSE_REJECT</a></span><span class="symbol">,</span>
+<span class="normal">                                      NULL</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <div class="refsect3">
 <a name="gtk-dialog-new-with-buttons.parameters"></a><h4>Parameters</h4>
@@ -554,22 +630,43 @@ post-run code won’t know whether the dialog was destroyed or not.</p>
 <p>After <a class="link" href="GtkDialog.html#gtk-dialog-run" title="gtk_dialog_run ()"><code class="function">gtk_dialog_run()</code></a> returns, you are responsible for hiding or
 destroying the dialog if you wish to do so.</p>
 <p>Typical usage of this function might be:</p>
-<div class="informalexample"><pre class="programlisting">
-  GtkWidget *dialog = gtk_dialog_new ();
-  // Set up dialog...
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">dialog </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkDialog.html#gtk-dialog-new">gtk_dialog_new</a></span><span class="normal"> </span><span class="symbol">();</span>
+<span class="comment">// Set up dialog...</span>
 
-  int result = gtk_dialog_run (GTK_DIALOG (dialog));
-  switch (result)
-    {
-      case GTK_RESPONSE_ACCEPT:
-         // do_application_specific_something ();
-         break;
-      default:
-         // do_nothing_since_dialog_was_cancelled ();
-         break;
-    }
-  gtk_widget_destroy (dialog);
-</pre></div>
+<span class="type">int</span><span class="normal"> result </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkDialog.html#gtk-dialog-run">gtk_dialog_run</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_DIALOG</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">dialog</span><span class="symbol">));</span>
+<span class="keyword">switch</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">result</span><span class="symbol">)</span>
+<span class="normal">  </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="keyword">case</span><span class="normal"> <a href="GtkDialog.html#GTK-RESPONSE-ACCEPT:CAPS">GTK_RESPONSE_ACCEPT</a></span><span class="symbol">:</span>
+<span class="normal">       </span><span class="comment">// do_application_specific_something ();</span>
+<span class="normal">       </span><span class="keyword">break</span><span class="symbol">;</span>
+<span class="label">    default:</span>
+<span class="normal">       </span><span class="comment">// do_nothing_since_dialog_was_cancelled ();</span>
+<span class="normal">       </span><span class="keyword">break</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="cbracket">}</span>
+<span class="function"><a href="GtkWidget.html#gtk-widget-destroy">gtk_widget_destroy</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">dialog</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>Note that even though the recursive main loop gives the effect of a
 modal dialog (it prevents the user from interacting with other
@@ -1008,7 +1105,7 @@ headerbar is only used by the dialog if the
 <div class="refsect2">
 <a name="gtk-alternative-dialog-button-order"></a><h3>gtk_alternative_dialog_button_order ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
-gtk_alternative_dialog_button_order (<em class="parameter"><code><a href="../html/GdkScreen.html#GdkScreen-struct"><span class="type">GdkScreen</span></a> *screen</code></em>);</pre>
+gtk_alternative_dialog_button_order (<em class="parameter"><code><span class="type">GdkScreen</span> *screen</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gtk_alternative_dialog_button_order</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p>
 <p>Deprecated</p>
@@ -1033,7 +1130,7 @@ notified if the button order setting changes.</p>
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>screen</p></td>
-<td class="parameter_description"><p>a <a href="../html/GdkScreen.html#GdkScreen-struct"><span class="type">GdkScreen</span></a>, or <code class="literal">NULL</code> to use the default screen. </p></td>
+<td class="parameter_description"><p>a <span class="type">GdkScreen</span>, or <code class="literal">NULL</code> to use the default screen. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr></tbody>
 </table></div>
@@ -1068,27 +1165,53 @@ and <a href="GtkMessageDialog.html#GtkMessageDialog-struct"><span class="type">G
 which is more suitable on some platforms, e.g. Windows.</p>
 <p>Use this function after adding all the buttons to your dialog, as the
 following example shows:</p>
-<div class="informalexample"><pre class="programlisting">
-cancel_button = gtk_dialog_add_button (GTK_DIALOG (dialog),
-                                       _("_Cancel"),
-                                       GTK_RESPONSE_CANCEL);
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">cancel_button </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkDialog.html#gtk-dialog-add-button">gtk_dialog_add_button</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_DIALOG</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">dialog</span><span class="symbol">),</span>
+<span class="normal">                                       </span><span class="function">_</span><span class="symbol">(</span><span class="string">"_Cancel"</span><span class="symbol">),</span>
+<span class="normal">                                       <a href="GtkDialog.html#GTK-RESPONSE-CANCEL:CAPS">GTK_RESPONSE_CANCEL</a></span><span class="symbol">);</span>
 
-ok_button = gtk_dialog_add_button (GTK_DIALOG (dialog),
-                                   _("_OK"),
-                                   GTK_RESPONSE_OK);
+<span class="normal">ok_button </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkDialog.html#gtk-dialog-add-button">gtk_dialog_add_button</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_DIALOG</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">dialog</span><span class="symbol">),</span>
+<span class="normal">                                   </span><span class="function">_</span><span class="symbol">(</span><span class="string">"_OK"</span><span class="symbol">),</span>
+<span class="normal">                                   <a href="GtkDialog.html#GTK-RESPONSE-OK:CAPS">GTK_RESPONSE_OK</a></span><span class="symbol">);</span>
 
-gtk_widget_grab_default (ok_button);
+<span class="function"><a href="GtkWidget.html#gtk-widget-grab-default">gtk_widget_grab_default</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">ok_button</span><span class="symbol">);</span>
 
-help_button = gtk_dialog_add_button (GTK_DIALOG (dialog),
-                                     _("_Help"),
-                                     GTK_RESPONSE_HELP);
+<span class="normal">help_button </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkDialog.html#gtk-dialog-add-button">gtk_dialog_add_button</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_DIALOG</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">dialog</span><span class="symbol">),</span>
+<span class="normal">                                     </span><span class="function">_</span><span class="symbol">(</span><span class="string">"_Help"</span><span class="symbol">),</span>
+<span class="normal">                                     <a href="GtkDialog.html#GTK-RESPONSE-HELP:CAPS">GTK_RESPONSE_HELP</a></span><span class="symbol">);</span>
 
-gtk_dialog_set_alternative_button_order (GTK_DIALOG (dialog),
-                                         GTK_RESPONSE_OK,
-                                         GTK_RESPONSE_CANCEL,
-                                         GTK_RESPONSE_HELP,
-                                         -1);
-</pre></div>
+<span class="function"><a href="GtkDialog.html#gtk-dialog-set-alternative-button-order">gtk_dialog_set_alternative_button_order</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_DIALOG</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">dialog</span><span class="symbol">),</span>
+<span class="normal">                                         <a href="GtkDialog.html#GTK-RESPONSE-OK:CAPS">GTK_RESPONSE_OK</a></span><span class="symbol">,</span>
+<span class="normal">                                         <a href="GtkDialog.html#GTK-RESPONSE-CANCEL:CAPS">GTK_RESPONSE_CANCEL</a></span><span class="symbol">,</span>
+<span class="normal">                                         <a href="GtkDialog.html#GTK-RESPONSE-HELP:CAPS">GTK_RESPONSE_HELP</a></span><span class="symbol">,</span>
+<span class="normal">                                         </span><span class="symbol">-</span><span class="number">1</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <div class="refsect3">
 <a name="gtk-dialog-set-alternative-button-order.parameters"></a><h4>Parameters</h4>
@@ -1496,6 +1619,6 @@ Otherwise, it depends on which action widget was clicked.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

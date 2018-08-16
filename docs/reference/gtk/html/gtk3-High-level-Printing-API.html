@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkPrintOperation: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="Printing.html" title="Printing">
 <link rel="prev" href="Printing.html" title="Printing">
 <link rel="next" href="GtkPrintContext.html" title="GtkPrintContext">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -566,7 +566,7 @@
 </div>
 <div class="refsect1">
 <a name="gtk3-High-level-Printing-API.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="/usr/share/gtk-doc/html/gobject/GTypeModule.html">GInterface</a>
+<pre class="screen">    GInterface
     <span class="lineart">╰──</span> GtkPrintOperationPreview
     GObject
     <span class="lineart">╰──</span> GtkPrintOperation
@@ -617,36 +617,71 @@ be emitted on the <a class="link" href="gtk3-High-level-Printing-API.html#GtkPri
 and render the page on the provided <a class="link" href="GtkPrintContext.html" title="GtkPrintContext"><span class="type">GtkPrintContext</span></a> using Cairo.</p>
 <div class="refsect2">
 <a name="id-1.3.17.2.14.5"></a><h3>The high-level printing API</h3>
-<div class="informalexample"><pre class="programlisting">
-static GtkPrintSettings *settings = NULL;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> </span><span class="usertype">GtkPrintSettings</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">settings </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
 
-static void
-do_print (void)
-{
-  GtkPrintOperation *print;
-  GtkPrintOperationResult res;
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">do_print</span><span class="normal"> </span><span class="symbol">(</span><span class="type">void</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">GtkPrintOperation</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">print</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="usertype">GtkPrintOperationResult</span><span class="normal"> res</span><span class="symbol">;</span>
 
-  print = gtk_print_operation_new ();
+<span class="normal">  print </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="gtk3-High-level-Printing-API.html#gtk-print-operation-new">gtk_print_operation_new</a></span><span class="normal"> </span><span class="symbol">();</span>
 
-  if (settings != NULL)
-    gtk_print_operation_set_print_settings (print, settings);
+<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">settings </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span>
+<span class="normal">    </span><span class="function"><a href="gtk3-High-level-Printing-API.html#gtk-print-operation-set-print-settings">gtk_print_operation_set_print_settings</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">print</span><span class="symbol">,</span><span class="normal"> settings</span><span class="symbol">);</span>
 
-  g_signal_connect (print, "begin_print", G_CALLBACK (begin_print), NULL);
-  g_signal_connect (print, "draw_page", G_CALLBACK (draw_page), NULL);
+<span class="normal">  </span><span class="function">g_signal_connect</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">print</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"begin_print"</span><span class="symbol">,</span><span class="normal"> </span><span class="function">G_CALLBACK</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">begin_print</span><span class="symbol">),</span><span class="normal"> NULL</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function">g_signal_connect</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">print</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"draw_page"</span><span class="symbol">,</span><span class="normal"> </span><span class="function">G_CALLBACK</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">draw_page</span><span class="symbol">),</span><span class="normal"> NULL</span><span class="symbol">);</span>
 
-  res = gtk_print_operation_run (print, GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG,
-                                 GTK_WINDOW (main_window), NULL);
+<span class="normal">  res </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="gtk3-High-level-Printing-API.html#gtk-print-operation-run">gtk_print_operation_run</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">print</span><span class="symbol">,</span><span class="normal"> <a href="gtk3-High-level-Printing-API.html#GTK-PRINT-OPERATION-ACTION-PRINT-DIALOG:CAPS">GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG</a></span><span class="symbol">,</span>
+<span class="normal">                                 </span><span class="function">GTK_WINDOW</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">main_window</span><span class="symbol">),</span><span class="normal"> NULL</span><span class="symbol">);</span>
 
-  if (res == GTK_PRINT_OPERATION_RESULT_APPLY)
-    {
-      if (settings != NULL)
-        g_object_unref (settings);
-      settings = g_object_ref (gtk_print_operation_get_print_settings (print));
-    }
+<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">res </span><span class="symbol">==</span><span class="normal"> <a href="gtk3-High-level-Printing-API.html#GTK-PRINT-OPERATION-RESULT-APPLY:CAPS">GTK_PRINT_OPERATION_RESULT_APPLY</a></span><span class="symbol">)</span>
+<span class="normal">    </span><span class="cbracket">{</span>
+<span class="normal">      </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">settings </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span>
+<span class="normal">        </span><span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">settings</span><span class="symbol">);</span>
+<span class="normal">      settings </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_object_ref</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="gtk3-High-level-Printing-API.html#gtk-print-operation-get-print-settings">gtk_print_operation_get_print_settings</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">print</span><span class="symbol">));</span>
+<span class="normal">    </span><span class="cbracket">}</span>
 
-  g_object_unref (print);
-}
-</pre></div>
+<span class="normal">  </span><span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">print</span><span class="symbol">);</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>By default GtkPrintOperation uses an external application to do
 print preview. To implement a custom print preview, an application
@@ -1248,43 +1283,85 @@ asynchronously if this is supported on the platform. The
 <a class="link" href="gtk3-High-level-Printing-API.html#GtkPrintOperation-done" title="The “done” signal"><span class="type">“done”</span></a> signal will be emitted with the result of the 
 operation when the it is done (i.e. when the dialog is canceled, or when 
 the print succeeds or fails).</p>
-<div class="informalexample"><pre class="programlisting">
-if (settings != NULL)
-  gtk_print_operation_set_print_settings (print, settings);
-  
-if (page_setup != NULL)
-  gtk_print_operation_set_default_page_setup (print, page_setup);
-  
-g_signal_connect (print, "begin-print", 
-                  G_CALLBACK (begin_print), &amp;data);
-g_signal_connect (print, "draw-page", 
-                  G_CALLBACK (draw_page), &amp;data);
- 
-res = gtk_print_operation_run (print, 
-                               GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG, 
-                               parent, 
-                               &amp;error);
- 
-if (res == GTK_PRINT_OPERATION_RESULT_ERROR)
- {
-   error_dialog = gtk_message_dialog_new (GTK_WINDOW (parent),
-  			                     GTK_DIALOG_DESTROY_WITH_PARENT,
-					     GTK_MESSAGE_ERROR,
-					     GTK_BUTTONS_CLOSE,
-					     "Error printing file:\n%s",
-					     error-&gt;message);
-   g_signal_connect (error_dialog, "response", 
-                     G_CALLBACK (gtk_widget_destroy), NULL);
-   gtk_widget_show (error_dialog);
-   g_error_free (error);
- }
-else if (res == GTK_PRINT_OPERATION_RESULT_APPLY)
- {
-   if (settings != NULL)
-g_object_unref (settings);
-   settings = g_object_ref (gtk_print_operation_get_print_settings (print));
- }
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">settings </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span>
+<span class="normal">  </span><span class="function"><a href="gtk3-High-level-Printing-API.html#gtk-print-operation-set-print-settings">gtk_print_operation_set_print_settings</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">print</span><span class="symbol">,</span><span class="normal"> settings</span><span class="symbol">);</span>
+<span class="normal">  </span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">page_setup </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span>
+<span class="normal">  </span><span class="function"><a href="gtk3-High-level-Printing-API.html#gtk-print-operation-set-default-page-setup">gtk_print_operation_set_default_page_setup</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">print</span><span class="symbol">,</span><span class="normal"> page_setup</span><span class="symbol">);</span>
+<span class="normal">  </span>
+<span class="function">g_signal_connect</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">print</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"begin-print"</span><span class="symbol">,</span><span class="normal"> </span>
+<span class="normal">                  </span><span class="function">G_CALLBACK</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">begin_print</span><span class="symbol">),</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">data</span><span class="symbol">);</span>
+<span class="function">g_signal_connect</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">print</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"draw-page"</span><span class="symbol">,</span><span class="normal"> </span>
+<span class="normal">                  </span><span class="function">G_CALLBACK</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">draw_page</span><span class="symbol">),</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">data</span><span class="symbol">);</span>
+<span class="normal"> </span>
+<span class="normal">res </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="gtk3-High-level-Printing-API.html#gtk-print-operation-run">gtk_print_operation_run</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">print</span><span class="symbol">,</span><span class="normal"> </span>
+<span class="normal">                               GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG</span><span class="symbol">,</span><span class="normal"> </span>
+<span class="normal">                               parent</span><span class="symbol">,</span><span class="normal"> </span>
+<span class="normal">                               </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal"> </span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">res </span><span class="symbol">==</span><span class="normal"> <a href="gtk3-High-level-Printing-API.html#GTK-PRINT-OPERATION-RESULT-ERROR:CAPS">GTK_PRINT_OPERATION_RESULT_ERROR</a></span><span class="symbol">)</span>
+<span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">   error_dialog </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkMessageDialog.html#gtk-message-dialog-new">gtk_message_dialog_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_WINDOW</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">parent</span><span class="symbol">),</span>
+<span class="normal">                                 <a href="GtkDialog.html#GTK-DIALOG-DESTROY-WITH-PARENT:CAPS">GTK_DIALOG_DESTROY_WITH_PARENT</a></span><span class="symbol">,</span>
+<span class="normal">                         <a href="GtkMessageDialog.html#GTK-MESSAGE-ERROR:CAPS">GTK_MESSAGE_ERROR</a></span><span class="symbol">,</span>
+<span class="normal">                         <a href="GtkMessageDialog.html#GTK-BUTTONS-CLOSE:CAPS">GTK_BUTTONS_CLOSE</a></span><span class="symbol">,</span>
+<span class="normal">                         </span><span class="string">"Error printing file:</span><span class="specialchar">\n</span><span class="string">%s"</span><span class="symbol">,</span>
+<span class="normal">                         error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">   </span><span class="function">g_signal_connect</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error_dialog</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"response"</span><span class="symbol">,</span><span class="normal"> </span>
+<span class="normal">                     </span><span class="function">G_CALLBACK</span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="GtkWidget.html#gtk-widget-destroy">gtk_widget_destroy</a></span><span class="symbol">),</span><span class="normal"> NULL</span><span class="symbol">);</span>
+<span class="normal">   </span><span class="function"><a href="GtkWidget.html#gtk-widget-show">gtk_widget_show</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error_dialog</span><span class="symbol">);</span>
+<span class="normal">   </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal"> </span><span class="cbracket">}</span>
+<span class="keyword">else</span><span class="normal"> </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">res </span><span class="symbol">==</span><span class="normal"> <a href="gtk3-High-level-Printing-API.html#GTK-PRINT-OPERATION-RESULT-APPLY:CAPS">GTK_PRINT_OPERATION_RESULT_APPLY</a></span><span class="symbol">)</span>
+<span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">   </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">settings </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span>
+<span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">settings</span><span class="symbol">);</span>
+<span class="normal">   settings </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_object_ref</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="gtk3-High-level-Printing-API.html#gtk-print-operation-get-print-settings">gtk_print_operation_get_print_settings</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">print</span><span class="symbol">));</span>
+<span class="normal"> </span><span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>Note that <a class="link" href="gtk3-High-level-Printing-API.html#gtk-print-operation-run" title="gtk_print_operation_run ()"><code class="function">gtk_print_operation_run()</code></a> can only be called once on a
 given <a class="link" href="gtk3-High-level-Printing-API.html#GtkPrintOperation"><span class="type">GtkPrintOperation</span></a>.</p>
@@ -2755,46 +2832,91 @@ must render the <em class="parameter"><code>page_nr</code></em>
 's page onto the cairo context obtained
 from <em class="parameter"><code>context</code></em>
  using <a class="link" href="GtkPrintContext.html#gtk-print-context-get-cairo-context" title="gtk_print_context_get_cairo_context ()"><code class="function">gtk_print_context_get_cairo_context()</code></a>.</p>
-<div class="informalexample"><pre class="programlisting">
-static void
-draw_page (GtkPrintOperation *operation,
-           GtkPrintContext   *context,
-           gint               page_nr,
-           gpointer           user_data)
-{
-  cairo_t *cr;
-  PangoLayout *layout;
-  gdouble width, text_height;
-  gint layout_height;
-  PangoFontDescription *desc;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">draw_page</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkPrintOperation</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">operation</span><span class="symbol">,</span>
+<span class="normal">           </span><span class="usertype">GtkPrintContext</span><span class="normal">   </span><span class="symbol">*</span><span class="normal">context</span><span class="symbol">,</span>
+<span class="normal">           </span><span class="usertype">gint</span><span class="normal">               page_nr</span><span class="symbol">,</span>
+<span class="normal">           </span><span class="usertype">gpointer</span><span class="normal">           user_data</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">cairo_t</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">cr</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="usertype">PangoLayout</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">layout</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="usertype">gdouble</span><span class="normal"> width</span><span class="symbol">,</span><span class="normal"> text_height</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="usertype">gint</span><span class="normal"> layout_height</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="usertype">PangoFontDescription</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">desc</span><span class="symbol">;</span>
 
-  cr = gtk_print_context_get_cairo_context (context);
-  width = gtk_print_context_get_width (context);
+<span class="normal">  cr </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkPrintContext.html#gtk-print-context-get-cairo-context">gtk_print_context_get_cairo_context</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">);</span>
+<span class="normal">  width </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkPrintContext.html#gtk-print-context-get-width">gtk_print_context_get_width</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">);</span>
 
-  cairo_rectangle (cr, 0, 0, width, HEADER_HEIGHT);
+<span class="normal">  </span><span class="function">cairo_rectangle</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> width</span><span class="symbol">,</span><span class="normal"> HEADER_HEIGHT</span><span class="symbol">);</span>
 
-  cairo_set_source_rgb (cr, 0.8, 0.8, 0.8);
-  cairo_fill (cr);
+<span class="normal">  </span><span class="function">cairo_set_source_rgb</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.8</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.8</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.8</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function">cairo_fill</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span>
 
-  layout = gtk_print_context_create_pango_layout (context);
+<span class="normal">  layout </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkPrintContext.html#gtk-print-context-create-pango-layout">gtk_print_context_create_pango_layout</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">);</span>
 
-  desc = pango_font_description_from_string ("sans 14");
-  pango_layout_set_font_description (layout, desc);
-  pango_font_description_free (desc);
+<span class="normal">  desc </span><span class="symbol">=</span><span class="normal"> </span><span class="function">pango_font_description_from_string</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"sans 14"</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function">pango_layout_set_font_description</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">layout</span><span class="symbol">,</span><span class="normal"> desc</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function">pango_font_description_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">desc</span><span class="symbol">);</span>
 
-  pango_layout_set_text (layout, "some text", -1);
-  pango_layout_set_width (layout, width * PANGO_SCALE);
-  pango_layout_set_alignment (layout, PANGO_ALIGN_CENTER);
+<span class="normal">  </span><span class="function">pango_layout_set_text</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">layout</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"some text"</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">-</span><span class="number">1</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function">pango_layout_set_width</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">layout</span><span class="symbol">,</span><span class="normal"> width </span><span class="symbol">*</span><span class="normal"> PANGO_SCALE</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function">pango_layout_set_alignment</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">layout</span><span class="symbol">,</span><span class="normal"> PANGO_ALIGN_CENTER</span><span class="symbol">);</span>
 
-  pango_layout_get_size (layout, NULL, &amp;layout_height);
-  text_height = (gdouble)layout_height / PANGO_SCALE;
+<span class="normal">  </span><span class="function">pango_layout_get_size</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">layout</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">layout_height</span><span class="symbol">);</span>
+<span class="normal">  text_height </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gdouble</span><span class="symbol">)</span><span class="normal">layout_height </span><span class="symbol">/</span><span class="normal"> PANGO_SCALE</span><span class="symbol">;</span>
 
-  cairo_move_to (cr, width / 2,  (HEADER_HEIGHT - text_height) / 2);
-  pango_cairo_show_layout (cr, layout);
+<span class="normal">  </span><span class="function">cairo_move_to</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> width </span><span class="symbol">/</span><span class="normal"> </span><span class="number">2</span><span class="symbol">,</span><span class="normal">  </span><span class="symbol">(</span><span class="normal">HEADER_HEIGHT </span><span class="symbol">-</span><span class="normal"> text_height</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">/</span><span class="normal"> </span><span class="number">2</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function">pango_cairo_show_layout</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> layout</span><span class="symbol">);</span>
 
-  g_object_unref (layout);
-}
-</pre></div>
+<span class="normal">  </span><span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">layout</span><span class="symbol">);</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>Use <a class="link" href="gtk3-High-level-Printing-API.html#gtk-print-operation-set-use-full-page" title="gtk_print_operation_set_use_full_page ()"><code class="function">gtk_print_operation_set_use_full_page()</code></a> and
 
@@ -3237,6 +3359,6 @@ before the first page is rendered.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

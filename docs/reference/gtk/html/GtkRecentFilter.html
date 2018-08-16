@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkRecentFilter: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="RecentDocuments.html" title="Recently Used Documents">
 <link rel="prev" href="GtkRecentChooserWidget.html" title="GtkRecentChooserWidget">
 <link rel="next" href="ApplicationChoosing.html" title="Choosing from installed applications">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -214,23 +214,45 @@ a &lt;mime-type&gt;, &lt;pattern&gt; or &lt;application&gt; has the same effect 
 calling <a class="link" href="GtkRecentFilter.html#gtk-recent-filter-add-mime-type" title="gtk_recent_filter_add_mime_type ()"><code class="function">gtk_recent_filter_add_mime_type()</code></a>,
 <a class="link" href="GtkRecentFilter.html#gtk-recent-filter-add-pattern" title="gtk_recent_filter_add_pattern ()"><code class="function">gtk_recent_filter_add_pattern()</code></a> or <a class="link" href="GtkRecentFilter.html#gtk-recent-filter-add-application" title="gtk_recent_filter_add_application ()"><code class="function">gtk_recent_filter_add_application()</code></a>.</p>
 <p>An example of a UI definition fragment specifying GtkRecentFilter rules:</p>
-<div class="informalexample"><pre class="programlisting">
-&lt;object class="GtkRecentFilter"&gt;
-  &lt;mime-types&gt;
-    &lt;mime-type&gt;text/plain&lt;/mime-type&gt;
-    &lt;mime-type&gt;image/png&lt;/mime-type&gt;
-  &lt;/mime-types&gt;
-  &lt;patterns&gt;
-    &lt;pattern&gt;*.txt&lt;/pattern&gt;
-    &lt;pattern&gt;*.png&lt;/pattern&gt;
-  &lt;/patterns&gt;
-  &lt;applications&gt;
-    &lt;application&gt;gimp&lt;/application&gt;
-    &lt;application&gt;gedit&lt;/application&gt;
-    &lt;application&gt;glade&lt;/application&gt;
-  &lt;/applications&gt;
-&lt;/object&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkRecentFilter"</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">mime</span><span class="symbol">-</span><span class="normal">types</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">mime</span><span class="symbol">-</span><span class="normal">type</span><span class="symbol">&gt;</span><span class="normal">text</span><span class="symbol">/</span><span class="normal">plain</span><span class="symbol">&lt;/</span><span class="normal">mime</span><span class="symbol">-</span><span class="normal">type</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">mime</span><span class="symbol">-</span><span class="normal">type</span><span class="symbol">&gt;</span><span class="normal">image</span><span class="symbol">/</span><span class="normal">png</span><span class="symbol">&lt;/</span><span class="normal">mime</span><span class="symbol">-</span><span class="normal">type</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">mime</span><span class="symbol">-</span><span class="normal">types</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">patterns</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">pattern</span><span class="symbol">&gt;*.</span><span class="normal">txt</span><span class="symbol">&lt;/</span><span class="normal">pattern</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">pattern</span><span class="symbol">&gt;*.</span><span class="normal">png</span><span class="symbol">&lt;/</span><span class="normal">pattern</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">patterns</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">applications</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">application</span><span class="symbol">&gt;</span><span class="normal">gimp</span><span class="symbol">&lt;/</span><span class="normal">application</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">application</span><span class="symbol">&gt;</span><span class="normal">gedit</span><span class="symbol">&lt;/</span><span class="normal">application</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">application</span><span class="symbol">&gt;</span><span class="normal">glade</span><span class="symbol">&lt;/</span><span class="normal">application</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">applications</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 </div>
 </div>
@@ -283,10 +305,19 @@ particularly useful until you add rules with
 <a class="link" href="GtkRecentFilter.html#gtk-recent-filter-add-pattern" title="gtk_recent_filter_add_pattern ()"><code class="function">gtk_recent_filter_add_pattern()</code></a>, <a class="link" href="GtkRecentFilter.html#gtk-recent-filter-add-mime-type" title="gtk_recent_filter_add_mime_type ()"><code class="function">gtk_recent_filter_add_mime_type()</code></a>,
 <a class="link" href="GtkRecentFilter.html#gtk-recent-filter-add-application" title="gtk_recent_filter_add_application ()"><code class="function">gtk_recent_filter_add_application()</code></a>, <a class="link" href="GtkRecentFilter.html#gtk-recent-filter-add-age" title="gtk_recent_filter_add_age ()"><code class="function">gtk_recent_filter_add_age()</code></a>.
 To create a filter that accepts any recently used resource, use:</p>
-<div class="informalexample"><pre class="programlisting">
-GtkRecentFilter *filter = gtk_recent_filter_new ();
-gtk_recent_filter_add_pattern (filter, "*");
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkRecentFilter</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">filter </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkRecentFilter.html#gtk-recent-filter-new">gtk_recent_filter_new</a></span><span class="normal"> </span><span class="symbol">();</span>
+<span class="function"><a href="GtkRecentFilter.html#gtk-recent-filter-add-pattern">gtk_recent_filter_add_pattern</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">filter</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"*"</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <div class="refsect3">
 <a name="gtk-recent-filter-new.returns"></a><h4>Returns</h4>
@@ -819,6 +850,6 @@ are filled or need to be filled.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Key Values: GDK 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GDK 3 Reference Manual">
 <link rel="up" href="reference.html" title="API Reference">
 <link rel="prev" href="gdk3-Event-Structures.html" title="Event Structures">
 <link rel="next" href="gdk3-Selections.html" title="Selections">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -471,28 +471,54 @@ keyval, so this function isn’t as useful as you might think.</p>
 when comparing this key press to a hot key. For instance, on a US keyboard,
 the <code class="literal">plus</code> symbol is shifted, so when comparing a key press to a
 <code class="literal">&amp;lt;Control&gt;plus</code> accelerator <code class="literal">&amp;lt;Shift&gt;</code> should be masked out.</p>
-<div class="informalexample"><pre class="programlisting">
-// We want to ignore irrelevant modifiers like ScrollLock
-#define ALL_ACCELS_MASK (GDK_CONTROL_MASK | GDK_SHIFT_MASK | GDK_MOD1_MASK)
-gdk_keymap_translate_keyboard_state (keymap, event-&gt;hardware_keycode,
-                                     event-&gt;state, event-&gt;group,
-                                     &amp;keyval, NULL, NULL, &amp;consumed);
-if (keyval == GDK_PLUS &amp;&amp;
-    (event-&gt;state &amp; ~consumed &amp; ALL_ACCELS_MASK) == GDK_CONTROL_MASK)
-  // Control was pressed
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="comment">// We want to ignore irrelevant modifiers like ScrollLock</span>
+<span class="preproc">#define</span><span class="normal"> </span><span class="function">ALL_ACCELS_MASK</span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="gdk3-Windows.html#GDK-CONTROL-MASK:CAPS">GDK_CONTROL_MASK</a> </span><span class="symbol">|</span><span class="normal"> <a href="gdk3-Windows.html#GDK-SHIFT-MASK:CAPS">GDK_SHIFT_MASK</a> </span><span class="symbol">|</span><span class="normal"> <a href="gdk3-Windows.html#GDK-MOD1-MASK:CAPS">GDK_MOD1_MASK</a></span><span class="symbol">)</span>
+<span class="function"><a href="gdk3-Keyboard-Handling.html#gdk-keymap-translate-keyboard-state">gdk_keymap_translate_keyboard_state</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">keymap</span><span class="symbol">,</span><span class="normal"> event</span><span class="symbol">-&gt;</span><span class="normal">hardware_keycode</span><span class="symbol">,</span>
+<span class="normal">                                     event</span><span class="symbol">-&gt;</span><span class="normal">state</span><span class="symbol">,</span><span class="normal"> event</span><span class="symbol">-&gt;</span><span class="normal">group</span><span class="symbol">,</span>
+<span class="normal">                                     </span><span class="symbol">&amp;</span><span class="normal">keyval</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">consumed</span><span class="symbol">);</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">keyval </span><span class="symbol">==</span><span class="normal"> <a href="gdk3-Cursors.html#GDK-PLUS:CAPS">GDK_PLUS</a> </span><span class="symbol">&amp;&amp;</span>
+<span class="normal">    </span><span class="symbol">(</span><span class="normal">event</span><span class="symbol">-&gt;</span><span class="normal">state </span><span class="symbol">&amp;</span><span class="normal"> </span><span class="symbol">~</span><span class="normal">consumed </span><span class="symbol">&amp;</span><span class="normal"> ALL_ACCELS_MASK</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">==</span><span class="normal"> <a href="gdk3-Windows.html#GDK-CONTROL-MASK:CAPS">GDK_CONTROL_MASK</a></span><span class="symbol">)</span>
+<span class="normal">  </span><span class="comment">// Control was pressed</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>An older interpretation <em class="parameter"><code>consumed_modifiers</code></em>
  was that it contained
 all modifiers that might affect the translation of the key;
 this allowed accelerators to be stored with irrelevant consumed
 modifiers, by doing:</p>
-<div class="informalexample"><pre class="programlisting">
-// XXX Don’t do this XXX
-if (keyval == accel_keyval &amp;&amp;
-    (event-&gt;state &amp; ~consumed &amp; ALL_ACCELS_MASK) == (accel_mods &amp; ~consumed))
-  // Accelerator was pressed
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="comment">// XXX Don’t do this XXX</span>
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">keyval </span><span class="symbol">==</span><span class="normal"> accel_keyval </span><span class="symbol">&amp;&amp;</span>
+<span class="normal">    </span><span class="symbol">(</span><span class="normal">event</span><span class="symbol">-&gt;</span><span class="normal">state </span><span class="symbol">&amp;</span><span class="normal"> </span><span class="symbol">~</span><span class="normal">consumed </span><span class="symbol">&amp;</span><span class="normal"> ALL_ACCELS_MASK</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">==</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">accel_mods </span><span class="symbol">&amp;</span><span class="normal"> </span><span class="symbol">~</span><span class="normal">consumed</span><span class="symbol">))</span>
+<span class="normal">  </span><span class="comment">// Accelerator was pressed</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>However, this did not work if multi-modifier combinations were
 used in the keymap, since, for instance, <code class="literal">&amp;lt;Control&gt;</code> would be
@@ -1420,6 +1446,6 @@ See <a class="link" href="gdk3-Keyboard-Handling.html#gdk-keymap-get-caps-lock-s
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

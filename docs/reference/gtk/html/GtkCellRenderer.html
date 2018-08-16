@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkCellRenderer: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="TreeWidgetObjects.html" title="Tree, List and Icon Grid Widgets">
 <link rel="prev" href="GtkCellAreaContext.html" title="GtkCellAreaContext">
 <link rel="next" href="GtkCellEditable.html" title="GtkCellEditable">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -262,13 +262,13 @@
 </tr>
 <tr>
 <td class="property_type">
-<a href="../html/gdk3-Colors.html#GdkColor"><span class="type">GdkColor</span></a> *</td>
+<span class="type">GdkColor</span> *</td>
 <td class="property_name"><a class="link" href="GtkCellRenderer.html#GtkCellRenderer--cell-background-gdk" title="The “cell-background-gdk” property">cell-background-gdk</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
 <td class="property_type">
-<a href="../html/gdk3-RGBA-Colors.html#GdkRGBA"><span class="type">GdkRGBA</span></a> *</td>
+<span class="type">GdkRGBA</span> *</td>
 <td class="property_name"><a class="link" href="GtkCellRenderer.html#GtkCellRenderer--cell-background-rgba" title="The “cell-background-rgba” property">cell-background-rgba</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -486,8 +486,8 @@ The type must be a subtype of <span class="type">GtkRendererCellAccessible</span
 gtk_cell_renderer_get_aligned_area (<em class="parameter"><code><a class="link" href="GtkCellRenderer.html" title="GtkCellRenderer"><span class="type">GtkCellRenderer</span></a> *cell</code></em>,
                                     <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
                                     <em class="parameter"><code><a class="link" href="GtkCellRenderer.html#GtkCellRendererState" title="enum GtkCellRendererState"><span class="type">GtkCellRendererState</span></a> flags</code></em>,
-                                    <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *cell_area</code></em>,
-                                    <em class="parameter"><code><a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *aligned_area</code></em>);</pre>
+                                    <em class="parameter"><code>const <span class="type">GdkRectangle</span> *cell_area</code></em>,
+                                    <em class="parameter"><code><span class="type">GdkRectangle</span> *aligned_area</code></em>);</pre>
 <p>Gets the aligned area used by <em class="parameter"><code>cell</code></em>
  inside <em class="parameter"><code>cell_area</code></em>
 . Used for finding
@@ -538,7 +538,7 @@ that would acually be used to render. </p></td>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_cell_renderer_get_size (<em class="parameter"><code><a class="link" href="GtkCellRenderer.html" title="GtkCellRenderer"><span class="type">GtkCellRenderer</span></a> *cell</code></em>,
                             <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
-                            <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *cell_area</code></em>,
+                            <em class="parameter"><code>const <span class="type">GdkRectangle</span> *cell_area</code></em>,
                             <em class="parameter"><code><span class="type">gint</span> *x_offset</code></em>,
                             <em class="parameter"><code><span class="type">gint</span> *y_offset</code></em>,
                             <em class="parameter"><code><span class="type">gint</span> *width</code></em>,
@@ -615,8 +615,8 @@ in <em class="parameter"><code>x_offset</code></em>
 gtk_cell_renderer_render (<em class="parameter"><code><a class="link" href="GtkCellRenderer.html" title="GtkCellRenderer"><span class="type">GtkCellRenderer</span></a> *cell</code></em>,
                           <em class="parameter"><code><span class="type">cairo_t</span> *cr</code></em>,
                           <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
-                          <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *background_area</code></em>,
-                          <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *cell_area</code></em>,
+                          <em class="parameter"><code>const <span class="type">GdkRectangle</span> *background_area</code></em>,
+                          <em class="parameter"><code>const <span class="type">GdkRectangle</span> *cell_area</code></em>,
                           <em class="parameter"><code><a class="link" href="GtkCellRenderer.html#GtkCellRendererState" title="enum GtkCellRendererState"><span class="type">GtkCellRendererState</span></a> flags</code></em>);</pre>
 <p>Invokes the virtual render function of the <a class="link" href="GtkCellRenderer.html" title="GtkCellRenderer"><span class="type">GtkCellRenderer</span></a>. The three
 passed-in rectangles are areas in <em class="parameter"><code>cr</code></em>
@@ -681,11 +681,11 @@ padding on the sides)</p></td>
 <a name="gtk-cell-renderer-activate"></a><h3>gtk_cell_renderer_activate ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_cell_renderer_activate (<em class="parameter"><code><a class="link" href="GtkCellRenderer.html" title="GtkCellRenderer"><span class="type">GtkCellRenderer</span></a> *cell</code></em>,
-                            <em class="parameter"><code><a href="../html/gdk3-Event-Structures.html#GdkEvent"><span class="type">GdkEvent</span></a> *event</code></em>,
+                            <em class="parameter"><code><span class="type">GdkEvent</span> *event</code></em>,
                             <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
                             <em class="parameter"><code>const <span class="type">gchar</span> *path</code></em>,
-                            <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *background_area</code></em>,
-                            <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *cell_area</code></em>,
+                            <em class="parameter"><code>const <span class="type">GdkRectangle</span> *background_area</code></em>,
+                            <em class="parameter"><code>const <span class="type">GdkRectangle</span> *cell_area</code></em>,
                             <em class="parameter"><code><a class="link" href="GtkCellRenderer.html#GtkCellRendererState" title="enum GtkCellRendererState"><span class="type">GtkCellRendererState</span></a> flags</code></em>);</pre>
 <p>Passes an activate event to the cell renderer for possible processing.  
 Some cell renderers may use events; for example, <a class="link" href="GtkCellRendererToggle.html" title="GtkCellRendererToggle"><span class="type">GtkCellRendererToggle</span></a> 
@@ -706,7 +706,7 @@ toggles when it gets a mouse click.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>event</p></td>
-<td class="parameter_description"><p>a <a href="../html/gdk3-Event-Structures.html#GdkEvent"><span class="type">GdkEvent</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GdkEvent</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -748,11 +748,11 @@ e.g. for <a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class
 <a name="gtk-cell-renderer-start-editing"></a><h3>gtk_cell_renderer_start_editing ()</h3>
 <pre class="programlisting"><a class="link" href="GtkCellEditable.html" title="GtkCellEditable"><span class="returnvalue">GtkCellEditable</span></a> *
 gtk_cell_renderer_start_editing (<em class="parameter"><code><a class="link" href="GtkCellRenderer.html" title="GtkCellRenderer"><span class="type">GtkCellRenderer</span></a> *cell</code></em>,
-                                 <em class="parameter"><code><a href="../html/gdk3-Event-Structures.html#GdkEvent"><span class="type">GdkEvent</span></a> *event</code></em>,
+                                 <em class="parameter"><code><span class="type">GdkEvent</span> *event</code></em>,
                                  <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
                                  <em class="parameter"><code>const <span class="type">gchar</span> *path</code></em>,
-                                 <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *background_area</code></em>,
-                                 <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *cell_area</code></em>,
+                                 <em class="parameter"><code>const <span class="type">GdkRectangle</span> *background_area</code></em>,
+                                 <em class="parameter"><code>const <span class="type">GdkRectangle</span> *cell_area</code></em>,
                                  <em class="parameter"><code><a class="link" href="GtkCellRenderer.html#GtkCellRendererState" title="enum GtkCellRendererState"><span class="type">GtkCellRendererState</span></a> flags</code></em>);</pre>
 <p>Starts editing the contents of this <em class="parameter"><code>cell</code></em>
 , through a new <a class="link" href="GtkCellEditable.html" title="GtkCellEditable"><span class="type">GtkCellEditable</span></a>
@@ -773,7 +773,7 @@ widget created by the <a class="link" href="GtkCellRenderer.html#GtkCellRenderer
 </tr>
 <tr>
 <td class="parameter_name"><p>event</p></td>
-<td class="parameter_description"><p>a <a href="../html/gdk3-Event-Structures.html#GdkEvent"><span class="type">GdkEvent</span></a>. </p></td>
+<td class="parameter_description"><p>a <span class="type">GdkEvent</span>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -1801,8 +1801,8 @@ inside <em class="parameter"><code>cell_area</code></em>
 <hr>
 <div class="refsect2">
 <a name="GtkCellRenderer--cell-background-gdk"></a><h3>The <code class="literal">“cell-background-gdk”</code> property</h3>
-<pre class="programlisting">  “cell-background-gdk”      <a href="../html/gdk3-Colors.html#GdkColor"><span class="type">GdkColor</span></a> *</pre>
-<p>Cell background as a <a href="../html/gdk3-Colors.html#GdkColor"><span class="type">GdkColor</span></a></p>
+<pre class="programlisting">  “cell-background-gdk”      <span class="type">GdkColor</span> *</pre>
+<p>Cell background as a <span class="type">GdkColor</span></p>
 <div class="warning">
 <p><code class="literal">GtkCellRenderer:cell-background-gdk</code> has been deprecated since version 3.4 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="GtkCellRenderer.html#GtkCellRenderer--cell-background-rgba" title="The “cell-background-rgba” property"><span class="type">“cell-background-rgba”</span></a> instead.</p>
@@ -1812,8 +1812,8 @@ inside <em class="parameter"><code>cell_area</code></em>
 <hr>
 <div class="refsect2">
 <a name="GtkCellRenderer--cell-background-rgba"></a><h3>The <code class="literal">“cell-background-rgba”</code> property</h3>
-<pre class="programlisting">  “cell-background-rgba”     <a href="../html/gdk3-RGBA-Colors.html#GdkRGBA"><span class="type">GdkRGBA</span></a> *</pre>
-<p>Cell background as a <a href="../html/gdk3-RGBA-Colors.html#GdkRGBA"><span class="type">GdkRGBA</span></a></p>
+<pre class="programlisting">  “cell-background-rgba”     <span class="type">GdkRGBA</span> *</pre>
+<p>Cell background as a <span class="type">GdkRGBA</span></p>
 <p>Flags: Read / Write</p>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
 </div>
@@ -1984,24 +1984,47 @@ continue to use the same kind of widget for editing in future
 releases, therefore you should check the type of <em class="parameter"><code>editable</code></em>
 
 before doing any specific setup, as in the following example:</p>
-<div class="informalexample"><pre class="programlisting">
-static void
-text_editing_started (GtkCellRenderer *cell,
-                      GtkCellEditable *editable,
-                      const gchar     *path,
-                      gpointer         data)
-{
-  if (GTK_IS_ENTRY (editable))
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">text_editing_started</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkCellRenderer</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">cell</span><span class="symbol">,</span>
+<span class="normal">                      </span><span class="usertype">GtkCellEditable</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">editable</span><span class="symbol">,</span>
+<span class="normal">                      </span><span class="keyword">const</span><span class="normal"> </span><span class="usertype">gchar</span><span class="normal">     </span><span class="symbol">*</span><span class="normal">path</span><span class="symbol">,</span>
+<span class="normal">                      </span><span class="usertype">gpointer</span><span class="normal">         data</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_IS_ENTRY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">editable</span><span class="symbol">))</span>
 
-    {
-      GtkEntry *entry = GTK_ENTRY (editable);
+<span class="normal">    </span><span class="cbracket">{</span>
+<span class="normal">      </span><span class="usertype">GtkEntry</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">entry </span><span class="symbol">=</span><span class="normal"> </span><span class="function">GTK_ENTRY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">editable</span><span class="symbol">);</span>
 
-      // ... create a GtkEntryCompletion
+<span class="normal">      </span><span class="comment">// ... create a GtkEntryCompletion</span>
 
-      gtk_entry_set_completion (entry, completion);
-    }
-}
-</pre></div>
+<span class="normal">      </span><span class="function"><a href="GtkEntry.html#gtk-entry-set-completion">gtk_entry_set_completion</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">entry</span><span class="symbol">,</span><span class="normal"> completion</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <div class="refsect3">
 <a name="GtkCellRenderer-editing-started.parameters"></a><h4>Parameters</h4>
@@ -2045,6 +2068,6 @@ text_editing_started (GtkCellRenderer *cell,
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

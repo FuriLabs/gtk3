@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Migrating from GTK+ 2.x to GTK+ 3: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="migrating.html" title="Part V. Migrating from Previous Versions of GTK+">
 <link rel="prev" href="migrating.html" title="Part V. Migrating from Previous Versions of GTK+">
 <link rel="next" href="ch26s02.html" title="Changes that need to be done at the time of the switch">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -192,16 +192,31 @@
     this means that you are accessing the public structure of
     GtkToggleButton directly, perhaps with some code like:
     </p>
-<div class="informalexample"><pre class="programlisting">
-      static void
-      on_toggled (GtkToggleButton *button)
-      {
-        if (button-&gt;active)
-          frob_active ();
-        else
-          frob_inactive ();
-      }
-    </pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">on_toggled</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkToggleButton</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">button</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">button</span><span class="symbol">-&gt;</span><span class="normal">active</span><span class="symbol">)</span>
+<span class="normal">    </span><span class="function">frob_active</span><span class="normal"> </span><span class="symbol">();</span>
+<span class="normal">  </span><span class="keyword">else</span>
+<span class="normal">    </span><span class="function">frob_inactive</span><span class="normal"> </span><span class="symbol">();</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
   </p>
 <p>
@@ -210,16 +225,31 @@
     accesses the "active" field of a "GtkToggleButton", then the accessor
     method becomes "gtk_toggle_button_get_active":
     </p>
-<div class="informalexample"><pre class="programlisting">
-      static void
-      on_toggled (GtkToggleButton *button)
-      {
-        if (gtk_toggle_button_get_active (button))
-          frob_active ();
-        else
-          frob_inactive ();
-      }
-    </pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">on_toggled</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkToggleButton</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">button</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GtkToggleButton.html#gtk-toggle-button-get-active">gtk_toggle_button_get_active</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">button</span><span class="symbol">))</span>
+<span class="normal">    </span><span class="function">frob_active</span><span class="normal"> </span><span class="symbol">();</span>
+<span class="normal">  </span><span class="keyword">else</span>
+<span class="normal">    </span><span class="function">frob_inactive</span><span class="normal"> </span><span class="symbol">();</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
   </p>
 <p>
@@ -256,24 +286,47 @@
 <li class="listitem">If you are launching a regular, installed application that
         has a desktop file, it is best to use GIOs <span class="type">GAppInfo</span> with a suitable
         launch context.
-        <div class="informalexample"><pre class="programlisting">
-        GAppInfo *info;
-        GAppLaunchContext *context;
-        GError *error = NULL;
+        <div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">GAppInfo</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">info</span><span class="symbol">;</span>
+<span class="usertype">GAppLaunchContext</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">context</span><span class="symbol">;</span>
+<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
 
-        info = (GAppInfo*) g_desktop_app_info_new ("epiphany.desktop");
-        context = (GAppLaunchContext*) gdk_display_get_app_launch_context (display);
-        g_app_info_launch (info, NULL, context, &amp;error);
+<span class="normal">info </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">GAppInfo</span><span class="symbol">*)</span><span class="normal"> </span><span class="function">g_desktop_app_info_new</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"epiphany.desktop"</span><span class="symbol">);</span>
+<span class="normal">context </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">GAppLaunchContext</span><span class="symbol">*)</span><span class="normal"> </span><span class="function">gdk_display_get_app_launch_context</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">display</span><span class="symbol">);</span>
+<span class="function">g_app_info_launch</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">info</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> context</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
-        if (error)
-          {
-            g_warning ("Failed to launch epiphany: %s", error-&gt;message);
-            g_error_free (error);
-          }
+<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">)</span>
+<span class="normal">  </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="function">g_warning</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Failed to launch epiphany: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="cbracket">}</span>
 
-        g_object_unref (info);
-        g_object_unref (context);
-        </pre></div>
+<span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">info</span><span class="symbol">);</span>
+<span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
         Remember that you have to include
         <code class="filename">gio/gdesktopappinfo.h</code>
         and use the <code class="filename">gio-unix-2.0</code> pkg-config file
@@ -284,7 +337,7 @@
         with <code class="function">g_app_info_create_from_commandline()</code>, or you can use the
         more lowlevel <code class="literal">g_spawn</code> family of functions
         (e.g. <code class="function">g_spawn_command_line_async()</code>), and pass <code class="envar">DISPLAY</code>
-        in the environment. <a href="../html/GdkScreen.html#gdk-screen-make-display-name"><code class="function">gdk_screen_make_display_name()</code></a> can be
+        in the environment. <code class="function">gdk_screen_make_display_name()</code> can be
         used to find the right value for the <code class="envar">DISPLAY</code>
         environment variable.
         </li>
@@ -319,31 +372,58 @@
 <p>
            Drawing a pixbuf onto a drawable used to be done like this:
            </p>
-<div class="informalexample"><pre class="programlisting">
-gdk_draw_pixbuf (window,
-                 gtk_widget_get_style (widget)-&gt;black_gc,
-                 pixbuf,
-                 0, 0
-                 x, y,
-                 gdk_pixbuf_get_width (pixbuf),
-                 gdk_pixbuf_get_height (pixbuf),
-                 GDK_RGB_DITHER_NORMAL,
-                 0, 0);
-           </pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="function">gdk_draw_pixbuf</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">,</span>
+<span class="normal">                 </span><span class="function"><a href="GtkWidget.html#gtk-widget-get-style">gtk_widget_get_style</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">)-&gt;</span><span class="normal">black_gc</span><span class="symbol">,</span>
+<span class="normal">                 pixbuf</span><span class="symbol">,</span>
+<span class="normal">                 </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span>
+<span class="normal">                 x</span><span class="symbol">,</span><span class="normal"> y</span><span class="symbol">,</span>
+<span class="normal">                 </span><span class="function">gdk_pixbuf_get_width</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">pixbuf</span><span class="symbol">),</span>
+<span class="normal">                 </span><span class="function">gdk_pixbuf_get_height</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">pixbuf</span><span class="symbol">),</span>
+<span class="normal">                 GDK_RGB_DITHER_NORMAL</span><span class="symbol">,</span>
+<span class="normal">                 </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
            Doing the same thing with cairo:
            </p>
-<div class="informalexample"><pre class="programlisting">
-cairo_t *cr = gdk_cairo_create (window);
-gdk_cairo_set_source_pixbuf (cr, pixbuf, x, y);
-cairo_paint (cr);
-cairo_destroy (cr);
-           </pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">cairo_t</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">cr </span><span class="symbol">=</span><span class="normal"> </span><span class="function">gdk_cairo_create</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">);</span>
+<span class="function">gdk_cairo_set_source_pixbuf</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> pixbuf</span><span class="symbol">,</span><span class="normal"> x</span><span class="symbol">,</span><span class="normal"> y</span><span class="symbol">);</span>
+<span class="function">cairo_paint</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span>
+<span class="function">cairo_destroy</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
            Note that very similar code can be used when porting code
            using GdkPixmap to <span class="type">cairo_surface_t</span> by calling
            <code class="function">cairo_set_source_surface()</code> instead of
-           <a href="../html/gdk3-Cairo-Interaction.html#gdk-cairo-set-source-pixbuf"><code class="function">gdk_cairo_set_source_pixbuf()</code></a>.
+           <code class="function">gdk_cairo_set_source_pixbuf()</code>.
          </p>
 </div>
 </div>
@@ -354,43 +434,81 @@ cairo_destroy (cr);
           Tiled pixmaps are often used for drawing backgrounds.
           Old code looked something like this:
           </p>
-<div class="informalexample"><pre class="programlisting">
-GdkGCValues gc_values;
-GdkGC *gc;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">GdkGCValues</span><span class="normal"> gc_values</span><span class="symbol">;</span>
+<span class="usertype">GdkGC</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">gc</span><span class="symbol">;</span>
 
-/* setup */
-gc = gtk_widget_get_style (widget)-&gt;black_gc;
-gdk_gc_set_tile (gc, pixmap);
-gdk_gc_set_fill (gc, GDK_TILED);
-gdk_gc_set_ts_origin (gc, x_origin, y_origin);
-/* use */
-gdk_draw_rectangle (window, gc, TRUE, 0, 0, width, height);
-/* restore */
-gdk_gc_set_tile (gc, NULL);
-gdk_gc_set_fill (gc, GDK_SOLID);
-gdk_gc_set_ts_origin (gc, 0, 0);
-          </pre></div>
+<span class="comment">/* setup */</span>
+<span class="normal">gc </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkWidget.html#gtk-widget-get-style">gtk_widget_get_style</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">)-&gt;</span><span class="normal">black_gc</span><span class="symbol">;</span>
+<span class="function">gdk_gc_set_tile</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gc</span><span class="symbol">,</span><span class="normal"> pixmap</span><span class="symbol">);</span>
+<span class="function">gdk_gc_set_fill</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gc</span><span class="symbol">,</span><span class="normal"> GDK_TILED</span><span class="symbol">);</span>
+<span class="function">gdk_gc_set_ts_origin</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gc</span><span class="symbol">,</span><span class="normal"> x_origin</span><span class="symbol">,</span><span class="normal"> y_origin</span><span class="symbol">);</span>
+<span class="comment">/* use */</span>
+<span class="function">gdk_draw_rectangle</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">,</span><span class="normal"> gc</span><span class="symbol">,</span><span class="normal"> TRUE</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> width</span><span class="symbol">,</span><span class="normal"> height</span><span class="symbol">);</span>
+<span class="comment">/* restore */</span>
+<span class="function">gdk_gc_set_tile</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gc</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
+<span class="function">gdk_gc_set_fill</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gc</span><span class="symbol">,</span><span class="normal"> GDK_SOLID</span><span class="symbol">);</span>
+<span class="function">gdk_gc_set_ts_origin</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gc</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
           The equivalent cairo code to draw a tiled surface looks
           like this:
           </p>
-<div class="informalexample"><pre class="programlisting">
-cairo_t *cr;
-cairo_surface_t *surface;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">cairo_t</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">cr</span><span class="symbol">;</span>
+<span class="usertype">cairo_surface_t</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">surface</span><span class="symbol">;</span>
 
-surface = ...
-cr = gdk_cairo_create (window);
-cairo_set_source_surface (cr, surface, x_origin, y_origin);
-cairo_pattern_set_extend (cairo_get_source (cr), CAIRO_EXTEND_REPEAT);
-cairo_rectangle (cr, 0, 0, width, height);
-cairo_fill (cr);
-cairo_destroy (cr);
-          </pre></div>
+<span class="normal">surface </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">...</span>
+<span class="normal">cr </span><span class="symbol">=</span><span class="normal"> </span><span class="function">gdk_cairo_create</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">);</span>
+<span class="function">cairo_set_source_surface</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> surface</span><span class="symbol">,</span><span class="normal"> x_origin</span><span class="symbol">,</span><span class="normal"> y_origin</span><span class="symbol">);</span>
+<span class="function">cairo_pattern_set_extend</span><span class="normal"> </span><span class="symbol">(</span><span class="function">cairo_get_source</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">),</span><span class="normal"> CAIRO_EXTEND_REPEAT</span><span class="symbol">);</span>
+<span class="function">cairo_rectangle</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> width</span><span class="symbol">,</span><span class="normal"> height</span><span class="symbol">);</span>
+<span class="function">cairo_fill</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span>
+<span class="function">cairo_destroy</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 The surface here can be either an image surface or a X surface,
 and can either be created on the spot or kept around for caching purposes.
 Another alternative is to use pixbufs instead of surfaces with
-<a href="../html/gdk3-Cairo-Interaction.html#gdk-cairo-set-source-pixbuf"><code class="function">gdk_cairo_set_source_pixbuf()</code></a> instead of <code class="function">cairo_set_source_surface()</code>.
+<code class="function">gdk_cairo_set_source_pixbuf()</code> instead of <code class="function">cairo_set_source_surface()</code>.
         </p>
 </div>
 </div>
@@ -401,44 +519,85 @@ Another alternative is to use pixbufs instead of surfaces with
           Drawing layouts clipped is often used to avoid overdraw or to
           allow drawing selections. Code would have looked like this:
           </p>
-<div class="informalexample"><pre class="programlisting">
-GdkGC *gc;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">GdkGC</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">gc</span><span class="symbol">;</span>
 
-/* setup */
-gc = gtk_widget_get_style (widget)-&gt;text_gc[state];
-gdk_gc_set_clip_rectangle (gc, &amp;area);
-/* use */
-gdk_draw_layout (drawable, gc, x, y, layout);
-/* restore */
-gdk_gc_set_clip_rectangle (gc, NULL);
-          </pre></div>
+<span class="comment">/* setup */</span>
+<span class="normal">gc </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkWidget.html#gtk-widget-get-style">gtk_widget_get_style</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">)-&gt;</span><span class="normal">text_gc</span><span class="symbol">[</span><span class="normal">state</span><span class="symbol">];</span>
+<span class="function">gdk_gc_set_clip_rectangle</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gc</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">area</span><span class="symbol">);</span>
+<span class="comment">/* use */</span>
+<span class="function">gdk_draw_layout</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">drawable</span><span class="symbol">,</span><span class="normal"> gc</span><span class="symbol">,</span><span class="normal"> x</span><span class="symbol">,</span><span class="normal"> y</span><span class="symbol">,</span><span class="normal"> layout</span><span class="symbol">);</span>
+<span class="comment">/* restore */</span>
+<span class="function">gdk_gc_set_clip_rectangle</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gc</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
           With cairo, the same effect can be achieved using:
           </p>
-<div class="informalexample"><pre class="programlisting">
-GtkStyleContext *context;
-GtkStateFlags flags;
-GdkRGBA rgba;
-cairo_t *cr;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkStyleContext</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">context</span><span class="symbol">;</span>
+<span class="usertype">GtkStateFlags</span><span class="normal"> flags</span><span class="symbol">;</span>
+<span class="usertype">GdkRGBA</span><span class="normal"> rgba</span><span class="symbol">;</span>
+<span class="usertype">cairo_t</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">cr</span><span class="symbol">;</span>
 
-cr = gdk_cairo_create (drawable);
-/* clip */
-gdk_cairo_rectangle (cr, &amp;area);
-cairo_clip (cr);
-/* set the correct source color */
-context = gtk_widget_get_style_context (widget));
-state = gtk_widget_get_state_flags (widget);
-gtk_style_context_get_color (context, state, &amp;rgba);
-gdk_cairo_set_source_rgba (cr, &amp;rgba);
-/* draw the text */
-cairo_move_to (cr, x, y);
-pango_cairo_show_layout (cr, layout);
-cairo_destroy (cr);
-          </pre></div>
+<span class="normal">cr </span><span class="symbol">=</span><span class="normal"> </span><span class="function">gdk_cairo_create</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">drawable</span><span class="symbol">);</span>
+<span class="comment">/* clip */</span>
+<span class="function">gdk_cairo_rectangle</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">area</span><span class="symbol">);</span>
+<span class="function">cairo_clip</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span>
+<span class="comment">/* set the correct source color */</span>
+<span class="normal">context </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkWidget.html#gtk-widget-get-style-context">gtk_widget_get_style_context</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">));</span>
+<span class="normal">state </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkWidget.html#gtk-widget-get-state-flags">gtk_widget_get_state_flags</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">);</span>
+<span class="function"><a href="GtkStyleContext.html#gtk-style-context-get-color">gtk_style_context_get_color</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">,</span><span class="normal"> state</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">rgba</span><span class="symbol">);</span>
+<span class="function">gdk_cairo_set_source_rgba</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">rgba</span><span class="symbol">);</span>
+<span class="comment">/* draw the text */</span>
+<span class="function">cairo_move_to</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> x</span><span class="symbol">,</span><span class="normal"> y</span><span class="symbol">);</span>
+<span class="function">pango_cairo_show_layout</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> layout</span><span class="symbol">);</span>
+<span class="function">cairo_destroy</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
           Clipping using <code class="function">cairo_clip()</code> is of course not restricted to text
           rendering and can be used everywhere where GC clips were used.
-          And using <a href="../html/gdk3-Cairo-Interaction.html#gdk-cairo-set-source-color"><code class="function">gdk_cairo_set_source_color()</code></a> with style colors should
+          And using <code class="function">gdk_cairo_set_source_color()</code> with style colors should
           be used in all the places where a style’s GC was used to achieve
           a particular color.
         </p>
@@ -453,28 +612,55 @@ cairo_destroy (cr);
           <code class="function">cairo_mask()</code> to achieve this effect. To get a checkerbox mask,
           you can use code like this:
           </p>
-<div class="informalexample"><pre class="programlisting">
-static cairo_pattern_t *
-gtk_color_button_get_checkered (void)
-{
-    /* need to respect pixman's stride being a multiple of 4 */
-    static unsigned char data[8] = { 0xFF, 0x00, 0x00, 0x00,
-                                     0x00, 0xFF, 0x00, 0x00 };
-    cairo_surface_t *surface;
-    cairo_pattern_t *pattern;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> cairo_pattern_t </span><span class="symbol">*</span>
+<span class="function">gtk_color_button_get_checkered</span><span class="normal"> </span><span class="symbol">(</span><span class="type">void</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">    </span><span class="comment">/* need to respect pixman's stride being a multiple of 4 */</span>
+<span class="normal">    </span><span class="keyword">static</span><span class="normal"> </span><span class="type">unsigned</span><span class="normal"> </span><span class="type">char</span><span class="normal"> data</span><span class="symbol">[</span><span class="number">8</span><span class="symbol">]</span><span class="normal"> </span><span class="symbol">=</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal"> </span><span class="number">0xFF</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0x00</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0x00</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0x00</span><span class="symbol">,</span>
+<span class="normal">                                     </span><span class="number">0x00</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0xFF</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0x00</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0x00</span><span class="normal"> </span><span class="cbracket">}</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="usertype">cairo_surface_t</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">surface</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="usertype">cairo_pattern_t</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">pattern</span><span class="symbol">;</span>
 
-    surface = cairo_image_surface_create_for_data (data,
-                                                   CAIRO_FORMAT_A8,
-                                                   2, 2,
-                                                   4);
-    pattern = cairo_pattern_create_for_surface (surface);
-    cairo_surface_destroy (surface);
-    cairo_pattern_set_extend (pattern, CAIRO_EXTEND_REPEAT);
-    cairo_pattern_set_filter (pattern, CAIRO_FILTER_NEAREST);
+<span class="normal">    surface </span><span class="symbol">=</span><span class="normal"> </span><span class="function">cairo_image_surface_create_for_data</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">data</span><span class="symbol">,</span>
+<span class="normal">                                                   CAIRO_FORMAT_A8</span><span class="symbol">,</span>
+<span class="normal">                                                   </span><span class="number">2</span><span class="symbol">,</span><span class="normal"> </span><span class="number">2</span><span class="symbol">,</span>
+<span class="normal">                                                   </span><span class="number">4</span><span class="symbol">);</span>
+<span class="normal">    pattern </span><span class="symbol">=</span><span class="normal"> </span><span class="function">cairo_pattern_create_for_surface</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">surface</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function">cairo_surface_destroy</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">surface</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function">cairo_pattern_set_extend</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">pattern</span><span class="symbol">,</span><span class="normal"> CAIRO_EXTEND_REPEAT</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function">cairo_pattern_set_filter</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">pattern</span><span class="symbol">,</span><span class="normal"> CAIRO_FILTER_NEAREST</span><span class="symbol">);</span>
 
-    return pattern;
-}
-          </pre></div>
+<span class="normal">    </span><span class="keyword">return</span><span class="normal"> pattern</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
           Note that stippling looks very outdated in UIs, and is rarely
           used in modern applications. All properties that made use of
@@ -488,37 +674,70 @@ gtk_color_button_get_checkered (void)
           <code class="function">cairo_push_group()</code> to get a different intermediate target that
           you can copy to. So you can replace this code:
           </p>
-<div class="informalexample"><pre class="programlisting">
-gdk_draw_drawable (pixmap,
-                   gc,
-                   pixmap,
-                   area.x + dx, area.y + dy,
-                   area.x, area.y,
-                   area.width, area.height);
-          </pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="function">gdk_draw_drawable</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">pixmap</span><span class="symbol">,</span>
+<span class="normal">                   gc</span><span class="symbol">,</span>
+<span class="normal">                   pixmap</span><span class="symbol">,</span>
+<span class="normal">                   area</span><span class="symbol">.</span><span class="normal">x </span><span class="symbol">+</span><span class="normal"> dx</span><span class="symbol">,</span><span class="normal"> area</span><span class="symbol">.</span><span class="normal">y </span><span class="symbol">+</span><span class="normal"> dy</span><span class="symbol">,</span>
+<span class="normal">                   area</span><span class="symbol">.</span><span class="normal">x</span><span class="symbol">,</span><span class="normal"> area</span><span class="symbol">.</span><span class="normal">y</span><span class="symbol">,</span>
+<span class="normal">                   area</span><span class="symbol">.</span><span class="normal">width</span><span class="symbol">,</span><span class="normal"> area</span><span class="symbol">.</span><span class="normal">height</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
           By using this code:
           </p>
-<div class="informalexample"><pre class="programlisting">
-cairo_t *cr = cairo_create (surface);
-/* clipping restricts the intermediate surface's size, so it's a good idea
- * to use it. */
-gdk_cairo_rectangle (cr, &amp;area);
-cairo_clip (cr);
-/* Now push a group to change the target */
-cairo_push_group (cr);
-cairo_set_source_surface (cr, surface, dx, dy);
-cairo_paint (cr);
-/* Now copy the intermediate target back */
-cairo_pop_group_to_source (cr);
-cairo_paint (cr);
-cairo_destroy (cr);
-          </pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">cairo_t</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">cr </span><span class="symbol">=</span><span class="normal"> </span><span class="function">cairo_create</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">surface</span><span class="symbol">);</span>
+<span class="comment">/* clipping restricts the intermediate surface's size, so it's a good idea</span>
+<span class="comment"> * to use it. */</span>
+<span class="function">gdk_cairo_rectangle</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">area</span><span class="symbol">);</span>
+<span class="function">cairo_clip</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span>
+<span class="comment">/* Now push a group to change the target */</span>
+<span class="function">cairo_push_group</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span>
+<span class="function">cairo_set_source_surface</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> surface</span><span class="symbol">,</span><span class="normal"> dx</span><span class="symbol">,</span><span class="normal"> dy</span><span class="symbol">);</span>
+<span class="function">cairo_paint</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span>
+<span class="comment">/* Now copy the intermediate target back */</span>
+<span class="function">cairo_pop_group_to_source</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span>
+<span class="function">cairo_paint</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span>
+<span class="function">cairo_destroy</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 The surface here can be either an image surface or a X surface,
 and can either be created on the spot or kept around for caching purposes.
 Another alternative is to use pixbufs instead of surfaces with
-<a href="../html/gdk3-Cairo-Interaction.html#gdk-cairo-set-source-pixbuf"><code class="function">gdk_cairo_set_source_pixbuf()</code></a> instead of <code class="function">cairo_set_source_surface()</code>.
+<code class="function">gdk_cairo_set_source_pixbuf()</code> instead of <code class="function">cairo_set_source_surface()</code>.
         
           The cairo developers plan to add self-copies in the future to allow
           exactly this effect, so you might want to keep up on cairo
@@ -540,6 +759,6 @@ Another alternative is to use pixbufs instead of surfaces with
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

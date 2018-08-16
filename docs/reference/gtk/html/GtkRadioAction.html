@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkRadioAction: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="DeprecatedObjects.html" title="Deprecated">
 <link rel="prev" href="GtkToggleAction.html" title="GtkToggleAction">
 <link rel="next" href="GtkRecentAction.html" title="GtkRecentAction">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -245,18 +245,35 @@ gtk_radio_action_get_group (<em class="parameter"><code><a class="link" href="Gt
 Note that the returned list is only valid until the next change
 to the group. </p>
 <p>A common way to set up a group of radio group is the following:</p>
-<div class="informalexample"><pre class="programlisting">
-  GSList *group = NULL;
-  GtkRadioAction *action;
- 
-  while ( ...more actions to add... /)
-    {
-       action = gtk_radio_action_new (...);
-       
-       gtk_radio_action_set_group (action, group);
-       group = gtk_radio_action_get_group (action);
-    }
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">GSList</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">group </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
+<span class="usertype">GtkRadioAction</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">action</span><span class="symbol">;</span>
+<span class="normal"> </span>
+<span class="keyword">while</span><span class="normal"> </span><span class="symbol">(</span><span class="normal"> </span><span class="symbol">...</span><span class="normal">more actions </span><span class="usertype">to</span><span class="normal"> add</span><span class="symbol">...</span><span class="normal"> </span><span class="symbol">/)</span>
+<span class="normal">  </span><span class="cbracket">{</span>
+<span class="normal">     action </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkRadioAction.html#gtk-radio-action-new">gtk_radio_action_new</a></span><span class="normal"> </span><span class="symbol">(...);</span>
+<span class="normal">     </span>
+<span class="normal">     </span><span class="function"><a href="GtkRadioAction.html#gtk-radio-action-set-group">gtk_radio_action_set_group</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">action</span><span class="symbol">,</span><span class="normal"> group</span><span class="symbol">);</span>
+<span class="normal">     group </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkRadioAction.html#gtk-radio-action-get-group">gtk_radio_action_get_group</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">action</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <div class="refsect3">
 <a name="gtk-radio-action-get-group.parameters"></a><h4>Parameters</h4>
@@ -323,18 +340,35 @@ gtk_radio_action_join_group (<em class="parameter"><code><a class="link" href="G
 <p>Use this in language bindings instead of the <a class="link" href="GtkRadioAction.html#gtk-radio-action-get-group" title="gtk_radio_action_get_group ()"><code class="function">gtk_radio_action_get_group()</code></a> 
 and <a class="link" href="GtkRadioAction.html#gtk-radio-action-set-group" title="gtk_radio_action_set_group ()"><code class="function">gtk_radio_action_set_group()</code></a> methods</p>
 <p>A common way to set up a group of radio actions is the following:</p>
-<div class="informalexample"><pre class="programlisting">
-  GtkRadioAction *action;
-  GtkRadioAction *last_action;
- 
-  while ( ...more actions to add... /)
-    {
-       action = gtk_radio_action_new (...);
-       
-       gtk_radio_action_join_group (action, last_action);
-       last_action = action;
-    }
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkRadioAction</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">action</span><span class="symbol">;</span>
+<span class="usertype">GtkRadioAction</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">last_action</span><span class="symbol">;</span>
+<span class="normal"> </span>
+<span class="keyword">while</span><span class="normal"> </span><span class="symbol">(</span><span class="normal"> </span><span class="symbol">...</span><span class="normal">more actions </span><span class="usertype">to</span><span class="normal"> add</span><span class="symbol">...</span><span class="normal"> </span><span class="symbol">/)</span>
+<span class="normal">  </span><span class="cbracket">{</span>
+<span class="normal">     action </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkRadioAction.html#gtk-radio-action-new">gtk_radio_action_new</a></span><span class="normal"> </span><span class="symbol">(...);</span>
+<span class="normal">     </span>
+<span class="normal">     </span><span class="function"><a href="GtkRadioAction.html#gtk-radio-action-join-group">gtk_radio_action_join_group</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">action</span><span class="symbol">,</span><span class="normal"> last_action</span><span class="symbol">);</span>
+<span class="normal">     last_action </span><span class="symbol">=</span><span class="normal"> action</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <div class="refsect3">
 <a name="gtk-radio-action-join-group.parameters"></a><h4>Parameters</h4>
@@ -516,6 +550,6 @@ for the previous and current active members.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

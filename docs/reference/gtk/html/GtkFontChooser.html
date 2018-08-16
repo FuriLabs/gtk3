@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkFontChooser: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="SelectorWidgets.html" title="Selector Widgets and Dialogs">
 <link rel="prev" href="GtkFileFilter.html" title="GtkFileFilter">
 <link rel="next" href="GtkFontButton.html" title="GtkFontButton">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -289,7 +289,7 @@
 </div>
 <div class="refsect1">
 <a name="GtkFontChooser.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="/usr/share/gtk-doc/html/gobject/GTypeModule.html">GInterface</a>
+<pre class="screen">    GInterface
     <span class="lineart">╰──</span> GtkFontChooser
 </pre>
 </div>
@@ -768,25 +768,51 @@ gtk_font_chooser_set_font_map (<em class="parameter"><code><a class="link" href=
 <p>Sets a custom font map to use for this font chooser widget.
 A custom font map can be used to present application-specific
 fonts instead of or in addition to the normal system fonts.</p>
-<div class="informalexample"><pre class="programlisting">
-FcConfig *config;
-PangoFontMap *fontmap;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">FcConfig</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">config</span><span class="symbol">;</span>
+<span class="usertype">PangoFontMap</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">fontmap</span><span class="symbol">;</span>
 
-config = FcInitLoadConfigAndFonts ();
-FcConfigAppFontAddFile (config, my_app_font_file);
+<span class="normal">config </span><span class="symbol">=</span><span class="normal"> </span><span class="function">FcInitLoadConfigAndFonts</span><span class="normal"> </span><span class="symbol">();</span>
+<span class="function">FcConfigAppFontAddFile</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">config</span><span class="symbol">,</span><span class="normal"> my_app_font_file</span><span class="symbol">);</span>
 
-fontmap = pango_cairo_font_map_new_for_font_type (CAIRO_FONT_TYPE_FT);
-pango_fc_font_map_set_config (PANGO_FC_FONT_MAP (fontmap), config);
+<span class="normal">fontmap </span><span class="symbol">=</span><span class="normal"> </span><span class="function">pango_cairo_font_map_new_for_font_type</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">CAIRO_FONT_TYPE_FT</span><span class="symbol">);</span>
+<span class="function">pango_fc_font_map_set_config</span><span class="normal"> </span><span class="symbol">(</span><span class="function">PANGO_FC_FONT_MAP</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">fontmap</span><span class="symbol">),</span><span class="normal"> config</span><span class="symbol">);</span>
 
-gtk_font_chooser_set_font_map (font_chooser, fontmap);
-</pre></div>
+<span class="function"><a href="GtkFontChooser.html#gtk-font-chooser-set-font-map">gtk_font_chooser_set_font_map</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">font_chooser</span><span class="symbol">,</span><span class="normal"> fontmap</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>Note that other GTK+ widgets will only be able to use the application-specific
 font if it is present in the font map they use:</p>
-<div class="informalexample"><pre class="programlisting">
-context = gtk_widget_get_pango_context (label);
-pango_context_set_font_map (context, fontmap);
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">context </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkWidget.html#gtk-widget-get-pango-context">gtk_widget_get_pango_context</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">label</span><span class="symbol">);</span>
+<span class="function">pango_context_set_font_map</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">,</span><span class="normal"> fontmap</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <div class="refsect3">
 <a name="gtk-font-chooser-set-font-map.parameters"></a><h4>Parameters</h4>
@@ -1103,6 +1129,6 @@ Space, Shift+Space, Return or Enter.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

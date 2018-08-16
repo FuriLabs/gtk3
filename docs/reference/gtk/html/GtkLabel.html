@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkLabel: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="DisplayWidgets.html" title="Display Widgets">
 <link rel="prev" href="DisplayWidgets.html" title="Display Widgets">
 <link rel="next" href="GtkImage.html" title="GtkImage">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -633,7 +633,7 @@
 <a name="GtkLabel.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 GtkLabel implements
- AtkImplementor and  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>.</p>
+ AtkImplementorIface and  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>.</p>
 </div>
 <div class="refsect1">
 <a name="GtkLabel.includes"></a><h2>Includes</h2>
@@ -647,13 +647,25 @@ implies, most labels are used to label another widget such as a
 <a class="link" href="GtkButton.html" title="GtkButton"><span class="type">GtkButton</span></a>, a <a class="link" href="GtkMenuItem.html" title="GtkMenuItem"><span class="type">GtkMenuItem</span></a>, or a <a class="link" href="GtkComboBox.html" title="GtkComboBox"><span class="type">GtkComboBox</span></a>.</p>
 <div class="refsect2">
 <a name="id-1.3.8.2.10.3"></a><h3>CSS nodes</h3>
-<div class="informalexample"><pre class="programlisting">
-label
-├── [selection]
-├── [link]
-┊
-╰── [link]
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">label</span>
+<span class="normal">├── </span><span class="symbol">[</span><span class="normal">selection</span><span class="symbol">]</span>
+<span class="normal">├── </span><span class="symbol">[</span><span class="normal">link</span><span class="symbol">]</span>
+<span class="normal">┊</span>
+<span class="normal">╰── </span><span class="symbol">[</span><span class="normal">link</span><span class="symbol">]</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>GtkLabel has a single CSS node with the name label. A wide variety
 of style classes may be applied to labels, such as .title, .subtitle,
@@ -673,14 +685,27 @@ elements. The &lt;attribute&gt; element has attributes named “name“, “valu
 “start“ and “end“ and allows you to specify <span class="type">PangoAttribute</span> values for
 this label.</p>
 <p>An example of a UI definition fragment specifying Pango attributes:</p>
-<div class="informalexample"><pre class="programlisting">
-&lt;object class="GtkLabel"&gt;
-  &lt;attributes&gt;
-    &lt;attribute name="weight" value="PANGO_WEIGHT_BOLD"/&gt;
-    &lt;attribute name="background" value="red" start="5" end="10"/&gt;
-  &lt;/attributes&gt;
-&lt;/object&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkLabel"</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">attributes</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"weight"</span><span class="normal"> value</span><span class="symbol">=</span><span class="string">"PANGO_WEIGHT_BOLD"</span><span class="symbol">/&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"background"</span><span class="normal"> value</span><span class="symbol">=</span><span class="string">"red"</span><span class="normal"> start</span><span class="symbol">=</span><span class="string">"5"</span><span class="normal"> end</span><span class="symbol">=</span><span class="string">"10"</span><span class="symbol">/&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">attributes</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>The start and end attributes specify the range of characters to which the
 Pango attribute applies. If start and end are not specified, the attribute is
@@ -702,29 +727,60 @@ inside, such as a <a class="link" href="GtkButton.html" title="GtkButton"><span 
 mnemonic’s target widget, you have to tell the label about the target
 using <a class="link" href="GtkLabel.html#gtk-label-set-mnemonic-widget" title="gtk_label_set_mnemonic_widget ()"><code class="function">gtk_label_set_mnemonic_widget()</code></a>. Here’s a simple example where
 the label is inside a button:</p>
-<div class="informalexample"><pre class="programlisting">
-  // Pressing Alt+H will activate this button
-  GtkWidget *button = gtk_button_new ();
-  GtkWidget *label = gtk_label_new_with_mnemonic ("_Hello");
-  gtk_container_add (GTK_CONTAINER (button), label);
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="comment">// Pressing Alt+H will activate this button</span>
+<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">button </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkButton.html#gtk-button-new">gtk_button_new</a></span><span class="normal"> </span><span class="symbol">();</span>
+<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">label </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkLabel.html#gtk-label-new-with-mnemonic">gtk_label_new_with_mnemonic</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"_Hello"</span><span class="symbol">);</span>
+<span class="function"><a href="GtkContainer.html#gtk-container-add">gtk_container_add</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_CONTAINER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">button</span><span class="symbol">),</span><span class="normal"> label</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>There’s a convenience function to create buttons with a mnemonic label
 already inside:</p>
-<div class="informalexample"><pre class="programlisting">
-  // Pressing Alt+H will activate this button
-  GtkWidget *button = gtk_button_new_with_mnemonic ("_Hello");
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="comment">// Pressing Alt+H will activate this button</span>
+<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">button </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkButton.html#gtk-button-new-with-mnemonic">gtk_button_new_with_mnemonic</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"_Hello"</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>To create a mnemonic for a widget alongside the label, such as a
 <a class="link" href="GtkEntry.html" title="GtkEntry"><span class="type">GtkEntry</span></a>, you have to point the label at the entry with
 <a class="link" href="GtkLabel.html#gtk-label-set-mnemonic-widget" title="gtk_label_set_mnemonic_widget ()"><code class="function">gtk_label_set_mnemonic_widget()</code></a>:</p>
-<div class="informalexample"><pre class="programlisting">
-  // Pressing Alt+H will focus the entry
-  GtkWidget *entry = gtk_entry_new ();
-  GtkWidget *label = gtk_label_new_with_mnemonic ("_Hello");
-  gtk_label_set_mnemonic_widget (GTK_LABEL (label), entry);
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="comment">// Pressing Alt+H will focus the entry</span>
+<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">entry </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkEntry.html#gtk-entry-new">gtk_entry_new</a></span><span class="normal"> </span><span class="symbol">();</span>
+<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">label </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkLabel.html#gtk-label-new-with-mnemonic">gtk_label_new_with_mnemonic</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"_Hello"</span><span class="symbol">);</span>
+<span class="function"><a href="GtkLabel.html#gtk-label-set-mnemonic-widget">gtk_label_set_mnemonic_widget</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_LABEL</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">label</span><span class="symbol">),</span><span class="normal"> entry</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 </div>
 <hr>
@@ -734,10 +790,19 @@ already inside:</p>
 fonts, etc.), label text can be provided in a simple
 markup format.</p>
 <p>Here’s how to create a label with a small font:</p>
-<div class="informalexample"><pre class="programlisting">
-  GtkWidget *label = gtk_label_new (NULL);
-  gtk_label_set_markup (GTK_LABEL (label), "&lt;small&gt;Small text&lt;/small&gt;");
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">label </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkLabel.html#gtk-label-new">gtk_label_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">);</span>
+<span class="function"><a href="GtkLabel.html#gtk-label-set-markup">gtk_label_set_markup</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_LABEL</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">label</span><span class="symbol">),</span><span class="normal"> </span><span class="string">"&lt;small&gt;Small text&lt;/small&gt;"</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>(See complete documentation of available
 tags in the Pango manual.)</p>
@@ -797,14 +862,27 @@ using the <code class="literal">&amp;lt;a&gt;</code> with “href“ and “titl
 similar to the way they appear in web browsers, with colored, underlined
 text. The “title“ attribute is displayed as a tooltip on the link.</p>
 <p>An example looks like this:</p>
-<div class="informalexample"><pre class="programlisting">
-const gchar *text =
-"Go to the"
-"&lt;a href=\"http://www.gtk.org title=\"&lt;i&gt;Our&lt;/i&gt; website\"&gt;"
-"GTK+ website&lt;/a&gt; for more...";
-GtkWidget *label = gtk_label_new (NULL);
-gtk_label_set_markup (GTK_LABEL (label), text);
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">const</span><span class="normal"> </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">text </span><span class="symbol">=</span>
+<span class="string">"Go to the"</span>
+<span class="string">"&lt;a href=</span><span class="specialchar">\"</span><span class="string">http://www.gtk.org title=</span><span class="specialchar">\"</span><span class="string">&lt;i&gt;Our&lt;/i&gt; website</span><span class="specialchar">\"</span><span class="string">&gt;"</span>
+<span class="string">"GTK+ website&lt;/a&gt; for more..."</span><span class="symbol">;</span>
+<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">label </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkLabel.html#gtk-label-new">gtk_label_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">);</span>
+<span class="function"><a href="GtkLabel.html#gtk-label-set-markup">gtk_label_set_markup</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_LABEL</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">label</span><span class="symbol">),</span><span class="normal"> text</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>It is possible to implement custom handling for links and their tooltips with
 the <a class="link" href="GtkLabel.html#GtkLabel-activate-link" title="The “activate-link” signal"><span class="type">“activate-link”</span></a> signal and the <a class="link" href="GtkLabel.html#gtk-label-get-current-uri" title="gtk_label_get_current_uri ()"><code class="function">gtk_label_get_current_uri()</code></a> function.</p>
@@ -924,16 +1002,31 @@ label’s text and attribute list based on the parse results.</p>
 <p>If the <em class="parameter"><code>str</code></em>
  is external data, you may need to escape it with
 <code class="function">g_markup_escape_text()</code> or <code class="function">g_markup_printf_escaped()</code>:</p>
-<div class="informalexample"><pre class="programlisting">
-GtkWidget *label = gtk_label_new (NULL);
-const char *str = "some text";
-const char *format = "&lt;span style=\"italic\"&gt;\%s&lt;/span&gt;";
-char *markup;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">label </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkLabel.html#gtk-label-new">gtk_label_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">);</span>
+<span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">str </span><span class="symbol">=</span><span class="normal"> </span><span class="string">"some text"</span><span class="symbol">;</span>
+<span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">format </span><span class="symbol">=</span><span class="normal"> </span><span class="string">"&lt;span style=</span><span class="specialchar">\"</span><span class="string">italic</span><span class="specialchar">\"</span><span class="string">&gt;</span><span class="specialchar">\%</span><span class="string">s&lt;/span&gt;"</span><span class="symbol">;</span>
+<span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">markup</span><span class="symbol">;</span>
 
-markup = g_markup_printf_escaped (format, str);
-gtk_label_set_markup (GTK_LABEL (label), markup);
-g_free (markup);
-</pre></div>
+<span class="normal">markup </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_markup_printf_escaped</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">format</span><span class="symbol">,</span><span class="normal"> str</span><span class="symbol">);</span>
+<span class="function"><a href="GtkLabel.html#gtk-label-set-markup">gtk_label_set_markup</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_LABEL</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">label</span><span class="symbol">),</span><span class="normal"> markup</span><span class="symbol">);</span>
+<span class="function">g_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">markup</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>This function will set the <a class="link" href="GtkLabel.html#GtkLabel--use-markup" title="The “use-markup” property"><span class="type">“use-markup”</span></a> property to <code class="literal">TRUE</code> as
 a side effect.</p>
@@ -2909,6 +3002,6 @@ to this signal and append your menuitems to the <em class="parameter"><code>menu
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

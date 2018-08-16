@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkMenuItem: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="MenusAndCombos.html" title="Menus, Combo Box, Toolbar">
 <link rel="prev" href="GtkMenuBar.html" title="GtkMenuBar">
 <link rel="next" href="GtkRadioMenuItem.html" title="GtkRadioMenuItem">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -366,7 +366,7 @@
 <a name="GtkMenuItem.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 GtkMenuItem implements
- AtkImplementor,  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>,  <a class="link" href="GtkActivatable.html" title="GtkActivatable">GtkActivatable</a> and  <a class="link" href="GtkActionable.html" title="GtkActionable">GtkActionable</a>.</p>
+ AtkImplementorIface,  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>,  <a class="link" href="GtkActivatable.html" title="GtkActivatable">GtkActivatable</a> and  <a class="link" href="GtkActionable.html" title="GtkActionable">GtkActionable</a>.</p>
 </div>
 <div class="refsect1">
 <a name="GtkMenuItem.includes"></a><h2>Includes</h2>
@@ -384,13 +384,25 @@ although only a few are really useful.</p>
 GtkMenuItem has direct functions to set the label and its mnemonic.
 For more advanced label settings, you can fetch the child widget from the GtkBin.</p>
 <p>An example for setting markup and accelerator on a MenuItem:</p>
-<div class="informalexample"><pre class="programlisting">
-GtkWidget *menu_item = gtk_menu_item_new_with_label ("Example Menu Item");
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">menu_item </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkMenuItem.html#gtk-menu-item-new-with-label">gtk_menu_item_new_with_label</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Example Menu Item"</span><span class="symbol">);</span>
 
-GtkWidget *child = gtk_bin_get_child (GTK_BIN (menu_item));
-gtk_label_set_markup (GTK_LABEL (child), "&lt;i&gt;new label&lt;/i&gt; with &lt;b&gt;markup&lt;/b&gt;");
-gtk_accel_label_set_accel (GTK_ACCEL_LABEL (child), GDK_KEY_1, 0);
-</pre></div>
+<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">child </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkBin.html#gtk-bin-get-child">gtk_bin_get_child</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_BIN</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">menu_item</span><span class="symbol">));</span>
+<span class="function"><a href="GtkLabel.html#gtk-label-set-markup">gtk_label_set_markup</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_LABEL</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">child</span><span class="symbol">),</span><span class="normal"> </span><span class="string">"&lt;i&gt;new label&lt;/i&gt; with &lt;b&gt;markup&lt;/b&gt;"</span><span class="symbol">);</span>
+<span class="function"><a href="GtkAccelLabel.html#gtk-accel-label-set-accel">gtk_accel_label_set_accel</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_ACCEL_LABEL</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">child</span><span class="symbol">),</span><span class="normal"> GDK_KEY_1</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <div class="refsect2">
 <a name="id-1.3.13.6.11.8"></a><h3>GtkMenuItem as GtkBuildable</h3>
@@ -398,23 +410,45 @@ gtk_accel_label_set_accel (GTK_ACCEL_LABEL (child), GDK_KEY_1, 0);
 adding a submenu by specifying “submenu” as the “type” attribute of
 a &lt;child&gt; element.</p>
 <p>An example of UI definition fragment with submenus:</p>
-<div class="informalexample"><pre class="programlisting">
-&lt;object class="GtkMenuItem"&gt;
-  &lt;child type="submenu"&gt;
-    &lt;object class="GtkMenu"/&gt;
-  &lt;/child&gt;
-&lt;/object&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkMenuItem"</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="usertype">child</span><span class="normal"> type</span><span class="symbol">=</span><span class="string">"submenu"</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkMenu"</span><span class="symbol">/&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="id-1.3.13.6.11.9"></a><h3>CSS nodes</h3>
-<div class="informalexample"><pre class="programlisting">
-menuitem
-├── &lt;child&gt;
-╰── [arrow.right]
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">menuitem</span>
+<span class="normal">├── </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">╰── </span><span class="symbol">[</span><span class="normal">arrow</span><span class="symbol">.</span><span class="normal">right</span><span class="symbol">]</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>GtkMenuItem has a single CSS node with name menuitem. If the menuitem
 has a submenu, it gets another CSS node with name arrow, which has
@@ -1362,6 +1396,6 @@ user_function (<a class="link" href="GtkMenuItem.html" title="GtkMenuItem"><span
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

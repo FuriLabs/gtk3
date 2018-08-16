@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkPrintUnixDialog: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="Printing.html" title="Printing">
 <link rel="prev" href="GtkPrintJob.html" title="GtkPrintJob">
 <link rel="next" href="GtkPageSetupUnixDialog.html" title="GtkPageSetupUnixDialog">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -279,7 +279,7 @@
 <a name="GtkPrintUnixDialog.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 GtkPrintUnixDialog implements
- AtkImplementor and  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>.</p>
+ AtkImplementorIface and  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>.</p>
 </div>
 <div class="refsect1">
 <a name="GtkPrintUnixDialog.includes"></a><h2>Includes</h2>
@@ -310,28 +310,55 @@ a <a class="link" href="GtkPrinter.html" title="GtkPrinter"><span class="type">G
 <em class="parameter"><code>notebook</code></em>
  internal children with the name “notebook”.</p>
 <p>An example of a <a class="link" href="GtkPrintUnixDialog.html" title="GtkPrintUnixDialog"><span class="type">GtkPrintUnixDialog</span></a> UI definition fragment:</p>
-<div class="informalexample"><pre class="programlisting">
-&lt;object class="GtkPrintUnixDialog" id="dialog1"&gt;
-  &lt;child internal-child="notebook"&gt;
-    &lt;object class="GtkNotebook" id="notebook"&gt;
-      &lt;child&gt;
-        &lt;object class="GtkLabel" id="tabcontent"&gt;
-        &lt;property name="label"&gt;Content on notebook tab&lt;/property&gt;
-        &lt;/object&gt;
-      &lt;/child&gt;
-      &lt;child type="tab"&gt;
-        &lt;object class="GtkLabel" id="tablabel"&gt;
-          &lt;property name="label"&gt;Tab label&lt;/property&gt;
-        &lt;/object&gt;
-        &lt;packing&gt;
-          &lt;property name="tab_expand"&gt;False&lt;/property&gt;
-          &lt;property name="tab_fill"&gt;False&lt;/property&gt;
-        &lt;/packing&gt;
-      &lt;/child&gt;
-    &lt;/object&gt;
-  &lt;/child&gt;
-&lt;/object&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkPrintUnixDialog"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"dialog1"</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="usertype">child</span><span class="normal"> internal</span><span class="symbol">-</span><span class="normal">child</span><span class="symbol">=</span><span class="string">"notebook"</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkNotebook"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"notebook"</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkLabel"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"tabcontent"</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"label"</span><span class="symbol">&gt;</span><span class="normal">Content on </span><span class="usertype">notebook</span><span class="normal"> tab</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">child</span><span class="normal"> type</span><span class="symbol">=</span><span class="string">"tab"</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkLabel"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"tablabel"</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"label"</span><span class="symbol">&gt;</span><span class="usertype">Tab</span><span class="normal"> label</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"tab_expand"</span><span class="symbol">&gt;</span><span class="normal">False</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"tab_fill"</span><span class="symbol">&gt;</span><span class="normal">False</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;/</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 </div>
 <hr>
@@ -1072,6 +1099,6 @@ formats are supported.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkUIManager: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="DeprecatedObjects.html" title="Deprecated">
 <link rel="prev" href="GtkVScrollbar.html" title="GtkVScrollbar">
 <link rel="next" href="GtkActionGroup.html" title="GtkActionGroup">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -307,42 +307,83 @@ action groups.</p>
 roughly described by the following DTD.</p>
 <div class="blockquote"><blockquote class="blockquote"><p>Do not confuse the GtkUIManager UI Definitions described here with
 the similarly named <a class="link" href="GtkBuilder.html#BUILDER-UI" title="GtkBuilder UI Definitions">GtkBuilder UI Definitions</a>.</p></blockquote></div>
-<div class="informalexample"><pre class="programlisting">
-&lt;!ELEMENT ui          (menubar|toolbar|popup|accelerator)* &gt;
-&lt;!ELEMENT menubar     (menuitem|separator|placeholder|menu)* &gt;
-&lt;!ELEMENT menu        (menuitem|separator|placeholder|menu)* &gt;
-&lt;!ELEMENT popup       (menuitem|separator|placeholder|menu)* &gt;
-&lt;!ELEMENT toolbar     (toolitem|separator|placeholder)* &gt;
-&lt;!ELEMENT placeholder (menuitem|toolitem|separator|placeholder|menu)* &gt;
-&lt;!ELEMENT menuitem     EMPTY &gt;
-&lt;!ELEMENT toolitem     (menu?) &gt;
-&lt;!ELEMENT separator    EMPTY &gt;
-&lt;!ELEMENT accelerator  EMPTY &gt;
-&lt;!ATTLIST menubar      name                      #IMPLIED
-                       action                    #IMPLIED &gt;
-&lt;!ATTLIST toolbar      name                      #IMPLIED
-                       action                    #IMPLIED &gt;
-&lt;!ATTLIST popup        name                      #IMPLIED
-                       action                    #IMPLIED
-                       accelerators (true|false) #IMPLIED &gt;
-&lt;!ATTLIST placeholder  name                      #IMPLIED
-                       action                    #IMPLIED &gt;
-&lt;!ATTLIST separator    name                      #IMPLIED
-                       action                    #IMPLIED
-                       expand       (true|false) #IMPLIED &gt;
-&lt;!ATTLIST menu         name                      #IMPLIED
-                       action                    #REQUIRED
-                       position     (top|bot)    #IMPLIED &gt;
-&lt;!ATTLIST menuitem     name                      #IMPLIED
-                       action                    #REQUIRED
-                       position     (top|bot)    #IMPLIED
-                       always-show-image (true|false) #IMPLIED &gt;
-&lt;!ATTLIST toolitem     name                      #IMPLIED
-                       action                    #REQUIRED
-                       position     (top|bot)    #IMPLIED &gt;
-&lt;!ATTLIST accelerator  name                      #IMPLIED
-                       action                    #REQUIRED &gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;!</span><span class="usertype">ELEMENT</span><span class="normal"> </span><span class="function">ui</span><span class="normal">          </span><span class="symbol">(</span><span class="normal">menubar</span><span class="symbol">|</span><span class="normal">toolbar</span><span class="symbol">|</span><span class="normal">popup</span><span class="symbol">|</span><span class="normal">accelerator</span><span class="symbol">)*</span><span class="normal"> </span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;!</span><span class="usertype">ELEMENT</span><span class="normal"> </span><span class="function">menubar</span><span class="normal">     </span><span class="symbol">(</span><span class="normal">menuitem</span><span class="symbol">|</span><span class="normal">separator</span><span class="symbol">|</span><span class="normal">placeholder</span><span class="symbol">|</span><span class="normal">menu</span><span class="symbol">)*</span><span class="normal"> </span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;!</span><span class="usertype">ELEMENT</span><span class="normal"> </span><span class="function">menu</span><span class="normal">        </span><span class="symbol">(</span><span class="normal">menuitem</span><span class="symbol">|</span><span class="normal">separator</span><span class="symbol">|</span><span class="normal">placeholder</span><span class="symbol">|</span><span class="normal">menu</span><span class="symbol">)*</span><span class="normal"> </span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;!</span><span class="usertype">ELEMENT</span><span class="normal"> </span><span class="function">popup</span><span class="normal">       </span><span class="symbol">(</span><span class="normal">menuitem</span><span class="symbol">|</span><span class="normal">separator</span><span class="symbol">|</span><span class="normal">placeholder</span><span class="symbol">|</span><span class="normal">menu</span><span class="symbol">)*</span><span class="normal"> </span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;!</span><span class="usertype">ELEMENT</span><span class="normal"> </span><span class="function">toolbar</span><span class="normal">     </span><span class="symbol">(</span><span class="normal">toolitem</span><span class="symbol">|</span><span class="normal">separator</span><span class="symbol">|</span><span class="normal">placeholder</span><span class="symbol">)*</span><span class="normal"> </span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;!</span><span class="usertype">ELEMENT</span><span class="normal"> </span><span class="function">placeholder</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">menuitem</span><span class="symbol">|</span><span class="normal">toolitem</span><span class="symbol">|</span><span class="normal">separator</span><span class="symbol">|</span><span class="normal">placeholder</span><span class="symbol">|</span><span class="normal">menu</span><span class="symbol">)*</span><span class="normal"> </span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;!</span><span class="normal">ELEMENT </span><span class="usertype">menuitem</span><span class="normal">     EMPTY </span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;!</span><span class="usertype">ELEMENT</span><span class="normal"> </span><span class="function">toolitem</span><span class="normal">     </span><span class="symbol">(</span><span class="normal">menu</span><span class="symbol">?)</span><span class="normal"> </span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;!</span><span class="normal">ELEMENT </span><span class="usertype">separator</span><span class="normal">    EMPTY </span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;!</span><span class="normal">ELEMENT </span><span class="usertype">accelerator</span><span class="normal">  EMPTY </span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;!</span><span class="normal">ATTLIST </span><span class="usertype">menubar</span><span class="normal">      name                      #IMPLIED</span>
+<span class="normal">                       action                    #IMPLIED </span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;!</span><span class="normal">ATTLIST </span><span class="usertype">toolbar</span><span class="normal">      name                      #IMPLIED</span>
+<span class="normal">                       action                    #IMPLIED </span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;!</span><span class="normal">ATTLIST </span><span class="usertype">popup</span><span class="normal">        name                      #IMPLIED</span>
+<span class="normal">                       action                    #IMPLIED</span>
+<span class="normal">                       </span><span class="function">accelerators</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">true</span><span class="symbol">|</span><span class="normal">false</span><span class="symbol">)</span><span class="normal"> #IMPLIED </span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;!</span><span class="normal">ATTLIST </span><span class="usertype">placeholder</span><span class="normal">  name                      #IMPLIED</span>
+<span class="normal">                       action                    #IMPLIED </span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;!</span><span class="normal">ATTLIST </span><span class="usertype">separator</span><span class="normal">    name                      #IMPLIED</span>
+<span class="normal">                       action                    #IMPLIED</span>
+<span class="normal">                       </span><span class="function">expand</span><span class="normal">       </span><span class="symbol">(</span><span class="normal">true</span><span class="symbol">|</span><span class="normal">false</span><span class="symbol">)</span><span class="normal"> #IMPLIED </span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;!</span><span class="normal">ATTLIST </span><span class="usertype">menu</span><span class="normal">         name                      #IMPLIED</span>
+<span class="normal">                       action                    #REQUIRED</span>
+<span class="normal">                       </span><span class="function">position</span><span class="normal">     </span><span class="symbol">(</span><span class="normal">top</span><span class="symbol">|</span><span class="normal">bot</span><span class="symbol">)</span><span class="normal">    #IMPLIED </span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;!</span><span class="normal">ATTLIST </span><span class="usertype">menuitem</span><span class="normal">     name                      #IMPLIED</span>
+<span class="normal">                       action                    #REQUIRED</span>
+<span class="normal">                       </span><span class="function">position</span><span class="normal">     </span><span class="symbol">(</span><span class="normal">top</span><span class="symbol">|</span><span class="normal">bot</span><span class="symbol">)</span><span class="normal">    #IMPLIED</span>
+<span class="normal">                       always</span><span class="symbol">-</span><span class="normal">show</span><span class="symbol">-</span><span class="function">image</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">true</span><span class="symbol">|</span><span class="normal">false</span><span class="symbol">)</span><span class="normal"> #IMPLIED </span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;!</span><span class="normal">ATTLIST </span><span class="usertype">toolitem</span><span class="normal">     name                      #IMPLIED</span>
+<span class="normal">                       action                    #REQUIRED</span>
+<span class="normal">                       </span><span class="function">position</span><span class="normal">     </span><span class="symbol">(</span><span class="normal">top</span><span class="symbol">|</span><span class="normal">bot</span><span class="symbol">)</span><span class="normal">    #IMPLIED </span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;!</span><span class="normal">ATTLIST </span><span class="usertype">accelerator</span><span class="normal">  name                      #IMPLIED</span>
+<span class="normal">                       action                    #REQUIRED </span><span class="symbol">&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>There are some additional restrictions beyond those specified in the
 DTD, e.g. every toolitem must have a toolbar in its anchestry and
@@ -359,32 +400,63 @@ to the " entity.</p>
 <hr>
 <div class="refsect2">
 <a name="id-1.3.25.25.10.5"></a><h3>A UI definition</h3>
-<div class="informalexample"><pre class="programlisting">
-&lt;ui&gt;
-  &lt;menubar&gt;
-    &lt;menu name="FileMenu" action="FileMenuAction"&gt;
-      &lt;menuitem name="New" action="New2Action" /&gt;
-      &lt;placeholder name="FileMenuAdditions" /&gt;
-    &lt;/menu&gt;
-    &lt;menu name="JustifyMenu" action="JustifyMenuAction"&gt;
-      &lt;menuitem name="Left" action="justify-left"/&gt;
-      &lt;menuitem name="Centre" action="justify-center"/&gt;
-      &lt;menuitem name="Right" action="justify-right"/&gt;
-      &lt;menuitem name="Fill" action="justify-fill"/&gt;
-    &lt;/menu&gt;
-  &lt;/menubar&gt;
-  &lt;toolbar action="toolbar1"&gt;
-    &lt;placeholder name="JustifyToolItems"&gt;
-      &lt;separator/&gt;
-      &lt;toolitem name="Left" action="justify-left"/&gt;
-      &lt;toolitem name="Centre" action="justify-center"/&gt;
-      &lt;toolitem name="Right" action="justify-right"/&gt;
-      &lt;toolitem name="Fill" action="justify-fill"/&gt;
-      &lt;separator/&gt;
-    &lt;/placeholder&gt;
-  &lt;/toolbar&gt;
-&lt;/ui&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="normal">ui</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">menubar</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">menu</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"FileMenu"</span><span class="normal"> action</span><span class="symbol">=</span><span class="string">"FileMenuAction"</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">menuitem</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"New"</span><span class="normal"> action</span><span class="symbol">=</span><span class="string">"New2Action"</span><span class="normal"> </span><span class="symbol">/&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">placeholder</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"FileMenuAdditions"</span><span class="normal"> </span><span class="symbol">/&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">menu</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">menu</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"JustifyMenu"</span><span class="normal"> action</span><span class="symbol">=</span><span class="string">"JustifyMenuAction"</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">menuitem</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"Left"</span><span class="normal"> action</span><span class="symbol">=</span><span class="string">"justify-left"</span><span class="symbol">/&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">menuitem</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"Centre"</span><span class="normal"> action</span><span class="symbol">=</span><span class="string">"justify-center"</span><span class="symbol">/&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">menuitem</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"Right"</span><span class="normal"> action</span><span class="symbol">=</span><span class="string">"justify-right"</span><span class="symbol">/&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">menuitem</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"Fill"</span><span class="normal"> action</span><span class="symbol">=</span><span class="string">"justify-fill"</span><span class="symbol">/&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">menu</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">menubar</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="usertype">toolbar</span><span class="normal"> action</span><span class="symbol">=</span><span class="string">"toolbar1"</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">placeholder</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"JustifyToolItems"</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="normal">separator</span><span class="symbol">/&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">toolitem</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"Left"</span><span class="normal"> action</span><span class="symbol">=</span><span class="string">"justify-left"</span><span class="symbol">/&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">toolitem</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"Centre"</span><span class="normal"> action</span><span class="symbol">=</span><span class="string">"justify-center"</span><span class="symbol">/&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">toolitem</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"Right"</span><span class="normal"> action</span><span class="symbol">=</span><span class="string">"justify-right"</span><span class="symbol">/&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">toolitem</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"Fill"</span><span class="normal"> action</span><span class="symbol">=</span><span class="string">"justify-fill"</span><span class="symbol">/&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="normal">separator</span><span class="symbol">/&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">placeholder</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">toolbar</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;/</span><span class="normal">ui</span><span class="symbol">&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>The constructed widget hierarchy is very similar to the element tree
 of the XML, with the exception that placeholders are merged into their
@@ -490,30 +562,59 @@ other parts of the constructed user interface with the help of the
 “constructor” attribute. See the example below.</p>
 <div class="refsect3">
 <a name="id-1.3.25.25.10.10.5"></a><h4>An embedded GtkUIManager UI definition</h4>
-<div class="informalexample"><pre class="programlisting">
-&lt;object class="GtkUIManager" id="uiman"&gt;
-  &lt;child&gt;
-    &lt;object class="GtkActionGroup" id="actiongroup"&gt;
-      &lt;child&gt;
-        &lt;object class="GtkAction" id="file"&gt;
-          &lt;property name="label"&gt;_File&lt;/property&gt;
-        &lt;/object&gt;
-      &lt;/child&gt;
-    &lt;/object&gt;
-  &lt;/child&gt;
-  &lt;ui&gt;
-    &lt;menubar name="menubar1"&gt;
-      &lt;menu action="file"&gt;
-      &lt;/menu&gt;
-    &lt;/menubar&gt;
-  &lt;/ui&gt;
-&lt;/object&gt;
-&lt;object class="GtkWindow" id="main-window"&gt;
-  &lt;child&gt;
-    &lt;object class="GtkMenuBar" id="menubar1" constructor="uiman"/&gt;
-  &lt;/child&gt;
-&lt;/object&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkUIManager"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"uiman"</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkActionGroup"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"actiongroup"</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkAction"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"file"</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"label"</span><span class="symbol">&gt;</span><span class="normal">_File</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">ui</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">menubar</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"menubar1"</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">menu</span><span class="normal"> action</span><span class="symbol">=</span><span class="string">"file"</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;/</span><span class="normal">menu</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">menubar</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">ui</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkWindow"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"main-window"</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkMenuBar"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"menubar1"</span><span class="normal"> constructor</span><span class="symbol">=</span><span class="string">"uiman"</span><span class="symbol">/&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 </div>
 </div>
@@ -1201,15 +1302,29 @@ gtk_ui_manager_ensure_update (<em class="parameter"><code><a class="link" href="
 UI in an idle function. A typical example where this function is
 useful is to enforce that the menubar and toolbar have been added to 
 the main window before showing it:</p>
-<div class="informalexample"><pre class="programlisting">
-gtk_container_add (GTK_CONTAINER (window), vbox); 
-g_signal_connect (merge, "add-widget", 
-                  G_CALLBACK (add_widget), vbox);
-gtk_ui_manager_add_ui_from_file (merge, "my-menus");
-gtk_ui_manager_add_ui_from_file (merge, "my-toolbars");
-gtk_ui_manager_ensure_update (merge);  
-gtk_widget_show (window);
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="function"><a href="GtkContainer.html#gtk-container-add">gtk_container_add</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_CONTAINER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">),</span><span class="normal"> vbox</span><span class="symbol">);</span><span class="normal"> </span>
+<span class="function">g_signal_connect</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">merge</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"add-widget"</span><span class="symbol">,</span><span class="normal"> </span>
+<span class="normal">                  </span><span class="function">G_CALLBACK</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">add_widget</span><span class="symbol">),</span><span class="normal"> vbox</span><span class="symbol">);</span>
+<span class="function"><a href="GtkUIManager.html#gtk-ui-manager-add-ui-from-file">gtk_ui_manager_add_ui_from_file</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">merge</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"my-menus"</span><span class="symbol">);</span>
+<span class="function"><a href="GtkUIManager.html#gtk-ui-manager-add-ui-from-file">gtk_ui_manager_add_ui_from_file</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">merge</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"my-toolbars"</span><span class="symbol">);</span>
+<span class="function"><a href="GtkUIManager.html#gtk-ui-manager-ensure-update">gtk_ui_manager_ensure_update</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">merge</span><span class="symbol">);</span><span class="normal">  </span>
+<span class="function"><a href="GtkWidget.html#gtk-widget-show">gtk_widget_show</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <div class="refsect3">
 <a name="gtk-ui-manager-ensure-update.parameters"></a><h4>Parameters</h4>
@@ -1627,6 +1742,6 @@ just before any action is activated.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

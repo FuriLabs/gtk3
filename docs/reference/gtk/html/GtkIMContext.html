@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkIMContext: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="AbstractObjects.html" title="Abstract Base Classes">
 <link rel="prev" href="GtkRange.html" title="GtkRange">
 <link rel="next" href="gtk3-GtkNativeDialog.html" title="GtkNativeDialog">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -261,34 +261,70 @@ example results in the € sign.</p>
 loadable modules. An input method module is a small shared library which
 implements a subclass of <a class="link" href="GtkIMContext.html" title="GtkIMContext"><span class="type">GtkIMContext</span></a> or <a class="link" href="GtkIMContextSimple.html" title="GtkIMContextSimple"><span class="type">GtkIMContextSimple</span></a> and exports
 these four functions:</p>
-<div class="informalexample"><pre class="programlisting">
-void im_module_init(GTypeModule *module);
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="type">void</span><span class="normal"> </span><span class="function">im_module_init</span><span class="symbol">(</span><span class="usertype">GTypeModule</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">module</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 This function should register the <span class="type">GType</span> of the <a class="link" href="GtkIMContext.html" title="GtkIMContext"><span class="type">GtkIMContext</span></a> subclass which
 implements the input method by means of <code class="function">g_type_module_register_type()</code>. Note
 that <code class="function">g_type_register_static()</code> cannot be used as the type needs to be
 registered dynamically.</p>
-<div class="informalexample"><pre class="programlisting">
-void im_module_exit(void);
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="type">void</span><span class="normal"> </span><span class="function">im_module_exit</span><span class="symbol">(</span><span class="type">void</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 Here goes any cleanup code your input method might require on module unload.</p>
-<div class="informalexample"><pre class="programlisting">
-void im_module_list(const GtkIMContextInfo ***contexts, int *n_contexts)
-{
-  *contexts = info_list;
-  *n_contexts = G_N_ELEMENTS (info_list);
-}
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="type">void</span><span class="normal"> </span><span class="function">im_module_list</span><span class="symbol">(</span><span class="keyword">const</span><span class="normal"> </span><span class="usertype">GtkIMContextInfo</span><span class="normal"> </span><span class="symbol">***</span><span class="normal">contexts</span><span class="symbol">,</span><span class="normal"> </span><span class="type">int</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">n_contexts</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="symbol">*</span><span class="normal">contexts </span><span class="symbol">=</span><span class="normal"> info_list</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="symbol">*</span><span class="normal">n_contexts </span><span class="symbol">=</span><span class="normal"> </span><span class="function">G_N_ELEMENTS</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">info_list</span><span class="symbol">);</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 This function returns the list of input methods provided by the module. The
 example implementation above shows a common solution and simply returns a
 pointer to statically defined array of <a class="link" href="GtkIMContext.html#GtkIMContextInfo" title="struct GtkIMContextInfo"><span class="type">GtkIMContextInfo</span></a> items for each
 provided input method.</p>
-<div class="informalexample"><pre class="programlisting">
-GtkIMContext * im_module_create(const gchar *context_id);
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal"><a href="GtkIMContext.html#GtkIMContext-struct">GtkIMContext</a> </span><span class="symbol">*</span><span class="normal"> </span><span class="function">im_module_create</span><span class="symbol">(</span><span class="keyword">const</span><span class="normal"> </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">context_id</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>
 This function should return a pointer to a newly created instance of the
 <a class="link" href="GtkIMContext.html" title="GtkIMContext"><span class="type">GtkIMContext</span></a> subclass identified by <em class="parameter"><code>context_id</code></em>
@@ -305,9 +341,9 @@ in order for the new input method to become available to GTK+ applications.</p>
 <a name="gtk-im-context-set-client-window"></a><h3>gtk_im_context_set_client_window ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_im_context_set_client_window (<em class="parameter"><code><a class="link" href="GtkIMContext.html" title="GtkIMContext"><span class="type">GtkIMContext</span></a> *context</code></em>,
-                                  <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a> *window</code></em>);</pre>
+                                  <em class="parameter"><code><span class="type">GdkWindow</span> *window</code></em>);</pre>
 <p>Set the client window for the input context; this is the
-<a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a> in which the input appears. This window is
+<span class="type">GdkWindow</span> in which the input appears. This window is
 used in order to correctly position status windows, and may
 also be used for purposes internal to the input method.</p>
 <div class="refsect3">
@@ -388,7 +424,7 @@ within the preedit string. </p></td>
 <a name="gtk-im-context-filter-keypress"></a><h3>gtk_im_context_filter_keypress ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_im_context_filter_keypress (<em class="parameter"><code><a class="link" href="GtkIMContext.html" title="GtkIMContext"><span class="type">GtkIMContext</span></a> *context</code></em>,
-                                <em class="parameter"><code><a href="../html/gdk3-Event-Structures.html#GdkEventKey"><span class="type">GdkEventKey</span></a> *event</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GdkEventKey</span> *event</code></em>);</pre>
 <p>Allow an input method to internally handle key press and release 
 events. If this function returns <code class="literal">TRUE</code>, then no further processing
 should be done for this key event.</p>
@@ -498,7 +534,7 @@ method to clear the preedit state.</p>
 <a name="gtk-im-context-set-cursor-location"></a><h3>gtk_im_context_set_cursor_location ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_im_context_set_cursor_location (<em class="parameter"><code><a class="link" href="GtkIMContext.html" title="GtkIMContext"><span class="type">GtkIMContext</span></a> *context</code></em>,
-                                    <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *area</code></em>);</pre>
+                                    <em class="parameter"><code>const <span class="type">GdkRectangle</span> *area</code></em>);</pre>
 <p>Notify the input method that a change in cursor 
 position has been made. The location is relative to the client
 window.</p>
@@ -1198,6 +1234,6 @@ the input method surrounding context by calling the
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

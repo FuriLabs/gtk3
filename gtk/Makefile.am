@@ -398,6 +398,9 @@ gtk_private_h_sources =		\
 	gtkclipboardprivate.h		\
 	gtkcolorswatchprivate.h	\
 	gtkcoloreditorprivate.h	\
+	gtkcolorpickerprivate.h	\
+	gtkcolorpickerportalprivate.h	\
+	gtkcolorpickershellprivate.h	\
 	gtkcolorplaneprivate.h	\
 	gtkcolorscaleprivate.h	\
 	gtkcolorchooserprivate.h	\
@@ -675,6 +678,9 @@ gtk_base_c_sources = 		\
 	gtkcolorchooserwidget.c	\
 	gtkcolorchooserdialog.c	\
 	gtkcoloreditor.c	\
+	gtkcolorpicker.c	\
+	gtkcolorpickerportal.c	\
+	gtkcolorpickershell.c	\
 	gtkcolorplane.c		\
 	gtkcolorscale.c		\
 	gtkcolorswatch.c	\
@@ -1320,7 +1326,7 @@ gtk.gresource.xml: Makefile.am inspector/Makefile.inc
 	  echo "    <file preprocess='xml-stripblanks'>ui/$$n</file>" >> $@; \
 	done; \
 	for s in 16x16 22x22 24x24 32x32 48x48; do \
-	  for c in actions status; do \
+	  for c in actions status categories; do \
 	    for f in $(srcdir)/icons/$$s/$$c/*.png; do \
 	      test "$$f" = "$(srcdir)/icons/$$s/$$c/*.png" && continue; \
 	      n=`basename $$f`; \

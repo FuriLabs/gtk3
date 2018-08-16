@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkCellLayout: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="TreeWidgetObjects.html" title="Tree, List and Icon Grid Widgets">
 <link rel="prev" href="GtkTreeModelFilter.html" title="GtkTreeModelFilter">
 <link rel="next" href="GtkCellArea.html" title="GtkCellArea">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -154,7 +154,7 @@
 </div>
 <div class="refsect1">
 <a name="GtkCellLayout.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="/usr/share/gtk-doc/html/gobject/GTypeModule.html">GInterface</a>
+<pre class="screen">    GInterface
     <span class="lineart">╰──</span> GtkCellLayout
 </pre>
 </div>
@@ -200,16 +200,31 @@ elements. Each &lt;attribute&gt; element has a name attribute which specifies
 a property of the cell renderer; the content of the element is the
 attribute value.</p>
 <p>This is an example of a UI definition fragment specifying attributes:</p>
-<div class="informalexample"><pre class="programlisting">
-&lt;object class="GtkCellView"&gt;
-  &lt;child&gt;
-    &lt;object class="GtkCellRendererText"/&gt;
-    &lt;attributes&gt;
-      &lt;attribute name="text"&gt;0&lt;/attribute&gt;
-    &lt;/attributes&gt;
-  &lt;/child&gt;"
-&lt;/object&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkCellView"</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkCellRendererText"</span><span class="symbol">/&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">attributes</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"text"</span><span class="symbol">&gt;</span><span class="number">0</span><span class="symbol">&lt;/</span><span class="normal">attribute</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">attributes</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span><span class="string">"</span>
+<span class="string">&lt;/object&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>Furthermore for implementations of GtkCellLayout that use a <a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a>
 to lay out cells (all GtkCellLayouts in GTK+ use a GtkCellArea)
@@ -217,17 +232,33 @@ cell properties can also be defined in the format by
 specifying the custom &lt;cell-packing&gt; attribute which can contain multiple
 &lt;property&gt; elements defined in the normal way.</p>
 <p>Here is a UI definition fragment specifying cell properties:</p>
-<div class="informalexample"><pre class="programlisting">
-&lt;object class="GtkTreeViewColumn"&gt;
-  &lt;child&gt;
-    &lt;object class="GtkCellRendererText"/&gt;
-    &lt;cell-packing&gt;
-      &lt;property name="align"&gt;True&lt;/property&gt;
-      &lt;property name="expand"&gt;False&lt;/property&gt;
-    &lt;/cell-packing&gt;
-  &lt;/child&gt;"
-&lt;/object&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkTreeViewColumn"</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkCellRendererText"</span><span class="symbol">/&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">cell</span><span class="symbol">-</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"align"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"expand"</span><span class="symbol">&gt;</span><span class="normal">False</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">cell</span><span class="symbol">-</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span><span class="string">"</span>
+<span class="string">&lt;/object&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 </div>
 <hr>
@@ -238,9 +269,17 @@ specifying the custom &lt;cell-packing&gt; attribute which can contain multiple
 to the fact that these widgets internally use a <a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a>.
 The cell area is exposed as a construct-only property by these
 widgets. This means that it is possible to e.g. do</p>
-<div class="informalexample"><pre class="programlisting">
-combo = g_object_new (GTK_TYPE_COMBO_BOX, "cell-area", my_cell_area, NULL);
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">combo </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_object_new</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">GTK_TYPE_COMBO_BOX</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"cell-area"</span><span class="symbol">,</span><span class="normal"> my_cell_area</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>to use a custom cell area with a combo box. But construct properties
 are only initialized after instance <code class="function">init()</code>
@@ -249,26 +288,51 @@ the existence of the cell area in your subclass’ <code class="function">init()
 cause the default cell area to be instantiated. In this case, a provided
 construct property value will be ignored (with a warning, to alert
 you to the problem).</p>
-<div class="informalexample"><pre class="programlisting">
-static void
-my_combo_box_init (MyComboBox *b)
-{
-  GtkCellRenderer *cell;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">my_combo_box_init</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">MyComboBox</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">b</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">GtkCellRenderer</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">cell</span><span class="symbol">;</span>
 
-  cell = gtk_cell_renderer_pixbuf_new ();
-  // The following call causes the default cell area for combo boxes,
-  // a GtkCellAreaBox, to be instantiated
-  gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (b), cell, FALSE);
-  ...
-}
+<span class="normal">  cell </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkCellRendererPixbuf.html#gtk-cell-renderer-pixbuf-new">gtk_cell_renderer_pixbuf_new</a></span><span class="normal"> </span><span class="symbol">();</span>
+<span class="normal">  </span><span class="comment">// The following call causes the default cell area for combo boxes,</span>
+<span class="normal">  </span><span class="comment">// a GtkCellAreaBox, to be instantiated</span>
+<span class="normal">  </span><span class="function"><a href="GtkCellLayout.html#gtk-cell-layout-pack-start">gtk_cell_layout_pack_start</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_CELL_LAYOUT</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">b</span><span class="symbol">),</span><span class="normal"> cell</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="symbol">...</span>
+<span class="cbracket">}</span>
 
-GtkWidget *
-my_combo_box_new (GtkCellArea *area)
-{
-  // This call is going to cause a warning about area being ignored
-  return g_object_new (MY_TYPE_COMBO_BOX, "cell-area", area, NULL);
-}
-</pre></div>
+<span class="normal"><a href="GtkWidget.html#GtkWidget-struct">GtkWidget</a> </span><span class="symbol">*</span>
+<span class="function">my_combo_box_new</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkCellArea</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">area</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="comment">// This call is going to cause a warning about area being ignored</span>
+<span class="normal">  </span><span class="keyword">return</span><span class="normal"> </span><span class="function">g_object_new</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">MY_TYPE_COMBO_BOX</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"cell-area"</span><span class="symbol">,</span><span class="normal"> area</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>If supporting alternative cell areas with your derived widget is
 not important, then this does not have to concern you. If you want
@@ -845,6 +909,6 @@ cell_layout if called on a <a class="link" href="GtkCellArea.html" title="GtkCel
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

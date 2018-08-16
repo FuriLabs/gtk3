@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Building applications: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="gtk-getting-started.html" title="Getting Started with GTK+">
 <link rel="prev" href="ch01s03.html" title="Building user interfaces">
 <link rel="next" href="ch01s05.html" title="Custom Drawing">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -77,16 +77,33 @@
 <p>When using <a class="link" href="GtkApplication.html" title="GtkApplication"><span class="type">GtkApplication</span></a>, the <code class="function">main()</code> function can be very
       simple. We just call <code class="function">g_application_run()</code> and give it an instance
       of our application class.</p>
-<div class="informalexample"><pre class="programlisting">#include &lt;gtk/gtk.h&gt;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="preproc">#include</span><span class="normal"> </span><span class="string">&lt;gtk/gtk.h&gt;</span>
 
-#include "exampleapp.h"
+<span class="preproc">#include</span><span class="normal"> </span><span class="string">"exampleapp.h"</span>
 
-int
-main (int argc, char *argv[])
-{
-  return g_application_run (G_APPLICATION (example_app_new ()), argc, argv);
-}
-</pre></div>
+<span class="type">int</span>
+<span class="function">main</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> argc</span><span class="symbol">,</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">argv</span><span class="symbol">[])</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="keyword">return</span><span class="normal"> </span><span class="function">g_application_run</span><span class="normal"> </span><span class="symbol">(</span><span class="function">G_APPLICATION</span><span class="normal"> </span><span class="symbol">(</span><span class="function">example_app_new</span><span class="normal"> </span><span class="symbol">()),</span><span class="normal"> argc</span><span class="symbol">,</span><span class="normal"> argv</span><span class="symbol">);</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>All the application logic is in the application class, which
       is a subclass of <a class="link" href="GtkApplication.html" title="GtkApplication"><span class="type">GtkApplication</span></a>. Our example does not yet have any
       interesting functionality. All it does is open a window when it is
@@ -98,118 +115,244 @@ main (int argc, char *argv[])
       is launched with commandline arguments.</p>
 <p>To learn more about GApplication entry points, consult the
       GIO <a class="ulink" href="https://developer.gnome.org/gio/2.36/GApplication.html#GApplication.description" target="_top">documentation</a>.</p>
-<div class="informalexample"><pre class="programlisting">#include &lt;gtk/gtk.h&gt;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="preproc">#include</span><span class="normal"> </span><span class="string">&lt;gtk/gtk.h&gt;</span>
 
-#include "exampleapp.h"
-#include "exampleappwin.h"
+<span class="preproc">#include</span><span class="normal"> </span><span class="string">"exampleapp.h"</span>
+<span class="preproc">#include</span><span class="normal"> </span><span class="string">"exampleappwin.h"</span>
 
-struct _ExampleApp
-{
-  GtkApplication parent;
-};
+<span class="keyword">struct</span><span class="normal"> </span><span class="classname">_ExampleApp</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">GtkApplication</span><span class="normal"> parent</span><span class="symbol">;</span>
+<span class="cbracket">}</span><span class="symbol">;</span>
 
-G_DEFINE_TYPE(ExampleApp, example_app, GTK_TYPE_APPLICATION);
+<span class="function">G_DEFINE_TYPE</span><span class="symbol">(</span><span class="normal">ExampleApp</span><span class="symbol">,</span><span class="normal"> example_app</span><span class="symbol">,</span><span class="normal"> GTK_TYPE_APPLICATION</span><span class="symbol">);</span>
 
-static void
-example_app_init (ExampleApp *app)
-{
-}
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">example_app_init</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">ExampleApp</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">app</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="cbracket">}</span>
 
-static void
-example_app_activate (GApplication *app)
-{
-  ExampleAppWindow *win;
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">example_app_activate</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GApplication</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">app</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">ExampleAppWindow</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">win</span><span class="symbol">;</span>
 
-  win = example_app_window_new (EXAMPLE_APP (app));
-  gtk_window_present (GTK_WINDOW (win));
-}
+<span class="normal">  win </span><span class="symbol">=</span><span class="normal"> </span><span class="function">example_app_window_new</span><span class="normal"> </span><span class="symbol">(</span><span class="function">EXAMPLE_APP</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">app</span><span class="symbol">));</span>
+<span class="normal">  </span><span class="function"><a href="GtkWindow.html#gtk-window-present">gtk_window_present</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_WINDOW</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">win</span><span class="symbol">));</span>
+<span class="cbracket">}</span>
 
-static void
-example_app_open (GApplication  *app,
-                  GFile        **files,
-                  gint           n_files,
-                  const gchar   *hint)
-{
-  GList *windows;
-  ExampleAppWindow *win;
-  int i;
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">example_app_open</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GApplication</span><span class="normal">  </span><span class="symbol">*</span><span class="normal">app</span><span class="symbol">,</span>
+<span class="normal">                  </span><span class="usertype">GFile</span><span class="normal">        </span><span class="symbol">**</span><span class="normal">files</span><span class="symbol">,</span>
+<span class="normal">                  </span><span class="usertype">gint</span><span class="normal">           n_files</span><span class="symbol">,</span>
+<span class="normal">                  </span><span class="keyword">const</span><span class="normal"> </span><span class="usertype">gchar</span><span class="normal">   </span><span class="symbol">*</span><span class="normal">hint</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">GList</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">windows</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="usertype">ExampleAppWindow</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">win</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="type">int</span><span class="normal"> i</span><span class="symbol">;</span>
 
-  windows = gtk_application_get_windows (GTK_APPLICATION (app));
-  if (windows)
-    win = EXAMPLE_APP_WINDOW (windows-&gt;data);
-  else
-    win = example_app_window_new (EXAMPLE_APP (app));
+<span class="normal">  windows </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkApplication.html#gtk-application-get-windows">gtk_application_get_windows</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_APPLICATION</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">app</span><span class="symbol">));</span>
+<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">windows</span><span class="symbol">)</span>
+<span class="normal">    win </span><span class="symbol">=</span><span class="normal"> </span><span class="function">EXAMPLE_APP_WINDOW</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">windows</span><span class="symbol">-&gt;</span><span class="normal">data</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="keyword">else</span>
+<span class="normal">    win </span><span class="symbol">=</span><span class="normal"> </span><span class="function">example_app_window_new</span><span class="normal"> </span><span class="symbol">(</span><span class="function">EXAMPLE_APP</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">app</span><span class="symbol">));</span>
 
-  for (i = 0; i &lt; n_files; i++)
-    example_app_window_open (win, files[i]);
+<span class="normal">  </span><span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">i </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">&lt;</span><span class="normal"> n_files</span><span class="symbol">;</span><span class="normal"> i</span><span class="symbol">++)</span>
+<span class="normal">    </span><span class="function">example_app_window_open</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">win</span><span class="symbol">,</span><span class="normal"> files</span><span class="symbol">[</span><span class="normal">i</span><span class="symbol">]);</span>
 
-  gtk_window_present (GTK_WINDOW (win));
-}
+<span class="normal">  </span><span class="function"><a href="GtkWindow.html#gtk-window-present">gtk_window_present</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_WINDOW</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">win</span><span class="symbol">));</span>
+<span class="cbracket">}</span>
 
-static void
-example_app_class_init (ExampleAppClass *class)
-{
-  G_APPLICATION_CLASS (class)-&gt;activate = example_app_activate;
-  G_APPLICATION_CLASS (class)-&gt;open = example_app_open;
-}
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">example_app_class_init</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">ExampleAppClass</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">class</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="function">G_APPLICATION_CLASS</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">class</span><span class="symbol">)-&gt;</span><span class="normal">activate </span><span class="symbol">=</span><span class="normal"> example_app_activate</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="function">G_APPLICATION_CLASS</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">class</span><span class="symbol">)-&gt;</span><span class="normal">open </span><span class="symbol">=</span><span class="normal"> example_app_open</span><span class="symbol">;</span>
+<span class="cbracket">}</span>
 
-ExampleApp *
-example_app_new (void)
-{
-  return g_object_new (EXAMPLE_APP_TYPE,
-                       "application-id", "org.gtk.exampleapp",
-                       "flags", G_APPLICATION_HANDLES_OPEN,
-                       NULL);
-}
-</pre></div>
+<span class="normal">ExampleApp </span><span class="symbol">*</span>
+<span class="function">example_app_new</span><span class="normal"> </span><span class="symbol">(</span><span class="type">void</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="keyword">return</span><span class="normal"> </span><span class="function">g_object_new</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">EXAMPLE_APP_TYPE</span><span class="symbol">,</span>
+<span class="normal">                       </span><span class="string">"application-id"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"org.gtk.exampleapp"</span><span class="symbol">,</span>
+<span class="normal">                       </span><span class="string">"flags"</span><span class="symbol">,</span><span class="normal"> G_APPLICATION_HANDLES_OPEN</span><span class="symbol">,</span>
+<span class="normal">                       NULL</span><span class="symbol">);</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>Another important class that is part of the application support
       in GTK+ is <a class="link" href="GtkApplicationWindow.html" title="GtkApplicationWindow"><span class="type">GtkApplicationWindow</span></a>. It is typically subclassed as well.
       Our subclass does not do anything yet, so we will just get an empty
       window.</p>
-<div class="informalexample"><pre class="programlisting">#include &lt;gtk/gtk.h&gt;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="preproc">#include</span><span class="normal"> </span><span class="string">&lt;gtk/gtk.h&gt;</span>
 
-#include "exampleapp.h"
-#include "exampleappwin.h"
+<span class="preproc">#include</span><span class="normal"> </span><span class="string">"exampleapp.h"</span>
+<span class="preproc">#include</span><span class="normal"> </span><span class="string">"exampleappwin.h"</span>
 
-struct _ExampleAppWindow
-{
-  GtkApplicationWindow parent;
-};
+<span class="keyword">struct</span><span class="normal"> </span><span class="classname">_ExampleAppWindow</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">GtkApplicationWindow</span><span class="normal"> parent</span><span class="symbol">;</span>
+<span class="cbracket">}</span><span class="symbol">;</span>
 
-G_DEFINE_TYPE(ExampleAppWindow, example_app_window, GTK_TYPE_APPLICATION_WINDOW);
+<span class="function">G_DEFINE_TYPE</span><span class="symbol">(</span><span class="normal">ExampleAppWindow</span><span class="symbol">,</span><span class="normal"> example_app_window</span><span class="symbol">,</span><span class="normal"> GTK_TYPE_APPLICATION_WINDOW</span><span class="symbol">);</span>
 
-static void
-example_app_window_init (ExampleAppWindow *app)
-{
-}
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">example_app_window_init</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">ExampleAppWindow</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">app</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="cbracket">}</span>
 
-static void
-example_app_window_class_init (ExampleAppWindowClass *class)
-{
-}
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">example_app_window_class_init</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">ExampleAppWindowClass</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">class</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="cbracket">}</span>
 
-ExampleAppWindow *
-example_app_window_new (ExampleApp *app)
-{
-  return g_object_new (EXAMPLE_APP_WINDOW_TYPE, "application", app, NULL);
-}
+<span class="normal">ExampleAppWindow </span><span class="symbol">*</span>
+<span class="function">example_app_window_new</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">ExampleApp</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">app</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="keyword">return</span><span class="normal"> </span><span class="function">g_object_new</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">EXAMPLE_APP_WINDOW_TYPE</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"application"</span><span class="symbol">,</span><span class="normal"> app</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
+<span class="cbracket">}</span>
 
-void
-example_app_window_open (ExampleAppWindow *win,
-                         GFile            *file)
-{
-}
-</pre></div>
+<span class="type">void</span>
+<span class="function">example_app_window_open</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">ExampleAppWindow</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">win</span><span class="symbol">,</span>
+<span class="normal">                         </span><span class="usertype">GFile</span><span class="normal">            </span><span class="symbol">*</span><span class="normal">file</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>As part of the initial setup of our application, we also
       create an icon and a desktop file.</p>
 <div class="informalfigure"><div class="mediaobject"><img src="exampleapp.png"></div></div>
-<div class="informalexample"><pre class="programlisting">[Desktop Entry]
-Type=Application
-Name=Example
-Icon=exampleapp
-StartupNotify=true
-Exec=@bindir@/exampleapp
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">[</span><span class="usertype">Desktop</span><span class="normal"> Entry</span><span class="symbol">]</span>
+<span class="normal">Type</span><span class="symbol">=</span><span class="normal">Application</span>
+<span class="normal">Name</span><span class="symbol">=</span><span class="normal">Example</span>
+<span class="normal">Icon</span><span class="symbol">=</span><span class="normal">exampleapp</span>
+<span class="normal">StartupNotify</span><span class="symbol">=</span><span class="normal">true</span>
+<span class="normal">Exec</span><span class="symbol">=</span><span class="normal">@bindir@</span><span class="symbol">/</span><span class="normal">exampleapp</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>Note that <em class="replaceable"><code>@bindir@</code></em> needs to be replaced
       with the actual path to the binary before this desktop file can be used.</p>
 <p>Here is what we've achieved so far:</p>
@@ -227,38 +370,77 @@ Exec=@bindir@/exampleapp
       widget. The header bar contains a <a class="link" href="GtkStackSwitcher.html" title="GtkStackSwitcher"><span class="type">GtkStackSwitcher</span></a>, which is a
       standalone widget to show a row of 'tabs' for the pages of a <a class="link" href="GtkStack.html" title="GtkStack"><span class="type">GtkStack</span></a>.
       </p>
-<div class="informalexample"><pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;interface&gt;
-  &lt;!-- interface-requires gtk+ 3.8 --&gt;
-  &lt;template class="ExampleAppWindow" parent="GtkApplicationWindow"&gt;
-    &lt;property name="title" translatable="yes"&gt;Example Application&lt;/property&gt;
-    &lt;property name="default-width"&gt;600&lt;/property&gt;
-    &lt;property name="default-height"&gt;400&lt;/property&gt;
-    &lt;child&gt;
-      &lt;object class="GtkBox" id="content_box"&gt;
-        &lt;property name="visible"&gt;True&lt;/property&gt;
-        &lt;property name="orientation"&gt;vertical&lt;/property&gt;
-        &lt;child&gt;
-          &lt;object class="GtkHeaderBar" id="header"&gt;
-            &lt;property name="visible"&gt;True&lt;/property&gt;
-            &lt;child type="title"&gt;
-              &lt;object class="GtkStackSwitcher" id="tabs"&gt;
-                &lt;property name="visible"&gt;True&lt;/property&gt;
-                &lt;property name="stack"&gt;stack&lt;/property&gt;
-              &lt;/object&gt;
-            &lt;/child&gt;
-          &lt;/object&gt;
-        &lt;/child&gt;
-        &lt;child&gt;
-          &lt;object class="GtkStack" id="stack"&gt;
-            &lt;property name="visible"&gt;True&lt;/property&gt;
-          &lt;/object&gt;
-        &lt;/child&gt;
-      &lt;/object&gt;
-    &lt;/child&gt;
-  &lt;/template&gt;
-&lt;/interface&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;?</span><span class="usertype">xml</span><span class="normal"> version</span><span class="symbol">=</span><span class="string">"1.0"</span><span class="normal"> encoding</span><span class="symbol">=</span><span class="string">"UTF-8"</span><span class="symbol">?&gt;</span>
+<span class="symbol">&lt;</span><span class="normal">interface</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;!--</span><span class="normal"> interface</span><span class="symbol">-</span><span class="usertype">requires</span><span class="normal"> gtk</span><span class="symbol">+</span><span class="normal"> </span><span class="number">3.8</span><span class="normal"> </span><span class="symbol">--&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="usertype">template</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"ExampleAppWindow"</span><span class="normal"> parent</span><span class="symbol">=</span><span class="string">"GtkApplicationWindow"</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"title"</span><span class="normal"> translatable</span><span class="symbol">=</span><span class="string">"yes"</span><span class="symbol">&gt;</span><span class="usertype">Example</span><span class="normal"> Application</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"default-width"</span><span class="symbol">&gt;</span><span class="number">600</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"default-height"</span><span class="symbol">&gt;</span><span class="number">400</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkBox"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"content_box"</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"orientation"</span><span class="symbol">&gt;</span><span class="normal">vertical</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkHeaderBar"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"header"</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="usertype">child</span><span class="normal"> type</span><span class="symbol">=</span><span class="string">"title"</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkStackSwitcher"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"tabs"</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"stack"</span><span class="symbol">&gt;</span><span class="normal">stack</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkStack"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"stack"</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">template</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;/</span><span class="normal">interface</span><span class="symbol">&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>To make use of this file in our application, we revisit
       our <a class="link" href="GtkApplicationWindow.html" title="GtkApplicationWindow"><span class="type">GtkApplicationWindow</span></a> subclass, and call
       <a class="link" href="GtkWidget.html#gtk-widget-class-set-template-from-resource" title="gtk_widget_class_set_template_from_resource ()"><code class="function">gtk_widget_class_set_template_from_resource()</code></a> from the class init
@@ -292,13 +474,27 @@ example_app_window_class_init (ExampleAppWindowClass *class)
       to include the ui file in the binary. This is commonly done by listing
       all resources in a .gresource.xml file, such as this:
       </p>
-<div class="informalexample"><pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;gresources&gt;
-  &lt;gresource prefix="/org/gtk/exampleapp"&gt;
-    &lt;file preprocess="xml-stripblanks"&gt;window.ui&lt;/file&gt;
-  &lt;/gresource&gt;
-&lt;/gresources&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;?</span><span class="usertype">xml</span><span class="normal"> version</span><span class="symbol">=</span><span class="string">"1.0"</span><span class="normal"> encoding</span><span class="symbol">=</span><span class="string">"UTF-8"</span><span class="symbol">?&gt;</span>
+<span class="symbol">&lt;</span><span class="normal">gresources</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="usertype">gresource</span><span class="normal"> prefix</span><span class="symbol">=</span><span class="string">"/org/gtk/exampleapp"</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">file</span><span class="normal"> preprocess</span><span class="symbol">=</span><span class="string">"xml-stripblanks"</span><span class="symbol">&gt;</span><span class="normal">window</span><span class="symbol">.</span><span class="normal">ui</span><span class="symbol">&lt;/</span><span class="normal">file</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">gresource</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;/</span><span class="normal">gresources</span><span class="symbol">&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>This file has to be converted into a C source file that will be
       compiled and linked into the application together with the other source
       files. To do so, we use the glib-compile-resources utility:</p>
@@ -407,25 +603,51 @@ example_app_window_open (ExampleAppWindow *win,
       the whole application.</p>
 <p>Just like the window template, we specify our application menu
       in a ui file, and add it as a resource to our binary.</p>
-<div class="informalexample"><pre class="programlisting">&lt;?xml version="1.0"?&gt;
-&lt;interface&gt;
-  &lt;!-- interface-requires gtk+ 3.0 --&gt;
-  &lt;menu id="appmenu"&gt;
-    &lt;section&gt;
-      &lt;item&gt;
-        &lt;attribute name="label" translatable="yes"&gt;_Preferences&lt;/attribute&gt;
-        &lt;attribute name="action"&gt;app.preferences&lt;/attribute&gt;
-      &lt;/item&gt;
-    &lt;/section&gt;
-    &lt;section&gt;
-      &lt;item&gt;
-        &lt;attribute name="label" translatable="yes"&gt;_Quit&lt;/attribute&gt;
-        &lt;attribute name="action"&gt;app.quit&lt;/attribute&gt;
-      &lt;/item&gt;
-    &lt;/section&gt;
-  &lt;/menu&gt;
-&lt;/interface&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;?</span><span class="usertype">xml</span><span class="normal"> version</span><span class="symbol">=</span><span class="string">"1.0"</span><span class="symbol">?&gt;</span>
+<span class="symbol">&lt;</span><span class="normal">interface</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;!--</span><span class="normal"> interface</span><span class="symbol">-</span><span class="usertype">requires</span><span class="normal"> gtk</span><span class="symbol">+</span><span class="normal"> </span><span class="number">3.0</span><span class="normal"> </span><span class="symbol">--&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="usertype">menu</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"appmenu"</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">section</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="normal">item</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"label"</span><span class="normal"> translatable</span><span class="symbol">=</span><span class="string">"yes"</span><span class="symbol">&gt;</span><span class="normal">_Preferences</span><span class="symbol">&lt;/</span><span class="normal">attribute</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"action"</span><span class="symbol">&gt;</span><span class="normal">app</span><span class="symbol">.</span><span class="normal">preferences</span><span class="symbol">&lt;/</span><span class="normal">attribute</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;/</span><span class="normal">item</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">section</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">section</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="normal">item</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"label"</span><span class="normal"> translatable</span><span class="symbol">=</span><span class="string">"yes"</span><span class="symbol">&gt;</span><span class="normal">_Quit</span><span class="symbol">&lt;/</span><span class="normal">attribute</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"action"</span><span class="symbol">&gt;</span><span class="normal">app</span><span class="symbol">.</span><span class="normal">quit</span><span class="symbol">&lt;/</span><span class="normal">attribute</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;/</span><span class="normal">item</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">section</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">menu</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;/</span><span class="normal">interface</span><span class="symbol">&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>To associate the app menu with the application, we have to call
       <a class="link" href="GtkApplication.html#gtk-application-set-app-menu" title="gtk_application_set_app_menu ()"><code class="function">gtk_application_set_app_menu()</code></a>. Since app menus work by activating
       <span class="type">GActions</span>, we also have to add a suitable set of actions to our
@@ -508,27 +730,55 @@ example_app_class_init (ExampleAppClass *class)
       that is used for the content.</p>
 <p>We are going to use GSettings to store our preferences.
       GSettings requires a schema that describes our settings:</p>
-<div class="informalexample"><pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;schemalist&gt;
-  &lt;schema path="/org/gtk/exampleapp/" id="org.gtk.exampleapp"&gt;
-    &lt;key name="font" type="s"&gt;
-      &lt;default&gt;'Monospace 12'&lt;/default&gt;
-      &lt;summary&gt;Font&lt;/summary&gt;
-      &lt;description&gt;The font to be used for content.&lt;/description&gt;
-    &lt;/key&gt;
-    &lt;key name="transition" type="s"&gt;
-      &lt;choices&gt;
-        &lt;choice value='none'/&gt;
-        &lt;choice value='crossfade'/&gt;
-        &lt;choice value='slide-left-right'/&gt;
-      &lt;/choices&gt;
-      &lt;default&gt;'none'&lt;/default&gt;
-      &lt;summary&gt;Transition&lt;/summary&gt;
-      &lt;description&gt;The transition to use when switching tabs.&lt;/description&gt;
-    &lt;/key&gt;
-  &lt;/schema&gt;
-&lt;/schemalist&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;?</span><span class="usertype">xml</span><span class="normal"> version</span><span class="symbol">=</span><span class="string">"1.0"</span><span class="normal"> encoding</span><span class="symbol">=</span><span class="string">"UTF-8"</span><span class="symbol">?&gt;</span>
+<span class="symbol">&lt;</span><span class="normal">schemalist</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="usertype">schema</span><span class="normal"> path</span><span class="symbol">=</span><span class="string">"/org/gtk/exampleapp/"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"org.gtk.exampleapp"</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">key</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"font"</span><span class="normal"> type</span><span class="symbol">=</span><span class="string">"s"</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="keyword">default</span><span class="symbol">&gt;</span><span class="string">'Monospace 12'</span><span class="symbol">&lt;/</span><span class="keyword">default</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="normal">summary</span><span class="symbol">&gt;</span><span class="normal">Font</span><span class="symbol">&lt;/</span><span class="normal">summary</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="normal">description</span><span class="symbol">&gt;</span><span class="normal">The font to be used </span><span class="usertype">for</span><span class="normal"> content</span><span class="symbol">.&lt;/</span><span class="normal">description</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">key</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">key</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"transition"</span><span class="normal"> type</span><span class="symbol">=</span><span class="string">"s"</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="normal">choices</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">choice</span><span class="normal"> value</span><span class="symbol">=</span><span class="string">'none'</span><span class="symbol">/&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">choice</span><span class="normal"> value</span><span class="symbol">=</span><span class="string">'crossfade'</span><span class="symbol">/&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">choice</span><span class="normal"> value</span><span class="symbol">=</span><span class="string">'slide-left-right'</span><span class="symbol">/&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;/</span><span class="normal">choices</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="keyword">default</span><span class="symbol">&gt;</span><span class="string">'none'</span><span class="symbol">&lt;/</span><span class="keyword">default</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="normal">summary</span><span class="symbol">&gt;</span><span class="normal">Transition</span><span class="symbol">&lt;/</span><span class="normal">summary</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="normal">description</span><span class="symbol">&gt;</span><span class="normal">The transition to use when </span><span class="usertype">switching</span><span class="normal"> tabs</span><span class="symbol">.&lt;/</span><span class="normal">description</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">key</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">schema</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;/</span><span class="normal">schemalist</span><span class="symbol">&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>Before we can make use of this schema in our application,
       we need to compile it into the binary form that GSettings
       expects. GIO provides <a class="ulink" href="https://developer.gnome.org/gio/2.36/ch31s06.html" target="_top">macros</a>
@@ -571,145 +821,297 @@ example_app_window_init (ExampleAppWindow *win)
       we've already seen: templates, private structs, settings
       bindings.</p>
 <p>Lets start with the template.</p>
-<div class="informalexample"><pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;interface&gt;
-  &lt;!-- interface-requires gtk+ 3.8 --&gt;
-  &lt;template class="ExampleAppPrefs" parent="GtkDialog"&gt;
-    &lt;property name="title" translatable="yes"&gt;Preferences&lt;/property&gt;
-    &lt;property name="resizable"&gt;False&lt;/property&gt;
-    &lt;property name="modal"&gt;True&lt;/property&gt;
-    &lt;child internal-child="vbox"&gt;
-      &lt;object class="GtkBox" id="vbox"&gt;
-        &lt;child&gt;
-          &lt;object class="GtkGrid" id="grid"&gt;
-            &lt;property name="visible"&gt;True&lt;/property&gt;
-            &lt;property name="margin"&gt;6&lt;/property&gt;
-            &lt;property name="row-spacing"&gt;12&lt;/property&gt;
-            &lt;property name="column-spacing"&gt;6&lt;/property&gt;
-            &lt;child&gt;
-              &lt;object class="GtkLabel" id="fontlabel"&gt;
-                &lt;property name="visible"&gt;True&lt;/property&gt;
-                &lt;property name="label"&gt;_Font:&lt;/property&gt;
-                &lt;property name="use-underline"&gt;True&lt;/property&gt;
-                &lt;property name="mnemonic-widget"&gt;font&lt;/property&gt;
-                &lt;property name="xalign"&gt;1&lt;/property&gt;
-              &lt;/object&gt;
-              &lt;packing&gt;
-                &lt;property name="left-attach"&gt;0&lt;/property&gt;
-                &lt;property name="top-attach"&gt;0&lt;/property&gt;
-              &lt;/packing&gt;
-            &lt;/child&gt;
-            &lt;child&gt;
-              &lt;object class="GtkFontButton" id="font"&gt;
-                &lt;property name="visible"&gt;True&lt;/property&gt;
-              &lt;/object&gt;
-              &lt;packing&gt;
-                &lt;property name="left-attach"&gt;1&lt;/property&gt;
-                &lt;property name="top-attach"&gt;0&lt;/property&gt;
-              &lt;/packing&gt;
-            &lt;/child&gt;
-            &lt;child&gt;
-              &lt;object class="GtkLabel" id="transitionlabel"&gt;
-                &lt;property name="visible"&gt;True&lt;/property&gt;
-                &lt;property name="label"&gt;_Transition:&lt;/property&gt;
-                &lt;property name="use-underline"&gt;True&lt;/property&gt;
-                &lt;property name="mnemonic-widget"&gt;transition&lt;/property&gt;
-                &lt;property name="xalign"&gt;1&lt;/property&gt;
-              &lt;/object&gt;
-              &lt;packing&gt;
-                &lt;property name="left-attach"&gt;0&lt;/property&gt;
-                &lt;property name="top-attach"&gt;1&lt;/property&gt;
-              &lt;/packing&gt;
-            &lt;/child&gt;
-            &lt;child&gt;
-              &lt;object class="GtkComboBoxText" id="transition"&gt;
-                &lt;property name="visible"&gt;True&lt;/property&gt;
-                &lt;items&gt;
-                  &lt;item translatable="yes" id="none"&gt;None&lt;/item&gt;
-                  &lt;item translatable="yes" id="crossfade"&gt;Fade&lt;/item&gt;
-                  &lt;item translatable="yes" id="slide-left-right"&gt;Slide&lt;/item&gt;
-                &lt;/items&gt;
-              &lt;/object&gt;
-              &lt;packing&gt;
-                &lt;property name="left-attach"&gt;1&lt;/property&gt;
-                &lt;property name="top-attach"&gt;1&lt;/property&gt;
-              &lt;/packing&gt;
-            &lt;/child&gt;
-          &lt;/object&gt;
-        &lt;/child&gt;
-      &lt;/object&gt;
-    &lt;/child&gt;
-  &lt;/template&gt;
-&lt;/interface&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;?</span><span class="usertype">xml</span><span class="normal"> version</span><span class="symbol">=</span><span class="string">"1.0"</span><span class="normal"> encoding</span><span class="symbol">=</span><span class="string">"UTF-8"</span><span class="symbol">?&gt;</span>
+<span class="symbol">&lt;</span><span class="normal">interface</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;!--</span><span class="normal"> interface</span><span class="symbol">-</span><span class="usertype">requires</span><span class="normal"> gtk</span><span class="symbol">+</span><span class="normal"> </span><span class="number">3.8</span><span class="normal"> </span><span class="symbol">--&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="usertype">template</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"ExampleAppPrefs"</span><span class="normal"> parent</span><span class="symbol">=</span><span class="string">"GtkDialog"</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"title"</span><span class="normal"> translatable</span><span class="symbol">=</span><span class="string">"yes"</span><span class="symbol">&gt;</span><span class="normal">Preferences</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"resizable"</span><span class="symbol">&gt;</span><span class="normal">False</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"modal"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">child</span><span class="normal"> internal</span><span class="symbol">-</span><span class="normal">child</span><span class="symbol">=</span><span class="string">"vbox"</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkBox"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"vbox"</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkGrid"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"grid"</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"margin"</span><span class="symbol">&gt;</span><span class="number">6</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"row-spacing"</span><span class="symbol">&gt;</span><span class="number">12</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"column-spacing"</span><span class="symbol">&gt;</span><span class="number">6</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkLabel"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"fontlabel"</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"label"</span><span class="symbol">&gt;</span><span class="normal">_Font</span><span class="symbol">:&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"use-underline"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"mnemonic-widget"</span><span class="symbol">&gt;</span><span class="normal">font</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"xalign"</span><span class="symbol">&gt;</span><span class="number">1</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"left-attach"</span><span class="symbol">&gt;</span><span class="number">0</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"top-attach"</span><span class="symbol">&gt;</span><span class="number">0</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkFontButton"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"font"</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"left-attach"</span><span class="symbol">&gt;</span><span class="number">1</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"top-attach"</span><span class="symbol">&gt;</span><span class="number">0</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkLabel"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"transitionlabel"</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"label"</span><span class="symbol">&gt;</span><span class="normal">_Transition</span><span class="symbol">:&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"use-underline"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"mnemonic-widget"</span><span class="symbol">&gt;</span><span class="normal">transition</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"xalign"</span><span class="symbol">&gt;</span><span class="number">1</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"left-attach"</span><span class="symbol">&gt;</span><span class="number">0</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"top-attach"</span><span class="symbol">&gt;</span><span class="number">1</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkComboBoxText"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"transition"</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="normal">items</span><span class="symbol">&gt;</span>
+<span class="normal">                  </span><span class="symbol">&lt;</span><span class="usertype">item</span><span class="normal"> translatable</span><span class="symbol">=</span><span class="string">"yes"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"none"</span><span class="symbol">&gt;</span><span class="normal">None</span><span class="symbol">&lt;/</span><span class="normal">item</span><span class="symbol">&gt;</span>
+<span class="normal">                  </span><span class="symbol">&lt;</span><span class="usertype">item</span><span class="normal"> translatable</span><span class="symbol">=</span><span class="string">"yes"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"crossfade"</span><span class="symbol">&gt;</span><span class="normal">Fade</span><span class="symbol">&lt;/</span><span class="normal">item</span><span class="symbol">&gt;</span>
+<span class="normal">                  </span><span class="symbol">&lt;</span><span class="usertype">item</span><span class="normal"> translatable</span><span class="symbol">=</span><span class="string">"yes"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"slide-left-right"</span><span class="symbol">&gt;</span><span class="normal">Slide</span><span class="symbol">&lt;/</span><span class="normal">item</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;/</span><span class="normal">items</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"left-attach"</span><span class="symbol">&gt;</span><span class="number">1</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"top-attach"</span><span class="symbol">&gt;</span><span class="number">1</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">template</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;/</span><span class="normal">interface</span><span class="symbol">&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>Next comes the dialog subclass.</p>
-<div class="informalexample"><pre class="programlisting">#include &lt;gtk/gtk.h&gt;
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="preproc">#include</span><span class="normal"> </span><span class="string">&lt;gtk/gtk.h&gt;</span>
 
-#include "exampleapp.h"
-#include "exampleappwin.h"
-#include "exampleappprefs.h"
+<span class="preproc">#include</span><span class="normal"> </span><span class="string">"exampleapp.h"</span>
+<span class="preproc">#include</span><span class="normal"> </span><span class="string">"exampleappwin.h"</span>
+<span class="preproc">#include</span><span class="normal"> </span><span class="string">"exampleappprefs.h"</span>
 
-struct _ExampleAppPrefs
-{
-  GtkDialog parent;
-};
+<span class="keyword">struct</span><span class="normal"> </span><span class="classname">_ExampleAppPrefs</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">GtkDialog</span><span class="normal"> parent</span><span class="symbol">;</span>
+<span class="cbracket">}</span><span class="symbol">;</span>
 
-typedef struct _ExampleAppPrefsPrivate ExampleAppPrefsPrivate;
+<span class="keyword">typedef</span><span class="normal"> </span><span class="keyword">struct</span><span class="normal"> </span><span class="classname">_ExampleAppPrefsPrivate</span><span class="normal"> ExampleAppPrefsPrivate</span><span class="symbol">;</span>
 
-struct _ExampleAppPrefsPrivate
-{
-  GSettings *settings;
-  GtkWidget *font;
-  GtkWidget *transition;
-};
+<span class="keyword">struct</span><span class="normal"> </span><span class="classname">_ExampleAppPrefsPrivate</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">GSettings</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">settings</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">font</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">transition</span><span class="symbol">;</span>
+<span class="cbracket">}</span><span class="symbol">;</span>
 
-G_DEFINE_TYPE_WITH_PRIVATE(ExampleAppPrefs, example_app_prefs, GTK_TYPE_DIALOG)
+<span class="function">G_DEFINE_TYPE_WITH_PRIVATE</span><span class="symbol">(</span><span class="normal">ExampleAppPrefs</span><span class="symbol">,</span><span class="normal"> example_app_prefs</span><span class="symbol">,</span><span class="normal"> GTK_TYPE_DIALOG</span><span class="symbol">)</span>
 
-static void
-example_app_prefs_init (ExampleAppPrefs *prefs)
-{
-  ExampleAppPrefsPrivate *priv;
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">example_app_prefs_init</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">ExampleAppPrefs</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">prefs</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">ExampleAppPrefsPrivate</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">priv</span><span class="symbol">;</span>
 
-  priv = example_app_prefs_get_instance_private (prefs);
-  gtk_widget_init_template (GTK_WIDGET (prefs));
-  priv-&gt;settings = g_settings_new ("org.gtk.exampleapp");
+<span class="normal">  priv </span><span class="symbol">=</span><span class="normal"> </span><span class="function">example_app_prefs_get_instance_private</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">prefs</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function"><a href="GtkWidget.html#gtk-widget-init-template">gtk_widget_init_template</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_WIDGET</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">prefs</span><span class="symbol">));</span>
+<span class="normal">  priv</span><span class="symbol">-&gt;</span><span class="normal">settings </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_settings_new</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"org.gtk.exampleapp"</span><span class="symbol">);</span>
 
-  g_settings_bind (priv-&gt;settings, "font",
-                   priv-&gt;font, "font",
-                   G_SETTINGS_BIND_DEFAULT);
-  g_settings_bind (priv-&gt;settings, "transition",
-                   priv-&gt;transition, "active-id",
-                   G_SETTINGS_BIND_DEFAULT);
-}
+<span class="normal">  </span><span class="function">g_settings_bind</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">priv</span><span class="symbol">-&gt;</span><span class="normal">settings</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"font"</span><span class="symbol">,</span>
+<span class="normal">                   priv</span><span class="symbol">-&gt;</span><span class="normal">font</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"font"</span><span class="symbol">,</span>
+<span class="normal">                   G_SETTINGS_BIND_DEFAULT</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function">g_settings_bind</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">priv</span><span class="symbol">-&gt;</span><span class="normal">settings</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"transition"</span><span class="symbol">,</span>
+<span class="normal">                   priv</span><span class="symbol">-&gt;</span><span class="normal">transition</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"active-id"</span><span class="symbol">,</span>
+<span class="normal">                   G_SETTINGS_BIND_DEFAULT</span><span class="symbol">);</span>
+<span class="cbracket">}</span>
 
-static void
-example_app_prefs_dispose (GObject *object)
-{
-  ExampleAppPrefsPrivate *priv;
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">example_app_prefs_dispose</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GObject</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">object</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">ExampleAppPrefsPrivate</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">priv</span><span class="symbol">;</span>
 
-  priv = example_app_prefs_get_instance_private (EXAMPLE_APP_PREFS (object));
-  g_clear_object (&amp;priv-&gt;settings);
+<span class="normal">  priv </span><span class="symbol">=</span><span class="normal"> </span><span class="function">example_app_prefs_get_instance_private</span><span class="normal"> </span><span class="symbol">(</span><span class="function">EXAMPLE_APP_PREFS</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">object</span><span class="symbol">));</span>
+<span class="normal">  </span><span class="function">g_clear_object</span><span class="normal"> </span><span class="symbol">(&amp;</span><span class="normal">priv</span><span class="symbol">-&gt;</span><span class="normal">settings</span><span class="symbol">);</span>
 
-  G_OBJECT_CLASS (example_app_prefs_parent_class)-&gt;dispose (object);
-}
+<span class="normal">  </span><span class="function">G_OBJECT_CLASS</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">example_app_prefs_parent_class</span><span class="symbol">)-&gt;</span><span class="function">dispose</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">object</span><span class="symbol">);</span>
+<span class="cbracket">}</span>
 
-static void
-example_app_prefs_class_init (ExampleAppPrefsClass *class)
-{
-  G_OBJECT_CLASS (class)-&gt;dispose = example_app_prefs_dispose;
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">example_app_prefs_class_init</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">ExampleAppPrefsClass</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">class</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="function">G_OBJECT_CLASS</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">class</span><span class="symbol">)-&gt;</span><span class="normal">dispose </span><span class="symbol">=</span><span class="normal"> example_app_prefs_dispose</span><span class="symbol">;</span>
 
-  gtk_widget_class_set_template_from_resource (GTK_WIDGET_CLASS (class),
-                                               "/org/gtk/exampleapp/prefs.ui");
-  gtk_widget_class_bind_template_child_private (GTK_WIDGET_CLASS (class), ExampleAppPrefs, font);
-  gtk_widget_class_bind_template_child_private (GTK_WIDGET_CLASS (class), ExampleAppPrefs, transition);
-}
+<span class="normal">  </span><span class="function"><a href="GtkWidget.html#gtk-widget-class-set-template-from-resource">gtk_widget_class_set_template_from_resource</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_WIDGET_CLASS</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">class</span><span class="symbol">),</span>
+<span class="normal">                                               </span><span class="string">"/org/gtk/exampleapp/prefs.ui"</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function"><a href="GtkWidget.html#gtk-widget-class-bind-template-child-private">gtk_widget_class_bind_template_child_private</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_WIDGET_CLASS</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">class</span><span class="symbol">),</span><span class="normal"> ExampleAppPrefs</span><span class="symbol">,</span><span class="normal"> font</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function"><a href="GtkWidget.html#gtk-widget-class-bind-template-child-private">gtk_widget_class_bind_template_child_private</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_WIDGET_CLASS</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">class</span><span class="symbol">),</span><span class="normal"> ExampleAppPrefs</span><span class="symbol">,</span><span class="normal"> transition</span><span class="symbol">);</span>
+<span class="cbracket">}</span>
 
-ExampleAppPrefs *
-example_app_prefs_new (ExampleAppWindow *win)
-{
-  return g_object_new (EXAMPLE_APP_PREFS_TYPE, "transient-for", win, "use-header-bar", TRUE, NULL);
-}
-</pre></div>
+<span class="normal">ExampleAppPrefs </span><span class="symbol">*</span>
+<span class="function">example_app_prefs_new</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">ExampleAppWindow</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">win</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="keyword">return</span><span class="normal"> </span><span class="function">g_object_new</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">EXAMPLE_APP_PREFS_TYPE</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"transient-for"</span><span class="symbol">,</span><span class="normal"> win</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"use-header-bar"</span><span class="symbol">,</span><span class="normal"> TRUE</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>Now we revisit the <code class="literal">preferences_activated()</code> function in our
       application class, and make it open a new preference dialog.</p>
 <div class="informalexample">
@@ -746,69 +1148,139 @@ preferences_activated (GSimpleAction *action,
       top to present a search entry.</p>
 <p>We add a toggle button to the header bar, which can be used
       to slide out the search bar below the header bar.</p>
-<div class="informalexample"><pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;interface&gt;
-  &lt;!-- interface-requires gtk+ 3.8 --&gt;
-  &lt;template class="ExampleAppWindow" parent="GtkApplicationWindow"&gt;
-    &lt;property name="title" translatable="yes"&gt;Example Application&lt;/property&gt;
-    &lt;property name="default-width"&gt;600&lt;/property&gt;
-    &lt;property name="default-height"&gt;400&lt;/property&gt;
-    &lt;child&gt;
-      &lt;object class="GtkBox" id="content_box"&gt;
-        &lt;property name="visible"&gt;True&lt;/property&gt;
-        &lt;property name="orientation"&gt;vertical&lt;/property&gt;
-        &lt;child&gt;
-          &lt;object class="GtkHeaderBar" id="header"&gt;
-            &lt;property name="visible"&gt;True&lt;/property&gt;
-            &lt;child type="title"&gt;
-              &lt;object class="GtkStackSwitcher" id="tabs"&gt;
-                &lt;property name="visible"&gt;True&lt;/property&gt;
-                &lt;property name="stack"&gt;stack&lt;/property&gt;
-              &lt;/object&gt;
-            &lt;/child&gt;
-            &lt;child&gt;
-              &lt;object class="GtkToggleButton" id="search"&gt;
-                &lt;property name="visible"&gt;True&lt;/property&gt;
-                &lt;property name="sensitive"&gt;False&lt;/property&gt;
-                &lt;style&gt;
-                  &lt;class name="image-button"/&gt;
-                &lt;/style&gt;
-                &lt;child&gt;
-                  &lt;object class="GtkImage" id="search-icon"&gt;
-                    &lt;property name="visible"&gt;True&lt;/property&gt;
-                    &lt;property name="icon-name"&gt;edit-find-symbolic&lt;/property&gt;
-                    &lt;property name="icon-size"&gt;1&lt;/property&gt;
-                  &lt;/object&gt;
-                &lt;/child&gt;
-              &lt;/object&gt;
-              &lt;packing&gt;
-                &lt;property name="pack-type"&gt;end&lt;/property&gt;
-              &lt;/packing&gt;
-            &lt;/child&gt;
-          &lt;/object&gt;
-        &lt;/child&gt;
-        &lt;child&gt;
-          &lt;object class="GtkSearchBar" id="searchbar"&gt;
-            &lt;property name="visible"&gt;True&lt;/property&gt;
-            &lt;child&gt;
-              &lt;object class="GtkSearchEntry" id="searchentry"&gt;
-                &lt;signal name="search-changed" handler="search_text_changed"/&gt;
-                &lt;property name="visible"&gt;True&lt;/property&gt;
-              &lt;/object&gt;
-            &lt;/child&gt;
-          &lt;/object&gt;
-        &lt;/child&gt;
-        &lt;child&gt;
-          &lt;object class="GtkStack" id="stack"&gt;
-            &lt;signal name="notify::visible-child" handler="visible_child_changed"/&gt;
-            &lt;property name="visible"&gt;True&lt;/property&gt;
-          &lt;/object&gt;
-        &lt;/child&gt;
-      &lt;/object&gt;
-    &lt;/child&gt;
-  &lt;/template&gt;
-&lt;/interface&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;?</span><span class="usertype">xml</span><span class="normal"> version</span><span class="symbol">=</span><span class="string">"1.0"</span><span class="normal"> encoding</span><span class="symbol">=</span><span class="string">"UTF-8"</span><span class="symbol">?&gt;</span>
+<span class="symbol">&lt;</span><span class="normal">interface</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;!--</span><span class="normal"> interface</span><span class="symbol">-</span><span class="usertype">requires</span><span class="normal"> gtk</span><span class="symbol">+</span><span class="normal"> </span><span class="number">3.8</span><span class="normal"> </span><span class="symbol">--&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="usertype">template</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"ExampleAppWindow"</span><span class="normal"> parent</span><span class="symbol">=</span><span class="string">"GtkApplicationWindow"</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"title"</span><span class="normal"> translatable</span><span class="symbol">=</span><span class="string">"yes"</span><span class="symbol">&gt;</span><span class="usertype">Example</span><span class="normal"> Application</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"default-width"</span><span class="symbol">&gt;</span><span class="number">600</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"default-height"</span><span class="symbol">&gt;</span><span class="number">400</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkBox"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"content_box"</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"orientation"</span><span class="symbol">&gt;</span><span class="normal">vertical</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkHeaderBar"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"header"</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="usertype">child</span><span class="normal"> type</span><span class="symbol">=</span><span class="string">"title"</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkStackSwitcher"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"tabs"</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"stack"</span><span class="symbol">&gt;</span><span class="normal">stack</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkToggleButton"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"search"</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"sensitive"</span><span class="symbol">&gt;</span><span class="normal">False</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="normal">style</span><span class="symbol">&gt;</span>
+<span class="normal">                  </span><span class="symbol">&lt;</span><span class="usertype">class</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"image-button"</span><span class="symbol">/&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;/</span><span class="normal">style</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">                  </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkImage"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"search-icon"</span><span class="symbol">&gt;</span>
+<span class="normal">                    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"icon-name"</span><span class="symbol">&gt;</span><span class="normal">edit</span><span class="symbol">-</span><span class="normal">find</span><span class="symbol">-</span><span class="normal">symbolic</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"icon-size"</span><span class="symbol">&gt;</span><span class="number">1</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                  </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"pack-type"</span><span class="symbol">&gt;</span><span class="normal">end</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkSearchBar"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"searchbar"</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkSearchEntry"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"searchentry"</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">signal</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"search-changed"</span><span class="normal"> handler</span><span class="symbol">=</span><span class="string">"search_text_changed"</span><span class="symbol">/&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkStack"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"stack"</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="usertype">signal</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"notify::visible-child"</span><span class="normal"> handler</span><span class="symbol">=</span><span class="string">"visible_child_changed"</span><span class="symbol">/&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">template</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;/</span><span class="normal">interface</span><span class="symbol">&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>Implementing the search needs quite a few code changes that
       we are not going to completely go over here. The central piece of
       the search implementation is a signal handler that listens for
@@ -874,124 +1346,251 @@ example_app_window_init (ExampleAppWindow *win)
 <a name="id-1.2.3.12.11"></a>Adding a side bar</h3></div></div></div>
 <p>As another piece of functionality, we are adding a sidebar,
       which demonstrates <a class="link" href="GtkMenuButton.html" title="GtkMenuButton"><span class="type">GtkMenuButton</span></a>, <a class="link" href="GtkRevealer.html" title="GtkRevealer"><span class="type">GtkRevealer</span></a> and <a class="link" href="GtkListBox.html" title="GtkListBox"><span class="type">GtkListBox</span></a>.</p>
-<div class="informalexample"><pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;interface&gt;
-  &lt;!-- interface-requires gtk+ 3.8 --&gt;
-  &lt;template class="ExampleAppWindow" parent="GtkApplicationWindow"&gt;
-    &lt;property name="title" translatable="yes"&gt;Example Application&lt;/property&gt;
-    &lt;property name="default-width"&gt;600&lt;/property&gt;
-    &lt;property name="default-height"&gt;400&lt;/property&gt;
-    &lt;child&gt;
-      &lt;object class="GtkBox" id="content_box"&gt;
-        &lt;property name="visible"&gt;True&lt;/property&gt;
-        &lt;property name="orientation"&gt;vertical&lt;/property&gt;
-        &lt;child&gt;
-          &lt;object class="GtkHeaderBar" id="header"&gt;
-            &lt;property name="visible"&gt;True&lt;/property&gt;
-            &lt;child type="title"&gt;
-              &lt;object class="GtkStackSwitcher" id="tabs"&gt;
-                &lt;property name="visible"&gt;True&lt;/property&gt;
-                &lt;property name="stack"&gt;stack&lt;/property&gt;
-              &lt;/object&gt;
-            &lt;/child&gt;
-            &lt;child&gt;
-              &lt;object class="GtkToggleButton" id="search"&gt;
-                &lt;property name="visible"&gt;True&lt;/property&gt;
-                &lt;property name="sensitive"&gt;False&lt;/property&gt;
-                &lt;style&gt;
-                  &lt;class name="image-button"/&gt;
-                &lt;/style&gt;
-                &lt;child&gt;
-                  &lt;object class="GtkImage" id="search-icon"&gt;
-                    &lt;property name="visible"&gt;True&lt;/property&gt;
-                    &lt;property name="icon-name"&gt;edit-find-symbolic&lt;/property&gt;
-                    &lt;property name="icon-size"&gt;1&lt;/property&gt;
-                  &lt;/object&gt;
-                &lt;/child&gt;
-              &lt;/object&gt;
-              &lt;packing&gt;
-                &lt;property name="pack-type"&gt;end&lt;/property&gt;
-              &lt;/packing&gt;
-            &lt;/child&gt;
-            &lt;child&gt;
-              &lt;object class="GtkMenuButton" id="gears"&gt;
-                &lt;property name="visible"&gt;True&lt;/property&gt;
-                &lt;property name="direction"&gt;none&lt;/property&gt;
-                &lt;property name="use-popover"&gt;True&lt;/property&gt;
-                &lt;style&gt;
-                  &lt;class name="image-button"/&gt;
-                &lt;/style&gt;
-              &lt;/object&gt;
-              &lt;packing&gt;
-                &lt;property name="pack-type"&gt;end&lt;/property&gt;
-              &lt;/packing&gt;
-            &lt;/child&gt;
-          &lt;/object&gt;
-        &lt;/child&gt;
-        &lt;child&gt;
-          &lt;object class="GtkSearchBar" id="searchbar"&gt;
-            &lt;property name="visible"&gt;True&lt;/property&gt;
-            &lt;child&gt;
-              &lt;object class="GtkSearchEntry" id="searchentry"&gt;
-                &lt;signal name="search-changed" handler="search_text_changed"/&gt;
-                &lt;property name="visible"&gt;True&lt;/property&gt;
-              &lt;/object&gt;
-            &lt;/child&gt;
-          &lt;/object&gt;
-        &lt;/child&gt;
-        &lt;child&gt;
-          &lt;object class="GtkBox" id="hbox"&gt;
-            &lt;property name="visible"&gt;True&lt;/property&gt;
-            &lt;child&gt;
-              &lt;object class="GtkRevealer" id="sidebar"&gt;
-                &lt;property name="visible"&gt;True&lt;/property&gt;
-                &lt;property name="transition-type"&gt;slide-right&lt;/property&gt;
-                &lt;child&gt;
-                 &lt;object class="GtkScrolledWindow" id="sidebar-sw"&gt;
-                   &lt;property name="visible"&gt;True&lt;/property&gt;
-                   &lt;property name="hscrollbar-policy"&gt;never&lt;/property&gt;
-                   &lt;property name="vscrollbar-policy"&gt;automatic&lt;/property&gt;
-                   &lt;child&gt;
-                     &lt;object class="GtkListBox" id="words"&gt;
-                       &lt;property name="visible"&gt;True&lt;/property&gt;
-                       &lt;property name="selection-mode"&gt;none&lt;/property&gt;
-                     &lt;/object&gt;
-                   &lt;/child&gt;
-                 &lt;/object&gt;
-                &lt;/child&gt;
-              &lt;/object&gt;
-            &lt;/child&gt;
-            &lt;child&gt;
-              &lt;object class="GtkStack" id="stack"&gt;
-                &lt;signal name="notify::visible-child" handler="visible_child_changed"/&gt;
-                &lt;property name="visible"&gt;True&lt;/property&gt;
-              &lt;/object&gt;
-            &lt;/child&gt;
-          &lt;/object&gt;
-        &lt;/child&gt;
-      &lt;/object&gt;
-    &lt;/child&gt;
-  &lt;/template&gt;
-&lt;/interface&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;?</span><span class="usertype">xml</span><span class="normal"> version</span><span class="symbol">=</span><span class="string">"1.0"</span><span class="normal"> encoding</span><span class="symbol">=</span><span class="string">"UTF-8"</span><span class="symbol">?&gt;</span>
+<span class="symbol">&lt;</span><span class="normal">interface</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;!--</span><span class="normal"> interface</span><span class="symbol">-</span><span class="usertype">requires</span><span class="normal"> gtk</span><span class="symbol">+</span><span class="normal"> </span><span class="number">3.8</span><span class="normal"> </span><span class="symbol">--&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="usertype">template</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"ExampleAppWindow"</span><span class="normal"> parent</span><span class="symbol">=</span><span class="string">"GtkApplicationWindow"</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"title"</span><span class="normal"> translatable</span><span class="symbol">=</span><span class="string">"yes"</span><span class="symbol">&gt;</span><span class="usertype">Example</span><span class="normal"> Application</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"default-width"</span><span class="symbol">&gt;</span><span class="number">600</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"default-height"</span><span class="symbol">&gt;</span><span class="number">400</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkBox"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"content_box"</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"orientation"</span><span class="symbol">&gt;</span><span class="normal">vertical</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkHeaderBar"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"header"</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="usertype">child</span><span class="normal"> type</span><span class="symbol">=</span><span class="string">"title"</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkStackSwitcher"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"tabs"</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"stack"</span><span class="symbol">&gt;</span><span class="normal">stack</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkToggleButton"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"search"</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"sensitive"</span><span class="symbol">&gt;</span><span class="normal">False</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="normal">style</span><span class="symbol">&gt;</span>
+<span class="normal">                  </span><span class="symbol">&lt;</span><span class="usertype">class</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"image-button"</span><span class="symbol">/&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;/</span><span class="normal">style</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">                  </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkImage"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"search-icon"</span><span class="symbol">&gt;</span>
+<span class="normal">                    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"icon-name"</span><span class="symbol">&gt;</span><span class="normal">edit</span><span class="symbol">-</span><span class="normal">find</span><span class="symbol">-</span><span class="normal">symbolic</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"icon-size"</span><span class="symbol">&gt;</span><span class="number">1</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                  </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"pack-type"</span><span class="symbol">&gt;</span><span class="normal">end</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkMenuButton"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"gears"</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"direction"</span><span class="symbol">&gt;</span><span class="normal">none</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"use-popover"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="normal">style</span><span class="symbol">&gt;</span>
+<span class="normal">                  </span><span class="symbol">&lt;</span><span class="usertype">class</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"image-button"</span><span class="symbol">/&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;/</span><span class="normal">style</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"pack-type"</span><span class="symbol">&gt;</span><span class="normal">end</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkSearchBar"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"searchbar"</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkSearchEntry"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"searchentry"</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">signal</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"search-changed"</span><span class="normal"> handler</span><span class="symbol">=</span><span class="string">"search_text_changed"</span><span class="symbol">/&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkBox"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"hbox"</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkRevealer"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"sidebar"</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"transition-type"</span><span class="symbol">&gt;</span><span class="normal">slide</span><span class="symbol">-</span><span class="normal">right</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">                 </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkScrolledWindow"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"sidebar-sw"</span><span class="symbol">&gt;</span>
+<span class="normal">                   </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                   </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"hscrollbar-policy"</span><span class="symbol">&gt;</span><span class="normal">never</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                   </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"vscrollbar-policy"</span><span class="symbol">&gt;</span><span class="normal">automatic</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                   </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">                     </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkListBox"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"words"</span><span class="symbol">&gt;</span>
+<span class="normal">                       </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                       </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"selection-mode"</span><span class="symbol">&gt;</span><span class="normal">none</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                     </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">                   </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">                 </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkStack"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"stack"</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">signal</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"notify::visible-child"</span><span class="normal"> handler</span><span class="symbol">=</span><span class="string">"visible_child_changed"</span><span class="symbol">/&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">template</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;/</span><span class="normal">interface</span><span class="symbol">&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>The code to populate the sidebar with buttons for the words
       found in each file is a little too involved to go into here. But we'll
       look at the code to add the gears menu.</p>
 <p>As expected by now, the gears menu is specified in a GtkBuilder
       ui file.</p>
-<div class="informalexample"><pre class="programlisting">&lt;?xml version="1.0"?&gt;
-&lt;interface&gt;
-  &lt;!-- interface-requires gtk+ 3.0 --&gt;
-  &lt;menu id="menu"&gt;
-    &lt;section&gt;
-      &lt;item&gt;
-        &lt;attribute name="label" translatable="yes"&gt;_Words&lt;/attribute&gt;
-        &lt;attribute name="action"&gt;win.show-words&lt;/attribute&gt;
-      &lt;/item&gt;
-    &lt;/section&gt;
-  &lt;/menu&gt;
-&lt;/interface&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;?</span><span class="usertype">xml</span><span class="normal"> version</span><span class="symbol">=</span><span class="string">"1.0"</span><span class="symbol">?&gt;</span>
+<span class="symbol">&lt;</span><span class="normal">interface</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;!--</span><span class="normal"> interface</span><span class="symbol">-</span><span class="usertype">requires</span><span class="normal"> gtk</span><span class="symbol">+</span><span class="normal"> </span><span class="number">3.0</span><span class="normal"> </span><span class="symbol">--&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="usertype">menu</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"menu"</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">section</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="normal">item</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"label"</span><span class="normal"> translatable</span><span class="symbol">=</span><span class="string">"yes"</span><span class="symbol">&gt;</span><span class="normal">_Words</span><span class="symbol">&lt;/</span><span class="normal">attribute</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"action"</span><span class="symbol">&gt;</span><span class="normal">win</span><span class="symbol">.</span><span class="normal">show</span><span class="symbol">-</span><span class="normal">words</span><span class="symbol">&lt;/</span><span class="normal">attribute</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;/</span><span class="normal">item</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">section</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">menu</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;/</span><span class="normal">interface</span><span class="symbol">&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>To connect the menuitem to the show-words setting, we use
       a <span class="type">GAction</span> corresponding to the given <span class="type">GSettings</span> key.</p>
 <div class="informalexample">
@@ -1034,23 +1633,47 @@ example_app_window_init (ExampleAppWindow *win)
       by now.</p>
 <p>We add a new "Lines" menu item to the gears menu, which
       triggers the show-lines action:</p>
-<div class="informalexample"><pre class="programlisting">&lt;?xml version="1.0"?&gt;
-&lt;interface&gt;
-  &lt;!-- interface-requires gtk+ 3.0 --&gt;
-  &lt;menu id="menu"&gt;
-    &lt;section&gt;
-      &lt;item&gt;
-        &lt;attribute name="label" translatable="yes"&gt;_Words&lt;/attribute&gt;
-        &lt;attribute name="action"&gt;win.show-words&lt;/attribute&gt;
-      &lt;/item&gt;
-      &lt;item&gt;
-        &lt;attribute name="label" translatable="yes"&gt;_Lines&lt;/attribute&gt;
-        &lt;attribute name="action"&gt;win.show-lines&lt;/attribute&gt;
-      &lt;/item&gt;
-    &lt;/section&gt;
-  &lt;/menu&gt;
-&lt;/interface&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;?</span><span class="usertype">xml</span><span class="normal"> version</span><span class="symbol">=</span><span class="string">"1.0"</span><span class="symbol">?&gt;</span>
+<span class="symbol">&lt;</span><span class="normal">interface</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;!--</span><span class="normal"> interface</span><span class="symbol">-</span><span class="usertype">requires</span><span class="normal"> gtk</span><span class="symbol">+</span><span class="normal"> </span><span class="number">3.0</span><span class="normal"> </span><span class="symbol">--&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="usertype">menu</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"menu"</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">section</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="normal">item</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"label"</span><span class="normal"> translatable</span><span class="symbol">=</span><span class="string">"yes"</span><span class="symbol">&gt;</span><span class="normal">_Words</span><span class="symbol">&lt;/</span><span class="normal">attribute</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"action"</span><span class="symbol">&gt;</span><span class="normal">win</span><span class="symbol">.</span><span class="normal">show</span><span class="symbol">-</span><span class="normal">words</span><span class="symbol">&lt;/</span><span class="normal">attribute</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;/</span><span class="normal">item</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="normal">item</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"label"</span><span class="normal"> translatable</span><span class="symbol">=</span><span class="string">"yes"</span><span class="symbol">&gt;</span><span class="normal">_Lines</span><span class="symbol">&lt;/</span><span class="normal">attribute</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"action"</span><span class="symbol">&gt;</span><span class="normal">win</span><span class="symbol">.</span><span class="normal">show</span><span class="symbol">-</span><span class="normal">lines</span><span class="symbol">&lt;/</span><span class="normal">attribute</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;/</span><span class="normal">item</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">section</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">menu</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;/</span><span class="normal">interface</span><span class="symbol">&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>To make this menu item do something, we create a property
       action for the visible property of the <em class="parameter"><code>lines</code></em> label, and add it to the
       actions of the window. The effect of this is that the visibility
@@ -1095,124 +1718,249 @@ example_app_window_init (ExampleAppWindow *win)
       bit redundant, and we will now tell GTK+ to use the header bar
       as replacement for the titlebar. To do so, we move it around to
       be a direct child of the window, and set its type to be titlebar.</p>
-<div class="informalexample"><pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;interface&gt;
-  &lt;!-- interface-requires gtk+ 3.8 --&gt;
-  &lt;template class="ExampleAppWindow" parent="GtkApplicationWindow"&gt;
-    &lt;property name="title" translatable="yes"&gt;Example Application&lt;/property&gt;
-    &lt;property name="default-width"&gt;600&lt;/property&gt;
-    &lt;property name="default-height"&gt;400&lt;/property&gt;
-        &lt;child type="titlebar"&gt;
-          &lt;object class="GtkHeaderBar" id="header"&gt;
-            &lt;property name="visible"&gt;True&lt;/property&gt;
-            &lt;property name="show-close-button"&gt;True&lt;/property&gt;
-            &lt;child&gt;
-              &lt;object class="GtkLabel" id="lines_label"&gt;
-                &lt;property name="visible"&gt;False&lt;/property&gt;
-                &lt;property name="label" translatable="yes"&gt;Lines:&lt;/property&gt;
-              &lt;/object&gt;
-              &lt;packing&gt;
-                &lt;property name="pack-type"&gt;start&lt;/property&gt;
-              &lt;/packing&gt;
-            &lt;/child&gt;
-            &lt;child&gt;
-              &lt;object class="GtkLabel" id="lines"&gt;
-                &lt;property name="visible"&gt;False&lt;/property&gt;
-              &lt;/object&gt;
-              &lt;packing&gt;
-                &lt;property name="pack-type"&gt;start&lt;/property&gt;
-              &lt;/packing&gt;
-            &lt;/child&gt;
-            &lt;child type="title"&gt;
-              &lt;object class="GtkStackSwitcher" id="tabs"&gt;
-                &lt;property name="visible"&gt;True&lt;/property&gt;
-                &lt;property name="stack"&gt;stack&lt;/property&gt;
-              &lt;/object&gt;
-            &lt;/child&gt;
-            &lt;child&gt;
-              &lt;object class="GtkToggleButton" id="search"&gt;
-                &lt;property name="visible"&gt;True&lt;/property&gt;
-                &lt;property name="sensitive"&gt;False&lt;/property&gt;
-                &lt;style&gt;
-                  &lt;class name="image-button"/&gt;
-                &lt;/style&gt;
-                &lt;child&gt;
-                  &lt;object class="GtkImage" id="search-icon"&gt;
-                    &lt;property name="visible"&gt;True&lt;/property&gt;
-                    &lt;property name="icon-name"&gt;edit-find-symbolic&lt;/property&gt;
-                    &lt;property name="icon-size"&gt;1&lt;/property&gt;
-                  &lt;/object&gt;
-                &lt;/child&gt;
-              &lt;/object&gt;
-              &lt;packing&gt;
-                &lt;property name="pack-type"&gt;end&lt;/property&gt;
-              &lt;/packing&gt;
-            &lt;/child&gt;
-            &lt;child&gt;
-              &lt;object class="GtkMenuButton" id="gears"&gt;
-                &lt;property name="visible"&gt;True&lt;/property&gt;
-                &lt;property name="direction"&gt;none&lt;/property&gt;
-                &lt;property name="use-popover"&gt;True&lt;/property&gt;
-                &lt;style&gt;
-                  &lt;class name="image-button"/&gt;
-                &lt;/style&gt;
-              &lt;/object&gt;
-              &lt;packing&gt;
-                &lt;property name="pack-type"&gt;end&lt;/property&gt;
-              &lt;/packing&gt;
-            &lt;/child&gt;
-          &lt;/object&gt;
-        &lt;/child&gt;
-    &lt;child&gt;
-      &lt;object class="GtkBox" id="content_box"&gt;
-        &lt;property name="visible"&gt;True&lt;/property&gt;
-        &lt;property name="orientation"&gt;vertical&lt;/property&gt;
-        &lt;child&gt;
-          &lt;object class="GtkSearchBar" id="searchbar"&gt;
-            &lt;property name="visible"&gt;True&lt;/property&gt;
-            &lt;child&gt;
-              &lt;object class="GtkSearchEntry" id="searchentry"&gt;
-                &lt;signal name="search-changed" handler="search_text_changed"/&gt;
-                &lt;property name="visible"&gt;True&lt;/property&gt;
-              &lt;/object&gt;
-            &lt;/child&gt;
-          &lt;/object&gt;
-        &lt;/child&gt;
-        &lt;child&gt;
-          &lt;object class="GtkBox" id="hbox"&gt;
-            &lt;property name="visible"&gt;True&lt;/property&gt;
-            &lt;child&gt;
-              &lt;object class="GtkRevealer" id="sidebar"&gt;
-                &lt;property name="visible"&gt;True&lt;/property&gt;
-                &lt;property name="transition-type"&gt;slide-right&lt;/property&gt;
-                &lt;child&gt;
-                 &lt;object class="GtkScrolledWindow" id="sidebar-sw"&gt;
-                   &lt;property name="visible"&gt;True&lt;/property&gt;
-                   &lt;property name="hscrollbar-policy"&gt;never&lt;/property&gt;
-                   &lt;property name="vscrollbar-policy"&gt;automatic&lt;/property&gt;
-                   &lt;child&gt;
-                     &lt;object class="GtkListBox" id="words"&gt;
-                       &lt;property name="visible"&gt;True&lt;/property&gt;
-                       &lt;property name="selection-mode"&gt;none&lt;/property&gt;
-                     &lt;/object&gt;
-                   &lt;/child&gt;
-                 &lt;/object&gt;
-                &lt;/child&gt;
-              &lt;/object&gt;
-            &lt;/child&gt;
-            &lt;child&gt;
-              &lt;object class="GtkStack" id="stack"&gt;
-                &lt;signal name="notify::visible-child" handler="visible_child_changed"/&gt;
-                &lt;property name="visible"&gt;True&lt;/property&gt;
-              &lt;/object&gt;
-            &lt;/child&gt;
-          &lt;/object&gt;
-        &lt;/child&gt;
-      &lt;/object&gt;
-    &lt;/child&gt;
-  &lt;/template&gt;
-&lt;/interface&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;?</span><span class="usertype">xml</span><span class="normal"> version</span><span class="symbol">=</span><span class="string">"1.0"</span><span class="normal"> encoding</span><span class="symbol">=</span><span class="string">"UTF-8"</span><span class="symbol">?&gt;</span>
+<span class="symbol">&lt;</span><span class="normal">interface</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;!--</span><span class="normal"> interface</span><span class="symbol">-</span><span class="usertype">requires</span><span class="normal"> gtk</span><span class="symbol">+</span><span class="normal"> </span><span class="number">3.8</span><span class="normal"> </span><span class="symbol">--&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="usertype">template</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"ExampleAppWindow"</span><span class="normal"> parent</span><span class="symbol">=</span><span class="string">"GtkApplicationWindow"</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"title"</span><span class="normal"> translatable</span><span class="symbol">=</span><span class="string">"yes"</span><span class="symbol">&gt;</span><span class="usertype">Example</span><span class="normal"> Application</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"default-width"</span><span class="symbol">&gt;</span><span class="number">600</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"default-height"</span><span class="symbol">&gt;</span><span class="number">400</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">child</span><span class="normal"> type</span><span class="symbol">=</span><span class="string">"titlebar"</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkHeaderBar"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"header"</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"show-close-button"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkLabel"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"lines_label"</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">False</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"label"</span><span class="normal"> translatable</span><span class="symbol">=</span><span class="string">"yes"</span><span class="symbol">&gt;</span><span class="normal">Lines</span><span class="symbol">:&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"pack-type"</span><span class="symbol">&gt;</span><span class="normal">start</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkLabel"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"lines"</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">False</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"pack-type"</span><span class="symbol">&gt;</span><span class="normal">start</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="usertype">child</span><span class="normal"> type</span><span class="symbol">=</span><span class="string">"title"</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkStackSwitcher"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"tabs"</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"stack"</span><span class="symbol">&gt;</span><span class="normal">stack</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkToggleButton"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"search"</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"sensitive"</span><span class="symbol">&gt;</span><span class="normal">False</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="normal">style</span><span class="symbol">&gt;</span>
+<span class="normal">                  </span><span class="symbol">&lt;</span><span class="usertype">class</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"image-button"</span><span class="symbol">/&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;/</span><span class="normal">style</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">                  </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkImage"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"search-icon"</span><span class="symbol">&gt;</span>
+<span class="normal">                    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"icon-name"</span><span class="symbol">&gt;</span><span class="normal">edit</span><span class="symbol">-</span><span class="normal">find</span><span class="symbol">-</span><span class="normal">symbolic</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                    </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"icon-size"</span><span class="symbol">&gt;</span><span class="number">1</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                  </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"pack-type"</span><span class="symbol">&gt;</span><span class="normal">end</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkMenuButton"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"gears"</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"direction"</span><span class="symbol">&gt;</span><span class="normal">none</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"use-popover"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="normal">style</span><span class="symbol">&gt;</span>
+<span class="normal">                  </span><span class="symbol">&lt;</span><span class="usertype">class</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"image-button"</span><span class="symbol">/&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;/</span><span class="normal">style</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"pack-type"</span><span class="symbol">&gt;</span><span class="normal">end</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">packing</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkBox"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"content_box"</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"orientation"</span><span class="symbol">&gt;</span><span class="normal">vertical</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkSearchBar"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"searchbar"</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkSearchEntry"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"searchentry"</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">signal</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"search-changed"</span><span class="normal"> handler</span><span class="symbol">=</span><span class="string">"search_text_changed"</span><span class="symbol">/&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkBox"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"hbox"</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkRevealer"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"sidebar"</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"transition-type"</span><span class="symbol">&gt;</span><span class="normal">slide</span><span class="symbol">-</span><span class="normal">right</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">                 </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkScrolledWindow"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"sidebar-sw"</span><span class="symbol">&gt;</span>
+<span class="normal">                   </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                   </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"hscrollbar-policy"</span><span class="symbol">&gt;</span><span class="normal">never</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                   </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"vscrollbar-policy"</span><span class="symbol">&gt;</span><span class="normal">automatic</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                   </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">                     </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkListBox"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"words"</span><span class="symbol">&gt;</span>
+<span class="normal">                       </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                       </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"selection-mode"</span><span class="symbol">&gt;</span><span class="normal">none</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                     </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">                   </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">                 </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkStack"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"stack"</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">signal</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"notify::visible-child"</span><span class="normal"> handler</span><span class="symbol">=</span><span class="string">"visible_child_changed"</span><span class="symbol">/&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"visible"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">template</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;/</span><span class="normal">interface</span><span class="symbol">&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p>A small extra bonus of using a header bar is that we get
       a fallback application menu for free. Here is how the
       application now looks, if this fallback is used.</p>
@@ -1223,6 +1971,6 @@ example_app_window_init (ExampleAppWindow *win)
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

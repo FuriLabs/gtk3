@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GtkBuilder: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="Builder.html" title="Interface builder">
 <link rel="prev" href="Builder.html" title="Interface builder">
 <link rel="next" href="GtkBuildable.html" title="GtkBuildable">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -403,7 +403,7 @@ as <code class="literal">TRUE</code>, strings like “FALSE”, “f”, “no�
 as <code class="literal">FALSE</code>), enumerations (can be specified by their name, nick or
 integer value), flags (can be specified by their name, nick, integer
 value, optionally combined with “|”, e.g. “GTK_VISIBLE|GTK_REALIZED”)
-and colors (in a format understood by <a href="../html/gdk3-RGBA-Colors.html#gdk-rgba-parse"><code class="function">gdk_rgba_parse()</code></a>).</p>
+and colors (in a format understood by <code class="function">gdk_rgba_parse()</code>).</p>
 <p>GVariants can be specified in the format understood by <code class="function">g_variant_parse()</code>,
 and pixbufs can be specified as a filename of an image file to load.</p>
 <p>Objects can be referred to by their name and by default refer to
@@ -448,29 +448,57 @@ sections describing the widget-specific portions of UI definitions.</p>
 <hr>
 <div class="refsect2">
 <a name="id-1.3.5.2.8.8"></a><h3>A GtkBuilder UI Definition</h3>
-<div class="informalexample"><pre class="programlisting">
-&lt;interface&gt;
-  &lt;object class="GtkDialog" id="dialog1"&gt;
-    &lt;child internal-child="vbox"&gt;
-      &lt;object class="GtkBox" id="vbox1"&gt;
-        &lt;property name="border-width"&gt;10&lt;/property&gt;
-        &lt;child internal-child="action_area"&gt;
-          &lt;object class="GtkButtonBox" id="hbuttonbox1"&gt;
-            &lt;property name="border-width"&gt;20&lt;/property&gt;
-            &lt;child&gt;
-              &lt;object class="GtkButton" id="ok_button"&gt;
-                &lt;property name="label"&gt;gtk-ok&lt;/property&gt;
-                &lt;property name="use-stock"&gt;TRUE&lt;/property&gt;
-                &lt;signal name="clicked" handler="ok_button_clicked"/&gt;
-              &lt;/object&gt;
-            &lt;/child&gt;
-          &lt;/object&gt;
-        &lt;/child&gt;
-      &lt;/object&gt;
-    &lt;/child&gt;
-  &lt;/object&gt;
-&lt;/interface&gt;
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="normal">interface</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkDialog"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"dialog1"</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">child</span><span class="normal"> internal</span><span class="symbol">-</span><span class="normal">child</span><span class="symbol">=</span><span class="string">"vbox"</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkBox"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"vbox1"</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"border-width"</span><span class="symbol">&gt;</span><span class="number">10</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">child</span><span class="normal"> internal</span><span class="symbol">-</span><span class="normal">child</span><span class="symbol">=</span><span class="string">"action_area"</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkButtonBox"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"hbuttonbox1"</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"border-width"</span><span class="symbol">&gt;</span><span class="number">20</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkButton"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"ok_button"</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"label"</span><span class="symbol">&gt;</span><span class="normal">gtk</span><span class="symbol">-</span><span class="normal">ok</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"use-stock"</span><span class="symbol">&gt;</span><span class="normal">TRUE</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
+<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">signal</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"clicked"</span><span class="normal"> handler</span><span class="symbol">=</span><span class="string">"ok_button_clicked"</span><span class="symbol">/&gt;</span>
+<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">          </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">        </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">      </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
+<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+<span class="symbol">&lt;/</span><span class="normal">interface</span><span class="symbol">&gt;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>Beyond this general structure, several object classes define their
 own XML DTD fragments for filling in the ANY placeholders in the DTD
@@ -1606,7 +1634,7 @@ calls <code class="function">g_value_init()</code> on the <em class="parameter">
  argument, so it need not be
 initialised beforehand.</p>
 <p>This function can handle char, uchar, boolean, int, uint, long,
-ulong, enum, flags, float, double, string, <a href="../html/gdk3-Colors.html#GdkColor"><span class="type">GdkColor</span></a>, <a href="../html/gdk3-RGBA-Colors.html#GdkRGBA"><span class="type">GdkRGBA</span></a> and
+ulong, enum, flags, float, double, string, <span class="type">GdkColor</span>, <span class="type">GdkRGBA</span> and
 <a class="link" href="GtkAdjustment.html" title="GtkAdjustment"><span class="type">GtkAdjustment</span></a> type values. Support for <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> type values is
 still to come.</p>
 <p>Upon errors <code class="literal">FALSE</code> will be returned and <em class="parameter"><code>error</code></em>
@@ -1900,6 +1928,6 @@ otherwise <code class="function">g_dgettext()</code>.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

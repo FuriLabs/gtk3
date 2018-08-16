@@ -1,3 +1,43 @@
+gtk+3.0 (3.23.2-1ubuntu1) UNRELEASED; urgency=medium
+
+  * Merge from Debian experimental (LP: #1787378). Remaining changes:
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0.symbols
+    + debian/control.in:
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + debian/rules: Mark additional known test failures:
+      - box-shadow-changes-modify-clip.ui
+      - label-text-shadow-changes-modify-clip.ui
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+
+ -- Andrea Azzarone <andrea.azzarone@canonical.com>  Thu, 16 Aug 2018 12:28:33 +0300
+
+gtk+3.0 (3.23.2-1) experimental; urgency=medium
+
+  [ Andrea Azzarone ]
+  * New upstream release
+  * debian/patches/0008-defaultvalue-Ignore-more-style-properties-that-Adwai.patch:
+    Drop, included in this release.
+  * debian/libgtk-3-0.symbols: New symbols for this release
+
+  [ Iain Lane ]
+  * Stanrdards-Version → 4.2.0 - no changes required.
+
+ -- Andrea Azzarone <andrea.azzarone@canonical.com>  Thu, 09 Aug 2018 14:11:12 +0000
+
 gtk+3.0 (3.23.1-1ubuntu1) cosmic; urgency=medium
 
   * Merge from Debian experimental. Remaining changes:

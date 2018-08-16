@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Threads: GDK 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GDK 3 Reference Manual">
 <link rel="up" href="reference.html" title="API Reference">
 <link rel="prev" href="gdk3-Properties-and-Atoms.html" title="Properties and Atoms">
 <link rel="next" href="gdk3-Pango-Interaction.html" title="Pango Interaction">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -150,27 +150,53 @@ This is usually referred to as the “main thread”.</p>
 emitted in the main thread.</p>
 <p>You can schedule work in the main thread safely from other threads
 by using <a class="link" href="gdk3-Threads.html#gdk-threads-add-idle" title="gdk_threads_add_idle ()"><code class="function">gdk_threads_add_idle()</code></a> and <a class="link" href="gdk3-Threads.html#gdk-threads-add-timeout" title="gdk_threads_add_timeout ()"><code class="function">gdk_threads_add_timeout()</code></a>:</p>
-<div class="informalexample"><pre class="programlisting">
-static void
-worker_thread (void)
-{
-  ExpensiveData *expensive_data = do_expensive_computation ();
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">worker_thread</span><span class="normal"> </span><span class="symbol">(</span><span class="type">void</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">ExpensiveData</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">expensive_data </span><span class="symbol">=</span><span class="normal"> </span><span class="function">do_expensive_computation</span><span class="normal"> </span><span class="symbol">();</span>
 
-  gdk_threads_add_idle (got_value, expensive_data);
-}
+<span class="normal">  </span><span class="function"><a href="gdk3-Threads.html#gdk-threads-add-idle">gdk_threads_add_idle</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">got_value</span><span class="symbol">,</span><span class="normal"> expensive_data</span><span class="symbol">);</span>
+<span class="cbracket">}</span>
 
-static gboolean
-got_value (gpointer user_data)
-{
-  ExpensiveData *expensive_data = user_data;
+<span class="keyword">static</span><span class="normal"> gboolean</span>
+<span class="function">got_value</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">gpointer</span><span class="normal"> user_data</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">ExpensiveData</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">expensive_data </span><span class="symbol">=</span><span class="normal"> user_data</span><span class="symbol">;</span>
 
-  my_app-&gt;expensive_data = expensive_data;
-  gtk_button_set_sensitive (my_app-&gt;button, TRUE);
-  gtk_button_set_label (my_app-&gt;button, expensive_data-&gt;result_label);
+<span class="normal">  my_app</span><span class="symbol">-&gt;</span><span class="normal">expensive_data </span><span class="symbol">=</span><span class="normal"> expensive_data</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="function">gtk_button_set_sensitive</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">my_app</span><span class="symbol">-&gt;</span><span class="normal">button</span><span class="symbol">,</span><span class="normal"> TRUE</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function">gtk_button_set_label</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">my_app</span><span class="symbol">-&gt;</span><span class="normal">button</span><span class="symbol">,</span><span class="normal"> expensive_data</span><span class="symbol">-&gt;</span><span class="normal">result_label</span><span class="symbol">);</span>
 
-  return G_SOURCE_REMOVE;
-}
-</pre></div>
+<span class="normal">  </span><span class="keyword">return</span><span class="normal"> G_SOURCE_REMOVE</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p>You should use <a class="link" href="gdk3-Threads.html#gdk-threads-add-idle" title="gdk_threads_add_idle ()"><code class="function">gdk_threads_add_idle()</code></a> and <a class="link" href="gdk3-Threads.html#gdk-threads-add-timeout" title="gdk_threads_add_timeout ()"><code class="function">gdk_threads_add_timeout()</code></a>
 instead of <code class="function">g_idle_add()</code> and <code class="function">g_timeout_add()</code> since libraries not under
@@ -367,37 +393,73 @@ following use case, where you have to worry about <code class="function">idle_ca
 running in thread A and accessing <em class="parameter"><code>self</code></em>
  after it has been finalized
 in thread B:</p>
-<div class="informalexample"><pre class="programlisting">
-static gboolean
-idle_callback (gpointer data)
-{
-   // gdk_threads_enter(); would be needed for g_idle_add()
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> gboolean</span>
+<span class="function">idle_callback</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">gpointer</span><span class="normal"> data</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">   </span><span class="comment">// gdk_threads_enter(); would be needed for g_idle_add()</span>
 
-   SomeWidget *self = data;
-   // do stuff with self
+<span class="normal">   </span><span class="usertype">SomeWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">self </span><span class="symbol">=</span><span class="normal"> data</span><span class="symbol">;</span>
+<span class="normal">   </span><span class="comment">// do stuff with self</span>
 
-   self-&gt;idle_id = 0;
+<span class="normal">   self</span><span class="symbol">-&gt;</span><span class="normal">idle_id </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span>
 
-   // gdk_threads_leave(); would be needed for g_idle_add()
-   return FALSE;
-}
+<span class="normal">   </span><span class="comment">// gdk_threads_leave(); would be needed for g_idle_add()</span>
+<span class="normal">   </span><span class="keyword">return</span><span class="normal"> FALSE</span><span class="symbol">;</span>
+<span class="cbracket">}</span>
 
-static void
-some_widget_do_stuff_later (SomeWidget *self)
-{
-   self-&gt;idle_id = gdk_threads_add_idle (idle_callback, self)
-   // using g_idle_add() here would require thread protection in the callback
-}
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">some_widget_do_stuff_later</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">SomeWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">self</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">   self</span><span class="symbol">-&gt;</span><span class="normal">idle_id </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="gdk3-Threads.html#gdk-threads-add-idle">gdk_threads_add_idle</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">idle_callback</span><span class="symbol">,</span><span class="normal"> self</span><span class="symbol">)</span>
+<span class="normal">   </span><span class="comment">// using g_idle_add() here would require thread protection in the callback</span>
+<span class="cbracket">}</span>
 
-static void
-some_widget_finalize (GObject *object)
-{
-   SomeWidget *self = SOME_WIDGET (object);
-   if (self-&gt;idle_id)
-     g_source_remove (self-&gt;idle_id);
-   G_OBJECT_CLASS (parent_class)-&gt;finalize (object);
-}
-</pre></div>
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">some_widget_finalize</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GObject</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">object</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">   </span><span class="usertype">SomeWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">self </span><span class="symbol">=</span><span class="normal"> </span><span class="function">SOME_WIDGET</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">object</span><span class="symbol">);</span>
+<span class="normal">   </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">self</span><span class="symbol">-&gt;</span><span class="normal">idle_id</span><span class="symbol">)</span>
+<span class="normal">     </span><span class="function">g_source_remove</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">self</span><span class="symbol">-&gt;</span><span class="normal">idle_id</span><span class="symbol">);</span>
+<span class="normal">   </span><span class="function">G_OBJECT_CLASS</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">parent_class</span><span class="symbol">)-&gt;</span><span class="function">finalize</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">object</span><span class="symbol">);</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p><span class="annotation">[<acronym title="Rename the original symbol's name to SYMBOL."><span class="acronym">rename-to</span></acronym> gdk_threads_add_idle]</span></p>
 <div class="refsect3">
@@ -510,33 +572,65 @@ timeout is recalculated based on the current time and the given interval
 (it does not try to “catch up” time lost in delays).</p>
 <p>This variant of <code class="function">g_timeout_add_full()</code> can be thought of a MT-safe version 
 for GTK+ widgets for the following use case:</p>
-<div class="informalexample"><pre class="programlisting">
-static gboolean timeout_callback (gpointer data)
-{
-   SomeWidget *self = data;
-   
-   // do stuff with self
-   
-   self-&gt;timeout_id = 0;
-   
-   return G_SOURCE_REMOVE;
-}
- 
-static void some_widget_do_stuff_later (SomeWidget *self)
-{
-   self-&gt;timeout_id = g_timeout_add (timeout_callback, self)
-}
- 
-static void some_widget_finalize (GObject *object)
-{
-   SomeWidget *self = SOME_WIDGET (object);
-   
-   if (self-&gt;timeout_id)
-     g_source_remove (self-&gt;timeout_id);
-   
-   G_OBJECT_CLASS (parent_class)-&gt;finalize (object);
-}
-</pre></div>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> </span><span class="usertype">gboolean</span><span class="normal"> </span><span class="function">timeout_callback</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">gpointer</span><span class="normal"> data</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">   </span><span class="usertype">SomeWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">self </span><span class="symbol">=</span><span class="normal"> data</span><span class="symbol">;</span>
+<span class="normal">   </span>
+<span class="normal">   </span><span class="comment">// do stuff with self</span>
+<span class="normal">   </span>
+<span class="normal">   self</span><span class="symbol">-&gt;</span><span class="normal">timeout_id </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span>
+<span class="normal">   </span>
+<span class="normal">   </span><span class="keyword">return</span><span class="normal"> G_SOURCE_REMOVE</span><span class="symbol">;</span>
+<span class="cbracket">}</span>
+<span class="normal"> </span>
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">some_widget_do_stuff_later</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">SomeWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">self</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">   self</span><span class="symbol">-&gt;</span><span class="normal">timeout_id </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_timeout_add</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">timeout_callback</span><span class="symbol">,</span><span class="normal"> self</span><span class="symbol">)</span>
+<span class="cbracket">}</span>
+<span class="normal"> </span>
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">some_widget_finalize</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GObject</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">object</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">   </span><span class="usertype">SomeWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">self </span><span class="symbol">=</span><span class="normal"> </span><span class="function">SOME_WIDGET</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">object</span><span class="symbol">);</span>
+<span class="normal">   </span>
+<span class="normal">   </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">self</span><span class="symbol">-&gt;</span><span class="normal">timeout_id</span><span class="symbol">)</span>
+<span class="normal">     </span><span class="function">g_source_remove</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">self</span><span class="symbol">-&gt;</span><span class="normal">timeout_id</span><span class="symbol">);</span>
+<span class="normal">   </span>
+<span class="normal">   </span><span class="function">G_OBJECT_CLASS</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">parent_class</span><span class="symbol">)-&gt;</span><span class="function">finalize</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">object</span><span class="symbol">);</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <p></p>
 <p><span class="annotation">[<acronym title="Rename the original symbol's name to SYMBOL."><span class="acronym">rename-to</span></acronym> gdk_threads_add_timeout]</span></p>
 <div class="refsect3">
@@ -694,6 +788,6 @@ range between <span class="type">G_PRIORITY_DEFAULT_IDLE</span> and <span class=
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>
