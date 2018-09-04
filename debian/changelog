@@ -1,3 +1,70 @@
+gtk+3.0 (3.24.0-1ubuntu1) UNRELEASED; urgency=medium
+
+  * Merge from Debian experimental (LP: #1790618). Remaining changes:
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0.symbols
+    + debian/control.in:
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + debian/rules: Mark additional known test failures:
+      - box-shadow-changes-modify-clip.ui
+      - label-text-shadow-changes-modify-clip.ui
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+
+ -- Iain Lane <iain.lane@canonical.com>  Tue, 04 Sep 2018 18:17:56 +0100
+
+gtk+3.0 (3.24.0-1) unstable; urgency=medium
+
+  [ Simon McVittie ]
+  * debian/libgtk-3-0.bug-control:
+    When bugs are reported against GTK+, include details of various
+    engines, modules and LD_PRELOADs if installed
+  * Don't install ChangeLog, which currently just says
+    "A git checkout and git-log is required to generate this file";
+    even if it was complete, Policy 4.2.0 does not require detailed
+    changelogs to be installed. Please see NEWS for a summary of changes,
+    or the upstream git repository https://gitlab.gnome.org/GNOME/gtk
+    for a comprehensive change history.
+
+  [ Iain Lane ]
+  * Revert "debian/{control{,.in},gbp.conf,watch}: Update for experimental"
+    This reverts commit 99b78e089c952661fcf3c4897769dd7a463c5cb7.
+  * New upstream stable release 3.24.0
+    + GtkApplication can now track screensaver state
+    + Deprecate a few APIs that are gone in GTK+ 4:
+       - focus chains in GtkContainer
+       - stepper sensitivity in GtkRange
+    + Allow picking colors under kwin
+  * debian/control{,.in}: Bump Standards-Version to 4.2.1, no changes required
+  * debian/libgtk-3-0.symbols: Update for this release
+
+ -- Iain Lane <laney@debian.org>  Tue, 04 Sep 2018 18:10:53 +0100
+
+gtk+3.0 (3.23.2-1) experimental; urgency=medium
+
+  [ Andrea Azzarone ]
+  * New upstream release
+  * debian/patches/0008-defaultvalue-Ignore-more-style-properties-that-Adwai.patch:
+    Drop, included in this release.
+  * debian/libgtk-3-0.symbols: New symbols for this release
+
+  [ Iain Lane ]
+  * Stanrdards-Version → 4.2.0 - no changes required.
+
+ -- Andrea Azzarone <andrea.azzarone@canonical.com>  Thu, 09 Aug 2018 14:11:12 +0000
+
 gtk+3.0 (3.23.1-1ubuntu1) cosmic; urgency=medium
 
   * Merge from Debian experimental. Remaining changes:

@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GTK+ CSS Overview: GTK+ 3 Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="GTK+ 3 Reference Manual">
 <link rel="up" href="theming.html" title="Part IV. Theming in GTK+">
 <link rel="prev" href="theming.html" title="Part IV. Theming in GTK+">
 <link rel="next" href="chap-css-properties.html" title="GTK+ CSS Properties">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -72,21 +72,41 @@ Overview of CSS in GTK+
     </p>
 <div class="example">
 <a name="id-1.5.2.3.4.4"></a><p class="title"><b>Example 6. The CSS nodes of a GtkScale</b></p>
-<div class="example-contents"><pre class="programlisting">
-scale[.fine-tune]
-├── marks.top
-│   ├── mark
-┊   ┊
-│   ╰── mark
-├── trough
-│   ├── slider
-│   ├── [highlight]
-│   ╰── [fill]
-╰── marks.bottom
-    ├── mark
-    ┊
-    ╰── mark
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">scale</span><span class="symbol">[.</span><span class="normal">fine</span><span class="symbol">-</span><span class="normal">tune</span><span class="symbol">]</span>
+<span class="normal">├── marks</span><span class="symbol">.</span><span class="normal">top</span>
+<span class="normal">│   ├── mark</span>
+<span class="normal">┊   ┊</span>
+<span class="normal">│   ╰── mark</span>
+<span class="normal">├── trough</span>
+<span class="normal">│   ├── slider</span>
+<span class="normal">│   ├── </span><span class="symbol">[</span><span class="normal">highlight</span><span class="symbol">]</span>
+<span class="normal">│   ╰── </span><span class="symbol">[</span><span class="normal">fill</span><span class="symbol">]</span>
+<span class="normal">╰── marks</span><span class="symbol">.</span><span class="normal">bottom</span>
+<span class="normal">    ├── mark</span>
+<span class="normal">    ┊</span>
+<span class="normal">    ╰── mark</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break">
 </div>
@@ -107,12 +127,23 @@ scale[.fine-tune]
     </p>
 <div class="example">
 <a name="id-1.5.2.3.5.4"></a><p class="title"><b>Example 7. A rule set with two selectors</b></p>
-<div class="example-contents"><pre class="programlisting">
-button, entry {
-  color: #ff00ea;
-  font: 12px "Comic Sans";
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">button</span><span class="symbol">,</span><span class="normal"> entry </span><span class="cbracket">{</span>
+<span class="normal">  color</span><span class="symbol">:</span><span class="normal"> #ff00ea</span><span class="symbol">;</span>
+<span class="normal">  font</span><span class="symbol">:</span><span class="normal"> 12px </span><span class="string">"Comic Sans"</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break">
 </div>
@@ -131,9 +162,17 @@ button, entry {
 </p></div>
 <div class="example">
 <a name="id-1.5.2.3.6.5"></a><p class="title"><b>Example 8. An example for using the @import rule</b></p>
-<div class="example-contents"><pre class="programlisting">
-@import url("path/to/common.css");
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">@</span><span class="usertype">import</span><span class="normal"> </span><span class="function">url</span><span class="symbol">(</span><span class="string">"path/to/common.css"</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><p>
       To learn more about the @import rule, you can read the
@@ -163,69 +202,151 @@ button, entry {
     </p>
 <div class="example">
 <a name="id-1.5.2.3.7.5"></a><p class="title"><b>Example 9. Theme labels that are descendants of a window</b></p>
-<div class="example-contents"><pre class="programlisting">
-window label {
-  background-color: #898989;
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">window</span><span class="normal"> label </span><span class="cbracket">{</span>
+<span class="normal">  background</span><span class="symbol">-</span><span class="normal">color</span><span class="symbol">:</span><span class="normal"> #</span><span class="number">898989</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><div class="example">
 <a name="id-1.5.2.3.7.6"></a><p class="title"><b>Example 10. Theme notebooks, and anything within</b></p>
-<div class="example-contents"><pre class="programlisting">
-notebook {
-  background-color: #a939f0;
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">notebook </span><span class="cbracket">{</span>
+<span class="normal">  background</span><span class="symbol">-</span><span class="normal">color</span><span class="symbol">:</span><span class="normal"> #a939f0</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><div class="example">
 <a name="id-1.5.2.3.7.7"></a><p class="title"><b>Example 11. Theme combo boxes, and entries that are direct children of a notebook</b></p>
-<div class="example-contents"><pre class="programlisting">
-combobox,
-notebook &gt; entry {
-  color: @fg_color;
-  background-color: #1209a2;
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">combobox</span><span class="symbol">,</span>
+<span class="normal">notebook </span><span class="symbol">&gt;</span><span class="normal"> entry </span><span class="cbracket">{</span>
+<span class="normal">  color</span><span class="symbol">:</span><span class="normal"> @fg_color</span><span class="symbol">;</span>
+<span class="normal">  background</span><span class="symbol">-</span><span class="normal">color</span><span class="symbol">:</span><span class="normal"> #1209a2</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><div class="example">
 <a name="id-1.5.2.3.7.8"></a><p class="title"><b>Example 12. Theme any widget within a GtkBox</b></p>
-<div class="example-contents"><pre class="programlisting">
-box * {
-  font: 20px Sans;
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">box </span><span class="symbol">*</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">  font</span><span class="symbol">:</span><span class="normal"> 20</span><span class="usertype">px</span><span class="normal"> Sans</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><div class="example">
 <a name="id-1.5.2.3.7.9"></a><p class="title"><b>Example 13. Theme a label named title-label</b></p>
-<div class="example-contents"><pre class="programlisting">
-label#title-label {
-  font: 15px Sans;
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">label#title</span><span class="symbol">-</span><span class="normal">label </span><span class="cbracket">{</span>
+<span class="normal">  font</span><span class="symbol">:</span><span class="normal"> 15</span><span class="usertype">px</span><span class="normal"> Sans</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><div class="example">
 <a name="id-1.5.2.3.7.10"></a><p class="title"><b>Example 14. Theme any widget named main-entry</b></p>
-<div class="example-contents"><pre class="programlisting">
-#main-entry {
-  background-color: #f0a810;
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="preproc">#main</span><span class="symbol">-</span><span class="normal">entry </span><span class="cbracket">{</span>
+<span class="normal">  background</span><span class="symbol">-</span><span class="normal">color</span><span class="symbol">:</span><span class="normal"> #f0a810</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><div class="example">
 <a name="id-1.5.2.3.7.11"></a><p class="title"><b>Example 15. Theme all widgets with the style class entry</b></p>
-<div class="example-contents"><pre class="programlisting">
-.entry {
-  color: #39f1f9;
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">.</span><span class="normal">entry </span><span class="cbracket">{</span>
+<span class="normal">  color</span><span class="symbol">:</span><span class="normal"> #39f1f9</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><div class="example">
 <a name="id-1.5.2.3.7.12"></a><p class="title"><b>Example 16. Theme the entry of a GtkSpinButton</b></p>
-<div class="example-contents"><pre class="programlisting">
-spinbutton entry {
-  color: #900185;
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">spinbutton</span><span class="normal"> entry </span><span class="cbracket">{</span>
+<span class="normal">  color</span><span class="symbol">:</span><span class="normal"> #</span><span class="number">900185</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><p>
       It is possible to select CSS nodes depending on their position amongst
@@ -235,11 +356,21 @@ spinbutton entry {
     </p>
 <div class="example">
 <a name="id-1.5.2.3.7.14"></a><p class="title"><b>Example 17. Theme labels in the first notebook tab</b></p>
-<div class="example-contents"><pre class="programlisting">
-notebook tab:first-child label {
-  color: #89d012;
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">notebook</span><span class="normal"> tab</span><span class="symbol">:</span><span class="normal">first</span><span class="symbol">-</span><span class="usertype">child</span><span class="normal"> label </span><span class="cbracket">{</span>
+<span class="normal">  color</span><span class="symbol">:</span><span class="normal"> #89d012</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><p>
       Another use of pseudo-classes is to match widgets depending on their
@@ -252,51 +383,111 @@ notebook tab:first-child label {
     </p>
 <div class="example">
 <a name="id-1.5.2.3.7.16"></a><p class="title"><b>Example 18. Theme pressed buttons</b></p>
-<div class="example-contents"><pre class="programlisting">
-button:active {
-  background-color: #0274d9;
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">button</span><span class="symbol">:</span><span class="normal">active </span><span class="cbracket">{</span>
+<span class="normal">  background</span><span class="symbol">-</span><span class="normal">color</span><span class="symbol">:</span><span class="normal"> #0274d9</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><div class="example">
 <a name="id-1.5.2.3.7.17"></a><p class="title"><b>Example 19. Theme buttons with the mouse pointer over it</b></p>
-<div class="example-contents"><pre class="programlisting">
-button:hover {
-  background-color: #3085a9;
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">button</span><span class="symbol">:</span><span class="normal">hover </span><span class="cbracket">{</span>
+<span class="normal">  background</span><span class="symbol">-</span><span class="normal">color</span><span class="symbol">:</span><span class="normal"> #3085a9</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><div class="example">
 <a name="id-1.5.2.3.7.18"></a><p class="title"><b>Example 20. Theme insensitive widgets</b></p>
-<div class="example-contents"><pre class="programlisting">
-*:disabled {
-  background-color: #320a91;
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="symbol">*:</span><span class="normal">disabled </span><span class="cbracket">{</span>
+<span class="normal">  background</span><span class="symbol">-</span><span class="normal">color</span><span class="symbol">:</span><span class="normal"> #320a91</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><div class="example">
 <a name="id-1.5.2.3.7.19"></a><p class="title"><b>Example 21. Theme checkbuttons that are checked</b></p>
-<div class="example-contents"><pre class="programlisting">
-checkbutton:checked {
-  background-color: #56f9a0;
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">checkbutton</span><span class="symbol">:</span><span class="normal">checked </span><span class="cbracket">{</span>
+<span class="normal">  background</span><span class="symbol">-</span><span class="normal">color</span><span class="symbol">:</span><span class="normal"> #56f9a0</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><div class="example">
 <a name="id-1.5.2.3.7.20"></a><p class="title"><b>Example 22. Theme focused labels</b></p>
-<div class="example-contents"><pre class="programlisting">
-label:focus {
-  background-color: #b4940f;
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">label</span><span class="symbol">:</span><span class="normal">focus </span><span class="cbracket">{</span>
+<span class="normal">  background</span><span class="symbol">-</span><span class="normal">color</span><span class="symbol">:</span><span class="normal"> #b4940f</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><div class="example">
 <a name="id-1.5.2.3.7.21"></a><p class="title"><b>Example 23. Theme inconsistent checkbuttons</b></p>
-<div class="example-contents"><pre class="programlisting">
-checkbutton:indeterminate {
-  background-color: #20395a;
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">checkbutton</span><span class="symbol">:</span><span class="normal">indeterminate </span><span class="cbracket">{</span>
+<span class="normal">  background</span><span class="symbol">-</span><span class="normal">color</span><span class="symbol">:</span><span class="normal"> #20395a</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><p>
       To determine the effective style for a widget, all the matching rule
@@ -499,14 +690,27 @@ checkbutton:indeterminate {
     </p>
 <div class="example">
 <a name="id-1.5.2.3.8.7"></a><p class="title"><b>Example 24. Specifying colors in various ways</b></p>
-<div class="example-contents"><pre class="programlisting">
-  color: transparent;
-  background-color: red;
-  border-top-color: rgb(128,57,0);
-  border-left-color: rgba(10%,20%,30%,0.5);
-  border-right-color: #ff00cc;
-  border-bottom-color: #ffff0000cccc;
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">color</span><span class="symbol">:</span><span class="normal"> transparent</span><span class="symbol">;</span>
+<span class="normal">background</span><span class="symbol">-</span><span class="normal">color</span><span class="symbol">:</span><span class="normal"> red</span><span class="symbol">;</span>
+<span class="normal">border</span><span class="symbol">-</span><span class="normal">top</span><span class="symbol">-</span><span class="normal">color</span><span class="symbol">:</span><span class="normal"> </span><span class="function">rgb</span><span class="symbol">(</span><span class="number">128</span><span class="symbol">,</span><span class="number">57</span><span class="symbol">,</span><span class="number">0</span><span class="symbol">);</span>
+<span class="normal">border</span><span class="symbol">-</span><span class="normal">left</span><span class="symbol">-</span><span class="normal">color</span><span class="symbol">:</span><span class="normal"> </span><span class="function">rgba</span><span class="symbol">(</span><span class="number">10</span><span class="symbol">%,</span><span class="number">20</span><span class="symbol">%,</span><span class="number">30</span><span class="symbol">%,</span><span class="number">0.5</span><span class="symbol">);</span>
+<span class="normal">border</span><span class="symbol">-</span><span class="normal">right</span><span class="symbol">-</span><span class="normal">color</span><span class="symbol">:</span><span class="normal"> #ff00cc</span><span class="symbol">;</span>
+<span class="normal">border</span><span class="symbol">-</span><span class="normal">bottom</span><span class="symbol">-</span><span class="normal">color</span><span class="symbol">:</span><span class="normal"> #ffff0000cccc</span><span class="symbol">;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><p>
       GTK+ adds several additional ways to specify colors.
@@ -527,13 +731,25 @@ checkbutton:indeterminate {
 </p></div>
 <div class="example">
 <a name="id-1.5.2.3.8.14"></a><p class="title"><b>Example 25. An example for defining colors</b></p>
-<div class="example-contents"><pre class="programlisting">
-@define-color bg_color #f9a039;
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">@define</span><span class="symbol">-</span><span class="usertype">color</span><span class="normal"> bg_color #f9a039</span><span class="symbol">;</span>
 
-* {
-  background-color: @bg_color;
-}
-</pre></div>
+<span class="symbol">*</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">  background</span><span class="symbol">-</span><span class="normal">color</span><span class="symbol">:</span><span class="normal"> @bg_color</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><p>
       GTK+ also supports color expressions, which allow colors to be transformed
@@ -591,11 +807,21 @@ checkbutton:indeterminate {
     </p>
 <div class="example">
 <a name="id-1.5.2.3.9.5"></a><p class="title"><b>Example 26. Loading an image file</b></p>
-<div class="example-contents"><pre class="programlisting">
-button {
-  background-image: url("water-lily.png");
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">button </span><span class="cbracket">{</span>
+<span class="normal">  background</span><span class="symbol">-</span><span class="normal">image</span><span class="symbol">:</span><span class="normal"> </span><span class="function">url</span><span class="symbol">(</span><span class="string">"water-lily.png"</span><span class="symbol">);</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><p>
       A crossfade lets you specify an image as an intermediate between two
@@ -607,11 +833,21 @@ button {
     </p>
 <div class="example">
 <a name="id-1.5.2.3.9.8"></a><p class="title"><b>Example 27. Crossfading two images</b></p>
-<div class="example-contents"><pre class="programlisting">
-button {
-  background-image: cross-fade(50%, url("water-lily.png"), url("buffalo.jpg"));
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">button </span><span class="cbracket">{</span>
+<span class="normal">  background</span><span class="symbol">-</span><span class="normal">image</span><span class="symbol">:</span><span class="normal"> cross</span><span class="symbol">-</span><span class="function">fade</span><span class="symbol">(</span><span class="number">50</span><span class="symbol">%,</span><span class="normal"> </span><span class="function">url</span><span class="symbol">(</span><span class="string">"water-lily.png"</span><span class="symbol">),</span><span class="normal"> </span><span class="function">url</span><span class="symbol">(</span><span class="string">"buffalo.jpg"</span><span class="symbol">));</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><p>
       The image() syntax provides a way to specify fallbacks in case an image
@@ -622,11 +858,21 @@ button {
     </p>
 <div class="example">
 <a name="id-1.5.2.3.9.10"></a><p class="title"><b>Example 28. Image fallback</b></p>
-<div class="example-contents"><pre class="programlisting">
-button {
-  background-image: image(url("fancy.svg"), url("plain.png"), green);
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">button </span><span class="cbracket">{</span>
+<span class="normal">  background</span><span class="symbol">-</span><span class="normal">image</span><span class="symbol">:</span><span class="normal"> </span><span class="function">image</span><span class="symbol">(</span><span class="function">url</span><span class="symbol">(</span><span class="string">"fancy.svg"</span><span class="symbol">),</span><span class="normal"> </span><span class="function">url</span><span class="symbol">(</span><span class="string">"plain.png"</span><span class="symbol">),</span><span class="normal"> green</span><span class="symbol">);</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><p>
       Gradients are images that smoothly fades from one color to another. CSS
@@ -641,14 +887,27 @@ button {
     </p>
 <div class="example">
 <a name="id-1.5.2.3.9.13"></a><p class="title"><b>Example 29. Linear gradients</b></p>
-<div class="example-contents"><pre class="programlisting">
-button {
-  background-image: linear-gradient(45deg, yellow, blue);
-}
-label {
-  background-image: linear-gradient(to top right, blue 20%, #f0f 80%);
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">button </span><span class="cbracket">{</span>
+<span class="normal">  background</span><span class="symbol">-</span><span class="normal">image</span><span class="symbol">:</span><span class="normal"> linear</span><span class="symbol">-</span><span class="function">gradient</span><span class="symbol">(</span><span class="normal">45deg</span><span class="symbol">,</span><span class="normal"> yellow</span><span class="symbol">,</span><span class="normal"> blue</span><span class="symbol">);</span>
+<span class="cbracket">}</span>
+<span class="normal">label </span><span class="cbracket">{</span>
+<span class="normal">  background</span><span class="symbol">-</span><span class="normal">image</span><span class="symbol">:</span><span class="normal"> linear</span><span class="symbol">-</span><span class="function">gradient</span><span class="symbol">(</span><span class="normal">to </span><span class="usertype">top</span><span class="normal"> right</span><span class="symbol">,</span><span class="normal"> blue </span><span class="number">20</span><span class="symbol">%,</span><span class="normal"> #f0f </span><span class="number">80</span><span class="symbol">%);</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><p>
       A radial gradient is created by specifying a center point and one or two
@@ -658,14 +917,27 @@ label {
     </p>
 <div class="example">
 <a name="id-1.5.2.3.9.15"></a><p class="title"><b>Example 30. Radial gradients</b></p>
-<div class="example-contents"><pre class="programlisting">
-button {
-  background-image: radial-gradient(ellipse at center, yellow 0%, green 100%);
-}
-label {
-  background-image: radial-gradient(circle farthest-side at left bottom, red, yellow 50px, green);
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">button </span><span class="cbracket">{</span>
+<span class="normal">  background</span><span class="symbol">-</span><span class="normal">image</span><span class="symbol">:</span><span class="normal"> radial</span><span class="symbol">-</span><span class="function">gradient</span><span class="symbol">(</span><span class="normal">ellipse </span><span class="usertype">at</span><span class="normal"> center</span><span class="symbol">,</span><span class="normal"> yellow </span><span class="number">0</span><span class="symbol">%,</span><span class="normal"> green </span><span class="number">100</span><span class="symbol">%);</span>
+<span class="cbracket">}</span>
+<span class="normal">label </span><span class="cbracket">{</span>
+<span class="normal">  background</span><span class="symbol">-</span><span class="normal">image</span><span class="symbol">:</span><span class="normal"> radial</span><span class="symbol">-</span><span class="function">gradient</span><span class="symbol">(</span><span class="usertype">circle</span><span class="normal"> farthest</span><span class="symbol">-</span><span class="normal">side at </span><span class="usertype">left</span><span class="normal"> bottom</span><span class="symbol">,</span><span class="normal"> red</span><span class="symbol">,</span><span class="normal"> yellow 50px</span><span class="symbol">,</span><span class="normal"> green</span><span class="symbol">);</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><p>
       To learn more about gradients in CSS, including details of how color stops
@@ -706,40 +978,81 @@ label {
     </p>
 <div class="example">
 <a name="id-1.5.2.3.9.22"></a><p class="title"><b>Example 31. Linear gradients</b></p>
-<div class="example-contents"><pre class="programlisting">
-button {
-  background-image: -gtk-gradient (linear,
-                                   left top, right bottom,
-                                   from(@yellow), to(@blue));
-}
-label {
-  background-image: -gtk-gradient (linear,
-                                   0 0, 0 1,
-                                   color-stop(0, @yellow),
-                                   color-stop(0.2, @blue),
-                                   color-stop(1, #0f0));
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">button </span><span class="cbracket">{</span>
+<span class="normal">  background</span><span class="symbol">-</span><span class="normal">image</span><span class="symbol">:</span><span class="normal"> </span><span class="symbol">-</span><span class="normal">gtk</span><span class="symbol">-</span><span class="function">gradient</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">linear</span><span class="symbol">,</span>
+<span class="normal">                                   </span><span class="usertype">left</span><span class="normal"> top</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">right</span><span class="normal"> bottom</span><span class="symbol">,</span>
+<span class="normal">                                   </span><span class="function">from</span><span class="symbol">(</span><span class="normal">@yellow</span><span class="symbol">),</span><span class="normal"> </span><span class="function">to</span><span class="symbol">(</span><span class="normal">@blue</span><span class="symbol">));</span>
+<span class="cbracket">}</span>
+<span class="normal">label </span><span class="cbracket">{</span>
+<span class="normal">  background</span><span class="symbol">-</span><span class="normal">image</span><span class="symbol">:</span><span class="normal"> </span><span class="symbol">-</span><span class="normal">gtk</span><span class="symbol">-</span><span class="function">gradient</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">linear</span><span class="symbol">,</span>
+<span class="normal">                                   </span><span class="number">0</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="normal"> </span><span class="number">1</span><span class="symbol">,</span>
+<span class="normal">                                   color</span><span class="symbol">-</span><span class="function">stop</span><span class="symbol">(</span><span class="number">0</span><span class="symbol">,</span><span class="normal"> @yellow</span><span class="symbol">),</span>
+<span class="normal">                                   color</span><span class="symbol">-</span><span class="function">stop</span><span class="symbol">(</span><span class="number">0.2</span><span class="symbol">,</span><span class="normal"> @blue</span><span class="symbol">),</span>
+<span class="normal">                                   color</span><span class="symbol">-</span><span class="function">stop</span><span class="symbol">(</span><span class="number">1</span><span class="symbol">,</span><span class="normal"> #0f0</span><span class="symbol">));</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><div class="example">
 <a name="id-1.5.2.3.9.23"></a><p class="title"><b>Example 32. Radial gradients</b></p>
-<div class="example-contents"><pre class="programlisting">
-button {
-  background-image: -gtk-gradient (radial,
-                                   center center, 0,
-                                   center center, 1,
-                                   from(@yellow), to(@green));
-}
-label {
-  background-image: -gtk-gradient (radial,
-                                   0.4 0.4, 0.1,
-                                   0.6 0.6, 0.7,
-                                   color-stop(0, #f00),
-                                   color-stop(0.1, $a0f),
-                                   color-stop(0.2, @yellow),
-                                   color-stop(1, @green));
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">button </span><span class="cbracket">{</span>
+<span class="normal">  background</span><span class="symbol">-</span><span class="normal">image</span><span class="symbol">:</span><span class="normal"> </span><span class="symbol">-</span><span class="normal">gtk</span><span class="symbol">-</span><span class="function">gradient</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">radial</span><span class="symbol">,</span>
+<span class="normal">                                   </span><span class="usertype">center</span><span class="normal"> center</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span>
+<span class="normal">                                   </span><span class="usertype">center</span><span class="normal"> center</span><span class="symbol">,</span><span class="normal"> </span><span class="number">1</span><span class="symbol">,</span>
+<span class="normal">                                   </span><span class="function">from</span><span class="symbol">(</span><span class="normal">@yellow</span><span class="symbol">),</span><span class="normal"> </span><span class="function">to</span><span class="symbol">(</span><span class="normal">@green</span><span class="symbol">));</span>
+<span class="cbracket">}</span>
+<span class="normal">label </span><span class="cbracket">{</span>
+<span class="normal">  background</span><span class="symbol">-</span><span class="normal">image</span><span class="symbol">:</span><span class="normal"> </span><span class="symbol">-</span><span class="normal">gtk</span><span class="symbol">-</span><span class="function">gradient</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">radial</span><span class="symbol">,</span>
+<span class="normal">                                   </span><span class="number">0.4</span><span class="normal"> </span><span class="number">0.4</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.1</span><span class="symbol">,</span>
+<span class="normal">                                   </span><span class="number">0.6</span><span class="normal"> </span><span class="number">0.6</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.7</span><span class="symbol">,</span>
+<span class="normal">                                   color</span><span class="symbol">-</span><span class="function">stop</span><span class="symbol">(</span><span class="number">0</span><span class="symbol">,</span><span class="normal"> #f00</span><span class="symbol">),</span>
+<span class="normal">                                   color</span><span class="symbol">-</span><span class="function">stop</span><span class="symbol">(</span><span class="number">0.1</span><span class="symbol">,</span><span class="normal"> $a0f</span><span class="symbol">),</span>
+<span class="normal">                                   color</span><span class="symbol">-</span><span class="function">stop</span><span class="symbol">(</span><span class="number">0.2</span><span class="symbol">,</span><span class="normal"> @yellow</span><span class="symbol">),</span>
+<span class="normal">                                   color</span><span class="symbol">-</span><span class="function">stop</span><span class="symbol">(</span><span class="number">1</span><span class="symbol">,</span><span class="normal"> @green</span><span class="symbol">));</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><p>
       GTK+ has extensive support for loading icons from icon themes. It is
@@ -755,16 +1068,31 @@ label {
     </p>
 <div class="example">
 <a name="id-1.5.2.3.9.27"></a><p class="title"><b>Example 33. Using themed icons in CSS</b></p>
-<div class="example-contents"><pre class="programlisting">
-spinner {
-  -gtk-icon-source: -gtk-icontheme('process-working-symbolic');
-  -gtk-icon-palette: success blue, warning #fc3, error magenta;
-}
-arrow.fancy {
-  -gtk-icon-source: -gtk-icontheme('pan-down');
-  -gtk-icon-theme: 'Oxygen';
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">spinner </span><span class="cbracket">{</span>
+<span class="normal">  </span><span class="symbol">-</span><span class="normal">gtk</span><span class="symbol">-</span><span class="normal">icon</span><span class="symbol">-</span><span class="normal">source</span><span class="symbol">:</span><span class="normal"> </span><span class="symbol">-</span><span class="normal">gtk</span><span class="symbol">-</span><span class="function">icontheme</span><span class="symbol">(</span><span class="string">'process-working-symbolic'</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="symbol">-</span><span class="normal">gtk</span><span class="symbol">-</span><span class="normal">icon</span><span class="symbol">-</span><span class="normal">palette</span><span class="symbol">:</span><span class="normal"> </span><span class="usertype">success</span><span class="normal"> blue</span><span class="symbol">,</span><span class="normal"> warning #fc3</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">error</span><span class="normal"> magenta</span><span class="symbol">;</span>
+<span class="cbracket">}</span>
+<span class="normal">arrow</span><span class="symbol">.</span><span class="normal">fancy </span><span class="cbracket">{</span>
+<span class="normal">  </span><span class="symbol">-</span><span class="normal">gtk</span><span class="symbol">-</span><span class="normal">icon</span><span class="symbol">-</span><span class="normal">source</span><span class="symbol">:</span><span class="normal"> </span><span class="symbol">-</span><span class="normal">gtk</span><span class="symbol">-</span><span class="function">icontheme</span><span class="symbol">(</span><span class="string">'pan-down'</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="symbol">-</span><span class="normal">gtk</span><span class="symbol">-</span><span class="normal">icon</span><span class="symbol">-</span><span class="normal">theme</span><span class="symbol">:</span><span class="normal"> </span><span class="string">'Oxygen'</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><p>
       GTK+ supports scaled rendering on hi-resolution displays. This works
@@ -780,12 +1108,23 @@ arrow.fancy {
     </p>
 <div class="example">
 <a name="id-1.5.2.3.9.31"></a><p class="title"><b>Example 34. Scaled images in CSS</b></p>
-<div class="example-contents"><pre class="programlisting">
-arrow {
-  -gtk-icon-source: -gtk-scaled(url('my-arrow.png'),
-                                url('my-arrow@2.png'));
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">arrow </span><span class="cbracket">{</span>
+<span class="normal">  </span><span class="symbol">-</span><span class="normal">gtk</span><span class="symbol">-</span><span class="normal">icon</span><span class="symbol">-</span><span class="normal">source</span><span class="symbol">:</span><span class="normal"> </span><span class="symbol">-</span><span class="normal">gtk</span><span class="symbol">-</span><span class="function">scaled</span><span class="symbol">(</span><span class="function">url</span><span class="symbol">(</span><span class="string">'my-arrow.png'</span><span class="symbol">),</span>
+<span class="normal">                                </span><span class="function">url</span><span class="symbol">(</span><span class="string">'my-arrow@2.png'</span><span class="symbol">));</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><div class="literallayout"><p><code class="code">〈recolored image〉 = -gtk-recolor( 〈url〉 [ , 〈color palette〉 ] )</code><br>
 </p></div>
@@ -800,11 +1139,21 @@ arrow {
     </p>
 <div class="example">
 <a name="id-1.5.2.3.9.34"></a><p class="title"><b>Example 35. Recoloring an image</b></p>
-<div class="example-contents"><pre class="programlisting">
-arrow {
-  -gtk-icon-source: -gtk-recolor(url('check.svg'), success blue, error rgb(255,0,0));
-}
-</pre></div>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">arrow </span><span class="cbracket">{</span>
+<span class="normal">  </span><span class="symbol">-</span><span class="normal">gtk</span><span class="symbol">-</span><span class="normal">icon</span><span class="symbol">-</span><span class="normal">source</span><span class="symbol">:</span><span class="normal"> </span><span class="symbol">-</span><span class="normal">gtk</span><span class="symbol">-</span><span class="function">recolor</span><span class="symbol">(</span><span class="function">url</span><span class="symbol">(</span><span class="string">'check.svg'</span><span class="symbol">),</span><span class="normal"> </span><span class="usertype">success</span><span class="normal"> blue</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">error</span><span class="normal"> </span><span class="function">rgb</span><span class="symbol">(</span><span class="number">255</span><span class="symbol">,</span><span class="number">0</span><span class="symbol">,</span><span class="number">0</span><span class="symbol">));</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><p>
       On Windows, GTK+ allows to refer to system theme parts as images, as follows:
@@ -863,18 +1212,35 @@ arrow {
     </p>
 <div class="example">
 <a name="id-1.5.2.3.11.6"></a><p class="title"><b>Example 36. A CSS animation</b></p>
-<div class="example-contents"><pre class="programlisting">
-@keyframes spin {
-  to { -gtk-icon-transform: rotate(1turn); }
-}
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">@</span><span class="usertype">keyframes</span><span class="normal"> spin </span><span class="cbracket">{</span>
+<span class="normal">  to </span><span class="cbracket">{</span><span class="normal"> </span><span class="symbol">-</span><span class="normal">gtk</span><span class="symbol">-</span><span class="normal">icon</span><span class="symbol">-</span><span class="normal">transform</span><span class="symbol">:</span><span class="normal"> </span><span class="function">rotate</span><span class="symbol">(</span><span class="normal">1turn</span><span class="symbol">);</span><span class="normal"> </span><span class="cbracket">}</span>
+<span class="cbracket">}</span>
 
-spinner {
-  animation-name: spin;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-</pre></div>
+<span class="normal">spinner </span><span class="cbracket">{</span>
+<span class="normal">  animation</span><span class="symbol">-</span><span class="normal">name</span><span class="symbol">:</span><span class="normal"> spin</span><span class="symbol">;</span>
+<span class="normal">  animation</span><span class="symbol">-</span><span class="normal">duration</span><span class="symbol">:</span><span class="normal"> 1s</span><span class="symbol">;</span>
+<span class="normal">  animation</span><span class="symbol">-</span><span class="normal">timing</span><span class="symbol">-</span><span class="normal">function</span><span class="symbol">:</span><span class="normal"> linear</span><span class="symbol">;</span>
+<span class="normal">  animation</span><span class="symbol">-</span><span class="normal">iteration</span><span class="symbol">-</span><span class="normal">count</span><span class="symbol">:</span><span class="normal"> infinite</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break"><p>
       To learn more about animations, you can read the
@@ -907,28 +1273,49 @@ spinner {
     </p>
 <div class="example">
 <a name="id-1.5.2.3.12.6"></a><p class="title"><b>Example 37. An example for using the @binding-set rule</b></p>
-<div class="example-contents"><pre class="programlisting">
-@binding-set binding-set1 {
-  bind "&lt;alt&gt;Left" { "move-cursor" (visual-positions, -3, 0) };
-  unbind "End";
-};
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">@binding</span><span class="symbol">-</span><span class="usertype">set</span><span class="normal"> binding</span><span class="symbol">-</span><span class="normal">set1 </span><span class="cbracket">{</span>
+<span class="normal">  bind </span><span class="string">"&lt;alt&gt;Left"</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"move-cursor"</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">visual</span><span class="symbol">-</span><span class="normal">positions</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">-</span><span class="number">3</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">}</span><span class="symbol">;</span>
+<span class="normal">  unbind </span><span class="string">"End"</span><span class="symbol">;</span>
+<span class="cbracket">}</span><span class="symbol">;</span>
 
-@binding-set binding-set2 {
-  bind "&lt;alt&gt;Right" { "move-cursor" (visual-positions, 3, 0) };
-  bind "&lt;alt&gt;KP_space" { "delete-from-cursor" (whitespace, 1)
-                         "insert-at-cursor" (" ") };
-};
+<span class="normal">@binding</span><span class="symbol">-</span><span class="usertype">set</span><span class="normal"> binding</span><span class="symbol">-</span><span class="normal">set2 </span><span class="cbracket">{</span>
+<span class="normal">  bind </span><span class="string">"&lt;alt&gt;Right"</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"move-cursor"</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">visual</span><span class="symbol">-</span><span class="normal">positions</span><span class="symbol">,</span><span class="normal"> </span><span class="number">3</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">}</span><span class="symbol">;</span>
+<span class="normal">  bind </span><span class="string">"&lt;alt&gt;KP_space"</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"delete-from-cursor"</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">whitespace</span><span class="symbol">,</span><span class="normal"> </span><span class="number">1</span><span class="symbol">)</span>
+<span class="normal">                         </span><span class="string">"insert-at-cursor"</span><span class="normal"> </span><span class="symbol">(</span><span class="string">" "</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">}</span><span class="symbol">;</span>
+<span class="cbracket">}</span><span class="symbol">;</span>
 
-entry {
-  -gtk-key-bindings: binding-set1, binding-set2;
-}
-</pre></div>
+<span class="normal">entry </span><span class="cbracket">{</span>
+<span class="normal">  </span><span class="symbol">-</span><span class="normal">gtk</span><span class="symbol">-</span><span class="normal">key</span><span class="symbol">-</span><span class="normal">bindings</span><span class="symbol">:</span><span class="normal"> binding</span><span class="symbol">-</span><span class="normal">set1</span><span class="symbol">,</span><span class="normal"> binding</span><span class="symbol">-</span><span class="normal">set2</span><span class="symbol">;</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
 <br class="example-break">
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

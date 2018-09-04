@@ -9,8 +9,8 @@
 # set GTK_BINARY_AGE and GTK_INTERFACE_AGE to 0.
 
 m4_define([gtk_major_version], [3])
-m4_define([gtk_minor_version], [23])
-m4_define([gtk_micro_version], [1])
+m4_define([gtk_minor_version], [24])
+m4_define([gtk_micro_version], [0])
 m4_define([gtk_interface_age], [0])
 m4_define([gtk_binary_age],
           [m4_eval(100 * gtk_minor_version + gtk_micro_version)])
@@ -876,9 +876,10 @@ AC_CHECK_FUNCS(mallinfo)
 AC_CHECK_FUNCS(getresuid)
 AC_TYPE_UID_T
 
-# Check for round(), rint(), isnan(), isinf() and nearbyint()
+# Check for round(), rint(), isnan() and isinf()
+# Check for log2(), exp2(), nearbyint() and trunc()
 AC_CHECK_LIB(m,round,,)
-AC_CHECK_FUNCS(round rint nearbyint sincos exp2 log2)
+AC_CHECK_FUNCS(round rint nearbyint sincos exp2 log2 trunc)
 AC_CHECK_DECLS([isnan, isinf], [], [], [[#include <math.h>]])
 
 # Checks for gdkspawn
@@ -1426,6 +1427,22 @@ if test x"$os_win32" = xyes; then
   GTK_EXTRA_CFLAGS="$msnative_struct"
 fi
 
+##################################################
+# Check for harfbuzz and pangoft2
+##################################################
+
+PKG_CHECK_MODULES(GTK_FONT_CHOOSER_WIDGET,
+                  harfbuzz >= 0.9 pangoft2,
+                  build_font_demo=yes,
+                  build_font_demo=no)
+AM_CONDITIONAL(BUILD_FONT_DEMO, [ test "x$build_font_demo" = xyes ])
+if test "x$build_font_demo" = xyes; then
+  AC_DEFINE([HAVE_HARFBUZZ], 1, [defines whether we have HarfBuzz])
+  AC_DEFINE([HAVE_PANGOFT], 1, [defines whether we have pangoft2])
+  GTK_DEP_CFLAGS="$GTK_DEP_CFLAGS $GTK_FONT_CHOOSER_WIDGET_CFLAGS"
+  GTK_DEP_LIBS="$GTK_DEP_LIBS $GTK_FONT_CHOOSER_WIDGET_LIBS"
+fi
+
 if $PKG_CONFIG --exists x11; then
   X11_PREFIX="`$PKG_CONFIG --variable=prefix x11`"
 elif test x"$prefix" != xNONE; then
@@ -1776,19 +1793,6 @@ if test "$have_colord" = "yes"; then
         AC_DEFINE(HAVE_COLORD, 1, [define if we have colord])
 fi
 AM_CONDITIONAL(HAVE_COLORD, test "x$have_colord" = "xyes")
-
-##################################################
-# Check for harfbuzz and pangoft2
-##################################################
-
-PKG_CHECK_MODULES(FONTDEMO, harfbuzz >= 0.9 pangoft2, build_font_demo=yes, build_font_demo=no)
-AC_SUBST(FONTDEMO_CFLAGS)
-AC_SUBST(FONTDEMO_LIBS)
-AM_CONDITIONAL(BUILD_FONT_DEMO, [ test "x$build_font_demo" = xyes ])
-if test "x$build_font_demo" = xyes; then
-  AC_DEFINE([HAVE_HARFBUZZ], 1, [defines whether we have HarfBuzz])
-  AC_DEFINE([HAVE_PANGOFT], 1, [defines whether we have pangoft2])
-fi
 
 ##################################################
 # Checks for gtk-doc and docbook-tools

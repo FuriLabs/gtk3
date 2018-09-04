@@ -193,8 +193,8 @@ gtk_gesture_stylus_get_axis (GtkGestureStylus *gesture,
 /**
  * gtk_gesture_stylus_get_axes:
  * @gesture: a GtkGestureStylus
- * @axes: array of requested axes, terminated with #GDK_AXIS_IGNORE
- * @values: (out): return location for the axis values
+ * @axes: (array): array of requested axes, terminated with #GDK_AXIS_IGNORE
+ * @values: (out) (array): return location for the axis values
  *
  * Returns the current values for the requested @axes. This function
  * must be called from either the #GtkGestureStylus:down,
@@ -250,9 +250,9 @@ gtk_gesture_stylus_get_axes (GtkGestureStylus  *gesture,
  * @gesture: a #GtkGestureStylus
  *
  * Returns the #GdkDeviceTool currently driving input through this gesture.
- * This function must be called from either the #GtkGestureStylus:down,
- * #GtkGestureStylus:motion, #GtkGestureStylus:up or #GtkGestureStylus:proximity
- * signals.
+ * This function must be called from either the #GtkGestureStylus::down,
+ * #GtkGestureStylus::motion, #GtkGestureStylus::up or #GtkGestureStylus::proximity
+ * signal handlers.
  *
  * Returns: (nullable) (transfer none): The current stylus tool
  *
