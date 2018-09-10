@@ -1,3 +1,46 @@
+gtk+3.0 (3.24.0-2ubuntu1) UNRELEASED; urgency=medium
+
+  * Merge from Debian experimental (LP: #1790618). Remaining changes:
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0.symbols
+    + debian/control.in:
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + debian/rules: Mark additional known test failures:
+      - box-shadow-changes-modify-clip.ui
+      - label-text-shadow-changes-modify-clip.ui
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+
+ -- Iain Lane <iain.lane@canonical.com>  Mon, 10 Sep 2018 09:16:18 +0100
+
+gtk+3.0 (3.24.0-2) unstable; urgency=medium
+
+  * Team upload
+  * d/p/Revert-imwayland-clear-preedit-on-focus-out.patch:
+    Revert an upstream change that caused the cursor to disappear on
+    focus changes in vte terminals like gnome-terminal and lxterminal
+    under Wayland (Closes: #908120)
+  * debian/libgtk-3-0.symbols: gtk_color_picker_kwin_new() is new in
+    3.24.0, not 3.24.3 which doesn't exist yet
+  * d/p/Don-t-test-default-constructed-GdkPixbuf-properties.patch:
+    Work around a gdk-pixbuf bug that caused test failures
+    (Closes: #908439)
+  * d/gbp.conf: Don't number patches
+
+ -- Simon McVittie <smcv@debian.org>  Mon, 10 Sep 2018 01:15:53 +0100
+
 gtk+3.0 (3.24.0-1ubuntu1) cosmic; urgency=medium
 
   * Merge from Debian experimental (LP: #1790618). Remaining changes:
