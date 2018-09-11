@@ -1,3 +1,40 @@
+gtk+3.0 (3.24.0-3ubuntu1) UNRELEASED; urgency=medium
+
+  * Merge from Debian experimental. Remaining changes:
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0.symbols
+    + debian/control.in:
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + debian/rules: Mark additional known test failures:
+      - box-shadow-changes-modify-clip.ui
+      - label-text-shadow-changes-modify-clip.ui
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+
+ -- Iain Lane <laney@debian.org>  Tue, 11 Sep 2018 18:00:10 +0100
+
+gtk+3.0 (3.24.0-3) unstable; urgency=medium
+
+  * Cherry-pick 3c7d5e7 to fix a critical on gtk_application_shutdown when not
+    using portals (Closes: #908070)
+  * Add Applied-Upstream to last cherry-pick
+  * Fix-portal-path-handling.patch: Cherry-pick from upstream.  Fix an
+    incorrect dereference in the portal handling code.
+
+ -- Iain Lane <laney@debian.org>  Tue, 11 Sep 2018 17:33:38 +0100
+
 gtk+3.0 (3.24.0-2ubuntu1) cosmic; urgency=medium
 
   * Merge from Debian experimental. Remaining changes:
