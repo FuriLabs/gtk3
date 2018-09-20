@@ -1878,7 +1878,6 @@ XVFB_START = \
 	&& DISPLAY=:$$XID && export DISPLAY
 
 GTK_BASE_CFLAGS_DEFINES = \
-	-DG_LOG_DOMAIN=\"Gtk\"				\
 	-DG_LOG_USE_STRUCTURED=1			\
 	-DGTK_VERSION=\"$(GTK_VERSION)\"		\
 	-DGTK_BINARY_VERSION=\"$(GTK_BINARY_VERSION)\"	\
@@ -1895,6 +1894,7 @@ GTK_PLAT_CFLAGS_DEFINES = \
 	-DGTK_PRINT_BACKENDS=\"$(GTK_PRINT_BACKENDS)\"
 
 AM_CPPFLAGS = \
+	-DG_LOG_DOMAIN=\"Gtk\"				\
 	$(GTK_BASE_CFLAGS_DEFINES)			\
 	$(GTK_PLAT_CFLAGS_DEFINES)			\
 	-DX11_DATA_PREFIX=\"$(X11_PREFIX)\"		\
@@ -9775,6 +9775,7 @@ $(foreach proj,$(MSVCPROJS),$(eval $(call msvcproj-builder,$(proj))))
 @HAVE_INTROSPECTION_TRUE@	echo '	--cflags-end	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
 @HAVE_INTROSPECTION_TRUE@	echo '	'$($(_gir_name)_MSVC_SCANNERFLAGS)'	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
 @HAVE_INTROSPECTION_TRUE@	echo '	--filelist='$(_gir_name)'_list	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	-L.\vs$$$$(VSVER)\$$$$(CFG)\$$$$(PLAT)\bin	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
 @HAVE_INTROSPECTION_TRUE@	echo '	-o $$$$@'>>$(top_builddir)/build/win32/$(1).msvc.introspect
 @HAVE_INTROSPECTION_TRUE@	echo '' >>$(top_builddir)/build/win32/$(1).msvc.introspect
 

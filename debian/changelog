@@ -1,3 +1,60 @@
+gtk+3.0 (3.24.1-1ubuntu1) UNRELEASED; urgency=medium
+
+  * Merge from Debian experimental. Remaining changes:
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0.symbols
+    + debian/control.in:
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+
+ -- Iain Lane <iain.lane@canonical.com>  Thu, 20 Sep 2018 09:38:08 +0100
+
+gtk+3.0 (3.24.1-1) experimental; urgency=medium
+
+  * Team upload
+  * New upstream release
+    - Bump GLib build-dependency to 2.53.4 as per configure.ac
+    - d/p/Revert-imwayland-clear-preedit-on-focus-out.patch:
+      Remove, rely on the upstream fix for #908120 instead
+    - d/p/GtkApplication-Fix-CRITICAL-on-shutdown-when-register_ses.patch,
+      d/p/Fix-portal-path-handling.patch: Remove, applied upstream
+  * Build installed-tests
+    - Install them in gtk-3-examples for now to avoid the NEW queue
+  * d/p/no-accessibility-dump.patch: Drop, no longer needed.
+    The build-time tests correctly set GTK_CSD=1 now.
+  * Stop marking some reftests as known failures. They now succeed on
+    all release architectures.
+    - d/p/reftest-known-fail.patch: Drop, no longer needed
+  * Run installed-tests as autopkgtests (Closes: #908440)
+    - Run a11ystate.test separately and mark it as flaky for now due to a
+      known failure: state/focus1.ui passes in a desktop session but fails
+      in a minimal autopkgtest VM
+  * Sort dependency lists (wrap-and-sort -a)
+  * d/gtk-3-examples.install: Sort file list (wrap-and-sort -a)
+  * Use the same Xvfb screen configuration as in the upstream GTK+ 4
+    Gitlab-CI tests. This will hopefully make GLX work (see also #874077)
+  * Update d/gbp.conf from glib2.0
+  * Temporarily (Build-)Depend on libgl1-mesa-dev and libegl1-mesa-dev to
+    work around #909173 in libepoxy
+  * d/rules: Make it clearer that we respect the nocheck option
+  * d/copyright: Fix some lintian warnings
+  * Upload to experimental for now, to avoid disrupting migration
+
+ -- Simon McVittie <smcv@debian.org>  Wed, 19 Sep 2018 23:35:29 +0100
+
 gtk+3.0 (3.24.0-3ubuntu1) cosmic; urgency=medium
 
   * Merge from Debian experimental. Remaining changes:

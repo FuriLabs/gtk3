@@ -88,6 +88,7 @@ debian/%: debian/%.in
 
 configure_flags_common = \
 	--libdir=/$(LIBDIR) \
+	--libexecdir=/usr/libexec \
 	--enable-test-print-backend
 
 configure_flags_deb = \
@@ -99,7 +100,8 @@ configure_flags_deb = \
 	--enable-shared \
 	--enable-introspection \
 	--enable-cloudprint \
-	--disable-static
+	--disable-static \
+	--enable-installed-tests
 
 ifeq (,$(filter stage1,$(DEB_BUILD_PROFILES)))
 configure_flags_deb += --enable-colord
@@ -137,7 +139,6 @@ override_dh_clean: debian/control
 	# gross kludge to force control generation with the %.in target
 	touch debian/control.in
 	rm -f $(call dh_subst_files,$(binaries))
-	rm -f testsuite/reftests/*.ui.known_fail
 	rm -rf debian/build debian/install
 	# The build system does not automatically update the GResource files
 	# when resources change. Force an update in case we ship a patch which
@@ -174,22 +175,18 @@ ifneq ($(filter %-udeb,$(binaries)),)
 endif
 
 override_dh_auto_test:
-	# Mark reftests with known failures as non-fatal
-	touch testsuite/reftests/box-shadow-changes-modify-clip.ui.known_fail
-	touch testsuite/reftests/label-text-shadow-changes-modify-clip.ui.known_fail
-	touch testsuite/reftests/nonresizable-size.ui.known_fail
-	touch testsuite/reftests/window-show-contents-on-map.ui.known_fail
-	touch testsuite/reftests/inherit-and-initial.ui.known_fail
-	touch testsuite/reftests/textview-margins.ui.known_fail
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
 	# So that gsettings can find the (uninstalled) gtk schemas
 	mkdir -p debian/build/glib-2.0/schemas/
 	cp gtk/org.gtk.* debian/build/glib-2.0/schemas/
 	glib-compile-schemas debian/build/glib-2.0/schemas/
 	# Remove LD_PRELOAD so we don't run with fakeroot, which makes dbus-related tests fail
 	env -u LD_PRELOAD dh_auto_test --builddirectory=debian/build/deb -- -k check -j1
+endif
 
 override_dh_auto_install:
 	dh_auto_install --builddirectory=debian/build/deb --destdir=debian/install/deb
+	rm -v -f debian/install/deb/usr/libexec/installed-tests/gtk+/reftests/libreftest.la
 ifneq ($(filter %-udeb,$(binaries)),)
 	dh_auto_install --builddirectory=debian/build/udeb --destdir=debian/install/udeb
 endif

@@ -10,8 +10,8 @@
 
 m4_define([gtk_major_version], [3])
 m4_define([gtk_minor_version], [24])
-m4_define([gtk_micro_version], [0])
-m4_define([gtk_interface_age], [0])
+m4_define([gtk_micro_version], [1])
+m4_define([gtk_interface_age], [1])
 m4_define([gtk_binary_age],
           [m4_eval(100 * gtk_minor_version + gtk_micro_version)])
 m4_define([gtk_version],
@@ -42,7 +42,7 @@ m4_define([gtk_binary_version], [3.0.0])
 
 # required versions of other packages
 m4_define([glib_required_major], [2])
-m4_define([glib_required_minor], [49])
+m4_define([glib_required_minor], [53])
 m4_define([glib_required_micro], [4])
 m4_define([glib_required_version],
           [glib_required_major.glib_required_minor.glib_required_micro])
