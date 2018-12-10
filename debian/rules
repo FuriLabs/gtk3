@@ -5,7 +5,8 @@ include /usr/share/gnome-pkg-tools/1/rules/uploaders.mk
 include /usr/share/dpkg/default.mk
 include /usr/share/dpkg/pkg-info.mk
 
-binaries := $(shell dh_listpackages)
+built_binaries := $(shell dh_listpackages)
+all_binaries := $(shell sed -ne 's/^Package: *//p' < debian/control)
 
 # Ensure the build aborts when there are still references to undefined symbols
 # currently fails at least in the im-multipress im module
@@ -114,7 +115,7 @@ else
 configure_flags_deb += --disable-wayland-backend
 endif
 
-ifeq ($(filter %-doc,$(binaries)),)
+ifeq ($(filter %-doc,$(built_binaries)),)
 configure_flags_deb += --disable-gtk-doc --disable-man
 endif
 
@@ -137,7 +138,8 @@ configure_flags_udeb = \
 override_dh_clean: debian/control
 	# gross kludge to force control generation with the %.in target
 	touch debian/control.in
-	rm -f $(call dh_subst_files,$(binaries))
+	rm -f $(call dh_subst_files,$(all_binaries))
+	rm -f testsuite/reftests/*.ui.known_fail
 	rm -rf debian/build debian/install
 	# The build system does not automatically update the GResource files
 	# when resources change. Force an update in case we ship a patch which
@@ -146,7 +148,7 @@ override_dh_clean: debian/control
 	dh_clean
 
 # Add dependencies to generate files from the debian/*.in ones
-override_dh_auto_build: $(call dh_subst_files,$(binaries))
+override_dh_auto_build: $(call dh_subst_files,$(all_binaries))
 
 override_dh_autoreconf:
 	NOCONFIGURE=true dh_autoreconf ./autogen.sh
@@ -158,7 +160,7 @@ override_dh_auto_configure: debian/control
 		$(configure_flags_common) \
 		$(configure_flags_deb) \
 		$(NULL)
-ifneq ($(filter %-udeb,$(binaries)),)
+ifneq ($(filter %-udeb,$(built_binaries)),)
 	dh_auto_configure \
 		--builddirectory=debian/build/udeb \
 		-- \
@@ -169,12 +171,14 @@ endif
 
 override_dh_auto_build:
 	dh_auto_build --builddirectory=debian/build/deb
-ifneq ($(filter %-udeb,$(binaries)),)
+ifneq ($(filter %-udeb,$(built_binaries)),)
 	dh_auto_build --builddirectory=debian/build/udeb
 endif
 
 override_dh_auto_test:
 ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+	# Mark reftests with known failures as non-fatal
+	touch testsuite/reftests/symbolic-icon-translucent-color.ui.known_fail
 	# So that gsettings can find the (uninstalled) gtk schemas
 	mkdir -p debian/build/glib-2.0/schemas/
 	cp gtk/org.gtk.* debian/build/glib-2.0/schemas/
@@ -186,7 +190,7 @@ endif
 override_dh_auto_install:
 	dh_auto_install --builddirectory=debian/build/deb --destdir=debian/install/deb
 	rm -v -f debian/install/deb/usr/libexec/installed-tests/gtk+/reftests/libreftest.la
-ifneq ($(filter %-udeb,$(binaries)),)
+ifneq ($(filter %-udeb,$(built_binaries)),)
 	dh_auto_install --builddirectory=debian/build/udeb --destdir=debian/install/udeb
 endif
 

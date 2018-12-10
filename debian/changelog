@@ -1,3 +1,69 @@
+gtk+3.0 (3.24.1-3ubuntu1) UNRELEASED; urgency=medium
+
+  * Merge from Debian. Remaining changes:
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0.symbols
+    + debian/control.in:
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + debian/control.in, debian/rules:
+      - use dh-translations for language packs integration
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Mon, 10 Dec 2018 12:35:55 -0500
+
+gtk+3.0 (3.24.1-3) unstable; urgency=medium
+
+  [ Simon McVittie ]
+  * d/p/wayland-Avoid-crashes-inside-wl_proxy_marshal.patch:
+    Add patch from upstream (via Ubuntu) to fix a segfault under Wayland
+
+  [ Jeremy Bicha ]
+  * Stop using gnome-get-source
+  * Update debian/gbp.conf
+  * Cherry-pick Force-emoji-presentation.patch:
+    - Ensure that all emoji from the emoji chooser use emoji presentation
+      instead of the black-and-white text presentation (LP: #1807719)
+  * Cherry-pick emojichooser-Pass-chooser-to-add_emoji.patch:
+    - Fix variant selector in emoji chooser (LP: #1807721)
+
+ -- Jeremy Bicha <jbicha@debian.org>  Mon, 10 Dec 2018 12:27:10 -0500
+
+gtk+3.0 (3.24.1-2) unstable; urgency=medium
+
+  * Team upload
+  * Upload to unstable
+  * d/libgtk-3-0.symbols: Mark gdk_wayland_window_announce_ssd() as
+    Linux-specific, since we do not enable Wayland on non-Linux.
+    This might fix FTBFS on kfreebsd-any.
+  * d/rules: Generate files from .in counterparts for every package,
+    not just the ones we are going to build. This avoids dh_missing
+    false positives for files that would have gone into packages not
+    included in the current build, for example libgtk-3-common during
+    an amd64-only build.
+  * d/tests: Also mark reftests as flaky due to a known failure:
+    symbolic-icon-translucent-color appears to have regressed and now
+    differs from the reference by 1 column of pixels
+  * Revert "Temporarily (B-)D on libgl1-mesa-dev and libegl1-mesa-dev"
+    now that libepoxy has been fixed
+  * d/p/reftest-known-fail.patch: Reinstate
+  * Make symbolic-icon-translucent-color.ui non-fatal during
+    build-time tests
+
+ -- Simon McVittie <smcv@debian.org>  Sun, 30 Sep 2018 16:45:24 +0100
+
 gtk+3.0 (3.24.1-1ubuntu2) cosmic; urgency=medium
 
   * debian/control.in, debian/rules:
