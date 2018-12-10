@@ -1,0 +1,41 @@
+From: Matthias Clasen <mclasen@redhat.com>
+Date: Tue, 27 Nov 2018 18:16:43 -0500
+Subject: Force emoji presentation
+
+Append a variation selector to the Emoji sequences,
+to force Emoji presentation. Without this, some
+Emoji come out with text presentation by default.
+
+Closes: Pango #334
+(cherry picked from commit aac38198a3f5636c84033337c16df374f410b1e9
+and commit b74e3209a5af03678ade12bfe6936171ff204b8c)
+
+---
+ gtk/gtkemojichooser.c    | 1 +
+ gtk/gtkemojicompletion.c | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/gtk/gtkemojichooser.c b/gtk/gtkemojichooser.c
+index b2c161e..b423f80 100644
+--- a/gtk/gtkemojichooser.c
++++ b/gtk/gtkemojichooser.c
+@@ -392,6 +392,7 @@ add_emoji (GtkWidget    *box,
+         p += g_unichar_to_utf8 (code, p);
+     }
+   g_variant_unref (codes);
++  p += g_unichar_to_utf8 (0xFE0F, p); /* U+FE0F is the Emoji variation selector */
+   p[0] = 0;
+ 
+   label = gtk_label_new (text);
+diff --git a/gtk/gtkemojicompletion.c b/gtk/gtkemojicompletion.c
+index 434047f..0a84400 100644
+--- a/gtk/gtkemojicompletion.c
++++ b/gtk/gtkemojicompletion.c
+@@ -474,6 +474,7 @@ get_text (GVariant *emoji_data,
+         p += g_unichar_to_utf8 (code, p);
+     }
+   g_variant_unref (codes);
++  p += g_unichar_to_utf8 (0xFE0F, p); /* U+FE0F is the Emoji variation selector */
+   p[0] = 0;
+ }
+ 
