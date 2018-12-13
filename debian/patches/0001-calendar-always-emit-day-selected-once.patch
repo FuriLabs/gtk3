@@ -1,4 +1,3 @@
-From 01d3ae030937b024bba63445cefd5050be4b2c8e Mon Sep 17 00:00:00 2001
 From: Lars Uebernickel <lars.uebernickel@canonical.com>
 Date: Thu, 1 Oct 2015 15:35:09 +0200
 Subject: [PATCH] calendar: always emit "day-selected" once
@@ -16,11 +15,11 @@ https://bugzilla.gnome.org/show_bug.cgi?id=755941
  gtk/gtkcalendar.c | 72 +++++++++++++++++++++++++++++++++----------------------
  1 file changed, 43 insertions(+), 29 deletions(-)
 
-Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkcalendar.c
-===================================================================
---- gtk+3.0-3.22.29-2ubuntu1.orig/gtk/gtkcalendar.c
-+++ gtk+3.0-3.22.29-2ubuntu1/gtk/gtkcalendar.c
-@@ -887,11 +887,15 @@
+diff --git a/gtk/gtkcalendar.c b/gtk/gtkcalendar.c
+index 5f1a5d5..adc01d4 100644
+--- a/gtk/gtkcalendar.c
++++ b/gtk/gtkcalendar.c
+@@ -887,11 +887,15 @@ calendar_queue_refresh (GtkCalendar *calendar)
  }
  
  static void
@@ -37,7 +36,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkcalendar.c
    if (priv->display_flags & GTK_CALENDAR_NO_MONTH_CHANGE)
      return;
  
-@@ -913,13 +917,13 @@
+@@ -913,13 +917,13 @@ calendar_set_month_next (GtkCalendar *calendar)
  
    month_len = month_length[leap (priv->year)][priv->month + 1];
  
@@ -53,7 +52,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkcalendar.c
  
    calendar_queue_refresh (calendar);
  }
-@@ -1312,11 +1316,15 @@
+@@ -1312,11 +1316,15 @@ calendar_day_rectangle (GtkCalendar  *calendar,
  }
  
  static void
@@ -70,7 +69,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkcalendar.c
    if (priv->display_flags & GTK_CALENDAR_NO_MONTH_CHANGE)
      return;
  
-@@ -1339,16 +1347,16 @@
+@@ -1339,16 +1347,16 @@ calendar_set_month_prev (GtkCalendar *calendar)
                   gtk_calendar_signals[MONTH_CHANGED_SIGNAL],
                   0);
  
@@ -91,7 +90,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkcalendar.c
      }
  
    calendar_queue_refresh (calendar);
-@@ -2842,10 +2850,10 @@
+@@ -2842,10 +2850,10 @@ calendar_arrow_action (GtkCalendar *calendar,
        calendar_set_year_next (calendar);
        break;
      case ARROW_MONTH_LEFT:
@@ -104,7 +103,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkcalendar.c
        break;
      default:;
        /* do nothing */
-@@ -2944,21 +2952,27 @@
+@@ -2944,21 +2952,27 @@ calendar_main_button_press (GtkCalendar    *calendar,
        day = priv->day[row][col];
  
        if (day_month == MONTH_PREV)
@@ -143,7 +142,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkcalendar.c
      }
    else if (event->type == GDK_2BUTTON_PRESS)
      {
-@@ -3129,13 +3143,13 @@
+@@ -3129,13 +3143,13 @@ gtk_calendar_scroll (GtkWidget      *widget,
      {
        if (!gtk_widget_has_focus (widget))
          gtk_widget_grab_focus (widget);
@@ -159,7 +158,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkcalendar.c
      }
    else
      return FALSE;
-@@ -3210,7 +3224,7 @@
+@@ -3210,7 +3224,7 @@ gtk_calendar_key_press (GtkWidget   *widget,
      case GDK_KEY_Left:
        return_val = TRUE;
        if (event->state & GDK_CONTROL_MASK)
@@ -168,7 +167,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkcalendar.c
        else
          {
            move_focus (calendar, -1);
-@@ -3223,7 +3237,7 @@
+@@ -3223,7 +3237,7 @@ gtk_calendar_key_press (GtkWidget   *widget,
      case GDK_KEY_Right:
        return_val = TRUE;
        if (event->state & GDK_CONTROL_MASK)
@@ -177,7 +176,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkcalendar.c
        else
          {
            move_focus (calendar, 1);
-@@ -3277,11 +3291,11 @@
+@@ -3277,11 +3291,11 @@ gtk_calendar_key_press (GtkWidget   *widget,
  
            day = priv->day[row][col];
            if (priv->day_month[row][col] == MONTH_PREV)

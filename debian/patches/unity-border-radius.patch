@@ -1,14 +1,19 @@
-Description: Export windows corners radius in the _UNITY_GTK_BORDER_RADIUS
- X11 property when such feature is supported by WM (so just in unity).
- This has to be removed when compiz will natively support _GTK_FRAME_EXTENTS
-Author: Marco Trevisan <marco.trevisan@canonical.com>
-Bug-Ubuntu: https://bugs.launchpad.net/bugs/1516403
+From: Marco Trevisan <marco.trevisan@canonical.com>
+Date: Thu, 13 Dec 2018 18:00:43 -0500
+Subject: Export windows corners radius in the _UNITY_GTK_BORDER_RADIUS
 
-Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkwindow.c
-===================================================================
---- gtk+3.0-3.22.29-2ubuntu1.orig/gtk/gtkwindow.c
-+++ gtk+3.0-3.22.29-2ubuntu1/gtk/gtkwindow.c
-@@ -259,6 +259,7 @@
+X11 property when such feature is supported by WM (so just in unity).
+This has to be removed when compiz will natively support _GTK_FRAME_EXTENTS
+Bug-Ubuntu: https://bugs.launchpad.net/bugs/1516403
+---
+ gtk/gtkwindow.c | 158 +++++++++++++++++++++++++++++++++++++++++++++++++++++---
+ 1 file changed, 152 insertions(+), 6 deletions(-)
+
+diff --git a/gtk/gtkwindow.c b/gtk/gtkwindow.c
+index c7ee502..53f8953 100644
+--- a/gtk/gtkwindow.c
++++ b/gtk/gtkwindow.c
+@@ -259,6 +259,7 @@ struct _GtkWindowPrivate
    guint    csd_requested             : 1;
    guint    client_decorated          : 1; /* Decorations drawn client-side */
    guint    use_client_shadow         : 1; /* Decorations use client-side shadows */
@@ -16,10 +21,11 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkwindow.c
    guint    maximized                 : 1;
    guint    fullscreen                : 1;
    guint    tiled                     : 1;
-@@ -4074,6 +4075,119 @@
+@@ -4075,6 +4076,119 @@ gtk_window_set_geometry_hints (GtkWindow       *window,
+   gtk_widget_queue_resize_no_redraw (GTK_WIDGET (window));
  }
  
- static void
++static void
 +unity_border_radius_update (GtkWindow *window)
 +{
 +#ifdef GDK_WINDOWING_X11
@@ -132,11 +138,10 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkwindow.c
 +  return FALSE;
 +}
 +
-+static void
+ static void
  unset_titlebar (GtkWindow *window)
  {
-   GtkWindowPrivate *priv = window->priv;
-@@ -4083,6 +4197,9 @@
+@@ -4085,6 +4199,9 @@ unset_titlebar (GtkWindow *window)
        g_signal_handlers_disconnect_by_func (priv->title_box,
                                              on_titlebar_title_notify,
                                              window);
@@ -146,7 +151,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkwindow.c
        gtk_widget_unparent (priv->title_box);
        priv->title_box = NULL;
        priv->titlebar = NULL;
-@@ -4139,13 +4256,16 @@
+@@ -4141,13 +4258,16 @@ gtk_window_enable_csd (GtkWindow *window)
    GdkVisual *visual;
  
    /* We need a visual with alpha for client shadows */
@@ -164,7 +169,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkwindow.c
      }
    else
      {
-@@ -4153,6 +4273,9 @@
+@@ -4155,6 +4275,9 @@ gtk_window_enable_csd (GtkWindow *window)
      }
  
    priv->client_decorated = TRUE;
@@ -174,7 +179,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkwindow.c
  }
  
  static void
-@@ -4213,10 +4336,14 @@
+@@ -4215,10 +4338,14 @@ gtk_window_set_titlebar (GtkWindow *window,
        priv->client_decorated = FALSE;
        gtk_style_context_remove_class (gtk_widget_get_style_context (widget), GTK_STYLE_CLASS_CSD);
  
@@ -189,7 +194,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkwindow.c
  
    gtk_window_enable_csd (window);
    priv->title_box = titlebar;
-@@ -4228,6 +4355,8 @@
+@@ -4230,6 +4357,8 @@ gtk_window_set_titlebar (GtkWindow *window,
        on_titlebar_title_notify (GTK_HEADER_BAR (titlebar), NULL, window);
      }
  
@@ -198,7 +203,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkwindow.c
    gtk_style_context_add_class (gtk_widget_get_style_context (titlebar),
                                 GTK_STYLE_CLASS_TITLEBAR);
  
-@@ -6134,13 +6263,19 @@
+@@ -6137,13 +6266,19 @@ create_decoration (GtkWidget *widget)
    GtkWindowPrivate *priv = window->priv;
  
    priv->use_client_shadow = gtk_window_supports_client_shadow (window);
@@ -221,7 +226,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkwindow.c
  
    if (priv->title_box == NULL)
      {
-@@ -6148,6 +6283,8 @@
+@@ -6151,6 +6286,8 @@ create_decoration (GtkWidget *widget)
        gtk_widget_set_parent (priv->titlebar, widget);
        gtk_widget_show_all (priv->titlebar);
        priv->title_box = priv->titlebar;
@@ -230,7 +235,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkwindow.c
      }
  
    update_window_buttons (window);
-@@ -6759,6 +6896,9 @@
+@@ -6762,6 +6899,9 @@ get_shadow_width (GtkWindow *window,
    if (!priv->decorated)
      return;
  
@@ -240,7 +245,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkwindow.c
    if (!priv->client_decorated &&
        !(gtk_window_should_use_csd (window) &&
          gtk_window_supports_client_shadow (window)))
-@@ -7454,7 +7594,7 @@
+@@ -7457,7 +7597,7 @@ gtk_window_realize (GtkWidget *widget)
  
    attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL;
  
@@ -249,7 +254,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkwindow.c
      {
        const gchar *cursor[8] = {
          "nw-resize", "n-resize", "ne-resize",
-@@ -7541,6 +7681,12 @@
+@@ -7549,6 +7689,12 @@ gtk_window_realize (GtkWidget *widget)
      }
  #endif
  
@@ -262,7 +267,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkwindow.c
    child_allocation.x = 0;
    child_allocation.y = 0;
    child_allocation.width = allocation.width;
-@@ -11123,7 +11269,7 @@
+@@ -11149,7 +11295,7 @@ gtk_window_set_screen (GtkWindow *window,
      }
    g_object_notify_by_pspec (G_OBJECT (window), window_props[PROP_SCREEN]);
  

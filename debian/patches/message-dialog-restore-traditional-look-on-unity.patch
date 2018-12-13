@@ -1,19 +1,18 @@
-From 00994b1294b8ce5673dcb7e3107b8dd7d4a1c15a Mon Sep 17 00:00:00 2001
 From: Lars Uebernickel <lars.uebernickel@canonical.com>
 Date: Thu, 23 Oct 2014 10:01:04 -0400
 Subject: [PATCH] message dialog: restore traditional look on unity
 
 ---
- gtk/gtkmessagedialog.c               | 34 +++++++++++++++++++++++++++++++++-
- gtk/ui/gtkmessagedialog.ui           | 18 ++++++++++++++++++
- testsuite/a11y/messagedialog.txt     | 15 ++++++++++++++-
- 3 files changed, 65 insertions(+), 2 deletions(-)
+ gtk/gtkmessagedialog.c           | 60 +++++++++++++++++++++++++++++++++++++++-
+ gtk/ui/gtkmessagedialog.ui       | 18 ++++++++++++
+ testsuite/a11y/messagedialog.txt | 15 +++++++++-
+ 3 files changed, 91 insertions(+), 2 deletions(-)
 
-Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkmessagedialog.c
-===================================================================
---- gtk+3.0-3.22.29-2ubuntu1.orig/gtk/gtkmessagedialog.c
-+++ gtk+3.0-3.22.29-2ubuntu1/gtk/gtkmessagedialog.c
-@@ -104,6 +104,9 @@
+diff --git a/gtk/gtkmessagedialog.c b/gtk/gtkmessagedialog.c
+index e70c820..ba10f25 100644
+--- a/gtk/gtkmessagedialog.c
++++ b/gtk/gtkmessagedialog.c
+@@ -104,6 +104,9 @@ struct _GtkMessageDialogPrivate
    GtkWidget     *label;
    GtkWidget     *message_area; /* vbox for the primary and secondary labels, and any extra content from the caller */
    GtkWidget     *secondary_label;
@@ -23,7 +22,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkmessagedialog.c
  
    guint          has_primary_markup : 1;
    guint          has_secondary_text : 1;
-@@ -300,11 +303,38 @@
+@@ -300,11 +303,38 @@ gtk_message_dialog_class_init (GtkMessageDialogClass *class)
    gtk_widget_class_set_template_from_resource (widget_class, "/org/gtk/libgtk/ui/gtkmessagedialog.ui");
    gtk_widget_class_bind_template_child_private (widget_class, GtkMessageDialog, label);
    gtk_widget_class_bind_template_child_private (widget_class, GtkMessageDialog, secondary_label);
@@ -62,7 +61,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkmessagedialog.c
  static void
  gtk_message_dialog_init (GtkMessageDialog *dialog)
  {
-@@ -327,7 +357,25 @@
+@@ -327,7 +357,25 @@ gtk_message_dialog_init (GtkMessageDialog *dialog)
  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
    action_area = gtk_dialog_get_action_area (GTK_DIALOG (dialog));
  G_GNUC_END_IGNORE_DEPRECATIONS
@@ -89,7 +88,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkmessagedialog.c
  
    settings = gtk_widget_get_settings (GTK_WIDGET (dialog));
    g_object_get (settings, "gtk-keynav-use-caret", &use_caret, NULL);
-@@ -372,6 +420,7 @@
+@@ -372,6 +420,7 @@ setup_type (GtkMessageDialog *dialog,
  {
    GtkMessageDialogPrivate *priv = dialog->priv;
    const gchar *name = NULL;
@@ -97,7 +96,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkmessagedialog.c
    AtkObject *atk_obj;
  
    if (priv->message_type == type)
-@@ -383,18 +432,22 @@
+@@ -383,18 +432,22 @@ setup_type (GtkMessageDialog *dialog,
      {
      case GTK_MESSAGE_INFO:
        name = _("Information");
@@ -120,7 +119,7 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkmessagedialog.c
        break;
  
      case GTK_MESSAGE_OTHER:
-@@ -405,6 +458,11 @@
+@@ -405,6 +458,11 @@ setup_type (GtkMessageDialog *dialog,
        break;
      }
  
@@ -132,14 +131,15 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkmessagedialog.c
    atk_obj = gtk_widget_get_accessible (GTK_WIDGET (dialog));
    if (GTK_IS_ACCESSIBLE (atk_obj))
      {
-Index: gtk+3.0-3.22.29-2ubuntu1/gtk/ui/gtkmessagedialog.ui
-===================================================================
---- gtk+3.0-3.22.29-2ubuntu1.orig/gtk/ui/gtkmessagedialog.ui
-+++ gtk+3.0-3.22.29-2ubuntu1/gtk/ui/gtkmessagedialog.ui
-@@ -23,6 +23,24 @@
+diff --git a/gtk/ui/gtkmessagedialog.ui b/gtk/ui/gtkmessagedialog.ui
+index bc3532f..9cd18dd 100644
+--- a/gtk/ui/gtkmessagedialog.ui
++++ b/gtk/ui/gtkmessagedialog.ui
+@@ -22,6 +22,24 @@
+             <property name="margin-start">30</property>
              <property name="margin-end">30</property>
              <property name="spacing">30</property>
-             <child>
++            <child>
 +              <object class="GtkImage" id="image">
 +                <property name="visible">False</property>
 +                <property name="can_focus">False</property>
@@ -157,15 +157,14 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/ui/gtkmessagedialog.ui
 +                <property name="position">0</property>
 +              </packing>
 +            </child>
-+            <child>
+             <child>
                <object class="GtkBox" id="message_area">
                  <property name="visible">1</property>
-                 <property name="orientation">vertical</property>
-Index: gtk+3.0-3.22.29-2ubuntu1/testsuite/a11y/messagedialog.txt
-===================================================================
---- gtk+3.0-3.22.29-2ubuntu1.orig/testsuite/a11y/messagedialog.txt
-+++ gtk+3.0-3.22.29-2ubuntu1/testsuite/a11y/messagedialog.txt
-@@ -75,10 +75,23 @@
+diff --git a/testsuite/a11y/messagedialog.txt b/testsuite/a11y/messagedialog.txt
+index af5abf7..871e2be 100644
+--- a/testsuite/a11y/messagedialog.txt
++++ b/testsuite/a11y/messagedialog.txt
+@@ -75,10 +75,23 @@ window1
        <AtkComponent>
        layer: widget
        alpha: 1
