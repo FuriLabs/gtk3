@@ -1765,11 +1765,22 @@ headerbar { // headerbar border rounding
     box-shadow: none;
   }
 
-  > separator { background-color: $borders_color; }  // FIXME: use darker border?
+  separator { background-color: $borders_color; }  // FIXME: use darker border?
 
   @extend %titlebar;
 }
 
+// Development versions of apps to use a differently styled headerbar
+
+window.devel {
+  headerbar.titlebar:not(.selection-mode) {
+    background: transparent -gtk-icontheme("system-run-symbolic") 90% 0/256px 256px no-repeat,
+                linear-gradient(to left, mix($selected_bg_color, $bg_color, 10%) 8%, $bg_color 25%);
+    color: transparentize($fg_color,.9);
+
+    label { color: $fg_color; }
+  }
+}
 
 /************
  * Pathbars *
@@ -4555,7 +4566,6 @@ stackswitcher button.text-button.circular { // FIXME aggregate with buttons
   min-height: 32px;
   padding: 0;
 }
-
 
 /*********
  * Emoji *

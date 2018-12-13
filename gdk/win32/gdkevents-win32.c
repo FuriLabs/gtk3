@@ -1930,7 +1930,7 @@ ensure_stacking_on_unminimize (MSG *msg)
 		g_print (" restacking %p above %p",
 			 msg->hwnd, lowest_transient));
       SetWindowPos (msg->hwnd, lowest_transient, 0, 0, 0, 0,
-		    SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
+		    SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE | SWP_NOOWNERZORDER);
     }
 }
 
@@ -2011,7 +2011,7 @@ ensure_stacking_on_activate_app (MSG       *msg,
       impl->transient_owner != NULL)
     {
       SetWindowPos (msg->hwnd, HWND_TOP, 0, 0, 0, 0,
-		    SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
+		    SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE | SWP_NOOWNERZORDER);
       return;
     }
 
@@ -2053,7 +2053,7 @@ ensure_stacking_on_activate_app (MSG       *msg,
 		    g_print (" restacking %p above %p",
 			     msg->hwnd, rover));
 	  SetWindowPos (msg->hwnd, rover, 0, 0, 0, 0,
-			SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
+			SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE | SWP_NOOWNERZORDER);
           break;
 	}
     }
@@ -2240,6 +2240,25 @@ _gdk_win32_window_fill_min_max_info (GdkWindow  *window,
     }
 
   return TRUE;
+}
+
+static void
+gdk_settings_notify (GdkWindow        *window,
+                     const char       *name,
+                     GdkSettingAction  action)
+{
+  GdkEvent *new_event;
+
+  if (!g_str_has_prefix (name, "gtk-"))
+    return;
+
+  new_event = gdk_event_new (GDK_SETTING);
+  new_event->setting.window = window;
+  new_event->setting.send_event = FALSE;
+  new_event->setting.action = action;
+  new_event->setting.name = (char*) name;
+
+  _gdk_win32_append_event (new_event);
 }
 
 #define GDK_ANY_BUTTON_MASK (GDK_BUTTON1_MASK | \
@@ -2456,6 +2475,7 @@ gdk_event_translate (MSG  *msg,
 			 (gulong) msg->wParam,
 			 (gpointer) msg->lParam, _gdk_input_locale_is_ime ? " (IME)" : "",
 			 _gdk_input_codepage));
+      gdk_settings_notify (window, "gtk-im-module", GDK_SETTING_ACTION_CHANGED);
       break;
 
     case WM_SYSKEYUP:
@@ -3075,25 +3095,11 @@ gdk_event_translate (MSG  *msg,
 
       if (msg->message == WM_MOUSEWHEEL)
         {
-          UINT lines_multiplier = 3;
           event->scroll.delta_y = (gdouble) GET_WHEEL_DELTA_WPARAM (msg->wParam) / (gdouble) WHEEL_DELTA;
-          /* -1 means that we should scroll in screens, not lines.
-           * Right now GDK doesn't support that.
-           */
-          if (SystemParametersInfo (SPI_GETWHEELSCROLLLINES, 0, &lines_multiplier, 0) &&
-              lines_multiplier != (UINT) -1)
-            event->scroll.delta_y *= (gdouble) lines_multiplier;
         }
       else if (msg->message == WM_MOUSEHWHEEL)
         {
-          UINT chars_multiplier = 3;
           event->scroll.delta_x = (gdouble) GET_WHEEL_DELTA_WPARAM (msg->wParam) / (gdouble) WHEEL_DELTA;
-          /* There doesn't seem to be any indication that
-           * h-scroll has an equivalent of the "screen" mode,
-           * indicated by multiplier being (UINT) -1.
-           */
-          if (SystemParametersInfo (SPI_GETWHEELSCROLLCHARS, 0, &chars_multiplier, 0))
-            event->scroll.delta_x *= (gdouble) chars_multiplier;
         }
       /* Positive delta scrolls up, not down,
          see API documentation for WM_MOUSEWHEEL message.

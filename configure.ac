@@ -10,8 +10,8 @@
 
 m4_define([gtk_major_version], [3])
 m4_define([gtk_minor_version], [24])
-m4_define([gtk_micro_version], [1])
-m4_define([gtk_interface_age], [1])
+m4_define([gtk_micro_version], [2])
+m4_define([gtk_interface_age], [0])
 m4_define([gtk_binary_age],
           [m4_eval(100 * gtk_minor_version + gtk_micro_version)])
 m4_define([gtk_version],
@@ -409,7 +409,7 @@ if test "x$enable_quartz_backend" = xyes; then
   backend_immodules="$backend_immodules,quartz"
   GDK_WINDOWING="$GDK_WINDOWING
 #define GDK_WINDOWING_QUARTZ"
-  GDK_EXTRA_LIBS="$GDK_EXTRA_LIBS -framework Cocoa"
+  GDK_EXTRA_LIBS="$GDK_EXTRA_LIBS -Wl,-framework,Cocoa"
   DISABLE_ON_QUARTZ='%'
   AM_CONDITIONAL(USE_QUARTZ, true)
   if test "x$quartz_relocation" = xyes; then

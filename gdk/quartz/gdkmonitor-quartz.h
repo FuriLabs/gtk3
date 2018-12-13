@@ -29,8 +29,8 @@
 struct _GdkQuartzMonitor
 {
   GdkMonitor parent;
-
-  NSScreen *nsscreen;
+  gint monitor_num;
+  CGDirectDisplayID id;
 };
 
 struct _GdkQuartzMonitorClass {
@@ -38,4 +38,3 @@ struct _GdkQuartzMonitorClass {
 };
 
 #endif
-

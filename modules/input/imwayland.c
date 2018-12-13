@@ -240,18 +240,18 @@ text_input_delete_surrounding_text_apply (GtkIMContextWaylandGlobal *global,
   gboolean valid)
 {
   GtkIMContextWayland *context;
-  
+  gboolean retval;
   gint len;
   struct surrounding_delete defaults = {0};
-  
+
   context = GTK_IM_CONTEXT_WAYLAND (global->current);
-  
+
   len = context->pending_surrounding_delete.after_length
       + context->pending_surrounding_delete.before_length;
   if (len > 0 && valid)
     g_signal_emit_by_name (global->current, "delete-surrounding",
                            -context->pending_surrounding_delete.before_length,
-                           len);
+                           len, &retval);
   context->pending_surrounding_delete = defaults;
 }
 
@@ -479,6 +479,10 @@ gtk_im_context_wayland_finalize (GObject *object)
 
   g_clear_object (&context->window);
   g_clear_object (&context->gesture);
+  g_free (context->surrounding.text);
+  g_free (context->current_preedit.text);
+  g_free (context->pending_preedit.text);
+  g_free (context->pending_commit);
 
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
