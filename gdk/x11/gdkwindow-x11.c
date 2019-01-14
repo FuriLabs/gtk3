@@ -935,7 +935,7 @@ setup_toplevel_window (GdkWindow *window,
   if (!gdk_running_in_sandbox ())
     {
       /* if sandboxed, we're likely in a pid namespace and would only confuse the wm with this */
-      pid_t pid = getpid ();
+      long pid = getpid ();
       XChangeProperty (xdisplay, xid,
                        gdk_x11_get_xatom_by_name_for_display (x11_screen->display, "_NET_WM_PID"),
                        XA_CARDINAL, 32,
@@ -2985,6 +2985,7 @@ gdk_window_x11_set_background (GdkWindow      *window,
   double r, g, b, a;
   cairo_surface_t *surface;
   cairo_matrix_t matrix;
+  cairo_pattern_t *parent_relative_pattern;
 
   if (GDK_WINDOW_DESTROYED (window))
     return;
@@ -2997,15 +2998,18 @@ gdk_window_x11_set_background (GdkWindow      *window,
     }
 
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-  if (pattern == gdk_x11_get_parent_relative_pattern ())
+  parent_relative_pattern = gdk_x11_get_parent_relative_pattern ();
 G_GNUC_END_IGNORE_DEPRECATIONS
+
+  if (pattern == parent_relative_pattern)
     {
       GdkWindow *parent;
 
       /* X throws BadMatch if the parent has a different depth when
        * using ParentRelative */
       parent = gdk_window_get_parent (window);
-      if (parent == NULL || window->depth == parent->depth)
+      if (parent != NULL && window->depth == parent->depth &&
+          cairo_pattern_status (pattern) == CAIRO_STATUS_SUCCESS)
         {
           XSetWindowBackgroundPixmap (GDK_WINDOW_XDISPLAY (window),
                                       GDK_WINDOW_XID (window), ParentRelative);

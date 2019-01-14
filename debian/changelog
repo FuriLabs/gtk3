@@ -1,3 +1,51 @@
+gtk+3.0 (3.24.3-1ubuntu1) UNRELEASED; urgency=medium
+
+  * Merge from Debian. Remaining changes:
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0.symbols
+    + debian/control.in:
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + autopkgtest: installed-tests: Depend on adwaita-icon-theme-full
+    + debian/control.in, debian/rules:
+      - use dh-translations for language packs integration
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Thu, 13 Dec 2018 10:42:58 -0500
+
+gtk+3.0 (3.24.3-1) unstable; urgency=medium
+
+  * New upstream release
+  * debian/libgtk-3-0.symbols: Add new symbol
+  * Add -Wl,-O1 -Wl,--as-needed to our LDFLAGS
+  * Enable all hardening flags
+  * Drop patches applied in new release:
+    - Revert-Fix-deprecation-warnings.patch
+    - x11-Fix-deprecation-macro-use.patch
+  * Add Revert-Update-a11-test-output.patch:
+    - Revert another late change that broke our build tests
+
+ -- Jeremy Bicha <jbicha@debian.org>  Mon, 14 Jan 2019 14:03:05 -0500
+
+gtk+3.0 (3.24.2-3) unstable; urgency=medium
+
+  * Cherry-pick x11-Fix-deprecation-macro-use.patch:
+    - Fix deprecation macro use to fix crashes seen on Xfce
+
+ -- Jeremy Bicha <jbicha@debian.org>  Thu, 13 Dec 2018 12:55:00 -0500
+
 gtk+3.0 (3.24.2-2ubuntu2) disco; urgency=medium
 
   * Cherry-pick x11-Fix-deprecation-macro-use.patch:

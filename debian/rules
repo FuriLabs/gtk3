@@ -8,9 +8,11 @@ include /usr/share/dpkg/pkg-info.mk
 built_binaries := $(shell dh_listpackages)
 all_binaries := $(shell sed -ne 's/^Package: *//p' < debian/control)
 
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 # Ensure the build aborts when there are still references to undefined symbols
 # currently fails at least in the im-multipress im module
 #LDFLAGS += -Wl,-z,defs
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,-O1 -Wl,--as-needed
 
 APIVER := 3
 SONAME := 0

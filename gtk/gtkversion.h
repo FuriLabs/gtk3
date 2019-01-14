@@ -64,7 +64,7 @@
  * application compile time, rather than from the library linked
  * against at application run time.
  */
-#define GTK_MICRO_VERSION (2)
+#define GTK_MICRO_VERSION (3)
 
 /**
  * GTK_BINARY_AGE:
@@ -73,7 +73,7 @@
  * application compile time, rather than from the library linked
  * against at application run time.
  */
-#define GTK_BINARY_AGE    (2402)
+#define GTK_BINARY_AGE    (2403)
 
 /**
  * GTK_INTERFACE_AGE:

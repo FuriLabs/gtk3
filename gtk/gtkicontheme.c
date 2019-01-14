@@ -32,8 +32,9 @@
 #ifndef S_ISDIR
 #define S_ISDIR(mode) ((mode)&_S_IFDIR)
 #endif
-#define WIN32_MEAN_AND_LEAN
+#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+#include <shellapi.h>
 #include "win32/gdkwin32.h"
 #endif /* G_OS_WIN32 */
 
@@ -4568,7 +4569,7 @@ gtk_icon_info_load_symbolic_svg (GtkIconInfo    *icon_info,
                       "     width=\"", width, "\"\n"
                       "     height=\"", height, "\">\n"
                       "  <style type=\"text/css\">\n"
-                      "    rect,path,ellipse,circle {\n"
+                      "    rect,path,ellipse,circle,polygon {\n"
                       "      fill: ", css_fg," !important;\n"
                       "    }\n"
                       "    .warning {\n"

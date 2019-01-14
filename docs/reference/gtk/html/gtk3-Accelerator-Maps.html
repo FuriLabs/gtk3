@@ -267,7 +267,7 @@ the <a class="link" href="gtk3-Accelerator-Maps.html#GtkAccelMap-changed" title=
 <span class="c_punctuation">(</span>*GtkAccelMapForeach<span class="c_punctuation">)</span> (<em class="parameter"><code><span class="type">gpointer</span> data</code></em>,
                        <em class="parameter"><code>const <span class="type">gchar</span> *accel_path</code></em>,
                        <em class="parameter"><code><span class="type">guint</span> accel_key</code></em>,
-                       <em class="parameter"><code><span class="type">GdkModifierType</span> accel_mods</code></em>,
+                       <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> accel_mods</code></em>,
                        <em class="parameter"><code><span class="type">gboolean</span> changed</code></em>);</pre>
 <div class="refsect3">
 <a name="GtkAccelMapForeach.parameters"></a><h4>Parameters</h4>
@@ -315,7 +315,7 @@ during runtime and would need to be saved during an accelerator dump)</p></td>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_accel_map_add_entry (<em class="parameter"><code>const <span class="type">gchar</span> *accel_path</code></em>,
                          <em class="parameter"><code><span class="type">guint</span> accel_key</code></em>,
-                         <em class="parameter"><code><span class="type">GdkModifierType</span> accel_mods</code></em>);</pre>
+                         <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> accel_mods</code></em>);</pre>
 <p>Registers a new accelerator with the global accelerator map.
 This function should only be called once per <em class="parameter"><code>accel_path</code></em>
 
@@ -403,7 +403,7 @@ is known, <code class="literal">FALSE</code> otherwise</p>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_accel_map_change_entry (<em class="parameter"><code>const <span class="type">gchar</span> *accel_path</code></em>,
                             <em class="parameter"><code><span class="type">guint</span> accel_key</code></em>,
-                            <em class="parameter"><code><span class="type">GdkModifierType</span> accel_mods</code></em>,
+                            <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> accel_mods</code></em>,
                             <em class="parameter"><code><span class="type">gboolean</span> replace</code></em>);</pre>
 <p>Changes the <em class="parameter"><code>accel_key</code></em>
  and <em class="parameter"><code>accel_mods</code></em>
@@ -775,7 +775,7 @@ Refer to <a class="link" href="gtk3-Accelerator-Maps.html#gtk-accel-map-lock-pat
 user_function (<a class="link" href="gtk3-Accelerator-Maps.html#GtkAccelMap"><span class="type">GtkAccelMap</span></a>    *object,
                <span class="type">gchar</span>          *accel_path,
                <span class="type">guint</span>           accel_key,
-               <span class="type">GdkModifierType</span> accel_mods,
+               <a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> accel_mods,
                <span class="type">gpointer</span>        user_data)</pre>
 <p>Notifies of a change in the global accelerator map.
 The path is also used as the detail for the signal,

@@ -341,9 +341,9 @@ in order for the new input method to become available to GTK+ applications.</p>
 <a name="gtk-im-context-set-client-window"></a><h3>gtk_im_context_set_client_window ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_im_context_set_client_window (<em class="parameter"><code><a class="link" href="GtkIMContext.html" title="GtkIMContext"><span class="type">GtkIMContext</span></a> *context</code></em>,
-                                  <em class="parameter"><code><span class="type">GdkWindow</span> *window</code></em>);</pre>
+                                  <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a> *window</code></em>);</pre>
 <p>Set the client window for the input context; this is the
-<span class="type">GdkWindow</span> in which the input appears. This window is
+<a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a> in which the input appears. This window is
 used in order to correctly position status windows, and may
 also be used for purposes internal to the input method.</p>
 <div class="refsect3">
@@ -424,7 +424,7 @@ within the preedit string. </p></td>
 <a name="gtk-im-context-filter-keypress"></a><h3>gtk_im_context_filter_keypress ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_im_context_filter_keypress (<em class="parameter"><code><a class="link" href="GtkIMContext.html" title="GtkIMContext"><span class="type">GtkIMContext</span></a> *context</code></em>,
-                                <em class="parameter"><code><span class="type">GdkEventKey</span> *event</code></em>);</pre>
+                                <em class="parameter"><code><a href="../html/gdk3-Event-Structures.html#GdkEventKey"><span class="type">GdkEventKey</span></a> *event</code></em>);</pre>
 <p>Allow an input method to internally handle key press and release 
 events. If this function returns <code class="literal">TRUE</code>, then no further processing
 should be done for this key event.</p>
@@ -534,7 +534,7 @@ method to clear the preedit state.</p>
 <a name="gtk-im-context-set-cursor-location"></a><h3>gtk_im_context_set_cursor_location ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_im_context_set_cursor_location (<em class="parameter"><code><a class="link" href="GtkIMContext.html" title="GtkIMContext"><span class="type">GtkIMContext</span></a> *context</code></em>,
-                                    <em class="parameter"><code>const <span class="type">GdkRectangle</span> *area</code></em>);</pre>
+                                    <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *area</code></em>);</pre>
 <p>Notify the input method that a change in cursor 
 position has been made. The location is relative to the client
 window.</p>

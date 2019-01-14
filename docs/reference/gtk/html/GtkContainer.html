@@ -1902,7 +1902,7 @@ gtk_container_propagate_draw (<em class="parameter"><code><a class="link" href="
                               <em class="parameter"><code><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-t"><span class="type">cairo_t</span></a> *cr</code></em>);</pre>
 <p>When a container receives a call to the draw function, it must send
 synthetic <a class="link" href="GtkWidget.html#GtkWidget-draw" title="The “draw” signal"><span class="type">“draw”</span></a> calls to all children that don’t have their
-own <span class="type">GdkWindows</span>. This function provides a convenient way of doing this.
+own <a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindows</span></a>. This function provides a convenient way of doing this.
 A container, when it receives a call to its <a class="link" href="GtkWidget.html#GtkWidget-draw" title="The “draw” signal"><span class="type">“draw”</span></a> function,
 calls <a class="link" href="GtkContainer.html#gtk-container-propagate-draw" title="gtk_container_propagate_draw ()"><code class="function">gtk_container_propagate_draw()</code></a> once for each child, passing in
 the <em class="parameter"><code>cr</code></em>
