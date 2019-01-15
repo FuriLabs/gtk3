@@ -1728,7 +1728,7 @@ _gdk_x11_display_open (const gchar *display_name)
   if (!gdk_running_in_sandbox ())
     {
       /* if sandboxed, we're likely in a pid namespace and would only confuse the wm with this */
-      pid_t pid = getpid ();
+      long pid = getpid ();
       XChangeProperty (display_x11->xdisplay,
                        display_x11->leader_window,
                        gdk_x11_get_xatom_by_name_for_display (display, "_NET_WM_PID"),
@@ -3006,8 +3006,8 @@ gdk_x11_display_error_trap_pop_ignored (GdkDisplay *display)
 
 /**
  * gdk_x11_set_sm_client_id:
- * @sm_client_id: the client id assigned by the session manager when the
- *    connection was opened, or %NULL to remove the property.
+ * @sm_client_id: (nullable): the client id assigned by the session manager
+ *    when the connection was opened, or %NULL to remove the property.
  *
  * Sets the `SM_CLIENT_ID` property on the application’s leader window so that
  * the window manager can save the application’s state using the X11R6 ICCCM

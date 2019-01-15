@@ -686,7 +686,11 @@ window.tiled headerbar, window.tiled headerbar:first-child, window.tiled headerb
 
 window.csd > .titlebar:not(headerbar) { padding: 0; background-color: transparent; background-image: none; border-style: none; border-color: transparent; box-shadow: none; }
 
-.titlebar:not(headerbar) > separator { background-color: #1b1f20; }
+.titlebar:not(headerbar) separator { background-color: #1b1f20; }
+
+window.devel headerbar.titlebar:not(.selection-mode) { background: transparent -gtk-icontheme("system-run-symbolic") 90% 0/256px 256px no-repeat, linear-gradient(to left, #313d45 8%, #33393b 25%); color: rgba(238, 238, 236, 0.1); }
+
+window.devel headerbar.titlebar:not(.selection-mode) label { color: #eeeeec; }
 
 /************ Pathbars * */
 .path-bar button.text-button, .path-bar button.image-button, .path-bar button { padding-left: 4px; padding-right: 4px; }
@@ -2019,7 +2023,7 @@ these colors are exported for the window manager and shouldn't be used in applic
 read if you used those and something break with a version upgrade you're on your own... */
 @define-color wm_title shade(#eeeeec, 1.8);
 @define-color wm_unfocused_title #919494;
-@define-color wm_highlight transparent;
+@define-color wm_highlight rgba(0, 0, 0, 0);
 @define-color wm_borders_edge rgba(238, 238, 236, 0.07);
 @define-color wm_bg_a shade(#33393b, 1.2);
 @define-color wm_bg_b #33393b;

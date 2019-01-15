@@ -8,7 +8,7 @@
 <link rel="up" href="Application.html" title="Application support">
 <link rel="prev" href="GtkApplication.html" title="GtkApplication">
 <link rel="next" href="GtkActionable.html" title="GtkActionable">
-<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -60,7 +60,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<span class="returnvalue">gboolean</span>
 </td>
 <td class="function_name">
 <a class="link" href="GtkApplicationWindow.html#gtk-application-window-get-show-menubar" title="gtk_application_window_get_show_menubar ()">gtk_application_window_get_show_menubar</a> <span class="c_punctuation">()</span>
@@ -68,7 +68,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>
+<span class="returnvalue">guint</span>
 </td>
 <td class="function_name">
 <a class="link" href="GtkApplicationWindow.html#gtk-application-window-get-id" title="gtk_application_window_get_id ()">gtk_application_window_get_id</a> <span class="c_punctuation">()</span>
@@ -102,7 +102,7 @@
 <col width="200px" class="properties_flags">
 </colgroup>
 <tbody><tr>
-<td class="property_type"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a></td>
+<td class="property_type"><span class="type">gboolean</span></td>
 <td class="property_name"><a class="link" href="GtkApplicationWindow.html#GtkApplicationWindow--show-menubar" title="The “show-menubar” property">show-menubar</a></td>
 <td class="property_flags">Read / Write / Construct</td>
 </tr></tbody>
@@ -129,8 +129,8 @@
 </div>
 <div class="refsect1">
 <a name="GtkApplicationWindow.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
-    <span class="lineart">╰──</span> <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GInitiallyUnowned">GInitiallyUnowned</a>
+<pre class="screen">    GObject
+    <span class="lineart">╰──</span> GInitiallyUnowned
         <span class="lineart">╰──</span> <a class="link" href="GtkWidget.html" title="GtkWidget">GtkWidget</a>
             <span class="lineart">╰──</span> <a class="link" href="GtkContainer.html" title="GtkContainer">GtkContainer</a>
                 <span class="lineart">╰──</span> <a class="link" href="GtkBin.html" title="GtkBin">GtkBin</a>
@@ -142,7 +142,7 @@
 <a name="GtkApplicationWindow.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 GtkApplicationWindow implements
- AtkImplementorIface,  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>,  <a href="https://developer.gnome.org/gio/unstable/GActionGroup.html#GActionGroup-struct">GActionGroup</a> and  <a href="https://developer.gnome.org/gio/unstable/GActionMap.html#GActionMap-struct">GActionMap</a>.</p>
+ AtkImplementorIface,  <a class="link" href="GtkBuildable.html" title="GtkBuildable">GtkBuildable</a>,  GActionGroup and  GActionMap.</p>
 </div>
 <div class="refsect1">
 <a name="GtkApplicationWindow.includes"></a><h2>Includes</h2>
@@ -156,13 +156,13 @@ extra functionality for better integration with <a class="link" href="GtkApplica
 features.  Notably, it can handle both the application menu as well
 as the menubar. See <a class="link" href="GtkApplication.html#gtk-application-set-app-menu" title="gtk_application_set_app_menu ()"><code class="function">gtk_application_set_app_menu()</code></a> and
 <a class="link" href="GtkApplication.html#gtk-application-set-menubar" title="gtk_application_set_menubar ()"><code class="function">gtk_application_set_menubar()</code></a>.</p>
-<p>This class implements the <a href="https://developer.gnome.org/gio/unstable/GActionGroup.html#GActionGroup-struct"><span class="type">GActionGroup</span></a> and <a href="https://developer.gnome.org/gio/unstable/GActionMap.html#GActionMap-struct"><span class="type">GActionMap</span></a> interfaces,
+<p>This class implements the <span class="type">GActionGroup</span> and <span class="type">GActionMap</span> interfaces,
 to let you add window-specific actions that will be exported by the
 associated <a class="link" href="GtkApplication.html" title="GtkApplication"><span class="type">GtkApplication</span></a>, together with its application-wide
 actions.  Window-specific actions are prefixed with the “win.”
 prefix and application-wide actions are prefixed with the “app.”
 prefix.  Actions must be addressed with the prefixed name when
-referring to them from a <a href="https://developer.gnome.org/gio/unstable/GMenuModel.html#GMenuModel-struct"><span class="type">GMenuModel</span></a>.</p>
+referring to them from a <span class="type">GMenuModel</span>.</p>
 <p>Note that widgets that are placed inside a <a class="link" href="GtkApplicationWindow.html" title="GtkApplicationWindow"><span class="type">GtkApplicationWindow</span></a>
 can also activate these actions, if they implement the
 <a class="link" href="GtkActionable.html" title="GtkActionable"><span class="type">GtkActionable</span></a> interface.</p>
@@ -225,7 +225,7 @@ windows client-side decorations.</p>
 <span class="usertype">GMenuModel</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">menubar </span><span class="symbol">=</span><span class="normal"> </span><span class="function">G_MENU_MODEL</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GtkBuilder.html#gtk-builder-get-object">gtk_builder_get_object</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">builder</span><span class="symbol">,</span>
 <span class="normal">                                                            </span><span class="string">"menubar"</span><span class="symbol">));</span>
 <span class="function"><a href="GtkApplication.html#gtk-application-set-menubar">gtk_application_set_menubar</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_APPLICATION</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">app</span><span class="symbol">),</span><span class="normal"> menubar</span><span class="symbol">);</span>
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">builder</span><span class="symbol">);</span>
+<span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">builder</span><span class="symbol">);</span>
 
 <span class="comment">// ...</span>
 
@@ -240,15 +240,15 @@ windows client-side decorations.</p>
 <div class="refsect3">
 <a name="id-1.3.4.3.9.9"></a><h4>Handling fallback yourself</h4>
 <p><a class="ulink" href="https://git.gnome.org/browse/gtk+/tree/examples/sunny.c" target="_top">A simple example</a></p>
-<p>The XML format understood by <a class="link" href="GtkBuilder.html" title="GtkBuilder"><span class="type">GtkBuilder</span></a> for <a href="https://developer.gnome.org/gio/unstable/GMenuModel.html#GMenuModel-struct"><span class="type">GMenuModel</span></a> consists
-of a toplevel <code class="literal">&amp;lt;menu&gt;</code> element, which contains one or more <code class="literal">&amp;lt;item&gt;</code>
-elements. Each <code class="literal">&amp;lt;item&gt;</code> element contains <code class="literal">&amp;lt;attribute&gt;</code> and <code class="literal">&amp;lt;link&gt;</code>
-elements with a mandatory name attribute. <code class="literal">&amp;lt;link&gt;</code> elements have the
-same content model as <code class="literal">&amp;lt;menu&gt;</code>. Instead of <code class="literal">&amp;lt;link name="submenu&gt;</code> or
-<code class="literal">&amp;lt;link name="section"&gt;</code>, you can use <code class="literal">&amp;lt;submenu&gt;</code> or <code class="literal">&amp;lt;section&gt;</code>
+<p>The XML format understood by <a class="link" href="GtkBuilder.html" title="GtkBuilder"><span class="type">GtkBuilder</span></a> for <span class="type">GMenuModel</span> consists
+of a toplevel <code class="literal">&lt;menu&gt;</code> element, which contains one or more <code class="literal">&lt;item&gt;</code>
+elements. Each <code class="literal">&lt;item&gt;</code> element contains <code class="literal">&lt;attribute&gt;</code> and <code class="literal">&lt;link&gt;</code>
+elements with a mandatory name attribute. <code class="literal">&lt;link&gt;</code> elements have the
+same content model as <code class="literal">&lt;menu&gt;</code>. Instead of <code class="literal">&lt;link name="submenu&gt;</code> or
+<code class="literal">&lt;link name="section"&gt;</code>, you can use <code class="literal">&lt;submenu&gt;</code> or <code class="literal">&lt;section&gt;</code>
 elements.</p>
 <p>Attribute values can be translated using gettext, like other <a class="link" href="GtkBuilder.html" title="GtkBuilder"><span class="type">GtkBuilder</span></a>
-content. <code class="literal">&amp;lt;attribute&gt;</code> elements can be marked for translation with a
+content. <code class="literal">&lt;attribute&gt;</code> elements can be marked for translation with a
 <code class="literal">translatable="yes"</code> attribute. It is also possible to specify message
 context and translator comments, using the context and comments attributes.
 To make use of this, the <a class="link" href="GtkBuilder.html" title="GtkBuilder"><span class="type">GtkBuilder</span></a> must have been given the gettext
@@ -314,7 +314,7 @@ gtk_application_window_new (<em class="parameter"><code><a class="link" href="Gt
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_application_window_set_show_menubar
                                (<em class="parameter"><code><a class="link" href="GtkApplicationWindow.html" title="GtkApplicationWindow"><span class="type">GtkApplicationWindow</span></a> *window</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> show_menubar</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">gboolean</span> show_menubar</code></em>);</pre>
 <p>Sets whether the window will display a menubar for the app menu
 and menubar as needed.</p>
 <div class="refsect3">
@@ -344,7 +344,7 @@ and menubar as needed.</p>
 <hr>
 <div class="refsect2">
 <a name="gtk-application-window-get-show-menubar"></a><h3>gtk_application_window_get_show_menubar ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_application_window_get_show_menubar
                                (<em class="parameter"><code><a class="link" href="GtkApplicationWindow.html" title="GtkApplicationWindow"><span class="type">GtkApplicationWindow</span></a> *window</code></em>);</pre>
 <p>Returns whether the window will display a menubar for the app menu
@@ -366,7 +366,7 @@ and menubar as needed.</p>
 </div>
 <div class="refsect3">
 <a name="gtk-application-window-get-show-menubar.returns"></a><h4>Returns</h4>
-<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if <em class="parameter"><code>window</code></em>
+<p> <code class="literal">TRUE</code> if <em class="parameter"><code>window</code></em>
 will display a menubar when needed</p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-4.html#api-index-3.4">3.4</a></p>
@@ -374,7 +374,7 @@ will display a menubar when needed</p>
 <hr>
 <div class="refsect2">
 <a name="gtk-application-window-get-id"></a><h3>gtk_application_window_get_id ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>
+<pre class="programlisting"><span class="returnvalue">guint</span>
 gtk_application_window_get_id (<em class="parameter"><code><a class="link" href="GtkApplicationWindow.html" title="GtkApplicationWindow"><span class="type">GtkApplicationWindow</span></a> *window</code></em>);</pre>
 <p>Returns the unique ID of the window. If the window has not yet been added to
 a <a class="link" href="GtkApplication.html" title="GtkApplication"><span class="type">GtkApplication</span></a>, returns <code class="literal">0</code>.</p>
@@ -464,7 +464,7 @@ a prior call to <a class="link" href="GtkApplicationWindow.html#gtk-application-
 <div class="refsect3">
 <a name="gtk-application-window-get-help-overlay.returns"></a><h4>Returns</h4>
 <p>the help overlay associated with <em class="parameter"><code>window</code></em>
-, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p>
+, or <code class="literal">NULL</code>. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-20.html#api-index-3.20">3.20</a></p>
@@ -500,12 +500,12 @@ a prior call to <a class="link" href="GtkApplicationWindow.html#gtk-application-
 <a name="GtkApplicationWindow.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkApplicationWindow--show-menubar"></a><h3>The <code class="literal">“show-menubar”</code> property</h3>
-<pre class="programlisting">  “show-menubar”             <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a></pre>
-<p>If this property is <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a>, the window will display a menubar
+<pre class="programlisting">  “show-menubar”             <span class="type">gboolean</span></pre>
+<p>If this property is <code class="literal">TRUE</code>, the window will display a menubar
 that includes the app menu and menubar, unless these are
 shown by the desktop shell. See <a class="link" href="GtkApplication.html#gtk-application-set-app-menu" title="gtk_application_set_app_menu ()"><code class="function">gtk_application_set_app_menu()</code></a>
 and <a class="link" href="GtkApplication.html#gtk-application-set-menubar" title="gtk_application_set_menubar ()"><code class="function">gtk_application_set_menubar()</code></a>.</p>
-<p>If <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a>, the window will not display a menubar, regardless
+<p>If <code class="literal">FALSE</code>, the window will not display a menubar, regardless
 of whether the desktop shell is showing the menus or not.</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: TRUE</p>
@@ -513,6 +513,6 @@ of whether the desktop shell is showing the menus or not.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.28</div>
+<hr>Generated by GTK-Doc V1.29</div>
 </body>
 </html>
