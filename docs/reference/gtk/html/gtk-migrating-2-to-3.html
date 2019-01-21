@@ -311,7 +311,7 @@
 <span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
 
 <span class="normal">info </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">GAppInfo</span><span class="symbol">*)</span><span class="normal"> </span><span class="function">g_desktop_app_info_new</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"epiphany.desktop"</span><span class="symbol">);</span>
-<span class="normal">context </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">GAppLaunchContext</span><span class="symbol">*)</span><span class="normal"> </span><span class="function"><a href="../html/GdkDisplay.html#gdk-display-get-app-launch-context">gdk_display_get_app_launch_context</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">display</span><span class="symbol">);</span>
+<span class="normal">context </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">GAppLaunchContext</span><span class="symbol">*)</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gdk3/GdkDisplay.html#gdk-display-get-app-launch-context">gdk_display_get_app_launch_context</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">display</span><span class="symbol">);</span>
 <span class="function">g_app_info_launch</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">info</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> context</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
 <span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">)</span>
@@ -337,7 +337,7 @@
         with <code class="function">g_app_info_create_from_commandline()</code>, or you can use the
         more lowlevel <code class="literal">g_spawn</code> family of functions
         (e.g. <code class="function">g_spawn_command_line_async()</code>), and pass <code class="envar">DISPLAY</code>
-        in the environment. <a href="../html/GdkScreen.html#gdk-screen-make-display-name"><code class="function">gdk_screen_make_display_name()</code></a> can be
+        in the environment. <a href="https://developer.gnome.org/gdk3/GdkScreen.html#gdk-screen-make-display-name"><code class="function">gdk_screen_make_display_name()</code></a> can be
         used to find the right value for the <code class="envar">DISPLAY</code>
         environment variable.
         </li>
@@ -410,8 +410,8 @@
 2
 3
 4</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">cairo_t</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">cr </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="../html/gdk3-Cairo-Interaction.html#gdk-cairo-create">gdk_cairo_create</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">);</span>
-<span class="function"><a href="../html/gdk3-Cairo-Interaction.html#gdk-cairo-set-source-pixbuf">gdk_cairo_set_source_pixbuf</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> pixbuf</span><span class="symbol">,</span><span class="normal"> x</span><span class="symbol">,</span><span class="normal"> y</span><span class="symbol">);</span>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">cairo_t</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">cr </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gdk3/gdk3-Cairo-Interaction.html#gdk-cairo-create">gdk_cairo_create</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">);</span>
+<span class="function"><a href="https://developer.gnome.org/gdk3/gdk3-Cairo-Interaction.html#gdk-cairo-set-source-pixbuf">gdk_cairo_set_source_pixbuf</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> pixbuf</span><span class="symbol">,</span><span class="normal"> x</span><span class="symbol">,</span><span class="normal"> y</span><span class="symbol">);</span>
 <span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-paint">cairo_paint</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span>
 <span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-destroy">cairo_destroy</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span></pre></td>
       </tr>
@@ -423,7 +423,7 @@
            Note that very similar code can be used when porting code
            using GdkPixmap to <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-surface-t.html#cairo-surface-t"><span class="type">cairo_surface_t</span></a> by calling
            <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-set-source-surface"><code class="function">cairo_set_source_surface()</code></a> instead of
-           <a href="../html/gdk3-Cairo-Interaction.html#gdk-cairo-set-source-pixbuf"><code class="function">gdk_cairo_set_source_pixbuf()</code></a>.
+           <a href="https://developer.gnome.org/gdk3/gdk3-Cairo-Interaction.html#gdk-cairo-set-source-pixbuf"><code class="function">gdk_cairo_set_source_pixbuf()</code></a>.
          </p>
 </div>
 </div>
@@ -493,7 +493,7 @@
 <span class="usertype">cairo_surface_t</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">surface</span><span class="symbol">;</span>
 
 <span class="normal">surface </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">...</span>
-<span class="normal">cr </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="../html/gdk3-Cairo-Interaction.html#gdk-cairo-create">gdk_cairo_create</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">);</span>
+<span class="normal">cr </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gdk3/gdk3-Cairo-Interaction.html#gdk-cairo-create">gdk_cairo_create</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">);</span>
 <span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-set-source-surface">cairo_set_source_surface</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> surface</span><span class="symbol">,</span><span class="normal"> x_origin</span><span class="symbol">,</span><span class="normal"> y_origin</span><span class="symbol">);</span>
 <span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-pattern-t.html#cairo-pattern-set-extend">cairo_pattern_set_extend</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-get-source">cairo_get_source</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">),</span><span class="normal"> <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-pattern-t.html#CAIRO-EXTEND-REPEAT:CAPS">CAIRO_EXTEND_REPEAT</a></span><span class="symbol">);</span>
 <span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-Paths.html#cairo-rectangle">cairo_rectangle</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> width</span><span class="symbol">,</span><span class="normal"> height</span><span class="symbol">);</span>
@@ -508,7 +508,7 @@
 The surface here can be either an image surface or a X surface,
 and can either be created on the spot or kept around for caching purposes.
 Another alternative is to use pixbufs instead of surfaces with
-<a href="../html/gdk3-Cairo-Interaction.html#gdk-cairo-set-source-pixbuf"><code class="function">gdk_cairo_set_source_pixbuf()</code></a> instead of <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-set-source-surface"><code class="function">cairo_set_source_surface()</code></a>.
+<a href="https://developer.gnome.org/gdk3/gdk3-Cairo-Interaction.html#gdk-cairo-set-source-pixbuf"><code class="function">gdk_cairo_set_source_pixbuf()</code></a> instead of <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-set-source-surface"><code class="function">cairo_set_source_surface()</code></a>.
         </p>
 </div>
 </div>
@@ -576,15 +576,15 @@ Another alternative is to use pixbufs instead of surfaces with
 <span class="usertype">GdkRGBA</span><span class="normal"> rgba</span><span class="symbol">;</span>
 <span class="usertype">cairo_t</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">cr</span><span class="symbol">;</span>
 
-<span class="normal">cr </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="../html/gdk3-Cairo-Interaction.html#gdk-cairo-create">gdk_cairo_create</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">drawable</span><span class="symbol">);</span>
+<span class="normal">cr </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gdk3/gdk3-Cairo-Interaction.html#gdk-cairo-create">gdk_cairo_create</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">drawable</span><span class="symbol">);</span>
 <span class="comment">/* clip */</span>
-<span class="function"><a href="../html/gdk3-Cairo-Interaction.html#gdk-cairo-rectangle">gdk_cairo_rectangle</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">area</span><span class="symbol">);</span>
+<span class="function"><a href="https://developer.gnome.org/gdk3/gdk3-Cairo-Interaction.html#gdk-cairo-rectangle">gdk_cairo_rectangle</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">area</span><span class="symbol">);</span>
 <span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-clip">cairo_clip</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span>
 <span class="comment">/* set the correct source color */</span>
 <span class="normal">context </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkWidget.html#gtk-widget-get-style-context">gtk_widget_get_style_context</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">));</span>
 <span class="normal">state </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkWidget.html#gtk-widget-get-state-flags">gtk_widget_get_state_flags</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">);</span>
 <span class="function"><a href="GtkStyleContext.html#gtk-style-context-get-color">gtk_style_context_get_color</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">,</span><span class="normal"> state</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">rgba</span><span class="symbol">);</span>
-<span class="function"><a href="../html/gdk3-Cairo-Interaction.html#gdk-cairo-set-source-rgba">gdk_cairo_set_source_rgba</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">rgba</span><span class="symbol">);</span>
+<span class="function"><a href="https://developer.gnome.org/gdk3/gdk3-Cairo-Interaction.html#gdk-cairo-set-source-rgba">gdk_cairo_set_source_rgba</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">rgba</span><span class="symbol">);</span>
 <span class="comment">/* draw the text */</span>
 <span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-Paths.html#cairo-move-to">cairo_move_to</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> x</span><span class="symbol">,</span><span class="normal"> y</span><span class="symbol">);</span>
 <span class="function"><a href="/usr/share/gtk-doc/html/pango/pango-Cairo-Rendering.html#pango-cairo-show-layout">pango_cairo_show_layout</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> layout</span><span class="symbol">);</span>
@@ -597,7 +597,7 @@ Another alternative is to use pixbufs instead of surfaces with
 <p>
           Clipping using <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-clip"><code class="function">cairo_clip()</code></a> is of course not restricted to text
           rendering and can be used everywhere where GC clips were used.
-          And using <a href="../html/gdk3-Cairo-Interaction.html#gdk-cairo-set-source-color"><code class="function">gdk_cairo_set_source_color()</code></a> with style colors should
+          And using <a href="https://developer.gnome.org/gdk3/gdk3-Cairo-Interaction.html#gdk-cairo-set-source-color"><code class="function">gdk_cairo_set_source_color()</code></a> with style colors should
           be used in all the places where a style’s GC was used to achieve
           a particular color.
         </p>
@@ -718,7 +718,7 @@ Another alternative is to use pixbufs instead of surfaces with
         <td class="listing_code"><pre class="programlisting"><span class="usertype">cairo_t</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">cr </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-create">cairo_create</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">surface</span><span class="symbol">);</span>
 <span class="comment">/* clipping restricts the intermediate surface's size, so it's a good idea</span>
 <span class="comment"> * to use it. */</span>
-<span class="function"><a href="../html/gdk3-Cairo-Interaction.html#gdk-cairo-rectangle">gdk_cairo_rectangle</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">area</span><span class="symbol">);</span>
+<span class="function"><a href="https://developer.gnome.org/gdk3/gdk3-Cairo-Interaction.html#gdk-cairo-rectangle">gdk_cairo_rectangle</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">area</span><span class="symbol">);</span>
 <span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-clip">cairo_clip</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span>
 <span class="comment">/* Now push a group to change the target */</span>
 <span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-push-group">cairo_push_group</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span>
@@ -737,7 +737,7 @@ Another alternative is to use pixbufs instead of surfaces with
 The surface here can be either an image surface or a X surface,
 and can either be created on the spot or kept around for caching purposes.
 Another alternative is to use pixbufs instead of surfaces with
-<a href="../html/gdk3-Cairo-Interaction.html#gdk-cairo-set-source-pixbuf"><code class="function">gdk_cairo_set_source_pixbuf()</code></a> instead of <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-set-source-surface"><code class="function">cairo_set_source_surface()</code></a>.
+<a href="https://developer.gnome.org/gdk3/gdk3-Cairo-Interaction.html#gdk-cairo-set-source-pixbuf"><code class="function">gdk_cairo_set_source_pixbuf()</code></a> instead of <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-set-source-surface"><code class="function">cairo_set_source_surface()</code></a>.
         
           The cairo developers plan to add self-copies in the future to allow
           exactly this effect, so you might want to keep up on cairo
