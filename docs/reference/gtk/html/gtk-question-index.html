@@ -547,8 +547,8 @@ code:
       <tr>
         <td class="listing_lines" align="right"><pre>1
 2</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="function"><a href="../html/gdk3-Windows.html#gdk-window-set-events">gdk_window_set_events</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gdk_window</span><span class="symbol">,</span>
-<span class="normal">                       <a href="../html/gdk3-Events.html#GDK-BUTTON-PRESS-MASK:CAPS">GDK_BUTTON_PRESS_MASK</a> </span><span class="symbol">|</span><span class="normal"> <a href="../html/gdk3-Events.html#GDK-BUTTON-RELEASE-MASK:CAPS">GDK_BUTTON_RELEASE_MASK</a></span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="function"><a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#gdk-window-set-events">gdk_window_set_events</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gdk_window</span><span class="symbol">,</span>
+<span class="normal">                       <a href="https://developer.gnome.org/gdk3/gdk3-Events.html#GDK-BUTTON-PRESS-MASK:CAPS">GDK_BUTTON_PRESS_MASK</a> </span><span class="symbol">|</span><span class="normal"> <a href="https://developer.gnome.org/gdk3/gdk3-Events.html#GDK-BUTTON-RELEASE-MASK:CAPS">GDK_BUTTON_RELEASE_MASK</a></span><span class="symbol">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -563,8 +563,8 @@ while in C++ you must write:
       <tr>
         <td class="listing_lines" align="right"><pre>1
 2</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="function"><a href="../html/gdk3-Windows.html#gdk-window-set-events">gdk_window_set_events</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gdk_window</span><span class="symbol">,</span>
-<span class="normal">                       </span><span class="symbol">(</span><span class="normal"><a href="../html/gdk3-Events.html#GdkEventMask">GdkEventMask</a></span><span class="symbol">)</span><span class="normal"> <a href="../html/gdk3-Events.html#GDK-BUTTON-PRESS-MASK:CAPS">GDK_BUTTON_PRESS_MASK</a> </span><span class="symbol">|</span><span class="normal"> <a href="../html/gdk3-Events.html#GDK-BUTTON-RELEASE-MASK:CAPS">GDK_BUTTON_RELEASE_MASK</a></span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="function"><a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#gdk-window-set-events">gdk_window_set_events</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gdk_window</span><span class="symbol">,</span>
+<span class="normal">                       </span><span class="symbol">(</span><span class="normal"><a href="https://developer.gnome.org/gdk3/gdk3-Events.html#GdkEventMask">GdkEventMask</a></span><span class="symbol">)</span><span class="normal"> <a href="https://developer.gnome.org/gdk3/gdk3-Events.html#GDK-BUTTON-PRESS-MASK:CAPS">GDK_BUTTON_PRESS_MASK</a> </span><span class="symbol">|</span><span class="normal"> <a href="https://developer.gnome.org/gdk3/gdk3-Events.html#GDK-BUTTON-RELEASE-MASK:CAPS">GDK_BUTTON_RELEASE_MASK</a></span><span class="symbol">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -756,10 +756,10 @@ How do I create a transparent toplevel window ?
 <p>
 To make a window transparent, it needs to use a visual which supports that.
 This is done by getting the RGBA visual of the screen with
-<a href="../html/GdkScreen.html#gdk-screen-get-rgba-visual"><code class="function">gdk_screen_get_rgba_visual()</code></a> and setting it on the window. Note that
-<a href="../html/GdkScreen.html#gdk-screen-get-rgba-visual"><code class="function">gdk_screen_get_rgba_visual()</code></a> will return <code class="literal">NULL</code> if transparent windows
+<a href="https://developer.gnome.org/gdk3/GdkScreen.html#gdk-screen-get-rgba-visual"><code class="function">gdk_screen_get_rgba_visual()</code></a> and setting it on the window. Note that
+<a href="https://developer.gnome.org/gdk3/GdkScreen.html#gdk-screen-get-rgba-visual"><code class="function">gdk_screen_get_rgba_visual()</code></a> will return <code class="literal">NULL</code> if transparent windows
 are not supported on the screen, you should fall back to
-<a href="../html/GdkScreen.html#gdk-screen-get-system-visual"><code class="function">gdk_screen_get_system_visual()</code></a> in that case. Additionally, note that this
+<a href="https://developer.gnome.org/gdk3/GdkScreen.html#gdk-screen-get-system-visual"><code class="function">gdk_screen_get_system_visual()</code></a> in that case. Additionally, note that this
 will change from screen to screen, so it needs to be repeated whenever the
 window is moved to a different screen.
 </p>
@@ -776,9 +776,9 @@ window is moved to a different screen.
 7</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="usertype">GdkVisual</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">visual</span><span class="symbol">;</span>
 
-<span class="normal">visual </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="../html/GdkScreen.html#gdk-screen-get-rgba-visual">gdk_screen_get_rgba_visual</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">screen</span><span class="symbol">);</span>
+<span class="normal">visual </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gdk3/GdkScreen.html#gdk-screen-get-rgba-visual">gdk_screen_get_rgba_visual</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">screen</span><span class="symbol">);</span>
 <span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">visual </span><span class="symbol">==</span><span class="normal"> NULL</span><span class="symbol">)</span>
-<span class="normal">  visual </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="../html/GdkScreen.html#gdk-screen-get-system-visual">gdk_screen_get_system_visual</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">screen</span><span class="symbol">);</span>
+<span class="normal">  visual </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gdk3/GdkScreen.html#gdk-screen-get-system-visual">gdk_screen_get_system_visual</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">screen</span><span class="symbol">);</span>
 
 <span class="function"><a href="GtkWidget.html#gtk-widget-set-visual">gtk_widget_set_visual</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_WIDGET</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">),</span><span class="normal"> visual</span><span class="symbol">);</span></pre></td>
       </tr>

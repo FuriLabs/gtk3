@@ -1388,7 +1388,7 @@ in <a class="link" href="GtkEntry.html" title="GtkEntry"><span class="type">GtkE
 <a name="gtk-entry-get-text-area"></a><h3>gtk_entry_get_text_area ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_entry_get_text_area (<em class="parameter"><code><a class="link" href="GtkEntry.html" title="GtkEntry"><span class="type">GtkEntry</span></a> *entry</code></em>,
-                         <em class="parameter"><code><a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *text_area</code></em>);</pre>
+                         <em class="parameter"><code><a href="https://developer.gnome.org/gdk3/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *text_area</code></em>);</pre>
 <p>Gets the area where the entry’s text is drawn. This function is
 useful when drawing something to the entry in a draw callback.</p>
 <p>If the entry is not realized, <em class="parameter"><code>text_area</code></em>
@@ -2668,7 +2668,7 @@ where a block bounces back and forth. Each call to
 <a name="gtk-entry-im-context-filter-keypress"></a><h3>gtk_entry_im_context_filter_keypress ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_entry_im_context_filter_keypress (<em class="parameter"><code><a class="link" href="GtkEntry.html" title="GtkEntry"><span class="type">GtkEntry</span></a> *entry</code></em>,
-                                      <em class="parameter"><code><a href="../html/gdk3-Event-Structures.html#GdkEventKey"><span class="type">GdkEventKey</span></a> *event</code></em>);</pre>
+                                      <em class="parameter"><code><a href="https://developer.gnome.org/gdk3/gdk3-Event-Structures.html#GdkEventKey"><span class="type">GdkEventKey</span></a> *event</code></em>);</pre>
 <p>Allow the <a class="link" href="GtkEntry.html" title="GtkEntry"><span class="type">GtkEntry</span></a> input method to internally handle key press
 and release events. If this function returns <code class="literal">TRUE</code>, then no further
 processing should be done for this key event. See
@@ -3527,7 +3527,7 @@ string with <code class="function">g_free()</code> when done. </p>
 gtk_entry_set_icon_drag_source (<em class="parameter"><code><a class="link" href="GtkEntry.html" title="GtkEntry"><span class="type">GtkEntry</span></a> *entry</code></em>,
                                 <em class="parameter"><code><a class="link" href="GtkEntry.html#GtkEntryIconPosition" title="enum GtkEntryIconPosition"><span class="type">GtkEntryIconPosition</span></a> icon_pos</code></em>,
                                 <em class="parameter"><code><a class="link" href="gtk3-Selections.html#GtkTargetList"><span class="type">GtkTargetList</span></a> *target_list</code></em>,
-                                <em class="parameter"><code><a href="../html/gdk3-Drag-and-Drop.html#GdkDragAction"><span class="type">GdkDragAction</span></a> actions</code></em>);</pre>
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gdk3/gdk3-Drag-and-Drop.html#GdkDragAction"><span class="type">GdkDragAction</span></a> actions</code></em>);</pre>
 <p>Sets up the icon at the given position so that GTK+ will start a drag
 operation when the user clicks and drags the icon.</p>
 <p>To handle the drag operation, you need to connect to the usual
@@ -3611,7 +3611,7 @@ DND operation, or -1.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_entry_get_icon_area (<em class="parameter"><code><a class="link" href="GtkEntry.html" title="GtkEntry"><span class="type">GtkEntry</span></a> *entry</code></em>,
                          <em class="parameter"><code><a class="link" href="GtkEntry.html#GtkEntryIconPosition" title="enum GtkEntryIconPosition"><span class="type">GtkEntryIconPosition</span></a> icon_pos</code></em>,
-                         <em class="parameter"><code><a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *icon_area</code></em>);</pre>
+                         <em class="parameter"><code><a href="https://developer.gnome.org/gdk3/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *icon_area</code></em>);</pre>
 <p>Gets the area where entry’s icon at <em class="parameter"><code>icon_pos</code></em>
  is drawn.
 This function is useful when drawing something to the
@@ -4981,7 +4981,7 @@ units to delete</p></td>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkEntry.html" title="GtkEntry"><span class="type">GtkEntry</span></a>            *entry,
                <a class="link" href="GtkEntry.html#GtkEntryIconPosition" title="enum GtkEntryIconPosition"><span class="type">GtkEntryIconPosition</span></a> icon_pos,
-               <a href="../html/gdk3-Event-Structures.html#GdkEvent"><span class="type">GdkEvent</span></a>            *event,
+               <a href="https://developer.gnome.org/gdk3/gdk3-Event-Structures.html#GdkEvent"><span class="type">GdkEvent</span></a>            *event,
                <span class="type">gpointer</span>             user_data)</pre>
 <p>The ::icon-press signal is emitted when an activatable icon
 is clicked.</p>
@@ -5026,7 +5026,7 @@ is clicked.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkEntry.html" title="GtkEntry"><span class="type">GtkEntry</span></a>            *entry,
                <a class="link" href="GtkEntry.html#GtkEntryIconPosition" title="enum GtkEntryIconPosition"><span class="type">GtkEntryIconPosition</span></a> icon_pos,
-               <a href="../html/gdk3-Event-Structures.html#GdkEvent"><span class="type">GdkEvent</span></a>            *event,
+               <a href="https://developer.gnome.org/gdk3/gdk3-Event-Structures.html#GdkEvent"><span class="type">GdkEvent</span></a>            *event,
                <span class="type">gpointer</span>             user_data)</pre>
 <p>The ::icon-release signal is emitted on the button release from a
 mouse click over an activatable icon.</p>

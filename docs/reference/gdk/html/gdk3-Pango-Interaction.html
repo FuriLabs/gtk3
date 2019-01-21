@@ -95,8 +95,8 @@ and types in this section are used to obtain clip regions for
 GDK.</p>
 <p>Creating a <a href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoLayout-struct"><span class="type">PangoLayout</span></a> object is the first step in rendering text,
 and requires getting a handle to a <a href="/usr/share/gtk-doc/html/pango/pango-Text-Processing.html#PangoContext-struct"><span class="type">PangoContext</span></a>. For GTK+ programs,
-you’ll usually want to use <code class="function">gtk_widget_get_pango_context()</code>, or
-<code class="function">gtk_widget_create_pango_layout()</code>, rather than using the lowlevel
+you’ll usually want to use <a href="https://developer.gnome.org/gtk3/GtkWidget.html#gtk-widget-get-pango-context"><code class="function">gtk_widget_get_pango_context()</code></a>, or
+<a href="https://developer.gnome.org/gtk3/GtkWidget.html#gtk-widget-create-pango-layout"><code class="function">gtk_widget_create_pango_layout()</code></a>, rather than using the lowlevel
 <a class="link" href="gdk3-Pango-Interaction.html#gdk-pango-context-get-for-screen" title="gdk_pango_context_get_for_screen ()"><code class="function">gdk_pango_context_get_for_screen()</code></a>. Once you have a <a href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoLayout-struct"><span class="type">PangoLayout</span></a>, you
 can set the text and attributes of it with Pango functions like
 <a href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#pango-layout-set-text"><code class="function">pango_layout_set_text()</code></a> and get its size with <a href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#pango-layout-get-size"><code class="function">pango_layout_get_size()</code></a>.
@@ -392,12 +392,12 @@ are end indexes. </p></td>
 gdk_pango_context_get (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
 <p>Creates a <a href="/usr/share/gtk-doc/html/pango/pango-Text-Processing.html#PangoContext-struct"><span class="type">PangoContext</span></a> for the default GDK screen.</p>
 <p>The context must be freed when you’re finished with it.</p>
-<p>When using GTK+, normally you should use <code class="function">gtk_widget_get_pango_context()</code>
+<p>When using GTK+, normally you should use <a href="https://developer.gnome.org/gtk3/GtkWidget.html#gtk-widget-get-pango-context"><code class="function">gtk_widget_get_pango_context()</code></a>
 instead of this function, to get the appropriate context for
 the widget you intend to render text onto.</p>
 <p>The newly created context will have the default font options (see
 <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-font-options-t.html#cairo-font-options-t"><span class="type">cairo_font_options_t</span></a>) for the default screen; if these options
-change it will not be updated. Using <code class="function">gtk_widget_get_pango_context()</code>
+change it will not be updated. Using <a href="https://developer.gnome.org/gtk3/GtkWidget.html#gtk-widget-get-pango-context"><code class="function">gtk_widget_get_pango_context()</code></a>
 is more convenient if you want to keep a context around and track
 changes to the screen’s font rendering settings.</p>
 <div class="refsect3">
@@ -414,12 +414,12 @@ gdk_pango_context_get_for_screen (<em class="parameter"><code><a class="link" hr
 <p>Creates a <a href="/usr/share/gtk-doc/html/pango/pango-Text-Processing.html#PangoContext-struct"><span class="type">PangoContext</span></a> for <em class="parameter"><code>screen</code></em>
 .</p>
 <p>The context must be freed when you’re finished with it.</p>
-<p>When using GTK+, normally you should use <code class="function">gtk_widget_get_pango_context()</code>
+<p>When using GTK+, normally you should use <a href="https://developer.gnome.org/gtk3/GtkWidget.html#gtk-widget-get-pango-context"><code class="function">gtk_widget_get_pango_context()</code></a>
 instead of this function, to get the appropriate context for
 the widget you intend to render text onto.</p>
 <p>The newly created context will have the default font options
 (see <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-font-options-t.html#cairo-font-options-t"><span class="type">cairo_font_options_t</span></a>) for the screen; if these options
-change it will not be updated. Using <code class="function">gtk_widget_get_pango_context()</code>
+change it will not be updated. Using <a href="https://developer.gnome.org/gtk3/GtkWidget.html#gtk-widget-get-pango-context"><code class="function">gtk_widget_get_pango_context()</code></a>
 is more convenient if you want to keep a context around and track
 changes to the screen’s font rendering settings.</p>
 <div class="refsect3">
@@ -453,12 +453,12 @@ gdk_pango_context_get_for_display (<em class="parameter"><code><a class="link" h
 <p>Creates a <a href="/usr/share/gtk-doc/html/pango/pango-Text-Processing.html#PangoContext-struct"><span class="type">PangoContext</span></a> for <em class="parameter"><code>display</code></em>
 .</p>
 <p>The context must be freed when you’re finished with it.</p>
-<p>When using GTK+, normally you should use <code class="function">gtk_widget_get_pango_context()</code>
+<p>When using GTK+, normally you should use <a href="https://developer.gnome.org/gtk3/GtkWidget.html#gtk-widget-get-pango-context"><code class="function">gtk_widget_get_pango_context()</code></a>
 instead of this function, to get the appropriate context for
 the widget you intend to render text onto.</p>
 <p>The newly created context will have the default font options
 (see <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-font-options-t.html#cairo-font-options-t"><span class="type">cairo_font_options_t</span></a>) for the display; if these options
-change it will not be updated. Using <code class="function">gtk_widget_get_pango_context()</code>
+change it will not be updated. Using <a href="https://developer.gnome.org/gtk3/GtkWidget.html#gtk-widget-get-pango-context"><code class="function">gtk_widget_get_pango_context()</code></a>
 is more convenient if you want to keep a context around and track
 changes to the font rendering settings.</p>
 <div class="refsect3">
