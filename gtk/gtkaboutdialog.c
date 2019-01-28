@@ -51,12 +51,13 @@
 #include "gtktogglebutton.h"
 #include "gtktypebuiltins.h"
 #include "gtkstack.h"
-#include "gtkstackswitcher.h"
 #include "gtksettings.h"
 #include "gtkheaderbar.h"
 #include "gtkprivate.h"
 #include "gtkintl.h"
 #include "gtkdialogprivate.h"
+#include "hdy-view-switcher-bar-private.h"
+#include "hdy-view-switcher-title-private.h"
 
 
 /**
@@ -162,6 +163,7 @@ struct _GtkAboutDialogPrivate
 
   GtkWidget *stack;
   GtkWidget *stack_switcher;
+  GtkWidget *stack_switcher_mobile;
   GtkWidget *credits_button;
   GtkWidget *license_button;
 
@@ -591,6 +593,7 @@ gtk_about_dialog_class_init (GtkAboutDialogClass *klass)
 
   gtk_widget_class_bind_template_child_private (widget_class, GtkAboutDialog, stack);
   gtk_widget_class_bind_template_child_private (widget_class, GtkAboutDialog, stack_switcher);
+  gtk_widget_class_bind_template_child_private (widget_class, GtkAboutDialog, stack_switcher_mobile);
   gtk_widget_class_bind_template_child_private (widget_class, GtkAboutDialog, logo_image);
   gtk_widget_class_bind_template_child_private (widget_class, GtkAboutDialog, name_label);
   gtk_widget_class_bind_template_child_private (widget_class, GtkAboutDialog, version_label);
@@ -625,12 +628,13 @@ static void
 update_stack_switcher_visibility (GtkAboutDialog *about)
 {
   GtkAboutDialogPrivate *priv = about->priv;
+  gboolean show;
 
-  if (gtk_widget_get_visible (priv->credits_page) ||
-      gtk_widget_get_visible (priv->license_page))
-    gtk_widget_show (priv->stack_switcher);
-  else
-    gtk_widget_hide (priv->stack_switcher);
+  show = gtk_widget_get_visible (priv->credits_page) ||
+    gtk_widget_get_visible (priv->license_page);
+
+  gtk_widget_set_visible (priv->stack_switcher, show);
+  gtk_widget_set_visible (priv->stack_switcher_mobile, show);
 }
 
 static void
@@ -748,6 +752,9 @@ gtk_about_dialog_init (GtkAboutDialog *about)
   priv->license_type = GTK_LICENSE_UNKNOWN;
 
   gtk_dialog_set_default_response (GTK_DIALOG (about), GTK_RESPONSE_CANCEL);
+
+  g_type_ensure (GTK_TYPE_HDY_VIEW_SWITCHER_BAR);
+  g_type_ensure (GTK_TYPE_HDY_VIEW_SWITCHER_TITLE);
 
   gtk_widget_init_template (GTK_WIDGET (about));
   gtk_dialog_set_use_header_bar_from_setting (GTK_DIALOG (about));
@@ -2197,6 +2204,9 @@ add_credits_section (GtkAboutDialog  *about,
   markup = g_strdup_printf ("<span size=\"small\">%s</span>", title);
   label = gtk_label_new (markup);
   gtk_label_set_use_markup (GTK_LABEL (label), TRUE);
+  gtk_label_set_line_wrap (GTK_LABEL (label), TRUE);
+  gtk_label_set_line_wrap_mode (GTK_LABEL (label), PANGO_WRAP_WORD_CHAR);
+
   g_free (markup);
   gtk_widget_set_halign (label, GTK_ALIGN_END);
   gtk_widget_set_valign (label, GTK_ALIGN_CENTER);
