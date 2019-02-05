@@ -10,8 +10,8 @@
 
 m4_define([gtk_major_version], [3])
 m4_define([gtk_minor_version], [24])
-m4_define([gtk_micro_version], [4])
-m4_define([gtk_interface_age], [0])
+m4_define([gtk_micro_version], [5])
+m4_define([gtk_interface_age], [1])
 m4_define([gtk_binary_age],
           [m4_eval(100 * gtk_minor_version + gtk_micro_version)])
 m4_define([gtk_version],
@@ -55,6 +55,7 @@ m4_define([glib_max_allowed_version], m4_join([_], [GLIB_VERSION], glib_required
 GLIB_VERSION_CFLAGS="-DGLIB_MIN_REQUIRED_VERSION=glib_min_required_version -DGLIB_MAX_ALLOWED_VERSION=glib_max_allowed_version"
 
 m4_define([pango_required_version], [1.41.0])
+m4_define([fribidi_required_version], [0.19.7])
 m4_define([atk_required_version], [2.15.1])
 m4_define([cairo_required_version], [1.14.0])
 m4_define([gdk_pixbuf_required_version], [2.30.0])
@@ -585,6 +586,7 @@ PKG_CHECK_MODULES(BASE_DEPENDENCIES,
   [glib-2.0 >= glib_required_version dnl
    atk >= atk_required_version dnl
    pango >= pango_required_version dnl
+   fribidi >= fribidi_required_version dnl
    cairo >= cairo_required_version dnl
    cairo-gobject >= cairo_required_version dnl
    gdk-pixbuf-2.0 >= gdk_pixbuf_required_version])

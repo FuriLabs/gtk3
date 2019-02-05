@@ -65,8 +65,8 @@
 </div>
 <div class="refsect1">
 <a name="GtkDrawingArea.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    GObject
-    <span class="lineart">╰──</span> GInitiallyUnowned
+<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+    <span class="lineart">╰──</span> <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GInitiallyUnowned">GInitiallyUnowned</a>
         <span class="lineart">╰──</span> <a class="link" href="GtkWidget.html" title="GtkWidget">GtkWidget</a>
             <span class="lineart">╰──</span> GtkDrawingArea
 </pre>
@@ -145,7 +145,7 @@ to call <a class="link" href="GtkStyleContext.html#gtk-render-background" title=
 31
 32
 33</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">gboolean</span>
+        <td class="listing_code"><pre class="programlisting"><span class="normal"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean">gboolean</a></span>
 <span class="function">draw_callback</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">widget</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">cairo_t</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">gpointer</span><span class="normal"> data</span><span class="symbol">)</span>
 <span class="cbracket">{</span>
 <span class="normal">  </span><span class="usertype">guint</span><span class="normal"> width</span><span class="symbol">,</span><span class="normal"> height</span><span class="symbol">;</span>
@@ -161,8 +161,8 @@ to call <a class="link" href="GtkStyleContext.html#gtk-render-background" title=
 
 <span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-Paths.html#cairo-arc">cairo_arc</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span>
 <span class="normal">             width </span><span class="symbol">/</span><span class="normal"> </span><span class="number">2.0</span><span class="symbol">,</span><span class="normal"> height </span><span class="symbol">/</span><span class="normal"> </span><span class="number">2.0</span><span class="symbol">,</span>
-<span class="normal">             </span><span class="function">MIN</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">width</span><span class="symbol">,</span><span class="normal"> height</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">/</span><span class="normal"> </span><span class="number">2.0</span><span class="symbol">,</span>
-<span class="normal">             </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">2</span><span class="normal"> </span><span class="symbol">*</span><span class="normal"> G_PI</span><span class="symbol">);</span>
+<span class="normal">             </span><span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#MIN:CAPS">MIN</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">width</span><span class="symbol">,</span><span class="normal"> height</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">/</span><span class="normal"> </span><span class="number">2.0</span><span class="symbol">,</span>
+<span class="normal">             </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">2</span><span class="normal"> </span><span class="symbol">*</span><span class="normal"> <a href="https://developer.gnome.org/glib/unstable/glib-Numerical-Definitions.html#G-PI:CAPS">G_PI</a></span><span class="symbol">);</span>
 
 <span class="normal">  </span><span class="function"><a href="GtkStyleContext.html#gtk-style-context-get-color">gtk_style_context_get_color</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">,</span>
 <span class="normal">                               </span><span class="function"><a href="GtkStyleContext.html#gtk-style-context-get-state">gtk_style_context_get_state</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">),</span>
@@ -171,13 +171,13 @@ to call <a class="link" href="GtkStyleContext.html#gtk-render-background" title=
 
 <span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-fill">cairo_fill</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span>
 
-<span class="normal"> </span><span class="keyword">return</span><span class="normal"> FALSE</span><span class="symbol">;</span>
+<span class="normal"> </span><span class="keyword">return</span><span class="normal"> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS">FALSE</a></span><span class="symbol">;</span>
 <span class="cbracket">}</span>
 <span class="symbol">[...]</span>
 <span class="normal">  </span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">drawing_area </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkDrawingArea.html#gtk-drawing-area-new">gtk_drawing_area_new</a></span><span class="normal"> </span><span class="symbol">();</span>
 <span class="normal">  </span><span class="function"><a href="GtkWidget.html#gtk-widget-set-size-request">gtk_widget_set_size_request</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">drawing_area</span><span class="symbol">,</span><span class="normal"> </span><span class="number">100</span><span class="symbol">,</span><span class="normal"> </span><span class="number">100</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function">g_signal_connect</span><span class="normal"> </span><span class="symbol">(</span><span class="function">G_OBJECT</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">drawing_area</span><span class="symbol">),</span><span class="normal"> </span><span class="string">"draw"</span><span class="symbol">,</span>
-<span class="normal">                    </span><span class="function">G_CALLBACK</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">draw_callback</span><span class="symbol">),</span><span class="normal"> NULL</span><span class="symbol">);</span></pre></td>
+<span class="normal">  </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-Signals.html#g-signal-connect">g_signal_connect</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#G-OBJECT:CAPS">G_OBJECT</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">drawing_area</span><span class="symbol">),</span><span class="normal"> </span><span class="string">"draw"</span><span class="symbol">,</span>
+<span class="normal">                    </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-Closures.html#G-CALLBACK:CAPS">G_CALLBACK</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">draw_callback</span><span class="symbol">),</span><span class="normal"> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span></pre></td>
       </tr>
     </tbody>
   </table>

@@ -65,8 +65,8 @@
 </div>
 <div class="refsect1">
 <a name="GtkFileChooserDialog.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    GObject
-    <span class="lineart">╰──</span> GInitiallyUnowned
+<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+    <span class="lineart">╰──</span> <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GInitiallyUnowned">GInitiallyUnowned</a>
         <span class="lineart">╰──</span> <a class="link" href="GtkWidget.html" title="GtkWidget">GtkWidget</a>
             <span class="lineart">╰──</span> <a class="link" href="GtkContainer.html" title="GtkContainer">GtkContainer</a>
                 <span class="lineart">╰──</span> <a class="link" href="GtkBin.html" title="GtkBin">GtkBin</a>
@@ -144,7 +144,7 @@ otherwise.</p>
 <span class="normal">                                      <a href="GtkDialog.html#GTK-RESPONSE-CANCEL:CAPS">GTK_RESPONSE_CANCEL</a></span><span class="symbol">,</span>
 <span class="normal">                                      </span><span class="function">_</span><span class="symbol">(</span><span class="string">"_Open"</span><span class="symbol">),</span>
 <span class="normal">                                      <a href="GtkDialog.html#GTK-RESPONSE-ACCEPT:CAPS">GTK_RESPONSE_ACCEPT</a></span><span class="symbol">,</span>
-<span class="normal">                                      NULL</span><span class="symbol">);</span>
+<span class="normal">                                      <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
 
 <span class="normal">res </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkDialog.html#gtk-dialog-run">gtk_dialog_run</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_DIALOG</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">dialog</span><span class="symbol">));</span>
 <span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">res </span><span class="symbol">==</span><span class="normal"> <a href="GtkDialog.html#GTK-RESPONSE-ACCEPT:CAPS">GTK_RESPONSE_ACCEPT</a></span><span class="symbol">)</span>
@@ -153,7 +153,7 @@ otherwise.</p>
 <span class="normal">    </span><span class="usertype">GtkFileChooser</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">chooser </span><span class="symbol">=</span><span class="normal"> </span><span class="function">GTK_FILE_CHOOSER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">dialog</span><span class="symbol">);</span>
 <span class="normal">    filename </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkFileChooser.html#gtk-file-chooser-get-filename">gtk_file_chooser_get_filename</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">chooser</span><span class="symbol">);</span>
 <span class="normal">    </span><span class="function">open_file</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">filename</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">filename</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free">g_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">filename</span><span class="symbol">);</span>
 <span class="normal">  </span><span class="cbracket">}</span>
 
 <span class="function"><a href="GtkWidget.html#gtk-widget-destroy">gtk_widget_destroy</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">dialog</span><span class="symbol">);</span></pre></td>
@@ -215,10 +215,10 @@ otherwise.</p>
 <span class="normal">                                      <a href="GtkDialog.html#GTK-RESPONSE-CANCEL:CAPS">GTK_RESPONSE_CANCEL</a></span><span class="symbol">,</span>
 <span class="normal">                                      </span><span class="function">_</span><span class="symbol">(</span><span class="string">"_Save"</span><span class="symbol">),</span>
 <span class="normal">                                      <a href="GtkDialog.html#GTK-RESPONSE-ACCEPT:CAPS">GTK_RESPONSE_ACCEPT</a></span><span class="symbol">,</span>
-<span class="normal">                                      NULL</span><span class="symbol">);</span>
+<span class="normal">                                      <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
 <span class="normal">chooser </span><span class="symbol">=</span><span class="normal"> </span><span class="function">GTK_FILE_CHOOSER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">dialog</span><span class="symbol">);</span>
 
-<span class="function"><a href="GtkFileChooser.html#gtk-file-chooser-set-do-overwrite-confirmation">gtk_file_chooser_set_do_overwrite_confirmation</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">chooser</span><span class="symbol">,</span><span class="normal"> TRUE</span><span class="symbol">);</span>
+<span class="function"><a href="GtkFileChooser.html#gtk-file-chooser-set-do-overwrite-confirmation">gtk_file_chooser_set_do_overwrite_confirmation</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">chooser</span><span class="symbol">,</span><span class="normal"> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS">TRUE</a></span><span class="symbol">);</span>
 
 <span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">user_edited_a_new_document</span><span class="symbol">)</span>
 <span class="normal">  </span><span class="function"><a href="GtkFileChooser.html#gtk-file-chooser-set-current-name">gtk_file_chooser_set_current_name</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">chooser</span><span class="symbol">,</span>
@@ -234,7 +234,7 @@ otherwise.</p>
 
 <span class="normal">    filename </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkFileChooser.html#gtk-file-chooser-get-filename">gtk_file_chooser_get_filename</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">chooser</span><span class="symbol">);</span>
 <span class="normal">    </span><span class="function">save_to_file</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">filename</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">filename</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free">g_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">filename</span><span class="symbol">);</span>
 <span class="normal">  </span><span class="cbracket">}</span>
 
 <span class="function"><a href="GtkWidget.html#gtk-widget-destroy">gtk_widget_destroy</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">dialog</span><span class="symbol">);</span></pre></td>
@@ -298,7 +298,7 @@ could call <a class="link" href="GtkFileChooserDialog.html#gtk-file-chooser-dial
 <span class="normal">                                      <a href="GtkDialog.html#GTK-RESPONSE-CANCEL:CAPS">GTK_RESPONSE_CANCEL</a></span><span class="symbol">,</span>
 <span class="normal">                                      </span><span class="function">_</span><span class="symbol">(</span><span class="string">"_Open"</span><span class="symbol">),</span>
 <span class="normal">                                      <a href="GtkDialog.html#GTK-RESPONSE-ACCEPT:CAPS">GTK_RESPONSE_ACCEPT</a></span><span class="symbol">,</span>
-<span class="normal">                                      NULL</span><span class="symbol">);</span></pre></td>
+<span class="normal">                                      <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -332,10 +332,10 @@ when you use <a class="link" href="GtkFileChooserDialog.html" title="GtkFileChoo
 <div class="refsect2">
 <a name="gtk-file-chooser-dialog-new"></a><h3>gtk_file_chooser_dialog_new ()</h3>
 <pre class="programlisting"><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="returnvalue">GtkWidget</span></a> *
-gtk_file_chooser_dialog_new (<em class="parameter"><code>const <span class="type">gchar</span> *title</code></em>,
+gtk_file_chooser_dialog_new (<em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *title</code></em>,
                              <em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *parent</code></em>,
                              <em class="parameter"><code><a class="link" href="GtkFileChooser.html#GtkFileChooserAction" title="enum GtkFileChooserAction"><span class="type">GtkFileChooserAction</span></a> action</code></em>,
-                             <em class="parameter"><code>const <span class="type">gchar</span> *first_button_text</code></em>,
+                             <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *first_button_text</code></em>,
                              <em class="parameter"><code>...</code></em>);</pre>
 <p>Creates a new <a class="link" href="GtkFileChooserDialog.html" title="GtkFileChooserDialog"><span class="type">GtkFileChooserDialog</span></a>.  This function is analogous to
 <a class="link" href="GtkDialog.html#gtk-dialog-new-with-buttons" title="gtk_dialog_new_with_buttons ()"><code class="function">gtk_dialog_new_with_buttons()</code></a>.</p>
@@ -350,12 +350,12 @@ gtk_file_chooser_dialog_new (<em class="parameter"><code>const <span class="type
 <tbody>
 <tr>
 <td class="parameter_name"><p>title</p></td>
-<td class="parameter_description"><p>Title of the dialog, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>Title of the dialog, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>parent</p></td>
-<td class="parameter_description"><p>Transient parent of the dialog, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>Transient parent of the dialog, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -365,12 +365,12 @@ gtk_file_chooser_dialog_new (<em class="parameter"><code>const <span class="type
 </tr>
 <tr>
 <td class="parameter_name"><p>first_button_text</p></td>
-<td class="parameter_description"><p>stock ID or text to go in the first button, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>stock ID or text to go in the first button, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>...</p></td>
-<td class="parameter_description"><p>response ID for the first button, then additional (button, id) pairs, ending with <code class="literal">NULL</code></p></td>
+<td class="parameter_description"><p>response ID for the first button, then additional (button, id) pairs, ending with <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>

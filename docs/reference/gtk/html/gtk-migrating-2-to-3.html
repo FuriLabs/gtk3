@@ -308,20 +308,20 @@
 16</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="usertype">GAppInfo</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">info</span><span class="symbol">;</span>
 <span class="usertype">GAppLaunchContext</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">context</span><span class="symbol">;</span>
-<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
+<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">;</span>
 
 <span class="normal">info </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">GAppInfo</span><span class="symbol">*)</span><span class="normal"> </span><span class="function">g_desktop_app_info_new</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"epiphany.desktop"</span><span class="symbol">);</span>
 <span class="normal">context </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">GAppLaunchContext</span><span class="symbol">*)</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gdk3/GdkDisplay.html#gdk-display-get-app-launch-context">gdk_display_get_app_launch_context</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">display</span><span class="symbol">);</span>
-<span class="function">g_app_info_launch</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">info</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> context</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="function">g_app_info_launch</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">info</span><span class="symbol">,</span><span class="normal"> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> context</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
 
 <span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">)</span>
 <span class="normal">  </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_warning</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Failed to launch epiphany: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Message-Logging.html#g-warning">g_warning</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Failed to launch epiphany: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="function"><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
 <span class="normal">  </span><span class="cbracket">}</span>
 
-<span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">info</span><span class="symbol">);</span>
-<span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">);</span></pre></td>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">info</span><span class="symbol">);</span>
+<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -336,7 +336,7 @@
         still use <code class="function">g_app_info_launch()</code> with a GAppInfo that is constructed
         with <code class="function">g_app_info_create_from_commandline()</code>, or you can use the
         more lowlevel <code class="literal">g_spawn</code> family of functions
-        (e.g. <code class="function">g_spawn_command_line_async()</code>), and pass <code class="envar">DISPLAY</code>
+        (e.g. <a href="https://developer.gnome.org/glib/unstable/glib-Spawning-Processes.html#g-spawn-command-line-async"><code class="function">g_spawn_command_line_async()</code></a>), and pass <code class="envar">DISPLAY</code>
         in the environment. <a href="https://developer.gnome.org/gdk3/GdkScreen.html#gdk-screen-make-display-name"><code class="function">gdk_screen_make_display_name()</code></a> can be
         used to find the right value for the <code class="envar">DISPLAY</code>
         environment variable.
@@ -461,9 +461,9 @@
 <span class="function">gdk_gc_set_fill</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gc</span><span class="symbol">,</span><span class="normal"> GDK_TILED</span><span class="symbol">);</span>
 <span class="function">gdk_gc_set_ts_origin</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gc</span><span class="symbol">,</span><span class="normal"> x_origin</span><span class="symbol">,</span><span class="normal"> y_origin</span><span class="symbol">);</span>
 <span class="comment">/* use */</span>
-<span class="function">gdk_draw_rectangle</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">,</span><span class="normal"> gc</span><span class="symbol">,</span><span class="normal"> TRUE</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> width</span><span class="symbol">,</span><span class="normal"> height</span><span class="symbol">);</span>
+<span class="function">gdk_draw_rectangle</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">,</span><span class="normal"> gc</span><span class="symbol">,</span><span class="normal"> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS">TRUE</a></span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> width</span><span class="symbol">,</span><span class="normal"> height</span><span class="symbol">);</span>
 <span class="comment">/* restore */</span>
-<span class="function">gdk_gc_set_tile</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gc</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
+<span class="function">gdk_gc_set_tile</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gc</span><span class="symbol">,</span><span class="normal"> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
 <span class="function">gdk_gc_set_fill</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gc</span><span class="symbol">,</span><span class="normal"> GDK_SOLID</span><span class="symbol">);</span>
 <span class="function">gdk_gc_set_ts_origin</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gc</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">);</span></pre></td>
       </tr>
@@ -540,7 +540,7 @@ Another alternative is to use pixbufs instead of surfaces with
 <span class="comment">/* use */</span>
 <span class="function">gdk_draw_layout</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">drawable</span><span class="symbol">,</span><span class="normal"> gc</span><span class="symbol">,</span><span class="normal"> x</span><span class="symbol">,</span><span class="normal"> y</span><span class="symbol">,</span><span class="normal"> layout</span><span class="symbol">);</span>
 <span class="comment">/* restore */</span>
-<span class="function">gdk_gc_set_clip_rectangle</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gc</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span></pre></td>
+<span class="function">gdk_gc_set_clip_rectangle</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gc</span><span class="symbol">,</span><span class="normal"> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span></pre></td>
       </tr>
     </tbody>
   </table>
