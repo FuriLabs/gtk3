@@ -11,7 +11,7 @@ Bug-Ubuntu: https://launchpad.net/bugs/514879
  1 file changed, 23 insertions(+), 1 deletion(-)
 
 diff --git a/gtk/gtktreeview.c b/gtk/gtktreeview.c
-index 97442c7..59c825f 100644
+index a2f1b3b..8ec2d85 100644
 --- a/gtk/gtktreeview.c
 +++ b/gtk/gtktreeview.c
 @@ -467,6 +467,7 @@ struct _GtkTreeViewPrivate
@@ -63,7 +63,7 @@ index 97442c7..59c825f 100644
      case PROP_HOVER_SELECTION:
        if (tree_view->priv->hover_selection != g_value_get_boolean (value))
          {
-@@ -8997,7 +9011,15 @@ gtk_tree_view_row_changed (GtkTreeModel *model,
+@@ -8999,7 +9013,15 @@ gtk_tree_view_row_changed (GtkTreeModel *model,
  
    _gtk_tree_view_accessible_changed (tree_view, tree, node);
  
