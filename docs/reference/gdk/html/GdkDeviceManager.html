@@ -164,7 +164,7 @@ to a compatibility mode in which it will emit just one enter/leave
 event pair for all devices on a window. To enable per-device
 enter/leave events and other multi-pointer interaction features,
 <a class="link" href="gdk3-Windows.html#gdk-window-set-support-multidevice" title="gdk_window_set_support_multidevice ()"><code class="function">gdk_window_set_support_multidevice()</code></a> must be called on
-<a href="gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindows</span></a> (or <a href="https://developer.gnome.org/gtk3/GtkWidget.html#gtk-widget-set-support-multidevice"><code class="function">gtk_widget_set_support_multidevice()</code></a> on widgets).
+<a href="gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindows</span></a> (or <a href="https://developer.gnome.org/gtk4/GtkWidget.html#gtk-widget-set-support-multidevice"><code class="function">gtk_widget_set_support_multidevice()</code></a> on widgets).
 window. See the <a class="link" href="gdk3-Windows.html#gdk-window-set-support-multidevice" title="gdk_window_set_support_multidevice ()"><code class="function">gdk_window_set_support_multidevice()</code></a> documentation
 for more information.</p>
 <p>On X11, multi-device support is implemented through XInput 2.
@@ -278,8 +278,8 @@ written code.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdk_disable_multidevice (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
 <p>Disables multidevice support in GDK. This call must happen prior
-to <a class="link" href="GdkDisplay.html#gdk-display-open" title="gdk_display_open ()"><code class="function">gdk_display_open()</code></a>, <a href="https://developer.gnome.org/gtk3/gtk3-General.html#gtk-init"><code class="function">gtk_init()</code></a>, <a href="https://developer.gnome.org/gtk3/gtk3-General.html#gtk-init-with-args"><code class="function">gtk_init_with_args()</code></a> or
-<a href="https://developer.gnome.org/gtk3/gtk3-General.html#gtk-init-check"><code class="function">gtk_init_check()</code></a> in order to take effect.</p>
+to <a class="link" href="GdkDisplay.html#gdk-display-open" title="gdk_display_open ()"><code class="function">gdk_display_open()</code></a>, <a href="https://developer.gnome.org/gtk4/gtk4-General.html#gtk-init"><code class="function">gtk_init()</code></a>, <a href="https://developer.gnome.org/gtk3/gtk3-General.html#gtk-init-with-args"><code class="function">gtk_init_with_args()</code></a> or
+<a href="https://developer.gnome.org/gtk4/gtk4-General.html#gtk-init-check"><code class="function">gtk_init_check()</code></a> in order to take effect.</p>
 <p>Most common GTK+ applications won’t ever need to call this. Only
 applications that do mixed GDK/Xlib calls could want to disable
 multidevice support if such Xlib code deals with input devices in

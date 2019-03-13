@@ -158,7 +158,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkGravity"><span class="returnvalue">GdkGravity</span></a>
+<a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkGravity"><span class="returnvalue">GdkGravity</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GtkWindow.html#gtk-window-get-gravity" title="gtk_window_get_gravity ()">gtk_window_get_gravity</a> <span class="c_punctuation">()</span>
@@ -620,7 +620,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkModifierType"><span class="returnvalue">GdkModifierType</span></a>
+<a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkModifierType"><span class="returnvalue">GdkModifierType</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GtkWindow.html#gtk-window-get-mnemonic-modifier" title="gtk_window_get_mnemonic_modifier ()">gtk_window_get_mnemonic_modifier</a> <span class="c_punctuation">()</span>
@@ -1057,7 +1057,7 @@
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkGravity"><span class="type">GdkGravity</span></a></td>
+<td class="property_type"><a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkGravity"><span class="type">GdkGravity</span></a></td>
 <td class="property_name"><a class="link" href="GtkWindow.html#GtkWindow--gravity" title="The “gravity” property">gravity</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -1831,12 +1831,12 @@ gtk_window_set_geometry_hints.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_window_set_geometry_hints (<em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *window</code></em>,
                                <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *geometry_widget</code></em>,
-                               <em class="parameter"><code><a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkGeometry"><span class="type">GdkGeometry</span></a> *geometry</code></em>,
+                               <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkGeometry"><span class="type">GdkGeometry</span></a> *geometry</code></em>,
                                <em class="parameter"><code><a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkWindowHints"><span class="type">GdkWindowHints</span></a> geom_mask</code></em>);</pre>
 <p>This function sets up hints about how a window can be resized by
 the user.  You can set a minimum and maximum size; allowed resize
 increments (e.g. for xterm, you can only resize by the size of a
-character); aspect ratios; and more. See the <a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkGeometry"><span class="type">GdkGeometry</span></a> struct.</p>
+character); aspect ratios; and more. See the <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkGeometry"><span class="type">GdkGeometry</span></a> struct.</p>
 <div class="refsect3">
 <a name="gtk-window-set-geometry-hints.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1877,11 +1877,11 @@ set. </p></td>
 <a name="gtk-window-set-gravity"></a><h3>gtk_window_set_gravity ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_window_set_gravity (<em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *window</code></em>,
-                        <em class="parameter"><code><a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkGravity"><span class="type">GdkGravity</span></a> gravity</code></em>);</pre>
+                        <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkGravity"><span class="type">GdkGravity</span></a> gravity</code></em>);</pre>
 <p>Window gravity defines the meaning of coordinates passed to
-<a class="link" href="GtkWindow.html#gtk-window-move" title="gtk_window_move ()"><code class="function">gtk_window_move()</code></a>. See <a class="link" href="GtkWindow.html#gtk-window-move" title="gtk_window_move ()"><code class="function">gtk_window_move()</code></a> and <a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkGravity"><span class="type">GdkGravity</span></a> for
+<a class="link" href="GtkWindow.html#gtk-window-move" title="gtk_window_move ()"><code class="function">gtk_window_move()</code></a>. See <a class="link" href="GtkWindow.html#gtk-window-move" title="gtk_window_move ()"><code class="function">gtk_window_move()</code></a> and <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkGravity"><span class="type">GdkGravity</span></a> for
 more details.</p>
-<p>The default window gravity is <a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GDK-GRAVITY-NORTH-WEST:CAPS"><span class="type">GDK_GRAVITY_NORTH_WEST</span></a> which will
+<p>The default window gravity is <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GDK-GRAVITY-NORTH-WEST:CAPS"><span class="type">GDK_GRAVITY_NORTH_WEST</span></a> which will
 typically “do what you mean.”</p>
 <div class="refsect3">
 <a name="gtk-window-set-gravity.parameters"></a><h4>Parameters</h4>
@@ -1909,7 +1909,7 @@ typically “do what you mean.”</p>
 <hr>
 <div class="refsect2">
 <a name="gtk-window-get-gravity"></a><h3>gtk_window_get_gravity ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkGravity"><span class="returnvalue">GdkGravity</span></a>
+<pre class="programlisting"><a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkGravity"><span class="returnvalue">GdkGravity</span></a>
 gtk_window_get_gravity (<em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *window</code></em>);</pre>
 <p>Gets the value set by <a class="link" href="GtkWindow.html#gtk-window-set-gravity" title="gtk_window_set_gravity ()"><code class="function">gtk_window_set_gravity()</code></a>.</p>
 <div class="refsect3">
@@ -2389,7 +2389,7 @@ gtk_window_remove_mnemonic (<em class="parameter"><code><a class="link" href="Gt
 <pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 gtk_window_mnemonic_activate (<em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *window</code></em>,
                               <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="type">guint</span></a> keyval</code></em>,
-                              <em class="parameter"><code><a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> modifier</code></em>);</pre>
+                              <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkModifierType"><span class="type">GdkModifierType</span></a> modifier</code></em>);</pre>
 <p>Activates the targets associated with the mnemonic.</p>
 <div class="refsect3">
 <a name="gtk-window-mnemonic-activate.parameters"></a><h4>Parameters</h4>
@@ -2644,20 +2644,9 @@ to unset the default widget for the toplevel. </p></td>
 <a name="gtk-window-present"></a><h3>gtk_window_present ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_window_present (<em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *window</code></em>);</pre>
-<p>Presents a window to the user. This may mean raising the window
-in the stacking order, deiconifying it, moving it to the current
-desktop, and/or giving it the keyboard focus, possibly dependent
-on the user’s platform, window manager, and preferences.</p>
-<p>If <em class="parameter"><code>window</code></em>
- is hidden, this function calls <a class="link" href="GtkWidget.html#gtk-widget-show" title="gtk_widget_show ()"><code class="function">gtk_widget_show()</code></a>
-as well.</p>
-<p>This function should be used when the user tries to open a window
-that’s already open. Say for example the preferences dialog is
-currently open, and the user chooses Preferences from the menu
-a second time; use <a class="link" href="GtkWindow.html#gtk-window-present" title="gtk_window_present ()"><code class="function">gtk_window_present()</code></a> to move the already-open dialog
-where the user can see it.</p>
-<p>If you are calling this function in response to a user interaction,
-it is preferable to use <a class="link" href="GtkWindow.html#gtk-window-present-with-time" title="gtk_window_present_with_time ()"><code class="function">gtk_window_present_with_time()</code></a>.</p>
+<p>Presents a window to the user. This function should not be used
+as when it is called, it is too late to gather a valid timestamp
+to allow focus stealing prevention to work correctly.</p>
 <div class="refsect3">
 <a name="gtk-window-present.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -2680,9 +2669,22 @@ it is preferable to use <a class="link" href="GtkWindow.html#gtk-window-present-
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_window_present_with_time (<em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *window</code></em>,
                               <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint32"><span class="type">guint32</span></a> timestamp</code></em>);</pre>
-<p>Presents a window to the user in response to a user interaction.
-If you need to present a window without a timestamp, use 
-<a class="link" href="GtkWindow.html#gtk-window-present" title="gtk_window_present ()"><code class="function">gtk_window_present()</code></a>. See <a class="link" href="GtkWindow.html#gtk-window-present" title="gtk_window_present ()"><code class="function">gtk_window_present()</code></a> for details.</p>
+<p>Presents a window to the user. This may mean raising the window
+in the stacking order, deiconifying it, moving it to the current
+desktop, and/or giving it the keyboard focus, possibly dependent
+on the user’s platform, window manager, and preferences.</p>
+<p>If <em class="parameter"><code>window</code></em>
+ is hidden, this function calls <a class="link" href="GtkWidget.html#gtk-widget-show" title="gtk_widget_show ()"><code class="function">gtk_widget_show()</code></a>
+as well.</p>
+<p>This function should be used when the user tries to open a window
+that’s already open. Say for example the preferences dialog is
+currently open, and the user chooses Preferences from the menu
+a second time; use <a class="link" href="GtkWindow.html#gtk-window-present" title="gtk_window_present ()"><code class="function">gtk_window_present()</code></a> to move the already-open dialog
+where the user can see it.</p>
+<p>Presents a window to the user in response to a user interaction. The
+timestamp should be gathered when the window was requested to be shown
+(when clicking a link for example), rather than once the window is
+ready to be shown.</p>
 <div class="refsect3">
 <a name="gtk-window-present-with-time.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -3322,7 +3324,7 @@ policy involved.</p>
 <a name="gtk-window-set-mnemonic-modifier"></a><h3>gtk_window_set_mnemonic_modifier ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_window_set_mnemonic_modifier (<em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *window</code></em>,
-                                  <em class="parameter"><code><a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> modifier</code></em>);</pre>
+                                  <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkModifierType"><span class="type">GdkModifierType</span></a> modifier</code></em>);</pre>
 <p>Sets the mnemonic modifier for this window.</p>
 <div class="refsect3">
 <a name="gtk-window-set-mnemonic-modifier.parameters"></a><h4>Parameters</h4>
@@ -3898,7 +3900,7 @@ no themed icon. </p>
 <hr>
 <div class="refsect2">
 <a name="gtk-window-get-mnemonic-modifier"></a><h3>gtk_window_get_mnemonic_modifier ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkModifierType"><span class="returnvalue">GdkModifierType</span></a>
+<pre class="programlisting"><a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkModifierType"><span class="returnvalue">GdkModifierType</span></a>
 gtk_window_get_mnemonic_modifier (<em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *window</code></em>);</pre>
 <p>Returns the mnemonic modifier for this window. See
 <a class="link" href="GtkWindow.html#gtk-window-set-mnemonic-modifier" title="gtk_window_set_mnemonic_modifier ()"><code class="function">gtk_window_set_mnemonic_modifier()</code></a>.</p>
@@ -3972,11 +3974,11 @@ have been known to mismanage window gravity, which result in windows
 moving even if you use the coordinates of the current position as
 returned by this function.</p>
 <p>If you haven’t changed the window gravity, its gravity will be
-<a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GDK-GRAVITY-NORTH-WEST:CAPS"><span class="type">GDK_GRAVITY_NORTH_WEST</span></a>. This means that <a class="link" href="GtkWindow.html#gtk-window-get-position" title="gtk_window_get_position ()"><code class="function">gtk_window_get_position()</code></a>
+<a href="https://developer.gnome.org/gdk4/GdkSurface.html#GDK-GRAVITY-NORTH-WEST:CAPS"><span class="type">GDK_GRAVITY_NORTH_WEST</span></a>. This means that <a class="link" href="GtkWindow.html#gtk-window-get-position" title="gtk_window_get_position ()"><code class="function">gtk_window_get_position()</code></a>
 gets the position of the top-left corner of the window manager
 frame for the window. <a class="link" href="GtkWindow.html#gtk-window-move" title="gtk_window_move ()"><code class="function">gtk_window_move()</code></a> sets the position of this
 same top-left corner.</p>
-<p>If a window has gravity <a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GDK-GRAVITY-STATIC:CAPS"><span class="type">GDK_GRAVITY_STATIC</span></a> the window manager
+<p>If a window has gravity <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GDK-GRAVITY-STATIC:CAPS"><span class="type">GDK_GRAVITY_STATIC</span></a> the window manager
 frame is not relevant, and thus <a class="link" href="GtkWindow.html#gtk-window-get-position" title="gtk_window_get_position ()"><code class="function">gtk_window_get_position()</code></a> will
 always produce accurate results. However you can’t use static
 gravity to do things like place a window in a corner of the screen,
@@ -4535,7 +4537,7 @@ reference point for the window. The gravity determines two things:
 first, the location of the reference point in root window
 coordinates; and second, which point on the window is positioned at
 the reference point.</p>
-<p>By default the gravity is <a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GDK-GRAVITY-NORTH-WEST:CAPS"><span class="type">GDK_GRAVITY_NORTH_WEST</span></a>, so the reference
+<p>By default the gravity is <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GDK-GRAVITY-NORTH-WEST:CAPS"><span class="type">GDK_GRAVITY_NORTH_WEST</span></a>, so the reference
 point is simply the <em class="parameter"><code>x</code></em>
 , <em class="parameter"><code>y</code></em>
  supplied to <a class="link" href="GtkWindow.html#gtk-window-move" title="gtk_window_move ()"><code class="function">gtk_window_move()</code></a>. The
@@ -4544,9 +4546,9 @@ border) will be placed at <em class="parameter"><code>x</code></em>
 , <em class="parameter"><code>y</code></em>
 .  Therefore, to position a window
 at the top left of the screen, you want to use the default gravity
-(which is <a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GDK-GRAVITY-NORTH-WEST:CAPS"><span class="type">GDK_GRAVITY_NORTH_WEST</span></a>) and move the window to 0,0.</p>
+(which is <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GDK-GRAVITY-NORTH-WEST:CAPS"><span class="type">GDK_GRAVITY_NORTH_WEST</span></a>) and move the window to 0,0.</p>
 <p>To position a window at the bottom right corner of the screen, you
-would set <a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GDK-GRAVITY-SOUTH-EAST:CAPS"><span class="type">GDK_GRAVITY_SOUTH_EAST</span></a>, which means that the reference
+would set <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GDK-GRAVITY-SOUTH-EAST:CAPS"><span class="type">GDK_GRAVITY_SOUTH_EAST</span></a>, which means that the reference
 point is at <em class="parameter"><code>x</code></em>
  + the window width and <em class="parameter"><code>y</code></em>
  + the window height, and
@@ -4606,7 +4608,7 @@ geometry string, <a class="link" href="GtkWindow.html#gtk-window-parse-geometry"
 and calls <a class="link" href="GtkWindow.html#gtk-window-set-default-size" title="gtk_window_set_default_size ()"><code class="function">gtk_window_set_default_size()</code></a> and/or <a class="link" href="GtkWindow.html#gtk-window-move" title="gtk_window_move ()"><code class="function">gtk_window_move()</code></a>
 to resize/move the window.</p>
 <p>If <a class="link" href="GtkWindow.html#gtk-window-parse-geometry" title="gtk_window_parse_geometry ()"><code class="function">gtk_window_parse_geometry()</code></a> returns <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a>, it will also
-set the <a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GDK-HINT-USER-POS:CAPS"><span class="type">GDK_HINT_USER_POS</span></a> and/or <a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GDK-HINT-USER-SIZE:CAPS"><span class="type">GDK_HINT_USER_SIZE</span></a> hints
+set the <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GDK-HINT-USER-POS:CAPS"><span class="type">GDK_HINT_USER_POS</span></a> and/or <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GDK-HINT-USER-SIZE:CAPS"><span class="type">GDK_HINT_USER_SIZE</span></a> hints
 indicating to the window manager that the size/position of
 the window was user-specified. This causes most window
 managers to honor the geometry.</p>
@@ -4681,7 +4683,7 @@ on the window.</p>
 <span class="normal">  </span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">window</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">vbox</span><span class="symbol">;</span>
 <span class="normal">  </span><span class="usertype">GdkGeometry</span><span class="normal"> size_hints </span><span class="symbol">=</span><span class="normal"> </span><span class="cbracket">{</span>
 <span class="normal">    </span><span class="number">100</span><span class="symbol">,</span><span class="normal"> </span><span class="number">50</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">100</span><span class="symbol">,</span><span class="normal"> </span><span class="number">50</span><span class="symbol">,</span><span class="normal"> </span><span class="number">10</span><span class="symbol">,</span>
-<span class="normal">    </span><span class="number">10</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.0</span><span class="symbol">,</span><span class="normal"> <a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GDK-GRAVITY-NORTH-WEST:CAPS">GDK_GRAVITY_NORTH_WEST</a></span>
+<span class="normal">    </span><span class="number">10</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.0</span><span class="symbol">,</span><span class="normal"> <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GDK-GRAVITY-NORTH-WEST:CAPS">GDK_GRAVITY_NORTH_WEST</a></span>
 <span class="normal">  </span><span class="cbracket">}</span><span class="symbol">;</span>
 
 <span class="normal">  </span><span class="function"><a href="gtk3-General.html#gtk-init">gtk_init</a></span><span class="normal"> </span><span class="symbol">(&amp;</span><span class="normal">argc</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">argv</span><span class="symbol">);</span>
@@ -4696,9 +4698,9 @@ on the window.</p>
 <span class="normal">  </span><span class="function"><a href="GtkWindow.html#gtk-window-set-geometry-hints">gtk_window_set_geometry_hints</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_WINDOW</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">),</span>
 <span class="normal">                    <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span>
 <span class="normal">                    </span><span class="symbol">&amp;</span><span class="normal">size_hints</span><span class="symbol">,</span>
-<span class="normal">                    <a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GDK-HINT-MIN-SIZE:CAPS">GDK_HINT_MIN_SIZE</a> </span><span class="symbol">|</span>
-<span class="normal">                    <a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GDK-HINT-BASE-SIZE:CAPS">GDK_HINT_BASE_SIZE</a> </span><span class="symbol">|</span>
-<span class="normal">                    <a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GDK-HINT-RESIZE-INC:CAPS">GDK_HINT_RESIZE_INC</a></span><span class="symbol">);</span>
+<span class="normal">                    <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GDK-HINT-MIN-SIZE:CAPS">GDK_HINT_MIN_SIZE</a> </span><span class="symbol">|</span>
+<span class="normal">                    <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GDK-HINT-BASE-SIZE:CAPS">GDK_HINT_BASE_SIZE</a> </span><span class="symbol">|</span>
+<span class="normal">                    <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GDK-HINT-RESIZE-INC:CAPS">GDK_HINT_RESIZE_INC</a></span><span class="symbol">);</span>
 
 <span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">argc </span><span class="symbol">&gt;</span><span class="normal"> </span><span class="number">1</span><span class="symbol">)</span>
 <span class="normal">    </span><span class="cbracket">{</span>
@@ -6007,8 +6009,8 @@ and should not be set by applications.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkWindow--gravity"></a><h3>The <code class="literal">“gravity”</code> property</h3>
-<pre class="programlisting">  “gravity”                  <a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkGravity"><span class="type">GdkGravity</span></a></pre>
-<p>The window gravity of the window. See <a class="link" href="GtkWindow.html#gtk-window-move" title="gtk_window_move ()"><code class="function">gtk_window_move()</code></a> and <a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkGravity"><span class="type">GdkGravity</span></a> for
+<pre class="programlisting">  “gravity”                  <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkGravity"><span class="type">GdkGravity</span></a></pre>
+<p>The window gravity of the window. See <a class="link" href="GtkWindow.html#gtk-window-move" title="gtk_window_move ()"><code class="function">gtk_window_move()</code></a> and <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkGravity"><span class="type">GdkGravity</span></a> for
 more details about window gravity.</p>
 <p>Flags: Read / Write</p>
 <p>Default value: GDK_GRAVITY_NORTH_WEST</p>

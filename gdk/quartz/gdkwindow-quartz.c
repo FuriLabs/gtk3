@@ -609,10 +609,10 @@ _gdk_quartz_window_gdk_xy_to_xy (gint  gdk_x,
   GdkQuartzScreen *screen_quartz = GDK_QUARTZ_SCREEN (_gdk_screen);
 
   if (ns_y)
-    *ns_y = screen_quartz->height - gdk_y + screen_quartz->min_y;
+    *ns_y = screen_quartz->orig_y - gdk_y;
 
   if (ns_x)
-    *ns_x = gdk_x + screen_quartz->min_x;
+    *ns_x = gdk_x + screen_quartz->orig_x;
 }
 
 void
@@ -624,10 +624,10 @@ _gdk_quartz_window_xy_to_gdk_xy (gint  ns_x,
   GdkQuartzScreen *screen_quartz = GDK_QUARTZ_SCREEN (_gdk_screen);
 
   if (gdk_y)
-    *gdk_y = screen_quartz->height - ns_y + screen_quartz->min_y;
+    *gdk_y = screen_quartz->orig_y - ns_y;
 
   if (gdk_x)
-    *gdk_x = ns_x - screen_quartz->min_x;
+    *gdk_x = ns_x - screen_quartz->orig_x;
 }
 
 void
@@ -2170,6 +2170,37 @@ _gdk_quartz_window_update_has_shadow (GdkWindowImplQuartz *impl)
 }
 
 static void
+_gdk_quartz_window_set_collection_behavior (NSWindow *nswindow,
+                                            GdkWindowTypeHint hint)
+{
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= 1070
+     if (gdk_quartz_osx_version() >= GDK_OSX_LION)
+    {
+      /* Fullscreen Collection Behavior */
+      NSWindowCollectionBehavior behavior = [nswindow collectionBehavior];
+      switch (hint)
+        {
+        case GDK_WINDOW_TYPE_HINT_NORMAL:
+        case GDK_WINDOW_TYPE_HINT_SPLASHSCREEN:
+          behavior &= ~(NSWindowCollectionBehaviorFullScreenAuxiliary &
+                        NSWindowCollectionBehaviorFullScreenDisallowsTiling);
+          behavior |= (NSWindowCollectionBehaviorFullScreenPrimary |
+                       NSWindowCollectionBehaviorFullScreenAllowsTiling);
+
+          break;
+        default:
+          behavior &= ~(NSWindowCollectionBehaviorFullScreenPrimary &
+                        NSWindowCollectionBehaviorFullScreenAllowsTiling);
+          behavior |= (NSWindowCollectionBehaviorFullScreenAuxiliary |
+                       NSWindowCollectionBehaviorFullScreenDisallowsTiling);
+          break;
+        }
+      [nswindow setCollectionBehavior:behavior];
+    }
+#endif
+}
+
+static void
 gdk_quartz_window_set_type_hint (GdkWindow        *window,
                                  GdkWindowTypeHint hint)
 {
@@ -2188,6 +2219,8 @@ gdk_quartz_window_set_type_hint (GdkWindow        *window,
     return;
 
   _gdk_quartz_window_update_has_shadow (impl);
+  if (impl->toplevel)
+    _gdk_quartz_window_set_collection_behavior (impl->toplevel, hint);
   [impl->toplevel setLevel: window_type_hint_to_level (hint)];
   [impl->toplevel setHidesOnDeactivate: window_type_hint_to_hides_on_deactivate (hint)];
 }
@@ -2439,7 +2472,6 @@ gdk_quartz_window_set_decorations (GdkWindow       *window,
       if (new_mask == GDK_QUARTZ_BORDERLESS_WINDOW)
         {
           [impl->toplevel setContentSize:rect.size];
-          [impl->toplevel setCollectionBehavior:NSWindowCollectionBehaviorFullScreenPrimary];
         }
       else
         [impl->toplevel setFrame:rect display:YES];
@@ -2698,6 +2730,9 @@ _gdk_quartz_window_update_fullscreen_state (GdkWindow *window)
   gboolean is_fullscreen;
   gboolean was_fullscreen;
 
+  if (GDK_WINDOW_DESTROYED (window) || !WINDOW_IS_TOPLEVEL (window))
+    return;
+  
   is_fullscreen = window_is_fullscreen (window);
   was_fullscreen = (gdk_window_get_state (window) & GDK_WINDOW_STATE_FULLSCREEN) != 0;
 

@@ -236,7 +236,7 @@ though it is almost always used to display just one accelerator key.</p>
 <span class="comment">// GtkMenuItem accelerators. We just need to make sure we use</span>
 <span class="comment">// GTK_ACCEL_VISIBLE here.</span>
 <span class="function"><a href="GtkWidget.html#gtk-widget-add-accelerator">gtk_widget_add_accelerator</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">save_item</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"activate"</span><span class="symbol">,</span><span class="normal"> accel_group</span><span class="symbol">,</span>
-<span class="normal">                            GDK_KEY_s</span><span class="symbol">,</span><span class="normal"> <a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GDK-CONTROL-MASK:CAPS">GDK_CONTROL_MASK</a></span><span class="symbol">,</span><span class="normal"> <a href="gtk3-Keyboard-Accelerators.html#GTK-ACCEL-VISIBLE:CAPS">GTK_ACCEL_VISIBLE</a></span><span class="symbol">);</span></pre></td>
+<span class="normal">                            GDK_KEY_s</span><span class="symbol">,</span><span class="normal"> <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GDK-CONTROL-MASK:CAPS">GDK_CONTROL_MASK</a></span><span class="symbol">,</span><span class="normal"> <a href="gtk3-Keyboard-Accelerators.html#GTK-ACCEL-VISIBLE:CAPS">GTK_ACCEL_VISIBLE</a></span><span class="symbol">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -422,7 +422,7 @@ be needed by applications.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_accel_label_set_accel (<em class="parameter"><code><a class="link" href="GtkAccelLabel.html" title="GtkAccelLabel"><span class="type">GtkAccelLabel</span></a> *accel_label</code></em>,
                            <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="type">guint</span></a> accelerator_key</code></em>,
-                           <em class="parameter"><code><a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> accelerator_mods</code></em>);</pre>
+                           <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkModifierType"><span class="type">GdkModifierType</span></a> accelerator_mods</code></em>);</pre>
 <p>Manually sets a keyval and modifier mask as the accelerator rendered
 by <em class="parameter"><code>accel_label</code></em>
 .</p>
@@ -465,7 +465,7 @@ used regardless of any associated accel closure or widget.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_accel_label_get_accel (<em class="parameter"><code><a class="link" href="GtkAccelLabel.html" title="GtkAccelLabel"><span class="type">GtkAccelLabel</span></a> *accel_label</code></em>,
                            <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="type">guint</span></a> *accelerator_key</code></em>,
-                           <em class="parameter"><code><a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> *accelerator_mods</code></em>);</pre>
+                           <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkModifierType"><span class="type">GdkModifierType</span></a> *accelerator_mods</code></em>);</pre>
 <p>Gets the keyval and modifier mask set with
 <a class="link" href="GtkAccelLabel.html#gtk-accel-label-set-accel" title="gtk_accel_label_set_accel ()"><code class="function">gtk_accel_label_set_accel()</code></a>.</p>
 <div class="refsect3">

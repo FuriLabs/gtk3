@@ -9,6 +9,8 @@ Build-Depends: adwaita-icon-theme-full <!nocheck>,
                dbus <!nocheck>,
                debhelper (>= 10.3~),
                dh-sequence-translations,
+               fonts-cantarell <!nocheck>,
+               fonts-dejavu-core <!nocheck>,
                gnome-pkg-tools (>= 0.11),
                gobject-introspection (>= 1.41.3),
                gsettings-desktop-schemas <!nocheck>,
@@ -21,6 +23,7 @@ Build-Depends: adwaita-icon-theme-full <!nocheck>,
                libegl1-mesa-dev [linux-any],
                libepoxy-dev (>= 1.4),
                libfontconfig1-dev,
+               libfribidi-dev (>= 0.19.7),
                libgdk-pixbuf2.0-dev (>= 2.30.0),
                libgirepository1.0-dev (>= 1.39.0),
                libglib2.0-dev (>= 2.53.4),
@@ -82,6 +85,7 @@ Description: GTK+ graphical user interface library
  This package contains the shared libraries.
 
 Package: @UDEB_PKG@
+Build-Profiles: <!noudeb>
 Package-Type: udeb
 Section: debian-installer
 Architecture: any
@@ -142,6 +146,7 @@ Depends: gir1.2-gtk-3.0 (= ${binary:Version}),
          libegl1-mesa-dev [linux-any],
          libepoxy-dev (>= 1.0),
          libfontconfig1-dev,
+         libfribidi-dev (>= 0.19.7),
          libgdk-pixbuf2.0-dev (>= 2.30.0),
          libglib2.0-dev (>= 2.49.4),
          libpango1.0-dev (>= 1.41),

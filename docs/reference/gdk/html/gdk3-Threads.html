@@ -144,7 +144,7 @@ locked), but individual data structure instances are not automatically
 locked for performance reasons. So e.g. you must coordinate
 accesses to the same <a href="https://developer.gnome.org/glib/unstable/glib-Hash-Tables.html#GHashTable"><span class="type">GHashTable</span></a> from multiple threads.</p>
 <p>GTK+, however, is not thread safe. You should only use GTK+ and GDK
-from the thread <a href="https://developer.gnome.org/gtk3/gtk3-General.html#gtk-init"><code class="function">gtk_init()</code></a> and <a href="https://developer.gnome.org/gtk3/gtk3-General.html#gtk-main"><code class="function">gtk_main()</code></a> were called on.
+from the thread <a href="https://developer.gnome.org/gtk4/gtk4-General.html#gtk-init"><code class="function">gtk_init()</code></a> and <a href="https://developer.gnome.org/gtk4/gtk4-General.html#gtk-main"><code class="function">gtk_main()</code></a> were called on.
 This is usually referred to as the “main thread”.</p>
 <p>Signals on GTK+ and GDK types, as well as non-signal callbacks, are
 emitted in the main thread.</p>
@@ -188,7 +188,7 @@ by using <a class="link" href="gdk3-Threads.html#gdk-threads-add-idle" title="gd
 
 <span class="normal">  my_app</span><span class="symbol">-&gt;</span><span class="normal">expensive_data </span><span class="symbol">=</span><span class="normal"> expensive_data</span><span class="symbol">;</span>
 <span class="normal">  </span><span class="function">gtk_button_set_sensitive</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">my_app</span><span class="symbol">-&gt;</span><span class="normal">button</span><span class="symbol">,</span><span class="normal"> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS">TRUE</a></span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="https://developer.gnome.org/gtk3/GtkButton.html#gtk-button-set-label">gtk_button_set_label</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">my_app</span><span class="symbol">-&gt;</span><span class="normal">button</span><span class="symbol">,</span><span class="normal"> expensive_data</span><span class="symbol">-&gt;</span><span class="normal">result_label</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function"><a href="https://developer.gnome.org/gtk4/GtkButton.html#gtk-button-set-label">gtk_button_set_label</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">my_app</span><span class="symbol">-&gt;</span><span class="normal">button</span><span class="symbol">,</span><span class="normal"> expensive_data</span><span class="symbol">-&gt;</span><span class="normal">result_label</span><span class="symbol">);</span>
 
 <span class="normal">  </span><span class="keyword">return</span><span class="normal"> <a href="https://developer.gnome.org/glib/unstable/glib-The-Main-Event-Loop.html#G-SOURCE-REMOVE:CAPS">G_SOURCE_REMOVE</a></span><span class="symbol">;</span>
 <span class="cbracket">}</span></pre></td>
@@ -252,7 +252,7 @@ gdk_threads_init (<em class="parameter"><code><span class="type">void</span></co
 <p>Initializes GDK so that it can be used from multiple threads
 in conjunction with <a class="link" href="gdk3-Threads.html#gdk-threads-enter" title="gdk_threads_enter ()"><code class="function">gdk_threads_enter()</code></a> and <a class="link" href="gdk3-Threads.html#gdk-threads-leave" title="gdk_threads_leave ()"><code class="function">gdk_threads_leave()</code></a>.</p>
 <p>This call must be made before any use of the main loop from
-GTK+; to be safe, call it before <a href="https://developer.gnome.org/gtk3/gtk3-General.html#gtk-init"><code class="function">gtk_init()</code></a>.</p>
+GTK+; to be safe, call it before <a href="https://developer.gnome.org/gtk4/gtk4-General.html#gtk-init"><code class="function">gtk_init()</code></a>.</p>
 </div>
 <hr>
 <div class="refsect2">

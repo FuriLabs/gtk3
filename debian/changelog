@@ -1,3 +1,25 @@
+gtk+3.0 (3.24.7-1) experimental; urgency=medium
+
+  * New upstream release
+    + Broadway: Ensure focus on click
+    + Fix some compiler warnings
+    + Improve activation of the onscreen keyboard
+    + Improve menu positioning with move-to-rect
+    + Link against fribidi
+    + Treeview: Make sure separator nodes have height > 0
+    + Use C locale when generating code
+    + theme
+      - Fix some inconsistences for radii
+  * control: BD and D (from libgtk-3-dev) on fribidi as required now
+  * Refresh patches & drop upstream ones.
+     debian/patches/Revert-Update-a11y-test-output.patch,
+     debian/patches/Update-css-node-tests.patch: Dropped, now upstream.
+  * control: BD on fonts-cantarell and fonts-dejavu. These are required for
+    the reftests. Liberation doesn't work (label-shadows fails).
+  * debian/libgtk-3-0.symbols: Update
+
+ -- Iain Lane <laney@debian.org>  Wed, 13 Mar 2019 16:39:58 +0000
+
 gtk+3.0 (3.24.5-1ubuntu2) disco; urgency=medium
 
   * debian/patches/restore_filechooser_typeaheadfind.patch:

@@ -267,7 +267,7 @@ entry {
     padding-left: 8px;
     padding-right: 8px;
     border: 1px solid;
-    border-radius: 3px;
+    border-radius: $button_radius;
     transition: all 200ms $ease-out-quad;
 
     @include entry(normal);
@@ -849,6 +849,7 @@ button {
   &.circular { // The Bloody Circul Button
     border-radius: 9999px;
     -gtk-outline-radius: 9999px;
+    padding: 4px; /* circles instead of ellipses */
 
     label { padding: 0; }
 
@@ -1003,7 +1004,7 @@ toolbar.inline-toolbar toolbutton:backdrop {
   }
 
   &:only-child {
-    border-radius: 3px;
+    border-radius: $button_radius;
     border-style: solid;
   }
 }
@@ -1017,18 +1018,18 @@ toolbar.inline-toolbar toolbutton:backdrop {
   @extend %linked_vertical_middle;
 
   &:first-child {
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
+    border-top-left-radius: $button_radius;
+    border-top-right-radius: $button_radius;
   }
 
   &:last-child {
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: $button_radius;
+    border-bottom-right-radius: $button_radius;
     border-style: solid;
   }
 
   &:only-child {
-    border-radius: 3px;
+    border-radius: $button_radius;
     border-style: solid;
   }
 }
@@ -1128,6 +1129,8 @@ list row button {
     *:selected & { color: mix($selected_fg_color, $selected_bg_color, 80%); }
   }
 
+  &:disabled, &:disabled:backdrop { color: transparentize(desaturate($link_color,100%), 0.2); }
+
   &:backdrop { &:backdrop:hover, &:backdrop:hover:selected, & { color: $selected_bg_color; }}
 
   @at-root %link_selected,
@@ -1155,6 +1158,7 @@ button:visited {
     @extend %link;
 
     text-decoration-line: underline;
+
   }
 }
 
@@ -1233,9 +1237,9 @@ spinbutton {
         &:dir(rtl) { border-style: none solid none none; }
       }
 
-      &:dir(ltr):last-child { border-radius: 0 3px 3px 0; }
+      &:dir(ltr):last-child { border-radius: 0 $button_radius $button_radius 0; }
 
-      &:dir(rtl):first-child { border-radius: 3px 0 0 3px; }
+      &:dir(rtl):first-child { border-radius: $button_radius 0 0 $button_radius; }
     }
   }
 
@@ -1285,9 +1289,9 @@ spinbutton {
         box-shadow: none;
       }
 
-      &:dir(ltr):last-child { border-radius: 0 3px 3px 0; }
+      &:dir(ltr):last-child { border-radius: 0 $button_radius $button_radius 0; }
 
-      &:dir(rtl):first-child { border-radius: 3px 0 0 3px; }
+      &:dir(rtl):first-child { border-radius: $button_radius 0 0 $button_radius; }
     }
   }
 
@@ -1326,12 +1330,12 @@ spinbutton {
     }
 
     %top_button {
-      border-radius: 3px 3px 0 0;
+      border-radius: $button_radius $button_radius 0 0;
       border-style: solid solid none solid;
     }
 
     %bottom_button {
-      border-radius: 0 0 3px 3px;
+      border-radius: 0 0 $button_radius $button_radius;
       border-style: none solid solid solid;
     }
   }
@@ -1830,6 +1834,8 @@ window.devel {
       background: $bg_color -gtk-icontheme("system-run-symbolic") 90% 0/256px 256px no-repeat,
                   image($bg_color); /* background-color would flash */
       color: transparentize($fg_color,.95);
+
+      label { color: $backdrop_fg_color; }
     }
   }
 }
@@ -2215,7 +2221,7 @@ menu,
     border-radius: 0;
 
     &.top {
-      margin-top: -2px;
+      margin-top: -4px;
       border-bottom: 1px solid mix($fg_color, $base_color, 10%);
       border-top-right-radius: $menu_radius;
       border-top-left-radius: $menu_radius;
@@ -2223,8 +2229,8 @@ menu,
     }
 
     &.bottom {
-      margin-top: 4px;
-      margin-bottom: -6px;
+      margin-top: 8px;
+      margin-bottom: -12px;
       border-top: 1px solid mix($fg_color, $base_color, 10%);
       border-bottom-right-radius: $menu_radius;
       border-bottom-left-radius: $menu_radius;
@@ -2854,25 +2860,30 @@ switch {
 
 
 //selection-mode
-@each $s,$as in ('','-selectionmode'),
-                  (':hover', '-hover-selectionmode'),
-                  (':active', '-active-selectionmode'),
-                  (':backdrop', '-backdrop-selectionmode'),
-                  (':checked', '-checked-selectionmode'),
-                  (':checked:hover', '-checked-hover-selectionmode'),
-                  (':checked:active', '-checked-active-selectionmode'),
-                  (':backdrop:checked', '-checked-backdrop-selectionmode') {
-  .view.content-view.check#{$s}:not(list),
-  .content-view .tile check#{$s}:not(list) {
-    -gtk-icon-shadow: none;
-    -gtk-icon-source: -gtk-scaled(url("assets/checkbox#{$as}.png"), url("assets/checkbox#{$as}@2.png"));
-    background-color: transparent;
-    min-width: 40px;
-    min-height: 40px;
+@each $check_state, $check_icon, $check_color, $check_background in
+  ('', 'none', 'transparent', '#{transparentize($selected_bg_color, .05)}'),
+  (':hover', 'none', 'transparent', '#{transparentize($selected_bg_color, .05)}'),
+  (':active', 'none', 'transparent', '#{transparentize($selected_bg_color, .05)}'),
+  (':backdrop', 'none', 'transparent', '#{transparentize(desaturate($selected_bg_color, 100%), .05)}'),
+  (':checked', '-gtk-icontheme(\'object-select-symbolic\')', '#{$osd_fg_color}', '#{transparentize($selected_bg_color, .05)}'),
+  (':checked:hover', '-gtk-icontheme(\'object-select-symbolic\')', '#{$osd_fg_color}', '#{transparentize($selected_bg_color, .05)}'),
+  (':checked:active', '-gtk-icontheme(\'object-select-symbolic\')', '#{$osd_fg_color}', '#{transparentize($selected_bg_color, .05)}'),
+  (':backdrop:checked', '-gtk-icontheme(\'object-select-symbolic\')', '#{transparentize($osd_fg_color, 0.2)}', '#{transparentize(desaturate($selected_bg_color, 100%), .05)}'), {
+
+  .view.content-view.check#{$check_state}:not(list),
+  .content-view .tile check#{$check_state}:not(list) {
+    margin: 4px;
+    min-width: 32px;
+    min-height: 32px;
+    color: #{$check_color};
+    background-color: #{$check_background};
+    border-radius: 5px;
     background-image: none;
-    transition: none;
+    transition: 200ms;
     box-shadow: none;
     border-width: 0;
+    -gtk-icon-source: #{$check_icon};
+    -gtk-icon-shadow: none;
   }
 }
 
@@ -3938,7 +3949,7 @@ filechooserbutton:drop(active) {
       border-left-style: none;
     }
 
-    @at-root %sidebar_right
+    @at-root %sidebar_right,
     &:dir(rtl),
     &.right {
       border-left: 1px solid $borders_color;

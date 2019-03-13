@@ -1398,13 +1398,18 @@ moved_to_rect_cb (GdkWindow          *window,
                   gboolean            flipped_y,
                   GtkMenu            *menu)
 {
-  g_signal_emit (menu,
-                 menu_signals[POPPED_UP],
-                 0,
-                 flipped_rect,
-                 final_rect,
-                 flipped_x,
-                 flipped_y);
+  GtkMenuPrivate *priv = menu->priv;
+
+  gtk_window_fixate_size (GTK_WINDOW (priv->toplevel));
+
+  if (!priv->emulated_move_to_rect)
+    g_signal_emit (menu,
+                   menu_signals[POPPED_UP],
+                   0,
+                   flipped_rect,
+                   final_rect,
+                   flipped_x,
+                   flipped_y);
 }
 
 static void
@@ -2676,7 +2681,7 @@ gtk_menu_set_accel_group (GtkMenu       *menu,
   GtkMenuPrivate *priv;
 
   g_return_if_fail (GTK_IS_MENU (menu));
-  g_return_if_fail (GTK_IS_ACCEL_GROUP (accel_group));
+  g_return_if_fail (!accel_group || GTK_IS_ACCEL_GROUP (accel_group));
 
   priv = menu->priv;
 
@@ -2817,7 +2822,7 @@ _gtk_menu_refresh_accel_paths (GtkMenu  *menu,
 {
   GtkMenuPrivate *priv = menu->priv;
 
-  if (priv->accel_path && priv->accel_group)
+  if (priv->accel_path)
     {
       AccelPropagation prop;
 
@@ -5267,6 +5272,7 @@ gtk_menu_position (GtkMenu  *menu,
    * the right place to popup the menu.
    */
   gtk_widget_realize (priv->toplevel);
+  gtk_window_move_resize (GTK_WINDOW (priv->toplevel));
 
   if (!gtk_widget_get_visible (priv->toplevel))
     gtk_window_set_type_hint (GTK_WINDOW (priv->toplevel), priv->menu_type_hint);
@@ -5286,9 +5292,9 @@ gtk_menu_position (GtkMenu  *menu,
 
   g_signal_handlers_disconnect_by_func (toplevel, moved_to_rect_cb, menu);
 
-  if (!emulated_move_to_rect)
-    g_signal_connect (toplevel, "moved-to-rect", G_CALLBACK (moved_to_rect_cb),
-                      menu);
+  g_signal_connect (toplevel, "moved-to-rect", G_CALLBACK (moved_to_rect_cb),
+                    menu);
+  priv->emulated_move_to_rect = emulated_move_to_rect;
 
   gdk_window_move_to_rect (toplevel,
                            &rect,
@@ -5392,7 +5398,7 @@ gtk_menu_scroll_to (GtkMenu           *menu,
           if (!priv->upper_arrow_visible || !priv->lower_arrow_visible)
             gtk_widget_queue_draw (GTK_WIDGET (menu));
 
-          if (!priv->upper_arrow_visible &
+          if (!priv->upper_arrow_visible &&
               flags & GTK_MENU_SCROLL_FLAG_ADAPT)
             should_offset_by_arrow = TRUE;
           else

@@ -422,11 +422,11 @@
 <td><a href="/usr/share/gtk-doc/html/cairo/cairo-Types.html#cairo-rectangle-int-t"><span class="type">cairo_rectangle_int_t</span></a></td>
 </tr>
 <tr>
-<td><a href="https://developer.gnome.org/gdk3/gdk3-Points-Rectangles-and-Regions.html#gdk-rectangle-intersect"><code class="function">gdk_rectangle_intersect()</code></a></td>
+<td><a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#gdk-rectangle-intersect"><code class="function">gdk_rectangle_intersect()</code></a></td>
 <td>this function is still there</td>
 </tr>
 <tr>
-<td><a href="https://developer.gnome.org/gdk3/gdk3-Points-Rectangles-and-Regions.html#gdk-rectangle-union"><code class="function">gdk_rectangle_union()</code></a></td>
+<td><a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#gdk-rectangle-union"><code class="function">gdk_rectangle_union()</code></a></td>
 <td>this function is still there</td>
 </tr>
 <tr>
@@ -603,7 +603,7 @@
 <span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-fill">cairo_fill</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span>
 <span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-destroy">cairo_destroy</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span>
 
-<span class="normal">pixbuf </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gdk3/gdk3-Pixbufs.html#gdk-pixbuf-get-from-surface">gdk_pixbuf_get_from_surface</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">s</span><span class="symbol">,</span>
+<span class="normal">pixbuf </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gdk4/gdk4-Pixbufs.html#gdk-pixbuf-get-from-surface">gdk_pixbuf_get_from_surface</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">s</span><span class="symbol">,</span>
 <span class="normal">                                      </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span>
 <span class="normal">                                      </span><span class="number">3</span><span class="symbol">,</span><span class="normal"> </span><span class="number">3</span><span class="symbol">);</span>
 
@@ -881,7 +881,7 @@
       means that your application does not receive core X11 key or button
       events. Instead, all input events are delivered as XIDeviceEvents.
       As a short-term workaround for this, you can force your application
-      to not use XI2, with <a href="https://developer.gnome.org/gdk3/GdkDeviceManager.html#gdk-disable-multidevice"><code class="function">gdk_disable_multidevice()</code></a>. In the long term,
+      to not use XI2, with <a href="https://developer.gnome.org/gdk4/gdk4-X-Window-System-Interaction.html#gdk-disable-multidevice"><code class="function">gdk_disable_multidevice()</code></a>. In the long term,
       you probably want to rewrite your event filter to deal with
       XIDeviceEvents.
     </p>
@@ -891,7 +891,7 @@
 <a name="id-1.6.3.4.9"></a>Backend-specific code</h3></div></div></div>
 <p>
       In GTK+ 2.x, GDK could only be compiled for one backend at a time,
-      and the <a href="https://developer.gnome.org/gdk3/gdk3-General.html#GDK-WINDOWING-X11:CAPS"><code class="literal">GDK_WINDOWING_X11</code></a> or <a href="https://developer.gnome.org/gdk3/gdk3-General.html#GDK-WINDOWING-WIN32:CAPS"><code class="literal">GDK_WINDOWING_WIN32</code></a> macros could
+      and the <a href="https://developer.gnome.org/gdk4/gdk4-General.html#GDK-WINDOWING-X11:CAPS"><code class="literal">GDK_WINDOWING_X11</code></a> or <a href="https://developer.gnome.org/gdk4/gdk4-General.html#GDK-WINDOWING-WIN32:CAPS"><code class="literal">GDK_WINDOWING_WIN32</code></a> macros could
       be used to find out which one you are dealing with:
       </p>
 <div class="informalexample">
@@ -905,11 +905,11 @@
 5
 6
 7</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="preproc">#ifdef</span><span class="normal"> <a href="https://developer.gnome.org/gdk3/gdk3-General.html#GDK-WINDOWING-X11:CAPS">GDK_WINDOWING_X11</a></span>
-<span class="normal">      </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">timestamp </span><span class="symbol">!=</span><span class="normal"> <a href="https://developer.gnome.org/gdk3/gdk3-Events.html#GDK-CURRENT-TIME:CAPS">GDK_CURRENT_TIME</a></span><span class="symbol">)</span>
+        <td class="listing_code"><pre class="programlisting"><span class="preproc">#ifdef</span><span class="normal"> <a href="https://developer.gnome.org/gdk4/gdk4-General.html#GDK-WINDOWING-X11:CAPS">GDK_WINDOWING_X11</a></span>
+<span class="normal">      </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">timestamp </span><span class="symbol">!=</span><span class="normal"> <a href="https://developer.gnome.org/gdk4/gdk4-Events.html#GDK-CURRENT-TIME:CAPS">GDK_CURRENT_TIME</a></span><span class="symbol">)</span>
 <span class="normal">        </span><span class="function"><a href="https://developer.gnome.org/gdk3/gdk3-X-Window-System-Interaction.html#gdk-x11-window-set-user-time">gdk_x11_window_set_user_time</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gdk_window</span><span class="symbol">,</span><span class="normal"> timestamp</span><span class="symbol">);</span>
 <span class="preproc">#endif</span>
-<span class="preproc">#ifdef</span><span class="normal"> <a href="https://developer.gnome.org/gdk3/gdk3-General.html#GDK-WINDOWING-WIN32:CAPS">GDK_WINDOWING_WIN32</a></span>
+<span class="preproc">#ifdef</span><span class="normal"> <a href="https://developer.gnome.org/gdk4/gdk4-General.html#GDK-WINDOWING-WIN32:CAPS">GDK_WINDOWING_WIN32</a></span>
 <span class="normal">        </span><span class="comment">/* ... win32 specific code ... */</span>
 <span class="preproc">#endif</span></pre></td>
       </tr>
@@ -920,7 +920,7 @@
 <p>
       In GTK+ 3, GDK can be built with multiple backends, and currently
       used backend has to be determined at runtime, typically using
-      type-check macros on a <a href="https://developer.gnome.org/gdk3/GdkDisplay.html#GdkDisplay-struct"><span class="type">GdkDisplay</span></a> or <a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a>. You still need
+      type-check macros on a <a href="https://developer.gnome.org/gdk4/GdkDisplay.html#GdkDisplay-struct"><span class="type">GdkDisplay</span></a> or <a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a>. You still need
       to use the GDK_WINDOWING macros to only compile code referring
       to supported backends:
       </p>
@@ -946,15 +946,15 @@
 16
 17
 18</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="preproc">#ifdef</span><span class="normal"> <a href="https://developer.gnome.org/gdk3/gdk3-General.html#GDK-WINDOWING-X11:CAPS">GDK_WINDOWING_X11</a></span>
+        <td class="listing_code"><pre class="programlisting"><span class="preproc">#ifdef</span><span class="normal"> <a href="https://developer.gnome.org/gdk4/gdk4-General.html#GDK-WINDOWING-X11:CAPS">GDK_WINDOWING_X11</a></span>
 <span class="normal">      </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDK_IS_X11_DISPLAY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">display</span><span class="symbol">))</span>
 <span class="normal">        </span><span class="cbracket">{</span>
-<span class="normal">          </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">timestamp </span><span class="symbol">!=</span><span class="normal"> <a href="https://developer.gnome.org/gdk3/gdk3-Events.html#GDK-CURRENT-TIME:CAPS">GDK_CURRENT_TIME</a></span><span class="symbol">)</span>
+<span class="normal">          </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">timestamp </span><span class="symbol">!=</span><span class="normal"> <a href="https://developer.gnome.org/gdk4/gdk4-Events.html#GDK-CURRENT-TIME:CAPS">GDK_CURRENT_TIME</a></span><span class="symbol">)</span>
 <span class="normal">            </span><span class="function"><a href="https://developer.gnome.org/gdk3/gdk3-X-Window-System-Interaction.html#gdk-x11-window-set-user-time">gdk_x11_window_set_user_time</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gdk_window</span><span class="symbol">,</span><span class="normal"> timestamp</span><span class="symbol">);</span>
 <span class="normal">        </span><span class="cbracket">}</span>
 <span class="normal">      </span><span class="keyword">else</span>
 <span class="preproc">#endif</span>
-<span class="preproc">#ifdef</span><span class="normal"> <a href="https://developer.gnome.org/gdk3/gdk3-General.html#GDK-WINDOWING-WIN32:CAPS">GDK_WINDOWING_WIN32</a></span>
+<span class="preproc">#ifdef</span><span class="normal"> <a href="https://developer.gnome.org/gdk4/gdk4-General.html#GDK-WINDOWING-WIN32:CAPS">GDK_WINDOWING_WIN32</a></span>
 <span class="normal">      </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDK_IS_WIN32_DISPLAY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">display</span><span class="symbol">))</span>
 <span class="normal">        </span><span class="cbracket">{</span>
 <span class="normal">          </span><span class="comment">/* ... win32 specific code ... */</span>
