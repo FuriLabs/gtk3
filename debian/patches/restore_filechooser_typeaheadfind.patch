@@ -35,3 +35,19 @@ Index: gtk+3.0-3.22.29-2ubuntu1/gtk/gtkfilechooserwidget.c
  }
  
  static gboolean
+@@ -3082,6 +3082,7 @@
+       search_stop_searching (impl, TRUE);
+       search_clear_model (impl, TRUE);
+       gtk_widget_hide (impl->priv->remote_warning_bar);
++      gtk_tree_view_set_enable_search (GTK_TREE_VIEW (impl->priv->browse_files_tree_view), TRUE);
+     }
+ }
+ 
+@@ -3134,6 +3135,7 @@
+   location_bar_update (impl);
+   search_setup_widgets (impl);
+   gtk_widget_set_sensitive (priv->filter_combo, FALSE);
++  gtk_tree_view_set_enable_search (GTK_TREE_VIEW (priv->browse_files_tree_view), FALSE);
+ }
+ 
+ static void
