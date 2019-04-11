@@ -1,6 +1,15 @@
 gtk+3.0 (3.24.8-1) UNRELEASED; urgency=medium
 
   * New upstream release
+    + Color editor: don't warn if editing is cancelled
+    + Always redraw on allocate - not doing so is not safe when any widget can
+      have a background
+    + Use GLSL 3.30 for shaders
+    + Wayland: properly place window menus
+    + GtkApplication: support session state changes in sandboxes, using the
+      inhibit portal
+    + Fix a problem with autostart notification
+    + Places: Show loop devices as reported by gvfs
 
  -- Iain Lane <laney@debian.org>  Thu, 11 Apr 2019 09:44:45 +0100
 
