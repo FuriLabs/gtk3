@@ -99,7 +99,7 @@
 </div>
 <div class="refsect1">
 <a name="GtkAccessible.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+<pre class="screen">    GObject
     <span class="lineart">╰──</span> <a href="/usr/share/gtk-doc/html/atk/AtkObject.html#AtkObject-struct">AtkObject</a>
         <span class="lineart">╰──</span> GtkAccessible
 </pre>
@@ -177,7 +177,7 @@ you do not need to unref it.</p>
 <div class="refsect3">
 <a name="gtk-accessible-get-widget.returns"></a><h4>Returns</h4>
 <p>pointer to the <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a>
-corresponding to the <a class="link" href="GtkAccessible.html" title="GtkAccessible"><span class="type">GtkAccessible</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p>
+corresponding to the <a class="link" href="GtkAccessible.html" title="GtkAccessible"><span class="type">GtkAccessible</span></a>, or <code class="literal">NULL</code>. </p>
 <p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.22</p>
@@ -196,7 +196,7 @@ It is the caller’s responsibility to ensure that when <em class="parameter"><c
 
 is destroyed, the widget is unset by calling this function
 again with <em class="parameter"><code>widget</code></em>
- set to <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</p>
+ set to <code class="literal">NULL</code>.</p>
 <div class="refsect3">
 <a name="gtk-accessible-set-widget.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -213,7 +213,7 @@ again with <em class="parameter"><code>widget</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>widget</p></td>
-<td class="parameter_description"><p>a <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to unset. </p></td>
+<td class="parameter_description"><p>a <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> or <code class="literal">NULL</code> to unset. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>

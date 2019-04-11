@@ -38,7 +38,7 @@ $window_radius: $button_radius + 3;
   outline-style: dashed;
   outline-offset: -3px;
   outline-width: 1px;
-  -gtk-outline-radius: 2px;
+  -gtk-outline-radius: $button-radius - 2;
 
   -gtk-secondary-caret-color: $selected_bg_color
 }
@@ -1097,10 +1097,13 @@ button.color {
 }
 
 /* list buttons */
-/* tone down as per new designs, see issue #1473 */
-list row button {
+/* tone down as per new designs, see issue #1473, #1748 */
+list row button.image-button {
   @extend %undecorated_button;
   border: 1px solid transparentize($borders_color, .5);
+  &:hover { @include button(hover); }
+  &:active,
+  &:checked { @include button(active); }
 }
 
 /*********
@@ -1577,7 +1580,9 @@ headerbar {
       &:hover { @include button(hover, $selected_bg_color, $selected_fg_color); }
 
       &:active,
-      &:checked { @include button(active, $selected_bg_color, $selected_fg_color); }
+      &:checked,
+      &.toggle:checked,
+      &.toggle:active { @include button(active, $selected_bg_color, $selected_fg_color); }
 
       &:backdrop {
         &.flat, & {
@@ -1725,8 +1730,8 @@ headerbar {
     margin-bottom: 6px;
   }
   switch {
-    margin-top: 9px;
-    margin-bottom: 9px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   &.titlebar headerbar:not(.titlebar) {
@@ -2842,9 +2847,6 @@ switch {
 
       &:backdrop { border-color: $selected_borders_color; }
 
-      slider:dir(rtl) { border-left-color: $borders_color; }
-      slider:dir(ltr) { border-right-color: $borders_color; }
-
       slider { &:checked, & { border-color: $selected_borders_color; } }
     }
   }
@@ -3236,27 +3238,22 @@ scale {
     }
   }
 
+  marks,
   value { color: gtkalpha(currentColor, 0.55); }
 
-  marks {
-    color: gtkalpha(currentColor, 0.55);
-
-    @each $marks_class, $marks_pos, $marks_margin in (top, top, bottom),
-                                                     (bottom, bottom, top),
-                                                     (top, left, right),
-                                                     (bottom, right, left) {
+  //marks margins
+  @each $scale_orient, $marks_class, $marks_pos, $marks_margin in (horizontal, top, top, bottom),
+                                                                  (horizontal, bottom, bottom, top),
+                                                                  (vertical, top, left, right),
+                                                                  (vertical, bottom, right, left) {
+    &.#{$scale_orient} marks {
       &.#{$marks_class} {
         margin-#{$marks_margin}: $_marks_distance;
         margin-#{$marks_pos}: -($_marks_distance + $_marks_length);
       }
     }
-  }
 
-  &.fine-tune marks {
-    @each $marks_class, $marks_pos, $marks_margin in (top, top, bottom),
-                                                     (bottom, bottom, top),
-                                                     (top, left, right),
-                                                     (bottom, right, left) {
+    &.#{$scale_orient}.fine-tune marks {
       &.#{$marks_class} {
         margin-#{$marks_margin}: $_marks_distance;
         margin-#{$marks_pos}: -($_marks_distance + $_marks_length - 3px);
@@ -4659,8 +4656,8 @@ stackswitcher button.text-button.circular { // FIXME aggregate with buttons
 
 /* Drapshadow for large icons */ 
 .icon-dropshadow {
-  -gtk-icon-shadow: 0 2px 12px rgba(0,0,0,0.2), 
-               0 1px 2px rgba(0,0,0,0.7);
+  -gtk-icon-shadow: 0 2px 12px rgba(0,0,0,0.1), 
+               0 1px 2px rgba(0,0,0,0.5);
 }
 
 /*********

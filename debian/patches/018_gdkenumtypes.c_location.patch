@@ -19,21 +19,21 @@ Forwarded: yes
  1 file changed, 7 insertions(+), 10 deletions(-)
 
 diff --git a/gdk/Makefile.am b/gdk/Makefile.am
-index e25b57b..d3b9d32 100644
+index 689ee52..da2ba33 100644
 --- a/gdk/Makefile.am
 +++ b/gdk/Makefile.am
-@@ -243,8 +243,8 @@ if HAVE_INTROSPECTION
- introspection_files = 		\
- 	$(filter-out gdkkeysyms-compat.h, $(gdk_h_sources))	\
- 	$(gdk_c_sources)	\
--        gdkenumtypes.c		\
--        gdkenumtypes.h
-+        $(srcdir)/gdkenumtypes.c	\
-+        $(srcdir)/gdkenumtypes.h
+@@ -179,8 +179,8 @@ gdk_c_sources = 				\
+ 	gdkwindowimpl.c
  
- Gdk-3.0.gir: libgdk-3.la Makefile
- Gdk_3_0_gir_SCANNERFLAGS = 	\
-@@ -408,7 +408,7 @@ endif
+ gdk_built_sources = 				\
+-	gdkenumtypes.h				\
+-	gdkenumtypes.c				\
++	$(srcdir)/gdkenumtypes.h		\
++	$(srcdir)/gdkenumtypes.c		\
+ 	gdkmarshalers.h 			\
+ 	gdkmarshalers.c				\
+ 	gdkresources.h				\
+@@ -412,7 +412,7 @@ endif
  
  lib_LTLIBRARIES = libgdk-3.la
  
@@ -42,7 +42,7 @@ index e25b57b..d3b9d32 100644
  EXTRA_DIST += \
  	$(gdk_built_sources)	\
  	fallback-c89.c
-@@ -422,18 +422,15 @@ BUILT_SOURCES = \
+@@ -426,18 +426,15 @@ BUILT_SOURCES = \
  	$(gdk_built_sources)			\
  	gdkconfig.h
  

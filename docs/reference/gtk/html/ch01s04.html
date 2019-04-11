@@ -192,7 +192,7 @@
 <span class="normal">  </span><span class="usertype">GtkApplication</span><span class="normal"> parent</span><span class="symbol">;</span>
 <span class="cbracket">}</span><span class="symbol">;</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#G-DEFINE-TYPE:CAPS">G_DEFINE_TYPE</a></span><span class="symbol">(</span><span class="normal">ExampleApp</span><span class="symbol">,</span><span class="normal"> example_app</span><span class="symbol">,</span><span class="normal"> GTK_TYPE_APPLICATION</span><span class="symbol">);</span>
+<span class="function">G_DEFINE_TYPE</span><span class="symbol">(</span><span class="normal">ExampleApp</span><span class="symbol">,</span><span class="normal"> example_app</span><span class="symbol">,</span><span class="normal"> GTK_TYPE_APPLICATION</span><span class="symbol">);</span>
 
 <span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
 <span class="function">example_app_init</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">ExampleApp</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">app</span><span class="symbol">)</span>
@@ -240,10 +240,10 @@
 <span class="normal">ExampleApp </span><span class="symbol">*</span>
 <span class="function">example_app_new</span><span class="normal"> </span><span class="symbol">(</span><span class="type">void</span><span class="symbol">)</span>
 <span class="cbracket">{</span>
-<span class="normal">  </span><span class="keyword">return</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-new">g_object_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">EXAMPLE_APP_TYPE</span><span class="symbol">,</span>
+<span class="normal">  </span><span class="keyword">return</span><span class="normal"> </span><span class="function">g_object_new</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">EXAMPLE_APP_TYPE</span><span class="symbol">,</span>
 <span class="normal">                       </span><span class="string">"application-id"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"org.gtk.exampleapp"</span><span class="symbol">,</span>
 <span class="normal">                       </span><span class="string">"flags"</span><span class="symbol">,</span><span class="normal"> G_APPLICATION_HANDLES_OPEN</span><span class="symbol">,</span>
-<span class="normal">                       <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
+<span class="normal">                       NULL</span><span class="symbol">);</span>
 <span class="cbracket">}</span></pre></td>
       </tr>
     </tbody>
@@ -301,7 +301,7 @@
 <span class="normal">  </span><span class="usertype">GtkApplicationWindow</span><span class="normal"> parent</span><span class="symbol">;</span>
 <span class="cbracket">}</span><span class="symbol">;</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#G-DEFINE-TYPE:CAPS">G_DEFINE_TYPE</a></span><span class="symbol">(</span><span class="normal">ExampleAppWindow</span><span class="symbol">,</span><span class="normal"> example_app_window</span><span class="symbol">,</span><span class="normal"> GTK_TYPE_APPLICATION_WINDOW</span><span class="symbol">);</span>
+<span class="function">G_DEFINE_TYPE</span><span class="symbol">(</span><span class="normal">ExampleAppWindow</span><span class="symbol">,</span><span class="normal"> example_app_window</span><span class="symbol">,</span><span class="normal"> GTK_TYPE_APPLICATION_WINDOW</span><span class="symbol">);</span>
 
 <span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
 <span class="function">example_app_window_init</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">ExampleAppWindow</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">app</span><span class="symbol">)</span>
@@ -316,7 +316,7 @@
 <span class="normal">ExampleAppWindow </span><span class="symbol">*</span>
 <span class="function">example_app_window_new</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">ExampleApp</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">app</span><span class="symbol">)</span>
 <span class="cbracket">{</span>
-<span class="normal">  </span><span class="keyword">return</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-new">g_object_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">EXAMPLE_APP_WINDOW_TYPE</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"application"</span><span class="symbol">,</span><span class="normal"> app</span><span class="symbol">,</span><span class="normal"> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
+<span class="normal">  </span><span class="keyword">return</span><span class="normal"> </span><span class="function">g_object_new</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">EXAMPLE_APP_WINDOW_TYPE</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"application"</span><span class="symbol">,</span><span class="normal"> app</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
 <span class="cbracket">}</span>
 
 <span class="type">void</span>
@@ -1061,7 +1061,7 @@ example_app_window_init (ExampleAppWindow *win)
 <span class="normal">  </span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">transition</span><span class="symbol">;</span>
 <span class="cbracket">}</span><span class="symbol">;</span>
 
-<span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-Type-Information.html#G-DEFINE-TYPE-WITH-PRIVATE:CAPS">G_DEFINE_TYPE_WITH_PRIVATE</a></span><span class="symbol">(</span><span class="normal">ExampleAppPrefs</span><span class="symbol">,</span><span class="normal"> example_app_prefs</span><span class="symbol">,</span><span class="normal"> GTK_TYPE_DIALOG</span><span class="symbol">)</span>
+<span class="function">G_DEFINE_TYPE_WITH_PRIVATE</span><span class="symbol">(</span><span class="normal">ExampleAppPrefs</span><span class="symbol">,</span><span class="normal"> example_app_prefs</span><span class="symbol">,</span><span class="normal"> GTK_TYPE_DIALOG</span><span class="symbol">)</span>
 
 <span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
 <span class="function">example_app_prefs_init</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">ExampleAppPrefs</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">prefs</span><span class="symbol">)</span>
@@ -1086,15 +1086,15 @@ example_app_window_init (ExampleAppWindow *win)
 <span class="normal">  </span><span class="usertype">ExampleAppPrefsPrivate</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">priv</span><span class="symbol">;</span>
 
 <span class="normal">  priv </span><span class="symbol">=</span><span class="normal"> </span><span class="function">example_app_prefs_get_instance_private</span><span class="normal"> </span><span class="symbol">(</span><span class="function">EXAMPLE_APP_PREFS</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">object</span><span class="symbol">));</span>
-<span class="normal">  </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-clear-object">g_clear_object</a></span><span class="normal"> </span><span class="symbol">(&amp;</span><span class="normal">priv</span><span class="symbol">-&gt;</span><span class="normal">settings</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function">g_clear_object</span><span class="normal"> </span><span class="symbol">(&amp;</span><span class="normal">priv</span><span class="symbol">-&gt;</span><span class="normal">settings</span><span class="symbol">);</span>
 
-<span class="normal">  </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#G-OBJECT-CLASS:CAPS">G_OBJECT_CLASS</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">example_app_prefs_parent_class</span><span class="symbol">)-&gt;</span><span class="function">dispose</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">object</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function">G_OBJECT_CLASS</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">example_app_prefs_parent_class</span><span class="symbol">)-&gt;</span><span class="function">dispose</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">object</span><span class="symbol">);</span>
 <span class="cbracket">}</span>
 
 <span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
 <span class="function">example_app_prefs_class_init</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">ExampleAppPrefsClass</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">class</span><span class="symbol">)</span>
 <span class="cbracket">{</span>
-<span class="normal">  </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#G-OBJECT-CLASS:CAPS">G_OBJECT_CLASS</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">class</span><span class="symbol">)-&gt;</span><span class="normal">dispose </span><span class="symbol">=</span><span class="normal"> example_app_prefs_dispose</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="function">G_OBJECT_CLASS</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">class</span><span class="symbol">)-&gt;</span><span class="normal">dispose </span><span class="symbol">=</span><span class="normal"> example_app_prefs_dispose</span><span class="symbol">;</span>
 
 <span class="normal">  </span><span class="function"><a href="GtkWidget.html#gtk-widget-class-set-template-from-resource">gtk_widget_class_set_template_from_resource</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_WIDGET_CLASS</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">class</span><span class="symbol">),</span>
 <span class="normal">                                               </span><span class="string">"/org/gtk/exampleapp/prefs.ui"</span><span class="symbol">);</span>
@@ -1105,7 +1105,7 @@ example_app_window_init (ExampleAppWindow *win)
 <span class="normal">ExampleAppPrefs </span><span class="symbol">*</span>
 <span class="function">example_app_prefs_new</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">ExampleAppWindow</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">win</span><span class="symbol">)</span>
 <span class="cbracket">{</span>
-<span class="normal">  </span><span class="keyword">return</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-new">g_object_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">EXAMPLE_APP_PREFS_TYPE</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"transient-for"</span><span class="symbol">,</span><span class="normal"> win</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"use-header-bar"</span><span class="symbol">,</span><span class="normal"> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS">TRUE</a></span><span class="symbol">,</span><span class="normal"> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
+<span class="normal">  </span><span class="keyword">return</span><span class="normal"> </span><span class="function">g_object_new</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">EXAMPLE_APP_PREFS_TYPE</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"transient-for"</span><span class="symbol">,</span><span class="normal"> win</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"use-header-bar"</span><span class="symbol">,</span><span class="normal"> TRUE</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
 <span class="cbracket">}</span></pre></td>
       </tr>
     </tbody>
@@ -1626,7 +1626,7 @@ example_app_window_init (ExampleAppWindow *win)
 <p>Widgets and other objects have many useful properties.</p>
 <p>Here we show some ways to use them in new and flexible ways,
       by wrapping them in actions with <span class="type">GPropertyAction</span> or by binding them
-      with <a href="https://developer.gnome.org/gobject/unstable/GBinding.html#GBinding-struct"><span class="type">GBinding</span></a>.</p>
+      with <span class="type">GBinding</span>.</p>
 <p>To set this up, we add two labels to the header bar in our
       window template, named <em class="parameter"><code>lines_label</code></em> and <em class="parameter"><code>lines</code></em>, and bind them to
       struct members in the private struct, as we've seen a couple of times

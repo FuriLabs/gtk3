@@ -297,6 +297,9 @@ gtk_flow_box_child_set_focus (GtkFlowBoxChild *child)
   gboolean modify;
   gboolean extend;
 
+  if (box == NULL)
+    return;
+
   get_current_selection_modifiers (GTK_WIDGET (box), &modify, &extend);
 
   if (modify)
@@ -640,7 +643,6 @@ static void
 gtk_flow_box_child_init (GtkFlowBoxChild *child)
 {
   gtk_widget_set_can_focus (GTK_WIDGET (child), TRUE);
-  gtk_widget_set_redraw_on_allocate (GTK_WIDGET (child), TRUE);
 
   CHILD_PRIV (child)->gadget = gtk_css_custom_gadget_new_for_node (gtk_widget_get_css_node (GTK_WIDGET (child)),
                                                      GTK_WIDGET (child),
@@ -3878,7 +3880,7 @@ gtk_flow_box_class_init (GtkFlowBoxClass *class)
                        P_("Maximum Children Per Line"),
                        P_("The maximum amount of children to request space for "
                           "consecutively in the given orientation."),
-                       0, G_MAXUINT, DEFAULT_MAX_CHILDREN_PER_LINE,
+                       1, G_MAXUINT, DEFAULT_MAX_CHILDREN_PER_LINE,
                        G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY);
 
   /**
@@ -4106,7 +4108,6 @@ gtk_flow_box_init (GtkFlowBox *box)
   GtkCssNode *widget_node;
 
   gtk_widget_set_has_window (GTK_WIDGET (box), TRUE);
-  gtk_widget_set_redraw_on_allocate (GTK_WIDGET (box), TRUE);
 
   priv->orientation = GTK_ORIENTATION_HORIZONTAL;
   priv->selection_mode = GTK_SELECTION_SINGLE;
@@ -4714,6 +4715,7 @@ gtk_flow_box_set_max_children_per_line (GtkFlowBox *box,
                                         guint       n_children)
 {
   g_return_if_fail (GTK_IS_FLOW_BOX (box));
+  g_return_if_fail (n_children > 0);
 
   if (BOX_PRIV (box)->max_children_per_line != n_children)
     {

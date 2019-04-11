@@ -65,8 +65,8 @@
 </div>
 <div class="refsect1">
 <a name="GtkVBox.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
-    <span class="lineart">╰──</span> <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GInitiallyUnowned">GInitiallyUnowned</a>
+<pre class="screen">    GObject
+    <span class="lineart">╰──</span> GInitiallyUnowned
         <span class="lineart">╰──</span> <a class="link" href="GtkWidget.html" title="GtkWidget">GtkWidget</a>
             <span class="lineart">╰──</span> <a class="link" href="GtkContainer.html" title="GtkContainer">GtkContainer</a>
                 <span class="lineart">╰──</span> <a class="link" href="GtkBox.html" title="GtkBox">GtkBox</a>
@@ -120,8 +120,8 @@ see <a class="link" href="gtk-migrating-GtkGrid.html" title="Migrating from othe
 <div class="refsect2">
 <a name="gtk-vbox-new"></a><h3>gtk_vbox_new ()</h3>
 <pre class="programlisting"><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="returnvalue">GtkWidget</span></a> *
-gtk_vbox_new (<em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> homogeneous</code></em>,
-              <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> spacing</code></em>);</pre>
+gtk_vbox_new (<em class="parameter"><code><span class="type">gboolean</span> homogeneous</code></em>,
+              <em class="parameter"><code><span class="type">gint</span> spacing</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gtk_vbox_new</code> has been deprecated since version 3.2 and should not be used in newly-written code.</p>
 <p>You can use <a class="link" href="GtkBox.html#gtk-box-new" title="gtk_box_new ()"><code class="function">gtk_box_new()</code></a> with <a class="link" href="gtk3-Standard-Enumerations.html#GTK-ORIENTATION-VERTICAL:CAPS"><code class="literal">GTK_ORIENTATION_VERTICAL</code></a> instead,
@@ -141,7 +141,7 @@ gtk_vbox_new (<em class="parameter"><code><a href="https://developer.gnome.org/g
 <tbody>
 <tr>
 <td class="parameter_name"><p>homogeneous</p></td>
-<td class="parameter_description"><p><a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if all children are to be given equal space allotments.</p></td>
+<td class="parameter_description"><p><code class="literal">TRUE</code> if all children are to be given equal space allotments.</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>

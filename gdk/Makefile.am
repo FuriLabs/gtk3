@@ -112,6 +112,7 @@ gdk_h_sources =					\
 gdk_private_headers = 				\
 	gdk-private.h				\
 	gdkapplaunchcontextprivate.h		\
+	gdkconstructor.h		\
 	gdkcursorprivate.h			\
 	gdkdevicemanagerprivate.h		\
 	gdkdeviceprivate.h			\
@@ -243,8 +244,7 @@ if HAVE_INTROSPECTION
 introspection_files = 		\
 	$(filter-out gdkkeysyms-compat.h, $(gdk_h_sources))	\
 	$(gdk_c_sources)	\
-        gdkenumtypes.c		\
-        gdkenumtypes.h
+	$(gdk_built_sources)
 
 Gdk-3.0.gir: libgdk-3.la Makefile
 Gdk_3_0_gir_SCANNERFLAGS = 	\
@@ -274,8 +274,10 @@ x11_introspection_files = 		\
 	x11/gdkeventsource.c		\
 	x11/gdkeventtranslator.c	\
 	x11/gdkgeometry-x11.c		\
+	x11/gdkglcontext-x11.c		\
 	x11/gdkkeys-x11.c		\
 	x11/gdkmain-x11.c		\
+	x11/gdkmonitor-x11.c		\
 	x11/gdkproperty-x11.c		\
 	x11/gdkscreen-x11.c		\
 	x11/gdkselection-x11.c		\
@@ -298,7 +300,9 @@ x11_introspection_files = 		\
 	x11/gdkx11display.h		\
 	x11/gdkx11displaymanager.h	\
 	x11/gdkx11dnd.h			\
+	x11/gdkx11glcontext.h		\
 	x11/gdkx11keys.h		\
+	x11/gdkx11monitor.h		\
 	x11/gdkx11property.h		\
 	x11/gdkx11screen.h		\
 	x11/gdkx11selection.h		\

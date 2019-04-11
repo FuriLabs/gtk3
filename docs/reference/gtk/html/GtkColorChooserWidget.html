@@ -60,7 +60,7 @@
 <col width="200px" class="properties_flags">
 </colgroup>
 <tbody><tr>
-<td class="property_type"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a></td>
+<td class="property_type"><span class="type">gboolean</span></td>
 <td class="property_name"><a class="link" href="GtkColorChooserWidget.html#GtkColorChooserWidget--show-editor" title="The “show-editor” property">show-editor</a></td>
 <td class="property_flags">Read / Write</td>
 </tr></tbody>
@@ -87,8 +87,8 @@
 </div>
 <div class="refsect1">
 <a name="GtkColorChooserWidget.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
-    <span class="lineart">╰──</span> <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GInitiallyUnowned">GInitiallyUnowned</a>
+<pre class="screen">    GObject
+    <span class="lineart">╰──</span> GInitiallyUnowned
         <span class="lineart">╰──</span> <a class="link" href="GtkWidget.html" title="GtkWidget">GtkWidget</a>
             <span class="lineart">╰──</span> <a class="link" href="GtkContainer.html" title="GtkContainer">GtkContainer</a>
                 <span class="lineart">╰──</span> <a class="link" href="GtkBox.html" title="GtkBox">GtkBox</a>
@@ -103,7 +103,7 @@ GtkColorChooserWidget implements
 </div>
 <div class="refsect1">
 <a name="GtkColorChooserWidget.includes"></a><h2>Includes</h2>
-<pre class="synopsis">#include &lt;gtk/gtkunixprint.h&gt;
+<pre class="synopsis">#include &lt;gtk/gtk.h&gt;
 </pre>
 </div>
 <div class="refsect1">
@@ -170,8 +170,8 @@ gtk_color_chooser_widget_new (<em class="parameter"><code><span class="type">voi
 <a name="GtkColorChooserWidget.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkColorChooserWidget--show-editor"></a><h3>The <code class="literal">“show-editor”</code> property</h3>
-<pre class="programlisting">  “show-editor”              <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a></pre>
-<p>The ::show-editor property is <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> when the color chooser
+<pre class="programlisting">  “show-editor”              <span class="type">gboolean</span></pre>
+<p>The ::show-editor property is <code class="literal">TRUE</code> when the color chooser
 is showing the single-color editor. It can be set to switch
 the color chooser into single-color editing mode.</p>
 <p>Flags: Read / Write</p>

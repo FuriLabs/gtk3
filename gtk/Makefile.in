@@ -190,22 +190,23 @@ host_triplet = @host@
 @USE_QUARTZ_TRUE@am__append_16 = $(gtk_use_quartz_private_h_sources)
 @USE_QUARTZ_FALSE@@USE_WIN32_FALSE@@USE_X11_FALSE@am__append_17 = $(gtk_use_stub_c_sources)
 @OS_WIN32_TRUE@am__append_18 = gtk-win32.rc
-@USE_WIN32_TRUE@am__append_19 = -lole32 -lgdi32 -lcomdlg32 -lwinspool -lcomctl32
-@USE_WIN32_TRUE@am__append_20 = -Wl,-luuid $(gtk_win32_res_ldflag)
-@USE_WIN32_TRUE@am__append_21 = $(gtk_win32_res)
-@HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@am__append_22 = \
+@USE_QUARTZ_TRUE@am__append_19 = "-xobjective-c"
+@USE_WIN32_TRUE@am__append_20 = -lole32 -lgdi32 -lcomdlg32 -lwinspool -lcomctl32
+@USE_WIN32_TRUE@am__append_21 = -Wl,-luuid $(gtk_win32_res_ldflag)
+@USE_WIN32_TRUE@am__append_22 = $(gtk_win32_res)
+@HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@am__append_23 = \
 @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@    gtksocket.c \
 @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@    gtkplug.c
 
-@HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@am__append_23 = --add-include-path=$(top_builddir)/gdk/x11
-@HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@am__append_24 = xlib-2.0
-@HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@am__append_25 = gtk/gtkx.h
-@HAVE_INTROSPECTION_TRUE@am__append_26 = $(gir_DATA) $(typelibs_DATA)
+@HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@am__append_24 = --add-include-path=$(top_builddir)/gdk/x11
+@HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@am__append_25 = xlib-2.0
+@HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@am__append_26 = gtk/gtkx.h
+@HAVE_INTROSPECTION_TRUE@am__append_27 = $(gir_DATA) $(typelibs_DATA)
 bin_PROGRAMS = gtk-query-immodules-3.0$(EXEEXT) \
 	gtk-update-icon-cache$(EXEEXT) \
 	gtk-encode-symbolic-svg$(EXEEXT) gtk-builder-tool$(EXEEXT) \
 	gtk-query-settings$(EXEEXT) gtk-launch$(EXEEXT)
-@OS_WIN32_TRUE@am__append_27 = $(GTK_UPDATE_ICON_CACHE_MANIFEST_OBJECT)
+@OS_WIN32_TRUE@am__append_28 = $(GTK_UPDATE_ICON_CACHE_MANIFEST_OBJECT)
 subdir = gtk
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_prog_cc_for_build.m4 \
@@ -937,7 +938,7 @@ gtk_query_settings_DEPENDENCIES = libgtk-3.la \
 am_gtk_update_icon_cache_OBJECTS = updateiconcache.$(OBJEXT)
 gtk_update_icon_cache_OBJECTS = $(am_gtk_update_icon_cache_OBJECTS)
 gtk_update_icon_cache_DEPENDENCIES = $(am__DEPENDENCIES_1) \
-	$(am__append_27)
+	$(am__append_28)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -1621,7 +1622,6 @@ ENABLE_ON_X11 = @ENABLE_ON_X11@
 EXEEXT = @EXEEXT@
 EXE_MANIFEST_ARCHITECTURE = @EXE_MANIFEST_ARCHITECTURE@
 FGREP = @FGREP@
-GAIL_INET_LIBS = @GAIL_INET_LIBS@
 GAIL_LT_CURRENT_MINUS_AGE = @GAIL_LT_CURRENT_MINUS_AGE@
 GAIL_LT_VERSION_INFO = @GAIL_LT_VERSION_INFO@
 GDK_BACKENDS = @GDK_BACKENDS@
@@ -1905,7 +1905,6 @@ AM_CPPFLAGS = \
 	-I$(top_srcdir)/gdk				\
 	$(GMODULE_CFLAGS)				\
 	$(GTK_DEBUG_FLAGS)				\
-	$(GDK_HIDDEN_VISIBILITY_CFLAGS)			\
 	$(GTK_DEP_CFLAGS)				\
 	$(INCLUDED_IMMODULE_DEFINE)
 
@@ -2784,7 +2783,6 @@ gtk_use_quartz_private_h_sources = \
 	gtksearchenginequartz.h	\
 	gtkquartz.h
 
-@USE_QUARTZ_TRUE@libgtk_3_la_CFLAGS = "-xobjective-c"
 gtk_all_private_h_sources = \
 	$(a11y_private_h_sources) \
 	$(deprecated_private_h_sources) \
@@ -2893,7 +2891,7 @@ templates = \
 #
 # setup autogeneration dependencies
 gen_sources = xgen-gdef xgen-gtbh xgen-gtic xgen-gmh xgen-gmc xgen-gmlh xgen-gmlc xgen-gtfsrc.c xgen-gtf
-CLEANFILES = $(gen_sources) $(am__append_26)
+CLEANFILES = $(gen_sources) $(am__append_27)
 BUILT_SOURCES = \
 	$(gtk_built_sources) \
 	$(gtk_dbus_built_sources) \
@@ -2962,9 +2960,11 @@ gtkunixprintincludedir = $(includedir)/gtk-3.0/unix-print/gtk
 gtkunixprintinclude_HEADERS = $(gtk_unix_print_public_h_sources)
 nodist_libgtk_3_la_SOURCES = $(nodist_gtk_c_sources)
 libgtk_3_la_SOURCES = $(gtk_c_sources)
-libgtk_3_la_LDFLAGS = $(libtool_opts) $(am__append_20)
-libgtk_3_la_LIBADD = $(libadd) $(am__append_19)
-libgtk_3_la_DEPENDENCIES = $(deps) $(am__append_21)
+libgtk_3_la_CFLAGS = $(AM_CFLAGS) $(GDK_HIDDEN_VISIBILITY_CFLAGS) \
+	$(am__append_19)
+libgtk_3_la_LDFLAGS = $(libtool_opts) $(am__append_21)
+libgtk_3_la_LIBADD = $(libadd) $(am__append_20)
+libgtk_3_la_DEPENDENCIES = $(deps) $(am__append_22)
 
 # ------------------- MSVC Build Items ----------------
 MSVCPROJS = gtk-3
@@ -3073,7 +3073,7 @@ _headers_destdir = $(subst /,\\,$(_headers_dest_posix))
 @HAVE_INTROSPECTION_TRUE@	$(gtk_base_c_sources)) \
 @HAVE_INTROSPECTION_TRUE@	gtkprintoperation-unix.c \
 @HAVE_INTROSPECTION_TRUE@	gtktypebuiltins.h gtktypebuiltins.c \
-@HAVE_INTROSPECTION_TRUE@	$(am__append_22)
+@HAVE_INTROSPECTION_TRUE@	$(am__append_23)
 @HAVE_INTROSPECTION_TRUE@INTROSPECTION_SCANNER_ENV = CC="$(CC)"
 @HAVE_INTROSPECTION_TRUE@INTROSPECTION_COMPILER_ARGS = \
 @HAVE_INTROSPECTION_TRUE@	--includedir=$(srcdir) \
@@ -3083,11 +3083,11 @@ _headers_destdir = $(subst /,\\,$(_headers_dest_posix))
 @HAVE_INTROSPECTION_TRUE@Gtk_3_0_gir_SCANNERFLAGS = --warn-all \
 @HAVE_INTROSPECTION_TRUE@	--add-include-path=$(top_builddir)/gdk \
 @HAVE_INTROSPECTION_TRUE@	--include-uninstalled=$(top_builddir)/gdk/Gdk-3.0.gir \
-@HAVE_INTROSPECTION_TRUE@	$(am__append_23)
-@HAVE_INTROSPECTION_TRUE@Gtk_3_0_gir_INCLUDES = Atk-1.0 \
 @HAVE_INTROSPECTION_TRUE@	$(am__append_24)
+@HAVE_INTROSPECTION_TRUE@Gtk_3_0_gir_INCLUDES = Atk-1.0 \
+@HAVE_INTROSPECTION_TRUE@	$(am__append_25)
 @HAVE_INTROSPECTION_TRUE@Gtk_3_0_gir_C_INCLUDES = gtk/gtk.h \
-@HAVE_INTROSPECTION_TRUE@	gtk/gtk-a11y.h $(am__append_25)
+@HAVE_INTROSPECTION_TRUE@	gtk/gtk-a11y.h $(am__append_26)
 @HAVE_INTROSPECTION_TRUE@Gtk_3_0_gir_CFLAGS = \
 @HAVE_INTROSPECTION_TRUE@		$(AM_CPPFLAGS) \
 @HAVE_INTROSPECTION_TRUE@		-DGTK_TEXT_USE_INTERNAL_UNSUPPORTED_API
@@ -3108,7 +3108,7 @@ gtk_query_immodules_3_0_LDADD = \
 	$(GTK_DEP_LIBS)
 
 gtk_update_icon_cache_SOURCES = updateiconcache.c
-gtk_update_icon_cache_LDADD = $(GDK_PIXBUF_LIBS) $(am__append_27)
+gtk_update_icon_cache_LDADD = $(GDK_PIXBUF_LIBS) $(am__append_28)
 gtk_encode_symbolic_svg_SOURCES = encodesymbolic.c
 gtk_encode_symbolic_svg_LDADD = \
 	$(GDK_PIXBUF_LIBS)			\
@@ -9849,7 +9849,7 @@ distclean-local:
 @OS_WIN32_TRUE@	 echo '</assembly>' ) >$@
 
 @OS_WIN32_TRUE@$(GTK_UPDATE_ICON_CACHE_RC):
-@OS_WIN32_TRUE@	(echo 'CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST '$(GTK_UPDATE_ICON_CACHE_MANIFEST)) >$@
+@OS_WIN32_TRUE@	(echo -e '#include <winuser.h>\nCREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST '$(GTK_UPDATE_ICON_CACHE_MANIFEST)) >$@
 
 @OS_WIN32_TRUE@$(GTK_UPDATE_ICON_CACHE_MANIFEST_OBJECT): $(GTK_UPDATE_ICON_CACHE_RC) $(GTK_UPDATE_ICON_CACHE_MANIFEST)
 @OS_WIN32_TRUE@	$(WINDRES) --input $< --output $@ --output-format=coff

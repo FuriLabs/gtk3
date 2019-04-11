@@ -72,7 +72,7 @@
 </colgroup>
 <tbody><tr>
 <td class="property_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
+<span class="type">gchar</span> *</td>
 <td class="property_name"><a class="link" href="GtkPopoverMenu.html#GtkPopoverMenu--visible-submenu" title="The “visible-submenu” property">visible-submenu</a></td>
 <td class="property_flags">Read / Write</td>
 </tr></tbody>
@@ -88,13 +88,13 @@
 </colgroup>
 <tbody>
 <tr>
-<td class="property_type"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a></td>
+<td class="property_type"><span class="type">gint</span></td>
 <td class="property_name"><a class="link" href="GtkPopoverMenu.html#GtkPopoverMenu--c-position" title="The “position” child property">position</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
 <td class="property_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
+<span class="type">gchar</span> *</td>
 <td class="property_name"><a class="link" href="GtkPopoverMenu.html#GtkPopoverMenu--c-submenu" title="The “submenu” child property">submenu</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -116,8 +116,8 @@
 </div>
 <div class="refsect1">
 <a name="GtkPopoverMenu.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
-    <span class="lineart">╰──</span> <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GInitiallyUnowned">GInitiallyUnowned</a>
+<pre class="screen">    GObject
+    <span class="lineart">╰──</span> GInitiallyUnowned
         <span class="lineart">╰──</span> <a class="link" href="GtkWidget.html" title="GtkWidget">GtkWidget</a>
             <span class="lineart">╰──</span> <a class="link" href="GtkContainer.html" title="GtkContainer">GtkContainer</a>
                 <span class="lineart">╰──</span> <a class="link" href="GtkBin.html" title="GtkBin">GtkBin</a>
@@ -133,7 +133,7 @@ GtkPopoverMenu implements
 </div>
 <div class="refsect1">
 <a name="GtkPopoverMenu.includes"></a><h2>Includes</h2>
-<pre class="synopsis">#include &lt;gtk/gtkunixprint.h&gt;
+<pre class="synopsis">#include &lt;gtk/gtk.h&gt;
 </pre>
 </div>
 <div class="refsect1">
@@ -279,7 +279,7 @@ gtk_popover_menu_new (<em class="parameter"><code><span class="type">void</span>
 <a name="gtk-popover-menu-open-submenu"></a><h3>gtk_popover_menu_open_submenu ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_popover_menu_open_submenu (<em class="parameter"><code><a class="link" href="GtkPopoverMenu.html" title="GtkPopoverMenu"><span class="type">GtkPopoverMenu</span></a> *popover</code></em>,
-                               <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *name</code></em>);</pre>
+                               <em class="parameter"><code>const <span class="type">gchar</span> *name</code></em>);</pre>
 <p>Opens a submenu of the <em class="parameter"><code>popover</code></em>
 . The <em class="parameter"><code>name</code></em>
 
@@ -327,7 +327,7 @@ other kinds of widgets to initiate menu changes.</p>
 <a name="GtkPopoverMenu.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkPopoverMenu--visible-submenu"></a><h3>The <code class="literal">“visible-submenu”</code> property</h3>
-<pre class="programlisting">  “visible-submenu”          <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
+<pre class="programlisting">  “visible-submenu”          <span class="type">gchar</span> *</pre>
 <p>The name of the visible submenu.</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
@@ -337,7 +337,7 @@ other kinds of widgets to initiate menu changes.</p>
 <a name="GtkPopoverMenu.child-property-details"></a><h2>Child Property Details</h2>
 <div class="refsect2">
 <a name="GtkPopoverMenu--c-position"></a><h3>The <code class="literal">“position”</code> child property</h3>
-<pre class="programlisting">  “position”                 <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a></pre>
+<pre class="programlisting">  “position”                 <span class="type">gint</span></pre>
 <p>The index of the child in the parent.</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= -1</p>
@@ -346,9 +346,9 @@ other kinds of widgets to initiate menu changes.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkPopoverMenu--c-submenu"></a><h3>The <code class="literal">“submenu”</code> child property</h3>
-<pre class="programlisting">  “submenu”                  <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
+<pre class="programlisting">  “submenu”                  <span class="type">gchar</span> *</pre>
 <p>The submenu child property specifies the name of the submenu
-If it is <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> or "main", the child is used as the main menu,
+If it is <code class="literal">NULL</code> or "main", the child is used as the main menu,
 which is shown initially when the popover is mapped.</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>

@@ -26,6 +26,7 @@
 #include "gdkwindowimpl.h"
 #include "gdkprivate-quartz.h"
 #include "gdkglcontext-quartz.h"
+#include "gdkquartzglcontext.h"
 #include "gdkquartzscreen.h"
 #include "gdkquartzcursor.h"
 
@@ -207,6 +208,11 @@ gdk_window_impl_quartz_finalize (GObject *object)
 
   if (impl->transient_for)
     g_object_unref (impl->transient_for);
+
+  if (impl->view)
+    [[NSNotificationCenter defaultCenter] removeObserver: impl->toplevel
+                                       name: @"NSViewFrameDidChangeNotification"
+                                     object: impl->view];
 
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -909,6 +915,10 @@ _gdk_quartz_display_create_window_impl (GdkDisplay    *display,
 	impl->view = [[GdkQuartzView alloc] initWithFrame:content_rect];
 	[impl->view setGdkWindow:window];
 	[impl->toplevel setContentView:impl->view];
+        [[NSNotificationCenter defaultCenter] addObserver: impl->toplevel
+                                      selector: @selector (windowDidResize:)
+                                      name: @"NSViewFrameDidChangeNotification"
+                                      object: impl->view];
 	[impl->view release];
       }
       break;
@@ -1314,6 +1324,9 @@ move_resize_window_internal (GdkWindow *window,
           cairo_region_destroy (old_region);
         }
     }
+
+  if (window->gl_paint_context != NULL)
+    [GDK_QUARTZ_GL_CONTEXT (window->gl_paint_context)->gl_context update];
 
   GDK_QUARTZ_RELEASE_POOL;
 }
@@ -2174,7 +2187,14 @@ _gdk_quartz_window_set_collection_behavior (NSWindow *nswindow,
                                             GdkWindowTypeHint hint)
 {
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= 1070
-     if (gdk_quartz_osx_version() >= GDK_OSX_LION)
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= 10110
+#define GDK_QUARTZ_ALLOWS_TILING NSWindowCollectionBehaviorFullScreenAllowsTiling
+#define GDK_QUARTZ_DISALLOWS_TILING NSWindowCollectionBehaviorFullScreenDisallowsTiling
+#else
+#define GDK_QUARTZ_ALLOWS_TILING 1 << 11
+#define GDK_QUARTZ_DISALLOWS_TILING 1 << 12
+#endif
+  if (gdk_quartz_osx_version() >= GDK_OSX_LION)
     {
       /* Fullscreen Collection Behavior */
       NSWindowCollectionBehavior behavior = [nswindow collectionBehavior];
@@ -2183,20 +2203,22 @@ _gdk_quartz_window_set_collection_behavior (NSWindow *nswindow,
         case GDK_WINDOW_TYPE_HINT_NORMAL:
         case GDK_WINDOW_TYPE_HINT_SPLASHSCREEN:
           behavior &= ~(NSWindowCollectionBehaviorFullScreenAuxiliary &
-                        NSWindowCollectionBehaviorFullScreenDisallowsTiling);
+                        GDK_QUARTZ_DISALLOWS_TILING);
           behavior |= (NSWindowCollectionBehaviorFullScreenPrimary |
-                       NSWindowCollectionBehaviorFullScreenAllowsTiling);
+                       GDK_QUARTZ_ALLOWS_TILING);
 
           break;
         default:
           behavior &= ~(NSWindowCollectionBehaviorFullScreenPrimary &
-                        NSWindowCollectionBehaviorFullScreenAllowsTiling);
+                        GDK_QUARTZ_ALLOWS_TILING);
           behavior |= (NSWindowCollectionBehaviorFullScreenAuxiliary |
-                       NSWindowCollectionBehaviorFullScreenDisallowsTiling);
+                       GDK_QUARTZ_DISALLOWS_TILING);
           break;
         }
       [nswindow setCollectionBehavior:behavior];
     }
+#undef GDK_QUARTZ_ALLOWS_TILING
+#undef GDK_QUARTZ_DISALLOWS_TILING
 #endif
 }
 
@@ -3055,6 +3077,7 @@ gdk_window_impl_quartz_class_init (GdkWindowImplQuartzClass *klass)
   impl_class->delete_property = _gdk_quartz_window_delete_property;
 
   impl_class->create_gl_context = gdk_quartz_window_create_gl_context;
+  impl_class->invalidate_for_new_frame = gdk_quartz_window_invalidate_for_new_frame;
 
   impl_quartz_class->get_context = gdk_window_impl_quartz_get_context;
   impl_quartz_class->release_context = gdk_window_impl_quartz_release_context;

@@ -472,7 +472,6 @@ ENABLE_ON_X11 = @ENABLE_ON_X11@
 EXEEXT = @EXEEXT@
 EXE_MANIFEST_ARCHITECTURE = @EXE_MANIFEST_ARCHITECTURE@
 FGREP = @FGREP@
-GAIL_INET_LIBS = @GAIL_INET_LIBS@
 GAIL_LT_CURRENT_MINUS_AGE = @GAIL_LT_CURRENT_MINUS_AGE@
 GAIL_LT_VERSION_INFO = @GAIL_LT_VERSION_INFO@
 GDK_BACKENDS = @GDK_BACKENDS@
@@ -816,6 +815,7 @@ gdk_h_sources = \
 gdk_private_headers = \
 	gdk-private.h				\
 	gdkapplaunchcontextprivate.h		\
+	gdkconstructor.h		\
 	gdkcursorprivate.h			\
 	gdkdevicemanagerprivate.h		\
 	gdkdeviceprivate.h			\
@@ -919,8 +919,7 @@ libgdk_3_la_LDFLAGS = $(LDADD) $(am__append_5)
 @HAVE_INTROSPECTION_TRUE@introspection_files = \
 @HAVE_INTROSPECTION_TRUE@	$(filter-out gdkkeysyms-compat.h, $(gdk_h_sources))	\
 @HAVE_INTROSPECTION_TRUE@	$(gdk_c_sources)	\
-@HAVE_INTROSPECTION_TRUE@        gdkenumtypes.c		\
-@HAVE_INTROSPECTION_TRUE@        gdkenumtypes.h
+@HAVE_INTROSPECTION_TRUE@	$(gdk_built_sources)
 
 @HAVE_INTROSPECTION_TRUE@Gdk_3_0_gir_SCANNERFLAGS = \
 @HAVE_INTROSPECTION_TRUE@	--c-include="gdk/gdk.h"
@@ -946,8 +945,10 @@ libgdk_3_la_LDFLAGS = $(LDADD) $(am__append_5)
 @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@	x11/gdkeventsource.c		\
 @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@	x11/gdkeventtranslator.c	\
 @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@	x11/gdkgeometry-x11.c		\
+@HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@	x11/gdkglcontext-x11.c		\
 @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@	x11/gdkkeys-x11.c		\
 @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@	x11/gdkmain-x11.c		\
+@HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@	x11/gdkmonitor-x11.c		\
 @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@	x11/gdkproperty-x11.c		\
 @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@	x11/gdkscreen-x11.c		\
 @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@	x11/gdkselection-x11.c		\
@@ -970,7 +971,9 @@ libgdk_3_la_LDFLAGS = $(LDADD) $(am__append_5)
 @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@	x11/gdkx11display.h		\
 @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@	x11/gdkx11displaymanager.h	\
 @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@	x11/gdkx11dnd.h			\
+@HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@	x11/gdkx11glcontext.h		\
 @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@	x11/gdkx11keys.h		\
+@HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@	x11/gdkx11monitor.h		\
 @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@	x11/gdkx11property.h		\
 @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@	x11/gdkx11screen.h		\
 @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@	x11/gdkx11selection.h		\

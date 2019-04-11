@@ -51,7 +51,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<span class="returnvalue">gboolean</span>
 </td>
 <td class="function_name">
 <a class="link" href="GtkGestureDrag.html#gtk-gesture-drag-get-start-point" title="gtk_gesture_drag_get_start_point ()">gtk_gesture_drag_get_start_point</a> <span class="c_punctuation">()</span>
@@ -59,7 +59,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<span class="returnvalue">gboolean</span>
 </td>
 <td class="function_name">
 <a class="link" href="GtkGestureDrag.html#gtk-gesture-drag-get-offset" title="gtk_gesture_drag_get_offset ()">gtk_gesture_drag_get_offset</a> <span class="c_punctuation">()</span>
@@ -80,17 +80,17 @@
 <tr>
 <td class="signal_type"><span class="returnvalue">void</span></td>
 <td class="signal_name"><a class="link" href="GtkGestureDrag.html#GtkGestureDrag-drag-begin" title="The “drag-begin” signal">drag-begin</a></td>
-<td class="signal_flags"><a href="https://developer.gnome.org/gobject/unstable/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS">Run Last</a></td>
+<td class="signal_flags">Run Last</td>
 </tr>
 <tr>
 <td class="signal_type"><span class="returnvalue">void</span></td>
 <td class="signal_name"><a class="link" href="GtkGestureDrag.html#GtkGestureDrag-drag-end" title="The “drag-end” signal">drag-end</a></td>
-<td class="signal_flags"><a href="https://developer.gnome.org/gobject/unstable/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS">Run Last</a></td>
+<td class="signal_flags">Run Last</td>
 </tr>
 <tr>
 <td class="signal_type"><span class="returnvalue">void</span></td>
 <td class="signal_name"><a class="link" href="GtkGestureDrag.html#GtkGestureDrag-drag-update" title="The “drag-update” signal">drag-update</a></td>
-<td class="signal_flags"><a href="https://developer.gnome.org/gobject/unstable/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS">Run Last</a></td>
+<td class="signal_flags">Run Last</td>
 </tr>
 </tbody>
 </table></div>
@@ -110,7 +110,7 @@
 </div>
 <div class="refsect1">
 <a name="GtkGestureDrag.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+<pre class="screen">    GObject
     <span class="lineart">╰──</span> <a class="link" href="GtkEventController.html" title="GtkEventController">GtkEventController</a>
         <span class="lineart">╰──</span> <a class="link" href="GtkGesture.html" title="GtkGesture">GtkGesture</a>
             <span class="lineart">╰──</span> <a class="link" href="GtkGestureSingle.html" title="GtkGestureSingle">GtkGestureSingle</a>
@@ -120,7 +120,7 @@
 </div>
 <div class="refsect1">
 <a name="GtkGestureDrag.includes"></a><h2>Includes</h2>
-<pre class="synopsis">#include &lt;gtk/gtkunixprint.h&gt;
+<pre class="synopsis">#include &lt;gtk/gtk.h&gt;
 </pre>
 </div>
 <div class="refsect1">
@@ -163,12 +163,12 @@ gtk_gesture_drag_new (<em class="parameter"><code><a class="link" href="GtkWidge
 <hr>
 <div class="refsect2">
 <a name="gtk-gesture-drag-get-start-point"></a><h3>gtk_gesture_drag_get_start_point ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_gesture_drag_get_start_point (<em class="parameter"><code><a class="link" href="GtkGestureDrag.html" title="GtkGestureDrag"><span class="type">GtkGestureDrag</span></a> *gesture</code></em>,
-                                  <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> *x</code></em>,
-                                  <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> *y</code></em>);</pre>
+                                  <em class="parameter"><code><span class="type">gdouble</span> *x</code></em>,
+                                  <em class="parameter"><code><span class="type">gdouble</span> *y</code></em>);</pre>
 <p>If the <em class="parameter"><code>gesture</code></em>
- is active, this function returns <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a>
+ is active, this function returns <code class="literal">TRUE</code>
 and fills in <em class="parameter"><code>x</code></em>
  and <em class="parameter"><code>y</code></em>
  with the drag start coordinates,
@@ -202,19 +202,19 @@ in window-relative coordinates.</p>
 </div>
 <div class="refsect3">
 <a name="gtk-gesture-drag-get-start-point.returns"></a><h4>Returns</h4>
-<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the gesture is active</p>
+<p> <code class="literal">TRUE</code> if the gesture is active</p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-14.html#api-index-3.14">3.14</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gtk-gesture-drag-get-offset"></a><h3>gtk_gesture_drag_get_offset ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_gesture_drag_get_offset (<em class="parameter"><code><a class="link" href="GtkGestureDrag.html" title="GtkGestureDrag"><span class="type">GtkGestureDrag</span></a> *gesture</code></em>,
-                             <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> *x</code></em>,
-                             <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> *y</code></em>);</pre>
+                             <em class="parameter"><code><span class="type">gdouble</span> *x</code></em>,
+                             <em class="parameter"><code><span class="type">gdouble</span> *y</code></em>);</pre>
 <p>If the <em class="parameter"><code>gesture</code></em>
- is active, this function returns <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> and
+ is active, this function returns <code class="literal">TRUE</code> and
 fills in <em class="parameter"><code>x</code></em>
  and <em class="parameter"><code>y</code></em>
  with the coordinates of the current point,
@@ -248,7 +248,7 @@ as an offset to the starting drag point.</p>
 </div>
 <div class="refsect3">
 <a name="gtk-gesture-drag-get-offset.returns"></a><h4>Returns</h4>
-<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the gesture is active</p>
+<p> <code class="literal">TRUE</code> if the gesture is active</p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-14.html#api-index-3.14">3.14</a></p>
 </div>
@@ -266,9 +266,9 @@ as an offset to the starting drag point.</p>
 <a name="GtkGestureDrag-drag-begin"></a><h3>The <code class="literal">“drag-begin”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkGestureDrag.html" title="GtkGestureDrag"><span class="type">GtkGestureDrag</span></a> *gesture,
-               <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>         start_x,
-               <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>         start_y,
-               <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>        user_data)</pre>
+               <span class="type">gdouble</span>         start_x,
+               <span class="type">gdouble</span>         start_y,
+               <span class="type">gpointer</span>        user_data)</pre>
 <p>This signal is emitted whenever dragging starts.</p>
 <div class="refsect3">
 <a name="GtkGestureDrag-drag-begin.parameters"></a><h4>Parameters</h4>
@@ -302,7 +302,7 @@ user_function (<a class="link" href="GtkGestureDrag.html" title="GtkGestureDrag"
 </tbody>
 </table></div>
 </div>
-<p>Flags: <a href="https://developer.gnome.org/gobject/unstable/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS">Run Last</a></p>
+<p>Flags: Run Last</p>
 <p class="since">Since: <a class="link" href="api-index-3-14.html#api-index-3.14">3.14</a></p>
 </div>
 <hr>
@@ -310,9 +310,9 @@ user_function (<a class="link" href="GtkGestureDrag.html" title="GtkGestureDrag"
 <a name="GtkGestureDrag-drag-end"></a><h3>The <code class="literal">“drag-end”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkGestureDrag.html" title="GtkGestureDrag"><span class="type">GtkGestureDrag</span></a> *gesture,
-               <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>         offset_x,
-               <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>         offset_y,
-               <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>        user_data)</pre>
+               <span class="type">gdouble</span>         offset_x,
+               <span class="type">gdouble</span>         offset_y,
+               <span class="type">gpointer</span>        user_data)</pre>
 <p>This signal is emitted whenever the dragging is finished.</p>
 <div class="refsect3">
 <a name="GtkGestureDrag-drag-end.parameters"></a><h4>Parameters</h4>
@@ -346,7 +346,7 @@ user_function (<a class="link" href="GtkGestureDrag.html" title="GtkGestureDrag"
 </tbody>
 </table></div>
 </div>
-<p>Flags: <a href="https://developer.gnome.org/gobject/unstable/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS">Run Last</a></p>
+<p>Flags: Run Last</p>
 <p class="since">Since: <a class="link" href="api-index-3-14.html#api-index-3.14">3.14</a></p>
 </div>
 <hr>
@@ -354,9 +354,9 @@ user_function (<a class="link" href="GtkGestureDrag.html" title="GtkGestureDrag"
 <a name="GtkGestureDrag-drag-update"></a><h3>The <code class="literal">“drag-update”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkGestureDrag.html" title="GtkGestureDrag"><span class="type">GtkGestureDrag</span></a> *gesture,
-               <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>         offset_x,
-               <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>         offset_y,
-               <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>        user_data)</pre>
+               <span class="type">gdouble</span>         offset_x,
+               <span class="type">gdouble</span>         offset_y,
+               <span class="type">gpointer</span>        user_data)</pre>
 <p>This signal is emitted whenever the dragging point moves.</p>
 <div class="refsect3">
 <a name="GtkGestureDrag-drag-update.parameters"></a><h4>Parameters</h4>
@@ -390,7 +390,7 @@ user_function (<a class="link" href="GtkGestureDrag.html" title="GtkGestureDrag"
 </tbody>
 </table></div>
 </div>
-<p>Flags: <a href="https://developer.gnome.org/gobject/unstable/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS">Run Last</a></p>
+<p>Flags: Run Last</p>
 <p class="since">Since: <a class="link" href="api-index-3-14.html#api-index-3.14">3.14</a></p>
 </div>
 </div>

@@ -69,7 +69,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<span class="returnvalue">gboolean</span>
 </td>
 <td class="function_name">
 <a class="link" href="GtkOverlay.html#gtk-overlay-get-overlay-pass-through" title="gtk_overlay_get_overlay_pass_through ()">gtk_overlay_get_overlay_pass_through</a> <span class="c_punctuation">()</span>
@@ -96,12 +96,12 @@
 </colgroup>
 <tbody>
 <tr>
-<td class="property_type"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a></td>
+<td class="property_type"><span class="type">gint</span></td>
 <td class="property_name"><a class="link" href="GtkOverlay.html#GtkOverlay--c-index" title="The “index” child property">index</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a></td>
+<td class="property_type"><span class="type">gboolean</span></td>
 <td class="property_name"><a class="link" href="GtkOverlay.html#GtkOverlay--c-pass-through" title="The “pass-through” child property">pass-through</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -117,9 +117,9 @@
 <col width="200px" class="signals_flags">
 </colgroup>
 <tbody><tr>
-<td class="signal_type"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a></td>
+<td class="signal_type"><span class="returnvalue">gboolean</span></td>
 <td class="signal_name"><a class="link" href="GtkOverlay.html#GtkOverlay-get-child-position" title="The “get-child-position” signal">get-child-position</a></td>
-<td class="signal_flags"><a href="https://developer.gnome.org/gobject/unstable/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS">Run Last</a></td>
+<td class="signal_flags">Run Last</td>
 </tr></tbody>
 </table></div>
 </div>
@@ -144,8 +144,8 @@
 </div>
 <div class="refsect1">
 <a name="GtkOverlay.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
-    <span class="lineart">╰──</span> <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GInitiallyUnowned">GInitiallyUnowned</a>
+<pre class="screen">    GObject
+    <span class="lineart">╰──</span> GInitiallyUnowned
         <span class="lineart">╰──</span> <a class="link" href="GtkWidget.html" title="GtkWidget">GtkWidget</a>
             <span class="lineart">╰──</span> <a class="link" href="GtkContainer.html" title="GtkContainer">GtkContainer</a>
                 <span class="lineart">╰──</span> <a class="link" href="GtkBin.html" title="GtkBin">GtkBin</a>
@@ -160,7 +160,7 @@ GtkOverlay implements
 </div>
 <div class="refsect1">
 <a name="GtkOverlay.includes"></a><h2>Includes</h2>
-<pre class="synopsis">#include &lt;gtk/gtkunixprint.h&gt;
+<pre class="synopsis">#include &lt;gtk/gtk.h&gt;
 </pre>
 </div>
 <div class="refsect1">
@@ -247,7 +247,7 @@ from its <a class="link" href="GtkWidget.html#GtkWidget--halign" title="The “h
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_overlay_reorder_overlay (<em class="parameter"><code><a class="link" href="GtkOverlay.html" title="GtkOverlay"><span class="type">GtkOverlay</span></a> *overlay</code></em>,
                              <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *child</code></em>,
-                             <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> position</code></em>);</pre>
+                             <em class="parameter"><code><span class="type">gint</span> position</code></em>);</pre>
 <p>Moves <em class="parameter"><code>child</code></em>
  to a new <em class="parameter"><code>index</code></em>
  in the list of <em class="parameter"><code>overlay</code></em>
@@ -295,7 +295,7 @@ the list</p></td>
 <hr>
 <div class="refsect2">
 <a name="gtk-overlay-get-overlay-pass-through"></a><h3>gtk_overlay_get_overlay_pass_through ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_overlay_get_overlay_pass_through (<em class="parameter"><code><a class="link" href="GtkOverlay.html" title="GtkOverlay"><span class="type">GtkOverlay</span></a> *overlay</code></em>,
                                       <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>);</pre>
 <p>Convenience function to get the value of the <span class="type">“pass-through”</span>
@@ -335,7 +335,7 @@ child property for <em class="parameter"><code>widget</code></em>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_overlay_set_overlay_pass_through (<em class="parameter"><code><a class="link" href="GtkOverlay.html" title="GtkOverlay"><span class="type">GtkOverlay</span></a> *overlay</code></em>,
                                       <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
-                                      <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> pass_through</code></em>);</pre>
+                                      <em class="parameter"><code><span class="type">gboolean</span> pass_through</code></em>);</pre>
 <p>Convenience function to set the value of the <span class="type">“pass-through”</span>
 child property for <em class="parameter"><code>widget</code></em>
 .</p>
@@ -409,7 +409,7 @@ size of any overlay child widgets.</p></td>
 <a name="GtkOverlay.child-property-details"></a><h2>Child Property Details</h2>
 <div class="refsect2">
 <a name="GtkOverlay--c-index"></a><h3>The <code class="literal">“index”</code> child property</h3>
-<pre class="programlisting">  “index”                    <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a></pre>
+<pre class="programlisting">  “index”                    <span class="type">gint</span></pre>
 <p>The index of the overlay in the parent, -1 for the main child.</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= -1</p>
@@ -419,7 +419,7 @@ size of any overlay child widgets.</p></td>
 <hr>
 <div class="refsect2">
 <a name="GtkOverlay--c-pass-through"></a><h3>The <code class="literal">“pass-through”</code> child property</h3>
-<pre class="programlisting">  “pass-through”             <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a></pre>
+<pre class="programlisting">  “pass-through”             <span class="type">gboolean</span></pre>
 <p>Pass through input, does not affect main child.</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
@@ -430,11 +430,11 @@ size of any overlay child widgets.</p></td>
 <a name="GtkOverlay.signal-details"></a><h2>Signal Details</h2>
 <div class="refsect2">
 <a name="GtkOverlay-get-child-position"></a><h3>The <code class="literal">“get-child-position”</code> signal</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>
 user_function (<a class="link" href="GtkOverlay.html" title="GtkOverlay"><span class="type">GtkOverlay</span></a>   *overlay,
                <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a>    *widget,
-               <a href="https://developer.gnome.org/gdk3/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *allocation,
-               <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>      user_data)</pre>
+               <span class="type">GdkRectangle</span> *allocation,
+               <span class="type">gpointer</span>      user_data)</pre>
 <p>The ::get-child-position signal is emitted to determine
 the position and size of any overlay child widgets. A
 handler for this signal should fill <em class="parameter"><code>allocation</code></em>
@@ -486,10 +486,10 @@ location for the allocation. </p></td>
 </div>
 <div class="refsect3">
 <a name="GtkOverlay-get-child-position.returns"></a><h4>Returns</h4>
-<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the <em class="parameter"><code>allocation</code></em>
+<p> <code class="literal">TRUE</code> if the <em class="parameter"><code>allocation</code></em>
 has been filled</p>
 </div>
-<p>Flags: <a href="https://developer.gnome.org/gobject/unstable/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS">Run Last</a></p>
+<p>Flags: Run Last</p>
 </div>
 </div>
 </div>

@@ -151,7 +151,8 @@ am_libgdk_win32_la_OBJECTS = gdkcursor-win32.lo \
 	gdkgeometry-win32.lo gdkglcontext-win32.lo gdkglobals-win32.lo \
 	gdkkeys-win32.lo gdkmain-win32.lo gdkmonitor-win32.lo \
 	gdkproperty-win32.lo gdkscreen-win32.lo gdkselection-win32.lo \
-	gdktestutils-win32.lo gdkwin32id.lo gdkwindow-win32.lo
+	gdktestutils-win32.lo gdkwin32langnotification.lo \
+	gdkwin32id.lo gdkwindow-win32.lo
 libgdk_win32_la_OBJECTS = $(am_libgdk_win32_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -188,6 +189,7 @@ am__depfiles_remade = ./$(DEPDIR)/gdkcursor-win32.Plo \
 	./$(DEPDIR)/gdkscreen-win32.Plo \
 	./$(DEPDIR)/gdkselection-win32.Plo \
 	./$(DEPDIR)/gdktestutils-win32.Plo ./$(DEPDIR)/gdkwin32id.Plo \
+	./$(DEPDIR)/gdkwin32langnotification.Plo \
 	./$(DEPDIR)/gdkwindow-win32.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
@@ -372,7 +374,6 @@ ENABLE_ON_X11 = @ENABLE_ON_X11@
 EXEEXT = @EXEEXT@
 EXE_MANIFEST_ARCHITECTURE = @EXE_MANIFEST_ARCHITECTURE@
 FGREP = @FGREP@
-GAIL_INET_LIBS = @GAIL_INET_LIBS@
 GAIL_LT_CURRENT_MINUS_AGE = @GAIL_LT_CURRENT_MINUS_AGE@
 GAIL_LT_VERSION_INFO = @GAIL_LT_VERSION_INFO@
 GDK_BACKENDS = @GDK_BACKENDS@
@@ -660,6 +661,8 @@ libgdk_win32_la_SOURCES = \
 	gdkwin32dnd.h \
 	gdkwin32dnd-private.h \
 	gdkwin32glcontext.h \
+	gdkwin32langnotification.c \
+	gdkwin32langnotification.h \
 	gdkwin32.h \
 	gdkwin32id.c \
 	gdkwin32keys.h \
@@ -783,6 +786,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkselection-win32.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdktestutils-win32.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkwin32id.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkwin32langnotification.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkwindow-win32.Plo@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
@@ -1088,6 +1092,7 @@ distclean: distclean-recursive
 	-rm -f ./$(DEPDIR)/gdkselection-win32.Plo
 	-rm -f ./$(DEPDIR)/gdktestutils-win32.Plo
 	-rm -f ./$(DEPDIR)/gdkwin32id.Plo
+	-rm -f ./$(DEPDIR)/gdkwin32langnotification.Plo
 	-rm -f ./$(DEPDIR)/gdkwindow-win32.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
@@ -1155,6 +1160,7 @@ maintainer-clean: maintainer-clean-recursive
 	-rm -f ./$(DEPDIR)/gdkselection-win32.Plo
 	-rm -f ./$(DEPDIR)/gdktestutils-win32.Plo
 	-rm -f ./$(DEPDIR)/gdkwin32id.Plo
+	-rm -f ./$(DEPDIR)/gdkwin32langnotification.Plo
 	-rm -f ./$(DEPDIR)/gdkwindow-win32.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
