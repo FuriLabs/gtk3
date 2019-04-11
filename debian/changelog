@@ -23,7 +23,7 @@ gtk+3.0 (3.24.8-1ubuntu1) UNRELEASED; urgency=medium
 
  -- Iain Lane <iain.lane@canonical.com>  Thu, 11 Apr 2019 09:44:45 +0100
 
-gtk+3.0 (3.24.8-1) UNRELEASED; urgency=medium
+gtk+3.0 (3.24.8-1) experimental; urgency=medium
 
   * New upstream release
     + Color editor: don't warn if editing is cancelled
@@ -35,8 +35,12 @@ gtk+3.0 (3.24.8-1) UNRELEASED; urgency=medium
       inhibit portal
     + Fix a problem with autostart notification
     + Places: Show loop devices as reported by gvfs
+    + Print dialog, CUPS: Check unknown option values whether they are
+      actually custom settings (LP: #1763520)
+  * Refresh patches. debian/patches/018_gdkenumtypes.c_location.patch needed
+    slight rebasing
 
- -- Iain Lane <laney@debian.org>  Thu, 11 Apr 2019 09:44:45 +0100
+ -- Iain Lane <laney@debian.org>  Thu, 11 Apr 2019 11:08:50 +0100
 
 gtk+3.0 (3.24.7-1ubuntu1) disco; urgency=medium
 
