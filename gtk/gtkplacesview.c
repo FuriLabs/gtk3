@@ -26,6 +26,7 @@
 #include "gtkmarshalers.h"
 #include "gtkplacesviewprivate.h"
 #include "gtkplacesviewrowprivate.h"
+#include "gtkprivate.h"
 #include "gtktypebuiltins.h"
 
 /**
@@ -94,6 +95,9 @@ struct _GtkPlacesViewPrivate
   guint                          fetching_networks : 1;
   guint                          loading : 1;
   guint                          destroyed : 1;
+
+  GtkWidget                     *connect_label;
+  GSettings                     *settings;
 };
 
 static void        mount_volume                                  (GtkPlacesView *view,
@@ -408,6 +412,8 @@ gtk_places_view_destroy (GtkWidget *widget)
 
   g_cancellable_cancel (priv->cancellable);
   g_cancellable_cancel (priv->networks_fetching_cancellable);
+
+  g_clear_object (&priv->settings);
 
   GTK_WIDGET_CLASS (gtk_places_view_parent_class)->destroy (widget);
 }
@@ -2212,6 +2218,14 @@ listbox_sort_func (GtkListBoxRow *row1,
 }
 
 static void
+update_connect_label (GtkPlacesView *self)
+{
+  GtkPlacesViewPrivate *priv = gtk_places_view_get_instance_private (self);
+
+  gtk_widget_set_visible (priv->connect_label, !_gtk_get_is_phone ());
+}
+
+static void
 gtk_places_view_constructed (GObject *object)
 {
   GtkPlacesViewPrivate *priv;
@@ -2260,6 +2274,15 @@ gtk_places_view_constructed (GObject *object)
                             "volume-removed",
                             G_CALLBACK (update_places),
                             object);
+
+  priv->settings = _gtk_get_purism_settings ();
+
+  if (priv->settings)
+    g_signal_connect_object (priv->settings, "changed::is-phone",
+                             G_CALLBACK (update_connect_label), object,
+                             G_CONNECT_SWAPPED);
+
+  update_connect_label (GTK_PLACES_VIEW (object));
 }
 
 static void
@@ -2386,6 +2409,7 @@ gtk_places_view_class_init (GtkPlacesViewClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, GtkPlacesView, stack);
   gtk_widget_class_bind_template_child_private (widget_class, GtkPlacesView, server_adresses_popover);
   gtk_widget_class_bind_template_child_private (widget_class, GtkPlacesView, available_protocols_grid);
+  gtk_widget_class_bind_template_child_private (widget_class, GtkPlacesView, connect_label);
 
   gtk_widget_class_bind_template_callback (widget_class, on_address_entry_text_changed);
   gtk_widget_class_bind_template_callback (widget_class, on_address_entry_show_help_pressed);
