@@ -9,14 +9,20 @@
         <property name="visible">1</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkPaned" id="browse_widgets_hpaned">
+          <object class="GtkHdyFlap" id="flap">
             <property name="visible">1</property>
-            <child>
+            <property name="swipe-to-open">0</property>
+            <property name="swipe-to-close" bind-source="flap" bind-property="folded" bind-flags="sync-create"/>
+            <signal name="notify::folded" handler="flap_folded_cb" swapped="yes"/>
+            <child type="flap">
               <object class="GtkPlacesSidebar" id="places_sidebar">
                 <property name="visible">1</property>
+                <property name="hexpand-set">1</property>
                 <property name="hscrollbar-policy">never</property>
                 <property name="local-only">1</property>
                 <property name="show-other-locations">1</property>
+                <property name="propagate-natural-width">1</property>
+                <property name="width-request">200</property>
                 <child internal-child="accessible">
                   <object class="AtkObject">
                     <property name="AtkObject::accessible-name" translatable="yes">Places</property>
@@ -29,13 +35,17 @@
                 <signal name="show-error-message" handler="places_sidebar_show_error_message_cb" swapped="no"/>
                 <signal name="show-other-locations-with-flags" handler="places_sidebar_show_other_locations_with_flags_cb" swapped="no"/>
               </object>
-              <packing>
-                <property name="resize">0</property>
-                <property name="shrink">0</property>
-              </packing>
+            </child>
+            <child type="separator">
+              <object class="GtkSeparator">
+                <property name="visible">1</property>
+                <style>
+                  <class name="sidebar"/>
+                </style>
+              </object>
             </child>
             <child>
-              <object class="GtkBox">
+              <object class="GtkBox" id="browse_box">
                 <property name="visible">1</property>
                 <property name="orientation">vertical</property>
                 <child>
@@ -111,6 +121,9 @@
                               </packing>
                             </child>
                             <child>
+                              <object class="GtkHdyClamp">
+                                <property name="visible">1</property>
+                            <child>
                               <object class="GtkBox" id="location_entry_box">
                                 <property name="visible">1</property>
                                 <property name="no-show-all">1</property>
@@ -122,10 +135,15 @@
                                   </object>
                                 </child>
                               </object>
+                            </child>
+                              </object>
                               <packing>
                                 <property name="name">location</property>
                               </packing>
                             </child>
+                            <child>
+                              <object class="GtkHdyClamp">
+                                <property name="visible">1</property>
                             <child>
                               <object class="GtkBox" id="search_entry_box">
                                 <property name="visible">1</property>
@@ -137,10 +155,10 @@
                                     <property name="AtkObject::accessible-name" translatable="yes">Search Layer</property>
                                   </object>
                                 </child>
-                                <child type="center">
+                                <child>
                                   <object class="GtkSearchEntry" id="search_entry">
                                     <property name="visible">1</property>
-                                    <property name="width-chars">45</property>
+                                    <property name="hexpand">True</property>
                                     <signal name="search-changed" handler="search_entry_activate_cb" swapped="yes"/>
                                     <signal name="stop-search" handler="search_entry_stop_cb" swapped="yes"/>
                                   </object>
@@ -153,6 +171,8 @@
                                     <property name="pack-type">end</property>
                                   </packing>
                                 </child>
+                              </object>
+                            </child>
                               </object>
                               <packing>
                                 <property name="name">search</property>
@@ -171,9 +191,15 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkBox" id="list_and_preview_box">
+                  <object class="GtkHdyFlap" id="list_and_preview_box">
                     <property name="visible">1</property>
-                    <property name="spacing">12</property>
+                    <property name="flap-position">end</property>
+                    <property name="fold-policy">never</property>
+                    <property name="modal">False</property>
+                    <property name="swipe-to-open">False</property>
+                    <property name="swipe-to-close">False</property>
+                    <property name="transition-type">slide</property>
+                    <property name="reveal-flap" bind-source="flap" bind-property="folded" bind-flags="invert-boolean|sync-create"/>
                     <child>
                       <object class="GtkStack" id="browse_files_stack">
                         <property name="visible">1</property>
@@ -223,6 +249,7 @@
                                         <child>
                                           <object class="GtkCellRendererPixbuf" id="list_pixbuf_renderer">
                                             <property name="xpad">6</property>
+                                            <property name="stock-size">5</property>
                                           </object>
                                         </child>
                                         <child>
@@ -351,6 +378,8 @@
                               <object class="GtkLabel">
                                 <property name="visible">1</property>
                                 <property name="label" translatable="yes">No Results Found</property>
+                                <property name="justify">center</property>
+                                <property name="wrap">True</property>
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                   <attribute name="scale" value="1.44"/>
@@ -365,6 +394,8 @@
                               <object class="GtkLabel">
                                 <property name="visible">1</property>
                                 <property name="label" translatable="yes">Try a different search</property>
+                                <property name="justify">center</property>
+                                <property name="wrap">True</property>
                                 <style>
                                   <class name="dim-label"/>
                                 </style>
@@ -380,19 +411,15 @@
                           </packing>
                         </child>
                       </object>
-                      <packing>
-                        <property name="expand">1</property>
-                      </packing>
                     </child>
-                    <child>
+                    <child type="flap">
                       <object class="GtkBox" id="preview_box">
                         <property name="orientation">vertical</property>
                         <property name="spacing">12</property>
+                        <style>
+                          <class name="background"/>
+                        </style>
                       </object>
-                      <packing>
-                        <property name="fill">0</property>
-                        <property name="position">1</property>
-                      </packing>
                     </child>
                   </object>
                   <packing>
@@ -401,9 +428,6 @@
                   </packing>
                 </child>
               </object>
-              <packing>
-                <property name="shrink">0</property>
-              </packing>
             </child>
           </object>
           <packing>
@@ -420,14 +444,29 @@
       <object class="GtkActionBar" id="extra_and_filters">
         <property name="no-show-all">1</property>
         <child>
+          <object class="GtkToggleButton" id="reveal_sidebar_button">
+            <property name="visible" bind-source="flap" bind-property="folded" bind-flags="sync-create"/>
+            <property name="active" bind-source="flap" bind-property="reveal-flap" bind-flags="sync-create|bidirectional"/>
+            <property name="tooltip-text" translatable="yes">Show locations</property>
+            <property name="use-underline">1</property>
+            <property name="can-default">1</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">1</property>
+                <property name="icon-name">view-sidebar-symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
           <object class="GtkBox" id="extra_align">
-            <property name="visible">1</property>
+            <property name="no-show-all">1</property>
             <property name="spacing">12</property>
           </object>
         </child>
         <child>
           <object class="GtkBox" id="filter_combo_hbox">
-            <property name="visible">1</property>
+            <property name="no-show-all">1</property>
             <property name="spacing">12</property>
             <child>
               <object class="GtkComboBoxText" id="filter_combo">

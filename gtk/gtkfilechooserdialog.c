@@ -532,7 +532,7 @@ setup_save_entry (GtkFileChooserDialog *dialog)
   need_entry = action == GTK_FILE_CHOOSER_ACTION_SAVE ||
                action == GTK_FILE_CHOOSER_ACTION_CREATE_FOLDER;
 
-  if (need_entry && !dialog->priv->has_entry)
+  if (need_entry && !dialog->priv->has_entry && FALSE)
     {
       GtkWidget *box;
       GtkWidget *label;
