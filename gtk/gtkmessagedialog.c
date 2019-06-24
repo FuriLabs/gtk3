@@ -36,6 +36,7 @@
 #include "gtkimage.h"
 #include "gtkintl.h"
 #include "gtkprivate.h"
+#include "gtkorientable.h"
 #include "gtktypebuiltins.h"
 
 /**
@@ -108,6 +109,8 @@ struct _GtkMessageDialogPrivate
   guint          has_primary_markup : 1;
   guint          has_secondary_text : 1;
   guint          message_type       : 3;
+
+  GSettings     *settings;
 };
 
 static void gtk_message_dialog_style_updated (GtkWidget       *widget);
@@ -145,6 +148,31 @@ G_DEFINE_TYPE_WITH_CODE (GtkMessageDialog, gtk_message_dialog, GTK_TYPE_DIALOG,
 static GtkBuildableIface *parent_buildable_iface;
 
 static void
+update_orientation (GtkMessageDialog *dialog)
+{
+  GtkWidget *action_area;
+
+  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+  action_area = gtk_dialog_get_action_area (GTK_DIALOG (dialog));
+G_GNUC_END_IGNORE_DEPRECATIONS
+
+  if (_gtk_get_is_phone ())
+    gtk_orientable_set_orientation (GTK_ORIENTABLE (action_area), GTK_ORIENTATION_VERTICAL);
+  else
+    gtk_orientable_set_orientation (GTK_ORIENTABLE (action_area), GTK_ORIENTATION_HORIZONTAL);
+}
+
+static void
+gtk_message_dialog_destroy (GtkWidget *widget)
+{
+  GtkMessageDialog *dialog = GTK_MESSAGE_DIALOG (widget);
+
+  g_clear_object (&dialog->priv->settings);
+
+  GTK_WIDGET_CLASS (gtk_message_dialog_parent_class)->destroy (widget);
+}
+
+static void
 gtk_message_dialog_buildable_interface_init (GtkBuildableIface *iface)
 {
   parent_buildable_iface = g_type_interface_peek_parent (iface);
@@ -162,6 +190,7 @@ gtk_message_dialog_class_init (GtkMessageDialogClass *class)
   gobject_class = G_OBJECT_CLASS (class);
   
   widget_class->style_updated = gtk_message_dialog_style_updated;
+  widget_class->destroy = gtk_message_dialog_destroy;
 
   gtk_widget_class_set_accessible_role (widget_class, ATK_ROLE_ALERT);
 
@@ -327,6 +356,16 @@ gtk_message_dialog_init (GtkMessageDialog *dialog)
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   action_area = gtk_dialog_get_action_area (GTK_DIALOG (dialog));
 G_GNUC_END_IGNORE_DEPRECATIONS
+
+  priv->settings = _gtk_get_purism_settings ();
+
+  if (priv->settings)
+    g_signal_connect_object (priv->settings, "changed::is-phone",
+                             G_CALLBACK (update_orientation), dialog,
+                             G_CONNECT_SWAPPED);
+
+  update_orientation (dialog);
+
   gtk_button_box_set_layout (GTK_BUTTON_BOX (action_area), GTK_BUTTONBOX_EXPAND);
 
   settings = gtk_widget_get_settings (GTK_WIDGET (dialog));
