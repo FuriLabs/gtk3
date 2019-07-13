@@ -141,6 +141,7 @@ enum
 
 struct _GtkInfoBarPrivate
 {
+  GtkWidget *grid;
   GtkWidget *content_area;
   GtkWidget *action_area;
   GtkWidget *close_button;
@@ -152,6 +153,7 @@ struct _GtkInfoBarPrivate
   gboolean default_response_sensitive;
 
   GtkGesture *gesture;
+  GSettings *settings;
 };
 
 typedef struct _ResponseData ResponseData;
@@ -412,6 +414,8 @@ gtk_info_bar_finalize (GObject *object)
 
   g_object_unref (info_bar->priv->gesture);
 
+  g_clear_object (&info_bar->priv->settings);
+
   G_OBJECT_CLASS (gtk_info_bar_parent_class)->finalize (object);
 }
 
@@ -595,6 +599,7 @@ gtk_info_bar_class_init (GtkInfoBarClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gtk/libgtk/ui/gtkinfobar.ui");
   gtk_widget_class_bind_template_child_internal_private (widget_class, GtkInfoBar, content_area);
   gtk_widget_class_bind_template_child_internal_private (widget_class, GtkInfoBar, action_area);
+  gtk_widget_class_bind_template_child_private (widget_class, GtkInfoBar, grid);
   gtk_widget_class_bind_template_child_private (widget_class, GtkInfoBar, close_button);
   gtk_widget_class_bind_template_child_private (widget_class, GtkInfoBar, revealer);
 
@@ -623,6 +628,46 @@ click_pressed_cb (GtkGestureMultiPress *gesture,
 }
 
 static void
+update_layout (GtkInfoBar *info_bar)
+{
+  GtkInfoBarPrivate *priv = info_bar->priv;
+
+  if (_gtk_get_is_phone ()) {
+    gtk_container_child_set (GTK_CONTAINER (priv->grid), priv->action_area,
+                             "left-attach", 0,
+                             "top-attach", 1,
+                             "width", 2,
+                             NULL);
+    gtk_container_child_set (GTK_CONTAINER (priv->grid), priv->close_button,
+                             "left-attach", 1,
+                             NULL);
+
+    gtk_orientable_set_orientation (GTK_ORIENTABLE (priv->action_area),
+                                    GTK_ORIENTATION_VERTICAL);
+    gtk_button_box_set_layout (GTK_BUTTON_BOX (priv->action_area),
+                               GTK_BUTTONBOX_EXPAND);
+    gtk_style_context_remove_class (gtk_widget_get_style_context (priv->action_area),
+                                    "linked");
+  } else {
+    gtk_container_child_set (GTK_CONTAINER (priv->grid), priv->action_area,
+                             "left-attach", 1,
+                             "top-attach", 0,
+                             "width", 1,
+                             NULL);
+    gtk_container_child_set (GTK_CONTAINER (priv->grid), priv->close_button,
+                             "left-attach", 2,
+                             NULL);
+
+    gtk_orientable_set_orientation (GTK_ORIENTABLE (priv->action_area),
+                                    GTK_ORIENTATION_HORIZONTAL);
+    gtk_button_box_set_layout (GTK_BUTTON_BOX (priv->action_area),
+                               GTK_BUTTONBOX_END);
+  }
+
+  gtk_box_set_spacing (GTK_BOX (priv->action_area), 6);
+}
+
+static void
 gtk_info_bar_init (GtkInfoBar *info_bar)
 {
   GtkInfoBarPrivate *priv;
@@ -645,6 +690,15 @@ gtk_info_bar_init (GtkInfoBar *info_bar)
   priv->gesture = gtk_gesture_multi_press_new (widget);
   gtk_gesture_single_set_button (GTK_GESTURE_SINGLE (priv->gesture), GDK_BUTTON_PRIMARY);
   g_signal_connect (priv->gesture, "pressed", G_CALLBACK (click_pressed_cb), widget);
+
+  update_layout (info_bar);
+
+  priv->settings = _gtk_get_purism_settings ();
+
+  if (priv->settings)
+    g_signal_connect_object (priv->settings, "changed::is-phone",
+           G_CALLBACK (update_layout), info_bar,
+           G_CONNECT_SWAPPED);
 }
 
 static GtkBuildableIface *parent_buildable_iface;
