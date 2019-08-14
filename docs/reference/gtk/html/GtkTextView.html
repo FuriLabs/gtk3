@@ -8,7 +8,7 @@
 <link rel="up" href="TextWidgetObjects.html" title="Multiline Text Editor">
 <link rel="prev" href="GtkTextTagTable.html" title="GtkTextTagTable">
 <link rel="next" href="TreeWidgetObjects.html" title="Tree, List and Icon Grid Widgets">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -967,14 +967,14 @@ types related to the text widget and how they work together.</p>
 6
 7
 8</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">textview</span><span class="symbol">.</span><span class="normal">view</span>
-<span class="normal">├── border</span><span class="symbol">.</span><span class="normal">top</span>
-<span class="normal">├── border</span><span class="symbol">.</span><span class="normal">left</span>
-<span class="normal">├── text</span>
-<span class="normal">│   ╰── </span><span class="symbol">[</span><span class="normal">selection</span><span class="symbol">]</span>
-<span class="normal">├── border</span><span class="symbol">.</span><span class="normal">right</span>
-<span class="normal">├── border</span><span class="symbol">.</span><span class="normal">bottom</span>
-<span class="normal">╰── </span><span class="symbol">[</span><span class="normal">window</span><span class="symbol">.</span><span class="normal">popup</span><span class="symbol">]</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">textview</span><span class="p">.</span><span class="n">view</span>
+<span class="err">├──</span> <span class="n">border</span><span class="p">.</span><span class="n">top</span>
+<span class="err">├──</span> <span class="n">border</span><span class="p">.</span><span class="n">left</span>
+<span class="err">├──</span> <span class="n">text</span>
+<span class="err">│</span>   <span class="err">╰──</span> <span class="p">[</span><span class="n">selection</span><span class="p">]</span>
+<span class="err">├──</span> <span class="n">border</span><span class="p">.</span><span class="n">right</span>
+<span class="err">├──</span> <span class="n">border</span><span class="p">.</span><span class="n">bottom</span>
+<span class="err">╰──</span> <span class="p">[</span><span class="n">window</span><span class="p">.</span><span class="n">popup</span><span class="p">]</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1414,7 +1414,7 @@ buffer, it it isn’t there already.</p>
 <a name="gtk-text-view-get-visible-rect"></a><h3>gtk_text_view_get_visible_rect ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_text_view_get_visible_rect (<em class="parameter"><code><a class="link" href="GtkTextView.html" title="GtkTextView"><span class="type">GtkTextView</span></a> *text_view</code></em>,
-                                <em class="parameter"><code><span class="type">GdkRectangle</span> *visible_rect</code></em>);</pre>
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#GdkRectangle-struct"><span class="type">GdkRectangle</span></a> *visible_rect</code></em>);</pre>
 <p>Fills <em class="parameter"><code>visible_rect</code></em>
  with the currently-visible
 region of the buffer, in buffer coordinates. Convert to window coordinates
@@ -1448,7 +1448,7 @@ with <a class="link" href="GtkTextView.html#gtk-text-view-buffer-to-window-coord
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_text_view_get_iter_location (<em class="parameter"><code><a class="link" href="GtkTextView.html" title="GtkTextView"><span class="type">GtkTextView</span></a> *text_view</code></em>,
                                  <em class="parameter"><code>const <a class="link" href="GtkTextIter.html" title="GtkTextIter"><span class="type">GtkTextIter</span></a> *iter</code></em>,
-                                 <em class="parameter"><code><span class="type">GdkRectangle</span> *location</code></em>);</pre>
+                                 <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#GdkRectangle-struct"><span class="type">GdkRectangle</span></a> *location</code></em>);</pre>
 <p>Gets a rectangle which roughly contains the character at <em class="parameter"><code>iter</code></em>
 .
 The rectangle position is in buffer coordinates; use
@@ -1489,8 +1489,8 @@ coordinates to coordinates for one of the windows in the text view.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_text_view_get_cursor_locations (<em class="parameter"><code><a class="link" href="GtkTextView.html" title="GtkTextView"><span class="type">GtkTextView</span></a> *text_view</code></em>,
                                     <em class="parameter"><code>const <a class="link" href="GtkTextIter.html" title="GtkTextIter"><span class="type">GtkTextIter</span></a> *iter</code></em>,
-                                    <em class="parameter"><code><span class="type">GdkRectangle</span> *strong</code></em>,
-                                    <em class="parameter"><code><span class="type">GdkRectangle</span> *weak</code></em>);</pre>
+                                    <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#GdkRectangle-struct"><span class="type">GdkRectangle</span></a> *strong</code></em>,
+                                    <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#GdkRectangle-struct"><span class="type">GdkRectangle</span></a> *weak</code></em>);</pre>
 <p>Given an <em class="parameter"><code>iter</code></em>
  within a text layout, determine the positions of the
 strong and weak cursors if the insertion point is at that
@@ -3523,24 +3523,24 @@ and the default key event handling of the <a class="link" href="GtkTextView.html
 16
 17
 18</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> gboolean</span>
-<span class="function">gtk_foo_bar_key_press_event</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkWidget</span><span class="normal">   </span><span class="symbol">*</span><span class="normal">widget</span><span class="symbol">,</span>
-<span class="normal">                             </span><span class="usertype">GdkEventKey</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">event</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="usertype">guint</span><span class="normal"> keyval</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="n">gboolean</span>
+<span class="nf">gtk_foo_bar_key_press_event</span> <span class="p">(</span><span class="n">GtkWidget</span>   <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
+                             <span class="n">GdkEventKey</span> <span class="o">*</span><span class="n">event</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">guint</span> <span class="n">keyval</span><span class="p">;</span>
 
-<span class="normal">  </span><span class="function">gdk_event_get_keyval</span><span class="normal"> </span><span class="symbol">((</span><span class="normal">GdkEvent</span><span class="symbol">*)</span><span class="normal">event</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">keyval</span><span class="symbol">);</span>
+  <span class="n">gdk_event_get_keyval</span> <span class="p">((</span><span class="n">GdkEvent</span><span class="o">*</span><span class="p">)</span><span class="n">event</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">keyval</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">keyval </span><span class="symbol">==</span><span class="normal"> GDK_KEY_Return </span><span class="symbol">||</span><span class="normal"> keyval </span><span class="symbol">==</span><span class="normal"> GDK_KEY_KP_Enter</span><span class="symbol">)</span>
-<span class="normal">    </span><span class="cbracket">{</span>
-<span class="normal">      </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GtkTextView.html#gtk-text-view-im-context-filter-keypress">gtk_text_view_im_context_filter_keypress</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_TEXT_VIEW</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">),</span><span class="normal"> event</span><span class="symbol">))</span>
-<span class="normal">        </span><span class="keyword">return</span><span class="normal"> TRUE</span><span class="symbol">;</span>
-<span class="normal">    </span><span class="cbracket">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">keyval</span> <span class="o">==</span> <span class="n">GDK_KEY_Return</span> <span class="o">||</span> <span class="n">keyval</span> <span class="o">==</span> <span class="n">GDK_KEY_KP_Enter</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">gtk_text_view_im_context_filter_keypress</span> <span class="p">(</span><span class="n">GTK_TEXT_VIEW</span> <span class="p">(</span><span class="n">widget</span><span class="p">),</span> <span class="n">event</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">TRUE</span><span class="p">;</span>
+    <span class="p">}</span>
 
-<span class="normal">  </span><span class="comment">// Do some stuff</span>
+  <span class="c1">// Do some stuff</span>
 
-<span class="normal">  </span><span class="keyword">return</span><span class="normal"> </span><span class="function">GTK_WIDGET_CLASS</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gtk_foo_bar_parent_class</span><span class="symbol">)-&gt;</span><span class="function">key_press_event</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">,</span><span class="normal"> event</span><span class="symbol">);</span>
-<span class="cbracket">}</span></pre></td>
+  <span class="k">return</span> <span class="n">GTK_WIDGET_CLASS</span> <span class="p">(</span><span class="n">gtk_foo_bar_parent_class</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">key_press_event</span> <span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">event</span><span class="p">);</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -4043,7 +4043,7 @@ drawing with the ::draw_layer vfunc.</p>
 <td class="enum_member_name"><p><a name="GTK-TEXT-EXTEND-SELECTION-WORD:CAPS"></a>GTK_TEXT_EXTEND_SELECTION_WORD</p></td>
 <td class="enum_member_description">
 <p>Selects the current word. It is triggered by
-  a double-click for example.</p>
+a double-click for example.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -4051,7 +4051,7 @@ drawing with the ::draw_layer vfunc.</p>
 <td class="enum_member_name"><p><a name="GTK-TEXT-EXTEND-SELECTION-LINE:CAPS"></a>GTK_TEXT_EXTEND_SELECTION_LINE</p></td>
 <td class="enum_member_description">
 <p>Selects the current line. It is triggered by
-  a triple-click for example.</p>
+a triple-click for example.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -4084,8 +4084,8 @@ drawing with the ::draw_layer vfunc.</p>
 <td class="enum_member_name"><p><a name="GTK-WRAP-CHAR:CAPS"></a>GTK_WRAP_CHAR</p></td>
 <td class="enum_member_description">
 <p>wrap text, breaking lines anywhere the cursor can
-    appear (between characters, usually - if you want to be technical,
-    between graphemes, see <a href="/usr/share/gtk-doc/html/pango/pango-Text-Processing.html#pango-get-log-attrs"><code class="function">pango_get_log_attrs()</code></a>)</p>
+appear (between characters, usually - if you want to be technical,
+between graphemes, see <a href="/usr/share/gtk-doc/html/pango/pango-Text-Processing.html#pango-get-log-attrs"><code class="function">pango_get_log_attrs()</code></a>)</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -4100,7 +4100,7 @@ drawing with the ::draw_layer vfunc.</p>
 <td class="enum_member_name"><p><a name="GTK-WRAP-WORD-CHAR:CAPS"></a>GTK_WRAP_WORD_CHAR</p></td>
 <td class="enum_member_description">
 <p>wrap text, breaking lines in between words, or if
-    that is not enough, also between graphemes</p>
+that is not enough, also between graphemes</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -4569,8 +4569,8 @@ extended at <em class="parameter"><code>location</code></em>
 </div>
 <div class="refsect3">
 <a name="GtkTextView-extend-selection.returns"></a><h4>Returns</h4>
-<p> <code class="literal">GDK_EVENT_STOP</code> to stop other handlers from being invoked for the
-event. <code class="literal">GDK_EVENT_PROPAGATE</code> to propagate the event further.</p>
+<p> <a href="https://developer.gnome.org/gdk4/gdk4-Events.html#GDK-EVENT-STOP:CAPS"><code class="literal">GDK_EVENT_STOP</code></a> to stop other handlers from being invoked for the
+event. <a href="https://developer.gnome.org/gdk4/gdk4-Events.html#GDK-EVENT-PROPAGATE:CAPS"><code class="literal">GDK_EVENT_PROPAGATE</code></a> to propagate the event further.</p>
 </div>
 <p>Flags: Run Last</p>
 <p class="since">Since: <a class="link" href="api-index-3-16.html#api-index-3.16">3.16</a></p>
@@ -5067,6 +5067,6 @@ which gets emitted to toggle the overwrite mode of the text view.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

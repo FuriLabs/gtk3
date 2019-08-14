@@ -524,6 +524,7 @@ init_randr15 (GdkScreen *screen, gboolean *changed)
       gdk_monitor_set_refresh_rate (GDK_MONITOR (monitor), refresh_rate);
       gdk_monitor_set_scale_factor (GDK_MONITOR (monitor), x11_screen->window_scale);
       gdk_monitor_set_model (GDK_MONITOR (monitor), name);
+      gdk_monitor_set_connector (GDK_MONITOR (monitor), name);
       g_free (name);
 
       if (rr_monitors[i].primary)
@@ -1600,7 +1601,7 @@ gdk_x11_screen_class_init (GdkX11ScreenClass *klass)
                   G_SIGNAL_RUN_LAST,
                   G_STRUCT_OFFSET (GdkX11ScreenClass, window_manager_changed),
                   NULL, NULL,
-                  g_cclosure_marshal_VOID__VOID,
+                  NULL,
                   G_TYPE_NONE,
                   0);
 }

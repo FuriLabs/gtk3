@@ -8,7 +8,7 @@
 <link rel="up" href="SelectorWidgets.html" title="Selector Widgets and Dialogs">
 <link rel="prev" href="GtkFileChooserWidget.html" title="GtkFileChooserWidget">
 <link rel="next" href="GtkFontChooser.html" title="GtkFontChooser">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -218,16 +218,16 @@ rules:</p>
 8
 9
 10</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkFileFilter"</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">mime</span><span class="symbol">-</span><span class="normal">types</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">mime</span><span class="symbol">-</span><span class="normal">type</span><span class="symbol">&gt;</span><span class="normal">text</span><span class="symbol">/</span><span class="normal">plain</span><span class="symbol">&lt;/</span><span class="normal">mime</span><span class="symbol">-</span><span class="normal">type</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">mime</span><span class="symbol">-</span><span class="normal">type</span><span class="symbol">&gt;</span><span class="normal">image</span><span class="symbol">/</span><span class="normal"> </span><span class="symbol">*&lt;/</span><span class="normal">mime</span><span class="symbol">-</span><span class="normal">type</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">mime</span><span class="symbol">-</span><span class="normal">types</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">patterns</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">pattern</span><span class="symbol">&gt;*.</span><span class="normal">txt</span><span class="symbol">&lt;/</span><span class="normal">pattern</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">pattern</span><span class="symbol">&gt;*.</span><span class="normal">png</span><span class="symbol">&lt;/</span><span class="normal">pattern</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">patterns</span><span class="symbol">&gt;</span>
-<span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkFileFilter&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">mime</span><span class="o">-</span><span class="n">types</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">mime</span><span class="o">-</span><span class="n">type</span><span class="o">&gt;</span><span class="n">text</span><span class="o">/</span><span class="n">plain</span><span class="o">&lt;/</span><span class="n">mime</span><span class="o">-</span><span class="n">type</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">mime</span><span class="o">-</span><span class="n">type</span><span class="o">&gt;</span><span class="n">image</span><span class="o">/</span> <span class="o">*&lt;/</span><span class="n">mime</span><span class="o">-</span><span class="n">type</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">mime</span><span class="o">-</span><span class="n">types</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">patterns</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">pattern</span><span class="o">&gt;*</span><span class="p">.</span><span class="n">txt</span><span class="o">&lt;/</span><span class="n">pattern</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">pattern</span><span class="o">&gt;*</span><span class="p">.</span><span class="n">png</span><span class="o">&lt;/</span><span class="n">pattern</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">patterns</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -291,8 +291,8 @@ that accepts any file, use:</p>
       <tr>
         <td class="listing_lines" align="right"><pre>1
 2</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkFileFilter</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">filter </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkFileFilter.html#gtk-file-filter-new">gtk_file_filter_new</a></span><span class="normal"> </span><span class="symbol">();</span>
-<span class="function"><a href="GtkFileFilter.html#gtk-file-filter-add-pattern">gtk_file_filter_add_pattern</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">filter</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"*"</span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkFileFilter</span> <span class="o">*</span><span class="n">filter</span> <span class="o">=</span> <span class="n">gtk_file_filter_new</span> <span class="p">();</span>
+<span class="n">gtk_file_filter_add_pattern</span> <span class="p">(</span><span class="n">filter</span><span class="p">,</span> <span class="s">&quot;*&quot;</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -739,7 +739,7 @@ are filled or need to be filled.</p>
 <td class="enum_member_name"><p><a name="GTK-FILE-FILTER-DISPLAY-NAME:CAPS"></a>GTK_FILE_FILTER_DISPLAY_NAME</p></td>
 <td class="enum_member_description">
 <p>the string that will be used to 
-  display the file in the file chooser</p>
+display the file in the file chooser</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -761,6 +761,6 @@ are filled or need to be filled.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

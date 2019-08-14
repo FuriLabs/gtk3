@@ -8,7 +8,7 @@
 <link rel="up" href="DisplayWidgets.html" title="Display Widgets">
 <link rel="prev" href="GtkProgressBar.html" title="GtkProgressBar">
 <link rel="next" href="GtkStatusbar.html" title="GtkStatusbar">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -340,35 +340,35 @@ them to the new range.</p>
 27
 28
 29</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> <a href="GtkWidget.html#GtkWidget-struct">GtkWidget</a> </span><span class="symbol">*</span>
-<span class="function">create_level_bar</span><span class="normal"> </span><span class="symbol">(</span><span class="type">void</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">widget</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="usertype">GtkLevelBar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">bar</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="n">GtkWidget</span> <span class="o">*</span>
+<span class="nf">create_level_bar</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">;</span>
+  <span class="n">GtkLevelBar</span> <span class="o">*</span><span class="n">bar</span><span class="p">;</span>
 
-<span class="normal">  widget </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkLevelBar.html#gtk-level-bar-new">gtk_level_bar_new</a></span><span class="normal"> </span><span class="symbol">();</span>
-<span class="normal">  bar </span><span class="symbol">=</span><span class="normal"> </span><span class="function">GTK_LEVEL_BAR</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">);</span>
+  <span class="n">widget</span> <span class="o">=</span> <span class="n">gtk_level_bar_new</span> <span class="p">();</span>
+  <span class="n">bar</span> <span class="o">=</span> <span class="n">GTK_LEVEL_BAR</span> <span class="p">(</span><span class="n">widget</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="comment">// This changes the value of the default low offset</span>
+  <span class="c1">// This changes the value of the default low offset</span>
 
-<span class="normal">  </span><span class="function"><a href="GtkLevelBar.html#gtk-level-bar-add-offset-value">gtk_level_bar_add_offset_value</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">bar</span><span class="symbol">,</span>
-<span class="normal">                                  <a href="GtkLevelBar.html#GTK-LEVEL-BAR-OFFSET-LOW:CAPS">GTK_LEVEL_BAR_OFFSET_LOW</a></span><span class="symbol">,</span>
-<span class="normal">                                  </span><span class="number">0.10</span><span class="symbol">);</span>
+  <span class="n">gtk_level_bar_add_offset_value</span> <span class="p">(</span><span class="n">bar</span><span class="p">,</span>
+                                  <span class="n">GTK_LEVEL_BAR_OFFSET_LOW</span><span class="p">,</span>
+                                  <span class="mf">0.10</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="comment">// This adds a new offset to the bar; the application will</span>
-<span class="normal">  </span><span class="comment">// be able to change its color CSS like this:</span>
-<span class="normal">  </span><span class="comment">//</span>
-<span class="normal">  </span><span class="comment">// levelbar block.my-offset {</span>
-<span class="normal">  </span><span class="comment">//   background-color: magenta;</span>
-<span class="normal">  </span><span class="comment">//   border-style: solid;</span>
-<span class="normal">  </span><span class="comment">//   border-color: black;</span>
-<span class="normal">  </span><span class="comment">//   border-style: 1px;</span>
-<span class="normal">  </span><span class="comment">// }</span>
+  <span class="c1">// This adds a new offset to the bar; the application will</span>
+  <span class="c1">// be able to change its color CSS like this:</span>
+  <span class="c1">//</span>
+  <span class="c1">// levelbar block.my-offset {</span>
+  <span class="c1">//   background-color: magenta;</span>
+  <span class="c1">//   border-style: solid;</span>
+  <span class="c1">//   border-color: black;</span>
+  <span class="c1">//   border-style: 1px;</span>
+  <span class="c1">// }</span>
 
-<span class="normal">  </span><span class="function"><a href="GtkLevelBar.html#gtk-level-bar-add-offset-value">gtk_level_bar_add_offset_value</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">bar</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"my-offset"</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.60</span><span class="symbol">);</span>
+  <span class="n">gtk_level_bar_add_offset_value</span> <span class="p">(</span><span class="n">bar</span><span class="p">,</span> <span class="s">&quot;my-offset&quot;</span><span class="p">,</span> <span class="mf">0.60</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="keyword">return</span><span class="normal"> widget</span><span class="symbol">;</span>
-<span class="cbracket">}</span></pre></td>
+  <span class="k">return</span> <span class="n">widget</span><span class="p">;</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -408,12 +408,12 @@ each of which must have name and value attributes.</p>
 4
 5
 6</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">levelbar</span><span class="symbol">[.</span><span class="normal">discrete</span><span class="symbol">]</span>
-<span class="normal">╰── trough</span>
-<span class="normal">    ├── block</span><span class="symbol">.</span><span class="normal">filled</span><span class="symbol">.</span><span class="normal">level</span><span class="symbol">-</span><span class="normal">name</span>
-<span class="normal">    ┊</span>
-<span class="normal">    ├── block</span><span class="symbol">.</span><span class="normal">empty</span>
-<span class="normal">    ┊</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">levelbar</span><span class="p">[.</span><span class="n">discrete</span><span class="p">]</span>
+<span class="err">╰──</span> <span class="n">trough</span>
+    <span class="err">├──</span> <span class="n">block</span><span class="p">.</span><span class="n">filled</span><span class="p">.</span><span class="n">level</span><span class="o">-</span><span class="n">name</span>
+    <span class="err">┊</span>
+    <span class="err">├──</span> <span class="n">block</span><span class="p">.</span><span class="n">empty</span>
+    <span class="err">┊</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1110,6 +1110,6 @@ the value of offset "x" changes.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <link rel="up" href="WindowWidgets.html" title="Windows">
 <link rel="prev" href="WindowWidgets.html" title="Windows">
 <link rel="next" href="GtkDialog.html" title="GtkDialog">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -158,7 +158,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<span class="returnvalue">GdkGravity</span>
+<a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkGravity"><span class="returnvalue">GdkGravity</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GtkWindow.html#gtk-window-get-gravity" title="gtk_window_get_gravity ()">gtk_window_get_gravity</a> <span class="c_punctuation">()</span>
@@ -620,7 +620,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<span class="returnvalue">GdkModifierType</span>
+<a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkModifierType"><span class="returnvalue">GdkModifierType</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GtkWindow.html#gtk-window-get-mnemonic-modifier" title="gtk_window_get_mnemonic_modifier ()">gtk_window_get_mnemonic_modifier</a> <span class="c_punctuation">()</span>
@@ -1057,7 +1057,7 @@
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><span class="type">GdkGravity</span></td>
+<td class="property_type"><a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkGravity"><span class="type">GdkGravity</span></a></td>
 <td class="property_name"><a class="link" href="GtkWindow.html#GtkWindow--gravity" title="The “gravity” property">gravity</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -1303,7 +1303,7 @@ of the windowing system and allow the user to manipulate the window
 (resize it, move it, close it,...).</p>
 <div class="refsect2">
 <a name="id-1.3.6.2.11.3"></a><h3>GtkWindow as GtkBuildable</h3>
-<p>The GtkWindow implementation of the GtkBuildable interface supports a
+<p>The GtkWindow implementation of the <a class="link" href="GtkBuildable.html" title="GtkBuildable"><span class="type">GtkBuildable</span></a> interface supports a
 custom &lt;accel-groups&gt; element, which supports any number of &lt;group&gt;
 elements representing the <a class="link" href="gtk3-Keyboard-Accelerators.html#GtkAccelGroup"><span class="type">GtkAccelGroup</span></a> objects you want to add to
 your window (synonymous with <a class="link" href="GtkWindow.html#gtk-window-add-accel-group" title="gtk_window_add_accel_group ()"><code class="function">gtk_window_add_accel_group()</code></a>.</p>
@@ -1324,23 +1324,23 @@ the widget to receive the focus when the window is mapped.</p>
 8
 9
 10</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkWindow"</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">accel</span><span class="symbol">-</span><span class="normal">groups</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">group</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"accelgroup1"</span><span class="symbol">/&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">accel</span><span class="symbol">-</span><span class="normal">groups</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">initial</span><span class="symbol">-</span><span class="usertype">focus</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"thunderclap"</span><span class="symbol">/&gt;</span>
-<span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkWindow&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">accel</span><span class="o">-</span><span class="n">groups</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">group</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;accelgroup1&quot;</span><span class="o">/&gt;</span>
+  <span class="o">&lt;/</span><span class="n">accel</span><span class="o">-</span><span class="n">groups</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">initial</span><span class="o">-</span><span class="n">focus</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;thunderclap&quot;</span><span class="o">/&gt;</span>
+<span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span>
 
-<span class="symbol">...</span>
+<span class="p">...</span>
 
-<span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkAccelGroup"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"accelgroup1"</span><span class="symbol">/&gt;</span></pre></td>
+<span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkAccelGroup&quot;</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;accelgroup1&quot;</span><span class="o">/&gt;</span></pre></td>
       </tr>
     </tbody>
   </table>
 </div>
 
 <p></p>
-<p>The GtkWindow implementation of the GtkBuildable interface supports
+<p>The GtkWindow implementation of the <a class="link" href="GtkBuildable.html" title="GtkBuildable"><span class="type">GtkBuildable</span></a> interface supports
 setting a child as the titlebar by specifying “titlebar” as the “type”
 attribute of a &lt;child&gt; element.</p>
 </div>
@@ -1355,10 +1355,10 @@ attribute of a &lt;child&gt; element.</p>
 2
 3
 4</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">window</span><span class="symbol">.</span><span class="normal">background</span>
-<span class="normal">├── decoration</span>
-<span class="normal">├── </span><span class="symbol">&lt;</span><span class="usertype">titlebar</span><span class="normal"> child</span><span class="symbol">&gt;.</span><span class="normal">titlebar </span><span class="symbol">[.</span><span class="keyword">default</span><span class="symbol">-</span><span class="normal">decoration</span><span class="symbol">]</span>
-<span class="normal">╰── </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">window</span><span class="p">.</span><span class="n">background</span>
+<span class="err">├──</span> <span class="n">decoration</span>
+<span class="err">├──</span> <span class="o">&lt;</span><span class="n">titlebar</span> <span class="n">child</span><span class="o">&gt;</span><span class="p">.</span><span class="n">titlebar</span> <span class="p">[.</span><span class="k">default</span><span class="o">-</span><span class="n">decoration</span><span class="p">]</span>
+<span class="err">╰──</span> <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1831,12 +1831,12 @@ gtk_window_set_geometry_hints.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_window_set_geometry_hints (<em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *window</code></em>,
                                <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *geometry_widget</code></em>,
-                               <em class="parameter"><code><span class="type">GdkGeometry</span> *geometry</code></em>,
+                               <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkGeometry"><span class="type">GdkGeometry</span></a> *geometry</code></em>,
                                <em class="parameter"><code><span class="type">GdkWindowHints</span> geom_mask</code></em>);</pre>
 <p>This function sets up hints about how a window can be resized by
 the user.  You can set a minimum and maximum size; allowed resize
 increments (e.g. for xterm, you can only resize by the size of a
-character); aspect ratios; and more. See the <span class="type">GdkGeometry</span> struct.</p>
+character); aspect ratios; and more. See the <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkGeometry"><span class="type">GdkGeometry</span></a> struct.</p>
 <div class="refsect3">
 <a name="gtk-window-set-geometry-hints.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1877,11 +1877,11 @@ set. </p></td>
 <a name="gtk-window-set-gravity"></a><h3>gtk_window_set_gravity ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_window_set_gravity (<em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *window</code></em>,
-                        <em class="parameter"><code><span class="type">GdkGravity</span> gravity</code></em>);</pre>
+                        <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkGravity"><span class="type">GdkGravity</span></a> gravity</code></em>);</pre>
 <p>Window gravity defines the meaning of coordinates passed to
-<a class="link" href="GtkWindow.html#gtk-window-move" title="gtk_window_move ()"><code class="function">gtk_window_move()</code></a>. See <a class="link" href="GtkWindow.html#gtk-window-move" title="gtk_window_move ()"><code class="function">gtk_window_move()</code></a> and <span class="type">GdkGravity</span> for
+<a class="link" href="GtkWindow.html#gtk-window-move" title="gtk_window_move ()"><code class="function">gtk_window_move()</code></a>. See <a class="link" href="GtkWindow.html#gtk-window-move" title="gtk_window_move ()"><code class="function">gtk_window_move()</code></a> and <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkGravity"><span class="type">GdkGravity</span></a> for
 more details.</p>
-<p>The default window gravity is <span class="type">GDK_GRAVITY_NORTH_WEST</span> which will
+<p>The default window gravity is <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GDK-GRAVITY-NORTH-WEST:CAPS"><span class="type">GDK_GRAVITY_NORTH_WEST</span></a> which will
 typically “do what you mean.”</p>
 <div class="refsect3">
 <a name="gtk-window-set-gravity.parameters"></a><h4>Parameters</h4>
@@ -1909,7 +1909,7 @@ typically “do what you mean.”</p>
 <hr>
 <div class="refsect2">
 <a name="gtk-window-get-gravity"></a><h3>gtk_window_get_gravity ()</h3>
-<pre class="programlisting"><span class="returnvalue">GdkGravity</span>
+<pre class="programlisting"><a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkGravity"><span class="returnvalue">GdkGravity</span></a>
 gtk_window_get_gravity (<em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *window</code></em>);</pre>
 <p>Gets the value set by <a class="link" href="GtkWindow.html#gtk-window-set-gravity" title="gtk_window_set_gravity ()"><code class="function">gtk_window_set_gravity()</code></a>.</p>
 <div class="refsect3">
@@ -2389,7 +2389,7 @@ gtk_window_remove_mnemonic (<em class="parameter"><code><a class="link" href="Gt
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_window_mnemonic_activate (<em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *window</code></em>,
                               <em class="parameter"><code><span class="type">guint</span> keyval</code></em>,
-                              <em class="parameter"><code><span class="type">GdkModifierType</span> modifier</code></em>);</pre>
+                              <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkModifierType"><span class="type">GdkModifierType</span></a> modifier</code></em>);</pre>
 <p>Activates the targets associated with the mnemonic.</p>
 <div class="refsect3">
 <a name="gtk-window-mnemonic-activate.parameters"></a><h4>Parameters</h4>
@@ -3324,7 +3324,7 @@ policy involved.</p>
 <a name="gtk-window-set-mnemonic-modifier"></a><h3>gtk_window_set_mnemonic_modifier ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_window_set_mnemonic_modifier (<em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *window</code></em>,
-                                  <em class="parameter"><code><span class="type">GdkModifierType</span> modifier</code></em>);</pre>
+                                  <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkModifierType"><span class="type">GdkModifierType</span></a> modifier</code></em>);</pre>
 <p>Sets the mnemonic modifier for this window.</p>
 <div class="refsect3">
 <a name="gtk-window-set-mnemonic-modifier.parameters"></a><h4>Parameters</h4>
@@ -3900,7 +3900,7 @@ no themed icon. </p>
 <hr>
 <div class="refsect2">
 <a name="gtk-window-get-mnemonic-modifier"></a><h3>gtk_window_get_mnemonic_modifier ()</h3>
-<pre class="programlisting"><span class="returnvalue">GdkModifierType</span>
+<pre class="programlisting"><a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkModifierType"><span class="returnvalue">GdkModifierType</span></a>
 gtk_window_get_mnemonic_modifier (<em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *window</code></em>);</pre>
 <p>Returns the mnemonic modifier for this window. See
 <a class="link" href="GtkWindow.html#gtk-window-set-mnemonic-modifier" title="gtk_window_set_mnemonic_modifier ()"><code class="function">gtk_window_set_mnemonic_modifier()</code></a>.</p>
@@ -3974,11 +3974,11 @@ have been known to mismanage window gravity, which result in windows
 moving even if you use the coordinates of the current position as
 returned by this function.</p>
 <p>If you haven’t changed the window gravity, its gravity will be
-<span class="type">GDK_GRAVITY_NORTH_WEST</span>. This means that <a class="link" href="GtkWindow.html#gtk-window-get-position" title="gtk_window_get_position ()"><code class="function">gtk_window_get_position()</code></a>
+<a href="https://developer.gnome.org/gdk4/GdkSurface.html#GDK-GRAVITY-NORTH-WEST:CAPS"><span class="type">GDK_GRAVITY_NORTH_WEST</span></a>. This means that <a class="link" href="GtkWindow.html#gtk-window-get-position" title="gtk_window_get_position ()"><code class="function">gtk_window_get_position()</code></a>
 gets the position of the top-left corner of the window manager
 frame for the window. <a class="link" href="GtkWindow.html#gtk-window-move" title="gtk_window_move ()"><code class="function">gtk_window_move()</code></a> sets the position of this
 same top-left corner.</p>
-<p>If a window has gravity <span class="type">GDK_GRAVITY_STATIC</span> the window manager
+<p>If a window has gravity <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GDK-GRAVITY-STATIC:CAPS"><span class="type">GDK_GRAVITY_STATIC</span></a> the window manager
 frame is not relevant, and thus <a class="link" href="GtkWindow.html#gtk-window-get-position" title="gtk_window_get_position ()"><code class="function">gtk_window_get_position()</code></a> will
 always produce accurate results. However you can’t use static
 gravity to do things like place a window in a corner of the screen,
@@ -4078,11 +4078,11 @@ way that this code:</p>
 3
 4
 5</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="comment">// width and height are set elsewhere</span>
-<span class="function"><a href="GtkWindow.html#gtk-window-resize">gtk_window_resize</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">,</span><span class="normal"> width</span><span class="symbol">,</span><span class="normal"> height</span><span class="symbol">);</span>
+        <td class="listing_code"><pre class="programlisting"><span class="c1">// width and height are set elsewhere</span>
+<span class="n">gtk_window_resize</span> <span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
 
-<span class="type">int</span><span class="normal"> new_width</span><span class="symbol">,</span><span class="normal"> new_height</span><span class="symbol">;</span>
-<span class="function"><a href="GtkWindow.html#gtk-window-get-size">gtk_window_get_size</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">new_width</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">new_height</span><span class="symbol">);</span></pre></td>
+<span class="kt">int</span> <span class="n">new_width</span><span class="p">,</span> <span class="n">new_height</span><span class="p">;</span>
+<span class="n">gtk_window_get_size</span> <span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">new_width</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">new_height</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -4117,15 +4117,15 @@ inside a handler for the <a class="link" href="GtkWidget.html#GtkWidget-configur
 7
 8
 9</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
-<span class="function">on_size_allocate</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">widget</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">GtkAllocation</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">allocation</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="type">int</span><span class="normal"> new_width</span><span class="symbol">,</span><span class="normal"> new_height</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
+<span class="nf">on_size_allocate</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span> <span class="n">GtkAllocation</span> <span class="o">*</span><span class="n">allocation</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">new_width</span><span class="p">,</span> <span class="n">new_height</span><span class="p">;</span>
 
-<span class="normal">  </span><span class="function"><a href="GtkWindow.html#gtk-window-get-size">gtk_window_get_size</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_WINDOW</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">),</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">new_width</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">new_height</span><span class="symbol">);</span>
+  <span class="n">gtk_window_get_size</span> <span class="p">(</span><span class="n">GTK_WINDOW</span> <span class="p">(</span><span class="n">widget</span><span class="p">),</span> <span class="o">&amp;</span><span class="n">new_width</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">new_height</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="symbol">...</span>
-<span class="cbracket">}</span></pre></td>
+  <span class="p">...</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -4537,7 +4537,7 @@ reference point for the window. The gravity determines two things:
 first, the location of the reference point in root window
 coordinates; and second, which point on the window is positioned at
 the reference point.</p>
-<p>By default the gravity is <span class="type">GDK_GRAVITY_NORTH_WEST</span>, so the reference
+<p>By default the gravity is <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GDK-GRAVITY-NORTH-WEST:CAPS"><span class="type">GDK_GRAVITY_NORTH_WEST</span></a>, so the reference
 point is simply the <em class="parameter"><code>x</code></em>
 , <em class="parameter"><code>y</code></em>
  supplied to <a class="link" href="GtkWindow.html#gtk-window-move" title="gtk_window_move ()"><code class="function">gtk_window_move()</code></a>. The
@@ -4546,9 +4546,9 @@ border) will be placed at <em class="parameter"><code>x</code></em>
 , <em class="parameter"><code>y</code></em>
 .  Therefore, to position a window
 at the top left of the screen, you want to use the default gravity
-(which is <span class="type">GDK_GRAVITY_NORTH_WEST</span>) and move the window to 0,0.</p>
+(which is <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GDK-GRAVITY-NORTH-WEST:CAPS"><span class="type">GDK_GRAVITY_NORTH_WEST</span></a>) and move the window to 0,0.</p>
 <p>To position a window at the bottom right corner of the screen, you
-would set <span class="type">GDK_GRAVITY_SOUTH_EAST</span>, which means that the reference
+would set <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GDK-GRAVITY-SOUTH-EAST:CAPS"><span class="type">GDK_GRAVITY_SOUTH_EAST</span></a>, which means that the reference
 point is at <em class="parameter"><code>x</code></em>
  + the window width and <em class="parameter"><code>y</code></em>
  + the window height, and
@@ -4608,7 +4608,7 @@ geometry string, <a class="link" href="GtkWindow.html#gtk-window-parse-geometry"
 and calls <a class="link" href="GtkWindow.html#gtk-window-set-default-size" title="gtk_window_set_default_size ()"><code class="function">gtk_window_set_default_size()</code></a> and/or <a class="link" href="GtkWindow.html#gtk-window-move" title="gtk_window_move ()"><code class="function">gtk_window_move()</code></a>
 to resize/move the window.</p>
 <p>If <a class="link" href="GtkWindow.html#gtk-window-parse-geometry" title="gtk_window_parse_geometry ()"><code class="function">gtk_window_parse_geometry()</code></a> returns <code class="literal">TRUE</code>, it will also
-set the <span class="type">GDK_HINT_USER_POS</span> and/or <span class="type">GDK_HINT_USER_SIZE</span> hints
+set the <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GDK-HINT-USER-POS:CAPS"><span class="type">GDK_HINT_USER_POS</span></a> and/or <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GDK-HINT-USER-SIZE:CAPS"><span class="type">GDK_HINT_USER_SIZE</span></a> hints
 indicating to the window manager that the size/position of
 the window was user-specified. This causes most window
 managers to honor the geometry.</p>
@@ -4669,55 +4669,55 @@ on the window.</p>
 47
 48
 49</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="preproc">#include</span><span class="normal"> </span><span class="string">&lt;gtk/gtk.h&gt;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="cp">#include</span> <span class="cpf">&lt;gtk/gtk.h&gt;</span><span class="cp"></span>
 
-<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
-<span class="function">fill_with_content</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">vbox</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="comment">// fill with content...</span>
-<span class="cbracket">}</span>
+<span class="k">static</span> <span class="kt">void</span>
+<span class="nf">fill_with_content</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">vbox</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// fill with content...</span>
+<span class="p">}</span>
 
-<span class="type">int</span>
-<span class="function">main</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> argc</span><span class="symbol">,</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">argv</span><span class="symbol">[])</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">window</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">vbox</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="usertype">GdkGeometry</span><span class="normal"> size_hints </span><span class="symbol">=</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="number">100</span><span class="symbol">,</span><span class="normal"> </span><span class="number">50</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">100</span><span class="symbol">,</span><span class="normal"> </span><span class="number">50</span><span class="symbol">,</span><span class="normal"> </span><span class="number">10</span><span class="symbol">,</span>
-<span class="normal">    </span><span class="number">10</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.0</span><span class="symbol">,</span><span class="normal"> GDK_GRAVITY_NORTH_WEST</span>
-<span class="normal">  </span><span class="cbracket">}</span><span class="symbol">;</span>
+<span class="kt">int</span>
+<span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+  <span class="n">GtkWidget</span> <span class="o">*</span><span class="n">window</span><span class="p">,</span> <span class="o">*</span><span class="n">vbox</span><span class="p">;</span>
+  <span class="n">GdkGeometry</span> <span class="n">size_hints</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="mi">10</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">GDK_GRAVITY_NORTH_WEST</span>
+  <span class="p">};</span>
 
-<span class="normal">  </span><span class="function"><a href="gtk3-General.html#gtk-init">gtk_init</a></span><span class="normal"> </span><span class="symbol">(&amp;</span><span class="normal">argc</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">argv</span><span class="symbol">);</span>
+  <span class="n">gtk_init</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">argv</span><span class="p">);</span>
 
-<span class="normal">  window </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkWindow.html#gtk-window-new">gtk_window_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="GtkWindow.html#GTK-WINDOW-TOPLEVEL:CAPS">GTK_WINDOW_TOPLEVEL</a></span><span class="symbol">);</span>
-<span class="normal">  vbox </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkBox.html#gtk-box-new">gtk_box_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="gtk3-Standard-Enumerations.html#GTK-ORIENTATION-VERTICAL:CAPS">GTK_ORIENTATION_VERTICAL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">);</span>
+  <span class="n">window</span> <span class="o">=</span> <span class="n">gtk_window_new</span> <span class="p">(</span><span class="n">GTK_WINDOW_TOPLEVEL</span><span class="p">);</span>
+  <span class="n">vbox</span> <span class="o">=</span> <span class="n">gtk_box_new</span> <span class="p">(</span><span class="n">GTK_ORIENTATION_VERTICAL</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="function"><a href="GtkContainer.html#gtk-container-add">gtk_container_add</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_CONTAINER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">),</span><span class="normal"> vbox</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function">fill_with_content</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">vbox</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="GtkWidget.html#gtk-widget-show-all">gtk_widget_show_all</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">vbox</span><span class="symbol">);</span>
+  <span class="n">gtk_container_add</span> <span class="p">(</span><span class="n">GTK_CONTAINER</span> <span class="p">(</span><span class="n">window</span><span class="p">),</span> <span class="n">vbox</span><span class="p">);</span>
+  <span class="n">fill_with_content</span> <span class="p">(</span><span class="n">vbox</span><span class="p">);</span>
+  <span class="n">gtk_widget_show_all</span> <span class="p">(</span><span class="n">vbox</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="function"><a href="GtkWindow.html#gtk-window-set-geometry-hints">gtk_window_set_geometry_hints</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_WINDOW</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">),</span>
-<span class="normal">                    NULL</span><span class="symbol">,</span>
-<span class="normal">                    </span><span class="symbol">&amp;</span><span class="normal">size_hints</span><span class="symbol">,</span>
-<span class="normal">                    GDK_HINT_MIN_SIZE </span><span class="symbol">|</span>
-<span class="normal">                    GDK_HINT_BASE_SIZE </span><span class="symbol">|</span>
-<span class="normal">                    GDK_HINT_RESIZE_INC</span><span class="symbol">);</span>
+  <span class="n">gtk_window_set_geometry_hints</span> <span class="p">(</span><span class="n">GTK_WINDOW</span> <span class="p">(</span><span class="n">window</span><span class="p">),</span>
+	  			    <span class="nb">NULL</span><span class="p">,</span>
+				    <span class="o">&amp;</span><span class="n">size_hints</span><span class="p">,</span>
+				    <span class="n">GDK_HINT_MIN_SIZE</span> <span class="o">|</span>
+				    <span class="n">GDK_HINT_BASE_SIZE</span> <span class="o">|</span>
+				    <span class="n">GDK_HINT_RESIZE_INC</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">argc </span><span class="symbol">&gt;</span><span class="normal"> </span><span class="number">1</span><span class="symbol">)</span>
-<span class="normal">    </span><span class="cbracket">{</span>
-<span class="normal">      </span><span class="usertype">gboolean</span><span class="normal"> res</span><span class="symbol">;</span>
-<span class="normal">      res </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkWindow.html#gtk-window-parse-geometry">gtk_window_parse_geometry</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_WINDOW</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">),</span>
-<span class="normal">                                       argv</span><span class="symbol">[</span><span class="number">1</span><span class="symbol">]);</span>
-<span class="normal">      </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(!</span><span class="normal"> res</span><span class="symbol">)</span>
-<span class="normal">        </span><span class="function">fprintf</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">stderr</span><span class="symbol">,</span>
-<span class="normal">                 </span><span class="string">"Failed to parse “%s”</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span>
-<span class="normal">                 argv</span><span class="symbol">[</span><span class="number">1</span><span class="symbol">]);</span>
-<span class="normal">    </span><span class="cbracket">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">gboolean</span> <span class="n">res</span><span class="p">;</span>
+      <span class="n">res</span> <span class="o">=</span> <span class="n">gtk_window_parse_geometry</span> <span class="p">(</span><span class="n">GTK_WINDOW</span> <span class="p">(</span><span class="n">window</span><span class="p">),</span>
+                                       <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="n">res</span><span class="p">)</span>
+        <span class="n">fprintf</span> <span class="p">(</span><span class="n">stderr</span><span class="p">,</span>
+                 <span class="s">&quot;Failed to parse “%s”</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+                 <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="p">}</span>
 
-<span class="normal">  </span><span class="function"><a href="GtkWidget.html#gtk-widget-show-all">gtk_widget_show_all</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="gtk3-General.html#gtk-main">gtk_main</a></span><span class="normal"> </span><span class="symbol">();</span>
+  <span class="n">gtk_widget_show_all</span> <span class="p">(</span><span class="n">window</span><span class="p">);</span>
+  <span class="n">gtk_main</span> <span class="p">();</span>
 
-<span class="normal">  </span><span class="keyword">return</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span>
-<span class="cbracket">}</span></pre></td>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -5507,13 +5507,13 @@ gtk_window_resize_grip_is_visible (<em class="parameter"><code><a class="link" h
 <a name="gtk-window-get-resize-grip-area"></a><h3>gtk_window_get_resize_grip_area ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_window_get_resize_grip_area (<em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *window</code></em>,
-                                 <em class="parameter"><code><span class="type">GdkRectangle</span> *rect</code></em>);</pre>
+                                 <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#GdkRectangle-struct"><span class="type">GdkRectangle</span></a> *rect</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gtk_window_get_resize_grip_area</code> has been deprecated since version 3.14 and should not be used in newly-written code.</p>
 <p>Resize grips have been removed.</p>
 </div>
 <p>If a window has a resize grip, this will retrieve the grip
-position, width and height into the specified <span class="type">GdkRectangle</span>.</p>
+position, width and height into the specified <a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#GdkRectangle-struct"><span class="type">GdkRectangle</span></a>.</p>
 <div class="refsect3">
 <a name="gtk-window-get-resize-grip-area.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -5530,7 +5530,7 @@ position, width and height into the specified <span class="type">GdkRectangle</s
 </tr>
 <tr>
 <td class="parameter_name"><p>rect</p></td>
-<td class="parameter_description"><p>a pointer to a <span class="type">GdkRectangle</span> which we should store
+<td class="parameter_description"><p>a pointer to a <a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#GdkRectangle-struct"><span class="type">GdkRectangle</span></a> which we should store
 the resize grip area. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span></td>
 </tr>
@@ -5896,7 +5896,7 @@ It won’t necessarily work well with all window managers or on all windowing sy
 <td class="enum_member_name"><p><a name="GTK-WIN-POS-CENTER-ON-PARENT:CAPS"></a>GTK_WIN_POS_CENTER_ON_PARENT</p></td>
 <td class="enum_member_description">
 <p>Center the window on its transient
- parent (see <a class="link" href="GtkWindow.html#gtk-window-set-transient-for" title="gtk_window_set_transient_for ()"><code class="function">gtk_window_set_transient_for()</code></a>).</p>
+parent (see <a class="link" href="GtkWindow.html#gtk-window-set-transient-for" title="gtk_window_set_transient_for ()"><code class="function">gtk_window_set_transient_for()</code></a>).</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -6009,8 +6009,8 @@ and should not be set by applications.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkWindow--gravity"></a><h3>The <code class="literal">“gravity”</code> property</h3>
-<pre class="programlisting">  “gravity”                  <span class="type">GdkGravity</span></pre>
-<p>The window gravity of the window. See <a class="link" href="GtkWindow.html#gtk-window-move" title="gtk_window_move ()"><code class="function">gtk_window_move()</code></a> and <span class="type">GdkGravity</span> for
+<pre class="programlisting">  “gravity”                  <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkGravity"><span class="type">GdkGravity</span></a></pre>
+<p>The window gravity of the window. See <a class="link" href="GtkWindow.html#gtk-window-move" title="gtk_window_move ()"><code class="function">gtk_window_move()</code></a> and <a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkGravity"><span class="type">GdkGravity</span></a> for
 more details about window gravity.</p>
 <p>Flags: Read / Write</p>
 <p>Default value: GDK_GRAVITY_NORTH_WEST</p>
@@ -6395,6 +6395,6 @@ user_function (<a class="link" href="GtkWindow.html" title="GtkWindow"><span cla
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

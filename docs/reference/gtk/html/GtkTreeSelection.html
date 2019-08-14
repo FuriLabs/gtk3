@@ -8,7 +8,7 @@
 <link rel="up" href="TreeWidgetObjects.html" title="Tree, List and Icon Grid Widgets">
 <link rel="prev" href="GtkTreeModel.html" title="GtkTreeModel">
 <link rel="next" href="GtkTreeViewColumn.html" title="GtkTreeViewColumn">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -693,7 +693,7 @@ gtk_tree_selection_get_selected_rows (<em class="parameter"><code><a class="link
                                       <em class="parameter"><code><a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span class="type">GtkTreeModel</span></a> **model</code></em>);</pre>
 <p>Creates a list of path of all selected rows. Additionally, if you are
 planning on modifying the model after calling this function, you may
-want to convert the returned list into a list of <a href="GtkTreeModel.html#GtkTreeRowReference"><span class="type">GtkTreeRowReferences</span></a>.
+want to convert the returned list into a list of <span class="type">GtkTreeRowReferences</span>.
 To do this, you can use <a class="link" href="GtkTreeModel.html#gtk-tree-row-reference-new" title="gtk_tree_row_reference_new ()"><code class="function">gtk_tree_row_reference_new()</code></a>.</p>
 <p>To free the return value, use:</p>
 <div class="informalexample">
@@ -701,7 +701,7 @@ To do this, you can use <a class="link" href="GtkTreeModel.html#gtk-tree-row-ref
     <tbody>
       <tr>
         <td class="listing_lines" align="right"><pre>1</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="function">g_list_free_full</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">list</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">GDestroyNotify</span><span class="symbol">)</span><span class="normal"> <a href="GtkTreeModel.html#gtk-tree-path-free">gtk_tree_path_free</a></span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">g_list_free_full</span> <span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="p">(</span><span class="n">GDestroyNotify</span><span class="p">)</span> <span class="n">gtk_tree_path_free</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1173,12 +1173,12 @@ has happened.</p>
 <div class="refsect1">
 <a name="GtkTreeSelection.see-also"></a><h2>See Also</h2>
 <p><a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class="type">GtkTreeView</span></a>, <a class="link" href="GtkTreeViewColumn.html" title="GtkTreeViewColumn"><span class="type">GtkTreeViewColumn</span></a>, <a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span class="type">GtkTreeModel</span></a>,
-  <a class="link" href="GtkTreeSortable.html" title="GtkTreeSortable"><span class="type">GtkTreeSortable</span></a>, <a class="link" href="GtkTreeModelSort.html" title="GtkTreeModelSort"><span class="type">GtkTreeModelSort</span></a>, <a class="link" href="GtkListStore.html" title="GtkListStore"><span class="type">GtkListStore</span></a>, <a class="link" href="GtkTreeStore.html" title="GtkTreeStore"><span class="type">GtkTreeStore</span></a>,
-  <a class="link" href="GtkCellRenderer.html" title="GtkCellRenderer"><span class="type">GtkCellRenderer</span></a>, <a class="link" href="GtkCellEditable.html" title="GtkCellEditable"><span class="type">GtkCellEditable</span></a>, <a class="link" href="GtkCellRendererPixbuf.html" title="GtkCellRendererPixbuf"><span class="type">GtkCellRendererPixbuf</span></a>,
-  <a class="link" href="GtkCellRendererText.html" title="GtkCellRendererText"><span class="type">GtkCellRendererText</span></a>, <a class="link" href="GtkCellRendererToggle.html" title="GtkCellRendererToggle"><span class="type">GtkCellRendererToggle</span></a>, <a class="link" href="gtk3-GtkTreeView-drag-and-drop.html" title="GtkTreeView drag-and-drop">GtkTreeView drag-and-drop</a></p>
+<a class="link" href="GtkTreeSortable.html" title="GtkTreeSortable"><span class="type">GtkTreeSortable</span></a>, <a class="link" href="GtkTreeModelSort.html" title="GtkTreeModelSort"><span class="type">GtkTreeModelSort</span></a>, <a class="link" href="GtkListStore.html" title="GtkListStore"><span class="type">GtkListStore</span></a>, <a class="link" href="GtkTreeStore.html" title="GtkTreeStore"><span class="type">GtkTreeStore</span></a>,
+<a class="link" href="GtkCellRenderer.html" title="GtkCellRenderer"><span class="type">GtkCellRenderer</span></a>, <a class="link" href="GtkCellEditable.html" title="GtkCellEditable"><span class="type">GtkCellEditable</span></a>, <a class="link" href="GtkCellRendererPixbuf.html" title="GtkCellRendererPixbuf"><span class="type">GtkCellRendererPixbuf</span></a>,
+<a class="link" href="GtkCellRendererText.html" title="GtkCellRendererText"><span class="type">GtkCellRendererText</span></a>, <a class="link" href="GtkCellRendererToggle.html" title="GtkCellRendererToggle"><span class="type">GtkCellRendererToggle</span></a>, <a class="link" href="gtk3-GtkTreeView-drag-and-drop.html" title="GtkTreeView drag-and-drop">GtkTreeView drag-and-drop</a></p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

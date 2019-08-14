@@ -8,14 +8,14 @@ import os
 debug = os.getenv('GTK_GENTYPEFUNCS_DEBUG') is not None
 
 out_file = sys.argv[1]
-in_file = sys.argv[2]
+in_files = sys.argv[2:]
 
 funcs = []
 
 
 if debug: print ('Output file: ', out_file)
 
-# if debug: print (len(in_files), 'input files')
+if debug: print (len(in_files), 'input files')
 
 def open_file(filename, mode):
     if sys.version_info[0] < 3:
@@ -23,16 +23,18 @@ def open_file(filename, mode):
     else:
         return open(filename, mode=mode, encoding='utf-8')
 
-with open(in_file, 'r') as f:
-  for line in f:
-    line = line.rstrip('\n').rstrip('\r')
-    # print line
-    match = re.search(r'\bg[td]k_[a-zA-Z0-9_]*_get_type\b', line)
-    if match:
-      func = match.group(0)
-      if not func in funcs:
-        funcs.append(func)
-        if debug: print ('Found ', func)
+for filename in in_files:
+  if debug: print ('Input file: ', filename)
+  with open_file(filename, "r") as f:
+    for line in f:
+      line = line.rstrip('\n').rstrip('\r')
+      # print line
+      match = re.search(r'\bg[tds]k_[a-zA-Z0-9_]*_get_type\b', line)
+      if match:
+        func = match.group(0)
+        if not func in funcs:
+          funcs.append(func)
+          if debug: print ('Found ', func)
 
 file_output = 'G_GNUC_BEGIN_IGNORE_DEPRECATIONS\n'
 
@@ -48,6 +50,6 @@ for f in funcs:
 
 if debug: print (len(funcs), 'functions')
 
-ofile = open(out_file, "w")
+ofile = open_file(out_file, "w")
 ofile.write(file_output)
 ofile.close()

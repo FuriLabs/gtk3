@@ -8,7 +8,7 @@
 <link rel="up" href="reference.html" title="API Reference">
 <link rel="prev" href="gdk3-Threads.html" title="Threads">
 <link rel="next" href="gdk3-Cairo-Interaction.html" title="Cairo Interaction">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -95,8 +95,8 @@ and types in this section are used to obtain clip regions for
 GDK.</p>
 <p>Creating a <a href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoLayout-struct"><span class="type">PangoLayout</span></a> object is the first step in rendering text,
 and requires getting a handle to a <a href="/usr/share/gtk-doc/html/pango/pango-Text-Processing.html#PangoContext-struct"><span class="type">PangoContext</span></a>. For GTK+ programs,
-you’ll usually want to use <code class="function">gtk_widget_get_pango_context()</code>, or
-<code class="function">gtk_widget_create_pango_layout()</code>, rather than using the lowlevel
+you’ll usually want to use <a href="https://developer.gnome.org/gtk4/GtkWidget.html#gtk-widget-get-pango-context"><code class="function">gtk_widget_get_pango_context()</code></a>, or
+<a href="https://developer.gnome.org/gtk4/GtkWidget.html#gtk-widget-create-pango-layout"><code class="function">gtk_widget_create_pango_layout()</code></a>, rather than using the lowlevel
 <a class="link" href="gdk3-Pango-Interaction.html#gdk-pango-context-get-for-screen" title="gdk_pango_context_get_for_screen ()"><code class="function">gdk_pango_context_get_for_screen()</code></a>. Once you have a <a href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoLayout-struct"><span class="type">PangoLayout</span></a>, you
 can set the text and attributes of it with Pango functions like
 <a href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#pango-layout-set-text"><code class="function">pango_layout_set_text()</code></a> and get its size with <a href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#pango-layout-get-size"><code class="function">pango_layout_get_size()</code></a>.
@@ -173,68 +173,68 @@ you can also draw pieces of the layout with <a href="/usr/share/gtk-doc/html/pan
 60
 61
 62</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="preproc">#define</span><span class="normal"> RADIUS </span><span class="number">100</span>
-<span class="preproc">#define</span><span class="normal"> N_WORDS </span><span class="number">10</span>
-<span class="preproc">#define</span><span class="normal"> FONT </span><span class="string">"Sans Bold 18"</span>
+        <td class="listing_code"><pre class="programlisting"><span class="cp">#define RADIUS 100</span>
+<span class="cp">#define N_WORDS 10</span>
+<span class="cp">#define FONT &quot;Sans Bold 18&quot;</span>
 
-<span class="usertype">PangoContext</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">context</span><span class="symbol">;</span>
-<span class="usertype">PangoLayout</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">layout</span><span class="symbol">;</span>
-<span class="usertype">PangoFontDescription</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">desc</span><span class="symbol">;</span>
+<span class="n">PangoContext</span> <span class="o">*</span><span class="n">context</span><span class="p">;</span>
+<span class="n">PangoLayout</span> <span class="o">*</span><span class="n">layout</span><span class="p">;</span>
+<span class="n">PangoFontDescription</span> <span class="o">*</span><span class="n">desc</span><span class="p">;</span>
 
-<span class="type">double</span><span class="normal"> radius</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> width</span><span class="symbol">,</span><span class="normal"> height</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> i</span><span class="symbol">;</span>
+<span class="kt">double</span> <span class="n">radius</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
 
-<span class="comment">// Set up a transformation matrix so that the user space coordinates for</span>
-<span class="comment">// where we are drawing are [-RADIUS, RADIUS], [-RADIUS, RADIUS]</span>
-<span class="comment">// We first center, then change the scale</span>
+<span class="c1">// Set up a transformation matrix so that the user space coordinates for</span>
+<span class="c1">// where we are drawing are [-RADIUS, RADIUS], [-RADIUS, RADIUS]</span>
+<span class="c1">// We first center, then change the scale</span>
 
-<span class="normal">width </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="gdk3-Windows.html#gdk-window-get-width">gdk_window_get_width</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">);</span>
-<span class="normal">height </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="gdk3-Windows.html#gdk-window-get-height">gdk_window_get_height</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">);</span>
-<span class="normal">radius </span><span class="symbol">=</span><span class="normal"> </span><span class="function">MIN</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">width</span><span class="symbol">,</span><span class="normal"> height</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">/</span><span class="normal"> </span><span class="number">2</span><span class="symbol">.;</span>
+<span class="n">width</span> <span class="o">=</span> <span class="n">gdk_window_get_width</span> <span class="p">(</span><span class="n">window</span><span class="p">);</span>
+<span class="n">height</span> <span class="o">=</span> <span class="n">gdk_window_get_height</span> <span class="p">(</span><span class="n">window</span><span class="p">);</span>
+<span class="n">radius</span> <span class="o">=</span> <span class="n">MIN</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">;</span>
 
-<span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-Transformations.html#cairo-translate">cairo_translate</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span>
-<span class="normal">                 radius </span><span class="symbol">+</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">width </span><span class="symbol">-</span><span class="normal"> </span><span class="number">2</span><span class="normal"> </span><span class="symbol">*</span><span class="normal"> radius</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">/</span><span class="normal"> </span><span class="number">2</span><span class="symbol">,</span>
-<span class="normal">                 radius </span><span class="symbol">+</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">height </span><span class="symbol">-</span><span class="normal"> </span><span class="number">2</span><span class="normal"> </span><span class="symbol">*</span><span class="normal"> radius</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">/</span><span class="normal"> </span><span class="number">2</span><span class="symbol">);</span>
-<span class="normal">                 </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-Transformations.html#cairo-scale">cairo_scale</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> radius </span><span class="symbol">/</span><span class="normal"> RADIUS</span><span class="symbol">,</span><span class="normal"> radius </span><span class="symbol">/</span><span class="normal"> RADIUS</span><span class="symbol">);</span>
+<span class="n">cairo_translate</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span>
+                 <span class="n">radius</span> <span class="o">+</span> <span class="p">(</span><span class="n">width</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">radius</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+                 <span class="n">radius</span> <span class="o">+</span> <span class="p">(</span><span class="n">height</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">radius</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+                 <span class="n">cairo_scale</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span> <span class="n">radius</span> <span class="o">/</span> <span class="n">RADIUS</span><span class="p">,</span> <span class="n">radius</span> <span class="o">/</span> <span class="n">RADIUS</span><span class="p">);</span>
 
-<span class="comment">// Create a PangoLayout, set the font and text</span>
-<span class="normal">context </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="gdk3-Pango-Interaction.html#gdk-pango-context-get-for-screen">gdk_pango_context_get_for_screen</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">screen</span><span class="symbol">);</span>
-<span class="normal">layout </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#pango-layout-new">pango_layout_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">);</span>
-<span class="function"><a href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#pango-layout-set-text">pango_layout_set_text</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">layout</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Text"</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">-</span><span class="number">1</span><span class="symbol">);</span>
-<span class="normal">desc </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#pango-font-description-from-string">pango_font_description_from_string</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">FONT</span><span class="symbol">);</span>
-<span class="function"><a href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#pango-layout-set-font-description">pango_layout_set_font_description</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">layout</span><span class="symbol">,</span><span class="normal"> desc</span><span class="symbol">);</span>
-<span class="function"><a href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#pango-font-description-free">pango_font_description_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">desc</span><span class="symbol">);</span>
+<span class="c1">// Create a PangoLayout, set the font and text</span>
+<span class="n">context</span> <span class="o">=</span> <span class="n">gdk_pango_context_get_for_screen</span> <span class="p">(</span><span class="n">screen</span><span class="p">);</span>
+<span class="n">layout</span> <span class="o">=</span> <span class="n">pango_layout_new</span> <span class="p">(</span><span class="n">context</span><span class="p">);</span>
+<span class="n">pango_layout_set_text</span> <span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="s">&quot;Text&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">desc</span> <span class="o">=</span> <span class="n">pango_font_description_from_string</span> <span class="p">(</span><span class="n">FONT</span><span class="p">);</span>
+<span class="n">pango_layout_set_font_description</span> <span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="n">desc</span><span class="p">);</span>
+<span class="n">pango_font_description_free</span> <span class="p">(</span><span class="n">desc</span><span class="p">);</span>
 
-<span class="comment">// Draw the layout N_WORDS times in a circle</span>
-<span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">i </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">&lt;</span><span class="normal"> N_WORDS</span><span class="symbol">;</span><span class="normal"> i</span><span class="symbol">++)</span>
-<span class="normal">  </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="type">double</span><span class="normal"> red</span><span class="symbol">,</span><span class="normal"> green</span><span class="symbol">,</span><span class="normal"> blue</span><span class="symbol">;</span>
-<span class="normal">    </span><span class="type">double</span><span class="normal"> angle </span><span class="symbol">=</span><span class="normal"> </span><span class="number">2</span><span class="normal"> </span><span class="symbol">*</span><span class="normal"> G_PI </span><span class="symbol">*</span><span class="normal"> i </span><span class="symbol">/</span><span class="normal"> n_words</span><span class="symbol">;</span>
+<span class="c1">// Draw the layout N_WORDS times in a circle</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N_WORDS</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="kt">double</span> <span class="n">red</span><span class="p">,</span> <span class="n">green</span><span class="p">,</span> <span class="n">blue</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">angle</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">G_PI</span> <span class="o">*</span> <span class="n">i</span> <span class="o">/</span> <span class="n">n_words</span><span class="p">;</span>
 
-<span class="normal">    </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-save">cairo_save</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span>
+    <span class="n">cairo_save</span> <span class="p">(</span><span class="n">cr</span><span class="p">);</span>
 
-<span class="normal">    </span><span class="comment">// Gradient from red at angle == 60 to blue at angle == 300</span>
-<span class="normal">    red </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">(</span><span class="number">1</span><span class="normal"> </span><span class="symbol">+</span><span class="normal"> </span><span class="function">cos</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">angle </span><span class="symbol">-</span><span class="normal"> </span><span class="number">60</span><span class="symbol">))</span><span class="normal"> </span><span class="symbol">/</span><span class="normal"> </span><span class="number">2</span><span class="symbol">;</span>
-<span class="normal">    green </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span>
-<span class="normal">    blue </span><span class="symbol">=</span><span class="normal"> </span><span class="number">1</span><span class="normal"> </span><span class="symbol">-</span><span class="normal"> red</span><span class="symbol">;</span>
+    <span class="c1">// Gradient from red at angle == 60 to blue at angle == 300</span>
+    <span class="n">red</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">cos</span> <span class="p">(</span><span class="n">angle</span> <span class="o">-</span> <span class="mi">60</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">green</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">blue</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">red</span><span class="p">;</span>
 
-<span class="normal">    </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-set-source-rgb">cairo_set_source_rgb</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> red</span><span class="symbol">,</span><span class="normal"> green</span><span class="symbol">,</span><span class="normal"> blue</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-Transformations.html#cairo-rotate">cairo_rotate</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> angle</span><span class="symbol">);</span>
+    <span class="n">cairo_set_source_rgb</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span> <span class="n">red</span><span class="p">,</span> <span class="n">green</span><span class="p">,</span> <span class="n">blue</span><span class="p">);</span>
+    <span class="n">cairo_rotate</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span> <span class="n">angle</span><span class="p">);</span>
 
-<span class="normal">    </span><span class="comment">// Inform Pango to re-layout the text with the new transformation matrix</span>
-<span class="normal">    </span><span class="function"><a href="/usr/share/gtk-doc/html/pango/pango-Cairo-Rendering.html#pango-cairo-update-layout">pango_cairo_update_layout</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> layout</span><span class="symbol">);</span>
+    <span class="c1">// Inform Pango to re-layout the text with the new transformation matrix</span>
+    <span class="n">pango_cairo_update_layout</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span> <span class="n">layout</span><span class="p">);</span>
 
-<span class="normal">    </span><span class="function"><a href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#pango-layout-get-size">pango_layout_get_size</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">layout</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">width</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">height</span><span class="symbol">);</span>
+    <span class="n">pango_layout_get_size</span> <span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">width</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">height</span><span class="p">);</span>
 
-<span class="normal">    </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-Paths.html#cairo-move-to">cairo_move_to</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">-</span><span class="normal"> width </span><span class="symbol">/</span><span class="normal"> </span><span class="number">2</span><span class="normal"> </span><span class="symbol">/</span><span class="normal"> <a href="/usr/share/gtk-doc/html/pango/pango-Glyph-Storage.html#PANGO-SCALE:CAPS">PANGO_SCALE</a></span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">-</span><span class="normal"> DEFAULT_TEXT_RADIUS</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function"><a href="/usr/share/gtk-doc/html/pango/pango-Cairo-Rendering.html#pango-cairo-show-layout">pango_cairo_show_layout</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> layout</span><span class="symbol">);</span>
+    <span class="n">cairo_move_to</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span> <span class="o">-</span> <span class="n">width</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">PANGO_SCALE</span><span class="p">,</span> <span class="o">-</span> <span class="n">DEFAULT_TEXT_RADIUS</span><span class="p">);</span>
+    <span class="n">pango_cairo_show_layout</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span> <span class="n">layout</span><span class="p">);</span>
 
-<span class="normal">    </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-restore">cairo_restore</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="cbracket">}</span>
+    <span class="n">cairo_restore</span> <span class="p">(</span><span class="n">cr</span><span class="p">);</span>
+  <span class="p">}</span>
 
-<span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">layout</span><span class="symbol">);</span>
-<span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">);</span></pre></td>
+<span class="n">g_object_unref</span> <span class="p">(</span><span class="n">layout</span><span class="p">);</span>
+<span class="n">g_object_unref</span> <span class="p">(</span><span class="n">context</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -392,12 +392,12 @@ are end indexes. </p></td>
 gdk_pango_context_get (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
 <p>Creates a <a href="/usr/share/gtk-doc/html/pango/pango-Text-Processing.html#PangoContext-struct"><span class="type">PangoContext</span></a> for the default GDK screen.</p>
 <p>The context must be freed when you’re finished with it.</p>
-<p>When using GTK+, normally you should use <code class="function">gtk_widget_get_pango_context()</code>
+<p>When using GTK+, normally you should use <a href="https://developer.gnome.org/gtk4/GtkWidget.html#gtk-widget-get-pango-context"><code class="function">gtk_widget_get_pango_context()</code></a>
 instead of this function, to get the appropriate context for
 the widget you intend to render text onto.</p>
 <p>The newly created context will have the default font options (see
 <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-font-options-t.html#cairo-font-options-t"><span class="type">cairo_font_options_t</span></a>) for the default screen; if these options
-change it will not be updated. Using <code class="function">gtk_widget_get_pango_context()</code>
+change it will not be updated. Using <a href="https://developer.gnome.org/gtk4/GtkWidget.html#gtk-widget-get-pango-context"><code class="function">gtk_widget_get_pango_context()</code></a>
 is more convenient if you want to keep a context around and track
 changes to the screen’s font rendering settings.</p>
 <div class="refsect3">
@@ -414,12 +414,12 @@ gdk_pango_context_get_for_screen (<em class="parameter"><code><a class="link" hr
 <p>Creates a <a href="/usr/share/gtk-doc/html/pango/pango-Text-Processing.html#PangoContext-struct"><span class="type">PangoContext</span></a> for <em class="parameter"><code>screen</code></em>
 .</p>
 <p>The context must be freed when you’re finished with it.</p>
-<p>When using GTK+, normally you should use <code class="function">gtk_widget_get_pango_context()</code>
+<p>When using GTK+, normally you should use <a href="https://developer.gnome.org/gtk4/GtkWidget.html#gtk-widget-get-pango-context"><code class="function">gtk_widget_get_pango_context()</code></a>
 instead of this function, to get the appropriate context for
 the widget you intend to render text onto.</p>
 <p>The newly created context will have the default font options
 (see <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-font-options-t.html#cairo-font-options-t"><span class="type">cairo_font_options_t</span></a>) for the screen; if these options
-change it will not be updated. Using <code class="function">gtk_widget_get_pango_context()</code>
+change it will not be updated. Using <a href="https://developer.gnome.org/gtk4/GtkWidget.html#gtk-widget-get-pango-context"><code class="function">gtk_widget_get_pango_context()</code></a>
 is more convenient if you want to keep a context around and track
 changes to the screen’s font rendering settings.</p>
 <div class="refsect3">
@@ -453,12 +453,12 @@ gdk_pango_context_get_for_display (<em class="parameter"><code><a class="link" h
 <p>Creates a <a href="/usr/share/gtk-doc/html/pango/pango-Text-Processing.html#PangoContext-struct"><span class="type">PangoContext</span></a> for <em class="parameter"><code>display</code></em>
 .</p>
 <p>The context must be freed when you’re finished with it.</p>
-<p>When using GTK+, normally you should use <code class="function">gtk_widget_get_pango_context()</code>
+<p>When using GTK+, normally you should use <a href="https://developer.gnome.org/gtk4/GtkWidget.html#gtk-widget-get-pango-context"><code class="function">gtk_widget_get_pango_context()</code></a>
 instead of this function, to get the appropriate context for
 the widget you intend to render text onto.</p>
 <p>The newly created context will have the default font options
 (see <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-font-options-t.html#cairo-font-options-t"><span class="type">cairo_font_options_t</span></a>) for the display; if these options
-change it will not be updated. Using <code class="function">gtk_widget_get_pango_context()</code>
+change it will not be updated. Using <a href="https://developer.gnome.org/gtk4/GtkWidget.html#gtk-widget-get-pango-context"><code class="function">gtk_widget_get_pango_context()</code></a>
 is more convenient if you want to keep a context around and track
 changes to the font rendering settings.</p>
 <div class="refsect3">
@@ -490,6 +490,6 @@ changes to the font rendering settings.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

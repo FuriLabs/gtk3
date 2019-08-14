@@ -8,7 +8,7 @@
 <link rel="up" href="gtkbase.html" title="Part III. GTK+ Core Reference">
 <link rel="prev" href="gtk3-Drag-and-Drop.html" title="Drag and Drop">
 <link rel="next" href="gtk3-Bindings.html" title="Bindings">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -432,6 +432,11 @@
 </tr>
 <tr>
 <td class="property_type"><span class="type">gboolean</span></td>
+<td class="property_name"><a class="link" href="GtkSettings.html#GtkSettings--gtk-overlay-scrolling" title="The “gtk-overlay-scrolling” property">gtk-overlay-scrolling</a></td>
+<td class="property_flags">Read / Write</td>
+</tr>
+<tr>
+<td class="property_type"><span class="type">gboolean</span></td>
 <td class="property_name"><a class="link" href="GtkSettings.html#GtkSettings--gtk-primary-button-warps-slider" title="The “gtk-primary-button-warps-slider” property">gtk-primary-button-warps-slider</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -684,12 +689,12 @@ demonstrates a way to do this:</p>
 4
 5
 6</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="function"><a href="gtk3-General.html#gtk-init">gtk_init</a></span><span class="normal"> </span><span class="symbol">(&amp;</span><span class="normal">argc</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">argv</span><span class="symbol">);</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">gtk_init</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">argv</span><span class="p">);</span>
 
-<span class="comment">// make sure the type is realized</span>
-<span class="function">g_type_class_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="function">g_type_class_ref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">GTK_TYPE_IMAGE_MENU_ITEM</span><span class="symbol">));</span>
+<span class="c1">// make sure the type is realized</span>
+<span class="n">g_type_class_unref</span> <span class="p">(</span><span class="n">g_type_class_ref</span> <span class="p">(</span><span class="n">GTK_TYPE_IMAGE_MENU_ITEM</span><span class="p">));</span>
 
-<span class="function">g_object_set</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GtkSettings.html#gtk-settings-get-default">gtk_settings_get_default</a></span><span class="normal"> </span><span class="symbol">(),</span><span class="normal"> </span><span class="string">"gtk-enable-animations"</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span></pre></td>
+<span class="n">g_object_set</span> <span class="p">(</span><span class="n">gtk_settings_get_default</span> <span class="p">(),</span> <span class="s">&quot;gtk-enable-animations&quot;</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1343,9 +1348,9 @@ presses the mnemonic activator.</p>
         <td class="listing_lines" align="right"><pre>1
 2
 3</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">name1</span><span class="symbol">:</span><span class="normal"> color1</span>
-<span class="normal">name2</span><span class="symbol">:</span><span class="normal"> color2</span>
-<span class="symbol">...</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="nl">name1</span><span class="p">:</span> <span class="n">color1</span>
+<span class="nl">name2</span><span class="p">:</span> <span class="n">color2</span>
+<span class="p">...</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1366,7 +1371,7 @@ by ';' instead of newlines:</p>
     <tbody>
       <tr>
         <td class="listing_lines" align="right"><pre>1</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">name1</span><span class="symbol">:</span><span class="normal"> color1</span><span class="symbol">;</span><span class="normal"> name2</span><span class="symbol">:</span><span class="normal"> color2</span><span class="symbol">;</span><span class="normal"> </span><span class="symbol">...</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="nl">name1</span><span class="p">:</span> <span class="n">color1</span><span class="p">;</span> <span class="nl">name2</span><span class="p">:</span> <span class="n">color2</span><span class="p">;</span> <span class="p">...</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1731,7 +1736,7 @@ to be present on the used input device.</p>
 <div class="warning">
 <p><code class="literal">GtkSettings:gtk-keynav-cursor-only</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p>
 <p>Generally, the behavior for touchscreen input should be
-            performed dynamically based on <code class="function">gdk_event_get_source_device()</code>.</p>
+            performed dynamically based on <a href="https://developer.gnome.org/gdk4/gdk4-Events.html#gdk-event-get-source-device"><code class="function">gdk_event_get_source_device()</code></a>.</p>
 </div>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
@@ -1858,6 +1863,17 @@ navigation, such as menus, menubars and notebooks.</p>
 </div>
 <hr>
 <div class="refsect2">
+<a name="GtkSettings--gtk-overlay-scrolling"></a><h3>The <code class="literal">“gtk-overlay-scrolling”</code> property</h3>
+<pre class="programlisting">  “gtk-overlay-scrolling”    <span class="type">gboolean</span></pre>
+<p>Whether scrolled windows may use overlayed scrolling indicators.
+If this is set to <code class="literal">FALSE</code>, scrolled windows will have permanent
+scrollbars.</p>
+<p>Flags: Read / Write</p>
+<p>Default value: TRUE</p>
+<p class="since">Since: 3.24.9</p>
+</div>
+<hr>
+<div class="refsect2">
 <a name="GtkSettings--gtk-primary-button-warps-slider"></a><h3>The <code class="literal">“gtk-primary-button-warps-slider”</code> property</h3>
 <pre class="programlisting">  “gtk-primary-button-warps-slider” <span class="type">gboolean</span></pre>
 <p>If the value of this setting is <code class="literal">TRUE</code>, clicking the primary button in a
@@ -1879,7 +1895,7 @@ clicking the middle mouse button.</p>
 dialog. Available print backends depend on the GTK+ installation,
 and may include "file", "cups", "lpr" or "papi".</p>
 <p>Flags: Read / Write</p>
-<p>Default value: "file,lpr"</p>
+<p>Default value: "file,cups"</p>
 <p class="since">Since: 2.10</p>
 </div>
 <hr>
@@ -2190,7 +2206,7 @@ functionality.</p>
 <div class="warning">
 <p><code class="literal">GtkSettings:gtk-touchscreen-mode</code> has been deprecated since version 3.4. and should not be used in newly-written code.</p>
 <p>Generally, the behavior for touchscreen input should be
-            performed dynamically based on <code class="function">gdk_event_get_source_device()</code>.</p>
+            performed dynamically based on <a href="https://developer.gnome.org/gdk4/gdk4-Events.html#gdk-event-get-source-device"><code class="function">gdk_event_get_source_device()</code></a>.</p>
 </div>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
@@ -2256,6 +2272,6 @@ or hidden until the user starts to use the keyboard.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

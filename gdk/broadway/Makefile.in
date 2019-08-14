@@ -398,7 +398,6 @@ GTK_PRINT_BACKENDS = @GTK_PRINT_BACKENDS@
 GTK_PRIVATE_PACKAGES = @GTK_PRIVATE_PACKAGES@
 GTK_VERSION = @GTK_VERSION@
 GTK_XIM_FLAGS = @GTK_XIM_FLAGS@
-HAVE_HTTP_AUTHSTRING = @HAVE_HTTP_AUTHSTRING@
 HTML_DIR = @HTML_DIR@
 INCLUDED_IMMODULE_DEFINE = @INCLUDED_IMMODULE_DEFINE@
 INCLUDED_IMMODULE_OBJ = @INCLUDED_IMMODULE_OBJ@
@@ -555,7 +554,7 @@ GTESTER_REPORT = gtester-report		# in $PATH for non-GLIB packages
 
 # initialize variables for unconditional += appending
 EXTRA_DIST = toarray.pl client.html broadway.js rawinflate.min.js \
-	$(broadway_built_sources)
+	$(broadway_built_sources) meson.build gen-c-array.py
 TEST_PROGS = 
 
 ### testing rules

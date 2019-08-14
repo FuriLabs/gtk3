@@ -8,7 +8,7 @@
 <link rel="up" href="DeprecatedObjects.html" title="Deprecated">
 <link rel="prev" href="gtk3-GtkGradient.html" title="GtkGradient">
 <link rel="next" href="GtkStyle.html" title="GtkStyle">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -323,7 +323,7 @@ of such a statement:</p>
     <tbody>
       <tr>
         <td class="listing_lines" align="right"><pre>1</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">widget </span><span class="string">"mywindow.*.GtkEntry"</span><span class="normal"> style </span><span class="string">"my-entry-class"</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">widget</span> <span class="s">&quot;mywindow.*.GtkEntry&quot;</span> <span class="n">style</span> <span class="s">&quot;my-entry-class&quot;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -354,7 +354,7 @@ derived classes. For instance,</p>
     <tbody>
       <tr>
         <td class="listing_lines" align="right"><pre>1</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">widget_class </span><span class="string">"*&lt;GtkMenuItem&gt;.GtkLabel"</span><span class="normal"> style </span><span class="string">"my-style"</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">widget_class</span> <span class="s">&quot;*&lt;GtkMenuItem&gt;.GtkLabel&quot;</span> <span class="n">style</span> <span class="s">&quot;my-style&quot;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -374,7 +374,7 @@ hierarchy) in sequence, so the pattern:</p>
     <tbody>
       <tr>
         <td class="listing_lines" align="right"><pre>1</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">class </span><span class="string">"GtkButton"</span><span class="normal"> style </span><span class="string">"my-style"</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">class</span> <span class="s">&quot;GtkButton&quot;</span> <span class="n">style</span> <span class="s">&quot;my-style&quot;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -444,10 +444,10 @@ for a match across a group of applications.</p></li>
 2
 3
 4</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">style </span><span class="string">"Foo"</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal"> foo_content </span><span class="cbracket">}</span>
-<span class="normal">class </span><span class="string">"X"</span><span class="normal"> style </span><span class="string">"Foo"</span>
-<span class="normal">style </span><span class="string">"Bar"</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal"> bar_content </span><span class="cbracket">}</span>
-<span class="normal">class </span><span class="string">"X"</span><span class="normal"> style </span><span class="string">"Bar"</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">style</span> <span class="s">&quot;Foo&quot;</span> <span class="p">{</span> <span class="n">foo_content</span> <span class="p">}</span>
+<span class="n">class</span> <span class="s">&quot;X&quot;</span> <span class="n">style</span> <span class="s">&quot;Foo&quot;</span>
+<span class="n">style</span> <span class="s">&quot;Bar&quot;</span> <span class="p">{</span> <span class="n">bar_content</span> <span class="p">}</span>
+<span class="n">class</span> <span class="s">&quot;X&quot;</span> <span class="n">style</span> <span class="s">&quot;Bar&quot;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -461,8 +461,8 @@ is faster to match as:</p>
       <tr>
         <td class="listing_lines" align="right"><pre>1
 2</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">style </span><span class="string">"FooBar"</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal"> </span><span class="usertype">foo_content</span><span class="normal"> bar_content </span><span class="cbracket">}</span>
-<span class="normal">class </span><span class="string">"X"</span><span class="normal"> style </span><span class="string">"FooBar"</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">style</span> <span class="s">&quot;FooBar&quot;</span> <span class="p">{</span> <span class="n">foo_content</span> <span class="n">bar_content</span> <span class="p">}</span>
+<span class="n">class</span> <span class="s">&quot;X&quot;</span> <span class="n">style</span> <span class="s">&quot;FooBar&quot;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -616,7 +616,7 @@ elements are:</p>
 <p><code class="literal">bg_pixmap[state] =
   pixmap</code></p>
 <p>     Sets a background pixmap to be used in place of the <code class="literal">bg</code> color
-     (or for <span class="type">GtkText</span>, in place of the <code class="literal">base</code> color. The special
+     (or for <a href="https://developer.gnome.org/gtk4/GtkText.html#GtkText-struct"><span class="type">GtkText</span></a>, in place of the <code class="literal">base</code> color. The special
      value <code class="literal">"&amp;lt;parent&gt;"</code> may be used to indicate that the widget should
      use the same background pixmap as its parent. The special value
      <code class="literal">"&amp;lt;none&gt;"</code> may be used to indicate no background pixmap.</p>
@@ -742,9 +742,9 @@ colors. The following expressions are currently supported:</p>
         <td class="listing_lines" align="right"><pre>1
 2
 3</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="function">mix</span><span class="normal"> </span><span class="symbol">(</span><span class="number">0.5</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"red"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"blue"</span><span class="symbol">)</span>
-<span class="function">shade</span><span class="normal"> </span><span class="symbol">(</span><span class="number">1.5</span><span class="symbol">,</span><span class="normal"> </span><span class="function">mix</span><span class="normal"> </span><span class="symbol">(</span><span class="number">0.3</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"#0abbc0"</span><span class="symbol">,</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal"> </span><span class="number">0.3</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.5</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.9</span><span class="normal"> </span><span class="cbracket">}</span><span class="symbol">))</span>
-<span class="function">lighter</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">@foreground</span><span class="symbol">)</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">mix</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="s">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">shade</span> <span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">mix</span> <span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="s">&quot;#0abbc0&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.9</span> <span class="p">}))</span>
+<span class="n">lighter</span> <span class="p">(</span><span class="err">@</span><span class="n">foreground</span><span class="p">)</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -771,11 +771,11 @@ use for left-to-right and right-to-left languages:</p>
 3
 4
 5</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">stock</span><span class="symbol">[</span><span class="string">"my-stock-item"</span><span class="symbol">]</span><span class="normal"> </span><span class="symbol">=</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"itemltr.png"</span><span class="symbol">,</span><span class="normal"> LTR</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal"> </span><span class="cbracket">}</span><span class="symbol">,</span>
-<span class="normal">  </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"itemrtl.png"</span><span class="symbol">,</span><span class="normal"> RTL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal"> </span><span class="cbracket">}</span>
-<span class="cbracket">}</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">stock</span><span class="p">[</span><span class="s">&quot;my-stock-item&quot;</span><span class="p">]</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="p">{</span> <span class="s">&quot;itemltr.png&quot;</span><span class="p">,</span> <span class="n">LTR</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="o">*</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="s">&quot;itemrtl.png&quot;</span><span class="p">,</span> <span class="n">RTL</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="o">*</span> <span class="p">}</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -792,11 +792,11 @@ use for left-to-right and right-to-left languages:</p>
 3
 4
 5</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">stock</span><span class="symbol">[</span><span class="string">"my-stock-item"</span><span class="symbol">]</span><span class="normal"> </span><span class="symbol">=</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"itemltr.png"</span><span class="symbol">,</span><span class="normal"> LTR </span><span class="cbracket">}</span><span class="symbol">,</span>
-<span class="normal">  </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"itemrtl.png"</span><span class="symbol">,</span><span class="normal"> RTL </span><span class="cbracket">}</span>
-<span class="cbracket">}</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">stock</span><span class="p">[</span><span class="s">&quot;my-stock-item&quot;</span><span class="p">]</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="p">{</span> <span class="s">&quot;itemltr.png&quot;</span><span class="p">,</span> <span class="n">LTR</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="s">&quot;itemrtl.png&quot;</span><span class="p">,</span> <span class="n">RTL</span> <span class="p">}</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -814,12 +814,12 @@ use for left-to-right and right-to-left languages:</p>
 4
 5
 6</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">stock</span><span class="symbol">[</span><span class="string">"my-stock-item"</span><span class="symbol">]</span><span class="normal"> </span><span class="symbol">=</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"itemmenusize.png"</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*,</span><span class="normal"> </span><span class="symbol">*,</span><span class="normal"> </span><span class="string">"gtk-menu"</span><span class="normal"> </span><span class="cbracket">}</span><span class="symbol">,</span>
-<span class="normal">  </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"itemtoolbarsize.png"</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*,</span><span class="normal"> </span><span class="symbol">*,</span><span class="normal"> </span><span class="string">"gtk-large-toolbar"</span><span class="normal"> </span><span class="cbracket">}</span>
-<span class="normal">  </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"itemgeneric.png"</span><span class="normal"> </span><span class="cbracket">}</span><span class="normal"> </span><span class="comment">// implicit *, *, * as a fallback</span>
-<span class="cbracket">}</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">stock</span><span class="p">[</span><span class="s">&quot;my-stock-item&quot;</span><span class="p">]</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="p">{</span> <span class="s">&quot;itemmenusize.png&quot;</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="s">&quot;gtk-menu&quot;</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="s">&quot;itemtoolbarsize.png&quot;</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="s">&quot;gtk-large-toolbar&quot;</span> <span class="p">}</span>
+  <span class="p">{</span> <span class="s">&quot;itemgeneric.png&quot;</span> <span class="p">}</span> <span class="c1">// implicit *, *, * as a fallback</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -841,12 +841,12 @@ can define other sizes.</p>
 4
 5
 6</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">stock</span><span class="symbol">[</span><span class="string">"my-stock-item"</span><span class="symbol">]</span><span class="normal"> </span><span class="symbol">=</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"itemprelight.png"</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*,</span><span class="normal"> PRELIGHT </span><span class="cbracket">}</span><span class="symbol">,</span>
-<span class="normal">  </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"iteminsensitive.png"</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*,</span><span class="normal"> INSENSITIVE </span><span class="cbracket">}</span><span class="symbol">,</span>
-<span class="normal">  </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"itemgeneric.png"</span><span class="normal"> </span><span class="cbracket">}</span><span class="normal"> </span><span class="comment">// implicit *, *, * as a fallback</span>
-<span class="cbracket">}</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">stock</span><span class="p">[</span><span class="s">&quot;my-stock-item&quot;</span><span class="p">]</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="p">{</span> <span class="s">&quot;itemprelight.png&quot;</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">PRELIGHT</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="s">&quot;iteminsensitive.png&quot;</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">INSENSITIVE</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="s">&quot;itemgeneric.png&quot;</span> <span class="p">}</span> <span class="c1">// implicit *, *, * as a fallback</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -878,13 +878,13 @@ set declaration is:</p>
 5
 6
 7</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">binding</span><span class="normal"> name </span><span class="cbracket">{</span>
-<span class="normal">  </span><span class="usertype">bind</span><span class="normal"> key </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">signalname</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">param</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">...)</span>
-<span class="normal">    </span><span class="symbol">...</span>
-<span class="normal">  </span><span class="cbracket">}</span>
-<span class="normal">  </span><span class="symbol">...</span>
-<span class="cbracket">}</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">binding</span> <span class="n">name</span> <span class="p">{</span>
+  <span class="n">bind</span> <span class="n">key</span> <span class="p">{</span>
+    <span class="n">signalname</span> <span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="p">...)</span>
+    <span class="p">...</span>
+  <span class="p">}</span>
+  <span class="p">...</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1001,11 +1001,11 @@ would be items inside a GNOME canvas widget.</p>
 3
 4
 5</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="function"><a href="GtkWidget.html#gtk-widget-path">gtk_widget_path</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">path</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
-<span class="function"><a href="GtkWidget.html#gtk-widget-class-path">gtk_widget_class_path</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">class_path</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
-<span class="function"><a href="gtk3-Resource-Files.html#gtk-rc-get-style-by-paths">gtk_rc_get_style_by_paths</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GtkWidget.html#gtk-widget-get-settings">gtk_widget_get_settings</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">),</span>
-<span class="normal">                           path</span><span class="symbol">,</span><span class="normal"> class_path</span><span class="symbol">,</span>
-<span class="normal">                           </span><span class="function">G_OBJECT_TYPE</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">));</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">gtk_widget_path</span> <span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">path</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+<span class="n">gtk_widget_class_path</span> <span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">class_path</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+<span class="n">gtk_rc_get_style_by_paths</span> <span class="p">(</span><span class="n">gtk_widget_get_settings</span> <span class="p">(</span><span class="n">widget</span><span class="p">),</span>
+                           <span class="n">path</span><span class="p">,</span> <span class="n">class_path</span><span class="p">,</span>
+                           <span class="n">G_OBJECT_TYPE</span> <span class="p">(</span><span class="n">widget</span><span class="p">));</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -2266,6 +2266,6 @@ See also <a class="link" href="gtk3-Bindings.html#gtk-binding-set-add-path" titl
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <link rel="up" href="gtkbase.html" title="Part III. GTK+ Core Reference">
 <link rel="prev" href="gtk3-Clipboards.html" title="Clipboards">
 <link rel="next" href="GtkSettings.html" title="Settings">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -65,7 +65,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<span class="returnvalue">GdkAtom</span>
+<a href="https://developer.gnome.org/gdk4/gdk4-Properties-and-Atoms.html#GdkAtom"><span class="returnvalue">GdkAtom</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="gtk3-Drag-and-Drop.html#gtk-drag-dest-find-target" title="gtk_drag_dest_find_target ()">gtk_drag_dest_find_target</a> <span class="c_punctuation">()</span>
@@ -391,7 +391,7 @@ gtk_drag_dest_set (<em class="parameter"><code><a class="link" href="GtkWidget.h
                    <em class="parameter"><code><a class="link" href="gtk3-Drag-and-Drop.html#GtkDestDefaults" title="enum GtkDestDefaults"><span class="type">GtkDestDefaults</span></a> flags</code></em>,
                    <em class="parameter"><code>const <a class="link" href="gtk3-Selections.html#GtkTargetEntry" title="struct GtkTargetEntry"><span class="type">GtkTargetEntry</span></a> *targets</code></em>,
                    <em class="parameter"><code><span class="type">gint</span> n_targets</code></em>,
-                   <em class="parameter"><code><span class="type">GdkDragAction</span> actions</code></em>);</pre>
+                   <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Drag-and-Drop.html#GdkDragAction"><span class="type">GdkDragAction</span></a> actions</code></em>);</pre>
 <p>Sets a widget as a potential drop destination, and adds default behaviors.</p>
 <p>The default behaviors listed in <em class="parameter"><code>flags</code></em>
  have an effect similar
@@ -432,22 +432,22 @@ the action to use depending on whether the control key is pressed or not:</p>
 14
 15
 16</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
-<span class="function">drag_motion</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">widget</span><span class="symbol">,</span>
-<span class="normal">             </span><span class="usertype">GdkDragContext</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">context</span><span class="symbol">,</span>
-<span class="normal">             </span><span class="usertype">gint</span><span class="normal"> x</span><span class="symbol">,</span>
-<span class="normal">             </span><span class="usertype">gint</span><span class="normal"> y</span><span class="symbol">,</span>
-<span class="normal">             </span><span class="usertype">guint</span><span class="normal"> time</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="usertype">GdkModifierType</span><span class="normal"> mask</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
+<span class="nf">drag_motion</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
+             <span class="n">GdkDragContext</span> <span class="o">*</span><span class="n">context</span><span class="p">,</span>
+             <span class="n">gint</span> <span class="n">x</span><span class="p">,</span>
+             <span class="n">gint</span> <span class="n">y</span><span class="p">,</span>
+             <span class="n">guint</span> <span class="n">time</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">GdkModifierType</span> <span class="n">mask</span><span class="p">;</span>
 
-<span class="normal">  </span><span class="function">gdk_window_get_pointer</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GtkWidget.html#gtk-widget-get-window">gtk_widget_get_window</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">),</span>
-<span class="normal">                          NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">mask</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">mask </span><span class="symbol">&amp;</span><span class="normal"> GDK_CONTROL_MASK</span><span class="symbol">)</span>
-<span class="normal">    </span><span class="function">gdk_drag_status</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">,</span><span class="normal"> GDK_ACTION_COPY</span><span class="symbol">,</span><span class="normal"> time</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="keyword">else</span>
-<span class="normal">    </span><span class="function">gdk_drag_status</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">,</span><span class="normal"> GDK_ACTION_MOVE</span><span class="symbol">,</span><span class="normal"> time</span><span class="symbol">);</span>
-<span class="cbracket">}</span></pre></td>
+  <span class="n">gdk_window_get_pointer</span> <span class="p">(</span><span class="n">gtk_widget_get_window</span> <span class="p">(</span><span class="n">widget</span><span class="p">),</span>
+                          <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">mask</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">mask</span> <span class="o">&amp;</span> <span class="n">GDK_CONTROL_MASK</span><span class="p">)</span>
+    <span class="n">gdk_drag_status</span> <span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">GDK_ACTION_COPY</span><span class="p">,</span> <span class="n">time</span><span class="p">);</span>
+  <span class="k">else</span>
+    <span class="n">gdk_drag_status</span> <span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">GDK_ACTION_MOVE</span><span class="p">,</span> <span class="n">time</span><span class="p">);</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -575,7 +575,7 @@ notification of drags.</p>
 <hr>
 <div class="refsect2">
 <a name="gtk-drag-dest-find-target"></a><h3>gtk_drag_dest_find_target ()</h3>
-<pre class="programlisting"><span class="returnvalue">GdkAtom</span>
+<pre class="programlisting"><a href="https://developer.gnome.org/gdk4/gdk4-Properties-and-Atoms.html#GdkAtom"><span class="returnvalue">GdkAtom</span></a>
 gtk_drag_dest_find_target (<em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
                            <em class="parameter"><code><span class="type">GdkDragContext</span> *context</code></em>,
                            <em class="parameter"><code><a class="link" href="gtk3-Selections.html#GtkTargetList"><span class="type">GtkTargetList</span></a> *target_list</code></em>);</pre>
@@ -892,7 +892,7 @@ original data. (This should be <code class="literal">TRUE</code> for a move)</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_drag_get_data (<em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
                    <em class="parameter"><code><span class="type">GdkDragContext</span> *context</code></em>,
-                   <em class="parameter"><code><span class="type">GdkAtom</span> target</code></em>,
+                   <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Properties-and-Atoms.html#GdkAtom"><span class="type">GdkAtom</span></a> target</code></em>,
                    <em class="parameter"><code><span class="type">guint32</span> time_</code></em>);</pre>
 <p>Gets the data associated with a drag. When the data
 is received or the retrieval fails, GTK+ will emit a
@@ -1025,7 +1025,7 @@ a widget.</p>
 <pre class="programlisting"><span class="returnvalue">GdkDragContext</span> *
 gtk_drag_begin (<em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
                 <em class="parameter"><code><a class="link" href="gtk3-Selections.html#GtkTargetList"><span class="type">GtkTargetList</span></a> *targets</code></em>,
-                <em class="parameter"><code><span class="type">GdkDragAction</span> actions</code></em>,
+                <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Drag-and-Drop.html#GdkDragAction"><span class="type">GdkDragAction</span></a> actions</code></em>,
                 <em class="parameter"><code><span class="type">gint</span> button</code></em>,
                 <em class="parameter"><code><span class="type">GdkEvent</span> *event</code></em>);</pre>
 <div class="warning">
@@ -1086,7 +1086,7 @@ or <code class="literal">NULL</code> if none can be obtained. </p></td>
 <pre class="programlisting"><span class="returnvalue">GdkDragContext</span> *
 gtk_drag_begin_with_coordinates (<em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
                                  <em class="parameter"><code><a class="link" href="gtk3-Selections.html#GtkTargetList"><span class="type">GtkTargetList</span></a> *targets</code></em>,
-                                 <em class="parameter"><code><span class="type">GdkDragAction</span> actions</code></em>,
+                                 <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Drag-and-Drop.html#GdkDragAction"><span class="type">GdkDragAction</span></a> actions</code></em>,
                                  <em class="parameter"><code><span class="type">gint</span> button</code></em>,
                                  <em class="parameter"><code><span class="type">GdkEvent</span> *event</code></em>,
                                  <em class="parameter"><code><span class="type">gint</span> x</code></em>,
@@ -1097,7 +1097,7 @@ when the application is starting drags itself, and is not needed when
 <p>The <em class="parameter"><code>event</code></em>
  is used to retrieve the timestamp that will be used internally to
 grab the pointer.  If <em class="parameter"><code>event</code></em>
- is <code class="literal">NULL</code>, then <code class="literal">GDK_CURRENT_TIME</code> will be used.
+ is <code class="literal">NULL</code>, then <a href="https://developer.gnome.org/gdk4/gdk4-Events.html#GDK-CURRENT-TIME:CAPS"><code class="literal">GDK_CURRENT_TIME</code></a> will be used.
 However, you should try to pass a real event in all cases, since that can be
 used to get information about the drag.</p>
 <p>Generally there are three cases when you want to start a drag by hand by
@@ -1113,7 +1113,7 @@ Pass the <em class="parameter"><code>event</code></em>
  that you have in your <a class="link" href="GtkWidget.html#GtkWidget-motion-notify-event" title="The “motion-notify-event” signal"><span class="type">“motion-notify-event”</span></a> handler.</p></li>
 <li class="listitem"><p>During a timeout handler, if you want to start a drag after the mouse
 button is held down for some time.  Try to save the last event that you got
-from the mouse, using <code class="function">gdk_event_copy()</code>, and pass it to this function
+from the mouse, using <a href="https://developer.gnome.org/gdk4/gdk4-Events.html#gdk-event-copy"><code class="function">gdk_event_copy()</code></a>, and pass it to this function
 (remember to free the event with <code class="function">gdk_event_free()</code> when you are done).
 If you really cannot pass a real event, pass <code class="literal">NULL</code> instead.</p></li>
 </ol></div>
@@ -1584,10 +1584,10 @@ should trigger the beginning of a drag-and-drop operation.</p>
 <a name="gtk-drag-source-set"></a><h3>gtk_drag_source_set ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_drag_source_set (<em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
-                     <em class="parameter"><code><span class="type">GdkModifierType</span> start_button_mask</code></em>,
+                     <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkModifierType"><span class="type">GdkModifierType</span></a> start_button_mask</code></em>,
                      <em class="parameter"><code>const <a class="link" href="gtk3-Selections.html#GtkTargetEntry" title="struct GtkTargetEntry"><span class="type">GtkTargetEntry</span></a> *targets</code></em>,
                      <em class="parameter"><code><span class="type">gint</span> n_targets</code></em>,
-                     <em class="parameter"><code><span class="type">GdkDragAction</span> actions</code></em>);</pre>
+                     <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Drag-and-Drop.html#GdkDragAction"><span class="type">GdkDragAction</span></a> actions</code></em>);</pre>
 <p>Sets up a widget so that GTK+ will start a drag operation when the user
 clicks and drags on the widget. The widget must have a window.</p>
 <p><span class="annotation">[<acronym title="This is a method"><span class="acronym">method</span></acronym>]</span></p>
@@ -1963,9 +1963,9 @@ of the user for a drag destination site.</p>
 <td class="enum_member_name"><p><a name="GTK-DEST-DEFAULT-MOTION:CAPS"></a>GTK_DEST_DEFAULT_MOTION</p></td>
 <td class="enum_member_description">
 <p>If set for a widget, GTK+, during a drag over this
-  widget will check if the drag matches this widget’s list of possible targets
-  and actions.
-  GTK+ will then call <code class="function">gdk_drag_status()</code> as appropriate.</p>
+widget will check if the drag matches this widget’s list of possible targets
+and actions.
+GTK+ will then call <code class="function">gdk_drag_status()</code> as appropriate.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1973,8 +1973,8 @@ of the user for a drag destination site.</p>
 <td class="enum_member_name"><p><a name="GTK-DEST-DEFAULT-HIGHLIGHT:CAPS"></a>GTK_DEST_DEFAULT_HIGHLIGHT</p></td>
 <td class="enum_member_description">
 <p>If set for a widget, GTK+ will draw a highlight on
-  this widget as long as a drag is over this widget and the widget drag format
-  and action are acceptable.</p>
+this widget as long as a drag is over this widget and the widget drag format
+and action are acceptable.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1982,11 +1982,11 @@ of the user for a drag destination site.</p>
 <td class="enum_member_name"><p><a name="GTK-DEST-DEFAULT-DROP:CAPS"></a>GTK_DEST_DEFAULT_DROP</p></td>
 <td class="enum_member_description">
 <p>If set for a widget, when a drop occurs, GTK+ will
-  will check if the drag matches this widget’s list of possible targets and
-  actions. If so, GTK+ will call <a class="link" href="gtk3-Drag-and-Drop.html#gtk-drag-get-data" title="gtk_drag_get_data ()"><code class="function">gtk_drag_get_data()</code></a> on behalf of the widget.
-  Whether or not the drop is successful, GTK+ will call <a class="link" href="gtk3-Drag-and-Drop.html#gtk-drag-finish" title="gtk_drag_finish ()"><code class="function">gtk_drag_finish()</code></a>. If
-  the action was a move, then if the drag was successful, then <code class="literal">TRUE</code> will be
-  passed for the <em class="parameter"><code>delete</code></em>
+will check if the drag matches this widget’s list of possible targets and
+actions. If so, GTK+ will call <a class="link" href="gtk3-Drag-and-Drop.html#gtk-drag-get-data" title="gtk_drag_get_data ()"><code class="function">gtk_drag_get_data()</code></a> on behalf of the widget.
+Whether or not the drop is successful, GTK+ will call <a class="link" href="gtk3-Drag-and-Drop.html#gtk-drag-finish" title="gtk_drag_finish ()"><code class="function">gtk_drag_finish()</code></a>. If
+the action was a move, then if the drag was successful, then <code class="literal">TRUE</code> will be
+passed for the <em class="parameter"><code>delete</code></em>
  parameter to <a class="link" href="gtk3-Drag-and-Drop.html#gtk-drag-finish" title="gtk_drag_finish ()"><code class="function">gtk_drag_finish()</code></a>.</p>
 </td>
 <td class="enum_member_annotations"> </td>
@@ -1995,7 +1995,7 @@ of the user for a drag destination site.</p>
 <td class="enum_member_name"><p><a name="GTK-DEST-DEFAULT-ALL:CAPS"></a>GTK_DEST_DEFAULT_ALL</p></td>
 <td class="enum_member_description">
 <p>If set, specifies that all default actions should
-  be taken.</p>
+be taken.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2021,7 +2021,7 @@ constraints on a <a class="link" href="gtk3-Selections.html#GtkTargetEntry" titl
 <td class="enum_member_name"><p><a name="GTK-TARGET-SAME-APP:CAPS"></a>GTK_TARGET_SAME_APP</p></td>
 <td class="enum_member_description">
 <p>If this is set, the target will only be selected
-  for drags within a single application.</p>
+for drags within a single application.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2029,7 +2029,7 @@ constraints on a <a class="link" href="gtk3-Selections.html#GtkTargetEntry" titl
 <td class="enum_member_name"><p><a name="GTK-TARGET-SAME-WIDGET:CAPS"></a>GTK_TARGET_SAME_WIDGET</p></td>
 <td class="enum_member_description">
 <p>If this is set, the target will only be selected
-  for drags within a single widget.</p>
+for drags within a single widget.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2037,7 +2037,7 @@ constraints on a <a class="link" href="gtk3-Selections.html#GtkTargetEntry" titl
 <td class="enum_member_name"><p><a name="GTK-TARGET-OTHER-APP:CAPS"></a>GTK_TARGET_OTHER_APP</p></td>
 <td class="enum_member_description">
 <p>If this is set, the target will not be selected
-  for drags within a single application.</p>
+for drags within a single application.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2045,7 +2045,7 @@ constraints on a <a class="link" href="gtk3-Selections.html#GtkTargetEntry" titl
 <td class="enum_member_name"><p><a name="GTK-TARGET-OTHER-WIDGET:CAPS"></a>GTK_TARGET_OTHER_WIDGET</p></td>
 <td class="enum_member_description">
 <p>If this is set, the target will not be selected
-  for drags withing a single widget.</p>
+for drags withing a single widget.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2100,7 +2100,7 @@ The value can by obtained by connecting to the
 <td class="enum_member_name"><p><a name="GTK-DRAG-RESULT-GRAB-BROKEN:CAPS"></a>GTK_DRAG_RESULT_GRAB_BROKEN</p></td>
 <td class="enum_member_description">
 <p>The pointer or keyboard grab used
- for the drag operation was broken.</p>
+for the drag operation was broken.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2108,7 +2108,7 @@ The value can by obtained by connecting to the
 <td class="enum_member_name"><p><a name="GTK-DRAG-RESULT-ERROR:CAPS"></a>GTK_DRAG_RESULT_ERROR</p></td>
 <td class="enum_member_description">
 <p>The drag operation failed due to some
- unspecified error.</p>
+unspecified error.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2119,6 +2119,6 @@ The value can by obtained by connecting to the
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

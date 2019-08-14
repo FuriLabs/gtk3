@@ -10,8 +10,8 @@
 
 m4_define([gtk_major_version], [3])
 m4_define([gtk_minor_version], [24])
-m4_define([gtk_micro_version], [8])
-m4_define([gtk_interface_age], [4])
+m4_define([gtk_micro_version], [10])
+m4_define([gtk_interface_age], [6])
 m4_define([gtk_binary_age],
           [m4_eval(100 * gtk_minor_version + gtk_micro_version)])
 m4_define([gtk_version],
@@ -66,6 +66,7 @@ m4_define([mirclient_required_version], [0.22.0])
 m4_define([mircookie_required_version], [0.17.0])
 m4_define([epoxy_required_version], [1.4])
 m4_define([cloudproviders_required_version], [0.2.5])
+m4_define([sysprof_required_version], [3.33.2])
 GLIB_REQUIRED_VERSION=glib_required_version
 PANGO_REQUIRED_VERSION=pango_required_version
 ATK_REQUIRED_VERSION=atk_required_version
@@ -352,6 +353,12 @@ AC_ARG_ENABLE(cloudproviders,
               [AS_HELP_STRING([--enable-cloudproviders],
                               [enable libcloudproviders integration])],
                               [cloudproviders_set=yes])
+
+AC_ARG_ENABLE(profiler,
+              [AS_HELP_STRING([--enable-profiler],
+                              [enable profiler integration])],
+              [enable_profiler=$enableval],
+              [enable_profiler=no])
 
 if test -z "$backend_set"; then
   if test "$platform_win32" = yes; then
@@ -751,32 +758,6 @@ AS_CASE([$host_os],
       [AC_MSG_ERROR([DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY is unavailable])],
       [AC_MSG_RESULT([DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY is not OK])]
     )
-    AC_MSG_CHECKING([for SetupDiGetDevicePropertyW])
-    gtk_save_LIBS="$LIBS"
-    LIBS="-lsetupapi $LIBS"
-    AC_TRY_LINK(
-      [
-#define _WIN32_WINNT 0x0600
-#include <windows.h>
-#include <devpropdef.h>
-#include <setupapi.h>
-      ],
-      [return SetupDiGetDevicePropertyW(NULL, NULL, NULL, NULL, NULL, 0, NULL, 0);],
-      [have_SetupDiGetDevicePropertyW=yes],
-      [have_SetupDiGetDevicePropertyW=no]
-    )
-    AS_IF(
-      [test x$have_SetupDiGetDevicePropertyW = xyes],
-      [
-       AC_DEFINE(
-         [HAVE_SETUP_DI_GET_DEVICE_PROPERTY_W],
-         [1],
-         [Define to 1 if SetupDiGetDevicePropertyW() is available]
-       )
-      ]
-    )
-    AC_MSG_RESULT([$have_SetupDiGetDevicePropertyW])
-    LIBS="$gtk_save_LIBS"
   ],
   []
 )
@@ -1360,11 +1341,26 @@ if test "x$cloudproviders_set" = "xyes"; then
   fi
 fi
 
+# Check for profiler support
+
+PROFILER_PACKAGES=""
+if test "x$enable_profiler" = "xyes"; then
+  PROFILER_PACKAGES="sysprof-capture-3 >= sysprof_required_version"
+  if $PKG_CONFIG --exists $PROFILER_PACKAGES; then
+    AC_DEFINE(HAVE_SYSPROF_CAPTURE, [1],
+              [Define if sysprof-capture-3 is available]
+              )
+  else
+    AC_MSG_ERROR([
+*** sysprof-capture-3 not found.])
+  fi
+fi
+
 CFLAGS="$saved_cflags"
 LDFLAGS="$saved_ldflags"
 
 GDK_PACKAGES="$PANGO_PACKAGES gdk-pixbuf-2.0 >= gdk_pixbuf_required_version cairo >= cairo_required_version cairo-gobject >= cairo_required_version"
-GDK_PRIVATE_PACKAGES="$GDK_GIO_PACKAGE $X_PACKAGES $WAYLAND_PACKAGES $MIR_PACKAGES $cairo_backends epoxy >= epoxy_required_version $CLOUDPROVIDER_PACKAGES fribidi >= fribidi_required_version"
+GDK_PRIVATE_PACKAGES="$GDK_GIO_PACKAGE $X_PACKAGES $WAYLAND_PACKAGES $MIR_PACKAGES $cairo_backends epoxy >= epoxy_required_version $CLOUDPROVIDER_PACKAGES $PROFILER_PACKAGES fribidi >= fribidi_required_version"
 
 PKG_CHECK_MODULES(GDK_DEP, $GDK_PACKAGES $GDK_PRIVATE_PACKAGES)
 GDK_DEP_LIBS="$GDK_EXTRA_LIBS $GDK_DEP_LIBS $MATH_LIB"
@@ -1530,19 +1526,13 @@ else
     CUPS_CFLAGS=`$CUPS_CONFIG --cflags | sed 's/-O[0-9]*//' | sed 's/-m[^\t]*//g'`
     CUPS_LIBS=`$CUPS_CONFIG --libs`
 
-    CUPS_API_VERSION=`$CUPS_CONFIG --api-version`
+    CUPS_API_VERSION=`$CUPS_CONFIG --version`
     CUPS_API_MAJOR=`echo $ECHO_N $CUPS_API_VERSION | awk -F. '{print $1}'`
     CUPS_API_MINOR=`echo $ECHO_N $CUPS_API_VERSION | awk -F. '{print $2}'`
 
     if test $CUPS_API_MAJOR -lt 1 -o \
-            $CUPS_API_MAJOR -eq 1 -a $CUPS_API_MINOR -lt 2; then
-      AC_MSG_ERROR([CUPS >= 1.2 not found])
-    fi
-    if test $CUPS_API_MAJOR -gt 1 -o \
-	    $CUPS_API_MAJOR -eq 1 -a $CUPS_API_MINOR -ge 6; then
-      AC_DEFINE(HAVE_CUPS_API_1_6, 1,
-                [Define to 1 if CUPS 1.6 API is available])
-      have_cups_api_1_6=yes
+            $CUPS_API_MAJOR -eq 1 -a $CUPS_API_MINOR -lt 7; then
+      AC_MSG_ERROR([CUPS >= 1.7 not found])
     fi
 
     AC_SUBST(CUPS_API_MAJOR)
@@ -1555,22 +1545,6 @@ else
     PRINT_BACKENDS="$PRINT_BACKENDS cups"
     AM_CONDITIONAL(HAVE_CUPS, true)
     have_cups=yes
-
-    gtk_save_cflags="$CFLAGS"
-    CFLAGS="$CUPS_CFLAGS"
-    AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <cups/http.h>]],
-                                       [[http_t http; char *s = http.authstring;]])],
-                      [AC_DEFINE([HAVE_HTTP_AUTHSTRING], [],
-                                 [Define if cups http_t authstring field is accessible])],
-                      [])
-    CFLAGS="$gtk_save_cflags"
-
-    AC_SUBST(HAVE_HTTP_AUTHSTRING)
-
-    gtk_save_libs="$LIBS"
-    LIBS="$CUPS_LIBS"
-    AC_CHECK_FUNCS(httpGetAuthString)
-    LIBS="$gtk_save_libs"
   fi
 fi
 
@@ -1983,6 +1957,7 @@ docs/reference/gdk/version.xml
 docs/reference/gtk/Makefile
 docs/reference/gtk/gtk3.types
 docs/reference/gtk/version.xml
+docs/reference/gtk/getting_started.xml
 docs/reference/libgail-util/Makefile
 docs/reference/libgail-util/version.xml
 docs/tools/Makefile
@@ -1996,6 +1971,7 @@ build/win32/vs11/Makefile
 build/win32/vs12/Makefile
 build/win32/vs14/Makefile
 build/win32/vs15/Makefile
+build/win32/vs16/Makefile
 gdk/Makefile
 gdk/broadway/Makefile
 gdk/x11/Makefile
@@ -2044,3 +2020,4 @@ echo "        colord support:       $have_colord"
 echo "        Introspection:        $found_introspection"
 echo "        Debugging:            $enable_debug"
 echo "        Documentation:        $enable_gtk_doc"
+echo "        Profiler:             $enable_profiler"

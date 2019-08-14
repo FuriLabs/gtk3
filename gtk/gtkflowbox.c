@@ -631,7 +631,7 @@ gtk_flow_box_child_class_init (GtkFlowBoxChildClass *class)
                   G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (GtkFlowBoxChildClass, activate),
                   NULL, NULL,
-                  g_cclosure_marshal_VOID__VOID,
+                  NULL,
                   G_TYPE_NONE, 0);
   widget_class->activate_signal = child_signals[CHILD_ACTIVATE];
 
@@ -3922,7 +3922,7 @@ gtk_flow_box_class_init (GtkFlowBoxClass *class)
                                            G_SIGNAL_RUN_LAST,
                                            G_STRUCT_OFFSET (GtkFlowBoxClass, child_activated),
                                            NULL, NULL,
-                                           g_cclosure_marshal_VOID__OBJECT,
+                                           NULL,
                                            G_TYPE_NONE, 1,
                                            GTK_TYPE_FLOW_BOX_CHILD);
 
@@ -3942,7 +3942,7 @@ gtk_flow_box_class_init (GtkFlowBoxClass *class)
                                                      G_SIGNAL_RUN_FIRST,
                                                      G_STRUCT_OFFSET (GtkFlowBoxClass, selected_children_changed),
                                                      NULL, NULL,
-                                                     g_cclosure_marshal_VOID__VOID,
+                                                     NULL,
                                                      G_TYPE_NONE, 0);
 
   /**
@@ -3958,7 +3958,7 @@ gtk_flow_box_class_init (GtkFlowBoxClass *class)
                                                  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                                  G_STRUCT_OFFSET (GtkFlowBoxClass, activate_cursor_child),
                                                  NULL, NULL,
-                                                 g_cclosure_marshal_VOID__VOID,
+                                                 NULL,
                                                  G_TYPE_NONE, 0);
 
   /**
@@ -3976,7 +3976,7 @@ gtk_flow_box_class_init (GtkFlowBoxClass *class)
                                                G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                                G_STRUCT_OFFSET (GtkFlowBoxClass, toggle_cursor_child),
                                                NULL, NULL,
-                                               g_cclosure_marshal_VOID__VOID,
+                                               NULL,
                                                G_TYPE_NONE, 0);
 
   /**
@@ -4012,6 +4012,9 @@ gtk_flow_box_class_init (GtkFlowBoxClass *class)
                                        _gtk_marshal_BOOLEAN__ENUM_INT,
                                        G_TYPE_BOOLEAN, 2,
                                        GTK_TYPE_MOVEMENT_STEP, G_TYPE_INT);
+  g_signal_set_va_marshaller (signals[MOVE_CURSOR],
+                              G_TYPE_FROM_CLASS (class),
+                              _gtk_marshal_BOOLEAN__ENUM_INTv);
   /**
    * GtkFlowBox::select-all:
    * @box: the #GtkFlowBox on which the signal is emitted
@@ -4028,7 +4031,7 @@ gtk_flow_box_class_init (GtkFlowBoxClass *class)
                                       G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                       G_STRUCT_OFFSET (GtkFlowBoxClass, select_all),
                                       NULL, NULL,
-                                      g_cclosure_marshal_VOID__VOID,
+                                      NULL,
                                       G_TYPE_NONE, 0);
 
   /**
@@ -4047,7 +4050,7 @@ gtk_flow_box_class_init (GtkFlowBoxClass *class)
                                         G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                         G_STRUCT_OFFSET (GtkFlowBoxClass, unselect_all),
                                         NULL, NULL,
-                                        g_cclosure_marshal_VOID__VOID,
+                                        NULL,
                                         G_TYPE_NONE, 0);
 
   widget_class->activate_signal = signals[ACTIVATE_CURSOR_CHILD];

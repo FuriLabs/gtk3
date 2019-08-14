@@ -8,7 +8,7 @@
 <link rel="up" href="reference.html" title="API Reference">
 <link rel="prev" href="gdk3-Events.html" title="Events">
 <link rel="next" href="gdk3-Keyboard-Handling.html" title="Key Values">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -206,10 +206,10 @@ event it is:</p>
 2
 3
 4</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GdkEvent</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">event</span><span class="symbol">;</span>
-<span class="usertype">GdkEventType</span><span class="normal"> type</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GdkEvent</span> <span class="o">*</span><span class="n">event</span><span class="p">;</span>
+<span class="n">GdkEventType</span> <span class="n">type</span><span class="p">;</span>
 
-<span class="normal">type </span><span class="symbol">=</span><span class="normal"> event</span><span class="symbol">-&gt;</span><span class="normal">type</span><span class="symbol">;</span></pre></td>
+<span class="n">type</span> <span class="o">=</span> <span class="n">event</span><span class="o">-&gt;</span><span class="n">type</span><span class="p">;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -228,10 +228,10 @@ then the x coordinate of the button press can be accessed with:</p>
 2
 3
 4</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GdkEvent</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">event</span><span class="symbol">;</span>
-<span class="usertype">gdouble</span><span class="normal"> x</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GdkEvent</span> <span class="o">*</span><span class="n">event</span><span class="p">;</span>
+<span class="n">gdouble</span> <span class="n">x</span><span class="p">;</span>
 
-<span class="normal">x </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">((</span><span class="normal"><a href="gdk3-Event-Structures.html#GdkEventButton">GdkEventButton</a></span><span class="symbol">*)</span><span class="normal">event</span><span class="symbol">)-&gt;</span><span class="normal">x</span><span class="symbol">;</span></pre></td>
+<span class="n">x</span> <span class="o">=</span> <span class="p">((</span><span class="n">GdkEventButton</span><span class="o">*</span><span class="p">)</span><span class="n">event</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -247,10 +247,10 @@ or:</p>
 2
 3
 4</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GdkEvent</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">event</span><span class="symbol">;</span>
-<span class="usertype">gdouble</span><span class="normal"> x</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GdkEvent</span> <span class="o">*</span><span class="n">event</span><span class="p">;</span>
+<span class="n">gdouble</span> <span class="n">x</span><span class="p">;</span>
 
-<span class="normal">x </span><span class="symbol">=</span><span class="normal"> event</span><span class="symbol">-&gt;</span><span class="normal">button</span><span class="symbol">.</span><span class="normal">x</span><span class="symbol">;</span></pre></td>
+<span class="n">x</span> <span class="o">=</span> <span class="n">event</span><span class="o">-&gt;</span><span class="n">button</span><span class="p">.</span><span class="n">x</span><span class="p">;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -506,7 +506,7 @@ complete list of GDK key codes.</p></td>
 <td class="struct_member_name"><p><span class="type">gchar</span> *<em class="structfield"><code><a name="GdkEventKey.string"></a>string</code></em>;</p></td>
 <td class="struct_member_description"><p>a string containing an approximation of the text that
 would result from this keypress. The only correct way to handle text
-input of text is using input methods (see <span class="type">GtkIMContext</span>), so this
+input of text is using input methods (see <a href="https://developer.gnome.org/gtk4/GtkIMContext.html#GtkIMContext-struct"><span class="type">GtkIMContext</span></a>), so this
 field is deprecated and should never be used.
 (<a class="link" href="gdk3-Keyboard-Handling.html#gdk-unicode-to-keyval" title="gdk_unicode_to_keyval ()"><code class="function">gdk_unicode_to_keyval()</code></a> provides a non-deprecated way of getting
 an approximate translation for a key.) The string is encoded in the
@@ -2292,7 +2292,7 @@ device may have different current modes.</p></td>
 <td class="enum_member_name"><p><a name="GDK-SCROLL-SMOOTH:CAPS"></a>GDK_SCROLL_SMOOTH</p></td>
 <td class="enum_member_description">
 <p>the scrolling is determined by the delta values
-  in <a class="link" href="gdk3-Event-Structures.html#GdkEventScroll" title="struct GdkEventScroll"><span class="type">GdkEventScroll</span></a>. See <a class="link" href="gdk3-Events.html#gdk-event-get-scroll-deltas" title="gdk_event_get_scroll_deltas ()"><code class="function">gdk_event_get_scroll_deltas()</code></a>. Since: 3.4</p>
+in <a class="link" href="gdk3-Event-Structures.html#GdkEventScroll" title="struct GdkEventScroll"><span class="type">GdkEventScroll</span></a>. See <a class="link" href="gdk3-Events.html#gdk-event-get-scroll-deltas" title="gdk_event_get_scroll_deltas ()"><code class="function">gdk_event_get_scroll_deltas()</code></a>. Since: 3.4</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2390,7 +2390,7 @@ device may have different current modes.</p></td>
 <td class="enum_member_name"><p><a name="GDK-CROSSING-STATE-CHANGED:CAPS"></a>GDK_CROSSING_STATE_CHANGED</p></td>
 <td class="enum_member_description">
 <p>crossing because a GTK+ widget changed
-  state (e.g. sensitivity).</p>
+state (e.g. sensitivity).</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2398,7 +2398,7 @@ device may have different current modes.</p></td>
 <td class="enum_member_name"><p><a name="GDK-CROSSING-TOUCH-BEGIN:CAPS"></a>GDK_CROSSING_TOUCH_BEGIN</p></td>
 <td class="enum_member_description">
 <p>crossing because a touch sequence has begun,
-  this event is synthetic as the pointer might have not left the window.</p>
+this event is synthetic as the pointer might have not left the window.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2406,7 +2406,7 @@ device may have different current modes.</p></td>
 <td class="enum_member_name"><p><a name="GDK-CROSSING-TOUCH-END:CAPS"></a>GDK_CROSSING_TOUCH_END</p></td>
 <td class="enum_member_description">
 <p>crossing because a touch sequence has ended,
-  this event is synthetic as the pointer might have not left the window.</p>
+this event is synthetic as the pointer might have not left the window.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2414,8 +2414,8 @@ device may have different current modes.</p></td>
 <td class="enum_member_name"><p><a name="GDK-CROSSING-DEVICE-SWITCH:CAPS"></a>GDK_CROSSING_DEVICE_SWITCH</p></td>
 <td class="enum_member_description">
 <p>crossing because of a device switch (i.e.
-  a mouse taking control of the pointer after a touch device), this event
-  is synthetic as the pointer didn’t leave the window.</p>
+a mouse taking control of the pointer after a touch device), this event
+is synthetic as the pointer didn’t leave the window.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2442,7 +2442,7 @@ full details of crossing event generation.</p>
 <td class="enum_member_name"><p><a name="GDK-NOTIFY-ANCESTOR:CAPS"></a>GDK_NOTIFY_ANCESTOR</p></td>
 <td class="enum_member_description">
 <p>the window is entered from an ancestor or
-  left towards an ancestor.</p>
+left towards an ancestor.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2450,7 +2450,7 @@ full details of crossing event generation.</p>
 <td class="enum_member_name"><p><a name="GDK-NOTIFY-VIRTUAL:CAPS"></a>GDK_NOTIFY_VIRTUAL</p></td>
 <td class="enum_member_description">
 <p>the pointer moves between an ancestor and an
-  inferior of the window.</p>
+inferior of the window.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2458,7 +2458,7 @@ full details of crossing event generation.</p>
 <td class="enum_member_name"><p><a name="GDK-NOTIFY-INFERIOR:CAPS"></a>GDK_NOTIFY_INFERIOR</p></td>
 <td class="enum_member_description">
 <p>the window is entered from an inferior or
-  left towards an inferior.</p>
+left towards an inferior.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2466,7 +2466,7 @@ full details of crossing event generation.</p>
 <td class="enum_member_name"><p><a name="GDK-NOTIFY-NONLINEAR:CAPS"></a>GDK_NOTIFY_NONLINEAR</p></td>
 <td class="enum_member_description">
 <p>the window is entered from or left towards
-  a window which is neither an ancestor nor an inferior.</p>
+a window which is neither an ancestor nor an inferior.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2474,9 +2474,9 @@ full details of crossing event generation.</p>
 <td class="enum_member_name"><p><a name="GDK-NOTIFY-NONLINEAR-VIRTUAL:CAPS"></a>GDK_NOTIFY_NONLINEAR_VIRTUAL</p></td>
 <td class="enum_member_description">
 <p>the pointer moves between two windows
-  which are not ancestors of each other and the window is part of
-  the ancestor chain between one of these windows and their least
-  common ancestor.</p>
+which are not ancestors of each other and the window is part of
+the ancestor chain between one of these windows and their least
+common ancestor.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2567,7 +2567,7 @@ full details of crossing event generation.</p>
 <td class="enum_member_name"><p><a name="GDK-WINDOW-STATE-FULLSCREEN:CAPS"></a>GDK_WINDOW_STATE_FULLSCREEN</p></td>
 <td class="enum_member_description">
 <p>the window is maximized without
-  decorations.</p>
+decorations.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2596,7 +2596,7 @@ full details of crossing event generation.</p>
 <td class="enum_member_name"><p><a name="GDK-WINDOW-STATE-TILED:CAPS"></a>GDK_WINDOW_STATE_TILED</p></td>
 <td class="enum_member_description">
 <p>the window is in a tiled state, Since 3.10. Since 3.22.23, this
-                         is deprecated in favor of per-edge information.</p>
+is deprecated in favor of per-edge information.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2740,6 +2740,6 @@ full details of crossing event generation.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <link rel="up" href="DeprecatedObjects.html" title="Deprecated">
 <link rel="prev" href="GtkToggleAction.html" title="GtkToggleAction">
 <link rel="next" href="GtkRecentAction.html" title="GtkRecentAction">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -259,16 +259,16 @@ to the group. </p>
 8
 9
 10</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GSList</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">group </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
-<span class="usertype">GtkRadioAction</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">action</span><span class="symbol">;</span>
-<span class="normal"> </span>
-<span class="keyword">while</span><span class="normal"> </span><span class="symbol">(</span><span class="normal"> </span><span class="symbol">...</span><span class="normal">more actions </span><span class="usertype">to</span><span class="normal"> add</span><span class="symbol">...</span><span class="normal"> </span><span class="symbol">/)</span>
-<span class="normal">  </span><span class="cbracket">{</span>
-<span class="normal">     action </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkRadioAction.html#gtk-radio-action-new">gtk_radio_action_new</a></span><span class="normal"> </span><span class="symbol">(...);</span>
-<span class="normal">     </span>
-<span class="normal">     </span><span class="function"><a href="GtkRadioAction.html#gtk-radio-action-set-group">gtk_radio_action_set_group</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">action</span><span class="symbol">,</span><span class="normal"> group</span><span class="symbol">);</span>
-<span class="normal">     group </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkRadioAction.html#gtk-radio-action-get-group">gtk_radio_action_get_group</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">action</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="cbracket">}</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GSList</span> <span class="o">*</span><span class="n">group</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="n">GtkRadioAction</span> <span class="o">*</span><span class="n">action</span><span class="p">;</span>
+ 
+<span class="k">while</span> <span class="p">(</span> <span class="p">...</span><span class="n">more</span> <span class="n">actions</span> <span class="n">to</span> <span class="n">add</span><span class="p">...</span> <span class="o">/</span><span class="p">)</span>
+  <span class="p">{</span>
+     <span class="n">action</span> <span class="o">=</span> <span class="n">gtk_radio_action_new</span> <span class="p">(...);</span>
+     
+     <span class="n">gtk_radio_action_set_group</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">group</span><span class="p">);</span>
+     <span class="n">group</span> <span class="o">=</span> <span class="n">gtk_radio_action_get_group</span> <span class="p">(</span><span class="n">action</span><span class="p">);</span>
+  <span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -354,16 +354,16 @@ and <a class="link" href="GtkRadioAction.html#gtk-radio-action-set-group" title=
 8
 9
 10</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkRadioAction</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">action</span><span class="symbol">;</span>
-<span class="usertype">GtkRadioAction</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">last_action</span><span class="symbol">;</span>
-<span class="normal"> </span>
-<span class="keyword">while</span><span class="normal"> </span><span class="symbol">(</span><span class="normal"> </span><span class="symbol">...</span><span class="normal">more actions </span><span class="usertype">to</span><span class="normal"> add</span><span class="symbol">...</span><span class="normal"> </span><span class="symbol">/)</span>
-<span class="normal">  </span><span class="cbracket">{</span>
-<span class="normal">     action </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkRadioAction.html#gtk-radio-action-new">gtk_radio_action_new</a></span><span class="normal"> </span><span class="symbol">(...);</span>
-<span class="normal">     </span>
-<span class="normal">     </span><span class="function"><a href="GtkRadioAction.html#gtk-radio-action-join-group">gtk_radio_action_join_group</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">action</span><span class="symbol">,</span><span class="normal"> last_action</span><span class="symbol">);</span>
-<span class="normal">     last_action </span><span class="symbol">=</span><span class="normal"> action</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="cbracket">}</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkRadioAction</span> <span class="o">*</span><span class="n">action</span><span class="p">;</span>
+<span class="n">GtkRadioAction</span> <span class="o">*</span><span class="n">last_action</span><span class="p">;</span>
+ 
+<span class="k">while</span> <span class="p">(</span> <span class="p">...</span><span class="n">more</span> <span class="n">actions</span> <span class="n">to</span> <span class="n">add</span><span class="p">...</span> <span class="o">/</span><span class="p">)</span>
+  <span class="p">{</span>
+     <span class="n">action</span> <span class="o">=</span> <span class="n">gtk_radio_action_new</span> <span class="p">(...);</span>
+     
+     <span class="n">gtk_radio_action_join_group</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">last_action</span><span class="p">);</span>
+     <span class="n">last_action</span> <span class="o">=</span> <span class="n">action</span><span class="p">;</span>
+  <span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -550,6 +550,6 @@ for the previous and current active members.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

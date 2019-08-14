@@ -1,4 +1,4 @@
-gtk+3.0 (3.24.8-1ubuntu1) disco; urgency=medium
+gtk+3.0 (3.24.10-1ubuntu1) UNRELEASED; urgency=medium
 
   * Merge with Debian. Remaining changes:
     + Install a settings.ini file to set our themes
@@ -21,7 +21,41 @@ gtk+3.0 (3.24.8-1ubuntu1) disco; urgency=medium
       - unity-border-radius.patch
       - unity-headerbar-maximized-mode.patch
 
- -- Iain Lane <iain.lane@canonical.com>  Thu, 11 Apr 2019 11:18:54 +0100
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 14 Aug 2019 11:49:48 +0200
+
+gtk+3.0 (3.24.10-1) unstable; urgency=medium
+
+  * Team upload
+  * Upload to unstable
+  * New upstream release
+    - Bump required CUPS version to 1.7
+    - d/copyright: Update
+    - d/rules: Explicitly select Autotools build system.
+      Upstream now partially supports Meson, but it doesn't have all the
+      features we want yet (in particular no installed-tests).
+  * d/rules: Delete more generated files in clean to force them to be
+    regenerated
+    - d/p/gdk-Generate-gdkenumtypes.-ch-in-the-builddir.patch,
+      d/p/gdk-Don-t-distribute-generated-files-in-tarballs.patch:
+      Fix regeneration of some generated files
+  * d/tests/python3-gi: Don't fail if gir1.2-gtk-4.0 is installed
+  * d/p/Revert-Update-some-a11y-test-results.patch:
+    Drop patch, no longer needed (and indeed it now makes the tests fail)
+  * d/p/docs-Add-gtk_file_chooser_add_choice-and-related-function.patch,
+    d/p/Fix-a-string-leak.patch:
+    Add post-release fixes from upstream gtk-3-24 branch
+  * d/p/Disable-accessibility-dump-aka-a11ytests-test.patch:
+    Disable accessibility-dump test (aka a11ytests).
+    It works by comparing a dump of the a11y widget tree with a known-good
+    version, but that seems to vary unpredictably according to some unknown
+    factor. Upstream's CI currently disables all the a11y tests, so we can't
+    expect this to be reliable.
+  * Remove another generated file
+  * d/libgail-3-0.symbols: Add Build-Depends-Package
+  * d/libgail-3-doc.doc-base.gail-reference: Use /usr/share/doc paths
+  * Standards-Version: 4.4.0 (no changes required)
+
+ -- Simon McVittie <smcv@debian.org>  Wed, 17 Jul 2019 17:54:17 +0100
 
 gtk+3.0 (3.24.8-1) experimental; urgency=medium
 

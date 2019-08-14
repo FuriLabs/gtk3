@@ -135,7 +135,7 @@ configure_flags_udeb = \
 	--disable-xrandr
 
 %:
-	dh $@ --with gir
+	dh $@ --buildsystem=autoconf --with gir
 
 override_dh_clean: debian/control
 	# gross kludge to force control generation with the %.in target
@@ -147,6 +147,21 @@ override_dh_clean: debian/control
 	# when resources change. Force an update in case we ship a patch which
 	# modifies the theme CSS files.
 	rm -f gtk/gtkresources.c gtk/gtkresources.h
+	# We just don't want to have to review these...
+	rm -f demos/gtk-demo/demo_resources.[ch]
+	rm -f demos/icon-browser/resources.[ch]
+	rm -f demos/widget-factory/widget_factory_resources.[ch]
+	rm -f docs/reference/gtk/getting_started.xml
+	rm -f examples/application*/resources.[ch]
+	rm -f gdk/gdkenumtypes.[ch]
+	rm -f gdk/gdkmarshalers.[ch]
+	rm -f gdk/gdkresources.[ch]
+	rm -f gtk/gtkmarshalers.[ch]
+	rm -f gtk/gtkprivatetypebuiltins.[ch]
+	rm -f gtk/gtkresources.[ch]
+	rm -f gtk/gtktypebuiltins.[ch]
+	rm -f testsuite/css/style/resources.[ch]
+	rm -f testsuite/gtk/gtkresources.[ch]
 	dh_clean
 
 # Add dependencies to generate files from the debian/*.in ones

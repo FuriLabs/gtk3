@@ -29,6 +29,7 @@
 #include "gdkglcontext-wayland.h"
 #include "gdkframeclockprivate.h"
 #include "gdkprivate-wayland.h"
+#include "gdkprofilerprivate.h"
 #include "gdkinternals.h"
 #include "gdkdeviceprivate.h"
 #include "gdkprivate-wayland.h"
@@ -560,6 +561,9 @@ frame_callback (void               *data,
 #ifdef G_ENABLE_DEBUG
   if ((_gdk_debug_flags & GDK_DEBUG_FRAMES) != 0)
     _gdk_frame_clock_debug_print_timings (clock, timings);
+
+  if (gdk_profiler_is_running ())
+    _gdk_frame_clock_add_timings_to_profiler (clock, timings);
 #endif
 }
 
@@ -4457,6 +4461,7 @@ gdk_wayland_window_show_window_menu (GdkWindow *window,
     GDK_WAYLAND_DISPLAY (gdk_window_get_display (window));
   struct wl_seat *seat;
   GdkWaylandDevice *device;
+  GdkWindow *event_window;
   double x, y;
   uint32_t serial;
 
@@ -4476,12 +4481,13 @@ gdk_wayland_window_show_window_menu (GdkWindow *window,
 
   device = GDK_WAYLAND_DEVICE (gdk_event_get_device (event));
   seat = gdk_wayland_device_get_wl_seat (GDK_DEVICE (device));
-  gdk_event_get_coords (event, &x, &y);
 
-  while (gdk_window_get_window_type (window) != GDK_WINDOW_TOPLEVEL)
+  gdk_event_get_coords (event, &x, &y);
+  event_window = gdk_event_get_window (event);
+  while (gdk_window_get_window_type (event_window) != GDK_WINDOW_TOPLEVEL)
     {
-      gdk_window_coords_to_parent (window, x, y, &x, &y);
-      window = gdk_window_get_effective_parent (window);
+      gdk_window_coords_to_parent (event_window, x, y, &x, &y);
+      event_window = gdk_window_get_effective_parent (event_window);
     }
 
   serial = _gdk_wayland_device_get_implicit_grab_serial (device, event);

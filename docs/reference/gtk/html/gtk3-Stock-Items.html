@@ -8,7 +8,7 @@
 <link rel="up" href="DeprecatedObjects.html" title="Deprecated">
 <link rel="prev" href="GtkMisc.html" title="GtkMisc">
 <link rel="next" href="gtk3-Themeable-Stock-Images.html" title="Themeable Stock Images">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -28,7 +28,7 @@
 <td valign="top">
 <h2><span class="refentrytitle"><a name="gtk3-Stock-Items.top_of_page"></a>Stock Items</span></h2>
 <p>Stock Items — Prebuilt common menu/toolbar items and corresponding
-                    icons</p>
+icons</p>
 </td>
 <td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
@@ -789,25 +789,25 @@ when dealing with message contexts:</p>
 17
 18
 19</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkStockItem</span><span class="normal"> items</span><span class="symbol">[]</span><span class="normal"> </span><span class="symbol">=</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal"> </span>
-<span class="normal"> </span><span class="cbracket">{</span><span class="normal"> MY_ITEM1</span><span class="symbol">,</span><span class="normal"> </span><span class="function">NC_</span><span class="symbol">(</span><span class="string">"odd items"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Item 1"</span><span class="symbol">),</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"odd-item-domain"</span><span class="normal"> </span><span class="cbracket">}</span><span class="symbol">,</span>
-<span class="normal"> </span><span class="cbracket">{</span><span class="normal"> MY_ITEM2</span><span class="symbol">,</span><span class="normal"> </span><span class="function">NC_</span><span class="symbol">(</span><span class="string">"even items"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Item 2"</span><span class="symbol">),</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"even-item-domain"</span><span class="normal"> </span><span class="cbracket">}</span><span class="symbol">,</span>
-<span class="cbracket">}</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkStockItem</span> <span class="n">items</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> 
+ <span class="p">{</span> <span class="n">MY_ITEM1</span><span class="p">,</span> <span class="n">NC_</span><span class="p">(</span><span class="s">&quot;odd items&quot;</span><span class="p">,</span> <span class="s">&quot;Item 1&quot;</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&quot;odd-item-domain&quot;</span> <span class="p">},</span>
+ <span class="p">{</span> <span class="n">MY_ITEM2</span><span class="p">,</span> <span class="n">NC_</span><span class="p">(</span><span class="s">&quot;even items&quot;</span><span class="p">,</span> <span class="s">&quot;Item 2&quot;</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&quot;even-item-domain&quot;</span> <span class="p">},</span>
+<span class="p">};</span>
 
-<span class="normal">gchar </span><span class="symbol">*</span>
-<span class="function">my_translate_func</span><span class="normal"> </span><span class="symbol">(</span><span class="keyword">const</span><span class="normal"> </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">msgid</span><span class="symbol">,</span>
-<span class="normal">                   </span><span class="usertype">gpointer</span><span class="normal">     data</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">msgctxt </span><span class="symbol">=</span><span class="normal"> data</span><span class="symbol">;</span>
+<span class="n">gchar</span> <span class="o">*</span>
+<span class="nf">my_translate_func</span> <span class="p">(</span><span class="k">const</span> <span class="n">gchar</span> <span class="o">*</span><span class="n">msgid</span><span class="p">,</span>
+                   <span class="n">gpointer</span>     <span class="n">data</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">gchar</span> <span class="o">*</span><span class="n">msgctxt</span> <span class="o">=</span> <span class="n">data</span><span class="p">;</span>
 
-<span class="normal">  </span><span class="keyword">return</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gchar</span><span class="symbol">*)</span><span class="function">g_dpgettext2</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">GETTEXT_PACKAGE</span><span class="symbol">,</span><span class="normal"> msgctxt</span><span class="symbol">,</span><span class="normal"> msgid</span><span class="symbol">);</span>
-<span class="cbracket">}</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">gchar</span><span class="o">*</span><span class="p">)</span><span class="n">g_dpgettext2</span> <span class="p">(</span><span class="n">GETTEXT_PACKAGE</span><span class="p">,</span> <span class="n">msgctxt</span><span class="p">,</span> <span class="n">msgid</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="symbol">...</span>
+<span class="p">...</span>
 
-<span class="function"><a href="gtk3-Stock-Items.html#gtk-stock-add">gtk_stock_add</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">items</span><span class="symbol">,</span><span class="normal"> </span><span class="function">G_N_ELEMENTS</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">items</span><span class="symbol">));</span>
-<span class="function"><a href="gtk3-Stock-Items.html#gtk-stock-set-translate-func">gtk_stock_set_translate_func</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"odd-item-domain"</span><span class="symbol">,</span><span class="normal"> my_translate_func</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"odd items"</span><span class="symbol">);</span><span class="normal"> </span>
-<span class="function"><a href="gtk3-Stock-Items.html#gtk-stock-set-translate-func">gtk_stock_set_translate_func</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"even-item-domain"</span><span class="symbol">,</span><span class="normal"> my_translate_func</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"even items"</span><span class="symbol">);</span></pre></td>
+<span class="n">gtk_stock_add</span> <span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">G_N_ELEMENTS</span> <span class="p">(</span><span class="n">items</span><span class="p">));</span>
+<span class="n">gtk_stock_set_translate_func</span> <span class="p">(</span><span class="s">&quot;odd-item-domain&quot;</span><span class="p">,</span> <span class="n">my_translate_func</span><span class="p">,</span> <span class="s">&quot;odd items&quot;</span><span class="p">);</span> 
+<span class="n">gtk_stock_set_translate_func</span> <span class="p">(</span><span class="s">&quot;even-item-domain&quot;</span><span class="p">,</span> <span class="n">my_translate_func</span><span class="p">,</span> <span class="s">&quot;even items&quot;</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -886,7 +886,7 @@ no longer needed</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
 <tr>
-<td class="struct_member_name"><p><span class="type">GdkModifierType</span> <em class="structfield"><code><a name="GtkStockItem.modifier"></a>modifier</code></em>;</p></td>
+<td class="struct_member_name"><p><a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkModifierType"><span class="type">GdkModifierType</span></a> <em class="structfield"><code><a name="GtkStockItem.modifier"></a>modifier</code></em>;</p></td>
 <td class="struct_member_description"><p>Modifier type for keyboard accelerator</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
@@ -2033,6 +2033,6 @@ no longer needed</p></td>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

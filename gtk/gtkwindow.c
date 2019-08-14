@@ -101,7 +101,7 @@
  *
  * # GtkWindow as GtkBuildable
  *
- * The GtkWindow implementation of the GtkBuildable interface supports a
+ * The GtkWindow implementation of the #GtkBuildable interface supports a
  * custom <accel-groups> element, which supports any number of <group>
  * elements representing the #GtkAccelGroup objects you want to add to
  * your window (synonymous with gtk_window_add_accel_group().
@@ -123,7 +123,7 @@
  * <object class="GtkAccelGroup" id="accelgroup1"/>
  * ]|
  * 
- * The GtkWindow implementation of the GtkBuildable interface supports
+ * The GtkWindow implementation of the #GtkBuildable interface supports
  * setting a child as the titlebar by specifying “titlebar” as the “type”
  * attribute of a <child> element.
  *
@@ -8625,7 +8625,7 @@ gtk_window_focus (GtkWidget        *widget,
   if (old_focus_child)
     {
       if (gtk_widget_child_focus (old_focus_child, direction))
-	return TRUE;
+        return TRUE;
     }
 
   if (priv->focus_widget)
@@ -8668,7 +8668,9 @@ gtk_window_focus (GtkWidget        *widget,
                priv->title_box != child &&
                gtk_widget_child_focus (priv->title_box, direction))
         return TRUE;
-
+      else if (priv->title_box == child &&
+               gtk_widget_child_focus (gtk_bin_get_child (bin), direction))
+        return TRUE;
     }
 
   return FALSE;

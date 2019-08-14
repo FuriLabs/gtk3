@@ -8,7 +8,7 @@
 <link rel="up" href="DeprecatedObjects.html" title="Deprecated">
 <link rel="prev" href="GtkStatusIcon.html" title="GtkStatusIcon">
 <link rel="next" href="GtkAlignment.html" title="GtkAlignment">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -677,7 +677,7 @@ rendered element.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_theming_engine_get_color (<em class="parameter"><code><a class="link" href="GtkThemingEngine.html" title="GtkThemingEngine"><span class="type">GtkThemingEngine</span></a> *engine</code></em>,
                               <em class="parameter"><code><a class="link" href="gtk3-Standard-Enumerations.html#GtkStateFlags" title="enum GtkStateFlags"><span class="type">GtkStateFlags</span></a> state</code></em>,
-                              <em class="parameter"><code><span class="type">GdkRGBA</span> *color</code></em>);</pre>
+                              <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> *color</code></em>);</pre>
 <div class="warning"><p><code class="literal">gtk_theming_engine_get_color</code> has been deprecated since version 3.14 and should not be used in newly-written code.</p></div>
 <p>Gets the foreground color for a given state.</p>
 <div class="refsect3">
@@ -716,7 +716,7 @@ gtk_theming_engine_get_color (<em class="parameter"><code><a class="link" href="
 gtk_theming_engine_get_background_color
                                (<em class="parameter"><code><a class="link" href="GtkThemingEngine.html" title="GtkThemingEngine"><span class="type">GtkThemingEngine</span></a> *engine</code></em>,
                                 <em class="parameter"><code><a class="link" href="gtk3-Standard-Enumerations.html#GtkStateFlags" title="enum GtkStateFlags"><span class="type">GtkStateFlags</span></a> state</code></em>,
-                                <em class="parameter"><code><span class="type">GdkRGBA</span> *color</code></em>);</pre>
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> *color</code></em>);</pre>
 <div class="warning"><p><code class="literal">gtk_theming_engine_get_background_color</code> has been deprecated since version 3.14 and should not be used in newly-written code.</p></div>
 <p>Gets the background color for a given state.</p>
 <div class="refsect3">
@@ -754,7 +754,7 @@ gtk_theming_engine_get_background_color
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_theming_engine_get_border_color (<em class="parameter"><code><a class="link" href="GtkThemingEngine.html" title="GtkThemingEngine"><span class="type">GtkThemingEngine</span></a> *engine</code></em>,
                                      <em class="parameter"><code><a class="link" href="gtk3-Standard-Enumerations.html#GtkStateFlags" title="enum GtkStateFlags"><span class="type">GtkStateFlags</span></a> state</code></em>,
-                                     <em class="parameter"><code><span class="type">GdkRGBA</span> *color</code></em>);</pre>
+                                     <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> *color</code></em>);</pre>
 <div class="warning"><p><code class="literal">gtk_theming_engine_get_border_color</code> has been deprecated since version 3.14 and should not be used in newly-written code.</p></div>
 <p>Gets the border color for a given state.</p>
 <div class="refsect3">
@@ -1032,7 +1032,7 @@ to the flags affecting the region.</p>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_theming_engine_lookup_color (<em class="parameter"><code><a class="link" href="GtkThemingEngine.html" title="GtkThemingEngine"><span class="type">GtkThemingEngine</span></a> *engine</code></em>,
                                  <em class="parameter"><code>const <span class="type">gchar</span> *color_name</code></em>,
-                                 <em class="parameter"><code><span class="type">GdkRGBA</span> *color</code></em>);</pre>
+                                 <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> *color</code></em>);</pre>
 <div class="warning"><p><code class="literal">gtk_theming_engine_lookup_color</code> has been deprecated since version 3.14 and should not be used in newly-written code.</p></div>
 <p>Looks up and resolves a color name in the current style’s color map.</p>
 <div class="refsect3">
@@ -1195,10 +1195,10 @@ one.</p>
 2
 3
 4</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="symbol">*</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">    engine</span><span class="symbol">:</span><span class="normal"> someengine</span><span class="symbol">;</span>
-<span class="normal">    </span><span class="symbol">-</span><span class="normal">SomeEngine</span><span class="symbol">-</span><span class="normal">custom</span><span class="symbol">-</span><span class="normal">property</span><span class="symbol">:</span><span class="normal"> </span><span class="number">2</span><span class="symbol">;</span>
-<span class="cbracket">}</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="o">*</span> <span class="p">{</span>
+    <span class="nl">engine</span><span class="p">:</span> <span class="n">someengine</span><span class="p">;</span>
+    <span class="o">-</span><span class="n">SomeEngine</span><span class="o">-</span><span class="n">custom</span><span class="o">-</span><span class="nl">property</span><span class="p">:</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1468,7 +1468,7 @@ a "glossy" custom property, it could be referenced in the CSS file as</p>
     <tbody>
       <tr>
         <td class="listing_lines" align="right"><pre>1</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="symbol">-</span><span class="normal">Clearlooks</span><span class="symbol">-</span><span class="normal">glossy</span><span class="symbol">:</span><span class="normal"> true</span><span class="symbol">;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="o">-</span><span class="n">Clearlooks</span><span class="o">-</span><span class="nl">glossy</span><span class="p">:</span> <span class="nb">true</span><span class="p">;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1486,6 +1486,6 @@ a "glossy" custom property, it could be referenced in the CSS file as</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

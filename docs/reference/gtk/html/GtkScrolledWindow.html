@@ -8,7 +8,7 @@
 <link rel="up" href="ScrollingWidgets.html" title="Scrolling">
 <link rel="prev" href="GtkScrollbar.html" title="GtkScrollbar">
 <link rel="next" href="GtkScrollable.html" title="GtkScrollable">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -536,20 +536,20 @@ from the GtkScrolledWindow, like this:</p>
 12
 13
 14</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">scrolled_window </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkScrolledWindow.html#gtk-scrolled-window-new">gtk_scrolled_window_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
-<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">child_widget </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkButton.html#gtk-button-new">gtk_button_new</a></span><span class="normal"> </span><span class="symbol">();</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">scrolled_window</span> <span class="o">=</span> <span class="n">gtk_scrolled_window_new</span> <span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+<span class="n">GtkWidget</span> <span class="o">*</span><span class="n">child_widget</span> <span class="o">=</span> <span class="n">gtk_button_new</span> <span class="p">();</span>
 
-<span class="comment">// GtkButton is not a GtkScrollable, so GtkScrolledWindow will automatically</span>
-<span class="comment">// add a GtkViewport.</span>
-<span class="function"><a href="GtkContainer.html#gtk-container-add">gtk_container_add</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_CONTAINER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">scrolled_window</span><span class="symbol">),</span>
-<span class="normal">                   child_widget</span><span class="symbol">);</span>
+<span class="c1">// GtkButton is not a GtkScrollable, so GtkScrolledWindow will automatically</span>
+<span class="c1">// add a GtkViewport.</span>
+<span class="n">gtk_container_add</span> <span class="p">(</span><span class="n">GTK_CONTAINER</span> <span class="p">(</span><span class="n">scrolled_window</span><span class="p">),</span>
+                   <span class="n">child_widget</span><span class="p">);</span>
 
-<span class="comment">// Either of these will result in child_widget being unparented:</span>
-<span class="function"><a href="GtkContainer.html#gtk-container-remove">gtk_container_remove</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_CONTAINER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">scrolled_window</span><span class="symbol">),</span>
-<span class="normal">                      child_widget</span><span class="symbol">);</span>
-<span class="comment">// or</span>
-<span class="function"><a href="GtkContainer.html#gtk-container-remove">gtk_container_remove</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_CONTAINER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">scrolled_window</span><span class="symbol">),</span>
-<span class="normal">                      </span><span class="function"><a href="GtkBin.html#gtk-bin-get-child">gtk_bin_get_child</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_BIN</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">scrolled_window</span><span class="symbol">)));</span></pre></td>
+<span class="c1">// Either of these will result in child_widget being unparented:</span>
+<span class="n">gtk_container_remove</span> <span class="p">(</span><span class="n">GTK_CONTAINER</span> <span class="p">(</span><span class="n">scrolled_window</span><span class="p">),</span>
+                      <span class="n">child_widget</span><span class="p">);</span>
+<span class="c1">// or</span>
+<span class="n">gtk_container_remove</span> <span class="p">(</span><span class="n">GTK_CONTAINER</span> <span class="p">(</span><span class="n">scrolled_window</span><span class="p">),</span>
+                      <span class="n">gtk_bin_get_child</span> <span class="p">(</span><span class="n">GTK_BIN</span> <span class="p">(</span><span class="n">scrolled_window</span><span class="p">)));</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -620,12 +620,12 @@ will cause the scrolled window to create them for you.</p>
 <tr>
 <td class="parameter_name"><p>hadjustment</p></td>
 <td class="parameter_description"><p>horizontal adjustment. </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>vadjustment</p></td>
 <td class="parameter_description"><p>vertical adjustment. </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
@@ -687,8 +687,8 @@ gtk_scrolled_window_set_hadjustment (<em class="parameter"><code><a class="link"
 </tr>
 <tr>
 <td class="parameter_name"><p>hadjustment</p></td>
-<td class="parameter_description"><p>horizontal scroll adjustment</p></td>
-<td class="parameter_annotations"> </td>
+<td class="parameter_description"><p>the <a class="link" href="GtkAdjustment.html" title="GtkAdjustment"><span class="type">GtkAdjustment</span></a> to use, or <code class="literal">NULL</code> to create a new one. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
@@ -745,8 +745,8 @@ gtk_scrolled_window_set_vadjustment (<em class="parameter"><code><a class="link"
 </tr>
 <tr>
 <td class="parameter_name"><p>vadjustment</p></td>
-<td class="parameter_description"><p>vertical scroll adjustment</p></td>
-<td class="parameter_annotations"> </td>
+<td class="parameter_description"><p>the <a class="link" href="GtkAdjustment.html" title="GtkAdjustment"><span class="type">GtkAdjustment</span></a> to use, or <code class="literal">NULL</code> to create a new one. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
@@ -837,13 +837,13 @@ scrollbars. See <a class="link" href="GtkScrolledWindow.html#gtk-scrolled-window
 <td class="parameter_name"><p>hscrollbar_policy</p></td>
 <td class="parameter_description"><p>location to store the policy
 for the horizontal scrollbar, or <code class="literal">NULL</code>. </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="NULL may be passed instead of a pointer to a location."><span class="acronym">optional</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>vscrollbar_policy</p></td>
 <td class="parameter_description"><p>location to store the policy
 for the vertical scrollbar, or <code class="literal">NULL</code>. </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="NULL may be passed instead of a pointer to a location."><span class="acronym">optional</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
@@ -1128,7 +1128,7 @@ gtk_scrolled_window_set_kinetic_scrolling
                                 <em class="parameter"><code><span class="type">gboolean</span> kinetic_scrolling</code></em>);</pre>
 <p>Turns kinetic scrolling on or off.
 Kinetic scrolling only applies to devices with source
-<code class="literal">GDK_SOURCE_TOUCHSCREEN</code>.</p>
+<a href="https://developer.gnome.org/gdk4/GdkDevice.html#GDK-SOURCE-TOUCHSCREEN:CAPS"><code class="literal">GDK_SOURCE_TOUCHSCREEN</code></a>.</p>
 <div class="refsect3">
 <a name="gtk-scrolled-window-set-kinetic-scrolling.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1752,7 +1752,7 @@ visibility mode for the scrollbars.</p>
 <td class="enum_member_name"><p><a name="GTK-POLICY-ALWAYS:CAPS"></a>GTK_POLICY_ALWAYS</p></td>
 <td class="enum_member_description">
 <p>The scrollbar is always visible. The view size is
- independent of the content.</p>
+independent of the content.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1760,7 +1760,7 @@ visibility mode for the scrollbars.</p>
 <td class="enum_member_name"><p><a name="GTK-POLICY-AUTOMATIC:CAPS"></a>GTK_POLICY_AUTOMATIC</p></td>
 <td class="enum_member_description">
 <p>The scrollbar will appear and disappear as necessary.
- For example, when all of a <a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class="type">GtkTreeView</span></a> can not be seen.</p>
+For example, when all of a <a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class="type">GtkTreeView</span></a> can not be seen.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1768,7 +1768,7 @@ visibility mode for the scrollbars.</p>
 <td class="enum_member_name"><p><a name="GTK-POLICY-NEVER:CAPS"></a>GTK_POLICY_NEVER</p></td>
 <td class="enum_member_description">
 <p>The scrollbar should never appear. In this mode the
- content determines the size.</p>
+content determines the size.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1776,8 +1776,8 @@ visibility mode for the scrollbars.</p>
 <td class="enum_member_name"><p><a name="GTK-POLICY-EXTERNAL:CAPS"></a>GTK_POLICY_EXTERNAL</p></td>
 <td class="enum_member_description">
 <p>Don't show a scrollbar, but don't force the
- size to follow the content. This can be used e.g. to make multiple
- scrolled windows share a scrollbar. Since: 3.16</p>
+size to follow the content. This can be used e.g. to make multiple
+scrolled windows share a scrollbar. Since: 3.16</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1804,7 +1804,7 @@ bars are placed.</p>
 <td class="enum_member_name"><p><a name="GTK-CORNER-TOP-LEFT:CAPS"></a>GTK_CORNER_TOP_LEFT</p></td>
 <td class="enum_member_description">
 <p>Place the scrollbars on the right and bottom of the
- widget (default behaviour).</p>
+widget (default behaviour).</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1812,7 +1812,7 @@ bars are placed.</p>
 <td class="enum_member_name"><p><a name="GTK-CORNER-BOTTOM-LEFT:CAPS"></a>GTK_CORNER_BOTTOM_LEFT</p></td>
 <td class="enum_member_description">
 <p>Place the scrollbars on the top and right of the
- widget.</p>
+widget.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1820,7 +1820,7 @@ bars are placed.</p>
 <td class="enum_member_name"><p><a name="GTK-CORNER-TOP-RIGHT:CAPS"></a>GTK_CORNER_TOP_RIGHT</p></td>
 <td class="enum_member_description">
 <p>Place the scrollbars on the left and bottom of the
- widget.</p>
+widget.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1828,7 +1828,7 @@ bars are placed.</p>
 <td class="enum_member_name"><p><a name="GTK-CORNER-BOTTOM-RIGHT:CAPS"></a>GTK_CORNER_BOTTOM_RIGHT</p></td>
 <td class="enum_member_description">
 <p>Place the scrollbars on the top and left of the
- widget.</p>
+widget.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1858,7 +1858,7 @@ bars are placed.</p>
 <a name="GtkScrolledWindow--kinetic-scrolling"></a><h3>The <code class="literal">“kinetic-scrolling”</code> property</h3>
 <pre class="programlisting">  “kinetic-scrolling”        <span class="type">gboolean</span></pre>
 <p>Whether kinetic scrolling is enabled or not. Kinetic scrolling
-only applies to devices with source <code class="literal">GDK_SOURCE_TOUCHSCREEN</code>.</p>
+only applies to devices with source <a href="https://developer.gnome.org/gdk4/GdkDevice.html#GDK-SOURCE-TOUCHSCREEN:CAPS"><code class="literal">GDK_SOURCE_TOUCHSCREEN</code></a>.</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 <p class="since">Since: <a class="link" href="api-index-3-4.html#api-index-3.4">3.4</a></p>
@@ -1915,6 +1915,8 @@ only applies to devices with source <code class="literal">GDK_SOURCE_TOUCHSCREEN
 scrollbars are only added as traditional widgets when a mouse
 is present. Otherwise, they are overlayed on top of the content,
 as narrow indicators.</p>
+<p>Note that overlay scrolling can also be globally disabled, with
+the <span class="type">“gtk-overlay-scrolling”</span> setting.</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 <p class="since">Since: <a class="link" href="api-index-3-16.html#api-index-3.16">3.16</a></p>
@@ -2205,6 +2207,6 @@ horizontally or not</p></td>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

@@ -31,7 +31,10 @@ EXTRA_DIST += 			\
 	makefile.msc		\
 	gdkenumtypes.c.template	\
 	gdkenumtypes.h.template	\
-	gdkversionmacros.h.in
+	gdkversionmacros.h.in	\
+	meson.build \
+	gen-gdk-gresources-xml.py \
+	gdkconfig.h.meson
 
 GDK_CFLAGS_DEFINES =	\
 	-DG_LOG_USE_STRUCTURED=1	\
@@ -126,6 +129,7 @@ gdk_private_headers = 				\
 	gdkframeclockprivate.h			\
 	gdkglcontextprivate.h			\
 	gdkmonitorprivate.h			\
+	gdkprofilerprivate.h			\
 	gdkscreenprivate.h			\
 	gdkseatprivate.h			\
 	gdkseatdefaultprivate.h			\
@@ -167,6 +171,7 @@ gdk_c_sources = 				\
 	gdkframeclockidle.c			\
 	gdkpango.c				\
 	gdkpixbuf-drawable.c			\
+	gdkprofiler.c				\
 	gdkproperty.c				\
 	gdkrectangle.c				\
 	gdkrgba.c				\
@@ -446,6 +451,7 @@ gdkenumtypes.c: $(gdk_h_sources) gdkenumtypes.c.template
 gdkmarshalers.h: gdkmarshalers.list
 	$(AM_V_GEN) $(GLIB_GENMARSHAL) \
 		--prefix=_gdk_marshal \
+		--valist-marshallers \
 		--header \
 		$(srcdir)/gdkmarshalers.list > gdkmarshalers-h.tmp \
 	&& mv gdkmarshalers-h.tmp gdkmarshalers.h \
@@ -453,6 +459,7 @@ gdkmarshalers.h: gdkmarshalers.list
 gdkmarshalers.c: gdkmarshalers.list
 	$(AM_V_GEN) $(GLIB_GENMARSHAL) \
 		--prefix=_gdk_marshal \
+		--valist-marshallers \
 		--body \
 		$(srcdir)/gdkmarshalers.list > gdkmarshalers-c.tmp	\
 	&& mv gdkmarshalers-c.tmp gdkmarshalers.c \

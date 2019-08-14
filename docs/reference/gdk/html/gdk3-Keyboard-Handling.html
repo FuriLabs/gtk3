@@ -8,7 +8,7 @@
 <link rel="up" href="reference.html" title="API Reference">
 <link rel="prev" href="gdk3-Event-Structures.html" title="Event Structures">
 <link rel="next" href="gdk3-Selections.html" title="Selections">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -483,14 +483,14 @@ the <code class="literal">plus</code> symbol is shifted, so when comparing a key
 6
 7
 8</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="comment">// We want to ignore irrelevant modifiers like ScrollLock</span>
-<span class="preproc">#define</span><span class="normal"> </span><span class="function">ALL_ACCELS_MASK</span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="gdk3-Windows.html#GDK-CONTROL-MASK:CAPS">GDK_CONTROL_MASK</a> </span><span class="symbol">|</span><span class="normal"> <a href="gdk3-Windows.html#GDK-SHIFT-MASK:CAPS">GDK_SHIFT_MASK</a> </span><span class="symbol">|</span><span class="normal"> <a href="gdk3-Windows.html#GDK-MOD1-MASK:CAPS">GDK_MOD1_MASK</a></span><span class="symbol">)</span>
-<span class="function"><a href="gdk3-Keyboard-Handling.html#gdk-keymap-translate-keyboard-state">gdk_keymap_translate_keyboard_state</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">keymap</span><span class="symbol">,</span><span class="normal"> event</span><span class="symbol">-&gt;</span><span class="normal">hardware_keycode</span><span class="symbol">,</span>
-<span class="normal">                                     event</span><span class="symbol">-&gt;</span><span class="normal">state</span><span class="symbol">,</span><span class="normal"> event</span><span class="symbol">-&gt;</span><span class="normal">group</span><span class="symbol">,</span>
-<span class="normal">                                     </span><span class="symbol">&amp;</span><span class="normal">keyval</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">consumed</span><span class="symbol">);</span>
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">keyval </span><span class="symbol">==</span><span class="normal"> <a href="gdk3-Cursors.html#GDK-PLUS:CAPS">GDK_PLUS</a> </span><span class="symbol">&amp;&amp;</span>
-<span class="normal">    </span><span class="symbol">(</span><span class="normal">event</span><span class="symbol">-&gt;</span><span class="normal">state </span><span class="symbol">&amp;</span><span class="normal"> </span><span class="symbol">~</span><span class="normal">consumed </span><span class="symbol">&amp;</span><span class="normal"> ALL_ACCELS_MASK</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">==</span><span class="normal"> <a href="gdk3-Windows.html#GDK-CONTROL-MASK:CAPS">GDK_CONTROL_MASK</a></span><span class="symbol">)</span>
-<span class="normal">  </span><span class="comment">// Control was pressed</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="c1">// We want to ignore irrelevant modifiers like ScrollLock</span>
+<span class="cp">#define ALL_ACCELS_MASK (GDK_CONTROL_MASK | GDK_SHIFT_MASK | GDK_MOD1_MASK)</span>
+<span class="n">gdk_keymap_translate_keyboard_state</span> <span class="p">(</span><span class="n">keymap</span><span class="p">,</span> <span class="n">event</span><span class="o">-&gt;</span><span class="n">hardware_keycode</span><span class="p">,</span>
+                                     <span class="n">event</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">,</span> <span class="n">event</span><span class="o">-&gt;</span><span class="n">group</span><span class="p">,</span>
+                                     <span class="o">&amp;</span><span class="n">keyval</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">consumed</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">keyval</span> <span class="o">==</span> <span class="n">GDK_PLUS</span> <span class="o">&amp;&amp;</span>
+    <span class="p">(</span><span class="n">event</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">consumed</span> <span class="o">&amp;</span> <span class="n">ALL_ACCELS_MASK</span><span class="p">)</span> <span class="o">==</span> <span class="n">GDK_CONTROL_MASK</span><span class="p">)</span>
+  <span class="c1">// Control was pressed</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -510,10 +510,10 @@ modifiers, by doing:</p>
 2
 3
 4</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="comment">// XXX Don’t do this XXX</span>
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">keyval </span><span class="symbol">==</span><span class="normal"> accel_keyval </span><span class="symbol">&amp;&amp;</span>
-<span class="normal">    </span><span class="symbol">(</span><span class="normal">event</span><span class="symbol">-&gt;</span><span class="normal">state </span><span class="symbol">&amp;</span><span class="normal"> </span><span class="symbol">~</span><span class="normal">consumed </span><span class="symbol">&amp;</span><span class="normal"> ALL_ACCELS_MASK</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">==</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">accel_mods </span><span class="symbol">&amp;</span><span class="normal"> </span><span class="symbol">~</span><span class="normal">consumed</span><span class="symbol">))</span>
-<span class="normal">  </span><span class="comment">// Accelerator was pressed</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="c1">// XXX Don’t do this XXX</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">keyval</span> <span class="o">==</span> <span class="n">accel_keyval</span> <span class="o">&amp;&amp;</span>
+    <span class="p">(</span><span class="n">event</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">consumed</span> <span class="o">&amp;</span> <span class="n">ALL_ACCELS_MASK</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">accel_mods</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">consumed</span><span class="p">))</span>
+  <span class="c1">// Accelerator was pressed</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1446,6 +1446,6 @@ See <a class="link" href="gdk3-Keyboard-Handling.html#gdk-keymap-get-caps-lock-s
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

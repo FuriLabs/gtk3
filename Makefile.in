@@ -378,7 +378,6 @@ GTK_PRINT_BACKENDS = @GTK_PRINT_BACKENDS@
 GTK_PRIVATE_PACKAGES = @GTK_PRIVATE_PACKAGES@
 GTK_VERSION = @GTK_VERSION@
 GTK_XIM_FLAGS = @GTK_XIM_FLAGS@
-HAVE_HTTP_AUTHSTRING = @HAVE_HTTP_AUTHSTRING@
 HTML_DIR = @HTML_DIR@
 INCLUDED_IMMODULE_DEFINE = @INCLUDED_IMMODULE_DEFINE@
 INCLUDED_IMMODULE_OBJ = @INCLUDED_IMMODULE_OBJ@
@@ -537,7 +536,10 @@ GTESTER_REPORT = gtester-report		# in $PATH for non-GLIB packages
 EXTRA_DIST = autogen.sh HACKING README README.in INSTALL INSTALL.in \
 	NEWS.pre-1-0 README.commits README.win32 config.h.win32 \
 	makefile.msc gtk-zip.sh.in sanitize-la.sh \
-	po/README.translators po/po2tbl.sed.in make-pot
+	po/README.translators po/po2tbl.sed.in make-pot \
+	meson_options.txt meson.build po/meson.build \
+	po-properties/meson.build build-aux/meson/post-install.py \
+	config.h.meson
 TEST_PROGS = 
 
 ### testing rules

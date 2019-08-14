@@ -8,7 +8,7 @@
 <link rel="up" href="TreeWidgetObjects.html" title="Tree, List and Icon Grid Widgets">
 <link rel="prev" href="GtkTreeSelection.html" title="GtkTreeSelection">
 <link rel="next" href="GtkTreeView.html" title="GtkTreeView">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -772,18 +772,18 @@ This is equivalent to calling <a class="link" href="GtkTreeViewColumn.html#gtk-t
 10
 11
 12</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">enum</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal"> TEXT_COLUMN</span><span class="symbol">,</span><span class="normal"> COLOR_COLUMN</span><span class="symbol">,</span><span class="normal"> N_COLUMNS </span><span class="cbracket">}</span><span class="symbol">;</span>
-<span class="comment">// ...</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="usertype">GtkTreeViewColumn</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">column</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="usertype">GtkCellRenderer</span><span class="normal">   </span><span class="symbol">*</span><span class="normal">renderer </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkCellRendererText.html#gtk-cell-renderer-text-new">gtk_cell_renderer_text_new</a></span><span class="normal"> </span><span class="symbol">();</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">enum</span> <span class="p">{</span> <span class="n">TEXT_COLUMN</span><span class="p">,</span> <span class="n">COLOR_COLUMN</span><span class="p">,</span> <span class="n">N_COLUMNS</span> <span class="p">};</span>
+<span class="c1">// ...</span>
+<span class="p">{</span>
+  <span class="n">GtkTreeViewColumn</span> <span class="o">*</span><span class="n">column</span><span class="p">;</span>
+  <span class="n">GtkCellRenderer</span>   <span class="o">*</span><span class="n">renderer</span> <span class="o">=</span> <span class="n">gtk_cell_renderer_text_new</span> <span class="p">();</span>
 
-<span class="normal">  column </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkTreeViewColumn.html#gtk-tree-view-column-new-with-attributes">gtk_tree_view_column_new_with_attributes</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Title"</span><span class="symbol">,</span>
-<span class="normal">                                                     renderer</span><span class="symbol">,</span>
-<span class="normal">                                                     </span><span class="string">"text"</span><span class="symbol">,</span><span class="normal"> TEXT_COLUMN</span><span class="symbol">,</span>
-<span class="normal">                                                     </span><span class="string">"foreground"</span><span class="symbol">,</span><span class="normal"> COLOR_COLUMN</span><span class="symbol">,</span>
-<span class="normal">                                                     NULL</span><span class="symbol">);</span>
-<span class="cbracket">}</span></pre></td>
+  <span class="n">column</span> <span class="o">=</span> <span class="n">gtk_tree_view_column_new_with_attributes</span> <span class="p">(</span><span class="s">&quot;Title&quot;</span><span class="p">,</span>
+                                                     <span class="n">renderer</span><span class="p">,</span>
+                                                     <span class="s">&quot;text&quot;</span><span class="p">,</span> <span class="n">TEXT_COLUMN</span><span class="p">,</span>
+                                                     <span class="s">&quot;foreground&quot;</span><span class="p">,</span> <span class="n">COLOR_COLUMN</span><span class="p">,</span>
+                                                     <span class="nb">NULL</span><span class="p">);</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -2247,7 +2247,7 @@ renderer.  This is used primarily by the <a class="link" href="GtkTreeView.html"
 <a name="gtk-tree-view-column-cell-get-size"></a><h3>gtk_tree_view_column_cell_get_size ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_tree_view_column_cell_get_size (<em class="parameter"><code><a class="link" href="GtkTreeViewColumn.html" title="GtkTreeViewColumn"><span class="type">GtkTreeViewColumn</span></a> *tree_column</code></em>,
-                                    <em class="parameter"><code>const <span class="type">GdkRectangle</span> *cell_area</code></em>,
+                                    <em class="parameter"><code>const <a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#GdkRectangle-struct"><span class="type">GdkRectangle</span></a> *cell_area</code></em>,
                                     <em class="parameter"><code><span class="type">gint</span> *x_offset</code></em>,
                                     <em class="parameter"><code><span class="type">gint</span> *y_offset</code></em>,
                                     <em class="parameter"><code><span class="type">gint</span> *width</code></em>,
@@ -2735,12 +2735,12 @@ user_function (<a class="link" href="GtkTreeViewColumn.html" title="GtkTreeViewC
 <div class="refsect1">
 <a name="GtkTreeViewColumn.see-also"></a><h2>See Also</h2>
 <p><a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class="type">GtkTreeView</span></a>, <a class="link" href="GtkTreeSelection.html" title="GtkTreeSelection"><span class="type">GtkTreeSelection</span></a>, <a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span class="type">GtkTreeModel</span></a>, <a class="link" href="GtkTreeSortable.html" title="GtkTreeSortable"><span class="type">GtkTreeSortable</span></a>,
-  <a class="link" href="GtkTreeModelSort.html" title="GtkTreeModelSort"><span class="type">GtkTreeModelSort</span></a>, <a class="link" href="GtkListStore.html" title="GtkListStore"><span class="type">GtkListStore</span></a>, <a class="link" href="GtkTreeStore.html" title="GtkTreeStore"><span class="type">GtkTreeStore</span></a>, <a class="link" href="GtkCellRenderer.html" title="GtkCellRenderer"><span class="type">GtkCellRenderer</span></a>, <a class="link" href="GtkCellEditable.html" title="GtkCellEditable"><span class="type">GtkCellEditable</span></a>,
-  <a class="link" href="GtkCellRendererPixbuf.html" title="GtkCellRendererPixbuf"><span class="type">GtkCellRendererPixbuf</span></a>, <a class="link" href="GtkCellRendererText.html" title="GtkCellRendererText"><span class="type">GtkCellRendererText</span></a>, <a class="link" href="GtkCellRendererToggle.html" title="GtkCellRendererToggle"><span class="type">GtkCellRendererToggle</span></a>,
-  <a class="link" href="gtk3-GtkTreeView-drag-and-drop.html" title="GtkTreeView drag-and-drop">GtkTreeView drag-and-drop</a></p>
+<a class="link" href="GtkTreeModelSort.html" title="GtkTreeModelSort"><span class="type">GtkTreeModelSort</span></a>, <a class="link" href="GtkListStore.html" title="GtkListStore"><span class="type">GtkListStore</span></a>, <a class="link" href="GtkTreeStore.html" title="GtkTreeStore"><span class="type">GtkTreeStore</span></a>, <a class="link" href="GtkCellRenderer.html" title="GtkCellRenderer"><span class="type">GtkCellRenderer</span></a>, <a class="link" href="GtkCellEditable.html" title="GtkCellEditable"><span class="type">GtkCellEditable</span></a>,
+<a class="link" href="GtkCellRendererPixbuf.html" title="GtkCellRendererPixbuf"><span class="type">GtkCellRendererPixbuf</span></a>, <a class="link" href="GtkCellRendererText.html" title="GtkCellRendererText"><span class="type">GtkCellRendererText</span></a>, <a class="link" href="GtkCellRendererToggle.html" title="GtkCellRendererToggle"><span class="type">GtkCellRendererToggle</span></a>,
+<a class="link" href="gtk3-GtkTreeView-drag-and-drop.html" title="GtkTreeView drag-and-drop">GtkTreeView drag-and-drop</a></p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <link rel="up" href="MenusAndCombos.html" title="Menus, Combo Box, Toolbar">
 <link rel="prev" href="GtkRadioToolButton.html" title="GtkRadioToolButton">
 <link rel="next" href="GtkPopoverMenu.html" title="GtkPopoverMenu">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -219,7 +219,7 @@
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">GdkRectangle</span> *</td>
+<a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#GdkRectangle-struct"><span class="type">GdkRectangle</span></a> *</td>
 <td class="property_name"><a class="link" href="GtkPopover.html#GtkPopover--pointing-to" title="The “pointing-to” property">pointing-to</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -347,24 +347,24 @@ with the ”verb-icon” attribute.</p>
 16
 17
 18</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="normal">section</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"display-hint"</span><span class="symbol">&gt;</span><span class="normal">horizontal</span><span class="symbol">-</span><span class="normal">buttons</span><span class="symbol">&lt;/</span><span class="normal">attribute</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">item</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"label"</span><span class="symbol">&gt;</span><span class="normal">Cut</span><span class="symbol">&lt;/</span><span class="normal">attribute</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"action"</span><span class="symbol">&gt;</span><span class="normal">app</span><span class="symbol">.</span><span class="normal">cut</span><span class="symbol">&lt;/</span><span class="normal">attribute</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"verb-icon"</span><span class="symbol">&gt;</span><span class="normal">edit</span><span class="symbol">-</span><span class="normal">cut</span><span class="symbol">-</span><span class="normal">symbolic</span><span class="symbol">&lt;/</span><span class="normal">attribute</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">item</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">item</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"label"</span><span class="symbol">&gt;</span><span class="normal">Copy</span><span class="symbol">&lt;/</span><span class="normal">attribute</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"action"</span><span class="symbol">&gt;</span><span class="normal">app</span><span class="symbol">.</span><span class="normal">copy</span><span class="symbol">&lt;/</span><span class="normal">attribute</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"verb-icon"</span><span class="symbol">&gt;</span><span class="normal">edit</span><span class="symbol">-</span><span class="normal">copy</span><span class="symbol">-</span><span class="normal">symbolic</span><span class="symbol">&lt;/</span><span class="normal">attribute</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">item</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">item</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"label"</span><span class="symbol">&gt;</span><span class="normal">Paste</span><span class="symbol">&lt;/</span><span class="normal">attribute</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"action"</span><span class="symbol">&gt;</span><span class="normal">app</span><span class="symbol">.</span><span class="normal">paste</span><span class="symbol">&lt;/</span><span class="normal">attribute</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"verb-icon"</span><span class="symbol">&gt;</span><span class="normal">edit</span><span class="symbol">-</span><span class="normal">paste</span><span class="symbol">-</span><span class="normal">symbolic</span><span class="symbol">&lt;/</span><span class="normal">attribute</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">item</span><span class="symbol">&gt;</span>
-<span class="symbol">&lt;/</span><span class="normal">section</span><span class="symbol">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;</span><span class="n">section</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;display-hint&quot;</span><span class="o">&gt;</span><span class="n">horizontal</span><span class="o">-</span><span class="n">buttons</span><span class="o">&lt;/</span><span class="n">attribute</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">item</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;label&quot;</span><span class="o">&gt;</span><span class="n">Cut</span><span class="o">&lt;/</span><span class="n">attribute</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;action&quot;</span><span class="o">&gt;</span><span class="n">app</span><span class="p">.</span><span class="n">cut</span><span class="o">&lt;/</span><span class="n">attribute</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;verb-icon&quot;</span><span class="o">&gt;</span><span class="n">edit</span><span class="o">-</span><span class="n">cut</span><span class="o">-</span><span class="n">symbolic</span><span class="o">&lt;/</span><span class="n">attribute</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">item</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">item</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;label&quot;</span><span class="o">&gt;</span><span class="n">Copy</span><span class="o">&lt;/</span><span class="n">attribute</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;action&quot;</span><span class="o">&gt;</span><span class="n">app</span><span class="p">.</span><span class="n">copy</span><span class="o">&lt;/</span><span class="n">attribute</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;verb-icon&quot;</span><span class="o">&gt;</span><span class="n">edit</span><span class="o">-</span><span class="n">copy</span><span class="o">-</span><span class="n">symbolic</span><span class="o">&lt;/</span><span class="n">attribute</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">item</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">item</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;label&quot;</span><span class="o">&gt;</span><span class="n">Paste</span><span class="o">&lt;/</span><span class="n">attribute</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;action&quot;</span><span class="o">&gt;</span><span class="n">app</span><span class="p">.</span><span class="n">paste</span><span class="o">&lt;/</span><span class="n">attribute</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;verb-icon&quot;</span><span class="o">&gt;</span><span class="n">edit</span><span class="o">-</span><span class="n">paste</span><span class="o">-</span><span class="n">symbolic</span><span class="o">&lt;/</span><span class="n">attribute</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">item</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">section</span><span class="o">&gt;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -652,7 +652,7 @@ gtk_popover_get_relative_to (<em class="parameter"><code><a class="link" href="G
 <a name="gtk-popover-set-pointing-to"></a><h3>gtk_popover_set_pointing_to ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_popover_set_pointing_to (<em class="parameter"><code><a class="link" href="GtkPopover.html" title="GtkPopover"><span class="type">GtkPopover</span></a> *popover</code></em>,
-                             <em class="parameter"><code>const <span class="type">GdkRectangle</span> *rect</code></em>);</pre>
+                             <em class="parameter"><code>const <a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#GdkRectangle-struct"><span class="type">GdkRectangle</span></a> *rect</code></em>);</pre>
 <p>Sets the rectangle that <em class="parameter"><code>popover</code></em>
  will point to, in the
 coordinate space of the widget <em class="parameter"><code>popover</code></em>
@@ -687,7 +687,7 @@ see <a class="link" href="GtkPopover.html#gtk-popover-set-relative-to" title="gt
 <a name="gtk-popover-get-pointing-to"></a><h3>gtk_popover_get_pointing_to ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_popover_get_pointing_to (<em class="parameter"><code><a class="link" href="GtkPopover.html" title="GtkPopover"><span class="type">GtkPopover</span></a> *popover</code></em>,
-                             <em class="parameter"><code><span class="type">GdkRectangle</span> *rect</code></em>);</pre>
+                             <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#GdkRectangle-struct"><span class="type">GdkRectangle</span></a> *rect</code></em>);</pre>
 <p>If a rectangle to point to has been set, this function will
 return <code class="literal">TRUE</code> and fill in <em class="parameter"><code>rect</code></em>
  with such rectangle, otherwise
@@ -1070,7 +1070,7 @@ may be added to this enumeration in the future.</p>
 <td class="enum_member_name"><p><a name="GTK-POPOVER-CONSTRAINT-NONE:CAPS"></a>GTK_POPOVER_CONSTRAINT_NONE</p></td>
 <td class="enum_member_description">
 <p>Don't constrain the popover position
-  beyond what is imposed by the implementation</p>
+beyond what is imposed by the implementation</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1078,7 +1078,7 @@ may be added to this enumeration in the future.</p>
 <td class="enum_member_name"><p><a name="GTK-POPOVER-CONSTRAINT-WINDOW:CAPS"></a>GTK_POPOVER_CONSTRAINT_WINDOW</p></td>
 <td class="enum_member_description">
 <p>Constrain the popover to the boundaries
-  of the window that it is attached to</p>
+of the window that it is attached to</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1111,7 +1111,7 @@ receive input while the popover is visible).</p>
 <hr>
 <div class="refsect2">
 <a name="GtkPopover--pointing-to"></a><h3>The <code class="literal">“pointing-to”</code> property</h3>
-<pre class="programlisting">  “pointing-to”              <span class="type">GdkRectangle</span> *</pre>
+<pre class="programlisting">  “pointing-to”              <a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#GdkRectangle-struct"><span class="type">GdkRectangle</span></a> *</pre>
 <p>Marks a specific rectangle to be pointed.</p>
 <p>Flags: Read / Write</p>
 <p class="since">Since: <a class="link" href="api-index-3-12.html#api-index-3.12">3.12</a></p>
@@ -1179,6 +1179,6 @@ API or user interaction.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

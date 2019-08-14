@@ -242,11 +242,12 @@ am__objects_3 = $(am__objects_2) libgdk_3_la-gdk-private.lo \
 	libgdk_3_la-gdkmonitor.lo libgdk_3_la-gdkoffscreenwindow.lo \
 	libgdk_3_la-gdkframeclock.lo libgdk_3_la-gdkframeclockidle.lo \
 	libgdk_3_la-gdkpango.lo libgdk_3_la-gdkpixbuf-drawable.lo \
-	libgdk_3_la-gdkproperty.lo libgdk_3_la-gdkrectangle.lo \
-	libgdk_3_la-gdkrgba.lo libgdk_3_la-gdkscreen.lo \
-	libgdk_3_la-gdkseat.lo libgdk_3_la-gdkseatdefault.lo \
-	libgdk_3_la-gdkselection.lo libgdk_3_la-gdkvisual.lo \
-	libgdk_3_la-gdkwindow.lo libgdk_3_la-gdkwindowimpl.lo
+	libgdk_3_la-gdkprofiler.lo libgdk_3_la-gdkproperty.lo \
+	libgdk_3_la-gdkrectangle.lo libgdk_3_la-gdkrgba.lo \
+	libgdk_3_la-gdkscreen.lo libgdk_3_la-gdkseat.lo \
+	libgdk_3_la-gdkseatdefault.lo libgdk_3_la-gdkselection.lo \
+	libgdk_3_la-gdkvisual.lo libgdk_3_la-gdkwindow.lo \
+	libgdk_3_la-gdkwindowimpl.lo
 am__objects_4 = $(am__objects_1) $(am__objects_3) \
 	libgdk_3_la-gdkenumtypes.lo libgdk_3_la-gdkmarshalers.lo \
 	libgdk_3_la-gdkresources.lo
@@ -303,6 +304,7 @@ am__depfiles_remade = ./$(DEPDIR)/libgdk_3_la-gdk-private.Plo \
 	./$(DEPDIR)/libgdk_3_la-gdkoffscreenwindow.Plo \
 	./$(DEPDIR)/libgdk_3_la-gdkpango.Plo \
 	./$(DEPDIR)/libgdk_3_la-gdkpixbuf-drawable.Plo \
+	./$(DEPDIR)/libgdk_3_la-gdkprofiler.Plo \
 	./$(DEPDIR)/libgdk_3_la-gdkproperty.Plo \
 	./$(DEPDIR)/libgdk_3_la-gdkrectangle.Plo \
 	./$(DEPDIR)/libgdk_3_la-gdkresources.Plo \
@@ -529,7 +531,6 @@ GTK_PRINT_BACKENDS = @GTK_PRINT_BACKENDS@
 GTK_PRIVATE_PACKAGES = @GTK_PRIVATE_PACKAGES@
 GTK_VERSION = @GTK_VERSION@
 GTK_XIM_FLAGS = @GTK_XIM_FLAGS@
-HAVE_HTTP_AUTHSTRING = @HAVE_HTTP_AUTHSTRING@
 HTML_DIR = @HTML_DIR@
 INCLUDED_IMMODULE_DEFINE = @INCLUDED_IMMODULE_DEFINE@
 INCLUDED_IMMODULE_OBJ = @INCLUDED_IMMODULE_OBJ@
@@ -690,7 +691,8 @@ EXTRA_DIST = keynames.txt keynames-translate.txt keyname-table.h \
 	gdkconfig.h.win32_broadway gdkkeysyms-update.pl \
 	gdkmarshalers.list gdkwindowimpl.h makefile.msc \
 	gdkenumtypes.c.template gdkenumtypes.h.template \
-	gdkversionmacros.h.in $(gdk_built_sources) fallback-c89.c \
+	gdkversionmacros.h.in meson.build gen-gdk-gresources-xml.py \
+	gdkconfig.h.meson $(gdk_built_sources) fallback-c89.c \
 	$(glsl_sources)
 TEST_PROGS = 
 
@@ -829,6 +831,7 @@ gdk_private_headers = \
 	gdkframeclockprivate.h			\
 	gdkglcontextprivate.h			\
 	gdkmonitorprivate.h			\
+	gdkprofilerprivate.h			\
 	gdkscreenprivate.h			\
 	gdkseatprivate.h			\
 	gdkseatdefaultprivate.h			\
@@ -870,6 +873,7 @@ gdk_c_sources = \
 	gdkframeclockidle.c			\
 	gdkpango.c				\
 	gdkpixbuf-drawable.c			\
+	gdkprofiler.c				\
 	gdkproperty.c				\
 	gdkrectangle.c				\
 	gdkrgba.c				\
@@ -1251,6 +1255,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgdk_3_la-gdkoffscreenwindow.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgdk_3_la-gdkpango.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgdk_3_la-gdkpixbuf-drawable.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgdk_3_la-gdkprofiler.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgdk_3_la-gdkproperty.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgdk_3_la-gdkrectangle.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgdk_3_la-gdkresources.Plo@am__quote@ # am--include-marker
@@ -1489,6 +1494,13 @@ libgdk_3_la-gdkpixbuf-drawable.lo: gdkpixbuf-drawable.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gdkpixbuf-drawable.c' object='libgdk_3_la-gdkpixbuf-drawable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgdk_3_la_CFLAGS) $(CFLAGS) -c -o libgdk_3_la-gdkpixbuf-drawable.lo `test -f 'gdkpixbuf-drawable.c' || echo '$(srcdir)/'`gdkpixbuf-drawable.c
+
+libgdk_3_la-gdkprofiler.lo: gdkprofiler.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgdk_3_la_CFLAGS) $(CFLAGS) -MT libgdk_3_la-gdkprofiler.lo -MD -MP -MF $(DEPDIR)/libgdk_3_la-gdkprofiler.Tpo -c -o libgdk_3_la-gdkprofiler.lo `test -f 'gdkprofiler.c' || echo '$(srcdir)/'`gdkprofiler.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgdk_3_la-gdkprofiler.Tpo $(DEPDIR)/libgdk_3_la-gdkprofiler.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gdkprofiler.c' object='libgdk_3_la-gdkprofiler.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgdk_3_la_CFLAGS) $(CFLAGS) -c -o libgdk_3_la-gdkprofiler.lo `test -f 'gdkprofiler.c' || echo '$(srcdir)/'`gdkprofiler.c
 
 libgdk_3_la-gdkproperty.lo: gdkproperty.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgdk_3_la_CFLAGS) $(CFLAGS) -MT libgdk_3_la-gdkproperty.lo -MD -MP -MF $(DEPDIR)/libgdk_3_la-gdkproperty.Tpo -c -o libgdk_3_la-gdkproperty.lo `test -f 'gdkproperty.c' || echo '$(srcdir)/'`gdkproperty.c
@@ -1935,6 +1947,7 @@ distclean: distclean-recursive
 	-rm -f ./$(DEPDIR)/libgdk_3_la-gdkoffscreenwindow.Plo
 	-rm -f ./$(DEPDIR)/libgdk_3_la-gdkpango.Plo
 	-rm -f ./$(DEPDIR)/libgdk_3_la-gdkpixbuf-drawable.Plo
+	-rm -f ./$(DEPDIR)/libgdk_3_la-gdkprofiler.Plo
 	-rm -f ./$(DEPDIR)/libgdk_3_la-gdkproperty.Plo
 	-rm -f ./$(DEPDIR)/libgdk_3_la-gdkrectangle.Plo
 	-rm -f ./$(DEPDIR)/libgdk_3_la-gdkresources.Plo
@@ -2024,6 +2037,7 @@ maintainer-clean: maintainer-clean-recursive
 	-rm -f ./$(DEPDIR)/libgdk_3_la-gdkoffscreenwindow.Plo
 	-rm -f ./$(DEPDIR)/libgdk_3_la-gdkpango.Plo
 	-rm -f ./$(DEPDIR)/libgdk_3_la-gdkpixbuf-drawable.Plo
+	-rm -f ./$(DEPDIR)/libgdk_3_la-gdkprofiler.Plo
 	-rm -f ./$(DEPDIR)/libgdk_3_la-gdkproperty.Plo
 	-rm -f ./$(DEPDIR)/libgdk_3_la-gdkrectangle.Plo
 	-rm -f ./$(DEPDIR)/libgdk_3_la-gdkresources.Plo
@@ -2196,6 +2210,7 @@ gdkenumtypes.c: $(gdk_h_sources) gdkenumtypes.c.template
 gdkmarshalers.h: gdkmarshalers.list
 	$(AM_V_GEN) $(GLIB_GENMARSHAL) \
 		--prefix=_gdk_marshal \
+		--valist-marshallers \
 		--header \
 		$(srcdir)/gdkmarshalers.list > gdkmarshalers-h.tmp \
 	&& mv gdkmarshalers-h.tmp gdkmarshalers.h \
@@ -2203,6 +2218,7 @@ gdkmarshalers.h: gdkmarshalers.list
 gdkmarshalers.c: gdkmarshalers.list
 	$(AM_V_GEN) $(GLIB_GENMARSHAL) \
 		--prefix=_gdk_marshal \
+		--valist-marshallers \
 		--body \
 		$(srcdir)/gdkmarshalers.list > gdkmarshalers-c.tmp	\
 	&& mv gdkmarshalers-c.tmp gdkmarshalers.c \

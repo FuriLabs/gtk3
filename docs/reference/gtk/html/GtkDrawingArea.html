@@ -8,7 +8,7 @@
 <link rel="up" href="MiscObjects.html" title="Miscellaneous">
 <link rel="prev" href="GtkCalendar.html" title="GtkCalendar">
 <link rel="next" href="GtkGLArea.html" title="GtkGLArea">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -145,39 +145,39 @@ to call <a class="link" href="GtkStyleContext.html#gtk-render-background" title=
 31
 32
 33</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">gboolean</span>
-<span class="function">draw_callback</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">widget</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">cairo_t</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">gpointer</span><span class="normal"> data</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="usertype">guint</span><span class="normal"> width</span><span class="symbol">,</span><span class="normal"> height</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="usertype">GdkRGBA</span><span class="normal"> color</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="usertype">GtkStyleContext</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">context</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">gboolean</span>
+<span class="nf">draw_callback</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span> <span class="n">cairo_t</span> <span class="o">*</span><span class="n">cr</span><span class="p">,</span> <span class="n">gpointer</span> <span class="n">data</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">guint</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">;</span>
+  <span class="n">GdkRGBA</span> <span class="n">color</span><span class="p">;</span>
+  <span class="n">GtkStyleContext</span> <span class="o">*</span><span class="n">context</span><span class="p">;</span>
 
-<span class="normal">  context </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkWidget.html#gtk-widget-get-style-context">gtk_widget_get_style_context</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">);</span>
+  <span class="n">context</span> <span class="o">=</span> <span class="n">gtk_widget_get_style_context</span> <span class="p">(</span><span class="n">widget</span><span class="p">);</span>
 
-<span class="normal">  width </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkWidget.html#gtk-widget-get-allocated-width">gtk_widget_get_allocated_width</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">);</span>
-<span class="normal">  height </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkWidget.html#gtk-widget-get-allocated-height">gtk_widget_get_allocated_height</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">);</span>
+  <span class="n">width</span> <span class="o">=</span> <span class="n">gtk_widget_get_allocated_width</span> <span class="p">(</span><span class="n">widget</span><span class="p">);</span>
+  <span class="n">height</span> <span class="o">=</span> <span class="n">gtk_widget_get_allocated_height</span> <span class="p">(</span><span class="n">widget</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="function"><a href="GtkStyleContext.html#gtk-render-background">gtk_render_background</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">,</span><span class="normal"> cr</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> width</span><span class="symbol">,</span><span class="normal"> height</span><span class="symbol">);</span>
+  <span class="n">gtk_render_background</span> <span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">cr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-Paths.html#cairo-arc">cairo_arc</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span>
-<span class="normal">             width </span><span class="symbol">/</span><span class="normal"> </span><span class="number">2.0</span><span class="symbol">,</span><span class="normal"> height </span><span class="symbol">/</span><span class="normal"> </span><span class="number">2.0</span><span class="symbol">,</span>
-<span class="normal">             </span><span class="function">MIN</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">width</span><span class="symbol">,</span><span class="normal"> height</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">/</span><span class="normal"> </span><span class="number">2.0</span><span class="symbol">,</span>
-<span class="normal">             </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">2</span><span class="normal"> </span><span class="symbol">*</span><span class="normal"> G_PI</span><span class="symbol">);</span>
+  <span class="n">cairo_arc</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span>
+             <span class="n">width</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">height</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span>
+             <span class="n">MIN</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span>
+             <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">G_PI</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="function"><a href="GtkStyleContext.html#gtk-style-context-get-color">gtk_style_context_get_color</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">,</span>
-<span class="normal">                               </span><span class="function"><a href="GtkStyleContext.html#gtk-style-context-get-state">gtk_style_context_get_state</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">),</span>
-<span class="normal">                               </span><span class="symbol">&amp;</span><span class="normal">color</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function">gdk_cairo_set_source_rgba</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">color</span><span class="symbol">);</span>
+  <span class="n">gtk_style_context_get_color</span> <span class="p">(</span><span class="n">context</span><span class="p">,</span>
+                               <span class="n">gtk_style_context_get_state</span> <span class="p">(</span><span class="n">context</span><span class="p">),</span>
+                               <span class="o">&amp;</span><span class="n">color</span><span class="p">);</span>
+  <span class="n">gdk_cairo_set_source_rgba</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">color</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-fill">cairo_fill</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span>
+  <span class="n">cairo_fill</span> <span class="p">(</span><span class="n">cr</span><span class="p">);</span>
 
-<span class="normal"> </span><span class="keyword">return</span><span class="normal"> FALSE</span><span class="symbol">;</span>
-<span class="cbracket">}</span>
-<span class="symbol">[...]</span>
-<span class="normal">  </span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">drawing_area </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkDrawingArea.html#gtk-drawing-area-new">gtk_drawing_area_new</a></span><span class="normal"> </span><span class="symbol">();</span>
-<span class="normal">  </span><span class="function"><a href="GtkWidget.html#gtk-widget-set-size-request">gtk_widget_set_size_request</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">drawing_area</span><span class="symbol">,</span><span class="normal"> </span><span class="number">100</span><span class="symbol">,</span><span class="normal"> </span><span class="number">100</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function">g_signal_connect</span><span class="normal"> </span><span class="symbol">(</span><span class="function">G_OBJECT</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">drawing_area</span><span class="symbol">),</span><span class="normal"> </span><span class="string">"draw"</span><span class="symbol">,</span>
-<span class="normal">                    </span><span class="function">G_CALLBACK</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">draw_callback</span><span class="symbol">),</span><span class="normal"> NULL</span><span class="symbol">);</span></pre></td>
+ <span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">[...]</span>
+  <span class="n">GtkWidget</span> <span class="o">*</span><span class="n">drawing_area</span> <span class="o">=</span> <span class="n">gtk_drawing_area_new</span> <span class="p">();</span>
+  <span class="n">gtk_widget_set_size_request</span> <span class="p">(</span><span class="n">drawing_area</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+  <span class="n">g_signal_connect</span> <span class="p">(</span><span class="n">G_OBJECT</span> <span class="p">(</span><span class="n">drawing_area</span><span class="p">),</span> <span class="s">&quot;draw&quot;</span><span class="p">,</span>
+                    <span class="n">G_CALLBACK</span> <span class="p">(</span><span class="n">draw_callback</span><span class="p">),</span> <span class="nb">NULL</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -228,6 +228,6 @@ gtk_drawing_area_new (<em class="parameter"><code><span class="type">void</span>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

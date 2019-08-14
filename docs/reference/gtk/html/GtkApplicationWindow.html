@@ -8,7 +8,7 @@
 <link rel="up" href="Application.html" title="Application support">
 <link rel="prev" href="GtkApplication.html" title="GtkApplication">
 <link rel="next" href="GtkActionable.html" title="GtkActionable">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -209,27 +209,27 @@ windows client-side decorations.</p>
 19
 20
 21</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkApplication</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">app </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkApplication.html#gtk-application-new">gtk_application_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"org.gtk.test"</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">);</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkApplication</span> <span class="o">*</span><span class="n">app</span> <span class="o">=</span> <span class="n">gtk_application_new</span> <span class="p">(</span><span class="s">&quot;org.gtk.test&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 
-<span class="usertype">GtkBuilder</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">builder </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkBuilder.html#gtk-builder-new-from-string">gtk_builder_new_from_string</a></span><span class="normal"> </span><span class="symbol">(</span>
-<span class="normal">    </span><span class="string">"&lt;interface&gt;"</span>
-<span class="normal">    </span><span class="string">"  &lt;menu id='menubar'&gt;"</span>
-<span class="normal">    </span><span class="string">"    &lt;submenu label='_Edit'&gt;"</span>
-<span class="normal">    </span><span class="string">"      &lt;item label='_Copy' action='win.copy'/&gt;"</span>
-<span class="normal">    </span><span class="string">"      &lt;item label='_Paste' action='win.paste'/&gt;"</span>
-<span class="normal">    </span><span class="string">"    &lt;/submenu&gt;"</span>
-<span class="normal">    </span><span class="string">"  &lt;/menu&gt;"</span>
-<span class="normal">    </span><span class="string">"&lt;/interface&gt;"</span><span class="symbol">,</span>
-<span class="normal">    </span><span class="symbol">-</span><span class="number">1</span><span class="symbol">);</span>
+<span class="n">GtkBuilder</span> <span class="o">*</span><span class="n">builder</span> <span class="o">=</span> <span class="n">gtk_builder_new_from_string</span> <span class="p">(</span>
+    <span class="s">&quot;&lt;interface&gt;&quot;</span>
+    <span class="s">&quot;  &lt;menu id=&#39;menubar&#39;&gt;&quot;</span>
+    <span class="s">&quot;    &lt;submenu label=&#39;_Edit&#39;&gt;&quot;</span>
+    <span class="s">&quot;      &lt;item label=&#39;_Copy&#39; action=&#39;win.copy&#39;/&gt;&quot;</span>
+    <span class="s">&quot;      &lt;item label=&#39;_Paste&#39; action=&#39;win.paste&#39;/&gt;&quot;</span>
+    <span class="s">&quot;    &lt;/submenu&gt;&quot;</span>
+    <span class="s">&quot;  &lt;/menu&gt;&quot;</span>
+    <span class="s">&quot;&lt;/interface&gt;&quot;</span><span class="p">,</span>
+    <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
 
-<span class="usertype">GMenuModel</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">menubar </span><span class="symbol">=</span><span class="normal"> </span><span class="function">G_MENU_MODEL</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GtkBuilder.html#gtk-builder-get-object">gtk_builder_get_object</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">builder</span><span class="symbol">,</span>
-<span class="normal">                                                            </span><span class="string">"menubar"</span><span class="symbol">));</span>
-<span class="function"><a href="GtkApplication.html#gtk-application-set-menubar">gtk_application_set_menubar</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_APPLICATION</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">app</span><span class="symbol">),</span><span class="normal"> menubar</span><span class="symbol">);</span>
-<span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">builder</span><span class="symbol">);</span>
+<span class="n">GMenuModel</span> <span class="o">*</span><span class="n">menubar</span> <span class="o">=</span> <span class="n">G_MENU_MODEL</span> <span class="p">(</span><span class="n">gtk_builder_get_object</span> <span class="p">(</span><span class="n">builder</span><span class="p">,</span>
+                                                            <span class="s">&quot;menubar&quot;</span><span class="p">));</span>
+<span class="n">gtk_application_set_menubar</span> <span class="p">(</span><span class="n">GTK_APPLICATION</span> <span class="p">(</span><span class="n">app</span><span class="p">),</span> <span class="n">menubar</span><span class="p">);</span>
+<span class="n">g_object_unref</span> <span class="p">(</span><span class="n">builder</span><span class="p">);</span>
 
-<span class="comment">// ...</span>
+<span class="c1">// ...</span>
 
-<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">window </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkApplicationWindow.html#gtk-application-window-new">gtk_application_window_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">app</span><span class="symbol">);</span></pre></td>
+<span class="n">GtkWidget</span> <span class="o">*</span><span class="n">window</span> <span class="o">=</span> <span class="n">gtk_application_window_new</span> <span class="p">(</span><span class="n">app</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -513,6 +513,6 @@ of whether the desktop shell is showing the menus or not.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

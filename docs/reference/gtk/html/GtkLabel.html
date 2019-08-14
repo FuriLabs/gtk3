@@ -8,7 +8,7 @@
 <link rel="up" href="DisplayWidgets.html" title="Display Widgets">
 <link rel="prev" href="DisplayWidgets.html" title="Display Widgets">
 <link rel="next" href="GtkImage.html" title="GtkImage">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -656,11 +656,11 @@ implies, most labels are used to label another widget such as a
 3
 4
 5</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">label</span>
-<span class="normal">├── </span><span class="symbol">[</span><span class="normal">selection</span><span class="symbol">]</span>
-<span class="normal">├── </span><span class="symbol">[</span><span class="normal">link</span><span class="symbol">]</span>
-<span class="normal">┊</span>
-<span class="normal">╰── </span><span class="symbol">[</span><span class="normal">link</span><span class="symbol">]</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">label</span>
+<span class="err">├──</span> <span class="p">[</span><span class="n">selection</span><span class="p">]</span>
+<span class="err">├──</span> <span class="p">[</span><span class="n">link</span><span class="p">]</span>
+<span class="err">┊</span>
+<span class="err">╰──</span> <span class="p">[</span><span class="n">link</span><span class="p">]</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -695,12 +695,12 @@ this label.</p>
 4
 5
 6</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkLabel"</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">attributes</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"weight"</span><span class="normal"> value</span><span class="symbol">=</span><span class="string">"PANGO_WEIGHT_BOLD"</span><span class="symbol">/&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"background"</span><span class="normal"> value</span><span class="symbol">=</span><span class="string">"red"</span><span class="normal"> start</span><span class="symbol">=</span><span class="string">"5"</span><span class="normal"> end</span><span class="symbol">=</span><span class="string">"10"</span><span class="symbol">/&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">attributes</span><span class="symbol">&gt;</span>
-<span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkLabel&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">attributes</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;weight&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;PANGO_WEIGHT_BOLD&quot;</span><span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;background&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;red&quot;</span> <span class="n">start</span><span class="o">=</span><span class="s">&quot;5&quot;</span> <span class="n">end</span><span class="o">=</span><span class="s">&quot;10&quot;</span><span class="o">/&gt;</span>
+  <span class="o">&lt;/</span><span class="n">attributes</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -735,10 +735,10 @@ the label is inside a button:</p>
 2
 3
 4</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="comment">// Pressing Alt+H will activate this button</span>
-<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">button </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkButton.html#gtk-button-new">gtk_button_new</a></span><span class="normal"> </span><span class="symbol">();</span>
-<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">label </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkLabel.html#gtk-label-new-with-mnemonic">gtk_label_new_with_mnemonic</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"_Hello"</span><span class="symbol">);</span>
-<span class="function"><a href="GtkContainer.html#gtk-container-add">gtk_container_add</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_CONTAINER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">button</span><span class="symbol">),</span><span class="normal"> label</span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="c1">// Pressing Alt+H will activate this button</span>
+<span class="n">GtkWidget</span> <span class="o">*</span><span class="n">button</span> <span class="o">=</span> <span class="n">gtk_button_new</span> <span class="p">();</span>
+<span class="n">GtkWidget</span> <span class="o">*</span><span class="n">label</span> <span class="o">=</span> <span class="n">gtk_label_new_with_mnemonic</span> <span class="p">(</span><span class="s">&quot;_Hello&quot;</span><span class="p">);</span>
+<span class="n">gtk_container_add</span> <span class="p">(</span><span class="n">GTK_CONTAINER</span> <span class="p">(</span><span class="n">button</span><span class="p">),</span> <span class="n">label</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -753,8 +753,8 @@ already inside:</p>
       <tr>
         <td class="listing_lines" align="right"><pre>1
 2</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="comment">// Pressing Alt+H will activate this button</span>
-<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">button </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkButton.html#gtk-button-new-with-mnemonic">gtk_button_new_with_mnemonic</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"_Hello"</span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="c1">// Pressing Alt+H will activate this button</span>
+<span class="n">GtkWidget</span> <span class="o">*</span><span class="n">button</span> <span class="o">=</span> <span class="n">gtk_button_new_with_mnemonic</span> <span class="p">(</span><span class="s">&quot;_Hello&quot;</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -772,10 +772,10 @@ already inside:</p>
 2
 3
 4</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="comment">// Pressing Alt+H will focus the entry</span>
-<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">entry </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkEntry.html#gtk-entry-new">gtk_entry_new</a></span><span class="normal"> </span><span class="symbol">();</span>
-<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">label </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkLabel.html#gtk-label-new-with-mnemonic">gtk_label_new_with_mnemonic</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"_Hello"</span><span class="symbol">);</span>
-<span class="function"><a href="GtkLabel.html#gtk-label-set-mnemonic-widget">gtk_label_set_mnemonic_widget</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_LABEL</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">label</span><span class="symbol">),</span><span class="normal"> entry</span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="c1">// Pressing Alt+H will focus the entry</span>
+<span class="n">GtkWidget</span> <span class="o">*</span><span class="n">entry</span> <span class="o">=</span> <span class="n">gtk_entry_new</span> <span class="p">();</span>
+<span class="n">GtkWidget</span> <span class="o">*</span><span class="n">label</span> <span class="o">=</span> <span class="n">gtk_label_new_with_mnemonic</span> <span class="p">(</span><span class="s">&quot;_Hello&quot;</span><span class="p">);</span>
+<span class="n">gtk_label_set_mnemonic_widget</span> <span class="p">(</span><span class="n">GTK_LABEL</span> <span class="p">(</span><span class="n">label</span><span class="p">),</span> <span class="n">entry</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -796,8 +796,8 @@ markup format.</p>
       <tr>
         <td class="listing_lines" align="right"><pre>1
 2</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">label </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkLabel.html#gtk-label-new">gtk_label_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">);</span>
-<span class="function"><a href="GtkLabel.html#gtk-label-set-markup">gtk_label_set_markup</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_LABEL</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">label</span><span class="symbol">),</span><span class="normal"> </span><span class="string">"&lt;small&gt;Small text&lt;/small&gt;"</span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">label</span> <span class="o">=</span> <span class="n">gtk_label_new</span> <span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="n">gtk_label_set_markup</span> <span class="p">(</span><span class="n">GTK_LABEL</span> <span class="p">(</span><span class="n">label</span><span class="p">),</span> <span class="s">&quot;&lt;small&gt;Small text&lt;/small&gt;&quot;</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -872,12 +872,12 @@ text. The “title“ attribute is displayed as a tooltip on the link.</p>
 4
 5
 6</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">const</span><span class="normal"> </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">text </span><span class="symbol">=</span>
-<span class="string">"Go to the"</span>
-<span class="string">"&lt;a href=</span><span class="specialchar">\"</span><span class="string">http://www.gtk.org title=</span><span class="specialchar">\"</span><span class="string">&lt;i&gt;Our&lt;/i&gt; website</span><span class="specialchar">\"</span><span class="string">&gt;"</span>
-<span class="string">"GTK+ website&lt;/a&gt; for more..."</span><span class="symbol">;</span>
-<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">label </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkLabel.html#gtk-label-new">gtk_label_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">);</span>
-<span class="function"><a href="GtkLabel.html#gtk-label-set-markup">gtk_label_set_markup</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_LABEL</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">label</span><span class="symbol">),</span><span class="normal"> text</span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="k">const</span> <span class="n">gchar</span> <span class="o">*</span><span class="n">text</span> <span class="o">=</span>
+<span class="s">&quot;Go to the&quot;</span>
+<span class="s">&quot;&lt;a href=</span><span class="se">\&quot;</span><span class="s">http://www.gtk.org title=</span><span class="se">\&quot;</span><span class="s">&lt;i&gt;Our&lt;/i&gt; website</span><span class="se">\&quot;</span><span class="s">&gt;&quot;</span>
+<span class="s">&quot;GTK+ website&lt;/a&gt; for more...&quot;</span><span class="p">;</span>
+<span class="n">GtkWidget</span> <span class="o">*</span><span class="n">label</span> <span class="o">=</span> <span class="n">gtk_label_new</span> <span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="n">gtk_label_set_markup</span> <span class="p">(</span><span class="n">GTK_LABEL</span> <span class="p">(</span><span class="n">label</span><span class="p">),</span> <span class="n">text</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1014,14 +1014,14 @@ label’s text and attribute list based on the parse results.</p>
 6
 7
 8</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">label </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkLabel.html#gtk-label-new">gtk_label_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">);</span>
-<span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">str </span><span class="symbol">=</span><span class="normal"> </span><span class="string">"some text"</span><span class="symbol">;</span>
-<span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">format </span><span class="symbol">=</span><span class="normal"> </span><span class="string">"&lt;span style=</span><span class="specialchar">\"</span><span class="string">italic</span><span class="specialchar">\"</span><span class="string">&gt;</span><span class="specialchar">\%</span><span class="string">s&lt;/span&gt;"</span><span class="symbol">;</span>
-<span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">markup</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">label</span> <span class="o">=</span> <span class="n">gtk_label_new</span> <span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="s">&quot;some text&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">format</span> <span class="o">=</span> <span class="s">&quot;&lt;span style=</span><span class="se">\&quot;</span><span class="s">italic</span><span class="se">\&quot;</span><span class="s">&gt;\%s&lt;/span&gt;&quot;</span><span class="p">;</span>
+<span class="kt">char</span> <span class="o">*</span><span class="n">markup</span><span class="p">;</span>
 
-<span class="normal">markup </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_markup_printf_escaped</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">format</span><span class="symbol">,</span><span class="normal"> str</span><span class="symbol">);</span>
-<span class="function"><a href="GtkLabel.html#gtk-label-set-markup">gtk_label_set_markup</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_LABEL</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">label</span><span class="symbol">),</span><span class="normal"> markup</span><span class="symbol">);</span>
-<span class="function">g_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">markup</span><span class="symbol">);</span></pre></td>
+<span class="n">markup</span> <span class="o">=</span> <span class="n">g_markup_printf_escaped</span> <span class="p">(</span><span class="n">format</span><span class="p">,</span> <span class="n">str</span><span class="p">);</span>
+<span class="n">gtk_label_set_markup</span> <span class="p">(</span><span class="n">GTK_LABEL</span> <span class="p">(</span><span class="n">label</span><span class="p">),</span> <span class="n">markup</span><span class="p">);</span>
+<span class="n">g_free</span> <span class="p">(</span><span class="n">markup</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -3002,6 +3002,6 @@ to this signal and append your menuitems to the <em class="parameter"><code>menu
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

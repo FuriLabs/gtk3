@@ -8,7 +8,7 @@
 <link rel="up" href="LayoutContainers.html" title="Layout Containers">
 <link rel="prev" href="GtkButtonBox.html" title="GtkButtonBox">
 <link rel="next" href="GtkLayout.html" title="GtkLayout">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -339,10 +339,10 @@ by the user, by calling <a class="link" href="GtkPaned.html#gtk-paned-set-positi
 2
 3
 4</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">paned</span>
-<span class="normal">├── </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
-<span class="normal">├── separator</span><span class="symbol">[.</span><span class="normal">wide</span><span class="symbol">]</span>
-<span class="normal">╰── </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">paned</span>
+<span class="err">├──</span> <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span>
+<span class="err">├──</span> <span class="n">separator</span><span class="p">[.</span><span class="n">wide</span><span class="p">]</span>
+<span class="err">╰──</span> <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -374,19 +374,19 @@ regardless of text direction.</p>
 11
 12
 13</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">hpaned </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkPaned.html#gtk-paned-new">gtk_paned_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="gtk3-Standard-Enumerations.html#GTK-ORIENTATION-HORIZONTAL:CAPS">GTK_ORIENTATION_HORIZONTAL</a></span><span class="symbol">);</span>
-<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">frame1 </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkFrame.html#gtk-frame-new">gtk_frame_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">);</span>
-<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">frame2 </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkFrame.html#gtk-frame-new">gtk_frame_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">);</span>
-<span class="function"><a href="GtkFrame.html#gtk-frame-set-shadow-type">gtk_frame_set_shadow_type</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_FRAME</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">frame1</span><span class="symbol">),</span><span class="normal"> <a href="gtk3-Standard-Enumerations.html#GTK-SHADOW-IN:CAPS">GTK_SHADOW_IN</a></span><span class="symbol">);</span>
-<span class="function"><a href="GtkFrame.html#gtk-frame-set-shadow-type">gtk_frame_set_shadow_type</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_FRAME</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">frame2</span><span class="symbol">),</span><span class="normal"> <a href="gtk3-Standard-Enumerations.html#GTK-SHADOW-IN:CAPS">GTK_SHADOW_IN</a></span><span class="symbol">);</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">hpaned</span> <span class="o">=</span> <span class="n">gtk_paned_new</span> <span class="p">(</span><span class="n">GTK_ORIENTATION_HORIZONTAL</span><span class="p">);</span>
+<span class="n">GtkWidget</span> <span class="o">*</span><span class="n">frame1</span> <span class="o">=</span> <span class="n">gtk_frame_new</span> <span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="n">GtkWidget</span> <span class="o">*</span><span class="n">frame2</span> <span class="o">=</span> <span class="n">gtk_frame_new</span> <span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="n">gtk_frame_set_shadow_type</span> <span class="p">(</span><span class="n">GTK_FRAME</span> <span class="p">(</span><span class="n">frame1</span><span class="p">),</span> <span class="n">GTK_SHADOW_IN</span><span class="p">);</span>
+<span class="n">gtk_frame_set_shadow_type</span> <span class="p">(</span><span class="n">GTK_FRAME</span> <span class="p">(</span><span class="n">frame2</span><span class="p">),</span> <span class="n">GTK_SHADOW_IN</span><span class="p">);</span>
 
-<span class="function"><a href="GtkWidget.html#gtk-widget-set-size-request">gtk_widget_set_size_request</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">hpaned</span><span class="symbol">,</span><span class="normal"> </span><span class="number">200</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">-</span><span class="number">1</span><span class="symbol">);</span>
+<span class="n">gtk_widget_set_size_request</span> <span class="p">(</span><span class="n">hpaned</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
 
-<span class="function"><a href="GtkPaned.html#gtk-paned-pack1">gtk_paned_pack1</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_PANED</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">hpaned</span><span class="symbol">),</span><span class="normal"> frame1</span><span class="symbol">,</span><span class="normal"> TRUE</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">);</span>
-<span class="function"><a href="GtkWidget.html#gtk-widget-set-size-request">gtk_widget_set_size_request</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">frame1</span><span class="symbol">,</span><span class="normal"> </span><span class="number">50</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">-</span><span class="number">1</span><span class="symbol">);</span>
+<span class="n">gtk_paned_pack1</span> <span class="p">(</span><span class="n">GTK_PANED</span> <span class="p">(</span><span class="n">hpaned</span><span class="p">),</span> <span class="n">frame1</span><span class="p">,</span> <span class="n">TRUE</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">);</span>
+<span class="n">gtk_widget_set_size_request</span> <span class="p">(</span><span class="n">frame1</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
 
-<span class="function"><a href="GtkPaned.html#gtk-paned-pack2">gtk_paned_pack2</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_PANED</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">hpaned</span><span class="symbol">),</span><span class="normal"> frame2</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">);</span>
-<span class="function"><a href="GtkWidget.html#gtk-widget-set-size-request">gtk_widget_set_size_request</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">frame2</span><span class="symbol">,</span><span class="normal"> </span><span class="number">50</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">-</span><span class="number">1</span><span class="symbol">);</span></pre></td>
+<span class="n">gtk_paned_pack2</span> <span class="p">(</span><span class="n">GTK_PANED</span> <span class="p">(</span><span class="n">hpaned</span><span class="p">),</span> <span class="n">frame2</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">);</span>
+<span class="n">gtk_widget_set_size_request</span> <span class="p">(</span><span class="n">frame2</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1117,6 +1117,6 @@ move focus to the next widget in the focus chain.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

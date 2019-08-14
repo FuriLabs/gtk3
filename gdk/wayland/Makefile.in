@@ -126,6 +126,7 @@ am__objects_1 = pointer-gestures-unstable-v1-protocol.lo \
 	xdg-foreign-unstable-v1-protocol.lo \
 	gtk-primary-selection-protocol.lo \
 	tablet-unstable-v2-protocol.lo \
+	xdg-output-unstable-v1-protocol.lo \
 	keyboard-shortcuts-inhibit-unstable-v1-protocol.lo \
 	server-decoration-protocol.lo gtk-shell-protocol.lo
 nodist_libgdk_wayland_la_OBJECTS = $(am__objects_1)
@@ -169,6 +170,7 @@ am__depfiles_remade = ./$(DEPDIR)/gdkapplaunchcontext-wayland.Plo \
 	./$(DEPDIR)/tablet-unstable-v2-protocol.Plo \
 	./$(DEPDIR)/wm-button-layout-translation.Plo \
 	./$(DEPDIR)/xdg-foreign-unstable-v1-protocol.Plo \
+	./$(DEPDIR)/xdg-output-unstable-v1-protocol.Plo \
 	./$(DEPDIR)/xdg-shell-protocol.Plo \
 	./$(DEPDIR)/xdg-shell-unstable-v6-protocol.Plo
 am__mv = mv -f
@@ -369,7 +371,6 @@ GTK_PRINT_BACKENDS = @GTK_PRINT_BACKENDS@
 GTK_PRIVATE_PACKAGES = @GTK_PRIVATE_PACKAGES@
 GTK_VERSION = @GTK_VERSION@
 GTK_XIM_FLAGS = @GTK_XIM_FLAGS@
-HAVE_HTTP_AUTHSTRING = @HAVE_HTTP_AUTHSTRING@
 HTML_DIR = @HTML_DIR@
 INCLUDED_IMMODULE_DEFINE = @INCLUDED_IMMODULE_DEFINE@
 INCLUDED_IMMODULE_OBJ = @INCLUDED_IMMODULE_OBJ@
@@ -526,7 +527,7 @@ GTESTER_REPORT = gtester-report		# in $PATH for non-GLIB packages
 
 # initialize variables for unconditional += appending
 EXTRA_DIST = protocol/gtk-primary-selection.xml protocol/gtk-shell.xml \
-	protocol/server-decoration.xml
+	protocol/server-decoration.xml meson.build
 TEST_PROGS = 
 
 ### testing rules
@@ -585,6 +586,8 @@ BUILT_SOURCES = \
 	gtk-primary-selection-protocol.c			\
 	tablet-unstable-v2-client-protocol.h	\
 	tablet-unstable-v2-protocol.c		\
+	xdg-output-unstable-v1-protocol.c			\
+	xdg-output-unstable-v1-client-protocol.h		\
 	keyboard-shortcuts-inhibit-unstable-v1-client-protocol.h \
 	keyboard-shortcuts-inhibit-unstable-v1-protocol.c	\
 	server-decoration-client-protocol.h		\
@@ -707,6 +710,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/tablet-unstable-v2-protocol.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wm-button-layout-translation.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xdg-foreign-unstable-v1-protocol.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xdg-output-unstable-v1-protocol.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xdg-shell-protocol.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xdg-shell-unstable-v6-protocol.Plo@am__quote@ # am--include-marker
 
@@ -941,6 +945,7 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/tablet-unstable-v2-protocol.Plo
 	-rm -f ./$(DEPDIR)/wm-button-layout-translation.Plo
 	-rm -f ./$(DEPDIR)/xdg-foreign-unstable-v1-protocol.Plo
+	-rm -f ./$(DEPDIR)/xdg-output-unstable-v1-protocol.Plo
 	-rm -f ./$(DEPDIR)/xdg-shell-protocol.Plo
 	-rm -f ./$(DEPDIR)/xdg-shell-unstable-v6-protocol.Plo
 	-rm -f Makefile
@@ -1009,6 +1014,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/tablet-unstable-v2-protocol.Plo
 	-rm -f ./$(DEPDIR)/wm-button-layout-translation.Plo
 	-rm -f ./$(DEPDIR)/xdg-foreign-unstable-v1-protocol.Plo
+	-rm -f ./$(DEPDIR)/xdg-output-unstable-v1-protocol.Plo
 	-rm -f ./$(DEPDIR)/xdg-shell-protocol.Plo
 	-rm -f ./$(DEPDIR)/xdg-shell-unstable-v6-protocol.Plo
 	-rm -f Makefile

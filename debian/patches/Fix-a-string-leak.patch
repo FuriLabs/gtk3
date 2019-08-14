@@ -1,0 +1,23 @@
+From: Luca Bacci <luca.bacci982@gmail.com>
+Date: Fri, 12 Jul 2019 08:33:48 +0000
+Subject: Fix a string leak
+
+Fixes #2014
+
+Origin: upstream, 3.24.11, commit:8211e083f2dd30403c8054c626e871edb563a5cd
+---
+ gtk/gtkemojicompletion.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/gtk/gtkemojicompletion.c b/gtk/gtkemojicompletion.c
+index 0a84400..41c0a87 100644
+--- a/gtk/gtkemojicompletion.c
++++ b/gtk/gtkemojicompletion.c
+@@ -593,7 +593,6 @@ populate_completion (GtkEmojiCompletion *completion,
+   GVariantIter iter;
+   GVariant *item;
+ 
+-  text = g_strdup (text);
+   g_free (completion->text);
+   completion->text = g_strdup (text);
+   completion->length = g_utf8_strlen (text, -1);

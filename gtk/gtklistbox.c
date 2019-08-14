@@ -64,6 +64,12 @@
  *
  * The GtkListBox widget was added in GTK+ 3.10.
  *
+ * # GtkListBox as GtkBuildable
+ *
+ * The GtkListBox implementation of the #GtkBuildable interface supports
+ * setting a child as the placeholder by specifying “placeholder” as the “type”
+ * attribute of a <child> element. See gtk_list_box_set_placeholder() for info.
+ *
  * # CSS nodes
  *
  * |[<!-- language="plain" -->
@@ -511,7 +517,7 @@ gtk_list_box_class_init (GtkListBoxClass *klass)
                   G_SIGNAL_RUN_LAST,
                   G_STRUCT_OFFSET (GtkListBoxClass, row_selected),
                   NULL, NULL,
-                  g_cclosure_marshal_VOID__OBJECT,
+                  NULL,
                   G_TYPE_NONE, 1,
                   GTK_TYPE_LIST_BOX_ROW);
 
@@ -529,7 +535,7 @@ gtk_list_box_class_init (GtkListBoxClass *klass)
                                                  G_SIGNAL_RUN_FIRST,
                                                  G_STRUCT_OFFSET (GtkListBoxClass, selected_rows_changed),
                                                  NULL, NULL,
-                                                 g_cclosure_marshal_VOID__VOID,
+                                                 NULL,
                                                  G_TYPE_NONE, 0);
 
   /**
@@ -549,7 +555,7 @@ gtk_list_box_class_init (GtkListBoxClass *klass)
                                       G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                       G_STRUCT_OFFSET (GtkListBoxClass, select_all),
                                       NULL, NULL,
-                                      g_cclosure_marshal_VOID__VOID,
+                                      NULL,
                                       G_TYPE_NONE, 0);
 
   /**
@@ -569,7 +575,7 @@ gtk_list_box_class_init (GtkListBoxClass *klass)
                                         G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                         G_STRUCT_OFFSET (GtkListBoxClass, unselect_all),
                                         NULL, NULL,
-                                        g_cclosure_marshal_VOID__VOID,
+                                        NULL,
                                         G_TYPE_NONE, 0);
 
   /**
@@ -587,7 +593,7 @@ gtk_list_box_class_init (GtkListBoxClass *klass)
                   G_SIGNAL_RUN_LAST,
                   G_STRUCT_OFFSET (GtkListBoxClass, row_activated),
                   NULL, NULL,
-                  g_cclosure_marshal_VOID__OBJECT,
+                  NULL,
                   G_TYPE_NONE, 1,
                   GTK_TYPE_LIST_BOX_ROW);
   signals[ACTIVATE_CURSOR_ROW] =
@@ -596,7 +602,7 @@ gtk_list_box_class_init (GtkListBoxClass *klass)
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (GtkListBoxClass, activate_cursor_row),
                   NULL, NULL,
-                  g_cclosure_marshal_VOID__VOID,
+                  NULL,
                   G_TYPE_NONE, 0);
   signals[TOGGLE_CURSOR_ROW] =
     g_signal_new (I_("toggle-cursor-row"),
@@ -604,7 +610,7 @@ gtk_list_box_class_init (GtkListBoxClass *klass)
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (GtkListBoxClass, toggle_cursor_row),
                   NULL, NULL,
-                  g_cclosure_marshal_VOID__VOID,
+                  NULL,
                   G_TYPE_NONE, 0);
   signals[MOVE_CURSOR] =
     g_signal_new (I_("move-cursor"),
@@ -615,6 +621,9 @@ gtk_list_box_class_init (GtkListBoxClass *klass)
                   _gtk_marshal_VOID__ENUM_INT,
                   G_TYPE_NONE, 2,
                   GTK_TYPE_MOVEMENT_STEP, G_TYPE_INT);
+  g_signal_set_va_marshaller (signals[MOVE_CURSOR],
+                              G_TYPE_FROM_CLASS (klass),
+                              _gtk_marshal_VOID__ENUM_INTv);
 
   widget_class->activate_signal = signals[ACTIVATE_CURSOR_ROW];
 

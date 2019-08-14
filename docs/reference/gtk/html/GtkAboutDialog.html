@@ -8,7 +8,7 @@
 <link rel="up" href="WindowWidgets.html" title="Windows">
 <link rel="prev" href="GtkMessageDialog.html" title="GtkMessageDialog">
 <link rel="next" href="GtkAssistant.html" title="GtkAssistant">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -485,12 +485,12 @@ as shown in the following example:</p>
 4
 5
 6</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GdkPixbuf</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">example_logo </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-File-Loading.html#gdk-pixbuf-new-from-file">gdk_pixbuf_new_from_file</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"./logo.png"</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
-<span class="function"><a href="GtkAboutDialog.html#gtk-show-about-dialog">gtk_show_about_dialog</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">,</span>
-<span class="normal">                       </span><span class="string">"program-name"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"ExampleCode"</span><span class="symbol">,</span>
-<span class="normal">                       </span><span class="string">"logo"</span><span class="symbol">,</span><span class="normal"> example_logo</span><span class="symbol">,</span>
-<span class="normal">                       </span><span class="string">"title"</span><span class="symbol">,</span><span class="normal"> </span><span class="function">_</span><span class="symbol">(</span><span class="string">"About ExampleCode"</span><span class="symbol">),</span>
-<span class="normal">                       NULL</span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GdkPixbuf</span> <span class="o">*</span><span class="n">example_logo</span> <span class="o">=</span> <span class="n">gdk_pixbuf_new_from_file</span> <span class="p">(</span><span class="s">&quot;./logo.png&quot;</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+<span class="n">gtk_show_about_dialog</span> <span class="p">(</span><span class="nb">NULL</span><span class="p">,</span>
+                       <span class="s">&quot;program-name&quot;</span><span class="p">,</span> <span class="s">&quot;ExampleCode&quot;</span><span class="p">,</span>
+                       <span class="s">&quot;logo&quot;</span><span class="p">,</span> <span class="n">example_logo</span><span class="p">,</span>
+                       <span class="s">&quot;title&quot;</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s">&quot;About ExampleCode&quot;</span><span class="p">),</span>
+                       <span class="nb">NULL</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1296,9 +1296,9 @@ string for translation:</p>
         <td class="listing_lines" align="right"><pre>1
 2
 3</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">about </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkAboutDialog.html#gtk-about-dialog-new">gtk_about_dialog_new</a></span><span class="normal"> </span><span class="symbol">();</span>
-<span class="function"><a href="GtkAboutDialog.html#gtk-about-dialog-set-translator-credits">gtk_about_dialog_set_translator_credits</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_ABOUT_DIALOG</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">about</span><span class="symbol">),</span>
-<span class="normal">                                         </span><span class="function">_</span><span class="symbol">(</span><span class="string">"translator-credits"</span><span class="symbol">));</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">about</span> <span class="o">=</span> <span class="n">gtk_about_dialog_new</span> <span class="p">();</span>
+<span class="n">gtk_about_dialog_set_translator_credits</span> <span class="p">(</span><span class="n">GTK_ABOUT_DIALOG</span> <span class="p">(</span><span class="n">about</span><span class="p">),</span>
+                                         <span class="n">_</span><span class="p">(</span><span class="s">&quot;translator-credits&quot;</span><span class="p">));</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1568,7 +1568,7 @@ only private fields and should not be directly accessed.</p>
 <td class="enum_member_name"><p><a name="GTK-LICENSE-CUSTOM:CAPS"></a>GTK_LICENSE_CUSTOM</p></td>
 <td class="enum_member_description">
 <p>A license text is going to be specified by the
-  developer</p>
+developer</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1881,6 +1881,6 @@ which is to call <a class="link" href="gtk3-Filesystem-utilities.html#gtk-show-u
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

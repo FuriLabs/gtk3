@@ -8,7 +8,7 @@
 <link rel="up" href="theming.html" title="Part IV. Theming in GTK+">
 <link rel="prev" href="gtk3-GtkWidgetPath.html" title="GtkWidgetPath">
 <link rel="next" href="migrating.html" title="Part V. Migrating from Previous Versions of GTK+">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -563,26 +563,26 @@ looking up icons.</p>
 18
 19
 20</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
-<span class="usertype">GtkIconTheme</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">icon_theme</span><span class="symbol">;</span>
-<span class="usertype">GdkPixbuf</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">pixbuf</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GError</span> <span class="o">*</span><span class="n">error</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="n">GtkIconTheme</span> <span class="o">*</span><span class="n">icon_theme</span><span class="p">;</span>
+<span class="n">GdkPixbuf</span> <span class="o">*</span><span class="n">pixbuf</span><span class="p">;</span>
 
-<span class="normal">icon_theme </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkIconTheme.html#gtk-icon-theme-get-default">gtk_icon_theme_get_default</a></span><span class="normal"> </span><span class="symbol">();</span>
-<span class="normal">pixbuf </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkIconTheme.html#gtk-icon-theme-load-icon">gtk_icon_theme_load_icon</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">icon_theme</span><span class="symbol">,</span>
-<span class="normal">                                   </span><span class="string">"my-icon-name"</span><span class="symbol">,</span><span class="normal"> </span><span class="comment">// icon name</span>
-<span class="normal">                                   </span><span class="number">48</span><span class="symbol">,</span><span class="normal"> </span><span class="comment">// icon size</span>
-<span class="normal">                                   </span><span class="number">0</span><span class="symbol">,</span><span class="normal">  </span><span class="comment">// flags</span>
-<span class="normal">                                   </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(!</span><span class="normal">pixbuf</span><span class="symbol">)</span>
-<span class="normal">  </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_warning</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Couldn’t load icon: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="cbracket">}</span>
-<span class="keyword">else</span>
-<span class="normal">  </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="comment">// Use the pixbuf</span>
-<span class="normal">    </span><span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">pixbuf</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="cbracket">}</span></pre></td>
+<span class="n">icon_theme</span> <span class="o">=</span> <span class="n">gtk_icon_theme_get_default</span> <span class="p">();</span>
+<span class="n">pixbuf</span> <span class="o">=</span> <span class="n">gtk_icon_theme_load_icon</span> <span class="p">(</span><span class="n">icon_theme</span><span class="p">,</span>
+                                   <span class="s">&quot;my-icon-name&quot;</span><span class="p">,</span> <span class="c1">// icon name</span>
+                                   <span class="mi">48</span><span class="p">,</span> <span class="c1">// icon size</span>
+                                   <span class="mi">0</span><span class="p">,</span>  <span class="c1">// flags</span>
+                                   <span class="o">&amp;</span><span class="n">error</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">pixbuf</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">g_warning</span> <span class="p">(</span><span class="s">&quot;Couldn’t load icon: %s&quot;</span><span class="p">,</span> <span class="n">error</span><span class="o">-&gt;</span><span class="n">message</span><span class="p">);</span>
+    <span class="n">g_error_free</span> <span class="p">(</span><span class="n">error</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="k">else</span>
+  <span class="p">{</span>
+    <span class="c1">// Use the pixbuf</span>
+    <span class="n">g_object_unref</span> <span class="p">(</span><span class="n">pixbuf</span><span class="p">);</span>
+  <span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -2229,10 +2229,10 @@ to the icon. </p>
 <a name="gtk-icon-info-load-symbolic"></a><h3>gtk_icon_info_load_symbolic ()</h3>
 <pre class="programlisting"><a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="returnvalue">GdkPixbuf</span></a> *
 gtk_icon_info_load_symbolic (<em class="parameter"><code><a class="link" href="GtkIconTheme.html#GtkIconInfo" title="GtkIconInfo"><span class="type">GtkIconInfo</span></a> *icon_info</code></em>,
-                             <em class="parameter"><code>const <span class="type">GdkRGBA</span> *fg</code></em>,
-                             <em class="parameter"><code>const <span class="type">GdkRGBA</span> *success_color</code></em>,
-                             <em class="parameter"><code>const <span class="type">GdkRGBA</span> *warning_color</code></em>,
-                             <em class="parameter"><code>const <span class="type">GdkRGBA</span> *error_color</code></em>,
+                             <em class="parameter"><code>const <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> *fg</code></em>,
+                             <em class="parameter"><code>const <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> *success_color</code></em>,
+                             <em class="parameter"><code>const <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> *warning_color</code></em>,
+                             <em class="parameter"><code>const <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> *error_color</code></em>,
                              <em class="parameter"><code><span class="type">gboolean</span> *was_symbolic</code></em>,
                              <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Loads an icon, modifying it to match the system colours for the foreground,
@@ -2263,24 +2263,24 @@ for more information about symbolic icons.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>fg</p></td>
-<td class="parameter_description"><p>a <span class="type">GdkRGBA</span> representing the foreground color of the icon</p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> representing the foreground color of the icon</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>success_color</p></td>
-<td class="parameter_description"><p>a <span class="type">GdkRGBA</span> representing the warning color
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> representing the warning color
 of the icon or <code class="literal">NULL</code> to use the default color. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>warning_color</p></td>
-<td class="parameter_description"><p>a <span class="type">GdkRGBA</span> representing the warning color
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> representing the warning color
 of the icon or <code class="literal">NULL</code> to use the default color. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error_color</p></td>
-<td class="parameter_description"><p>a <span class="type">GdkRGBA</span> representing the error color
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> representing the error color
 of the icon or <code class="literal">NULL</code> to use the default color (allow-none). </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
@@ -2313,10 +2313,10 @@ or <code class="literal">NULL</code>. </p></td>
 <a name="gtk-icon-info-load-symbolic-async"></a><h3>gtk_icon_info_load_symbolic_async ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_icon_info_load_symbolic_async (<em class="parameter"><code><a class="link" href="GtkIconTheme.html#GtkIconInfo" title="GtkIconInfo"><span class="type">GtkIconInfo</span></a> *icon_info</code></em>,
-                                   <em class="parameter"><code>const <span class="type">GdkRGBA</span> *fg</code></em>,
-                                   <em class="parameter"><code>const <span class="type">GdkRGBA</span> *success_color</code></em>,
-                                   <em class="parameter"><code>const <span class="type">GdkRGBA</span> *warning_color</code></em>,
-                                   <em class="parameter"><code>const <span class="type">GdkRGBA</span> *error_color</code></em>,
+                                   <em class="parameter"><code>const <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> *fg</code></em>,
+                                   <em class="parameter"><code>const <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> *success_color</code></em>,
+                                   <em class="parameter"><code>const <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> *warning_color</code></em>,
+                                   <em class="parameter"><code>const <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> *error_color</code></em>,
                                    <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
                                    <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
                                    <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
@@ -2340,24 +2340,24 @@ version of this call.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>fg</p></td>
-<td class="parameter_description"><p>a <span class="type">GdkRGBA</span> representing the foreground color of the icon</p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> representing the foreground color of the icon</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>success_color</p></td>
-<td class="parameter_description"><p>a <span class="type">GdkRGBA</span> representing the warning color
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> representing the warning color
 of the icon or <code class="literal">NULL</code> to use the default color. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>warning_color</p></td>
-<td class="parameter_description"><p>a <span class="type">GdkRGBA</span> representing the warning color
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> representing the warning color
 of the icon or <code class="literal">NULL</code> to use the default color. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error_color</p></td>
-<td class="parameter_description"><p>a <span class="type">GdkRGBA</span> representing the error color
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> representing the error color
 of the icon or <code class="literal">NULL</code> to use the default color (allow-none). </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
@@ -2728,7 +2728,7 @@ and attached points should be returned in their original
 <a name="gtk-icon-info-get-embedded-rect"></a><h3>gtk_icon_info_get_embedded_rect ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_icon_info_get_embedded_rect (<em class="parameter"><code><a class="link" href="GtkIconTheme.html#GtkIconInfo" title="GtkIconInfo"><span class="type">GtkIconInfo</span></a> *icon_info</code></em>,
-                                 <em class="parameter"><code><span class="type">GdkRectangle</span> *rectangle</code></em>);</pre>
+                                 <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#GdkRectangle-struct"><span class="type">GdkRectangle</span></a> *rectangle</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gtk_icon_info_get_embedded_rect</code> has been deprecated since version 3.14 and should not be used in newly-written code.</p>
 <p>Embedded rectangles are deprecated</p>
@@ -2750,7 +2750,7 @@ gtk_icon_info_get_embedded_rect (<em class="parameter"><code><a class="link" hre
 </tr>
 <tr>
 <td class="parameter_name"><p>rectangle</p></td>
-<td class="parameter_description"><p><span class="type">GdkRectangle</span> in which to store embedded
+<td class="parameter_description"><p><a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#GdkRectangle-struct"><span class="type">GdkRectangle</span></a> in which to store embedded
 rectangle coordinates; coordinates are only stored
 when this function returns <code class="literal">TRUE</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span></td>
@@ -2769,7 +2769,7 @@ when this function returns <code class="literal">TRUE</code>. </p></td>
 <a name="gtk-icon-info-get-attach-points"></a><h3>gtk_icon_info_get_attach_points ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_icon_info_get_attach_points (<em class="parameter"><code><a class="link" href="GtkIconTheme.html#GtkIconInfo" title="GtkIconInfo"><span class="type">GtkIconInfo</span></a> *icon_info</code></em>,
-                                 <em class="parameter"><code><span class="type">GdkPoint</span> **points</code></em>,
+                                 <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#GdkPoint"><span class="type">GdkPoint</span></a> **points</code></em>,
                                  <em class="parameter"><code><span class="type">gint</span> *n_points</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gtk_icon_info_get_attach_points</code> has been deprecated since version 3.14 and should not be used in newly-written code.</p>
@@ -2938,7 +2938,7 @@ current icon theme.</p></td>
 <td class="enum_member_name"><p><a name="GTK-ICON-LOOKUP-NO-SVG:CAPS"></a>GTK_ICON_LOOKUP_NO_SVG</p></td>
 <td class="enum_member_description">
 <p>Never get SVG icons, even if gdk-pixbuf
-  supports them. Cannot be used together with <a class="link" href="GtkIconTheme.html#GTK-ICON-LOOKUP-FORCE-SVG:CAPS"><code class="literal">GTK_ICON_LOOKUP_FORCE_SVG</code></a>.</p>
+supports them. Cannot be used together with <a class="link" href="GtkIconTheme.html#GTK-ICON-LOOKUP-FORCE-SVG:CAPS"><code class="literal">GTK_ICON_LOOKUP_FORCE_SVG</code></a>.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2946,8 +2946,8 @@ current icon theme.</p></td>
 <td class="enum_member_name"><p><a name="GTK-ICON-LOOKUP-FORCE-SVG:CAPS"></a>GTK_ICON_LOOKUP_FORCE_SVG</p></td>
 <td class="enum_member_description">
 <p>Get SVG icons, even if gdk-pixbuf
-  doesn’t support them.
-  Cannot be used together with <a class="link" href="GtkIconTheme.html#GTK-ICON-LOOKUP-NO-SVG:CAPS"><code class="literal">GTK_ICON_LOOKUP_NO_SVG</code></a>.</p>
+doesn’t support them.
+Cannot be used together with <a class="link" href="GtkIconTheme.html#GTK-ICON-LOOKUP-NO-SVG:CAPS"><code class="literal">GTK_ICON_LOOKUP_NO_SVG</code></a>.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2955,9 +2955,9 @@ current icon theme.</p></td>
 <td class="enum_member_name"><p><a name="GTK-ICON-LOOKUP-USE-BUILTIN:CAPS"></a>GTK_ICON_LOOKUP_USE_BUILTIN</p></td>
 <td class="enum_member_description">
 <p>When passed to
-  <a class="link" href="GtkIconTheme.html#gtk-icon-theme-lookup-icon" title="gtk_icon_theme_lookup_icon ()"><code class="function">gtk_icon_theme_lookup_icon()</code></a> includes builtin icons
-  as well as files. For a builtin icon, <a class="link" href="GtkIconTheme.html#gtk-icon-info-get-filename" title="gtk_icon_info_get_filename ()"><code class="function">gtk_icon_info_get_filename()</code></a>
-  is <code class="literal">NULL</code> and you need to call <a class="link" href="GtkIconTheme.html#gtk-icon-info-get-builtin-pixbuf" title="gtk_icon_info_get_builtin_pixbuf ()"><code class="function">gtk_icon_info_get_builtin_pixbuf()</code></a>.</p>
+<a class="link" href="GtkIconTheme.html#gtk-icon-theme-lookup-icon" title="gtk_icon_theme_lookup_icon ()"><code class="function">gtk_icon_theme_lookup_icon()</code></a> includes builtin icons
+as well as files. For a builtin icon, <a class="link" href="GtkIconTheme.html#gtk-icon-info-get-filename" title="gtk_icon_info_get_filename ()"><code class="function">gtk_icon_info_get_filename()</code></a>
+is <code class="literal">NULL</code> and you need to call <a class="link" href="GtkIconTheme.html#gtk-icon-info-get-builtin-pixbuf" title="gtk_icon_info_get_builtin_pixbuf ()"><code class="function">gtk_icon_info_get_builtin_pixbuf()</code></a>.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2965,9 +2965,9 @@ current icon theme.</p></td>
 <td class="enum_member_name"><p><a name="GTK-ICON-LOOKUP-GENERIC-FALLBACK:CAPS"></a>GTK_ICON_LOOKUP_GENERIC_FALLBACK</p></td>
 <td class="enum_member_description">
 <p>Try to shorten icon name at '-'
-  characters before looking at inherited themes. This flag is only
-  supported in functions that take a single icon name. For more general
-  fallback, see <a class="link" href="GtkIconTheme.html#gtk-icon-theme-choose-icon" title="gtk_icon_theme_choose_icon ()"><code class="function">gtk_icon_theme_choose_icon()</code></a>. Since 2.12.</p>
+characters before looking at inherited themes. This flag is only
+supported in functions that take a single icon name. For more general
+fallback, see <a class="link" href="GtkIconTheme.html#gtk-icon-theme-choose-icon" title="gtk_icon_theme_choose_icon ()"><code class="function">gtk_icon_theme_choose_icon()</code></a>. Since 2.12.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2975,7 +2975,7 @@ current icon theme.</p></td>
 <td class="enum_member_name"><p><a name="GTK-ICON-LOOKUP-FORCE-SIZE:CAPS"></a>GTK_ICON_LOOKUP_FORCE_SIZE</p></td>
 <td class="enum_member_description">
 <p>Always get the icon scaled to the
-  requested size. Since 2.14.</p>
+requested size. Since 2.14.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2983,7 +2983,7 @@ current icon theme.</p></td>
 <td class="enum_member_name"><p><a name="GTK-ICON-LOOKUP-FORCE-REGULAR:CAPS"></a>GTK_ICON_LOOKUP_FORCE_REGULAR</p></td>
 <td class="enum_member_description">
 <p>Try to always load regular icons, even
-  when symbolic icon names are given. Since 3.14.</p>
+when symbolic icon names are given. Since 3.14.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2991,7 +2991,7 @@ current icon theme.</p></td>
 <td class="enum_member_name"><p><a name="GTK-ICON-LOOKUP-FORCE-SYMBOLIC:CAPS"></a>GTK_ICON_LOOKUP_FORCE_SYMBOLIC</p></td>
 <td class="enum_member_description">
 <p>Try to always load symbolic icons, even
-  when regular icon names are given. Since 3.14.</p>
+when regular icon names are given. Since 3.14.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2999,7 +2999,7 @@ current icon theme.</p></td>
 <td class="enum_member_name"><p><a name="GTK-ICON-LOOKUP-DIR-LTR:CAPS"></a>GTK_ICON_LOOKUP_DIR_LTR</p></td>
 <td class="enum_member_description">
 <p>Try to load a variant of the icon for left-to-right
-  text direction. Since 3.14.</p>
+text direction. Since 3.14.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -3007,7 +3007,7 @@ current icon theme.</p></td>
 <td class="enum_member_name"><p><a name="GTK-ICON-LOOKUP-DIR-RTL:CAPS"></a>GTK_ICON_LOOKUP_DIR_RTL</p></td>
 <td class="enum_member_description">
 <p>Try to load a variant of the icon for right-to-left
-  text direction. Since 3.14.</p>
+text direction. Since 3.14.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -3091,6 +3091,6 @@ icon theme.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

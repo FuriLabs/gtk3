@@ -8,7 +8,7 @@
 <link rel="up" href="RecentDocuments.html" title="Recently Used Documents">
 <link rel="prev" href="RecentDocuments.html" title="Recently Used Documents">
 <link rel="next" href="GtkRecentChooser.html" title="GtkRecentChooser">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -424,10 +424,10 @@ it is more efficient to use the default manager created by GTK+.</p>
 2
 3
 4</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkRecentManager</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">manager</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkRecentManager</span> <span class="o">*</span><span class="n">manager</span><span class="p">;</span>
 
-<span class="normal">manager </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkRecentManager.html#gtk-recent-manager-get-default">gtk_recent_manager_get_default</a></span><span class="normal"> </span><span class="symbol">();</span>
-<span class="function"><a href="GtkRecentManager.html#gtk-recent-manager-add-item">gtk_recent_manager_add_item</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">manager</span><span class="symbol">,</span><span class="normal"> file_uri</span><span class="symbol">);</span></pre></td>
+<span class="n">manager</span> <span class="o">=</span> <span class="n">gtk_recent_manager_get_default</span> <span class="p">();</span>
+<span class="n">gtk_recent_manager_add_item</span> <span class="p">(</span><span class="n">manager</span><span class="p">,</span> <span class="n">file_uri</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -458,22 +458,22 @@ given its URI requires calling <a class="link" href="GtkRecentManager.html#gtk-r
 14
 15
 16</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkRecentManager</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">manager</span><span class="symbol">;</span>
-<span class="usertype">GtkRecentInfo</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">info</span><span class="symbol">;</span>
-<span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkRecentManager</span> <span class="o">*</span><span class="n">manager</span><span class="p">;</span>
+<span class="n">GtkRecentInfo</span> <span class="o">*</span><span class="n">info</span><span class="p">;</span>
+<span class="n">GError</span> <span class="o">*</span><span class="n">error</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
 
-<span class="normal">manager </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkRecentManager.html#gtk-recent-manager-get-default">gtk_recent_manager_get_default</a></span><span class="normal"> </span><span class="symbol">();</span>
-<span class="normal">info </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkRecentManager.html#gtk-recent-manager-lookup-item">gtk_recent_manager_lookup_item</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">manager</span><span class="symbol">,</span><span class="normal"> file_uri</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">)</span>
-<span class="normal">  </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="function">g_warning</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Could not find the file: %s"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="cbracket">}</span>
-<span class="keyword">else</span>
-<span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">   </span><span class="comment">// Use the info object</span>
-<span class="normal">   </span><span class="function"><a href="GtkRecentManager.html#gtk-recent-info-unref">gtk_recent_info_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">info</span><span class="symbol">);</span>
-<span class="normal"> </span><span class="cbracket">}</span></pre></td>
+<span class="n">manager</span> <span class="o">=</span> <span class="n">gtk_recent_manager_get_default</span> <span class="p">();</span>
+<span class="n">info</span> <span class="o">=</span> <span class="n">gtk_recent_manager_lookup_item</span> <span class="p">(</span><span class="n">manager</span><span class="p">,</span> <span class="n">file_uri</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">error</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">error</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">g_warning</span> <span class="p">(</span><span class="s">&quot;Could not find the file: %s&quot;</span><span class="p">,</span> <span class="n">error</span><span class="o">-&gt;</span><span class="n">message</span><span class="p">);</span>
+    <span class="n">g_error_free</span> <span class="p">(</span><span class="n">error</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="k">else</span>
+ <span class="p">{</span>
+   <span class="c1">// Use the info object</span>
+   <span class="n">gtk_recent_info_unref</span> <span class="p">(</span><span class="n">info</span><span class="p">);</span>
+ <span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1825,7 +1825,7 @@ applications that have registered it or not.</p></td>
 <td class="enum_member_name"><p><a name="GTK-RECENT-MANAGER-ERROR-NOT-FOUND:CAPS"></a>GTK_RECENT_MANAGER_ERROR_NOT_FOUND</p></td>
 <td class="enum_member_description">
 <p>the URI specified does not exists in
-  the recently used resources list.</p>
+the recently used resources list.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1840,7 +1840,7 @@ applications that have registered it or not.</p></td>
 <td class="enum_member_name"><p><a name="GTK-RECENT-MANAGER-ERROR-INVALID-ENCODING:CAPS"></a>GTK_RECENT_MANAGER_ERROR_INVALID_ENCODING</p></td>
 <td class="enum_member_description">
 <p>the supplied string is not
-  UTF-8 encoded.</p>
+UTF-8 encoded.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1848,7 +1848,7 @@ applications that have registered it or not.</p></td>
 <td class="enum_member_name"><p><a name="GTK-RECENT-MANAGER-ERROR-NOT-REGISTERED:CAPS"></a>GTK_RECENT_MANAGER_ERROR_NOT_REGISTERED</p></td>
 <td class="enum_member_description">
 <p>no application has registered
-  the specified item.</p>
+the specified item.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1856,7 +1856,7 @@ applications that have registered it or not.</p></td>
 <td class="enum_member_name"><p><a name="GTK-RECENT-MANAGER-ERROR-READ:CAPS"></a>GTK_RECENT_MANAGER_ERROR_READ</p></td>
 <td class="enum_member_description">
 <p>failure while reading the recently used
-  resources file.</p>
+resources file.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1864,7 +1864,7 @@ applications that have registered it or not.</p></td>
 <td class="enum_member_name"><p><a name="GTK-RECENT-MANAGER-ERROR-WRITE:CAPS"></a>GTK_RECENT_MANAGER_ERROR_WRITE</p></td>
 <td class="enum_member_description">
 <p>failure while writing the recently used
-  resources file.</p>
+resources file.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1945,6 +1945,6 @@ by another application.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

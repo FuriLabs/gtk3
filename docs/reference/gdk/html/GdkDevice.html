@@ -8,7 +8,7 @@
 <link rel="up" href="reference.html" title="API Reference">
 <link rel="prev" href="GdkMonitor.html" title="GdkMonitor">
 <link rel="next" href="GdkDevicePad.html" title="GtkDevicePad">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -571,23 +571,23 @@ compose <span class="type">GSettings</span> paths to store settings for this dev
 15
 16
 17</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> GSettings </span><span class="symbol">*</span>
-<span class="function">get_device_settings</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GdkDevice</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">device</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="keyword">const</span><span class="normal"> </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">vendor</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">product</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="usertype">GSettings</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">settings</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="usertype">GdkDevice</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">device</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">path</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="n">GSettings</span> <span class="o">*</span>
+<span class="nf">get_device_settings</span> <span class="p">(</span><span class="n">GdkDevice</span> <span class="o">*</span><span class="n">device</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">const</span> <span class="n">gchar</span> <span class="o">*</span><span class="n">vendor</span><span class="p">,</span> <span class="o">*</span><span class="n">product</span><span class="p">;</span>
+  <span class="n">GSettings</span> <span class="o">*</span><span class="n">settings</span><span class="p">;</span>
+  <span class="n">GdkDevice</span> <span class="o">*</span><span class="n">device</span><span class="p">;</span>
+  <span class="n">gchar</span> <span class="o">*</span><span class="n">path</span><span class="p">;</span>
 
-<span class="normal">  vendor </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GdkDevice.html#gdk-device-get-vendor-id">gdk_device_get_vendor_id</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">device</span><span class="symbol">);</span>
-<span class="normal">  product </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GdkDevice.html#gdk-device-get-product-id">gdk_device_get_product_id</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">device</span><span class="symbol">);</span>
+  <span class="n">vendor</span> <span class="o">=</span> <span class="n">gdk_device_get_vendor_id</span> <span class="p">(</span><span class="n">device</span><span class="p">);</span>
+  <span class="n">product</span> <span class="o">=</span> <span class="n">gdk_device_get_product_id</span> <span class="p">(</span><span class="n">device</span><span class="p">);</span>
 
-<span class="normal">  path </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_strdup_printf</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"/org/example/app/devices/%s:%s/"</span><span class="symbol">,</span><span class="normal"> vendor</span><span class="symbol">,</span><span class="normal"> product</span><span class="symbol">);</span>
-<span class="normal">  settings </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_settings_new_with_path</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">DEVICE_SCHEMA</span><span class="symbol">,</span><span class="normal"> path</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function">g_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">path</span><span class="symbol">);</span>
+  <span class="n">path</span> <span class="o">=</span> <span class="n">g_strdup_printf</span> <span class="p">(</span><span class="s">&quot;/org/example/app/devices/%s:%s/&quot;</span><span class="p">,</span> <span class="n">vendor</span><span class="p">,</span> <span class="n">product</span><span class="p">);</span>
+  <span class="n">settings</span> <span class="o">=</span> <span class="n">g_settings_new_with_path</span> <span class="p">(</span><span class="n">DEVICE_SCHEMA</span><span class="p">,</span> <span class="n">path</span><span class="p">);</span>
+  <span class="n">g_free</span> <span class="p">(</span><span class="n">path</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="keyword">return</span><span class="normal"> settings</span><span class="symbol">;</span>
-<span class="cbracket">}</span></pre></td>
+  <span class="k">return</span> <span class="n">settings</span><span class="p">;</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1274,7 +1274,7 @@ events that are emitted when the grab ends unvoluntarily.</p>
 <tbody>
 <tr>
 <td class="parameter_name"><p>device</p></td>
-<td class="parameter_description"><p>a <a class="link" href="GdkDevice.html" title="GdkDevice"><span class="type">GdkDevice</span></a>. To get the device you can use <code class="function">gtk_get_current_event_device()</code>
+<td class="parameter_description"><p>a <a class="link" href="GdkDevice.html" title="GdkDevice"><span class="type">GdkDevice</span></a>. To get the device you can use <a href="https://developer.gnome.org/gtk4/gtk4-General.html#gtk-get-current-event-device"><code class="function">gtk_get_current_event_device()</code></a>
 or <a class="link" href="gdk3-Events.html#gdk-event-get-device" title="gdk_event_get_device ()"><code class="function">gdk_event_get_device()</code></a> if the grab is in reaction to an event. Also, you can use
 <a class="link" href="GdkDeviceManager.html#gdk-device-manager-get-client-pointer" title="gdk_device_manager_get_client_pointer ()"><code class="function">gdk_device_manager_get_client_pointer()</code></a> but only in code that isn’t triggered by a
 <a class="link" href="gdk3-Event-Structures.html#GdkEvent" title="union GdkEvent"><span class="type">GdkEvent</span></a> and there aren’t other means to get a meaningful <a class="link" href="GdkDevice.html" title="GdkDevice"><span class="type">GdkDevice</span></a> to operate on.</p></td>
@@ -1974,7 +1974,7 @@ sort of pen is being used, such as an airbrush or a pencil.</p>
 <td class="enum_member_name"><p><a name="GDK-SOURCE-MOUSE:CAPS"></a>GDK_SOURCE_MOUSE</p></td>
 <td class="enum_member_description">
 <p>the device is a mouse. (This will be reported for the core
-                   pointer, even if it is something else, such as a trackball.)</p>
+pointer, even if it is something else, such as a trackball.)</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1989,7 +1989,7 @@ sort of pen is being used, such as an airbrush or a pencil.</p>
 <td class="enum_member_name"><p><a name="GDK-SOURCE-ERASER:CAPS"></a>GDK_SOURCE_ERASER</p></td>
 <td class="enum_member_description">
 <p>the device is an eraser. Typically, this would be the other end
-                    of a stylus on a graphics tablet.</p>
+of a stylus on a graphics tablet.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2011,7 +2011,7 @@ sort of pen is being used, such as an airbrush or a pencil.</p>
 <td class="enum_member_name"><p><a name="GDK-SOURCE-TOUCHSCREEN:CAPS"></a>GDK_SOURCE_TOUCHSCREEN</p></td>
 <td class="enum_member_description">
 <p>the device is a direct-input touch device, such
-    as a touchscreen or tablet. This device type has been added in 3.4.</p>
+as a touchscreen or tablet. This device type has been added in 3.4.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2019,7 +2019,7 @@ sort of pen is being used, such as an airbrush or a pencil.</p>
 <td class="enum_member_name"><p><a name="GDK-SOURCE-TOUCHPAD:CAPS"></a>GDK_SOURCE_TOUCHPAD</p></td>
 <td class="enum_member_description">
 <p>the device is an indirect touch device, such
-    as a touchpad. This device type has been added in 3.4.</p>
+as a touchpad. This device type has been added in 3.4.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2027,7 +2027,7 @@ sort of pen is being used, such as an airbrush or a pencil.</p>
 <td class="enum_member_name"><p><a name="GDK-SOURCE-TRACKPOINT:CAPS"></a>GDK_SOURCE_TRACKPOINT</p></td>
 <td class="enum_member_description">
 <p>the device is a trackpoint. This device type has been
-    added in 3.22</p>
+added in 3.22</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2035,8 +2035,8 @@ sort of pen is being used, such as an airbrush or a pencil.</p>
 <td class="enum_member_name"><p><a name="GDK-SOURCE-TABLET-PAD:CAPS"></a>GDK_SOURCE_TABLET_PAD</p></td>
 <td class="enum_member_description">
 <p>the device is a "pad", a collection of buttons,
-    rings and strips found in drawing tablets. This device type has been
-    added in 3.22.</p>
+rings and strips found in drawing tablets. This device type has been
+added in 3.22.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2068,7 +2068,7 @@ sort of pen is being used, such as an airbrush or a pencil.</p>
 <td class="enum_member_name"><p><a name="GDK-MODE-SCREEN:CAPS"></a>GDK_MODE_SCREEN</p></td>
 <td class="enum_member_description">
 <p>the device is enabled. The device’s coordinate space
-                  maps to the entire screen.</p>
+maps to the entire screen.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2076,9 +2076,9 @@ sort of pen is being used, such as an airbrush or a pencil.</p>
 <td class="enum_member_name"><p><a name="GDK-MODE-WINDOW:CAPS"></a>GDK_MODE_WINDOW</p></td>
 <td class="enum_member_description">
 <p>the device is enabled. The device’s coordinate space
-                  is mapped to a single window. The manner in which this window
-                  is chosen is undefined, but it will typically be the same
-                  way in which the focus window for key events is determined.</p>
+is mapped to a single window. The manner in which this window
+is chosen is undefined, but it will typically be the same
+way in which the focus window for key events is determined.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2359,7 +2359,7 @@ for more information about the meaning of these device types.</p>
 <td class="enum_member_name"><p><a name="GDK-DEVICE-TYPE-MASTER:CAPS"></a>GDK_DEVICE_TYPE_MASTER</p></td>
 <td class="enum_member_description">
 <p>Device is a master (or virtual) device. There will
-                         be an associated focus indicator on the screen.</p>
+be an associated focus indicator on the screen.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2374,7 +2374,7 @@ for more information about the meaning of these device types.</p>
 <td class="enum_member_name"><p><a name="GDK-DEVICE-TYPE-FLOATING:CAPS"></a>GDK_DEVICE_TYPE_FLOATING</p></td>
 <td class="enum_member_description">
 <p>Device is a physical device, currently not attached to
-                           any virtual device.</p>
+any virtual device.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2632,7 +2632,7 @@ user_function (<a class="link" href="GdkDevice.html" title="GdkDevice"><span cla
                <span class="type">GdkDeviceTool</span> *tool,
                <span class="type">gpointer</span>       user_data)</pre>
 <p>The ::tool-changed signal is emitted on pen/eraser
-<a href="GdkDevice.html#GdkDevice-struct"><span class="type">GdkDevices</span></a> whenever tools enter or leave proximity.</p>
+<span class="type">GdkDevices</span> whenever tools enter or leave proximity.</p>
 <div class="refsect3">
 <a name="GdkDevice-tool-changed.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -2670,6 +2670,6 @@ user_function (<a class="link" href="GdkDevice.html" title="GdkDevice"><span cla
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

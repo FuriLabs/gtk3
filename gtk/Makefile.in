@@ -1679,7 +1679,6 @@ GTK_PRINT_BACKENDS = @GTK_PRINT_BACKENDS@
 GTK_PRIVATE_PACKAGES = @GTK_PRIVATE_PACKAGES@
 GTK_VERSION = @GTK_VERSION@
 GTK_XIM_FLAGS = @GTK_XIM_FLAGS@
-HAVE_HTTP_AUTHSTRING = @HAVE_HTTP_AUTHSTRING@
 HTML_DIR = @HTML_DIR@
 INCLUDED_IMMODULE_DEFINE = @INCLUDED_IMMODULE_DEFINE@
 INCLUDED_IMMODULE_OBJ = @INCLUDED_IMMODULE_OBJ@
@@ -1848,7 +1847,10 @@ EXTRA_DIST = $(gtk_all_private_h_sources) $(gtk_extra_sources) \
 	gtk-keys.css.default gtk-keys.css.emacs gtk-keys.css.mac \
 	makefile.msc makefile.msc.in gtktypebuiltins.c.template \
 	gtktypebuiltins.h.template gtkprivatetypebuiltins.c.template \
-	gtkprivatetypebuiltins.h.template
+	gtkprivatetypebuiltins.h.template meson.build \
+	gen-gtk-gresources-xml.py gen-rc.py gentypefuncs.py \
+	a11y/meson.build deprecated/meson.build inspector/meson.build \
+	theme/Adwaita/meson.build theme/HighContrast/meson.build
 TEST_PROGS = 
 
 ### testing rules
@@ -2846,7 +2848,7 @@ MAINTAINERCLEANFILES = \
 	$(print_portal_built_sources)		\
 	$(stamp_files)
 
-DISTCLEANFILES = $(am__append_18)
+DISTCLEANFILES = gtktypefuncs.inc $(am__append_18)
 pkgdata_DATA = gtkbuilder.rng
 itsdir = $(datadir)/gettext/its
 its_DATA = gtkbuilder.loc gtkbuilder.its
@@ -9652,7 +9654,7 @@ gtkprivatetypebuiltins.c: $(gtk_private_type_h_sources)  gtkprivatetypebuiltins.
 	&& cp xgen-gptbc gtkprivatetypebuiltins.c  \
 	&& rm -f xgen-gptbc
 
-gtktypefuncs.c: stamp-gtktypebuiltins.h stamp-gtkprivatetypebuiltins.h $(top_srcdir)/gtk/*.h $(top_srcdir)/gtk/a11y/*.h $(top_srcdir)/gtk/deprecated/*.h $(top_srcdir)/gdk/*.h Makefile
+gtktypefuncs.inc: stamp-gtktypebuiltins.h stamp-gtkprivatetypebuiltins.h $(top_srcdir)/gtk/*.h $(top_srcdir)/gtk/a11y/*.h $(top_srcdir)/gtk/deprecated/*.h $(top_srcdir)/gdk/*.h Makefile
 	$(AM_V_GEN) export LC_ALL=C ; \
 	  (echo '#undef GTK_COMPILATION' && echo '#include <gtk/gtkx.h>') > xgen-gtfsrc.c && \
 	  echo 'G_GNUC_BEGIN_IGNORE_DEPRECATIONS' > xgen-gtf && \
@@ -9661,7 +9663,7 @@ gtktypefuncs.c: stamp-gtktypebuiltins.h stamp-gtkprivatetypebuiltins.h $(top_src
 	  sort | uniq | \
 	  $(SED) '{ s/^/*tp++ = /; s/$$/();/; s/^.*\(gdk_x11\|gtk_plug_\|gtk_socket_\).*$$/#ifdef GDK_WINDOWING_X11\n&\n#endif/; }' >> xgen-gtf \
 	&& cp xgen-gtf $@ && rm -f xgen-gtf
-$(srcdir)/gtktestutils.c: gtktypefuncs.c
+$(srcdir)/gtktestutils.c: gtktypefuncs.inc
 
 install-exec-hook:
 @DISABLE_EXPLICIT_DEPS_TRUE@	$(SHELL) $(top_srcdir)/sanitize-la.sh $(DESTDIR)$(libdir)/libgtk-3.la

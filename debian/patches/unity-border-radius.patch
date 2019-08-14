@@ -9,10 +9,10 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1516403
  gtk/gtkwindow.c | 158 +++++++++++++++++++++++++++++++++++++++++++++++++++++---
  1 file changed, 152 insertions(+), 6 deletions(-)
 
-diff --git a/gtk/gtkwindow.c b/gtk/gtkwindow.c
-index 13c9902..efc19a2 100644
---- a/gtk/gtkwindow.c
-+++ b/gtk/gtkwindow.c
+Index: gtk+3.0-3.24.10/gtk/gtkwindow.c
+===================================================================
+--- gtk+3.0-3.24.10.orig/gtk/gtkwindow.c
++++ gtk+3.0-3.24.10/gtk/gtkwindow.c
 @@ -259,6 +259,7 @@ struct _GtkWindowPrivate
    guint    csd_requested             : 1;
    guint    client_decorated          : 1; /* Decorations drawn client-side */
@@ -21,11 +21,10 @@ index 13c9902..efc19a2 100644
    guint    maximized                 : 1;
    guint    fullscreen                : 1;
    guint    tiled                     : 1;
-@@ -4082,6 +4083,119 @@ gtk_window_set_geometry_hints (GtkWindow       *window,
-   gtk_widget_queue_resize_no_redraw (GTK_WIDGET (window));
+@@ -4083,6 +4084,119 @@ gtk_window_set_geometry_hints (GtkWindow
  }
  
-+static void
+ static void
 +unity_border_radius_update (GtkWindow *window)
 +{
 +#ifdef GDK_WINDOWING_X11
@@ -138,9 +137,10 @@ index 13c9902..efc19a2 100644
 +  return FALSE;
 +}
 +
- static void
++static void
  unset_titlebar (GtkWindow *window)
  {
+   GtkWindowPrivate *priv = window->priv;
 @@ -4092,6 +4206,9 @@ unset_titlebar (GtkWindow *window)
        g_signal_handlers_disconnect_by_func (priv->title_box,
                                              on_titlebar_title_notify,
@@ -151,7 +151,7 @@ index 13c9902..efc19a2 100644
        gtk_widget_unparent (priv->title_box);
        priv->title_box = NULL;
        priv->titlebar = NULL;
-@@ -4148,13 +4265,16 @@ gtk_window_enable_csd (GtkWindow *window)
+@@ -4148,13 +4265,16 @@ gtk_window_enable_csd (GtkWindow *window
    GdkVisual *visual;
  
    /* We need a visual with alpha for client shadows */
@@ -169,7 +169,7 @@ index 13c9902..efc19a2 100644
      }
    else
      {
-@@ -4162,6 +4282,9 @@ gtk_window_enable_csd (GtkWindow *window)
+@@ -4162,6 +4282,9 @@ gtk_window_enable_csd (GtkWindow *window
      }
  
    priv->client_decorated = TRUE;
@@ -179,7 +179,7 @@ index 13c9902..efc19a2 100644
  }
  
  static void
-@@ -4222,10 +4345,14 @@ gtk_window_set_titlebar (GtkWindow *window,
+@@ -4222,10 +4345,14 @@ gtk_window_set_titlebar (GtkWindow *wind
        priv->client_decorated = FALSE;
        gtk_style_context_remove_class (gtk_widget_get_style_context (widget), GTK_STYLE_CLASS_CSD);
  
@@ -194,7 +194,7 @@ index 13c9902..efc19a2 100644
  
    gtk_window_enable_csd (window);
    priv->title_box = titlebar;
-@@ -4237,6 +4364,8 @@ gtk_window_set_titlebar (GtkWindow *window,
+@@ -4237,6 +4364,8 @@ gtk_window_set_titlebar (GtkWindow *wind
        on_titlebar_title_notify (GTK_HEADER_BAR (titlebar), NULL, window);
      }
  
@@ -267,7 +267,7 @@ index 13c9902..efc19a2 100644
    child_allocation.x = 0;
    child_allocation.y = 0;
    child_allocation.width = allocation.width;
-@@ -11205,7 +11351,7 @@ gtk_window_set_screen (GtkWindow *window,
+@@ -11207,7 +11353,7 @@ gtk_window_set_screen (GtkWindow *window
      }
    g_object_notify_by_pspec (G_OBJECT (window), window_props[PROP_SCREEN]);
  

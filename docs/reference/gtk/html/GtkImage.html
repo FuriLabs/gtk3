@@ -8,7 +8,7 @@
 <link rel="up" href="DisplayWidgets.html" title="Display Widgets">
 <link rel="prev" href="GtkLabel.html" title="GtkLabel">
 <link rel="next" href="GtkSpinner.html" title="GtkSpinner">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -415,8 +415,8 @@ used as follows:</p>
       <tr>
         <td class="listing_lines" align="right"><pre>1
 2</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">image</span><span class="symbol">;</span>
-<span class="normal">image </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkImage.html#gtk-image-new-from-file">gtk_image_new_from_file</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"myfile.png"</span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">image</span><span class="p">;</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">gtk_image_new_from_file</span> <span class="p">(</span><span class="s">&quot;myfile.png&quot;</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -477,39 +477,39 @@ on the image, such as button clicks, place the image inside a
 31
 32
 33</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> gboolean</span>
-<span class="function">button_press_callback</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkWidget</span><span class="normal">      </span><span class="symbol">*</span><span class="normal">event_box</span><span class="symbol">,</span>
-<span class="normal">                       </span><span class="usertype">GdkEventButton</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">event</span><span class="symbol">,</span>
-<span class="normal">                       </span><span class="usertype">gpointer</span><span class="normal">        data</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="function">g_print</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Event box clicked at coordinates %f,%f</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span>
-<span class="normal">           event</span><span class="symbol">-&gt;</span><span class="normal">x</span><span class="symbol">,</span><span class="normal"> event</span><span class="symbol">-&gt;</span><span class="normal">y</span><span class="symbol">);</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="n">gboolean</span>
+<span class="nf">button_press_callback</span> <span class="p">(</span><span class="n">GtkWidget</span>      <span class="o">*</span><span class="n">event_box</span><span class="p">,</span>
+                       <span class="n">GdkEventButton</span> <span class="o">*</span><span class="n">event</span><span class="p">,</span>
+                       <span class="n">gpointer</span>        <span class="n">data</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">g_print</span> <span class="p">(</span><span class="s">&quot;Event box clicked at coordinates %f,%f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+           <span class="n">event</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">,</span> <span class="n">event</span><span class="o">-&gt;</span><span class="n">y</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="comment">// Returning TRUE means we handled the event, so the signal</span>
-<span class="normal">  </span><span class="comment">// emission should be stopped (don’t call any further callbacks</span>
-<span class="normal">  </span><span class="comment">// that may be connected). Return FALSE to continue invoking callbacks.</span>
-<span class="normal">  </span><span class="keyword">return</span><span class="normal"> TRUE</span><span class="symbol">;</span>
-<span class="cbracket">}</span>
+  <span class="c1">// Returning TRUE means we handled the event, so the signal</span>
+  <span class="c1">// emission should be stopped (don’t call any further callbacks</span>
+  <span class="c1">// that may be connected). Return FALSE to continue invoking callbacks.</span>
+  <span class="k">return</span> <span class="n">TRUE</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="keyword">static</span><span class="normal"> <a href="GtkWidget.html#GtkWidget-struct">GtkWidget</a></span><span class="symbol">*</span>
-<span class="function">create_image</span><span class="normal"> </span><span class="symbol">(</span><span class="type">void</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">image</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">event_box</span><span class="symbol">;</span>
+<span class="k">static</span> <span class="n">GtkWidget</span><span class="o">*</span>
+<span class="nf">create_image</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">GtkWidget</span> <span class="o">*</span><span class="n">image</span><span class="p">;</span>
+  <span class="n">GtkWidget</span> <span class="o">*</span><span class="n">event_box</span><span class="p">;</span>
 
-<span class="normal">  image </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkImage.html#gtk-image-new-from-file">gtk_image_new_from_file</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"myfile.png"</span><span class="symbol">);</span>
+  <span class="n">image</span> <span class="o">=</span> <span class="n">gtk_image_new_from_file</span> <span class="p">(</span><span class="s">&quot;myfile.png&quot;</span><span class="p">);</span>
 
-<span class="normal">  event_box </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkEventBox.html#gtk-event-box-new">gtk_event_box_new</a></span><span class="normal"> </span><span class="symbol">();</span>
+  <span class="n">event_box</span> <span class="o">=</span> <span class="n">gtk_event_box_new</span> <span class="p">();</span>
 
-<span class="normal">  </span><span class="function"><a href="GtkContainer.html#gtk-container-add">gtk_container_add</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_CONTAINER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">event_box</span><span class="symbol">),</span><span class="normal"> image</span><span class="symbol">);</span>
+  <span class="n">gtk_container_add</span> <span class="p">(</span><span class="n">GTK_CONTAINER</span> <span class="p">(</span><span class="n">event_box</span><span class="p">),</span> <span class="n">image</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="function">g_signal_connect</span><span class="normal"> </span><span class="symbol">(</span><span class="function">G_OBJECT</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">event_box</span><span class="symbol">),</span>
-<span class="normal">                    </span><span class="string">"button_press_event"</span><span class="symbol">,</span>
-<span class="normal">                    </span><span class="function">G_CALLBACK</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">button_press_callback</span><span class="symbol">),</span>
-<span class="normal">                    image</span><span class="symbol">);</span>
+  <span class="n">g_signal_connect</span> <span class="p">(</span><span class="n">G_OBJECT</span> <span class="p">(</span><span class="n">event_box</span><span class="p">),</span>
+                    <span class="s">&quot;button_press_event&quot;</span><span class="p">,</span>
+                    <span class="n">G_CALLBACK</span> <span class="p">(</span><span class="n">button_press_callback</span><span class="p">),</span>
+                    <span class="n">image</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="keyword">return</span><span class="normal"> image</span><span class="symbol">;</span>
-<span class="cbracket">}</span></pre></td>
+  <span class="k">return</span> <span class="n">image</span><span class="p">;</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1613,7 +1613,7 @@ functions), but they will all return <code class="literal">NULL</code> values.</
 <td class="enum_member_name"><p><a name="GTK-IMAGE-ICON-NAME:CAPS"></a>GTK_IMAGE_ICON_NAME</p></td>
 <td class="enum_member_description">
 <p>the widget contains a named icon.
- This image type was added in GTK+ 2.6</p>
+This image type was added in GTK+ 2.6</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1621,7 +1621,7 @@ functions), but they will all return <code class="literal">NULL</code> values.</
 <td class="enum_member_name"><p><a name="GTK-IMAGE-GICON:CAPS"></a>GTK_IMAGE_GICON</p></td>
 <td class="enum_member_description">
 <p>the widget contains a <span class="type">GIcon</span>.
- This image type was added in GTK+ 2.14</p>
+This image type was added in GTK+ 2.14</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1629,7 +1629,7 @@ functions), but they will all return <code class="literal">NULL</code> values.</
 <td class="enum_member_name"><p><a name="GTK-IMAGE-SURFACE:CAPS"></a>GTK_IMAGE_SURFACE</p></td>
 <td class="enum_member_description">
 <p>the widget contains a <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-surface-t.html#cairo-surface-t"><span class="type">cairo_surface_t</span></a>.
- This image type was added in GTK+ 3.10</p>
+This image type was added in GTK+ 3.10</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1768,6 +1768,6 @@ and <a class="link" href="GtkImage.html#GTK-IMAGE-GICON:CAPS"><code class="liter
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>

@@ -129,7 +129,7 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 DIST_COMMON = $(srcdir)/Makefile.am $(am__DIST_COMMON)
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
-CONFIG_CLEAN_FILES = gtk3.types version.xml
+CONFIG_CLEAN_FILES = gtk3.types version.xml getting_started.xml
 CONFIG_CLEAN_VPATH_FILES =
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
@@ -182,7 +182,8 @@ am__installdirs = "$(DESTDIR)$(man1dir)"
 NROFF = nroff
 MANS = $(man_MANS)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
-am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/gtk3.types.in \
+am__DIST_COMMON = $(srcdir)/Makefile.in \
+	$(srcdir)/getting_started.xml.in $(srcdir)/gtk3.types.in \
 	$(srcdir)/version.xml.in $(top_srcdir)/gtk-doc.make
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -304,7 +305,6 @@ GTK_PRINT_BACKENDS = @GTK_PRINT_BACKENDS@
 GTK_PRIVATE_PACKAGES = @GTK_PRIVATE_PACKAGES@
 GTK_VERSION = @GTK_VERSION@
 GTK_XIM_FLAGS = @GTK_XIM_FLAGS@
-HAVE_HTTP_AUTHSTRING = @HAVE_HTTP_AUTHSTRING@
 HTML_DIR = @HTML_DIR@
 INCLUDED_IMMODULE_DEFINE = @INCLUDED_IMMODULE_DEFINE@
 INCLUDED_IMMODULE_OBJ = @INCLUDED_IMMODULE_OBJ@
@@ -741,7 +741,7 @@ content_files = \
 	css-overview.xml			\
 	css-properties.xml			\
 	drawing-model.xml			\
-	getting_started.xml			\
+	$(builddir)/getting_started.xml			\
 	glossary.xml				\
 	gtk3-demo-application.xml		\
 	gtk3-demo.xml				\
@@ -778,7 +778,7 @@ content_files = \
 expand_content_files = \
 	compiling.sgml				\
 	drawing-model.xml			\
-	getting_started.xml			\
+	$(builddir)/getting_started.xml			\
 	glossary.xml				\
 	input-handling.xml			\
 	migrating-2to3.xml			\
@@ -971,7 +971,7 @@ SETUP_FILES = \
 
 # Other files to distribute
 EXTRA_DIST = $(HTML_IMAGES) $(SETUP_FILES) version.xml.in \
-	gtk3.types.in $(man_MANS)
+	gtk3.types.in getting_started.xml.in $(man_MANS) meson.build
 DOC_STAMPS = setup-build.stamp scan-build.stamp sgml-build.stamp \
 	html-build.stamp pdf-build.stamp \
 	sgml.stamp html.stamp pdf.stamp
@@ -1089,6 +1089,8 @@ $(am__aclocal_m4_deps):
 gtk3.types: $(top_builddir)/config.status $(srcdir)/gtk3.types.in
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
 version.xml: $(top_builddir)/config.status $(srcdir)/version.xml.in
+	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
+getting_started.xml: $(top_builddir)/config.status $(srcdir)/getting_started.xml.in
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
 
 mostlyclean-libtool:

@@ -8,7 +8,7 @@
 <link rel="up" href="Printing.html" title="Printing">
 <link rel="prev" href="GtkPrintSettings.html" title="GtkPrintSettings">
 <link rel="next" href="GtkPaperSize.html" title="GtkPaperSize">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.30.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -327,25 +327,25 @@ and receive the resulting page setup.</p>
 17
 18
 19</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> </span><span class="usertype">GtkPrintSettings</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">settings </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
-<span class="keyword">static</span><span class="normal"> </span><span class="usertype">GtkPageSetup</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">page_setup </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="n">GtkPrintSettings</span> <span class="o">*</span><span class="n">settings</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="k">static</span> <span class="n">GtkPageSetup</span> <span class="o">*</span><span class="n">page_setup</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
 
-<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
-<span class="function">do_page_setup</span><span class="normal"> </span><span class="symbol">(</span><span class="type">void</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="usertype">GtkPageSetup</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">new_page_setup</span><span class="symbol">;</span>
+<span class="k">static</span> <span class="kt">void</span>
+<span class="nf">do_page_setup</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">GtkPageSetup</span> <span class="o">*</span><span class="n">new_page_setup</span><span class="p">;</span>
 
-<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">settings </span><span class="symbol">==</span><span class="normal"> NULL</span><span class="symbol">)</span>
-<span class="normal">    settings </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkPrintSettings.html#gtk-print-settings-new">gtk_print_settings_new</a></span><span class="normal"> </span><span class="symbol">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">settings</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="n">settings</span> <span class="o">=</span> <span class="n">gtk_print_settings_new</span> <span class="p">();</span>
 
-<span class="normal">  new_page_setup </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="gtk3-High-level-Printing-API.html#gtk-print-run-page-setup-dialog">gtk_print_run_page_setup_dialog</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_WINDOW</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">main_window</span><span class="symbol">),</span>
-<span class="normal">                                                    page_setup</span><span class="symbol">,</span><span class="normal"> settings</span><span class="symbol">);</span>
+  <span class="n">new_page_setup</span> <span class="o">=</span> <span class="n">gtk_print_run_page_setup_dialog</span> <span class="p">(</span><span class="n">GTK_WINDOW</span> <span class="p">(</span><span class="n">main_window</span><span class="p">),</span>
+                                                    <span class="n">page_setup</span><span class="p">,</span> <span class="n">settings</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">page_setup</span><span class="symbol">)</span>
-<span class="normal">    </span><span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">page_setup</span><span class="symbol">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">page_setup</span><span class="p">)</span>
+    <span class="n">g_object_unref</span> <span class="p">(</span><span class="n">page_setup</span><span class="p">);</span>
 
-<span class="normal">  page_setup </span><span class="symbol">=</span><span class="normal"> new_page_setup</span><span class="symbol">;</span>
-<span class="cbracket">}</span></pre></td>
+  <span class="n">page_setup</span> <span class="o">=</span> <span class="n">new_page_setup</span><span class="p">;</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1330,6 +1330,6 @@ gtk_page_setup_to_gvariant (<em class="parameter"><code><a class="link" href="Gt
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.30.1</div>
 </body>
 </html>
