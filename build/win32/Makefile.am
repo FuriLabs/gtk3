@@ -32,11 +32,17 @@ SUBDIRS =	\
 	vs11	\
 	vs12	\
 	vs14	\
-	vs15
+	vs15	\
+	vs16
 
 EXTRA_DIST +=	\
+	config-msvc.mak		\
+	config-msvc.mak.in		\
+	create-lists.bat	\
+	create-lists-msvc.mak		\
 	detectenv-msvc.mak		\
-	gentypefuncs.py			\
+	gen-gdkversionmacros-h.py	\
+	generate-msvc.mak	\
 	gtk-introspection-msvc.mak	\
 	introspection-msvc.mak		\
 	replace.py			\

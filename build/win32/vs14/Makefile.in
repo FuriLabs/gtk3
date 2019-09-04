@@ -266,7 +266,6 @@ GTK_PRINT_BACKENDS = @GTK_PRINT_BACKENDS@
 GTK_PRIVATE_PACKAGES = @GTK_PRIVATE_PACKAGES@
 GTK_VERSION = @GTK_VERSION@
 GTK_XIM_FLAGS = @GTK_XIM_FLAGS@
-HAVE_HTTP_AUTHSTRING = @HAVE_HTTP_AUTHSTRING@
 HTML_DIR = @HTML_DIR@
 INCLUDED_IMMODULE_DEFINE = @INCLUDED_IMMODULE_DEFINE@
 INCLUDED_IMMODULE_OBJ = @INCLUDED_IMMODULE_OBJ@
@@ -423,10 +422,9 @@ GTESTER_REPORT = gtester-report		# in $PATH for non-GLIB packages
 
 # initialize variables for unconditional += appending
 EXTRA_DIST = README.txt gtk+.sln gtk3-prebuild.vcxproj \
-	gtk3-prebuild.vcxproj.filters gdk3-win32.vcxproj \
-	gdk3-win32.vcxproj.filters gdk-3.vcxproj gdk-3.vcxproj.filters \
-	gtk-3.vcxproj gtk-3.vcxproj.filters gtk-builder-tool.vcxproj \
-	gtk-builder-tool.vcxproj.filters \
+	gdk3-win32.vcxproj gdk3-win32.vcxproj.filters gdk-3.vcxproj \
+	gdk-3.vcxproj.filters gtk-3.vcxproj gtk-3.vcxproj.filters \
+	gtk-builder-tool.vcxproj gtk-builder-tool.vcxproj.filters \
 	gtk-encode-symbolic-svg.vcxproj \
 	gtk-encode-symbolic-svg.vcxproj.filters \
 	gtk-query-settings.vcxproj gtk-query-settings.vcxproj.filters \
@@ -733,17 +731,17 @@ test-report perf-report full-report:	${TEST_PROGS}
 # run make test-cwd as part of make check
 check-local: test-cwd
 
-%.sln:
+%.sln: $(top_builddir)/build/win32/vs10/Makefile
 	sed 's/11\.00/$(MSVC_FORMAT_VER)\.00/g' < $(top_srcdir)/build/win32/vs10/$@ > $(top_builddir)/build/win32/vs$(MSVC_VER)/$@.tmp
 	sed 's/2010/$(MSVC_VER_LONG)/g' < $(top_builddir)/build/win32/vs$(MSVC_VER)/$@.tmp > $(top_builddir)/build/win32/vs$(MSVC_VER)/$@
 	rm $(top_builddir)/build/win32/vs$(MSVC_VER)/$@.tmp
 
-%.txt:
+%.txt: $(top_builddir)/build/win32/vs10/Makefile
 	sed 's/vs10/vs$(MSVC_VER)/g' < $(top_srcdir)/build/win32/vs10/$@ > $(top_builddir)/build/win32/vs$(MSVC_VER)/$@.tmp
 	sed 's/VS10/VS$(MSVC_VER)/g' < $(top_builddir)/build/win32/vs$(MSVC_VER)/$@.tmp > $(top_builddir)/build/win32/vs$(MSVC_VER)/$@
 	rm $(top_builddir)/build/win32/vs$(MSVC_VER)/$@.tmp
 
-%.vcxproj:
+%.vcxproj: $(top_builddir)/build/win32/vs10/Makefile
 	if test -e $(top_srcdir)/build/win32/vs10/$@; then \
 		sed 's/v100/v$(MSVC_TOOLSET)/g' < $(top_srcdir)/build/win32/vs10/$@ > $(top_builddir)/build/win32/vs$(MSVC_VER)/$@; \
 	else \
@@ -757,7 +755,7 @@ check-local: test-cwd
 		sed 's/<VSVer>10<\/VSVer>/<VSVer>$(MSVC_VER)<\/VSVer>/g' < $(top_builddir)/build/win32/vs10/$@ > $(top_builddir)/build/win32/vs$(MSVC_VER)/$@; \
 	fi
 
-%.vcxproj.filters:
+%.vcxproj.filters: $(top_builddir)/build/win32/vs10/Makefile
 	if test -e $(top_srcdir)/build/win32/vs10/$@; then \
 		cp $(top_srcdir)/build/win32/vs10/$@ $(top_builddir)/build/win32/vs$(MSVC_VER)/$@; \
 	else \

@@ -350,7 +350,6 @@ GTK_PRINT_BACKENDS = @GTK_PRINT_BACKENDS@
 GTK_PRIVATE_PACKAGES = @GTK_PRIVATE_PACKAGES@
 GTK_VERSION = @GTK_VERSION@
 GTK_XIM_FLAGS = @GTK_XIM_FLAGS@
-HAVE_HTTP_AUTHSTRING = @HAVE_HTTP_AUTHSTRING@
 HTML_DIR = @HTML_DIR@
 INCLUDED_IMMODULE_DEFINE = @INCLUDED_IMMODULE_DEFINE@
 INCLUDED_IMMODULE_OBJ = @INCLUDED_IMMODULE_OBJ@
@@ -507,7 +506,8 @@ GTESTER_REPORT = gtester-report		# in $PATH for non-GLIB packages
 
 # initialize variables for unconditional += appending
 EXTRA_DIST = test-css-style.gresource.xml $(resource_files) \
-	$(test_in_files) $(test_data) $(NULL) $(am__append_1)
+	$(test_in_files) $(test_data) meson.build $(NULL) \
+	$(am__append_1)
 TEST_PROGS = test-css-style
 
 ### testing rules

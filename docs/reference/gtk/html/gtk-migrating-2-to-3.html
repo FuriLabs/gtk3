@@ -587,7 +587,7 @@ Another alternative is to use pixbufs instead of surfaces with
 <span class="function">gdk_cairo_set_source_rgba</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">rgba</span><span class="symbol">);</span>
 <span class="comment">/* draw the text */</span>
 <span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-Paths.html#cairo-move-to">cairo_move_to</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> x</span><span class="symbol">,</span><span class="normal"> y</span><span class="symbol">);</span>
-<span class="function"><a href="/usr/share/gtk-doc/html/pango/pango-Cairo-Rendering.html#pango-cairo-show-layout">pango_cairo_show_layout</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> layout</span><span class="symbol">);</span>
+<span class="function"><a href="https://developer.gnome.org/pango/pango-Cairo-Rendering.html#pango-cairo-show-layout">pango_cairo_show_layout</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> layout</span><span class="symbol">);</span>
 <span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-destroy">cairo_destroy</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span></pre></td>
       </tr>
     </tbody>
@@ -749,7 +749,7 @@ Another alternative is to use pixbufs instead of surfaces with
           function. This is often used to draw text shadows or selections.
           Pango’s cairo support does not yet provide this functionality. If
           you use Pango layouts that change colors, the easiest way to achieve
-          a similar effect is using <a href="/usr/share/gtk-doc/html/pango/pango-Cairo-Rendering.html#pango-cairo-layout-path"><code class="function">pango_cairo_layout_path()</code></a> and <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-fill"><code class="function">cairo_fill()</code></a>
+          a similar effect is using <a href="https://developer.gnome.org/pango/pango-Cairo-Rendering.html#pango-cairo-layout-path"><code class="function">pango_cairo_layout_path()</code></a> and <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-fill"><code class="function">cairo_fill()</code></a>
           instead of <code class="function">gdk_draw_layout_with_colors()</code>. Note that this results in
           a slightly uglier-looking text, as subpixel anti-aliasing is not
           supported.

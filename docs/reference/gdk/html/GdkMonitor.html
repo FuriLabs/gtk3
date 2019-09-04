@@ -415,7 +415,10 @@ gdk_monitor_get_height_mm (<em class="parameter"><code><a class="link" href="Gdk
 <a name="gdk-monitor-get-manufacturer"></a><h3>gdk_monitor_get_manufacturer ()</h3>
 <pre class="programlisting">const <span class="returnvalue">char</span> *
 gdk_monitor_get_manufacturer (<em class="parameter"><code><a class="link" href="GdkMonitor.html" title="GdkMonitor"><span class="type">GdkMonitor</span></a> *monitor</code></em>);</pre>
-<p>Gets the name of the monitor's manufacturer, if available.</p>
+<p>Gets the name or PNP ID of the monitor's manufacturer, if available.</p>
+<p>Note that this value might also vary depending on actual
+display backend.</p>
+<p>PNP ID registry is located at https://uefi.org/pnp_id_list</p>
 <div class="refsect3">
 <a name="gdk-monitor-get-manufacturer.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">

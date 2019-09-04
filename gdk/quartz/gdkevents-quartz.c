@@ -41,6 +41,11 @@
 #define GRIP_HEIGHT 15
 #define GDK_LION_RESIZE 5
 
+#if MAC_OS_X_VERSION_MAX_ALLOWED < 1060
+#define NSEventTypeRotate 13
+#define NSEventTypeMagnify 30
+#endif
+
 #define WINDOW_IS_TOPLEVEL(window)		     \
   (GDK_WINDOW_TYPE (window) != GDK_WINDOW_CHILD &&   \
    GDK_WINDOW_TYPE (window) != GDK_WINDOW_FOREIGN && \
@@ -608,13 +613,23 @@ find_toplevel_under_pointer (GdkDisplay *display,
 
   info = _gdk_display_get_pointer_info (display, gdk_seat_get_pointer (seat));
   toplevel = info->toplevel_under_pointer;
+
   if (!(toplevel && WINDOW_IS_TOPLEVEL (toplevel)))
     {
       gint gdk_x = 0, gdk_y = 0;
       _gdk_quartz_window_nspoint_to_gdk_xy (screen_point, &gdk_x, &gdk_y);
-      toplevel = _gdk_quartz_window_find_child (_gdk_root, gdk_x, gdk_y, TRUE);
-      info->toplevel_under_pointer = g_object_ref (toplevel);
+      toplevel = gdk_display_get_window_at_pointer (display, &gdk_x, &gdk_y);
+
+      if (toplevel && ! WINDOW_IS_TOPLEVEL (toplevel))
+        toplevel = gdk_window_get_toplevel (toplevel);
+
+      if (toplevel)
+        info->toplevel_under_pointer = g_object_ref (toplevel);
+      else
+        info->toplevel_under_pointer = NULL;
+
     }
+
   if (toplevel)
     {
       get_window_point_from_screen_point (toplevel, screen_point, x, y);
@@ -1302,14 +1317,16 @@ _gdk_quartz_events_get_current_keyboard_modifiers (void)
 GdkModifierType
 _gdk_quartz_events_get_current_mouse_modifiers (void)
 {
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= 1060
   if (gdk_quartz_osx_version () >= GDK_OSX_SNOW_LEOPARD)
-    {
-      return get_mouse_button_modifiers_from_ns_buttons ([NSClassFromString(@"NSEvent") pressedMouseButtons]);
-    }
+    return get_mouse_button_modifiers_from_ns_buttons ([NSClassFromString(@"NSEvent") pressedMouseButtons]);
+#if MAC_OS_X_VERSION_MIN_REQUIRED < 1060
   else
-    {
-      return get_mouse_button_modifiers_from_ns_buttons (GetCurrentButtonState ());
-    }
+#endif
+#endif
+#if MAC_OS_X_VERSION_MIN_REQUIRED < 1060
+    return get_mouse_button_modifiers_from_ns_buttons (GetCurrentButtonState ());
+#endif
 }
 
 /* Detect window resizing */

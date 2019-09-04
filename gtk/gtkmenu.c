@@ -1340,13 +1340,10 @@ gtk_menu_init (GtkMenu *menu)
 
   menu->priv = priv;
 
-  priv->toplevel = g_object_connect (g_object_new (GTK_TYPE_WINDOW,
-                                                   "type", GTK_WINDOW_POPUP,
-                                                   "child", menu,
-                                                   NULL),
-                                     "signal::event", gtk_menu_window_event, menu,
-                                     "signal::destroy", gtk_widget_destroyed, &priv->toplevel,
-                                     NULL);
+  priv->toplevel = gtk_window_new (GTK_WINDOW_POPUP);
+  gtk_container_add (GTK_CONTAINER (priv->toplevel), GTK_WIDGET (menu));
+  g_signal_connect (priv->toplevel, "event", G_CALLBACK (gtk_menu_window_event), menu);
+  g_signal_connect (priv->toplevel, "destroy", G_CALLBACK (gtk_widget_destroyed), &priv->toplevel);
   gtk_window_set_resizable (GTK_WINDOW (priv->toplevel), FALSE);
   gtk_window_set_mnemonic_modifier (GTK_WINDOW (priv->toplevel), 0);
 
@@ -5268,14 +5265,14 @@ gtk_menu_position (GtkMenu  *menu,
                                          !!(anchor_hints & GDK_ANCHOR_RESIZE_X),
                                          !!(anchor_hints & GDK_ANCHOR_RESIZE_Y));
 
+  if (!gtk_widget_get_visible (priv->toplevel))
+    gtk_window_set_type_hint (GTK_WINDOW (priv->toplevel), priv->menu_type_hint);
+
   /* Realize so we have the proper width and height to figure out
    * the right place to popup the menu.
    */
   gtk_widget_realize (priv->toplevel);
   gtk_window_move_resize (GTK_WINDOW (priv->toplevel));
-
-  if (!gtk_widget_get_visible (priv->toplevel))
-    gtk_window_set_type_hint (GTK_WINDOW (priv->toplevel), priv->menu_type_hint);
 
   if (text_direction == GTK_TEXT_DIR_NONE)
     text_direction = gtk_widget_get_direction (GTK_WIDGET (menu));

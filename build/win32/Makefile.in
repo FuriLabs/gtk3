@@ -107,7 +107,7 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 DIST_COMMON = $(srcdir)/Makefile.am $(am__DIST_COMMON)
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
-CONFIG_CLEAN_FILES =
+CONFIG_CLEAN_FILES = config-msvc.mak
 CONFIG_CLEAN_VPATH_FILES =
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
@@ -164,7 +164,8 @@ am__define_uniq_tagged_files = \
 ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = $(SUBDIRS)
-am__DIST_COMMON = $(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
+am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/config-msvc.mak.in \
+	$(top_srcdir)/Makefile.decl
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
   dir0=`pwd`; \
@@ -310,7 +311,6 @@ GTK_PRINT_BACKENDS = @GTK_PRINT_BACKENDS@
 GTK_PRIVATE_PACKAGES = @GTK_PRIVATE_PACKAGES@
 GTK_VERSION = @GTK_VERSION@
 GTK_XIM_FLAGS = @GTK_XIM_FLAGS@
-HAVE_HTTP_AUTHSTRING = @HAVE_HTTP_AUTHSTRING@
 HTML_DIR = @HTML_DIR@
 INCLUDED_IMMODULE_DEFINE = @INCLUDED_IMMODULE_DEFINE@
 INCLUDED_IMMODULE_OBJ = @INCLUDED_IMMODULE_OBJ@
@@ -466,7 +466,9 @@ GTESTER = gtester -k		# in $PATH for non-GLIB packages
 GTESTER_REPORT = gtester-report		# in $PATH for non-GLIB packages
 
 # initialize variables for unconditional += appending
-EXTRA_DIST = detectenv-msvc.mak gentypefuncs.py \
+EXTRA_DIST = config-msvc.mak config-msvc.mak.in create-lists.bat \
+	create-lists-msvc.mak detectenv-msvc.mak \
+	gen-gdkversionmacros-h.py generate-msvc.mak \
 	gtk-introspection-msvc.mak introspection-msvc.mak replace.py \
 	pc_base.py gtkpc.py README_EGL_MSVC.txt $(GENERATED_ITEMS)
 TEST_PROGS = 
@@ -513,7 +515,8 @@ SUBDIRS = \
 	vs11	\
 	vs12	\
 	vs14	\
-	vs15
+	vs15	\
+	vs16
 
 all: all-recursive
 
@@ -548,6 +551,8 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+config-msvc.mak: $(top_builddir)/config.status $(srcdir)/config-msvc.mak.in
+	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
 
 mostlyclean-libtool:
 	-rm -f *.lo

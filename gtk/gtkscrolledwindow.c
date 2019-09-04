@@ -704,6 +704,9 @@ gtk_scrolled_window_class_init (GtkScrolledWindowClass *class)
    * is present. Otherwise, they are overlayed on top of the content,
    * as narrow indicators.
    *
+   * Note that overlay scrolling can also be globally disabled, with
+   * the #GtkSettings::gtk-overlay-scrolling setting.
+   *
    * Since: 3.16
    */
   properties[PROP_OVERLAY_SCROLLING] =
@@ -848,8 +851,7 @@ gtk_scrolled_window_class_init (GtkScrolledWindowClass *class)
     g_signal_new (I_("edge-overshot"),
                   G_TYPE_FROM_CLASS (gobject_class),
                   G_SIGNAL_RUN_LAST, 0,
-                  NULL, NULL,
-                  g_cclosure_marshal_generic,
+                  NULL, NULL, NULL,
                   G_TYPE_NONE, 1, GTK_TYPE_POSITION_TYPE);
 
   /**
@@ -873,8 +875,7 @@ gtk_scrolled_window_class_init (GtkScrolledWindowClass *class)
     g_signal_new (I_("edge-reached"),
                   G_TYPE_FROM_CLASS (gobject_class),
                   G_SIGNAL_RUN_LAST, 0,
-                  NULL, NULL,
-                  g_cclosure_marshal_generic,
+                  NULL, NULL, NULL,
                   G_TYPE_NONE, 1, GTK_TYPE_POSITION_TYPE);
 
   binding_set = gtk_binding_set_by_class (class);
@@ -2217,8 +2218,8 @@ gtk_scrolled_window_init (GtkScrolledWindow *scrolled_window)
 
 /**
  * gtk_scrolled_window_new:
- * @hadjustment: (allow-none): horizontal adjustment
- * @vadjustment: (allow-none): vertical adjustment
+ * @hadjustment: (nullable): horizontal adjustment
+ * @vadjustment: (nullable): vertical adjustment
  *
  * Creates a new scrolled window.
  *
@@ -2252,7 +2253,7 @@ gtk_scrolled_window_new (GtkAdjustment *hadjustment,
 /**
  * gtk_scrolled_window_set_hadjustment:
  * @scrolled_window: a #GtkScrolledWindow
- * @hadjustment: horizontal scroll adjustment
+ * @hadjustment: (nullable): the #GtkAdjustment to use, or %NULL to create a new one
  *
  * Sets the #GtkAdjustment for the horizontal scrollbar.
  */
@@ -2328,7 +2329,7 @@ gtk_scrolled_window_set_hadjustment (GtkScrolledWindow *scrolled_window,
 /**
  * gtk_scrolled_window_set_vadjustment:
  * @scrolled_window: a #GtkScrolledWindow
- * @vadjustment: vertical scroll adjustment
+ * @vadjustment: (nullable): the #GtkAdjustment to use, or %NULL to create a new one
  *
  * Sets the #GtkAdjustment for the vertical scrollbar.
  */
@@ -2523,9 +2524,9 @@ gtk_scrolled_window_set_policy (GtkScrolledWindow *scrolled_window,
 /**
  * gtk_scrolled_window_get_policy:
  * @scrolled_window: a #GtkScrolledWindow
- * @hscrollbar_policy: (out) (allow-none): location to store the policy 
+ * @hscrollbar_policy: (out) (optional): location to store the policy
  *     for the horizontal scrollbar, or %NULL
- * @vscrollbar_policy: (out) (allow-none): location to store the policy
+ * @vscrollbar_policy: (out) (optional): location to store the policy
  *     for the vertical scrollbar, or %NULL
  * 
  * Retrieves the current policy values for the horizontal and vertical
@@ -4163,6 +4164,7 @@ gtk_scrolled_window_map (GtkWidget *widget)
   GTK_WIDGET_CLASS (gtk_scrolled_window_parent_class)->map (widget);
 
   gtk_scrolled_window_update_animating (scrolled_window);
+  gtk_scrolled_window_update_use_indicators (scrolled_window);
 }
 
 static void
@@ -4439,8 +4441,12 @@ gtk_scrolled_window_update_use_indicators (GtkScrolledWindow *scrolled_window)
 {
   GtkScrolledWindowPrivate *priv = scrolled_window->priv;
   gboolean use_indicators;
+  GtkSettings *settings = gtk_widget_get_settings (GTK_WIDGET (scrolled_window));
+  gboolean overlay_scrolling;
 
-  use_indicators = priv->overlay_scrolling;
+  g_object_get (settings, "gtk-overlay-scrolling", &overlay_scrolling, NULL);
+
+  use_indicators = overlay_scrolling && priv->overlay_scrolling;
 
   if (g_strcmp0 (g_getenv ("GTK_OVERLAY_SCROLLING"), "0") == 0)
     use_indicators = FALSE;

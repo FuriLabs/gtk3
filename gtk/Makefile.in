@@ -283,15 +283,16 @@ am__libgtk_3_la_SOURCES_DIST = a11y/gtkaccessibility.c \
 	a11y/gtkcontainercellaccessible.c a11y/gtkentryaccessible.c \
 	a11y/gtkexpanderaccessible.c a11y/gtkflowboxaccessible.c \
 	a11y/gtkflowboxchildaccessible.c a11y/gtkframeaccessible.c \
-	a11y/gtkiconviewaccessible.c a11y/gtkimageaccessible.c \
-	a11y/gtkimagecellaccessible.c a11y/gtklabelaccessible.c \
-	a11y/gtklevelbaraccessible.c a11y/gtklinkbuttonaccessible.c \
-	a11y/gtklistboxaccessible.c a11y/gtklistboxrowaccessible.c \
-	a11y/gtklockbuttonaccessible.c a11y/gtkmenuaccessible.c \
-	a11y/gtkmenubuttonaccessible.c a11y/gtkmenushellaccessible.c \
-	a11y/gtkmenuitemaccessible.c a11y/gtknotebookaccessible.c \
-	a11y/gtknotebookpageaccessible.c a11y/gtkpanedaccessible.c \
-	a11y/gtkpopoveraccessible.c a11y/gtkprogressbaraccessible.c \
+	a11y/gtkheaderbaraccessible.c a11y/gtkiconviewaccessible.c \
+	a11y/gtkimageaccessible.c a11y/gtkimagecellaccessible.c \
+	a11y/gtklabelaccessible.c a11y/gtklevelbaraccessible.c \
+	a11y/gtklinkbuttonaccessible.c a11y/gtklistboxaccessible.c \
+	a11y/gtklistboxrowaccessible.c a11y/gtklockbuttonaccessible.c \
+	a11y/gtkmenuaccessible.c a11y/gtkmenubuttonaccessible.c \
+	a11y/gtkmenushellaccessible.c a11y/gtkmenuitemaccessible.c \
+	a11y/gtknotebookaccessible.c a11y/gtknotebookpageaccessible.c \
+	a11y/gtkpanedaccessible.c a11y/gtkpopoveraccessible.c \
+	a11y/gtkprogressbaraccessible.c \
 	a11y/gtkradiobuttonaccessible.c \
 	a11y/gtkradiomenuitemaccessible.c a11y/gtkrangeaccessible.c \
 	a11y/gtkrenderercellaccessible.c a11y/gtkscaleaccessible.c \
@@ -492,6 +493,7 @@ am__objects_1 = a11y/libgtk_3_la-gtkaccessibility.lo \
 	a11y/libgtk_3_la-gtkflowboxaccessible.lo \
 	a11y/libgtk_3_la-gtkflowboxchildaccessible.lo \
 	a11y/libgtk_3_la-gtkframeaccessible.lo \
+	a11y/libgtk_3_la-gtkheaderbaraccessible.lo \
 	a11y/libgtk_3_la-gtkiconviewaccessible.lo \
 	a11y/libgtk_3_la-gtkimageaccessible.lo \
 	a11y/libgtk_3_la-gtkimagecellaccessible.lo \
@@ -1385,6 +1387,7 @@ am__depfiles_remade = ./$(DEPDIR)/encodesymbolic.Po \
 	a11y/$(DEPDIR)/libgtk_3_la-gtkflowboxaccessible.Plo \
 	a11y/$(DEPDIR)/libgtk_3_la-gtkflowboxchildaccessible.Plo \
 	a11y/$(DEPDIR)/libgtk_3_la-gtkframeaccessible.Plo \
+	a11y/$(DEPDIR)/libgtk_3_la-gtkheaderbaraccessible.Plo \
 	a11y/$(DEPDIR)/libgtk_3_la-gtkiconviewaccessible.Plo \
 	a11y/$(DEPDIR)/libgtk_3_la-gtkimageaccessible.Plo \
 	a11y/$(DEPDIR)/libgtk_3_la-gtkimagecellaccessible.Plo \
@@ -1679,7 +1682,6 @@ GTK_PRINT_BACKENDS = @GTK_PRINT_BACKENDS@
 GTK_PRIVATE_PACKAGES = @GTK_PRIVATE_PACKAGES@
 GTK_VERSION = @GTK_VERSION@
 GTK_XIM_FLAGS = @GTK_XIM_FLAGS@
-HAVE_HTTP_AUTHSTRING = @HAVE_HTTP_AUTHSTRING@
 HTML_DIR = @HTML_DIR@
 INCLUDED_IMMODULE_DEFINE = @INCLUDED_IMMODULE_DEFINE@
 INCLUDED_IMMODULE_OBJ = @INCLUDED_IMMODULE_OBJ@
@@ -1848,7 +1850,10 @@ EXTRA_DIST = $(gtk_all_private_h_sources) $(gtk_extra_sources) \
 	gtk-keys.css.default gtk-keys.css.emacs gtk-keys.css.mac \
 	makefile.msc makefile.msc.in gtktypebuiltins.c.template \
 	gtktypebuiltins.h.template gtkprivatetypebuiltins.c.template \
-	gtkprivatetypebuiltins.h.template
+	gtkprivatetypebuiltins.h.template meson.build \
+	gen-gtk-gresources-xml.py gen-rc.py gentypefuncs.py \
+	a11y/meson.build deprecated/meson.build inspector/meson.build \
+	theme/Adwaita/meson.build theme/HighContrast/meson.build
 TEST_PROGS = 
 
 ### testing rules
@@ -1942,6 +1947,7 @@ a11y_h_sources = \
 	a11y/gtkflowboxaccessible.h		\
 	a11y/gtkflowboxchildaccessible.h	\
 	a11y/gtkframeaccessible.h		\
+	a11y/gtkheaderbaraccessible.h	        \
 	a11y/gtkiconviewaccessible.h		\
 	a11y/gtkimageaccessible.h		\
 	a11y/gtkimagecellaccessible.h		\
@@ -2016,6 +2022,7 @@ a11y_c_sources = \
 	a11y/gtkflowboxaccessible.c		\
 	a11y/gtkflowboxchildaccessible.c	\
 	a11y/gtkframeaccessible.c		\
+	a11y/gtkheaderbaraccessible.c	        \
 	a11y/gtkiconviewaccessible.c		\
 	a11y/gtkimageaccessible.c		\
 	a11y/gtkimagecellaccessible.c		\
@@ -2846,7 +2853,7 @@ MAINTAINERCLEANFILES = \
 	$(print_portal_built_sources)		\
 	$(stamp_files)
 
-DISTCLEANFILES = $(am__append_18)
+DISTCLEANFILES = gtktypefuncs.inc $(am__append_18)
 pkgdata_DATA = gtkbuilder.rng
 itsdir = $(datadir)/gettext/its
 its_DATA = gtkbuilder.loc gtkbuilder.its
@@ -3315,6 +3322,8 @@ a11y/libgtk_3_la-gtkflowboxaccessible.lo: a11y/$(am__dirstamp) \
 a11y/libgtk_3_la-gtkflowboxchildaccessible.lo: a11y/$(am__dirstamp) \
 	a11y/$(DEPDIR)/$(am__dirstamp)
 a11y/libgtk_3_la-gtkframeaccessible.lo: a11y/$(am__dirstamp) \
+	a11y/$(DEPDIR)/$(am__dirstamp)
+a11y/libgtk_3_la-gtkheaderbaraccessible.lo: a11y/$(am__dirstamp) \
 	a11y/$(DEPDIR)/$(am__dirstamp)
 a11y/libgtk_3_la-gtkiconviewaccessible.lo: a11y/$(am__dirstamp) \
 	a11y/$(DEPDIR)/$(am__dirstamp)
@@ -4023,6 +4032,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkflowboxaccessible.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkflowboxchildaccessible.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkframeaccessible.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkheaderbaraccessible.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkiconviewaccessible.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkimageaccessible.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkimagecellaccessible.Plo@am__quote@ # am--include-marker
@@ -4286,6 +4296,13 @@ a11y/libgtk_3_la-gtkframeaccessible.lo: a11y/gtkframeaccessible.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='a11y/gtkframeaccessible.c' object='a11y/libgtk_3_la-gtkframeaccessible.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o a11y/libgtk_3_la-gtkframeaccessible.lo `test -f 'a11y/gtkframeaccessible.c' || echo '$(srcdir)/'`a11y/gtkframeaccessible.c
+
+a11y/libgtk_3_la-gtkheaderbaraccessible.lo: a11y/gtkheaderbaraccessible.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT a11y/libgtk_3_la-gtkheaderbaraccessible.lo -MD -MP -MF a11y/$(DEPDIR)/libgtk_3_la-gtkheaderbaraccessible.Tpo -c -o a11y/libgtk_3_la-gtkheaderbaraccessible.lo `test -f 'a11y/gtkheaderbaraccessible.c' || echo '$(srcdir)/'`a11y/gtkheaderbaraccessible.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) a11y/$(DEPDIR)/libgtk_3_la-gtkheaderbaraccessible.Tpo a11y/$(DEPDIR)/libgtk_3_la-gtkheaderbaraccessible.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='a11y/gtkheaderbaraccessible.c' object='a11y/libgtk_3_la-gtkheaderbaraccessible.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o a11y/libgtk_3_la-gtkheaderbaraccessible.lo `test -f 'a11y/gtkheaderbaraccessible.c' || echo '$(srcdir)/'`a11y/gtkheaderbaraccessible.c
 
 a11y/libgtk_3_la-gtkiconviewaccessible.lo: a11y/gtkiconviewaccessible.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT a11y/libgtk_3_la-gtkiconviewaccessible.lo -MD -MP -MF a11y/$(DEPDIR)/libgtk_3_la-gtkiconviewaccessible.Tpo -c -o a11y/libgtk_3_la-gtkiconviewaccessible.lo `test -f 'a11y/gtkiconviewaccessible.c' || echo '$(srcdir)/'`a11y/gtkiconviewaccessible.c
@@ -8656,6 +8673,7 @@ distclean: distclean-am
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkflowboxaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkflowboxchildaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkframeaccessible.Plo
+	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkheaderbaraccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkiconviewaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkimageaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkimagecellaccessible.Plo
@@ -9246,6 +9264,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkflowboxaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkflowboxchildaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkframeaccessible.Plo
+	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkheaderbaraccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkiconviewaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkimageaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkimagecellaccessible.Plo
@@ -9652,7 +9671,7 @@ gtkprivatetypebuiltins.c: $(gtk_private_type_h_sources)  gtkprivatetypebuiltins.
 	&& cp xgen-gptbc gtkprivatetypebuiltins.c  \
 	&& rm -f xgen-gptbc
 
-gtktypefuncs.c: stamp-gtktypebuiltins.h stamp-gtkprivatetypebuiltins.h $(top_srcdir)/gtk/*.h $(top_srcdir)/gtk/a11y/*.h $(top_srcdir)/gtk/deprecated/*.h $(top_srcdir)/gdk/*.h Makefile
+gtktypefuncs.inc: stamp-gtktypebuiltins.h stamp-gtkprivatetypebuiltins.h $(top_srcdir)/gtk/*.h $(top_srcdir)/gtk/a11y/*.h $(top_srcdir)/gtk/deprecated/*.h $(top_srcdir)/gdk/*.h Makefile
 	$(AM_V_GEN) export LC_ALL=C ; \
 	  (echo '#undef GTK_COMPILATION' && echo '#include <gtk/gtkx.h>') > xgen-gtfsrc.c && \
 	  echo 'G_GNUC_BEGIN_IGNORE_DEPRECATIONS' > xgen-gtf && \
@@ -9661,7 +9680,7 @@ gtktypefuncs.c: stamp-gtktypebuiltins.h stamp-gtkprivatetypebuiltins.h $(top_src
 	  sort | uniq | \
 	  $(SED) '{ s/^/*tp++ = /; s/$$/();/; s/^.*\(gdk_x11\|gtk_plug_\|gtk_socket_\).*$$/#ifdef GDK_WINDOWING_X11\n&\n#endif/; }' >> xgen-gtf \
 	&& cp xgen-gtf $@ && rm -f xgen-gtf
-$(srcdir)/gtktestutils.c: gtktypefuncs.c
+$(srcdir)/gtktestutils.c: gtktypefuncs.inc
 
 install-exec-hook:
 @DISABLE_EXPLICIT_DEPS_TRUE@	$(SHELL) $(top_srcdir)/sanitize-la.sh $(DESTDIR)$(libdir)/libgtk-3.la
@@ -9756,6 +9775,7 @@ $(foreach proj,$(MSVCPROJS),$(eval $(call msvcproj-builder,$(proj))))
 @HAVE_INTROSPECTION_TRUE@    $(error Need to define $(_gir_name)_MSVC_LIBS or $(_gir_name)_MSVC_PROGRAM))
 
 @HAVE_INTROSPECTION_TRUE@$(top_builddir)/build/win32/$(_gir_name)_list: Makefile
+@HAVE_INTROSPECTION_TRUE@	rm -f $(top_builddir)/build/win32/$(_gir_name)_list
 @HAVE_INTROSPECTION_TRUE@	for F in $(_gir_files_msvc); do \
 @HAVE_INTROSPECTION_TRUE@		case $$$$F in \
 @HAVE_INTROSPECTION_TRUE@		*.c|*.cpp|*.cc|*.cxx|*.h|*.hpp|*.hh|*.hxx) \

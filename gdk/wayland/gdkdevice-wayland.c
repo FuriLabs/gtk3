@@ -310,8 +310,13 @@ struct _GdkWaylandDeviceManagerClass
   GdkDeviceManagerClass parent_class;
 };
 
+static void init_pointer_data (GdkWaylandPointerData *pointer_data,
+                               GdkDisplay            *display_wayland,
+                               GdkDevice             *master);
+
 static void
 pointer_surface_update_scale (GdkDevice *device);
+
 
 static void deliver_key_event (GdkWaylandSeat       *seat,
                                uint32_t              time_,
@@ -629,6 +634,7 @@ static void
 emulate_crossing (GdkWindow       *window,
                   GdkWindow       *subwindow,
                   GdkDevice       *device,
+                  GdkDevice       *source,
                   GdkEventType     type,
                   GdkCrossingMode  mode,
                   guint32          time_)
@@ -642,7 +648,7 @@ emulate_crossing (GdkWindow       *window,
   event->crossing.mode = mode;
   event->crossing.detail = GDK_NOTIFY_NONLINEAR;
   gdk_event_set_device (event, device);
-  gdk_event_set_source_device (event, device);
+  gdk_event_set_source_device (event, source);
   gdk_event_set_seat (event, gdk_device_get_seat (device));
 
   gdk_window_get_device_position_double (window, device,
@@ -719,9 +725,9 @@ device_emit_grab_crossing (GdkDevice       *device,
   else
     {
       if (from)
-        emulate_crossing (from, to, device, GDK_LEAVE_NOTIFY, mode, time_);
+        emulate_crossing (from, to, device, device, GDK_LEAVE_NOTIFY, mode, time_);
       if (to)
-        emulate_crossing (to, from, device, GDK_ENTER_NOTIFY, mode, time_);
+        emulate_crossing (to, from, device, device, GDK_ENTER_NOTIFY, mode, time_);
     }
 }
 
@@ -2971,6 +2977,8 @@ tablet_handle_done (void                 *data,
     g_list_prepend (device_manager->devices, tablet->master);
   g_signal_emit_by_name (device_manager, "device-added", master);
 
+  init_pointer_data (&tablet->pointer_info, display, tablet->master);
+
   tablet->stylus_device = stylus_device;
   device_manager->devices =
     g_list_prepend (device_manager->devices, tablet->stylus_device);
@@ -3497,16 +3505,16 @@ gdk_wayland_tablet_flush_frame_event (GdkWaylandTabletData *tablet,
     }
 
   if (event->type == GDK_PROXIMITY_OUT)
-    emulate_crossing (event->proximity.window, NULL,
-                      tablet->master, GDK_LEAVE_NOTIFY,
+    emulate_crossing (event->proximity.window, NULL, tablet->master,
+                      tablet->current_device, GDK_LEAVE_NOTIFY,
                       GDK_CROSSING_NORMAL, time);
 
   _gdk_wayland_display_deliver_event (gdk_seat_get_display (tablet->seat),
                                       event);
 
   if (event->type == GDK_PROXIMITY_IN)
-    emulate_crossing (event->proximity.window, NULL,
-                      tablet->master, GDK_ENTER_NOTIFY,
+    emulate_crossing (event->proximity.window, NULL, tablet->master,
+                      tablet->current_device, GDK_ENTER_NOTIFY,
                       GDK_CROSSING_NORMAL, time);
 }
 
@@ -4446,14 +4454,11 @@ tablet_seat_handle_tablet_added (void                      *data,
                                  struct zwp_tablet_v2      *wp_tablet)
 {
   GdkWaylandSeat *seat = data;
-  GdkWaylandDisplay *display_wayland = GDK_WAYLAND_DISPLAY (seat->display);
   GdkWaylandTabletData *tablet;
 
   tablet = g_new0 (GdkWaylandTabletData, 1);
   tablet->seat = GDK_SEAT (seat);
-  tablet->pointer_info.current_output_scale = 1;
-  tablet->pointer_info.pointer_surface =
-    wl_compositor_create_surface (display_wayland->compositor);
+
   tablet->wp_tablet = wp_tablet;
 
   seat->tablets = g_list_prepend (seat->tablets, tablet);
@@ -4598,16 +4603,28 @@ pointer_surface_enter (void              *data,
                        struct wl_output  *output)
 
 {
-  GdkWaylandSeat *seat = data;
+  GdkDevice *device = data;
+  GdkWaylandSeat *seat = GDK_WAYLAND_SEAT (gdk_device_get_seat (device));
+  GdkWaylandTabletData *tablet;
 
   GDK_NOTE (EVENTS,
             g_message ("pointer surface of seat %p entered output %p",
                        seat, output));
 
-  seat->pointer_info.pointer_surface_outputs =
-    g_slist_append (seat->pointer_info.pointer_surface_outputs, output);
+  tablet = gdk_wayland_device_manager_find_tablet (seat, device);
 
-  pointer_surface_update_scale (seat->master_pointer);
+  if (tablet)
+    {
+      tablet->pointer_info.pointer_surface_outputs =
+        g_slist_append (seat->pointer_info.pointer_surface_outputs, output);
+    }
+  else
+    {
+      seat->pointer_info.pointer_surface_outputs =
+        g_slist_append (seat->pointer_info.pointer_surface_outputs, output);
+    }
+
+  pointer_surface_update_scale (device);
 }
 
 static void
@@ -4615,16 +4632,28 @@ pointer_surface_leave (void              *data,
                        struct wl_surface *wl_surface,
                        struct wl_output  *output)
 {
-  GdkWaylandSeat *seat = data;
+  GdkDevice *device = data;
+  GdkWaylandSeat *seat = GDK_WAYLAND_SEAT (gdk_device_get_seat (device));
+  GdkWaylandTabletData *tablet;
 
   GDK_NOTE (EVENTS,
             g_message ("pointer surface of seat %p left output %p",
                        seat, output));
 
-  seat->pointer_info.pointer_surface_outputs =
-    g_slist_remove (seat->pointer_info.pointer_surface_outputs, output);
+  tablet = gdk_wayland_device_manager_find_tablet (seat, device);
 
-  pointer_surface_update_scale (seat->master_pointer);
+  if (tablet)
+    {
+      tablet->pointer_info.pointer_surface_outputs =
+        g_slist_remove (seat->pointer_info.pointer_surface_outputs, output);
+    }
+  else
+    {
+      seat->pointer_info.pointer_surface_outputs =
+        g_slist_remove (seat->pointer_info.pointer_surface_outputs, output);
+    }
+
+  pointer_surface_update_scale (device);
 }
 
 static const struct wl_surface_listener pointer_surface_listener = {
@@ -4985,6 +5014,23 @@ gdk_wayland_seat_init (GdkWaylandSeat *seat)
 {
 }
 
+static void
+init_pointer_data (GdkWaylandPointerData *pointer_data,
+                   GdkDisplay            *display,
+                   GdkDevice             *master)
+{
+  GdkWaylandDisplay *display_wayland;
+
+  display_wayland = GDK_WAYLAND_DISPLAY (display);
+
+  pointer_data->current_output_scale = 1;
+  pointer_data->pointer_surface =
+    wl_compositor_create_surface (display_wayland->compositor);
+  wl_surface_add_listener (pointer_data->pointer_surface,
+                           &pointer_surface_listener,
+                           master);
+}
+
 void
 _gdk_wayland_device_manager_add_seat (GdkDeviceManager *device_manager,
                                       guint32           id,
@@ -5031,14 +5077,8 @@ _gdk_wayland_device_manager_add_seat (GdkDeviceManager *device_manager,
   wl_data_device_add_listener (seat->data_device,
                                &data_device_listener, seat);
 
-  seat->pointer_info.current_output_scale = 1;
-  seat->pointer_info.pointer_surface =
-    wl_compositor_create_surface (display_wayland->compositor);
-  wl_surface_add_listener (seat->pointer_info.pointer_surface,
-                           &pointer_surface_listener,
-                           seat);
-
   init_devices (seat);
+  init_pointer_data (&seat->pointer_info, display, seat->master_pointer);
 
   if (display_wayland->tablet_manager)
     {
@@ -5284,18 +5324,15 @@ gdk_wayland_device_get_data_device (GdkDevice *gdk_device)
 }
 
 void
-gdk_wayland_device_set_selection (GdkDevice             *gdk_device,
-                                  struct wl_data_source *source)
+gdk_wayland_seat_set_selection (GdkSeat               *seat,
+                                struct wl_data_source *source)
 {
-  GdkWaylandSeat *seat;
+  GdkWaylandSeat *wayland_seat = GDK_WAYLAND_SEAT (seat);
   GdkWaylandDisplay *display_wayland;
 
-  g_return_if_fail (GDK_IS_WAYLAND_DEVICE (gdk_device));
+  display_wayland = GDK_WAYLAND_DISPLAY (wayland_seat->display);
 
-  seat = GDK_WAYLAND_SEAT (gdk_device_get_seat (gdk_device));
-  display_wayland = GDK_WAYLAND_DISPLAY (seat->display);
-
-  wl_data_device_set_selection (seat->data_device, source,
+  wl_data_device_set_selection (wayland_seat->data_device, source,
                                 _gdk_wayland_display_get_serial (display_wayland));
 }
 

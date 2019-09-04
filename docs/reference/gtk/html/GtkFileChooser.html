@@ -369,6 +369,37 @@
 <span class="returnvalue">void</span>
 </td>
 <td class="function_name">
+<a class="link" href="GtkFileChooser.html#gtk-file-chooser-add-choice" title="gtk_file_chooser_add_choice ()">gtk_file_chooser_add_choice</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="GtkFileChooser.html#gtk-file-chooser-remove-choice" title="gtk_file_chooser_remove_choice ()">gtk_file_chooser_remove_choice</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="GtkFileChooser.html#gtk-file-chooser-set-choice" title="gtk_file_chooser_set_choice ()">gtk_file_chooser_set_choice</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <span class="returnvalue">char</span> *
+</td>
+<td class="function_name">
+<a class="link" href="GtkFileChooser.html#gtk-file-chooser-get-choice" title="gtk_file_chooser_get_choice ()">gtk_file_chooser_get_choice</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
 <a class="link" href="GtkFileChooser.html#gtk-file-chooser-add-filter" title="gtk_file_chooser_add_filter ()">gtk_file_chooser_add_filter</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
@@ -2311,6 +2342,166 @@ gtk_file_chooser_get_extra_widget (<em class="parameter"><code><a class="link" h
 <p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.4</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gtk-file-chooser-add-choice"></a><h3>gtk_file_chooser_add_choice ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gtk_file_chooser_add_choice (<em class="parameter"><code><a class="link" href="GtkFileChooser.html" title="GtkFileChooser"><span class="type">GtkFileChooser</span></a> *chooser</code></em>,
+                             <em class="parameter"><code>const <span class="type">char</span> *id</code></em>,
+                             <em class="parameter"><code>const <span class="type">char</span> *label</code></em>,
+                             <em class="parameter"><code>const <span class="type">char</span> **options</code></em>,
+                             <em class="parameter"><code>const <span class="type">char</span> **option_labels</code></em>);</pre>
+<p>Adds a 'choice' to the file chooser. This is typically implemented
+as a combobox or, for boolean choices, as a checkbutton. You can select
+a value using <a class="link" href="GtkFileChooser.html#gtk-file-chooser-set-choice" title="gtk_file_chooser_set_choice ()"><code class="function">gtk_file_chooser_set_choice()</code></a> before the dialog is shown,
+and you can obtain the user-selected value in the ::response signal handler
+using <a class="link" href="GtkFileChooser.html#gtk-file-chooser-get-choice" title="gtk_file_chooser_get_choice ()"><code class="function">gtk_file_chooser_get_choice()</code></a>.</p>
+<p>Compare <a class="link" href="GtkFileChooser.html#gtk-file-chooser-set-extra-widget" title="gtk_file_chooser_set_extra_widget ()"><code class="function">gtk_file_chooser_set_extra_widget()</code></a>.</p>
+<div class="refsect3">
+<a name="gtk-file-chooser-add-choice.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>chooser</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GtkFileChooser.html" title="GtkFileChooser"><span class="type">GtkFileChooser</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>id</p></td>
+<td class="parameter_description"><p>id for the added choice</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>label</p></td>
+<td class="parameter_description"><p>user-visible label for the added choice</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>options</p></td>
+<td class="parameter_description"><p>ids for the options of the choice, or <code class="literal">NULL</code> for a boolean choice. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> zero-terminated=1]</span></td>
+</tr>
+<tr>
+<td class="parameter_name"><p>option_labels</p></td>
+<td class="parameter_description"><p>user-visible labels for the options, must be the same length as <em class="parameter"><code>options</code></em>
+. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> zero-terminated=1]</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-3-22.html#api-index-3.22">3.22</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gtk-file-chooser-remove-choice"></a><h3>gtk_file_chooser_remove_choice ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gtk_file_chooser_remove_choice (<em class="parameter"><code><a class="link" href="GtkFileChooser.html" title="GtkFileChooser"><span class="type">GtkFileChooser</span></a> *chooser</code></em>,
+                                <em class="parameter"><code>const <span class="type">char</span> *id</code></em>);</pre>
+<p>Removes a 'choice' that has been added with <a class="link" href="GtkFileChooser.html#gtk-file-chooser-add-choice" title="gtk_file_chooser_add_choice ()"><code class="function">gtk_file_chooser_add_choice()</code></a>.</p>
+<div class="refsect3">
+<a name="gtk-file-chooser-remove-choice.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>chooser</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GtkFileChooser.html" title="GtkFileChooser"><span class="type">GtkFileChooser</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>id</p></td>
+<td class="parameter_description"><p>the ID of the choice to remove</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-3-22.html#api-index-3.22">3.22</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gtk-file-chooser-set-choice"></a><h3>gtk_file_chooser_set_choice ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+gtk_file_chooser_set_choice (<em class="parameter"><code><a class="link" href="GtkFileChooser.html" title="GtkFileChooser"><span class="type">GtkFileChooser</span></a> *chooser</code></em>,
+                             <em class="parameter"><code>const <span class="type">char</span> *id</code></em>,
+                             <em class="parameter"><code>const <span class="type">char</span> *option</code></em>);</pre>
+<p>Selects an option in a 'choice' that has been added with
+<a class="link" href="GtkFileChooser.html#gtk-file-chooser-add-choice" title="gtk_file_chooser_add_choice ()"><code class="function">gtk_file_chooser_add_choice()</code></a>. For a boolean choice, the
+possible options are "true" and "false".</p>
+<div class="refsect3">
+<a name="gtk-file-chooser-set-choice.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>chooser</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GtkFileChooser.html" title="GtkFileChooser"><span class="type">GtkFileChooser</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>id</p></td>
+<td class="parameter_description"><p>the ID of the choice to set</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>option</p></td>
+<td class="parameter_description"><p>the ID of the option to select</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-3-22.html#api-index-3.22">3.22</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="gtk-file-chooser-get-choice"></a><h3>gtk_file_chooser_get_choice ()</h3>
+<pre class="programlisting">const <span class="returnvalue">char</span> *
+gtk_file_chooser_get_choice (<em class="parameter"><code><a class="link" href="GtkFileChooser.html" title="GtkFileChooser"><span class="type">GtkFileChooser</span></a> *chooser</code></em>,
+                             <em class="parameter"><code>const <span class="type">char</span> *id</code></em>);</pre>
+<p>Gets the currently selected option in the 'choice' with the given ID.</p>
+<div class="refsect3">
+<a name="gtk-file-chooser-get-choice.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>chooser</p></td>
+<td class="parameter_description"><p>a <a class="link" href="GtkFileChooser.html" title="GtkFileChooser"><span class="type">GtkFileChooser</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>id</p></td>
+<td class="parameter_description"><p>the ID of the choice to get</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="gtk-file-chooser-get-choice.returns"></a><h4>Returns</h4>
+<p> the ID of the currenly selected option</p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-3-22.html#api-index-3.22">3.22</a></p>
 </div>
 <hr>
 <div class="refsect2">

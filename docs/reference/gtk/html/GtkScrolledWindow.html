@@ -620,12 +620,12 @@ will cause the scrolled window to create them for you.</p>
 <tr>
 <td class="parameter_name"><p>hadjustment</p></td>
 <td class="parameter_description"><p>horizontal adjustment. </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>vadjustment</p></td>
 <td class="parameter_description"><p>vertical adjustment. </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
@@ -687,8 +687,8 @@ gtk_scrolled_window_set_hadjustment (<em class="parameter"><code><a class="link"
 </tr>
 <tr>
 <td class="parameter_name"><p>hadjustment</p></td>
-<td class="parameter_description"><p>horizontal scroll adjustment</p></td>
-<td class="parameter_annotations"> </td>
+<td class="parameter_description"><p>the <a class="link" href="GtkAdjustment.html" title="GtkAdjustment"><span class="type">GtkAdjustment</span></a> to use, or <code class="literal">NULL</code> to create a new one. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
@@ -745,8 +745,8 @@ gtk_scrolled_window_set_vadjustment (<em class="parameter"><code><a class="link"
 </tr>
 <tr>
 <td class="parameter_name"><p>vadjustment</p></td>
-<td class="parameter_description"><p>vertical scroll adjustment</p></td>
-<td class="parameter_annotations"> </td>
+<td class="parameter_description"><p>the <a class="link" href="GtkAdjustment.html" title="GtkAdjustment"><span class="type">GtkAdjustment</span></a> to use, or <code class="literal">NULL</code> to create a new one. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
@@ -837,13 +837,13 @@ scrollbars. See <a class="link" href="GtkScrolledWindow.html#gtk-scrolled-window
 <td class="parameter_name"><p>hscrollbar_policy</p></td>
 <td class="parameter_description"><p>location to store the policy
 for the horizontal scrollbar, or <code class="literal">NULL</code>. </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="NULL may be passed instead of a pointer to a location."><span class="acronym">optional</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>vscrollbar_policy</p></td>
 <td class="parameter_description"><p>location to store the policy
 for the vertical scrollbar, or <code class="literal">NULL</code>. </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="NULL may be passed instead of a pointer to a location."><span class="acronym">optional</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
@@ -1915,6 +1915,8 @@ only applies to devices with source <code class="literal">GDK_SOURCE_TOUCHSCREEN
 scrollbars are only added as traditional widgets when a mouse
 is present. Otherwise, they are overlayed on top of the content,
 as narrow indicators.</p>
+<p>Note that overlay scrolling can also be globally disabled, with
+the <span class="type">“gtk-overlay-scrolling”</span> setting.</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 <p class="since">Since: <a class="link" href="api-index-3-16.html#api-index-3.16">3.16</a></p>

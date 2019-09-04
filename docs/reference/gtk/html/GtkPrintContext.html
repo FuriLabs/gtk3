@@ -98,7 +98,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#PangoFontMap-struct"><span class="returnvalue">PangoFontMap</span></a> *
+<a href="https://developer.gnome.org/pango/pango-Fonts.html#PangoFontMap-struct"><span class="returnvalue">PangoFontMap</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkPrintContext.html#gtk-print-context-get-pango-fontmap" title="gtk_print_context_get_pango_fontmap ()">gtk_print_context_get_pango_fontmap</a> <span class="c_punctuation">()</span>
@@ -106,7 +106,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="/usr/share/gtk-doc/html/pango/pango-Text-Processing.html#PangoContext-struct"><span class="returnvalue">PangoContext</span></a> *
+<a href="https://developer.gnome.org/pango/pango-Contexts.html#PangoContext-struct"><span class="returnvalue">PangoContext</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkPrintContext.html#gtk-print-context-create-pango-context" title="gtk_print_context_create_pango_context ()">gtk_print_context_create_pango_context</a> <span class="c_punctuation">()</span>
@@ -114,7 +114,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoLayout-struct"><span class="returnvalue">PangoLayout</span></a> *
+<a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoLayout-struct"><span class="returnvalue">PangoLayout</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkPrintContext.html#gtk-print-context-create-pango-layout" title="gtk_print_context_create_pango_layout ()">gtk_print_context_create_pango_layout</a> <span class="c_punctuation">()</span>
@@ -160,7 +160,7 @@
 <p>A GtkPrintContext encapsulates context information that is required when
 drawing pages for printing, such as the cairo context and important
 parameters like page size and resolution. It also lets you easily
-create <a href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoLayout-struct"><span class="type">PangoLayout</span></a> and <a href="/usr/share/gtk-doc/html/pango/pango-Text-Processing.html#PangoContext-struct"><span class="type">PangoContext</span></a> objects that match the font metrics
+create <a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoLayout-struct"><span class="type">PangoLayout</span></a> and <a href="https://developer.gnome.org/pango/pango-Contexts.html#PangoContext-struct"><span class="type">PangoContext</span></a> objects that match the font metrics
 of the cairo surface.</p>
 <p>GtkPrintContext objects gets passed to the <a class="link" href="gtk3-High-level-Printing-API.html#GtkPrintOperation-begin-print" title="The “begin-print” signal"><span class="type">“begin-print”</span></a>,
 <a class="link" href="gtk3-High-level-Printing-API.html#GtkPrintOperation-end-print" title="The “end-print” signal"><span class="type">“end-print”</span></a>, <a class="link" href="gtk3-High-level-Printing-API.html#GtkPrintOperation-request-page-setup" title="The “request-page-setup” signal"><span class="type">“request-page-setup”</span></a> and
@@ -254,13 +254,13 @@ of the cairo surface.</p>
 
 <span class="normal">  </span><span class="comment">// Draw some text</span>
 <span class="normal">  layout </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkPrintContext.html#gtk-print-context-create-pango-layout">gtk_print_context_create_pango_layout</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#pango-layout-set-text">pango_layout_set_text</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">layout</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Hello World! Printing is easy"</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">-</span><span class="number">1</span><span class="symbol">);</span>
-<span class="normal">  desc </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#pango-font-description-from-string">pango_font_description_from_string</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"sans 28"</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#pango-layout-set-font-description">pango_layout_set_font_description</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">layout</span><span class="symbol">,</span><span class="normal"> desc</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#pango-font-description-free">pango_font_description_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">desc</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function"><a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#pango-layout-set-text">pango_layout_set_text</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">layout</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Hello World! Printing is easy"</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">-</span><span class="number">1</span><span class="symbol">);</span>
+<span class="normal">  desc </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/pango/pango-Fonts.html#pango-font-description-from-string">pango_font_description_from_string</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"sans 28"</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function"><a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#pango-layout-set-font-description">pango_layout_set_font_description</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">layout</span><span class="symbol">,</span><span class="normal"> desc</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function"><a href="https://developer.gnome.org/pango/pango-Fonts.html#pango-font-description-free">pango_font_description_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">desc</span><span class="symbol">);</span>
 
 <span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-Paths.html#cairo-move-to">cairo_move_to</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="number">30</span><span class="symbol">,</span><span class="normal"> </span><span class="number">20</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/pango/pango-Cairo-Rendering.html#pango-cairo-layout-path">pango_cairo_layout_path</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> layout</span><span class="symbol">);</span>
+<span class="normal">  </span><span class="function"><a href="https://developer.gnome.org/pango/pango-Cairo-Rendering.html#pango-cairo-layout-path">pango_cairo_layout_path</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> layout</span><span class="symbol">);</span>
 
 <span class="normal">  </span><span class="comment">// Font Outline</span>
 <span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-set-source-rgb">cairo_set_source_rgb</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.93</span><span class="symbol">,</span><span class="normal"> </span><span class="number">1.0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.47</span><span class="symbol">);</span>
@@ -509,9 +509,9 @@ in dots per inch.</p>
 <hr>
 <div class="refsect2">
 <a name="gtk-print-context-get-pango-fontmap"></a><h3>gtk_print_context_get_pango_fontmap ()</h3>
-<pre class="programlisting"><a href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#PangoFontMap-struct"><span class="returnvalue">PangoFontMap</span></a> *
+<pre class="programlisting"><a href="https://developer.gnome.org/pango/pango-Fonts.html#PangoFontMap-struct"><span class="returnvalue">PangoFontMap</span></a> *
 gtk_print_context_get_pango_fontmap (<em class="parameter"><code><a class="link" href="GtkPrintContext.html" title="GtkPrintContext"><span class="type">GtkPrintContext</span></a> *context</code></em>);</pre>
-<p>Returns a <a href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#PangoFontMap-struct"><span class="type">PangoFontMap</span></a> that is suitable for use
+<p>Returns a <a href="https://developer.gnome.org/pango/pango-Fonts.html#PangoFontMap-struct"><span class="type">PangoFontMap</span></a> that is suitable for use
 with the <a class="link" href="GtkPrintContext.html" title="GtkPrintContext"><span class="type">GtkPrintContext</span></a>.</p>
 <div class="refsect3">
 <a name="gtk-print-context-get-pango-fontmap.parameters"></a><h4>Parameters</h4>
@@ -539,10 +539,10 @@ with the <a class="link" href="GtkPrintContext.html" title="GtkPrintContext"><sp
 <hr>
 <div class="refsect2">
 <a name="gtk-print-context-create-pango-context"></a><h3>gtk_print_context_create_pango_context ()</h3>
-<pre class="programlisting"><a href="/usr/share/gtk-doc/html/pango/pango-Text-Processing.html#PangoContext-struct"><span class="returnvalue">PangoContext</span></a> *
+<pre class="programlisting"><a href="https://developer.gnome.org/pango/pango-Contexts.html#PangoContext-struct"><span class="returnvalue">PangoContext</span></a> *
 gtk_print_context_create_pango_context
                                (<em class="parameter"><code><a class="link" href="GtkPrintContext.html" title="GtkPrintContext"><span class="type">GtkPrintContext</span></a> *context</code></em>);</pre>
-<p>Creates a new <a href="/usr/share/gtk-doc/html/pango/pango-Text-Processing.html#PangoContext-struct"><span class="type">PangoContext</span></a> that can be used with the
+<p>Creates a new <a href="https://developer.gnome.org/pango/pango-Contexts.html#PangoContext-struct"><span class="type">PangoContext</span></a> that can be used with the
 <a class="link" href="GtkPrintContext.html" title="GtkPrintContext"><span class="type">GtkPrintContext</span></a>.</p>
 <div class="refsect3">
 <a name="gtk-print-context-create-pango-context.parameters"></a><h4>Parameters</h4>
@@ -570,9 +570,9 @@ gtk_print_context_create_pango_context
 <hr>
 <div class="refsect2">
 <a name="gtk-print-context-create-pango-layout"></a><h3>gtk_print_context_create_pango_layout ()</h3>
-<pre class="programlisting"><a href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoLayout-struct"><span class="returnvalue">PangoLayout</span></a> *
+<pre class="programlisting"><a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoLayout-struct"><span class="returnvalue">PangoLayout</span></a> *
 gtk_print_context_create_pango_layout (<em class="parameter"><code><a class="link" href="GtkPrintContext.html" title="GtkPrintContext"><span class="type">GtkPrintContext</span></a> *context</code></em>);</pre>
-<p>Creates a new <a href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoLayout-struct"><span class="type">PangoLayout</span></a> that is suitable for use
+<p>Creates a new <a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoLayout-struct"><span class="type">PangoLayout</span></a> that is suitable for use
 with the <a class="link" href="GtkPrintContext.html" title="GtkPrintContext"><span class="type">GtkPrintContext</span></a>.</p>
 <div class="refsect3">
 <a name="gtk-print-context-create-pango-layout.parameters"></a><h4>Parameters</h4>

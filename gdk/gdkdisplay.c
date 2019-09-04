@@ -173,7 +173,7 @@ gdk_display_class_init (GdkDisplayClass *class)
                   G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GdkDisplayClass, opened),
                   NULL, NULL,
-                  g_cclosure_marshal_VOID__VOID,
+                  NULL,
                   G_TYPE_NONE, 0);
 
   /**
@@ -196,6 +196,9 @@ gdk_display_class_init (GdkDisplayClass *class)
 		  G_TYPE_NONE,
 		  1,
 		  G_TYPE_BOOLEAN);
+  g_signal_set_va_marshaller (signals[CLOSED],
+                              G_OBJECT_CLASS_TYPE (object_class),
+                              _gdk_marshal_VOID__BOOLEANv);
 
   /**
    * GdkDisplay::seat-added:
@@ -212,7 +215,7 @@ gdk_display_class_init (GdkDisplayClass *class)
 		  G_OBJECT_CLASS_TYPE (object_class),
 		  G_SIGNAL_RUN_LAST,
 		  0, NULL, NULL,
-                  g_cclosure_marshal_VOID__OBJECT,
+                  NULL,
 		  G_TYPE_NONE, 1, GDK_TYPE_SEAT);
 
   /**
@@ -230,7 +233,7 @@ gdk_display_class_init (GdkDisplayClass *class)
 		  G_OBJECT_CLASS_TYPE (object_class),
 		  G_SIGNAL_RUN_LAST,
 		  0, NULL, NULL,
-                  g_cclosure_marshal_VOID__OBJECT,
+                  NULL,
 		  G_TYPE_NONE, 1, GDK_TYPE_SEAT);
 
   /**
@@ -248,7 +251,7 @@ gdk_display_class_init (GdkDisplayClass *class)
 		  G_OBJECT_CLASS_TYPE (object_class),
 		  G_SIGNAL_RUN_LAST,
 		  0, NULL, NULL,
-                  g_cclosure_marshal_VOID__OBJECT,
+                  NULL,
 		  G_TYPE_NONE, 1, GDK_TYPE_MONITOR);
 
   /**
@@ -266,7 +269,7 @@ gdk_display_class_init (GdkDisplayClass *class)
 		  G_OBJECT_CLASS_TYPE (object_class),
 		  G_SIGNAL_RUN_LAST,
 		  0, NULL, NULL,
-                  g_cclosure_marshal_VOID__OBJECT,
+                  NULL,
 		  G_TYPE_NONE, 1, GDK_TYPE_MONITOR);
 }
 
