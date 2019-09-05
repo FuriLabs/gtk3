@@ -10,10 +10,10 @@ Bug-Ubuntu: https://launchpad.net/bugs/514879
  gtk/gtktreeview.c | 24 +++++++++++++++++++++++-
  1 file changed, 23 insertions(+), 1 deletion(-)
 
-diff --git a/gtk/gtktreeview.c b/gtk/gtktreeview.c
-index cb7b8f7..ba1c865 100644
---- a/gtk/gtktreeview.c
-+++ b/gtk/gtktreeview.c
+Index: gtk+3.0-3.24.10/gtk/gtktreeview.c
+===================================================================
+--- gtk+3.0-3.24.10.orig/gtk/gtktreeview.c
++++ gtk+3.0-3.24.10/gtk/gtktreeview.c
 @@ -467,6 +467,7 @@ struct _GtkTreeViewPrivate
  
    guint fixed_height_mode : 1;
@@ -22,7 +22,7 @@ index cb7b8f7..ba1c865 100644
  
    guint activate_on_single_click : 1;
    guint reorderable : 1;
-@@ -556,6 +557,7 @@ enum {
+@@ -554,6 +555,7 @@ enum {
    PROP_ENABLE_SEARCH,
    PROP_SEARCH_COLUMN,
    PROP_FIXED_HEIGHT_MODE,
@@ -30,7 +30,7 @@ index cb7b8f7..ba1c865 100644
    PROP_HOVER_SELECTION,
    PROP_HOVER_EXPAND,
    PROP_SHOW_EXPANDERS,
-@@ -1111,6 +1113,14 @@ gtk_tree_view_class_init (GtkTreeViewClass *class)
+@@ -1109,6 +1111,14 @@ gtk_tree_view_class_init (GtkTreeViewCla
                              FALSE,
                              GTK_PARAM_READWRITE|G_PARAM_EXPLICIT_NOTIFY);
  
@@ -45,7 +45,7 @@ index cb7b8f7..ba1c865 100644
    /**
     * GtkTreeView:hover-selection:
     * 
-@@ -1810,6 +1820,7 @@ gtk_tree_view_init (GtkTreeView *tree_view)
+@@ -1847,6 +1857,7 @@ gtk_tree_view_init (GtkTreeView *tree_vi
    priv->fixed_height = -1;
    priv->fixed_height_mode = FALSE;
    priv->fixed_height_check = 0;
@@ -53,7 +53,7 @@ index cb7b8f7..ba1c865 100644
    priv->selection = _gtk_tree_selection_new_with_tree_view (tree_view);
    priv->enable_search = TRUE;
    priv->search_column = -1;
-@@ -1950,6 +1961,9 @@ G_GNUC_END_IGNORE_DEPRECATIONS
+@@ -1987,6 +1998,9 @@ G_GNUC_END_IGNORE_DEPRECATIONS
      case PROP_FIXED_HEIGHT_MODE:
        gtk_tree_view_set_fixed_height_mode (tree_view, g_value_get_boolean (value));
        break;
@@ -63,7 +63,7 @@ index cb7b8f7..ba1c865 100644
      case PROP_HOVER_SELECTION:
        if (tree_view->priv->hover_selection != g_value_get_boolean (value))
          {
-@@ -8998,7 +9012,15 @@ gtk_tree_view_row_changed (GtkTreeModel *model,
+@@ -9028,7 +9042,15 @@ gtk_tree_view_row_changed (GtkTreeModel
  
    _gtk_tree_view_accessible_changed (tree_view, tree, node);
  
