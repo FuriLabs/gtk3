@@ -15,8 +15,9 @@ cat <<EOF > gtktest.c
 
 static gboolean
 do_quit (gpointer user_data)
-{   
+{
     gtk_main_quit ();
+    return G_SOURCE_REMOVE;
 }
 
 int main(int argc, char **argv)

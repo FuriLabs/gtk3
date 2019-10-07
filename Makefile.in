@@ -215,8 +215,8 @@ am__DIST_COMMON = $(srcdir)/INSTALL.in $(srcdir)/Makefile.in \
 	$(top_srcdir)/build-aux/missing ABOUT-NLS AUTHORS COPYING \
 	ChangeLog INSTALL NEWS README build-aux/compile \
 	build-aux/config.guess build-aux/config.rpath \
-	build-aux/config.sub build-aux/depcomp build-aux/install-sh \
-	build-aux/ltmain.sh build-aux/missing
+	build-aux/config.sub build-aux/install-sh build-aux/ltmain.sh \
+	build-aux/missing
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -593,14 +593,12 @@ DISTCLEANFILES = \
 	gtk+-quartz-3.0.pc		\
 	gtk+-broadway-3.0.pc		\
 	gtk+-wayland-3.0.pc		\
-	gtk+-mir-3.0.pc			\
 	gdk-3.0.pc			\
 	gdk-x11-3.0.pc			\
 	gdk-win32-3.0.pc		\
 	gdk-quartz-3.0.pc		\
 	gdk-broadway-3.0.pc		\
 	gdk-wayland-3.0.pc		\
-	gdk-mir-3.0.pc			\
 	gail-3.0.pc			\
 	config.lt
 
@@ -880,6 +878,9 @@ distdir-am: $(DISTFILES)
 	      || exit 1; \
 	  fi; \
 	done
+	$(MAKE) $(AM_MAKEFLAGS) \
+	  top_distdir="$(top_distdir)" distdir="$(distdir)" \
+	  dist-hook
 	-test -n "$(am__skip_mode_fix)" \
 	|| find "$(distdir)" -type d ! -perm -755 \
 		-exec chmod u+rwx,go+rx {} \; -o \
@@ -1126,9 +1127,9 @@ uninstall-am: uninstall-local uninstall-pkgconfigDATA
 .PHONY: $(am__recursive_targets) CTAGS GTAGS TAGS all all-am \
 	am--refresh check check-am check-local clean clean-cscope \
 	clean-generic clean-libtool cscope cscopelist-am ctags \
-	ctags-am dist dist-all dist-bzip2 dist-gzip dist-lzip \
-	dist-shar dist-tarZ dist-xz dist-zip distcheck distclean \
-	distclean-generic distclean-hdr distclean-libtool \
+	ctags-am dist dist-all dist-bzip2 dist-gzip dist-hook \
+	dist-lzip dist-shar dist-tarZ dist-xz dist-zip distcheck \
+	distclean distclean-generic distclean-hdr distclean-libtool \
 	distclean-local distclean-tags distcleancheck distdir \
 	distuninstallcheck dvi dvi-am html html-am info info-am \
 	install install-am install-data install-data-am install-dvi \
@@ -1201,13 +1202,17 @@ test-report perf-report full-report:	${TEST_PROGS}
 # run make test-cwd as part of make check
 check-local: test-cwd
 
-gtk+-x11-3.0.pc gtk+-win32-3.0.pc gtk+-quartz-3.0.pc gtk+-broadway-3.0.pc gtk+-wayland-3.0.pc gtk+-mir-3.0.pc: gtk+-3.0.pc
+gtk+-x11-3.0.pc gtk+-win32-3.0.pc gtk+-quartz-3.0.pc gtk+-broadway-3.0.pc gtk+-wayland-3.0.pc: gtk+-3.0.pc
 	rm -f $@ && \
 	cp gtk+-3.0.pc $@
 
-gdk-x11-3.0.pc gdk-win32-3.0.pc gdk-quartz-3.0.pc gdk-broadway-3.0.pc gdk-wayland-3.0.pc gdk-mir-3.0.pc: gdk-3.0.pc
+gdk-x11-3.0.pc gdk-win32-3.0.pc gdk-quartz-3.0.pc gdk-broadway-3.0.pc gdk-wayland-3.0.pc: gdk-3.0.pc
 	rm -f $@ && \
 	cp gdk-3.0.pc $@
+
+dist-hook:
+	mkdir $(distdir)/subprojects
+	cp -p $(srcdir)/subprojects/*.wrap $(distdir)/subprojects
 
 distclean-local:
 	if test "$(srcdir)" = "."; then :; else \

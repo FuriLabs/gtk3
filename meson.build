@@ -1,5 +1,5 @@
 project('gtk+-3.0', 'c',
-        version: '3.24.10',
+        version: '3.24.12',
         default_options: [
           'buildtype=debugoptimized',
           'warning_level=1'
@@ -51,7 +51,7 @@ gtk_version       = meson.project_version()
 gtk_major_version = gtk_version.split('.')[0].to_int()
 gtk_minor_version = gtk_version.split('.')[1].to_int()
 gtk_micro_version = gtk_version.split('.')[2].to_int()
-gtk_interface_age = 4
+gtk_interface_age = 7
 add_project_arguments('-DGTK_VERSION="@0@"'.format(meson.project_version()), language: 'c')
 
 add_project_arguments('-D_GNU_SOURCE', language: 'c')
@@ -131,7 +131,6 @@ wayland_enabled        = get_option('wayland_backend')
 broadway_enabled       = get_option('broadway_backend')
 quartz_enabled         = get_option('quartz_backend')
 win32_enabled          = get_option('win32_backend')
-mir_enabled            = get_option('mir_backend')
 
 os_unix   = false
 os_linux  = false
@@ -781,6 +780,19 @@ if os_win32
     #include <windows.h>
   ''')
   cdata.set('SIZEOF_DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY', dvot_size)
+
+  getdevprop_code = '''
+    #define _WIN32_WINNT 0x0600
+    #include <windows.h>
+    #include <devpropdef.h>
+    #include <setupapi.h>
+
+    int main(int argc, char *argv[]) {
+      return SetupDiGetDevicePropertyW(NULL, NULL, NULL, NULL, NULL, 0, NULL, 0);
+    }
+  '''
+  result = cc.links(getdevprop_code, args: ['-lsetupapi'], name: 'has SetupDiGetDevicePropertyW')
+  cdata.set('HAVE_SETUP_DI_GET_DEVICE_PROPERTY_W', result ? 1 : false)
 endif
 
 have_gio_unix = false
@@ -911,7 +923,7 @@ gdk_pcs = ['gdk-3.0.pc']
 
 pkg_targets = ''
 disabled_backends = []
-foreach backend: [ 'broadway', 'quartz', 'wayland', 'win32', 'x11', 'mir']
+foreach backend: [ 'broadway', 'quartz', 'wayland', 'win32', 'x11']
   if get_variable('@0@_enabled'.format(backend))
     gtk_pcs += ['gtk+-@0@-3.0.pc'.format(backend)]
     gdk_pcs += ['gdk-@0@-3.0.pc'.format(backend)]

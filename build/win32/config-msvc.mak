@@ -39,7 +39,7 @@ GDBUS_CODEGEN = $(PREFIX)\bin\gdbus-codegen
 !endif
 
 # Please do not change anything beneath this line unless maintaining the NMake Makefiles
-GTK_VERSION = 3.24.11
+GTK_VERSION = 3.24.12
 
 GDK_PREPROCESSOR_FLAGS =	\
 	/DG_LOG_USE_STRUCTURED=1	\

@@ -85,10 +85,6 @@
 #include "broadway/gdkbroadway.h"
 #endif
 
-#ifdef GDK_WINDOWING_MIR
-#include "mir/gdkmir.h"
-#endif
-
 /**
  * SECTION:gtkwindow
  * @title: GtkWindow
@@ -6123,11 +6119,6 @@ gtk_window_should_use_csd (GtkWindow *window)
     }
 #endif
 
-#ifdef GDK_WINDOWING_MIR
-  if (GDK_IS_MIR_DISPLAY (gtk_widget_get_display (GTK_WIDGET (window))))
-    return TRUE;
-#endif
-
 #ifdef GDK_WINDOWING_WIN32
   if (g_strcmp0 (csd_env, "0") != 0 &&
       GDK_IS_WIN32_DISPLAY (gtk_widget_get_display (GTK_WIDGET (window))))
@@ -9091,6 +9082,11 @@ gtk_window_style_updated (GtkWidget *widget)
  * 
  * Checks whether the focus and default widgets of @window are
  * @widget or a descendent of @widget, and if so, unset them.
+ *
+ * If @widget is a #GtkPopover then nothing will be done with
+ * respect to the default widget of @window, the reason being that
+ * popovers already have specific logic for clearing/restablishing
+ * the default widget of its enclosing window.
  **/
 void
 _gtk_window_unset_focus_and_default (GtkWindow *window,
@@ -9115,15 +9111,18 @@ _gtk_window_unset_focus_and_default (GtkWindow *window,
       if (child == widget)
 	gtk_window_set_focus (GTK_WINDOW (window), NULL);
     }
-      
-  child = priv->default_widget;
-      
-  while (child && child != widget)
-    child = _gtk_widget_get_parent (child);
-
-  if (child == widget)
-    gtk_window_set_default (window, NULL);
   
+  if (!GTK_IS_POPOVER (widget))
+    {
+      child = priv->default_widget;
+
+      while (child && child != widget)
+        child = _gtk_widget_get_parent (child);
+
+      if (child == widget)
+        gtk_window_set_default (window, NULL);
+    }
+
   g_object_unref (widget);
   g_object_unref (window);
 }
