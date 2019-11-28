@@ -206,6 +206,9 @@ test_data = \
         border-color.ref.css \
 	border-color-currentcolor.css \
 	border-color-currentcolor.ref.css \
+	border-crash-3.24.css \
+	border-crash-3.24.errors \
+	border-crash-3.24.ref.css \
         border-image-source.css \
         border-image-source.ref.css \
         border-image-repeat.css \
@@ -334,6 +337,11 @@ test_data = \
 	declarations-valid-24.ref.css \
 	declarations-valid-25.css \
 	declarations-valid-25.ref.css \
+	declarations-valid-26.css \
+	declarations-valid-26.ref.css \
+	deprecated.css \
+	deprecated.errors \
+	deprecated.ref.css \
 	does-not-exist.css \
 	does-not-exist.errors \
 	does-not-exist.ref.css \

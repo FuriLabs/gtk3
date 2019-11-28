@@ -155,21 +155,20 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 @USE_X11_TRUE@am__append_1 = x11/libgdk-x11.la
-@USE_QUARTZ_TRUE@am__append_2 = -xobjective-c
-@USE_QUARTZ_TRUE@am__append_3 = quartz/libgdk-quartz.la
-@USE_WIN32_TRUE@am__append_4 = win32/libgdk-win32.la
+@USE_QUARTZ_TRUE@am__append_2 = quartz/libgdk-quartz.la
+@USE_WIN32_TRUE@am__append_3 = win32/libgdk-win32.la
 @USE_WIN32_FALSE@libgdk_3_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 @USE_WIN32_FALSE@	$(am__DEPENDENCIES_1) $(am__append_1) \
-@USE_WIN32_FALSE@	$(am__append_3) $(am__append_4) \
-@USE_WIN32_FALSE@	$(am__append_6) $(am__append_7)
-@USE_WIN32_TRUE@am__append_5 = -Wl,win32/rc/gdk-win32-res.o
-@USE_BROADWAY_TRUE@am__append_6 = broadway/libgdk-broadway.la
-@USE_WAYLAND_TRUE@am__append_7 = wayland/libgdk-wayland.la
-@HAVE_INTROSPECTION_TRUE@am__append_8 = Gdk-3.0.gir
-@HAVE_INTROSPECTION_TRUE@@OS_WIN32_TRUE@am__append_9 = -I$(srcdir)/win32 -I$(srcdir)
-@HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@am__append_10 = GdkX11-3.0.gir
-@HAVE_INTROSPECTION_TRUE@@OS_WIN32_TRUE@am__append_11 = GdkWin32-3.0.gir
-@HAVE_INTROSPECTION_TRUE@am__append_12 = $(gir_DATA) $(typelibs_DATA)
+@USE_WIN32_FALSE@	$(am__append_2) $(am__append_3) \
+@USE_WIN32_FALSE@	$(am__append_5) $(am__append_6)
+@USE_WIN32_TRUE@am__append_4 = -Wl,win32/rc/gdk-win32-res.o
+@USE_BROADWAY_TRUE@am__append_5 = broadway/libgdk-broadway.la
+@USE_WAYLAND_TRUE@am__append_6 = wayland/libgdk-wayland.la
+@HAVE_INTROSPECTION_TRUE@am__append_7 = Gdk-3.0.gir
+@HAVE_INTROSPECTION_TRUE@@OS_WIN32_TRUE@am__append_8 = -I$(srcdir)/win32 -I$(srcdir)
+@HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@am__append_9 = GdkX11-3.0.gir
+@HAVE_INTROSPECTION_TRUE@@OS_WIN32_TRUE@am__append_10 = GdkWin32-3.0.gir
+@HAVE_INTROSPECTION_TRUE@am__append_11 = $(gir_DATA) $(typelibs_DATA)
 subdir = gdk
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_prog_cc_for_build.m4 \
@@ -720,7 +719,7 @@ XVFB_START = \
 	|| { echo "Gtk+Tests:ERROR: Failed to start Xvfb environment for X11 target tests."; exit 1; } \
 	&& DISPLAY=:$$XID && export DISPLAY
 
-INTROSPECTION_GIRS = $(am__append_8) $(am__append_10) $(am__append_11)
+INTROSPECTION_GIRS = $(am__append_7) $(am__append_9) $(am__append_10)
 INTROSPECTION_SCANNER_ENV = \
    CC="$(CC)"
 
@@ -734,7 +733,7 @@ INTROSPECTION_COMPILER_ARGS = \
 
 SUBDIRS = $(GDK_BACKENDS) .
 DIST_SUBDIRS = win32 x11 quartz broadway wayland
-CLEANFILES = $(am__append_12) gdk.gresource.xml
+CLEANFILES = $(am__append_11) gdk.gresource.xml
 GDK_CFLAGS_DEFINES = \
 	-DG_LOG_USE_STRUCTURED=1	\
 	-DGDK_COMPILATION
@@ -911,12 +910,11 @@ common_sources = \
 	gdkresources.c
 
 libgdk_3_la_SOURCES = $(common_sources)
-libgdk_3_la_CFLAGS = $(AM_CFLAGS) $(GDK_HIDDEN_VISIBILITY_CFLAGS) \
-	$(am__append_2)
+libgdk_3_la_CFLAGS = $(AM_CFLAGS) $(GDK_HIDDEN_VISIBILITY_CFLAGS)
 libgdk_3_la_LIBADD = $(GDK_DEP_LIBS) $(SHM_LIBS) $(am__append_1) \
-	$(am__append_3) $(am__append_4) $(am__append_6) \
-	$(am__append_7)
-libgdk_3_la_LDFLAGS = $(LDADD) $(am__append_5)
+	$(am__append_2) $(am__append_3) $(am__append_5) \
+	$(am__append_6)
+libgdk_3_la_LDFLAGS = $(LDADD) $(am__append_4)
 @USE_WIN32_TRUE@libgdk_3_la_DEPENDENCIES = win32/libgdk-win32.la win32/rc/gdk-win32-res.o
 @HAVE_INTROSPECTION_TRUE@introspection_files = \
 @HAVE_INTROSPECTION_TRUE@	$(filter-out gdkkeysyms-compat.h, $(gdk_h_sources))	\
@@ -930,7 +928,7 @@ libgdk_3_la_LDFLAGS = $(LDADD) $(am__append_5)
 @HAVE_INTROSPECTION_TRUE@Gdk_3_0_gir_LIBS = libgdk-3.la
 @HAVE_INTROSPECTION_TRUE@Gdk_3_0_gir_FILES = $(introspection_files)
 @HAVE_INTROSPECTION_TRUE@Gdk_3_0_gir_CFLAGS = $(AM_CPPFLAGS) \
-@HAVE_INTROSPECTION_TRUE@	$(am__append_9)
+@HAVE_INTROSPECTION_TRUE@	$(am__append_8)
 @HAVE_INTROSPECTION_TRUE@Gdk_3_0_gir_EXPORT_PACKAGES = gdk-3.0
 @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@x11_introspection_files = \
 @HAVE_INTROSPECTION_TRUE@@USE_X11_TRUE@	x11/gdkapplaunchcontext-x11.c	\

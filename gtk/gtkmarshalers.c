@@ -8291,7 +8291,95 @@ _gtk_marshal_VOID__UINT_UINTv (GClosure *closure,
 
 }
 
-/* VOID:UINT,STRING (./gtkmarshalers.list:118) */
+/* VOID:UINT,UINT,FLAGS (./gtkmarshalers.list:118) */
+void
+_gtk_marshal_VOID__UINT_UINT_FLAGS (GClosure     *closure,
+                                    GValue       *return_value G_GNUC_UNUSED,
+                                    guint         n_param_values,
+                                    const GValue *param_values,
+                                    gpointer      invocation_hint G_GNUC_UNUSED,
+                                    gpointer      marshal_data)
+{
+  typedef void (*GMarshalFunc_VOID__UINT_UINT_FLAGS) (gpointer data1,
+                                                      guint arg1,
+                                                      guint arg2,
+                                                      guint arg3,
+                                                      gpointer data2);
+  GCClosure *cc = (GCClosure *) closure;
+  gpointer data1, data2;
+  GMarshalFunc_VOID__UINT_UINT_FLAGS callback;
+
+  g_return_if_fail (n_param_values == 4);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+  callback = (GMarshalFunc_VOID__UINT_UINT_FLAGS) (marshal_data ? marshal_data : cc->callback);
+
+  callback (data1,
+            g_marshal_value_peek_uint (param_values + 1),
+            g_marshal_value_peek_uint (param_values + 2),
+            g_marshal_value_peek_flags (param_values + 3),
+            data2);
+}
+
+void
+_gtk_marshal_VOID__UINT_UINT_FLAGSv (GClosure *closure,
+                                     GValue   *return_value G_GNUC_UNUSED,
+                                     gpointer  instance,
+                                     va_list   args,
+                                     gpointer  marshal_data,
+                                     int       n_params,
+                                     GType    *param_types)
+{
+  typedef void (*GMarshalFunc_VOID__UINT_UINT_FLAGS) (gpointer data1,
+                                                      guint arg1,
+                                                      guint arg2,
+                                                      guint arg3,
+                                                      gpointer data2);
+  GCClosure *cc = (GCClosure *) closure;
+  gpointer data1, data2;
+  GMarshalFunc_VOID__UINT_UINT_FLAGS callback;
+  guint arg0;
+  guint arg1;
+  guint arg2;
+  va_list args_copy;
+
+  G_VA_COPY (args_copy, args);
+  arg0 = (guint) va_arg (args_copy, guint);
+  arg1 = (guint) va_arg (args_copy, guint);
+  arg2 = (guint) va_arg (args_copy, guint);
+  va_end (args_copy);
+
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = instance;
+    }
+  else
+    {
+      data1 = instance;
+      data2 = closure->data;
+    }
+  callback = (GMarshalFunc_VOID__UINT_UINT_FLAGS) (marshal_data ? marshal_data : cc->callback);
+
+  callback (data1,
+            arg0,
+            arg1,
+            arg2,
+            data2);
+
+}
+
+/* VOID:UINT,STRING (./gtkmarshalers.list:119) */
 void
 _gtk_marshal_VOID__UINT_STRING (GClosure     *closure,
                                 GValue       *return_value G_GNUC_UNUSED,
@@ -8376,7 +8464,7 @@ _gtk_marshal_VOID__UINT_STRINGv (GClosure *closure,
     g_free (arg1);
 }
 
-/* VOID:UINT,BOXED,UINT,FLAGS,FLAGS (./gtkmarshalers.list:119) */
+/* VOID:UINT,BOXED,UINT,FLAGS,FLAGS (./gtkmarshalers.list:120) */
 void
 _gtk_marshal_VOID__UINT_BOXED_UINT_FLAGS_FLAGS (GClosure     *closure,
                                                 GValue       *return_value G_GNUC_UNUSED,
@@ -8479,7 +8567,7 @@ _gtk_marshal_VOID__UINT_BOXED_UINT_FLAGS_FLAGSv (GClosure *closure,
     g_boxed_free (param_types[1] & ~G_SIGNAL_TYPE_STATIC_SCOPE, arg1);
 }
 
-/* VOID:UINT,OBJECT,UINT,FLAGS,FLAGS (./gtkmarshalers.list:120) */
+/* VOID:UINT,OBJECT,UINT,FLAGS,FLAGS (./gtkmarshalers.list:121) */
 void
 _gtk_marshal_VOID__UINT_OBJECT_UINT_FLAGS_FLAGS (GClosure     *closure,
                                                  GValue       *return_value G_GNUC_UNUSED,
@@ -8582,7 +8670,7 @@ _gtk_marshal_VOID__UINT_OBJECT_UINT_FLAGS_FLAGSv (GClosure *closure,
     g_object_unref (arg1);
 }
 
-/* VOID:UINT,STRING,UINT (./gtkmarshalers.list:121) */
+/* VOID:UINT,STRING,UINT (./gtkmarshalers.list:122) */
 void
 _gtk_marshal_VOID__UINT_STRING_UINT (GClosure     *closure,
                                      GValue       *return_value G_GNUC_UNUSED,
@@ -8673,7 +8761,7 @@ _gtk_marshal_VOID__UINT_STRING_UINTv (GClosure *closure,
     g_free (arg1);
 }
 
-/* OBJECT:OBJECT,INT,INT (./gtkmarshalers.list:123) */
+/* OBJECT:OBJECT,INT,INT (./gtkmarshalers.list:124) */
 void
 _gtk_marshal_OBJECT__OBJECT_INT_INT (GClosure     *closure,
                                      GValue       *return_value,
@@ -8772,7 +8860,7 @@ _gtk_marshal_OBJECT__OBJECT_INT_INTv (GClosure *closure,
   g_value_take_object (return_value, v_return);
 }
 
-/* VOID:OBJECT,STRING,POINTER,POINTER (./gtkmarshalers.list:124) */
+/* VOID:OBJECT,STRING,POINTER,POINTER (./gtkmarshalers.list:125) */
 void
 _gtk_marshal_VOID__OBJECT_STRING_POINTER_POINTER (GClosure     *closure,
                                                   GValue       *return_value G_GNUC_UNUSED,
@@ -8873,7 +8961,7 @@ _gtk_marshal_VOID__OBJECT_STRING_POINTER_POINTERv (GClosure *closure,
     g_free (arg1);
 }
 
-/* INT:INT (./gtkmarshalers.list:125) */
+/* INT:INT (./gtkmarshalers.list:126) */
 void
 _gtk_marshal_INT__INT (GClosure     *closure,
                        GValue       *return_value,
@@ -8957,7 +9045,7 @@ _gtk_marshal_INT__INTv (GClosure *closure,
   g_value_set_int (return_value, v_return);
 }
 
-/* VOID:POINTER,STRING,INT (./gtkmarshalers.list:126) */
+/* VOID:POINTER,STRING,INT (./gtkmarshalers.list:127) */
 void
 _gtk_marshal_VOID__POINTER_STRING_INT (GClosure     *closure,
                                        GValue       *return_value G_GNUC_UNUSED,
@@ -9048,7 +9136,7 @@ _gtk_marshal_VOID__POINTER_STRING_INTv (GClosure *closure,
     g_free (arg1);
 }
 
-/* INT:OBJECT,OBJECT,POINTER (./gtkmarshalers.list:127) */
+/* INT:OBJECT,OBJECT,POINTER (./gtkmarshalers.list:128) */
 void
 _gtk_marshal_INT__OBJECT_OBJECT_POINTER (GClosure     *closure,
                                          GValue       *return_value,

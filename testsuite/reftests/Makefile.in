@@ -559,9 +559,9 @@ GTESTER = gtester -k		# in $PATH for non-GLIB packages
 GTESTER_REPORT = gtester-report		# in $PATH for non-GLIB packages
 
 # initialize variables for unconditional += appending
-EXTRA_DIST = align-expand.sh $(NULL) $(testdata) reftests-dark.test.in \
-	reftests-hc.test.in reftests-hci.test.in reftests.test.in \
-	$(NULL)
+EXTRA_DIST = align-expand.sh meson.build $(NULL) $(testdata) \
+	reftests-dark.test.in reftests-hc.test.in reftests-hci.test.in \
+	reftests.test.in $(NULL)
 TEST_PROGS = gtk-reftest
 
 ### testing rules

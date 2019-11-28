@@ -90,12 +90,13 @@ GtkVBox implements
 <p>Use the <a class="link" href="GtkBox.html" title="GtkBox"><span class="type">GtkBox</span></a> packing interface to determine the arrangement,
 spacing, height, and alignment of <a class="link" href="GtkVBox.html" title="GtkVBox"><span class="type">GtkVBox</span></a> children.</p>
 <p>All children are allocated the same width.</p>
-<p>GtkVBox has been deprecated. You can use <a class="link" href="GtkBox.html" title="GtkBox"><span class="type">GtkBox</span></a> instead, which is a
-very quick and easy change. If you have derived your own classes from
-GtkVBox, you can simply change the inheritance to derive directly
-from <a class="link" href="GtkBox.html" title="GtkBox"><span class="type">GtkBox</span></a>, and set the <a class="link" href="gtk3-Orientable.html#GtkOrientable--orientation" title="The “orientation” property"><span class="type">“orientation”</span></a> property to
-<a class="link" href="gtk3-Standard-Enumerations.html#GTK-ORIENTATION-VERTICAL:CAPS"><code class="literal">GTK_ORIENTATION_VERTICAL</code></a> in your instance init function, with a
-call like:</p>
+<p>GtkVBox has been deprecated. You can use <a class="link" href="GtkBox.html" title="GtkBox"><span class="type">GtkBox</span></a> with a <a class="link" href="gtk3-Orientable.html#GtkOrientable--orientation" title="The “orientation” property"><span class="type">“orientation”</span></a>
+set to <a class="link" href="gtk3-Standard-Enumerations.html#GTK-ORIENTATION-VERTICAL:CAPS"><code class="literal">GTK_ORIENTATION_VERTICAL</code></a> instead when calling <a class="link" href="GtkBox.html#gtk-box-new" title="gtk_box_new ()"><code class="function">gtk_box_new()</code></a>,
+which is a very quick and easy change.</p>
+<p>If you have derived your own classes from GtkVBox, you can change the
+inheritance to derive directly from <a class="link" href="GtkBox.html" title="GtkBox"><span class="type">GtkBox</span></a>, and set the <a class="link" href="gtk3-Orientable.html#GtkOrientable--orientation" title="The “orientation” property"><span class="type">“orientation”</span></a>
+property to <a class="link" href="gtk3-Standard-Enumerations.html#GTK-ORIENTATION-VERTICAL:CAPS"><code class="literal">GTK_ORIENTATION_VERTICAL</code></a> in your instance init function,
+with a call like:</p>
 <div class="informalexample">
   <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
     <tbody>
@@ -109,11 +110,11 @@ call like:</p>
   </table>
 </div>
 
-<p>
-If you don’t need first-child or last-child styling and want your code
-to be future-proof, the recommendation is to switch to <a class="link" href="GtkGrid.html" title="GtkGrid"><span class="type">GtkGrid</span></a> instead
-of nested boxes. For more information about migrating to <a class="link" href="GtkGrid.html" title="GtkGrid"><span class="type">GtkGrid</span></a>,
-see <a class="link" href="gtk-migrating-GtkGrid.html" title="Migrating from other containers to GtkGrid">Migrating from other containers to GtkGrid</a>.</p>
+<p></p>
+<p>If you have a grid-like layout composed of nested boxes, and you don’t
+need first-child or last-child styling, the recommendation is to switch
+to <a class="link" href="GtkGrid.html" title="GtkGrid"><span class="type">GtkGrid</span></a>. For more information about migrating to <a class="link" href="GtkGrid.html" title="GtkGrid"><span class="type">GtkGrid</span></a>, see
+<a class="link" href="gtk-migrating-GtkGrid.html" title="Migrating from other containers to GtkGrid">Migrating from other containers to GtkGrid</a>.</p>
 </div>
 <div class="refsect1">
 <a name="GtkVBox.functions_details"></a><h2>Functions</h2>

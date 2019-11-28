@@ -1,5 +1,5 @@
 project('gtk+-3.0', 'c',
-        version: '3.24.12',
+        version: '3.24.13',
         default_options: [
           'buildtype=debugoptimized',
           'warning_level=1'
@@ -821,6 +821,11 @@ if profiler_enabled
   else
     error('Profiler support not found, but was explicitly requested.')
   endif
+endif
+
+module_suffix = []
+if os_darwin
+  module_suffix = 'so'
 endif
 
 build_gir = get_option('introspection')
