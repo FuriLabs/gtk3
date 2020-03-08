@@ -8,7 +8,7 @@
 <link rel="up" href="MenusAndCombos.html" title="Menus, Combo Box, Toolbar">
 <link rel="prev" href="GtkSeparatorToolItem.html" title="GtkSeparatorToolItem">
 <link rel="next" href="GtkMenuToolButton.html" title="GtkMenuToolButton">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -40,8 +40,8 @@
 <a name="GtkToolButton.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -222,9 +222,9 @@
 <a name="GtkToolButton.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody><tr>
 <td class="signal_type"><span class="returnvalue">void</span></td>
@@ -237,17 +237,17 @@
 <a name="GtkToolButton.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkToolButton.html#GtkToolButton-struct" title="struct GtkToolButton">GtkToolButton</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkToolButton.html#GtkToolButton-struct">GtkToolButton</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkToolButton.html#GtkToolButtonClass" title="struct GtkToolButtonClass">GtkToolButtonClass</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkToolButton.html#GtkToolButtonClass">GtkToolButtonClass</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -278,7 +278,7 @@ GtkToolButton implements
 </div>
 <div class="refsect1">
 <a name="GtkToolButton.description"></a><h2>Description</h2>
-<p><a href="GtkToolButton.html#GtkToolButton-struct"><span class="type">GtkToolButtons</span></a> are <a href="GtkToolItem.html#GtkToolItem-struct"><span class="type">GtkToolItems</span></a> containing buttons.</p>
+<p><a href="https://developer.gnome.org/gtk4/GtkToolButton.html#GtkToolButton-struct"><span class="type">GtkToolButtons</span></a> are <a href="https://developer.gnome.org/gtk4/GtkToolItem.html#GtkToolItem-struct"><span class="type">GtkToolItems</span></a> containing buttons.</p>
 <p>Use <a class="link" href="GtkToolButton.html#gtk-tool-button-new" title="gtk_tool_button_new ()"><code class="function">gtk_tool_button_new()</code></a> to create a new <a class="link" href="GtkToolButton.html" title="GtkToolButton"><span class="type">GtkToolButton</span></a>.</p>
 <p>The label of a <a class="link" href="GtkToolButton.html" title="GtkToolButton"><span class="type">GtkToolButton</span></a> is determined by the properties
 <a class="link" href="GtkToolButton.html#GtkToolButton--label-widget" title="The “label-widget” property"><span class="type">“label-widget”</span></a>, <a class="link" href="GtkToolButton.html#GtkToolButton--label" title="The “label” property"><span class="type">“label”</span></a>, and
@@ -348,8 +348,8 @@ gtk_tool_button_new_from_stock (<em class="parameter"><code>const <span class="t
 <a class="link" href="GtkImage.html#gtk-image-new-from-icon-name" title="gtk_image_new_from_icon_name ()"><code class="function">gtk_image_new_from_icon_name()</code></a> instead.</p>
 </div>
 <p>Creates a new <a class="link" href="GtkToolButton.html" title="GtkToolButton"><span class="type">GtkToolButton</span></a> containing the image and text from a
-stock item. Some stock ids have preprocessor macros like <a class="link" href="gtk3-Stock-Items.html#GTK-STOCK-OK:CAPS" title="GTK_STOCK_OK"><span class="type">GTK_STOCK_OK</span></a>
-and <a class="link" href="gtk3-Stock-Items.html#GTK-STOCK-APPLY:CAPS" title="GTK_STOCK_APPLY"><span class="type">GTK_STOCK_APPLY</span></a>.</p>
+stock item. Some stock ids have preprocessor macros like <span class="type">GTK_STOCK_OK</span>
+and <span class="type">GTK_STOCK_APPLY</span>.</p>
 <p>It is an error if <em class="parameter"><code>stock_id</code></em>
  is not a name of a stock item.</p>
 <div class="refsect3">
@@ -785,50 +785,6 @@ on <em class="parameter"><code>button</code></em>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkToolButton.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkToolButton-struct"></a><h3>struct GtkToolButton</h3>
-<pre class="programlisting">struct GtkToolButton;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkToolButtonClass"></a><h3>struct GtkToolButtonClass</h3>
-<pre class="programlisting">struct GtkToolButtonClass {
-  GtkToolItemClass parent_class;
-
-  GType button_type;
-
-
-  /* signal */
-  void       (* clicked)             (GtkToolButton    *tool_item);
-};
-</pre>
-<div class="refsect3">
-<a name="GtkToolButtonClass.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="struct_member_name"><p><span class="type">GType</span> <em class="structfield"><code><a name="GtkToolButtonClass.button-type"></a>button_type</code></em>;</p></td>
-<td class="struct_member_description"> </td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkToolButtonClass.clicked"></a>clicked</code></em> ()</p></td>
-<td class="struct_member_description"><p>Signal emitted when the tool button is clicked with the
-mouse or activated with the keyboard.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkToolButton.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkToolButton--icon-name"></a><h3>The <code class="literal">“icon-name”</code> property</h3>
@@ -837,6 +793,7 @@ mouse or activated with the keyboard.</p></td>
 This property only has an effect if not overridden by
 <a class="link" href="GtkToolButton.html#GtkToolButton--label-widget" title="The “label-widget” property"><span class="type">“label-widget”</span></a>, <a class="link" href="GtkToolButton.html#GtkToolButton--icon-widget" title="The “icon-widget” property"><span class="type">“icon-widget”</span></a> or
 <a class="link" href="GtkToolButton.html#GtkToolButton--stock-id" title="The “stock-id” property"><span class="type">“stock-id”</span></a> properties.</p>
+<p>Owner: GtkToolButton</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 <p class="since">Since: 2.8</p>
@@ -846,6 +803,7 @@ This property only has an effect if not overridden by
 <a name="GtkToolButton--icon-widget"></a><h3>The <code class="literal">“icon-widget”</code> property</h3>
 <pre class="programlisting">  “icon-widget”              <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *</pre>
 <p>Icon widget to display in the item.</p>
+<p>Owner: GtkToolButton</p>
 <p>Flags: Read / Write</p>
 </div>
 <hr>
@@ -853,6 +811,7 @@ This property only has an effect if not overridden by
 <a name="GtkToolButton--label"></a><h3>The <code class="literal">“label”</code> property</h3>
 <pre class="programlisting">  “label”                    <span class="type">gchar</span> *</pre>
 <p>Text to show in the item.</p>
+<p>Owner: GtkToolButton</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -861,6 +820,7 @@ This property only has an effect if not overridden by
 <a name="GtkToolButton--label-widget"></a><h3>The <code class="literal">“label-widget”</code> property</h3>
 <pre class="programlisting">  “label-widget”             <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *</pre>
 <p>Widget to use as the item label.</p>
+<p>Owner: GtkToolButton</p>
 <p>Flags: Read / Write</p>
 </div>
 <hr>
@@ -872,6 +832,7 @@ This property only has an effect if not overridden by
 <p><code class="literal">GtkToolButton:stock-id</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="GtkToolButton.html#GtkToolButton--icon-name" title="The “icon-name” property"><span class="type">“icon-name”</span></a> instead.</p>
 </div>
+<p>Owner: GtkToolButton</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -880,6 +841,7 @@ This property only has an effect if not overridden by
 <a name="GtkToolButton--use-underline"></a><h3>The <code class="literal">“use-underline”</code> property</h3>
 <pre class="programlisting">  “use-underline”            <span class="type">gboolean</span></pre>
 <p>If set, an underline in the label property indicates that the next character should be used for the mnemonic accelerator key in the overflow menu.</p>
+<p>Owner: GtkToolButton</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -890,6 +852,7 @@ This property only has an effect if not overridden by
 <a name="GtkToolButton--s-icon-spacing"></a><h3>The <code class="literal">“icon-spacing”</code> style property</h3>
 <pre class="programlisting">  “icon-spacing”             <span class="type">gint</span></pre>
 <p>Spacing in pixels between the icon and label.</p>
+<p>Owner: GtkToolButton</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 3</p>
@@ -932,10 +895,10 @@ or activated with the keyboard.</p>
 <div class="refsect1">
 <a name="GtkToolButton.see-also"></a><h2>See Also</h2>
 <p><a class="link" href="GtkToolbar.html" title="GtkToolbar"><span class="type">GtkToolbar</span></a>, <a class="link" href="GtkMenuToolButton.html" title="GtkMenuToolButton"><span class="type">GtkMenuToolButton</span></a>, <a class="link" href="GtkToggleToolButton.html" title="GtkToggleToolButton"><span class="type">GtkToggleToolButton</span></a>,
-  <a class="link" href="GtkRadioToolButton.html" title="GtkRadioToolButton"><span class="type">GtkRadioToolButton</span></a>, <a class="link" href="GtkSeparatorToolItem.html" title="GtkSeparatorToolItem"><span class="type">GtkSeparatorToolItem</span></a></p>
+<a class="link" href="GtkRadioToolButton.html" title="GtkRadioToolButton"><span class="type">GtkRadioToolButton</span></a>, <a class="link" href="GtkSeparatorToolItem.html" title="GtkSeparatorToolItem"><span class="type">GtkSeparatorToolItem</span></a></p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

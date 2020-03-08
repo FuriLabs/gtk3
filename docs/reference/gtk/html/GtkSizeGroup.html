@@ -8,7 +8,7 @@
 <link rel="up" href="MiscObjects.html" title="Miscellaneous">
 <link rel="prev" href="GtkIMMulticontext.html" title="GtkIMMulticontext">
 <link rel="next" href="GtkTooltip.html" title="GtkTooltip">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -38,8 +38,8 @@
 <a name="GtkSizeGroup.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -60,7 +60,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a class="link" href="GtkSizeGroup.html#GtkSizeGroupMode" title="enum GtkSizeGroupMode"><span class="returnvalue">GtkSizeGroupMode</span></a>
+<a href="https://developer.gnome.org/gtk4/GtkSizeGroup.html#GtkSizeGroupMode"><span class="returnvalue">GtkSizeGroupMode</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GtkSizeGroup.html#gtk-size-group-get-mode" title="gtk_size_group_get_mode ()">gtk_size_group_get_mode</a> <span class="c_punctuation">()</span>
@@ -124,7 +124,7 @@
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><a class="link" href="GtkSizeGroup.html#GtkSizeGroupMode" title="enum GtkSizeGroupMode"><span class="type">GtkSizeGroupMode</span></a></td>
+<td class="property_type"><a href="https://developer.gnome.org/gtk4/GtkSizeGroup.html#GtkSizeGroupMode"><span class="type">GtkSizeGroupMode</span></a></td>
 <td class="property_name"><a class="link" href="GtkSizeGroup.html#GtkSizeGroup--mode" title="The “mode” property">mode</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -135,17 +135,17 @@
 <a name="GtkSizeGroup.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkSizeGroup.html#GtkSizeGroup-struct" title="struct GtkSizeGroup">GtkSizeGroup</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkSizeGroup.html#GtkSizeGroup-struct">GtkSizeGroup</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name"><a class="link" href="GtkSizeGroup.html#GtkSizeGroupMode" title="enum GtkSizeGroupMode">GtkSizeGroupMode</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkSizeGroup.html#GtkSizeGroupMode">GtkSizeGroupMode</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -183,7 +183,7 @@ the size that the widgets finally receive. If you want the widgets in
 a <a class="link" href="GtkSizeGroup.html" title="GtkSizeGroup"><span class="type">GtkSizeGroup</span></a> to actually be the same size, you need to pack them in
 such a way that they get the size they request and not more. For
 example, if you are packing your widgets into a table, you would not
-include the <a class="link" href="GtkTable.html#GTK-FILL:CAPS"><code class="literal">GTK_FILL</code></a> flag.</p>
+include the <code class="literal">GTK_FILL</code> flag.</p>
 <p><a class="link" href="GtkSizeGroup.html" title="GtkSizeGroup"><span class="type">GtkSizeGroup</span></a> objects are referenced by each widget in the size group,
 so once you have added all widgets to a <a class="link" href="GtkSizeGroup.html" title="GtkSizeGroup"><span class="type">GtkSizeGroup</span></a>, you can drop
 the initial reference to the size group with <code class="function">g_object_unref()</code>. If the
@@ -194,15 +194,15 @@ freed.</p>
 <p>Widgets can be part of multiple size groups; GTK+ will compute the
 horizontal size of a widget from the horizontal requisition of all
 widgets that can be reached from the widget by a chain of size groups
-of type <a class="link" href="GtkSizeGroup.html#GTK-SIZE-GROUP-HORIZONTAL:CAPS"><code class="literal">GTK_SIZE_GROUP_HORIZONTAL</code></a> or <a class="link" href="GtkSizeGroup.html#GTK-SIZE-GROUP-BOTH:CAPS"><code class="literal">GTK_SIZE_GROUP_BOTH</code></a>, and the
+of type <a href="https://developer.gnome.org/gtk4/GtkSizeGroup.html#GTK-SIZE-GROUP-HORIZONTAL:CAPS"><code class="literal">GTK_SIZE_GROUP_HORIZONTAL</code></a> or <a href="https://developer.gnome.org/gtk4/GtkSizeGroup.html#GTK-SIZE-GROUP-BOTH:CAPS"><code class="literal">GTK_SIZE_GROUP_BOTH</code></a>, and the
 vertical size from the vertical requisition of all widgets that can be
 reached from the widget by a chain of size groups of type
-<a class="link" href="GtkSizeGroup.html#GTK-SIZE-GROUP-VERTICAL:CAPS"><code class="literal">GTK_SIZE_GROUP_VERTICAL</code></a> or <a class="link" href="GtkSizeGroup.html#GTK-SIZE-GROUP-BOTH:CAPS"><code class="literal">GTK_SIZE_GROUP_BOTH</code></a>.</p>
+<a href="https://developer.gnome.org/gtk4/GtkSizeGroup.html#GTK-SIZE-GROUP-VERTICAL:CAPS"><code class="literal">GTK_SIZE_GROUP_VERTICAL</code></a> or <a href="https://developer.gnome.org/gtk4/GtkSizeGroup.html#GTK-SIZE-GROUP-BOTH:CAPS"><code class="literal">GTK_SIZE_GROUP_BOTH</code></a>.</p>
 <p>Note that only non-contextual sizes of every widget are ever consulted
 by size groups (since size groups have no knowledge of what size a widget
 will be allocated in one dimension, it cannot derive how much height
 a widget will receive for a given width). When grouping widgets that
-trade height for width in mode <a class="link" href="GtkSizeGroup.html#GTK-SIZE-GROUP-VERTICAL:CAPS"><code class="literal">GTK_SIZE_GROUP_VERTICAL</code></a> or <a class="link" href="GtkSizeGroup.html#GTK-SIZE-GROUP-BOTH:CAPS"><code class="literal">GTK_SIZE_GROUP_BOTH</code></a>:
+trade height for width in mode <a href="https://developer.gnome.org/gtk4/GtkSizeGroup.html#GTK-SIZE-GROUP-VERTICAL:CAPS"><code class="literal">GTK_SIZE_GROUP_VERTICAL</code></a> or <a href="https://developer.gnome.org/gtk4/GtkSizeGroup.html#GTK-SIZE-GROUP-BOTH:CAPS"><code class="literal">GTK_SIZE_GROUP_BOTH</code></a>:
 the height for the minimum width will be the requested height for all
 widgets in the group. The same is of course true when horizontally grouping
 width for height widgets.</p>
@@ -228,13 +228,13 @@ size group. The ”name” attribute gives the id of the widget.</p>
 5
 6
 7</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkSizeGroup"</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"mode"</span><span class="symbol">&gt;</span><span class="normal"><a href="GtkSizeGroup.html#GTK-SIZE-GROUP-HORIZONTAL:CAPS">GTK_SIZE_GROUP_HORIZONTAL</a></span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">widgets</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">widget</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"radio1"</span><span class="symbol">/&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">widget</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"radio2"</span><span class="symbol">/&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">widgets</span><span class="symbol">&gt;</span>
-<span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkSizeGroup&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;mode&quot;</span><span class="o">&gt;</span><span class="n">GTK_SIZE_GROUP_HORIZONTAL</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">widgets</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">widget</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;radio1&quot;</span><span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="n">widget</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;radio2&quot;</span><span class="o">/&gt;</span>
+  <span class="o">&lt;/</span><span class="n">widgets</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -248,7 +248,7 @@ size group. The ”name” attribute gives the id of the widget.</p>
 <div class="refsect2">
 <a name="gtk-size-group-new"></a><h3>gtk_size_group_new ()</h3>
 <pre class="programlisting"><a class="link" href="GtkSizeGroup.html" title="GtkSizeGroup"><span class="returnvalue">GtkSizeGroup</span></a> *
-gtk_size_group_new (<em class="parameter"><code><a class="link" href="GtkSizeGroup.html#GtkSizeGroupMode" title="enum GtkSizeGroupMode"><span class="type">GtkSizeGroupMode</span></a> mode</code></em>);</pre>
+gtk_size_group_new (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkSizeGroup.html#GtkSizeGroupMode"><span class="type">GtkSizeGroupMode</span></a> mode</code></em>);</pre>
 <p>Create a new <a class="link" href="GtkSizeGroup.html" title="GtkSizeGroup"><span class="type">GtkSizeGroup</span></a>.</p>
 <div class="refsect3">
 <a name="gtk-size-group-new.parameters"></a><h4>Parameters</h4>
@@ -275,13 +275,13 @@ gtk_size_group_new (<em class="parameter"><code><a class="link" href="GtkSizeGro
 <a name="gtk-size-group-set-mode"></a><h3>gtk_size_group_set_mode ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_size_group_set_mode (<em class="parameter"><code><a class="link" href="GtkSizeGroup.html" title="GtkSizeGroup"><span class="type">GtkSizeGroup</span></a> *size_group</code></em>,
-                         <em class="parameter"><code><a class="link" href="GtkSizeGroup.html#GtkSizeGroupMode" title="enum GtkSizeGroupMode"><span class="type">GtkSizeGroupMode</span></a> mode</code></em>);</pre>
-<p>Sets the <a class="link" href="GtkSizeGroup.html#GtkSizeGroupMode" title="enum GtkSizeGroupMode"><span class="type">GtkSizeGroupMode</span></a> of the size group. The mode of the size
+                         <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkSizeGroup.html#GtkSizeGroupMode"><span class="type">GtkSizeGroupMode</span></a> mode</code></em>);</pre>
+<p>Sets the <a href="https://developer.gnome.org/gtk4/GtkSizeGroup.html#GtkSizeGroupMode"><span class="type">GtkSizeGroupMode</span></a> of the size group. The mode of the size
 group determines whether the widgets in the size group should
-all have the same horizontal requisition (<a class="link" href="GtkSizeGroup.html#GTK-SIZE-GROUP-HORIZONTAL:CAPS"><code class="literal">GTK_SIZE_GROUP_HORIZONTAL</code></a>)
-all have the same vertical requisition (<a class="link" href="GtkSizeGroup.html#GTK-SIZE-GROUP-VERTICAL:CAPS"><code class="literal">GTK_SIZE_GROUP_VERTICAL</code></a>),
+all have the same horizontal requisition (<a href="https://developer.gnome.org/gtk4/GtkSizeGroup.html#GTK-SIZE-GROUP-HORIZONTAL:CAPS"><code class="literal">GTK_SIZE_GROUP_HORIZONTAL</code></a>)
+all have the same vertical requisition (<a href="https://developer.gnome.org/gtk4/GtkSizeGroup.html#GTK-SIZE-GROUP-VERTICAL:CAPS"><code class="literal">GTK_SIZE_GROUP_VERTICAL</code></a>),
 or should all have the same requisition in both directions
-(<a class="link" href="GtkSizeGroup.html#GTK-SIZE-GROUP-BOTH:CAPS"><code class="literal">GTK_SIZE_GROUP_BOTH</code></a>).</p>
+(<a href="https://developer.gnome.org/gtk4/GtkSizeGroup.html#GTK-SIZE-GROUP-BOTH:CAPS"><code class="literal">GTK_SIZE_GROUP_BOTH</code></a>).</p>
 <div class="refsect3">
 <a name="gtk-size-group-set-mode.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -308,7 +308,7 @@ or should all have the same requisition in both directions
 <hr>
 <div class="refsect2">
 <a name="gtk-size-group-get-mode"></a><h3>gtk_size_group_get_mode ()</h3>
-<pre class="programlisting"><a class="link" href="GtkSizeGroup.html#GtkSizeGroupMode" title="enum GtkSizeGroupMode"><span class="returnvalue">GtkSizeGroupMode</span></a>
+<pre class="programlisting"><a href="https://developer.gnome.org/gtk4/GtkSizeGroup.html#GtkSizeGroupMode"><span class="returnvalue">GtkSizeGroupMode</span></a>
 gtk_size_group_get_mode (<em class="parameter"><code><a class="link" href="GtkSizeGroup.html" title="GtkSizeGroup"><span class="type">GtkSizeGroup</span></a> *size_group</code></em>);</pre>
 <p>Gets the current mode of the size group. See <a class="link" href="GtkSizeGroup.html#gtk-size-group-set-mode" title="gtk_size_group_set_mode ()"><code class="function">gtk_size_group_set_mode()</code></a>.</p>
 <div class="refsect3">
@@ -507,59 +507,6 @@ widgets. The list is owned by GTK+ and should not be modified. </p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkSizeGroup.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkSizeGroup-struct"></a><h3>struct GtkSizeGroup</h3>
-<pre class="programlisting">struct GtkSizeGroup;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkSizeGroupMode"></a><h3>enum GtkSizeGroupMode</h3>
-<p>The mode of the size group determines the directions in which the size
-group affects the requested sizes of its component widgets.</p>
-<div class="refsect3">
-<a name="GtkSizeGroupMode.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="enum_members_name">
-<col class="enum_members_description">
-<col width="200px" class="enum_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-SIZE-GROUP-NONE:CAPS"></a>GTK_SIZE_GROUP_NONE</p></td>
-<td class="enum_member_description">
-<p>group has no effect</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-SIZE-GROUP-HORIZONTAL:CAPS"></a>GTK_SIZE_GROUP_HORIZONTAL</p></td>
-<td class="enum_member_description">
-<p>group affects horizontal requisition</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-SIZE-GROUP-VERTICAL:CAPS"></a>GTK_SIZE_GROUP_VERTICAL</p></td>
-<td class="enum_member_description">
-<p>group affects vertical requisition</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-SIZE-GROUP-BOTH:CAPS"></a>GTK_SIZE_GROUP_BOTH</p></td>
-<td class="enum_member_description">
-<p>group affects both horizontal and vertical requisition</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkSizeGroup.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkSizeGroup--ignore-hidden"></a><h3>The <code class="literal">“ignore-hidden”</code> property</h3>
@@ -575,6 +522,7 @@ the size of the group.</p>
     as if this property was <code class="literal">TRUE</code>. Use a <a class="link" href="GtkStack.html" title="GtkStack"><span class="type">GtkStack</span></a> instead to hide
     widgets while still having their size taken into account.</p>
 </div>
+<p>Owner: GtkSizeGroup</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: 2.8</p>
@@ -582,14 +530,15 @@ the size of the group.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkSizeGroup--mode"></a><h3>The <code class="literal">“mode”</code> property</h3>
-<pre class="programlisting">  “mode”                     <a class="link" href="GtkSizeGroup.html#GtkSizeGroupMode" title="enum GtkSizeGroupMode"><span class="type">GtkSizeGroupMode</span></a></pre>
+<pre class="programlisting">  “mode”                     <a href="https://developer.gnome.org/gtk4/GtkSizeGroup.html#GtkSizeGroupMode"><span class="type">GtkSizeGroupMode</span></a></pre>
 <p>The directions in which the size group affects the requested sizes of its component widgets.</p>
+<p>Owner: GtkSizeGroup</p>
 <p>Flags: Read / Write</p>
 <p>Default value: GTK_SIZE_GROUP_HORIZONTAL</p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

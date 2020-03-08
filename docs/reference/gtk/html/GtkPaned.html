@@ -8,7 +8,7 @@
 <link rel="up" href="LayoutContainers.html" title="Layout Containers">
 <link rel="prev" href="GtkButtonBox.html" title="GtkButtonBox">
 <link rel="next" href="GtkLayout.html" title="GtkLayout">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -41,8 +41,8 @@
 <a name="GtkPaned.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -222,9 +222,9 @@
 <a name="GtkPaned.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody>
 <tr>
@@ -264,12 +264,12 @@
 <a name="GtkPaned.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkPaned.html#GtkPaned-struct" title="struct GtkPaned">GtkPaned</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkPaned.html#GtkPaned-struct">GtkPaned</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -310,7 +310,7 @@ user.</p>
 small handle that the user can drag to adjust the division. It does not
 draw any relief around the children or around the separator. (The space
 in which the separator is called the gutter.) Often, it is useful to put
-each child inside a <a class="link" href="GtkFrame.html" title="GtkFrame"><span class="type">GtkFrame</span></a> with the shadow type set to <a class="link" href="gtk3-Standard-Enumerations.html#GTK-SHADOW-IN:CAPS"><code class="literal">GTK_SHADOW_IN</code></a>
+each child inside a <a class="link" href="GtkFrame.html" title="GtkFrame"><span class="type">GtkFrame</span></a> with the shadow type set to <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-SHADOW-IN:CAPS"><code class="literal">GTK_SHADOW_IN</code></a>
 so that the gutter appears as a ridge. No separator is drawn if one of
 the children is missing.</p>
 <p>Each child has two options that can be set, <em class="parameter"><code>resize</code></em>
@@ -339,10 +339,10 @@ by the user, by calling <a class="link" href="GtkPaned.html#gtk-paned-set-positi
 2
 3
 4</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">paned</span>
-<span class="normal">├── </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
-<span class="normal">├── separator</span><span class="symbol">[.</span><span class="normal">wide</span><span class="symbol">]</span>
-<span class="normal">╰── </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">paned</span>
+<span class="err">├──</span> <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span>
+<span class="err">├──</span> <span class="n">separator</span><span class="p">[.</span><span class="n">wide</span><span class="p">]</span>
+<span class="err">╰──</span> <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -374,19 +374,19 @@ regardless of text direction.</p>
 11
 12
 13</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">hpaned </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkPaned.html#gtk-paned-new">gtk_paned_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="gtk3-Standard-Enumerations.html#GTK-ORIENTATION-HORIZONTAL:CAPS">GTK_ORIENTATION_HORIZONTAL</a></span><span class="symbol">);</span>
-<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">frame1 </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkFrame.html#gtk-frame-new">gtk_frame_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">);</span>
-<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">frame2 </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkFrame.html#gtk-frame-new">gtk_frame_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">);</span>
-<span class="function"><a href="GtkFrame.html#gtk-frame-set-shadow-type">gtk_frame_set_shadow_type</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_FRAME</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">frame1</span><span class="symbol">),</span><span class="normal"> <a href="gtk3-Standard-Enumerations.html#GTK-SHADOW-IN:CAPS">GTK_SHADOW_IN</a></span><span class="symbol">);</span>
-<span class="function"><a href="GtkFrame.html#gtk-frame-set-shadow-type">gtk_frame_set_shadow_type</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_FRAME</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">frame2</span><span class="symbol">),</span><span class="normal"> <a href="gtk3-Standard-Enumerations.html#GTK-SHADOW-IN:CAPS">GTK_SHADOW_IN</a></span><span class="symbol">);</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">hpaned</span> <span class="o">=</span> <span class="n">gtk_paned_new</span> <span class="p">(</span><span class="n">GTK_ORIENTATION_HORIZONTAL</span><span class="p">);</span>
+<span class="n">GtkWidget</span> <span class="o">*</span><span class="n">frame1</span> <span class="o">=</span> <span class="n">gtk_frame_new</span> <span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="n">GtkWidget</span> <span class="o">*</span><span class="n">frame2</span> <span class="o">=</span> <span class="n">gtk_frame_new</span> <span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="n">gtk_frame_set_shadow_type</span> <span class="p">(</span><span class="n">GTK_FRAME</span> <span class="p">(</span><span class="n">frame1</span><span class="p">),</span> <span class="n">GTK_SHADOW_IN</span><span class="p">);</span>
+<span class="n">gtk_frame_set_shadow_type</span> <span class="p">(</span><span class="n">GTK_FRAME</span> <span class="p">(</span><span class="n">frame2</span><span class="p">),</span> <span class="n">GTK_SHADOW_IN</span><span class="p">);</span>
 
-<span class="function"><a href="GtkWidget.html#gtk-widget-set-size-request">gtk_widget_set_size_request</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">hpaned</span><span class="symbol">,</span><span class="normal"> </span><span class="number">200</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">-</span><span class="number">1</span><span class="symbol">);</span>
+<span class="n">gtk_widget_set_size_request</span> <span class="p">(</span><span class="n">hpaned</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
 
-<span class="function"><a href="GtkPaned.html#gtk-paned-pack1">gtk_paned_pack1</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_PANED</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">hpaned</span><span class="symbol">),</span><span class="normal"> frame1</span><span class="symbol">,</span><span class="normal"> TRUE</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">);</span>
-<span class="function"><a href="GtkWidget.html#gtk-widget-set-size-request">gtk_widget_set_size_request</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">frame1</span><span class="symbol">,</span><span class="normal"> </span><span class="number">50</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">-</span><span class="number">1</span><span class="symbol">);</span>
+<span class="n">gtk_paned_pack1</span> <span class="p">(</span><span class="n">GTK_PANED</span> <span class="p">(</span><span class="n">hpaned</span><span class="p">),</span> <span class="n">frame1</span><span class="p">,</span> <span class="n">TRUE</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">);</span>
+<span class="n">gtk_widget_set_size_request</span> <span class="p">(</span><span class="n">frame1</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
 
-<span class="function"><a href="GtkPaned.html#gtk-paned-pack2">gtk_paned_pack2</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_PANED</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">hpaned</span><span class="symbol">),</span><span class="normal"> frame2</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">);</span>
-<span class="function"><a href="GtkWidget.html#gtk-widget-set-size-request">gtk_widget_set_size_request</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">frame2</span><span class="symbol">,</span><span class="normal"> </span><span class="number">50</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">-</span><span class="number">1</span><span class="symbol">);</span></pre></td>
+<span class="n">gtk_paned_pack2</span> <span class="p">(</span><span class="n">GTK_PANED</span> <span class="p">(</span><span class="n">hpaned</span><span class="p">),</span> <span class="n">frame2</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">);</span>
+<span class="n">gtk_widget_set_size_request</span> <span class="p">(</span><span class="n">frame2</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -401,7 +401,7 @@ regardless of text direction.</p>
 <div class="refsect2">
 <a name="gtk-paned-new"></a><h3>gtk_paned_new ()</h3>
 <pre class="programlisting"><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="returnvalue">GtkWidget</span></a> *
-gtk_paned_new (<em class="parameter"><code><a class="link" href="gtk3-Standard-Enumerations.html#GtkOrientation" title="enum GtkOrientation"><span class="type">GtkOrientation</span></a> orientation</code></em>);</pre>
+gtk_paned_new (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkOrientation"><span class="type">GtkOrientation</span></a> orientation</code></em>);</pre>
 <p>Creates a new <a class="link" href="GtkPaned.html" title="GtkPaned"><span class="type">GtkPaned</span></a> widget.</p>
 <div class="refsect3">
 <a name="gtk-paned-new.parameters"></a><h4>Parameters</h4>
@@ -776,13 +776,6 @@ gtk_paned_get_wide_handle (<em class="parameter"><code><a class="link" href="Gtk
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkPaned.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkPaned-struct"></a><h3>struct GtkPaned</h3>
-<pre class="programlisting">struct GtkPaned;</pre>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkPaned.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkPaned--max-position"></a><h3>The <code class="literal">“max-position”</code> property</h3>
@@ -790,6 +783,7 @@ gtk_paned_get_wide_handle (<em class="parameter"><code><a class="link" href="Gtk
 <p>The largest possible value for the position property.
 This property is derived from the size and shrinkability
 of the widget's children.</p>
+<p>Owner: GtkPaned</p>
 <p>Flags: Read</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 2147483647</p>
@@ -802,6 +796,7 @@ of the widget's children.</p>
 <p>The smallest possible value for the position property.
 This property is derived from the size and shrinkability
 of the widget's children.</p>
+<p>Owner: GtkPaned</p>
 <p>Flags: Read</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 0</p>
@@ -812,6 +807,7 @@ of the widget's children.</p>
 <a name="GtkPaned--position"></a><h3>The <code class="literal">“position”</code> property</h3>
 <pre class="programlisting">  “position”                 <span class="type">gint</span></pre>
 <p>Position of paned separator in pixels (0 means all the way to the left/top).</p>
+<p>Owner: GtkPaned</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 0</p>
@@ -821,6 +817,7 @@ of the widget's children.</p>
 <a name="GtkPaned--position-set"></a><h3>The <code class="literal">“position-set”</code> property</h3>
 <pre class="programlisting">  “position-set”             <span class="type">gboolean</span></pre>
 <p>TRUE if the Position property should be used.</p>
+<p>Owner: GtkPaned</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -831,6 +828,7 @@ of the widget's children.</p>
 <p>Setting this property to <code class="literal">TRUE</code> indicates that the paned needs
 to provide stronger visual separation (e.g. because it separates
 between two notebooks, whose tab rows would otherwise merge visually).</p>
+<p>Owner: GtkPaned</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: <a class="link" href="api-index-3-16.html#api-index-3.16">3.16</a></p>
@@ -843,6 +841,7 @@ between two notebooks, whose tab rows would otherwise merge visually).</p>
 <pre class="programlisting">  “resize”                   <span class="type">gboolean</span></pre>
 <p>The "resize" child property determines whether the child expands and
 shrinks along with the paned widget.</p>
+<p>Owner: GtkPaned</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 <p class="since">Since: 2.4</p>
@@ -853,6 +852,7 @@ shrinks along with the paned widget.</p>
 <pre class="programlisting">  “shrink”                   <span class="type">gboolean</span></pre>
 <p>The "shrink" child property determines whether the child can be made
 smaller than its requisition.</p>
+<p>Owner: GtkPaned</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 <p class="since">Since: 2.4</p>
@@ -864,6 +864,7 @@ smaller than its requisition.</p>
 <a name="GtkPaned--s-handle-size"></a><h3>The <code class="literal">“handle-size”</code> style property</h3>
 <pre class="programlisting">  “handle-size”              <span class="type">gint</span></pre>
 <p>Width of handle.</p>
+<p>Owner: GtkPaned</p>
 <p>Flags: Read</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 5</p>
@@ -878,7 +879,7 @@ user_function (<a class="link" href="GtkPaned.html" title="GtkPaned"><span class
                <span class="type">gpointer</span>  user_data)</pre>
 <p>The ::accept-position signal is a
 
-<a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
+keybinding signal
 which gets emitted to accept the current position of the handle when
 
 moving it using key bindings.</p>
@@ -916,7 +917,7 @@ user_function (<a class="link" href="GtkPaned.html" title="GtkPaned"><span class
                <span class="type">gpointer</span>  user_data)</pre>
 <p>The ::cancel-position signal is a
 
-<a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
+keybinding signal
 which gets emitted to cancel moving the position of the handle using key
 
 bindings. The position of the handle will be reset to the value prior to
@@ -957,7 +958,7 @@ user_function (<a class="link" href="GtkPaned.html" title="GtkPaned"><span class
                <span class="type">gpointer</span>  user_data)</pre>
 <p>The ::cycle-child-focus signal is a
 
-<a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
+keybinding signal
 which gets emitted to cycle the focus between the children of the paned.</p>
 <p>The default binding is f6.</p>
 <div class="refsect3">
@@ -999,7 +1000,7 @@ user_function (<a class="link" href="GtkPaned.html" title="GtkPaned"><span class
                <span class="type">gpointer</span>  user_data)</pre>
 <p>The ::cycle-handle-focus signal is a
 
-<a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
+keybinding signal
 which gets emitted to cycle whether the paned should grab focus to allow
 the user to change position of the handle by using key bindings.</p>
 <p>The default binding for this signal is f8.</p>
@@ -1038,11 +1039,11 @@ the user to change position of the handle by using key bindings.</p>
 <a name="GtkPaned-move-handle"></a><h3>The <code class="literal">“move-handle”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 user_function (<a class="link" href="GtkPaned.html" title="GtkPaned"><span class="type">GtkPaned</span></a>     *widget,
-               <a class="link" href="gtk3-Standard-Enumerations.html#GtkScrollType" title="enum GtkScrollType"><span class="type">GtkScrollType</span></a> scroll_type,
+               <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkScrollType"><span class="type">GtkScrollType</span></a> scroll_type,
                <span class="type">gpointer</span>      user_data)</pre>
 <p>The ::move-handle signal is a
 
-<a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
+keybinding signal
 which gets emitted to move the handle when the user is using key bindings
 
 to move it.</p>
@@ -1062,7 +1063,7 @@ to move it.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>scroll_type</p></td>
-<td class="parameter_description"><p>a <a class="link" href="gtk3-Standard-Enumerations.html#GtkScrollType" title="enum GtkScrollType"><span class="type">GtkScrollType</span></a></p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkScrollType"><span class="type">GtkScrollType</span></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -1084,7 +1085,7 @@ user_function (<a class="link" href="GtkPaned.html" title="GtkPaned"><span class
                <span class="type">gpointer</span>  user_data)</pre>
 <p>The ::toggle-handle-focus is a
 
-<a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
+keybinding signal
 which gets emitted to accept the current position of the handle and then
 
 move focus to the next widget in the focus chain.</p>
@@ -1117,6 +1118,6 @@ move focus to the next widget in the focus chain.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <link rel="up" href="ButtonWidgets.html" title="Buttons and Toggles">
 <link rel="prev" href="GtkVolumeButton.html" title="GtkVolumeButton">
 <link rel="next" href="GtkModelButton.html" title="GtkModelButton">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -38,8 +38,8 @@
 <a name="GtkLockButton.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -121,17 +121,17 @@
 <a name="GtkLockButton.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkLockButton.html#GtkLockButton-struct" title="struct GtkLockButton">GtkLockButton</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkLockButton.html#GtkLockButton-struct">GtkLockButton</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkLockButton.html#GtkLockButtonClass" title="struct GtkLockButtonClass">GtkLockButtonClass</a></td>
+<td class="function_name">GtkLockButtonClass</td>
 </tr>
 </tbody>
 </table></div>
@@ -276,37 +276,12 @@ gtk_lock_button_set_permission (<em class="parameter"><code><a class="link" href
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkLockButton.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkLockButton-struct"></a><h3>struct GtkLockButton</h3>
-<pre class="programlisting">struct GtkLockButton;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkLockButtonClass"></a><h3>struct GtkLockButtonClass</h3>
-<pre class="programlisting">struct GtkLockButtonClass {
-  GtkButtonClass parent_class;
-};
-</pre>
-<div class="refsect3">
-<a name="GtkLockButtonClass.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody></tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkLockButton.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkLockButton--permission"></a><h3>The <code class="literal">“permission”</code> property</h3>
 <pre class="programlisting">  “permission”               <span class="type">GPermission</span> *</pre>
 <p>The GPermission object controlling this button.</p>
+<p>Owner: GtkLockButton</p>
 <p>Flags: Read / Write</p>
 </div>
 <hr>
@@ -314,6 +289,7 @@ gtk_lock_button_set_permission (<em class="parameter"><code><a class="link" href
 <a name="GtkLockButton--text-lock"></a><h3>The <code class="literal">“text-lock”</code> property</h3>
 <pre class="programlisting">  “text-lock”                <span class="type">gchar</span> *</pre>
 <p>The text to display when prompting the user to lock.</p>
+<p>Owner: GtkLockButton</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: "Lock"</p>
 </div>
@@ -322,6 +298,7 @@ gtk_lock_button_set_permission (<em class="parameter"><code><a class="link" href
 <a name="GtkLockButton--text-unlock"></a><h3>The <code class="literal">“text-unlock”</code> property</h3>
 <pre class="programlisting">  “text-unlock”              <span class="type">gchar</span> *</pre>
 <p>The text to display when prompting the user to unlock.</p>
+<p>Owner: GtkLockButton</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: "Unlock"</p>
 </div>
@@ -330,6 +307,7 @@ gtk_lock_button_set_permission (<em class="parameter"><code><a class="link" href
 <a name="GtkLockButton--tooltip-lock"></a><h3>The <code class="literal">“tooltip-lock”</code> property</h3>
 <pre class="programlisting">  “tooltip-lock”             <span class="type">gchar</span> *</pre>
 <p>The tooltip to display when prompting the user to lock.</p>
+<p>Owner: GtkLockButton</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: "Dialog is unlocked.\nClick to prevent further changes"</p>
 </div>
@@ -338,6 +316,7 @@ gtk_lock_button_set_permission (<em class="parameter"><code><a class="link" href
 <a name="GtkLockButton--tooltip-not-authorized"></a><h3>The <code class="literal">“tooltip-not-authorized”</code> property</h3>
 <pre class="programlisting">  “tooltip-not-authorized”   <span class="type">gchar</span> *</pre>
 <p>The tooltip to display when prompting the user cannot obtain authorization.</p>
+<p>Owner: GtkLockButton</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: "System policy prevents changes.\nContact your system administrator"</p>
 </div>
@@ -346,12 +325,13 @@ gtk_lock_button_set_permission (<em class="parameter"><code><a class="link" href
 <a name="GtkLockButton--tooltip-unlock"></a><h3>The <code class="literal">“tooltip-unlock”</code> property</h3>
 <pre class="programlisting">  “tooltip-unlock”           <span class="type">gchar</span> *</pre>
 <p>The tooltip to display when prompting the user to unlock.</p>
+<p>Owner: GtkLockButton</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: "Dialog is locked.\nClick to make changes"</p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

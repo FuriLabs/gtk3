@@ -8,7 +8,7 @@
 <link rel="up" href="DisplayWidgets.html" title="Display Widgets">
 <link rel="prev" href="GtkSpinner.html" title="GtkSpinner">
 <link rel="next" href="GtkProgressBar.html" title="GtkProgressBar">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -40,8 +40,8 @@
 <a name="GtkInfoBar.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -118,7 +118,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a class="link" href="GtkMessageDialog.html#GtkMessageType" title="enum GtkMessageType"><span class="returnvalue">GtkMessageType</span></a>
+<a href="https://developer.gnome.org/gtk4/GtkMessageDialog.html#GtkMessageType"><span class="returnvalue">GtkMessageType</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GtkInfoBar.html#gtk-info-bar-get-message-type" title="gtk_info_bar_get_message_type ()">gtk_info_bar_get_message_type</a> <span class="c_punctuation">()</span>
@@ -185,7 +185,7 @@
 </colgroup>
 <tbody>
 <tr>
-<td class="property_type"><a class="link" href="GtkMessageDialog.html#GtkMessageType" title="enum GtkMessageType"><span class="type">GtkMessageType</span></a></td>
+<td class="property_type"><a href="https://developer.gnome.org/gtk4/GtkMessageDialog.html#GtkMessageType"><span class="type">GtkMessageType</span></a></td>
 <td class="property_name"><a class="link" href="GtkInfoBar.html#GtkInfoBar--message-type" title="The “message-type” property">message-type</a></td>
 <td class="property_flags">Read / Write / Construct</td>
 </tr>
@@ -238,9 +238,9 @@
 <a name="GtkInfoBar.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody>
 <tr>
@@ -260,12 +260,12 @@
 <a name="GtkInfoBar.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkInfoBar.html#GtkInfoBar-struct" title="struct GtkInfoBar">GtkInfoBar</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkInfoBar.html#GtkInfoBar-struct">GtkInfoBar</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -344,38 +344,38 @@ to determine how the message is displayed.</p>
 30
 31
 32</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">widget</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">message_label</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">content_area</span><span class="symbol">;</span>
-<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">grid</span><span class="symbol">;</span>
-<span class="usertype">GtkInfoBar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">bar</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span> <span class="o">*</span><span class="n">message_label</span><span class="p">,</span> <span class="o">*</span><span class="n">content_area</span><span class="p">;</span>
+<span class="n">GtkWidget</span> <span class="o">*</span><span class="n">grid</span><span class="p">;</span>
+<span class="n">GtkInfoBar</span> <span class="o">*</span><span class="n">bar</span><span class="p">;</span>
 
-<span class="comment">// set up info bar</span>
-<span class="normal">widget </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkInfoBar.html#gtk-info-bar-new">gtk_info_bar_new</a></span><span class="normal"> </span><span class="symbol">();</span>
-<span class="normal">bar </span><span class="symbol">=</span><span class="normal"> </span><span class="function">GTK_INFO_BAR</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">);</span>
-<span class="normal">grid </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkGrid.html#gtk-grid-new">gtk_grid_new</a></span><span class="normal"> </span><span class="symbol">();</span>
+<span class="c1">// set up info bar</span>
+<span class="n">widget</span> <span class="o">=</span> <span class="n">gtk_info_bar_new</span> <span class="p">();</span>
+<span class="n">bar</span> <span class="o">=</span> <span class="n">GTK_INFO_BAR</span> <span class="p">(</span><span class="n">widget</span><span class="p">);</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">gtk_grid_new</span> <span class="p">();</span>
 
-<span class="function"><a href="GtkWidget.html#gtk-widget-set-no-show-all">gtk_widget_set_no_show_all</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">,</span><span class="normal"> TRUE</span><span class="symbol">);</span>
-<span class="normal">message_label </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkLabel.html#gtk-label-new">gtk_label_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">""</span><span class="symbol">);</span>
-<span class="normal">content_area </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkInfoBar.html#gtk-info-bar-get-content-area">gtk_info_bar_get_content_area</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">bar</span><span class="symbol">);</span>
-<span class="function"><a href="GtkContainer.html#gtk-container-add">gtk_container_add</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_CONTAINER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">content_area</span><span class="symbol">),</span>
-<span class="normal">                   message_label</span><span class="symbol">);</span>
-<span class="function"><a href="GtkInfoBar.html#gtk-info-bar-add-button">gtk_info_bar_add_button</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">bar</span><span class="symbol">,</span>
-<span class="normal">                         </span><span class="function">_</span><span class="symbol">(</span><span class="string">"_OK"</span><span class="symbol">),</span>
-<span class="normal">                         <a href="GtkDialog.html#GTK-RESPONSE-OK:CAPS">GTK_RESPONSE_OK</a></span><span class="symbol">);</span>
-<span class="function">g_signal_connect</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">bar</span><span class="symbol">,</span>
-<span class="normal">                  </span><span class="string">"response"</span><span class="symbol">,</span>
-<span class="normal">                  </span><span class="function">G_CALLBACK</span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="GtkWidget.html#gtk-widget-hide">gtk_widget_hide</a></span><span class="symbol">),</span>
-<span class="normal">                  NULL</span><span class="symbol">);</span>
-<span class="function"><a href="GtkGrid.html#gtk-grid-attach">gtk_grid_attach</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_GRID</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">grid</span><span class="symbol">),</span>
-<span class="normal">                 widget</span><span class="symbol">,</span>
-<span class="normal">                 </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">2</span><span class="symbol">,</span><span class="normal"> </span><span class="number">1</span><span class="symbol">,</span><span class="normal"> </span><span class="number">1</span><span class="symbol">);</span>
+<span class="n">gtk_widget_set_no_show_all</span> <span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">TRUE</span><span class="p">);</span>
+<span class="n">message_label</span> <span class="o">=</span> <span class="n">gtk_label_new</span> <span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+<span class="n">content_area</span> <span class="o">=</span> <span class="n">gtk_info_bar_get_content_area</span> <span class="p">(</span><span class="n">bar</span><span class="p">);</span>
+<span class="n">gtk_container_add</span> <span class="p">(</span><span class="n">GTK_CONTAINER</span> <span class="p">(</span><span class="n">content_area</span><span class="p">),</span>
+                   <span class="n">message_label</span><span class="p">);</span>
+<span class="n">gtk_info_bar_add_button</span> <span class="p">(</span><span class="n">bar</span><span class="p">,</span>
+                         <span class="n">_</span><span class="p">(</span><span class="s">&quot;_OK&quot;</span><span class="p">),</span>
+                         <span class="n">GTK_RESPONSE_OK</span><span class="p">);</span>
+<span class="n">g_signal_connect</span> <span class="p">(</span><span class="n">bar</span><span class="p">,</span>
+                  <span class="s">&quot;response&quot;</span><span class="p">,</span>
+                  <span class="n">G_CALLBACK</span> <span class="p">(</span><span class="n">gtk_widget_hide</span><span class="p">),</span>
+                  <span class="nb">NULL</span><span class="p">);</span>
+<span class="n">gtk_grid_attach</span> <span class="p">(</span><span class="n">GTK_GRID</span> <span class="p">(</span><span class="n">grid</span><span class="p">),</span>
+                 <span class="n">widget</span><span class="p">,</span>
+                 <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 
-<span class="comment">// ...</span>
+<span class="c1">// ...</span>
 
-<span class="comment">// show an error message</span>
-<span class="function"><a href="GtkLabel.html#gtk-label-set-text">gtk_label_set_text</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_LABEL</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">message_label</span><span class="symbol">),</span><span class="normal"> </span><span class="string">"An error occurred!"</span><span class="symbol">);</span>
-<span class="function"><a href="GtkInfoBar.html#gtk-info-bar-set-message-type">gtk_info_bar_set_message_type</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">bar</span><span class="symbol">,</span>
-<span class="normal">                               <a href="GtkMessageDialog.html#GTK-MESSAGE-ERROR:CAPS">GTK_MESSAGE_ERROR</a></span><span class="symbol">);</span>
-<span class="function"><a href="GtkWidget.html#gtk-widget-show">gtk_widget_show</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">bar</span><span class="symbol">);</span></pre></td>
+<span class="c1">// show an error message</span>
+<span class="n">gtk_label_set_text</span> <span class="p">(</span><span class="n">GTK_LABEL</span> <span class="p">(</span><span class="n">message_label</span><span class="p">),</span> <span class="s">&quot;An error occurred!&quot;</span><span class="p">);</span>
+<span class="n">gtk_info_bar_set_message_type</span> <span class="p">(</span><span class="n">bar</span><span class="p">,</span>
+                               <span class="n">GTK_MESSAGE_ERROR</span><span class="p">);</span>
+<span class="n">gtk_widget_show</span> <span class="p">(</span><span class="n">bar</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -422,9 +422,9 @@ gtk_info_bar_new_with_buttons (<em class="parameter"><code>const <span class="ty
                                <em class="parameter"><code>...</code></em>);</pre>
 <p>Creates a new <a class="link" href="GtkInfoBar.html" title="GtkInfoBar"><span class="type">GtkInfoBar</span></a> with buttons. Button text/response ID
 pairs should be listed, with a <code class="literal">NULL</code> pointer ending the list.
-Button text can be either a stock ID such as <a class="link" href="gtk3-Stock-Items.html#GTK-STOCK-OK:CAPS" title="GTK_STOCK_OK"><code class="literal">GTK_STOCK_OK</code></a>, or
+Button text can be either a stock ID such as <code class="literal">GTK_STOCK_OK</code>, or
 some arbitrary text. A response ID can be any positive number,
-or one of the values in the <a class="link" href="GtkDialog.html#GtkResponseType" title="enum GtkResponseType"><span class="type">GtkResponseType</span></a> enumeration. If the
+or one of the values in the <a href="https://developer.gnome.org/gtk4/GtkDialog.html#GtkResponseType"><span class="type">GtkResponseType</span></a> enumeration. If the
 user clicks one of these dialog buttons, GtkInfoBar will emit
 the “response” signal with the corresponding response ID.</p>
 <div class="refsect3">
@@ -696,7 +696,7 @@ gtk_info_bar_response (<em class="parameter"><code><a class="link" href="GtkInfo
 <a name="gtk-info-bar-set-message-type"></a><h3>gtk_info_bar_set_message_type ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_info_bar_set_message_type (<em class="parameter"><code><a class="link" href="GtkInfoBar.html" title="GtkInfoBar"><span class="type">GtkInfoBar</span></a> *info_bar</code></em>,
-                               <em class="parameter"><code><a class="link" href="GtkMessageDialog.html#GtkMessageType" title="enum GtkMessageType"><span class="type">GtkMessageType</span></a> message_type</code></em>);</pre>
+                               <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkMessageDialog.html#GtkMessageType"><span class="type">GtkMessageType</span></a> message_type</code></em>);</pre>
 <p>Sets the message type of the message area.</p>
 <p>GTK+ uses this type to determine how the message is displayed.</p>
 <div class="refsect3">
@@ -715,7 +715,7 @@ gtk_info_bar_set_message_type (<em class="parameter"><code><a class="link" href=
 </tr>
 <tr>
 <td class="parameter_name"><p>message_type</p></td>
-<td class="parameter_description"><p>a <a class="link" href="GtkMessageDialog.html#GtkMessageType" title="enum GtkMessageType"><span class="type">GtkMessageType</span></a></p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/GtkMessageDialog.html#GtkMessageType"><span class="type">GtkMessageType</span></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -726,7 +726,7 @@ gtk_info_bar_set_message_type (<em class="parameter"><code><a class="link" href=
 <hr>
 <div class="refsect2">
 <a name="gtk-info-bar-get-message-type"></a><h3>gtk_info_bar_get_message_type ()</h3>
-<pre class="programlisting"><a class="link" href="GtkMessageDialog.html#GtkMessageType" title="enum GtkMessageType"><span class="returnvalue">GtkMessageType</span></a>
+<pre class="programlisting"><a href="https://developer.gnome.org/gtk4/GtkMessageDialog.html#GtkMessageType"><span class="returnvalue">GtkMessageType</span></a>
 gtk_info_bar_get_message_type (<em class="parameter"><code><a class="link" href="GtkInfoBar.html" title="GtkInfoBar"><span class="type">GtkInfoBar</span></a> *info_bar</code></em>);</pre>
 <p>Returns the message type of the message area.</p>
 <div class="refsect3">
@@ -842,7 +842,7 @@ gtk_info_bar_get_show_close_button (<em class="parameter"><code><a class="link" 
 gtk_info_bar_set_show_close_button (<em class="parameter"><code><a class="link" href="GtkInfoBar.html" title="GtkInfoBar"><span class="type">GtkInfoBar</span></a> *info_bar</code></em>,
                                     <em class="parameter"><code><span class="type">gboolean</span> setting</code></em>);</pre>
 <p>If true, a standard close button is shown. When clicked it emits
-the response <a class="link" href="GtkDialog.html#GTK-RESPONSE-CLOSE:CAPS"><code class="literal">GTK_RESPONSE_CLOSE</code></a>.</p>
+the response <a href="https://developer.gnome.org/gtk4/GtkDialog.html#GTK-RESPONSE-CLOSE:CAPS"><code class="literal">GTK_RESPONSE_CLOSE</code></a>.</p>
 <div class="refsect3">
 <a name="gtk-info-bar-set-show-close-button.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -932,19 +932,13 @@ have any effect if it is invisible.</p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkInfoBar.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkInfoBar-struct"></a><h3>struct GtkInfoBar</h3>
-<pre class="programlisting">struct GtkInfoBar;</pre>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkInfoBar.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkInfoBar--message-type"></a><h3>The <code class="literal">“message-type”</code> property</h3>
-<pre class="programlisting">  “message-type”             <a class="link" href="GtkMessageDialog.html#GtkMessageType" title="enum GtkMessageType"><span class="type">GtkMessageType</span></a></pre>
+<pre class="programlisting">  “message-type”             <a href="https://developer.gnome.org/gtk4/GtkMessageDialog.html#GtkMessageType"><span class="type">GtkMessageType</span></a></pre>
 <p>The type of the message.</p>
 <p>The type may be used to determine the appearance of the info bar.</p>
+<p>Owner: GtkInfoBar</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: GTK_MESSAGE_INFO</p>
 <p class="since">Since: 2.18</p>
@@ -954,6 +948,7 @@ have any effect if it is invisible.</p>
 <a name="GtkInfoBar--revealed"></a><h3>The <code class="literal">“revealed”</code> property</h3>
 <pre class="programlisting">  “revealed”                 <span class="type">gboolean</span></pre>
 <p>Controls whether the action bar shows its contents or not.</p>
+<p>Owner: GtkInfoBar</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 </div>
@@ -962,6 +957,7 @@ have any effect if it is invisible.</p>
 <a name="GtkInfoBar--show-close-button"></a><h3>The <code class="literal">“show-close-button”</code> property</h3>
 <pre class="programlisting">  “show-close-button”        <span class="type">gboolean</span></pre>
 <p>Whether to include a standard close button.</p>
+<p>Owner: GtkInfoBar</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: <a class="link" href="api-index-3-10.html#api-index-3.10">3.10</a></p>
@@ -977,6 +973,7 @@ have any effect if it is invisible.</p>
 <p><code class="literal">GtkInfoBar:action-area-border</code> has been deprecated since version 3.6 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="GtkContainer.html#gtk-container-set-border-width" title="gtk_container_set_border_width ()"><code class="function">gtk_container_set_border_width()</code></a></p>
 </div>
+<p>Owner: GtkInfoBar</p>
 <p>Flags: Read</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 5</p>
@@ -991,6 +988,7 @@ have any effect if it is invisible.</p>
 <p><code class="literal">GtkInfoBar:button-spacing</code> has been deprecated since version 3.6 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="GtkBox.html#gtk-box-set-spacing" title="gtk_box_set_spacing ()"><code class="function">gtk_box_set_spacing()</code></a></p>
 </div>
+<p>Owner: GtkInfoBar</p>
 <p>Flags: Read</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 6</p>
@@ -1006,6 +1004,7 @@ content area of the info bar.</p>
 <p><code class="literal">GtkInfoBar:content-area-border</code> has been deprecated since version 3.6 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="GtkContainer.html#gtk-container-set-border-width" title="gtk_container_set_border_width ()"><code class="function">gtk_container_set_border_width()</code></a></p>
 </div>
+<p>Owner: GtkInfoBar</p>
 <p>Flags: Read</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 8</p>
@@ -1021,6 +1020,7 @@ content area of the info bar.</p>
 <p><code class="literal">GtkInfoBar:content-area-spacing</code> has been deprecated since version 3.6 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="GtkBox.html#gtk-box-set-spacing" title="gtk_box_set_spacing ()"><code class="function">gtk_box_set_spacing()</code></a></p>
 </div>
+<p>Owner: GtkInfoBar</p>
 <p>Flags: Read</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 16</p>
@@ -1035,7 +1035,7 @@ content area of the info bar.</p>
 user_function (<a class="link" href="GtkInfoBar.html" title="GtkInfoBar"><span class="type">GtkInfoBar</span></a> *infobar,
                <span class="type">gpointer</span>    user_data)</pre>
 <p>The ::close signal is a
-<a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
+keybinding signal
 which gets emitted when the user uses a keybinding to dismiss
 the info bar.</p>
 <p>The default binding for this signal is the Escape key.</p>
@@ -1105,6 +1105,6 @@ widget was clicked.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

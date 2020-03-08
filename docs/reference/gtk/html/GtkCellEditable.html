@@ -8,7 +8,7 @@
 <link rel="up" href="TreeWidgetObjects.html" title="Tree, List and Icon Grid Widgets">
 <link rel="prev" href="GtkCellRenderer.html" title="GtkCellRenderer">
 <link rel="next" href="GtkCellRendererAccel.html" title="GtkCellRendererAccel">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -40,8 +40,8 @@
 <a name="GtkCellEditable.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -90,9 +90,9 @@
 <a name="GtkCellEditable.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody>
 <tr>
@@ -112,17 +112,17 @@
 <a name="GtkCellEditable.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name"><a class="link" href="GtkCellEditable.html#GtkCellEditable-struct" title="GtkCellEditable">GtkCellEditable</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkCellEditable.html#GtkCellEditable-struct">GtkCellEditable</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkCellEditable.html#GtkCellEditableIface" title="struct GtkCellEditableIface">GtkCellEditableIface</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkCellEditable.html#GtkCellEditableIface">GtkCellEditableIface</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -243,61 +243,12 @@ gtk_cell_editable_remove_widget (<em class="parameter"><code><a class="link" hre
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkCellEditable.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkCellEditable-struct"></a><h3>GtkCellEditable</h3>
-<pre class="programlisting">typedef struct _GtkCellEditable GtkCellEditable;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkCellEditableIface"></a><h3>struct GtkCellEditableIface</h3>
-<pre class="programlisting">struct GtkCellEditableIface {
-  /* signals */
-  void (* editing_done)  (GtkCellEditable *cell_editable);
-  void (* remove_widget) (GtkCellEditable *cell_editable);
-
-  /* virtual table */
-  void (* start_editing) (GtkCellEditable *cell_editable,
-			  GdkEvent        *event);
-};
-</pre>
-<div class="refsect3">
-<a name="GtkCellEditableIface.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkCellEditableIface.editing-done"></a>editing_done</code></em> ()</p></td>
-<td class="struct_member_description"><p>Signal is a sign for the cell renderer to update its
-value from the cell_editable.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkCellEditableIface.remove-widget"></a>remove_widget</code></em> ()</p></td>
-<td class="struct_member_description"><p>Signal is meant to indicate that the cell is
-finished editing, and the widget may now be destroyed.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkCellEditableIface.start-editing"></a>start_editing</code></em> ()</p></td>
-<td class="struct_member_description"><p>Begins editing on a cell_editable.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkCellEditable.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkCellEditable--editing-canceled"></a><h3>The <code class="literal">“editing-canceled”</code> property</h3>
 <pre class="programlisting">  “editing-canceled”         <span class="type">gboolean</span></pre>
 <p>Indicates whether editing on the cell has been canceled.</p>
+<p>Owner: GtkCellEditable</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: 2.20</p>
@@ -393,6 +344,6 @@ for emitting <a class="link" href="GtkCellEditable.html#GtkCellEditable-remove-w
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

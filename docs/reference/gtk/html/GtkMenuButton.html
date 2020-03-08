@@ -8,7 +8,7 @@
 <link rel="up" href="ButtonWidgets.html" title="Buttons and Toggles">
 <link rel="prev" href="GtkLinkButton.html" title="GtkLinkButton">
 <link rel="next" href="GtkSwitch.html" title="GtkSwitch">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -38,8 +38,8 @@
 <a name="GtkMenuButton.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -124,7 +124,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a class="link" href="GtkMenuButton.html#GtkArrowType" title="enum GtkArrowType"><span class="returnvalue">GtkArrowType</span></a>
+<a href="https://developer.gnome.org/gtk4/GtkMenuButton.html#GtkArrowType"><span class="returnvalue">GtkArrowType</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GtkMenuButton.html#gtk-menu-button-get-direction" title="gtk_menu_button_get_direction ()">gtk_menu_button_get_direction</a> <span class="c_punctuation">()</span>
@@ -165,7 +165,7 @@
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><a class="link" href="GtkMenuButton.html#GtkArrowType" title="enum GtkArrowType"><span class="type">GtkArrowType</span></a></td>
+<td class="property_type"><a href="https://developer.gnome.org/gtk4/GtkMenuButton.html#GtkArrowType"><span class="type">GtkArrowType</span></a></td>
 <td class="property_name"><a class="link" href="GtkMenuButton.html#GtkMenuButton--direction" title="The “direction” property">direction</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -199,17 +199,17 @@
 <a name="GtkMenuButton.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkMenuButton.html#GtkMenuButton-struct" title="struct GtkMenuButton">GtkMenuButton</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkMenuButton.html#GtkMenuButton-struct">GtkMenuButton</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name"><a class="link" href="GtkMenuButton.html#GtkArrowType" title="enum GtkArrowType">GtkArrowType</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkMenuButton.html#GtkArrowType">GtkArrowType</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -252,7 +252,7 @@ icon if the direction is not set.</p>
 property of the menu button.</p>
 <p>For menus, the <a class="link" href="GtkWidget.html#GtkWidget--halign" title="The “halign” property"><span class="type">“halign”</span></a> and <a class="link" href="GtkWidget.html#GtkWidget--valign" title="The “valign” property"><span class="type">“valign”</span></a> properties of the
 menu are also taken into account. For example, when the direction is
-<a class="link" href="GtkMenuButton.html#GTK-ARROW-DOWN:CAPS"><code class="literal">GTK_ARROW_DOWN</code></a> and the horizontal alignment is <a class="link" href="GtkWidget.html#GTK-ALIGN-START:CAPS"><code class="literal">GTK_ALIGN_START</code></a>, the
+<a href="https://developer.gnome.org/gtk4/GtkMenuButton.html#GTK-ARROW-DOWN:CAPS"><code class="literal">GTK_ARROW_DOWN</code></a> and the horizontal alignment is <a href="https://developer.gnome.org/gtk4/GtkWidget.html#GTK-ALIGN-START:CAPS"><code class="literal">GTK_ALIGN_START</code></a>, the
 menu will be positioned below the button, with the starting edge
 (depending on the text direction) of the menu aligned with the starting
 edge of the button. If there is not enough space below the button, the
@@ -614,15 +614,15 @@ from the menu model.</p>
 <a name="gtk-menu-button-set-direction"></a><h3>gtk_menu_button_set_direction ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_menu_button_set_direction (<em class="parameter"><code><a class="link" href="GtkMenuButton.html" title="GtkMenuButton"><span class="type">GtkMenuButton</span></a> *menu_button</code></em>,
-                               <em class="parameter"><code><a class="link" href="GtkMenuButton.html#GtkArrowType" title="enum GtkArrowType"><span class="type">GtkArrowType</span></a> direction</code></em>);</pre>
+                               <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkMenuButton.html#GtkArrowType"><span class="type">GtkArrowType</span></a> direction</code></em>);</pre>
 <p>Sets the direction in which the popup will be popped up, as
 well as changing the arrow’s direction. The child will not
 be changed to an arrow if it was customized.</p>
 <p>If the does not fit in the available space in the given direction,
 GTK+ will its best to keep it inside the screen and fully visible.</p>
-<p>If you pass <a class="link" href="GtkMenuButton.html#GTK-ARROW-NONE:CAPS"><code class="literal">GTK_ARROW_NONE</code></a> for a <em class="parameter"><code>direction</code></em>
+<p>If you pass <a href="https://developer.gnome.org/gtk4/GtkMenuButton.html#GTK-ARROW-NONE:CAPS"><code class="literal">GTK_ARROW_NONE</code></a> for a <em class="parameter"><code>direction</code></em>
 , the popup will behave
-as if you passed <a class="link" href="GtkMenuButton.html#GTK-ARROW-DOWN:CAPS"><code class="literal">GTK_ARROW_DOWN</code></a> (although you won’t see any arrows).</p>
+as if you passed <a href="https://developer.gnome.org/gtk4/GtkMenuButton.html#GTK-ARROW-DOWN:CAPS"><code class="literal">GTK_ARROW_DOWN</code></a> (although you won’t see any arrows).</p>
 <div class="refsect3">
 <a name="gtk-menu-button-set-direction.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -639,7 +639,7 @@ as if you passed <a class="link" href="GtkMenuButton.html#GTK-ARROW-DOWN:CAPS"><
 </tr>
 <tr>
 <td class="parameter_name"><p>direction</p></td>
-<td class="parameter_description"><p>a <a class="link" href="GtkMenuButton.html#GtkArrowType" title="enum GtkArrowType"><span class="type">GtkArrowType</span></a></p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/GtkMenuButton.html#GtkArrowType"><span class="type">GtkArrowType</span></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -650,7 +650,7 @@ as if you passed <a class="link" href="GtkMenuButton.html#GTK-ARROW-DOWN:CAPS"><
 <hr>
 <div class="refsect2">
 <a name="gtk-menu-button-get-direction"></a><h3>gtk_menu_button_get_direction ()</h3>
-<pre class="programlisting"><a class="link" href="GtkMenuButton.html#GtkArrowType" title="enum GtkArrowType"><span class="returnvalue">GtkArrowType</span></a>
+<pre class="programlisting"><a href="https://developer.gnome.org/gtk4/GtkMenuButton.html#GtkArrowType"><span class="returnvalue">GtkArrowType</span></a>
 gtk_menu_button_get_direction (<em class="parameter"><code><a class="link" href="GtkMenuButton.html" title="GtkMenuButton"><span class="type">GtkMenuButton</span></a> *menu_button</code></em>);</pre>
 <p>Returns the direction the popup will be pointing at when popped up.</p>
 <div class="refsect3">
@@ -670,7 +670,7 @@ gtk_menu_button_get_direction (<em class="parameter"><code><a class="link" href=
 </div>
 <div class="refsect3">
 <a name="gtk-menu-button-get-direction.returns"></a><h4>Returns</h4>
-<p> a <a class="link" href="GtkMenuButton.html#GtkArrowType" title="enum GtkArrowType"><span class="type">GtkArrowType</span></a> value</p>
+<p> a <a href="https://developer.gnome.org/gtk4/GtkMenuButton.html#GtkArrowType"><span class="type">GtkArrowType</span></a> value</p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-6.html#api-index-3.6">3.6</a></p>
 </div>
@@ -741,79 +741,22 @@ gtk_menu_button_get_align_widget (<em class="parameter"><code><a class="link" hr
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkMenuButton.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkMenuButton-struct"></a><h3>struct GtkMenuButton</h3>
-<pre class="programlisting">struct GtkMenuButton;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkArrowType"></a><h3>enum GtkArrowType</h3>
-<p>Used to indicate the direction in which an arrow should point.</p>
-<div class="refsect3">
-<a name="GtkArrowType.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="enum_members_name">
-<col class="enum_members_description">
-<col width="200px" class="enum_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-ARROW-UP:CAPS"></a>GTK_ARROW_UP</p></td>
-<td class="enum_member_description">
-<p>Represents an upward pointing arrow.</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-ARROW-DOWN:CAPS"></a>GTK_ARROW_DOWN</p></td>
-<td class="enum_member_description">
-<p>Represents a downward pointing arrow.</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-ARROW-LEFT:CAPS"></a>GTK_ARROW_LEFT</p></td>
-<td class="enum_member_description">
-<p>Represents a left pointing arrow.</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-ARROW-RIGHT:CAPS"></a>GTK_ARROW_RIGHT</p></td>
-<td class="enum_member_description">
-<p>Represents a right pointing arrow.</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-ARROW-NONE:CAPS"></a>GTK_ARROW_NONE</p></td>
-<td class="enum_member_description">
-<p>No arrow. Since 2.10.</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkMenuButton.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkMenuButton--align-widget"></a><h3>The <code class="literal">“align-widget”</code> property</h3>
 <pre class="programlisting">  “align-widget”             <a class="link" href="GtkContainer.html" title="GtkContainer"><span class="type">GtkContainer</span></a> *</pre>
 <p>The <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> to use to align the menu with.</p>
+<p>Owner: GtkMenuButton</p>
 <p>Flags: Read / Write</p>
 <p class="since">Since: <a class="link" href="api-index-3-6.html#api-index-3.6">3.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="GtkMenuButton--direction"></a><h3>The <code class="literal">“direction”</code> property</h3>
-<pre class="programlisting">  “direction”                <a class="link" href="GtkMenuButton.html#GtkArrowType" title="enum GtkArrowType"><span class="type">GtkArrowType</span></a></pre>
-<p>The <a class="link" href="GtkMenuButton.html#GtkArrowType" title="enum GtkArrowType"><span class="type">GtkArrowType</span></a> representing the direction in which the
+<pre class="programlisting">  “direction”                <a href="https://developer.gnome.org/gtk4/GtkMenuButton.html#GtkArrowType"><span class="type">GtkArrowType</span></a></pre>
+<p>The <a href="https://developer.gnome.org/gtk4/GtkMenuButton.html#GtkArrowType"><span class="type">GtkArrowType</span></a> representing the direction in which the
 menu or popover will be popped out.</p>
+<p>Owner: GtkMenuButton</p>
 <p>Flags: Read / Write</p>
 <p>Default value: GTK_ARROW_DOWN</p>
 <p class="since">Since: <a class="link" href="api-index-3-6.html#api-index-3.6">3.6</a></p>
@@ -827,6 +770,7 @@ Depending on the <a class="link" href="GtkMenuButton.html#GtkMenuButton--use-pop
 be a menu or a popover.</p>
 <p>See <a class="link" href="GtkMenuButton.html#gtk-menu-button-set-menu-model" title="gtk_menu_button_set_menu_model ()"><code class="function">gtk_menu_button_set_menu_model()</code></a> for the interaction with the
 <a class="link" href="GtkMenuButton.html#GtkMenuButton--popup" title="The “popup” property"><span class="type">“popup”</span></a> property.</p>
+<p>Owner: GtkMenuButton</p>
 <p>Flags: Read / Write</p>
 <p class="since">Since: <a class="link" href="api-index-3-6.html#api-index-3.6">3.6</a></p>
 </div>
@@ -835,6 +779,7 @@ be a menu or a popover.</p>
 <a name="GtkMenuButton--popover"></a><h3>The <code class="literal">“popover”</code> property</h3>
 <pre class="programlisting">  “popover”                  <a class="link" href="GtkPopover.html" title="GtkPopover"><span class="type">GtkPopover</span></a> *</pre>
 <p>The <a class="link" href="GtkPopover.html" title="GtkPopover"><span class="type">GtkPopover</span></a> that will be popped up when the button is clicked.</p>
+<p>Owner: GtkMenuButton</p>
 <p>Flags: Read / Write</p>
 <p class="since">Since: <a class="link" href="api-index-3-12.html#api-index-3.12">3.12</a></p>
 </div>
@@ -843,6 +788,7 @@ be a menu or a popover.</p>
 <a name="GtkMenuButton--popup"></a><h3>The <code class="literal">“popup”</code> property</h3>
 <pre class="programlisting">  “popup”                    <a class="link" href="GtkMenu.html" title="GtkMenu"><span class="type">GtkMenu</span></a> *</pre>
 <p>The <a class="link" href="GtkMenu.html" title="GtkMenu"><span class="type">GtkMenu</span></a> that will be popped up when the button is clicked.</p>
+<p>Owner: GtkMenuButton</p>
 <p>Flags: Read / Write</p>
 <p class="since">Since: <a class="link" href="api-index-3-6.html#api-index-3.6">3.6</a></p>
 </div>
@@ -852,6 +798,7 @@ be a menu or a popover.</p>
 <pre class="programlisting">  “use-popover”              <span class="type">gboolean</span></pre>
 <p>Whether to construct a <a class="link" href="GtkPopover.html" title="GtkPopover"><span class="type">GtkPopover</span></a> from the menu model,
 or a <a class="link" href="GtkMenu.html" title="GtkMenu"><span class="type">GtkMenu</span></a>.</p>
+<p>Owner: GtkMenuButton</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 <p class="since">Since: <a class="link" href="api-index-3-12.html#api-index-3.12">3.12</a></p>
@@ -859,6 +806,6 @@ or a <a class="link" href="GtkMenu.html" title="GtkMenu"><span class="type">GtkM
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <link rel="up" href="TreeWidgetObjects.html" title="Tree, List and Icon Grid Widgets">
 <link rel="prev" href="GtkCellRendererSpinner.html" title="GtkCellRendererSpinner">
 <link rel="next" href="GtkTreeStore.html" title="GtkTreeStore">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -37,8 +37,8 @@
 <a name="GtkListStore.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -216,12 +216,12 @@
 <a name="GtkListStore.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkListStore.html#GtkListStore-struct" title="struct GtkListStore">GtkListStore</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkListStore.html#GtkListStore-struct">GtkListStore</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -312,53 +312,53 @@ application writer to call <a class="link" href="GtkTreeModel.html#gtk-tree-mode
 45
 46
 47</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">enum</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">  COLUMN_STRING</span><span class="symbol">,</span>
-<span class="normal">  COLUMN_INT</span><span class="symbol">,</span>
-<span class="normal">  COLUMN_BOOLEAN</span><span class="symbol">,</span>
-<span class="normal">  N_COLUMNS</span>
-<span class="cbracket">}</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">enum</span> <span class="p">{</span>
+  <span class="n">COLUMN_STRING</span><span class="p">,</span>
+  <span class="n">COLUMN_INT</span><span class="p">,</span>
+  <span class="n">COLUMN_BOOLEAN</span><span class="p">,</span>
+  <span class="n">N_COLUMNS</span>
+<span class="p">};</span>
 
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="usertype">GtkListStore</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">list_store</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="usertype">GtkTreePath</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">path</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="usertype">GtkTreeIter</span><span class="normal"> iter</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="usertype">gint</span><span class="normal"> i</span><span class="symbol">;</span>
+<span class="p">{</span>
+  <span class="n">GtkListStore</span> <span class="o">*</span><span class="n">list_store</span><span class="p">;</span>
+  <span class="n">GtkTreePath</span> <span class="o">*</span><span class="n">path</span><span class="p">;</span>
+  <span class="n">GtkTreeIter</span> <span class="n">iter</span><span class="p">;</span>
+  <span class="n">gint</span> <span class="n">i</span><span class="p">;</span>
 
-<span class="normal">  list_store </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkListStore.html#gtk-list-store-new">gtk_list_store_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">N_COLUMNS</span><span class="symbol">,</span>
-<span class="normal">                                   G_TYPE_STRING</span><span class="symbol">,</span>
-<span class="normal">                                   G_TYPE_INT</span><span class="symbol">,</span>
-<span class="normal">                                   G_TYPE_BOOLEAN</span><span class="symbol">);</span>
+  <span class="n">list_store</span> <span class="o">=</span> <span class="n">gtk_list_store_new</span> <span class="p">(</span><span class="n">N_COLUMNS</span><span class="p">,</span>
+                                   <span class="n">G_TYPE_STRING</span><span class="p">,</span>
+                                   <span class="n">G_TYPE_INT</span><span class="p">,</span>
+                                   <span class="n">G_TYPE_BOOLEAN</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">i </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">&lt;</span><span class="normal"> </span><span class="number">10</span><span class="symbol">;</span><span class="normal"> i</span><span class="symbol">++)</span>
-<span class="normal">    </span><span class="cbracket">{</span>
-<span class="normal">      </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">some_data</span><span class="symbol">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">gchar</span> <span class="o">*</span><span class="n">some_data</span><span class="p">;</span>
 
-<span class="normal">      some_data </span><span class="symbol">=</span><span class="normal"> </span><span class="function">get_some_data</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">i</span><span class="symbol">);</span>
+      <span class="n">some_data</span> <span class="o">=</span> <span class="n">get_some_data</span> <span class="p">(</span><span class="n">i</span><span class="p">);</span>
 
-<span class="normal">      </span><span class="comment">// Add a new row to the model</span>
-<span class="normal">      </span><span class="function"><a href="GtkListStore.html#gtk-list-store-append">gtk_list_store_append</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">list_store</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">);</span>
-<span class="normal">      </span><span class="function"><a href="GtkListStore.html#gtk-list-store-set">gtk_list_store_set</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">list_store</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">,</span>
-<span class="normal">                          COLUMN_STRING</span><span class="symbol">,</span><span class="normal"> some_data</span><span class="symbol">,</span>
-<span class="normal">                          COLUMN_INT</span><span class="symbol">,</span><span class="normal"> i</span><span class="symbol">,</span>
-<span class="normal">                          COLUMN_BOOLEAN</span><span class="symbol">,</span><span class="normal">  FALSE</span><span class="symbol">,</span>
-<span class="normal">                          </span><span class="symbol">-</span><span class="number">1</span><span class="symbol">);</span>
+      <span class="c1">// Add a new row to the model</span>
+      <span class="n">gtk_list_store_append</span> <span class="p">(</span><span class="n">list_store</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">iter</span><span class="p">);</span>
+      <span class="n">gtk_list_store_set</span> <span class="p">(</span><span class="n">list_store</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">iter</span><span class="p">,</span>
+                          <span class="n">COLUMN_STRING</span><span class="p">,</span> <span class="n">some_data</span><span class="p">,</span>
+                          <span class="n">COLUMN_INT</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span>
+                          <span class="n">COLUMN_BOOLEAN</span><span class="p">,</span>  <span class="n">FALSE</span><span class="p">,</span>
+                          <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
 
-<span class="normal">      </span><span class="comment">// As the store will keep a copy of the string internally,</span>
-<span class="normal">      </span><span class="comment">// we free some_data.</span>
-<span class="normal">      </span><span class="function">g_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">some_data</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="cbracket">}</span>
+      <span class="c1">// As the store will keep a copy of the string internally,</span>
+      <span class="c1">// we free some_data.</span>
+      <span class="n">g_free</span> <span class="p">(</span><span class="n">some_data</span><span class="p">);</span>
+    <span class="p">}</span>
 
-<span class="normal">  </span><span class="comment">// Modify a particular row</span>
-<span class="normal">  path </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkTreeModel.html#gtk-tree-path-new-from-string">gtk_tree_path_new_from_string</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"4"</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="GtkTreeModel.html#gtk-tree-model-get-iter">gtk_tree_model_get_iter</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_TREE_MODEL</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">list_store</span><span class="symbol">),</span>
-<span class="normal">                           </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">,</span>
-<span class="normal">                           path</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="GtkTreeModel.html#gtk-tree-path-free">gtk_tree_path_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">path</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="GtkListStore.html#gtk-list-store-set">gtk_list_store_set</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">list_store</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">iter</span><span class="symbol">,</span>
-<span class="normal">                      COLUMN_BOOLEAN</span><span class="symbol">,</span><span class="normal"> TRUE</span><span class="symbol">,</span>
-<span class="normal">                      </span><span class="symbol">-</span><span class="number">1</span><span class="symbol">);</span>
-<span class="cbracket">}</span></pre></td>
+  <span class="c1">// Modify a particular row</span>
+  <span class="n">path</span> <span class="o">=</span> <span class="n">gtk_tree_path_new_from_string</span> <span class="p">(</span><span class="s">&quot;4&quot;</span><span class="p">);</span>
+  <span class="n">gtk_tree_model_get_iter</span> <span class="p">(</span><span class="n">GTK_TREE_MODEL</span> <span class="p">(</span><span class="n">list_store</span><span class="p">),</span>
+                           <span class="o">&amp;</span><span class="n">iter</span><span class="p">,</span>
+                           <span class="n">path</span><span class="p">);</span>
+  <span class="n">gtk_tree_path_free</span> <span class="p">(</span><span class="n">path</span><span class="p">);</span>
+  <span class="n">gtk_list_store_set</span> <span class="p">(</span><span class="n">list_store</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">iter</span><span class="p">,</span>
+                      <span class="n">COLUMN_BOOLEAN</span><span class="p">,</span> <span class="n">TRUE</span><span class="p">,</span>
+                      <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -370,8 +370,8 @@ application writer to call <a class="link" href="GtkTreeModel.html#gtk-tree-mode
 <p>Internally, the <a class="link" href="GtkListStore.html" title="GtkListStore"><span class="type">GtkListStore</span></a> was implemented with a linked list with
 a tail pointer prior to GTK+ 2.6.  As a result, it was fast at data
 insertion and deletion, and not fast at random data access.  The
-<a class="link" href="GtkListStore.html" title="GtkListStore"><span class="type">GtkListStore</span></a> sets the <a class="link" href="GtkTreeModel.html#GTK-TREE-MODEL-ITERS-PERSIST:CAPS"><span class="type">GTK_TREE_MODEL_ITERS_PERSIST</span></a> flag, which means
-that <a href="GtkTreeModel.html#GtkTreeIter-struct"><span class="type">GtkTreeIters</span></a> can be cached while the row exists.  Thus, if
+<a class="link" href="GtkListStore.html" title="GtkListStore"><span class="type">GtkListStore</span></a> sets the <a href="https://developer.gnome.org/gtk4/GtkTreeModel.html#GTK-TREE-MODEL-ITERS-PERSIST:CAPS"><span class="type">GTK_TREE_MODEL_ITERS_PERSIST</span></a> flag, which means
+that <a href="https://developer.gnome.org/gtk4/GtkTreeModel.html#GtkTreeIter-struct"><span class="type">GtkTreeIters</span></a> can be cached while the row exists.  Thus, if
 access to a particular row is needed often and your code is expected to
 run on older versions of GTK+, it is worth keeping the iter around.</p>
 </div>
@@ -432,25 +432,25 @@ is to separate the two, as far as possible.</p>
 17
 18
 19</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkListStore"</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">columns</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">column</span><span class="normal"> type</span><span class="symbol">=</span><span class="string">"gchararray"</span><span class="symbol">/&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">column</span><span class="normal"> type</span><span class="symbol">=</span><span class="string">"gchararray"</span><span class="symbol">/&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">column</span><span class="normal"> type</span><span class="symbol">=</span><span class="string">"gint"</span><span class="symbol">/&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">columns</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">data</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">row</span><span class="symbol">&gt;</span>
-<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">col</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"0"</span><span class="symbol">&gt;</span><span class="normal">John</span><span class="symbol">&lt;/</span><span class="normal">col</span><span class="symbol">&gt;</span>
-<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">col</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"1"</span><span class="symbol">&gt;</span><span class="normal">Doe</span><span class="symbol">&lt;/</span><span class="normal">col</span><span class="symbol">&gt;</span>
-<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">col</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"2"</span><span class="symbol">&gt;</span><span class="number">25</span><span class="symbol">&lt;/</span><span class="normal">col</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">row</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">row</span><span class="symbol">&gt;</span>
-<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">col</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"0"</span><span class="symbol">&gt;</span><span class="normal">Johan</span><span class="symbol">&lt;/</span><span class="normal">col</span><span class="symbol">&gt;</span>
-<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">col</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"1"</span><span class="symbol">&gt;</span><span class="normal">Dahlin</span><span class="symbol">&lt;/</span><span class="normal">col</span><span class="symbol">&gt;</span>
-<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">col</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"2"</span><span class="symbol">&gt;</span><span class="number">50</span><span class="symbol">&lt;/</span><span class="normal">col</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">row</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">data</span><span class="symbol">&gt;</span>
-<span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkListStore&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">columns</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">column</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;gchararray&quot;</span><span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="n">column</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;gchararray&quot;</span><span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="n">column</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;gint&quot;</span><span class="o">/&gt;</span>
+  <span class="o">&lt;/</span><span class="n">columns</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">data</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">row</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">col</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;0&quot;</span><span class="o">&gt;</span><span class="n">John</span><span class="o">&lt;/</span><span class="n">col</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">col</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;1&quot;</span><span class="o">&gt;</span><span class="n">Doe</span><span class="o">&lt;/</span><span class="n">col</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">col</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;2&quot;</span><span class="o">&gt;</span><span class="mi">25</span><span class="o">&lt;/</span><span class="n">col</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">row</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">row</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">col</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;0&quot;</span><span class="o">&gt;</span><span class="n">Johan</span><span class="o">&lt;/</span><span class="n">col</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">col</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;1&quot;</span><span class="o">&gt;</span><span class="n">Dahlin</span><span class="o">&lt;/</span><span class="n">col</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">col</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;2&quot;</span><span class="o">&gt;</span><span class="mi">50</span><span class="o">&lt;/</span><span class="n">col</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">row</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">data</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -958,17 +958,17 @@ has the same effect as calling</p>
 9
 10
 11</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
-<span class="function">insert_value</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkListStore</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">list_store</span><span class="symbol">,</span>
-<span class="normal">              </span><span class="usertype">GtkTreeIter</span><span class="normal">  </span><span class="symbol">*</span><span class="normal">iter</span><span class="symbol">,</span>
-<span class="normal">              </span><span class="type">int</span><span class="normal">           position</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="function"><a href="GtkListStore.html#gtk-list-store-insert">gtk_list_store_insert</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">list_store</span><span class="symbol">,</span><span class="normal"> iter</span><span class="symbol">,</span><span class="normal"> position</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="GtkListStore.html#gtk-list-store-set">gtk_list_store_set</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">list_store</span><span class="symbol">,</span>
-<span class="normal">                      iter</span>
-<span class="normal">                      </span><span class="comment">// ...</span>
-<span class="normal">                      </span><span class="symbol">);</span>
-<span class="cbracket">}</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
+<span class="nf">insert_value</span> <span class="p">(</span><span class="n">GtkListStore</span> <span class="o">*</span><span class="n">list_store</span><span class="p">,</span>
+              <span class="n">GtkTreeIter</span>  <span class="o">*</span><span class="n">iter</span><span class="p">,</span>
+              <span class="kt">int</span>           <span class="n">position</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">gtk_list_store_insert</span> <span class="p">(</span><span class="n">list_store</span><span class="p">,</span> <span class="n">iter</span><span class="p">,</span> <span class="n">position</span><span class="p">);</span>
+  <span class="n">gtk_list_store_set</span> <span class="p">(</span><span class="n">list_store</span><span class="p">,</span>
+                      <span class="n">iter</span>
+                      <span class="c1">// ...</span>
+                      <span class="p">);</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1372,18 +1372,11 @@ will be moved to the start of the list.</p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkListStore.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkListStore-struct"></a><h3>struct GtkListStore</h3>
-<pre class="programlisting">struct GtkListStore;</pre>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkListStore.see-also"></a><h2>See Also</h2>
 <p><a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span class="type">GtkTreeModel</span></a>, <a class="link" href="GtkTreeStore.html" title="GtkTreeStore"><span class="type">GtkTreeStore</span></a></p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

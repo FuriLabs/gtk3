@@ -8,7 +8,7 @@
 <link rel="up" href="Builder.html" title="Interface builder">
 <link rel="prev" href="Builder.html" title="Interface builder">
 <link rel="next" href="GtkBuildable.html" title="GtkBuildable">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -37,8 +37,8 @@
 <a name="GtkBuilder.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -285,21 +285,21 @@
 <a name="GtkBuilder.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name"><a class="link" href="GtkBuilder.html#GtkBuilder-struct" title="GtkBuilder">GtkBuilder</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkBuilder.html#GtkBuilder-struct">GtkBuilder</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name"><a class="link" href="GtkBuilder.html#GtkBuilderError" title="enum GtkBuilderError">GtkBuilderError</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkBuilder.html#GtkBuilderError">GtkBuilderError</a></td>
 </tr>
 <tr>
 <td class="define_keyword">#define</td>
-<td class="function_name"><a class="link" href="GtkBuilder.html#GTK-BUILDER-ERROR:CAPS" title="GTK_BUILDER_ERROR">GTK_BUILDER_ERROR</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkBuilder.html#GTK-BUILDER-ERROR:CAPS">GTK_BUILDER_ERROR</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -403,7 +403,7 @@ as <code class="literal">TRUE</code>, strings like “FALSE”, “f”, “no�
 as <code class="literal">FALSE</code>), enumerations (can be specified by their name, nick or
 integer value), flags (can be specified by their name, nick, integer
 value, optionally combined with “|”, e.g. “GTK_VISIBLE|GTK_REALIZED”)
-and colors (in a format understood by <code class="function">gdk_rgba_parse()</code>).</p>
+and colors (in a format understood by <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#gdk-rgba-parse"><code class="function">gdk_rgba_parse()</code></a>).</p>
 <p>GVariants can be specified in the format understood by <code class="function">g_variant_parse()</code>,
 and pixbufs can be specified as a filename of an image file to load.</p>
 <p>Objects can be referred to by their name and by default refer to
@@ -473,27 +473,27 @@ sections describing the widget-specific portions of UI definitions.</p>
 19
 20
 21</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="normal">interface</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkDialog"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"dialog1"</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">child</span><span class="normal"> internal</span><span class="symbol">-</span><span class="normal">child</span><span class="symbol">=</span><span class="string">"vbox"</span><span class="symbol">&gt;</span>
-<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkBox"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"vbox1"</span><span class="symbol">&gt;</span>
-<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"border-width"</span><span class="symbol">&gt;</span><span class="number">10</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
-<span class="normal">        </span><span class="symbol">&lt;</span><span class="usertype">child</span><span class="normal"> internal</span><span class="symbol">-</span><span class="normal">child</span><span class="symbol">=</span><span class="string">"action_area"</span><span class="symbol">&gt;</span>
-<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkButtonBox"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"hbuttonbox1"</span><span class="symbol">&gt;</span>
-<span class="normal">            </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"border-width"</span><span class="symbol">&gt;</span><span class="number">20</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
-<span class="normal">            </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
-<span class="normal">              </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkButton"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"ok_button"</span><span class="symbol">&gt;</span>
-<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"label"</span><span class="symbol">&gt;</span><span class="normal">gtk</span><span class="symbol">-</span><span class="normal">ok</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
-<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"use-stock"</span><span class="symbol">&gt;</span><span class="normal">TRUE</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
-<span class="normal">                </span><span class="symbol">&lt;</span><span class="usertype">signal</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"clicked"</span><span class="normal"> handler</span><span class="symbol">=</span><span class="string">"ok_button_clicked"</span><span class="symbol">/&gt;</span>
-<span class="normal">              </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
-<span class="normal">            </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
-<span class="normal">          </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
-<span class="normal">        </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
-<span class="normal">      </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
-<span class="symbol">&lt;/</span><span class="normal">interface</span><span class="symbol">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;</span><span class="n">interface</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkDialog&quot;</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;dialog1&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">child</span> <span class="n">internal</span><span class="o">-</span><span class="n">child</span><span class="o">=</span><span class="s">&quot;vbox&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkBox&quot;</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;vbox1&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;border-width&quot;</span><span class="o">&gt;</span><span class="mi">10</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">child</span> <span class="n">internal</span><span class="o">-</span><span class="n">child</span><span class="o">=</span><span class="s">&quot;action_area&quot;</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkButtonBox&quot;</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;hbuttonbox1&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;border-width&quot;</span><span class="o">&gt;</span><span class="mi">20</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span>
+              <span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkButton&quot;</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;ok_button&quot;</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;label&quot;</span><span class="o">&gt;</span><span class="n">gtk</span><span class="o">-</span><span class="n">ok</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;use-stock&quot;</span><span class="o">&gt;</span><span class="n">TRUE</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">signal</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;clicked&quot;</span> <span class="n">handler</span><span class="o">=</span><span class="s">&quot;ok_button_clicked&quot;</span><span class="o">/&gt;</span>
+              <span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span>
+          <span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">interface</span><span class="o">&gt;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -854,7 +854,7 @@ and merges it with the current contents of <em class="parameter"><code>builder</
 <p>Most users will probably want to use <a class="link" href="GtkBuilder.html#gtk-builder-new-from-file" title="gtk_builder_new_from_file ()"><code class="function">gtk_builder_new_from_file()</code></a>.</p>
 <p>If an error occurs, 0 will be returned and <em class="parameter"><code>error</code></em>
  will be assigned a
-<span class="type">GError</span> from the <a class="link" href="GtkBuilder.html#GTK-BUILDER-ERROR:CAPS" title="GTK_BUILDER_ERROR"><span class="type">GTK_BUILDER_ERROR</span></a>, <span class="type">G_MARKUP_ERROR</span> or <span class="type">G_FILE_ERROR</span>
+<span class="type">GError</span> from the <a href="https://developer.gnome.org/gtk4/GtkBuilder.html#GTK-BUILDER-ERROR:CAPS"><span class="type">GTK_BUILDER_ERROR</span></a>, <span class="type">G_MARKUP_ERROR</span> or <span class="type">G_FILE_ERROR</span>
 domain.</p>
 <p>It’s not really reasonable to attempt to handle failures of this
 call. You should not use this function with untrusted files (ie:
@@ -908,7 +908,7 @@ and merges it with the current contents of <em class="parameter"><code>builder</
 <p>Most users will probably want to use <a class="link" href="GtkBuilder.html#gtk-builder-new-from-resource" title="gtk_builder_new_from_resource ()"><code class="function">gtk_builder_new_from_resource()</code></a>.</p>
 <p>If an error occurs, 0 will be returned and <em class="parameter"><code>error</code></em>
  will be assigned a
-<span class="type">GError</span> from the <a class="link" href="GtkBuilder.html#GTK-BUILDER-ERROR:CAPS" title="GTK_BUILDER_ERROR"><span class="type">GTK_BUILDER_ERROR</span></a>, <span class="type">G_MARKUP_ERROR</span> or <span class="type">G_RESOURCE_ERROR</span>
+<span class="type">GError</span> from the <a href="https://developer.gnome.org/gtk4/GtkBuilder.html#GTK-BUILDER-ERROR:CAPS"><span class="type">GTK_BUILDER_ERROR</span></a>, <span class="type">G_MARKUP_ERROR</span> or <span class="type">G_RESOURCE_ERROR</span>
 domain.</p>
 <p>It’s not really reasonable to attempt to handle failures of this
 call.  The only reasonable thing to do when an error is detected is
@@ -960,7 +960,7 @@ and merges it with the current contents of <em class="parameter"><code>builder</
 <p>Most users will probably want to use <a class="link" href="GtkBuilder.html#gtk-builder-new-from-string" title="gtk_builder_new_from_string ()"><code class="function">gtk_builder_new_from_string()</code></a>.</p>
 <p>Upon errors 0 will be returned and <em class="parameter"><code>error</code></em>
  will be assigned a
-<span class="type">GError</span> from the <a class="link" href="GtkBuilder.html#GTK-BUILDER-ERROR:CAPS" title="GTK_BUILDER_ERROR"><span class="type">GTK_BUILDER_ERROR</span></a>, <span class="type">G_MARKUP_ERROR</span> or
+<span class="type">GError</span> from the <a href="https://developer.gnome.org/gtk4/GtkBuilder.html#GTK-BUILDER-ERROR:CAPS"><span class="type">GTK_BUILDER_ERROR</span></a>, <span class="type">G_MARKUP_ERROR</span> or
 <span class="type">G_VARIANT_PARSE_ERROR</span> domain.</p>
 <p>It’s not really reasonable to attempt to handle failures of this
 call.  The only reasonable thing to do when an error is detected is
@@ -1019,7 +1019,7 @@ them with the current contents of <em class="parameter"><code>builder</code></em
 .</p>
 <p>Upon errors 0 will be returned and <em class="parameter"><code>error</code></em>
  will be assigned a
-<span class="type">GError</span> from the <a class="link" href="GtkBuilder.html#GTK-BUILDER-ERROR:CAPS" title="GTK_BUILDER_ERROR"><span class="type">GTK_BUILDER_ERROR</span></a>, <span class="type">G_MARKUP_ERROR</span> or <span class="type">G_FILE_ERROR</span>
+<span class="type">GError</span> from the <a href="https://developer.gnome.org/gtk4/GtkBuilder.html#GTK-BUILDER-ERROR:CAPS"><span class="type">GTK_BUILDER_ERROR</span></a>, <span class="type">G_MARKUP_ERROR</span> or <span class="type">G_FILE_ERROR</span>
 domain.</p>
 <p>If you are adding an object that depends on an object that is not
 its child (for instance a <a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class="type">GtkTreeView</span></a> that depends on its
@@ -1078,7 +1078,7 @@ them with the current contents of <em class="parameter"><code>builder</code></em
 .</p>
 <p>Upon errors 0 will be returned and <em class="parameter"><code>error</code></em>
  will be assigned a
-<span class="type">GError</span> from the <a class="link" href="GtkBuilder.html#GTK-BUILDER-ERROR:CAPS" title="GTK_BUILDER_ERROR"><span class="type">GTK_BUILDER_ERROR</span></a> or <span class="type">G_MARKUP_ERROR</span> domain.</p>
+<span class="type">GError</span> from the <a href="https://developer.gnome.org/gtk4/GtkBuilder.html#GTK-BUILDER-ERROR:CAPS"><span class="type">GTK_BUILDER_ERROR</span></a> or <span class="type">G_MARKUP_ERROR</span> domain.</p>
 <p>If you are adding an object that depends on an object that is not
 its child (for instance a <a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class="type">GtkTreeView</span></a> that depends on its
 <a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span class="type">GtkTreeModel</span></a>), you have to explicitly list all of them in <em class="parameter"><code>object_ids</code></em>
@@ -1142,7 +1142,7 @@ them with the current contents of <em class="parameter"><code>builder</code></em
 .</p>
 <p>Upon errors 0 will be returned and <em class="parameter"><code>error</code></em>
  will be assigned a
-<span class="type">GError</span> from the <a class="link" href="GtkBuilder.html#GTK-BUILDER-ERROR:CAPS" title="GTK_BUILDER_ERROR"><span class="type">GTK_BUILDER_ERROR</span></a>, <span class="type">G_MARKUP_ERROR</span> or <span class="type">G_RESOURCE_ERROR</span>
+<span class="type">GError</span> from the <a href="https://developer.gnome.org/gtk4/GtkBuilder.html#GTK-BUILDER-ERROR:CAPS"><span class="type">GTK_BUILDER_ERROR</span></a>, <span class="type">G_MARKUP_ERROR</span> or <span class="type">G_RESOURCE_ERROR</span>
 domain.</p>
 <p>If you are adding an object that depends on an object that is not
 its child (for instance a <a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class="type">GtkTreeView</span></a> that depends on its
@@ -1639,7 +1639,7 @@ ulong, enum, flags, float, double, string, <span class="type">GdkColor</span>, <
 still to come.</p>
 <p>Upon errors <code class="literal">FALSE</code> will be returned and <em class="parameter"><code>error</code></em>
  will be assigned a
-<span class="type">GError</span> from the <a class="link" href="GtkBuilder.html#GTK-BUILDER-ERROR:CAPS" title="GTK_BUILDER_ERROR"><span class="type">GTK_BUILDER_ERROR</span></a> domain.</p>
+<span class="type">GError</span> from the <a href="https://developer.gnome.org/gtk4/GtkBuilder.html#GTK-BUILDER-ERROR:CAPS"><span class="type">GTK_BUILDER_ERROR</span></a> domain.</p>
 <div class="refsect3">
 <a name="gtk-builder-value-from-string.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1699,7 +1699,7 @@ This function calls <code class="function">g_value_init()</code> on the <em clas
 need not be initialised beforehand.</p>
 <p>Upon errors <code class="literal">FALSE</code> will be returned and <em class="parameter"><code>error</code></em>
  will be assigned a
-<span class="type">GError</span> from the <a class="link" href="GtkBuilder.html#GTK-BUILDER-ERROR:CAPS" title="GTK_BUILDER_ERROR"><span class="type">GTK_BUILDER_ERROR</span></a> domain.</p>
+<span class="type">GError</span> from the <a href="https://developer.gnome.org/gtk4/GtkBuilder.html#GTK-BUILDER-ERROR:CAPS"><span class="type">GTK_BUILDER_ERROR</span></a> domain.</p>
 <div class="refsect3">
 <a name="gtk-builder-value-from-string-type.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1775,144 +1775,6 @@ in a <a class="link" href="GtkBuildable.html" title="GtkBuildable"><span class="
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkBuilder.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkBuilder-struct"></a><h3>GtkBuilder</h3>
-<pre class="programlisting">typedef struct _GtkBuilder GtkBuilder;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkBuilderError"></a><h3>enum GtkBuilderError</h3>
-<p>Error codes that identify various errors that can occur while using
-<a class="link" href="GtkBuilder.html" title="GtkBuilder"><span class="type">GtkBuilder</span></a>.</p>
-<div class="refsect3">
-<a name="GtkBuilderError.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="enum_members_name">
-<col class="enum_members_description">
-<col width="200px" class="enum_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-BUILDER-ERROR-INVALID-TYPE-FUNCTION:CAPS"></a>GTK_BUILDER_ERROR_INVALID_TYPE_FUNCTION</p></td>
-<td class="enum_member_description">
-<p>A type-func attribute didn’t name
- a function that returns a <span class="type">GType</span>.</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-BUILDER-ERROR-UNHANDLED-TAG:CAPS"></a>GTK_BUILDER_ERROR_UNHANDLED_TAG</p></td>
-<td class="enum_member_description">
-<p>The input contained a tag that <a class="link" href="GtkBuilder.html" title="GtkBuilder"><span class="type">GtkBuilder</span></a>
- can’t handle.</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-BUILDER-ERROR-MISSING-ATTRIBUTE:CAPS"></a>GTK_BUILDER_ERROR_MISSING_ATTRIBUTE</p></td>
-<td class="enum_member_description">
-<p>An attribute that is required by
- <a class="link" href="GtkBuilder.html" title="GtkBuilder"><span class="type">GtkBuilder</span></a> was missing.</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-BUILDER-ERROR-INVALID-ATTRIBUTE:CAPS"></a>GTK_BUILDER_ERROR_INVALID_ATTRIBUTE</p></td>
-<td class="enum_member_description">
-<p><a class="link" href="GtkBuilder.html" title="GtkBuilder"><span class="type">GtkBuilder</span></a> found an attribute that
- it doesn’t understand.</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-BUILDER-ERROR-INVALID-TAG:CAPS"></a>GTK_BUILDER_ERROR_INVALID_TAG</p></td>
-<td class="enum_member_description">
-<p><a class="link" href="GtkBuilder.html" title="GtkBuilder"><span class="type">GtkBuilder</span></a> found a tag that
- it doesn’t understand.</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-BUILDER-ERROR-MISSING-PROPERTY-VALUE:CAPS"></a>GTK_BUILDER_ERROR_MISSING_PROPERTY_VALUE</p></td>
-<td class="enum_member_description">
-<p>A required property value was
- missing.</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-BUILDER-ERROR-INVALID-VALUE:CAPS"></a>GTK_BUILDER_ERROR_INVALID_VALUE</p></td>
-<td class="enum_member_description">
-<p><a class="link" href="GtkBuilder.html" title="GtkBuilder"><span class="type">GtkBuilder</span></a> couldn’t parse
- some attribute value.</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-BUILDER-ERROR-VERSION-MISMATCH:CAPS"></a>GTK_BUILDER_ERROR_VERSION_MISMATCH</p></td>
-<td class="enum_member_description">
-<p>The input file requires a newer version
- of GTK+.</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-BUILDER-ERROR-DUPLICATE-ID:CAPS"></a>GTK_BUILDER_ERROR_DUPLICATE_ID</p></td>
-<td class="enum_member_description">
-<p>An object id occurred twice.</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-BUILDER-ERROR-OBJECT-TYPE-REFUSED:CAPS"></a>GTK_BUILDER_ERROR_OBJECT_TYPE_REFUSED</p></td>
-<td class="enum_member_description">
-<p>A specified object type is of the same type or
- derived from the type of the composite class being extended with builder XML.</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-BUILDER-ERROR-TEMPLATE-MISMATCH:CAPS"></a>GTK_BUILDER_ERROR_TEMPLATE_MISMATCH</p></td>
-<td class="enum_member_description">
-<p>The wrong type was specified in a composite class’s template XML</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-BUILDER-ERROR-INVALID-PROPERTY:CAPS"></a>GTK_BUILDER_ERROR_INVALID_PROPERTY</p></td>
-<td class="enum_member_description">
-<p>The specified property is unknown for the object class.</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-BUILDER-ERROR-INVALID-SIGNAL:CAPS"></a>GTK_BUILDER_ERROR_INVALID_SIGNAL</p></td>
-<td class="enum_member_description">
-<p>The specified signal is unknown for the object class.</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-BUILDER-ERROR-INVALID-ID:CAPS"></a>GTK_BUILDER_ERROR_INVALID_ID</p></td>
-<td class="enum_member_description">
-<p>An object id is unknown</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GTK-BUILDER-ERROR:CAPS"></a><h3>GTK_BUILDER_ERROR</h3>
-<pre class="programlisting">#define GTK_BUILDER_ERROR                (gtk_builder_error_quark ())
-</pre>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkBuilder.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkBuilder--translation-domain"></a><h3>The <code class="literal">“translation-domain”</code> property</h3>
@@ -1921,6 +1783,7 @@ in a <a class="link" href="GtkBuildable.html" title="GtkBuildable"><span class="
 have been marked as translatable in interface descriptions.
 If the translation domain is <code class="literal">NULL</code>, <a class="link" href="GtkBuilder.html" title="GtkBuilder"><span class="type">GtkBuilder</span></a> uses <code class="function">gettext()</code>,
 otherwise <code class="function">g_dgettext()</code>.</p>
+<p>Owner: GtkBuilder</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 <p class="since">Since: 2.12</p>
@@ -1928,6 +1791,6 @@ otherwise <code class="function">g_dgettext()</code>.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <link rel="up" href="reference.html" title="API Reference">
 <link rel="prev" href="GdkScreen.html" title="GdkScreen">
 <link rel="next" href="GdkMonitor.html" title="GdkMonitor">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -38,8 +38,8 @@
 <a name="GdkSeat.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -60,7 +60,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a class="link" href="gdk3-General.html#GdkGrabStatus" title="enum GdkGrabStatus"><span class="returnvalue">GdkGrabStatus</span></a>
+<span class="returnvalue">GdkGrabStatus</span>
 </td>
 <td class="function_name">
 <a class="link" href="GdkSeat.html#gdk-seat-grab" title="gdk_seat_grab ()">gdk_seat_grab</a> <span class="c_punctuation">()</span>
@@ -76,7 +76,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a class="link" href="GdkSeat.html#GdkSeatCapabilities" title="enum GdkSeatCapabilities"><span class="returnvalue">GdkSeatCapabilities</span></a>
+<span class="returnvalue">GdkSeatCapabilities</span>
 </td>
 <td class="function_name">
 <a class="link" href="GdkSeat.html#gdk-seat-get-capabilities" title="gdk_seat_get_capabilities ()">gdk_seat_get_capabilities</a> <span class="c_punctuation">()</span>
@@ -121,7 +121,7 @@
 <td class="property_type">
 <a class="link" href="GdkDisplay.html" title="GdkDisplay"><span class="type">GdkDisplay</span></a> *</td>
 <td class="property_name"><a class="link" href="GdkSeat.html#GdkSeat--display" title="The “display” property">display</a></td>
-<td class="property_flags">Read / Write / Construct Only</td>
+<td class="property_flags">Read / Write / Construct Only</td>
 </tr></tbody>
 </table></div>
 </div>
@@ -129,9 +129,9 @@
 <a name="GdkSeat.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody>
 <tr>
@@ -161,17 +161,17 @@
 <a name="GdkSeat.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name"><a class="link" href="GdkSeat.html#GdkSeat-struct" title="GdkSeat">GdkSeat</a></td>
+<td class="function_name">GdkSeat</td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name"><a class="link" href="GdkSeat.html#GdkSeatCapabilities" title="enum GdkSeatCapabilities">GdkSeatCapabilities</a></td>
+<td class="function_name">GdkSeatCapabilities</td>
 </tr>
 </tbody>
 </table></div>
@@ -265,13 +265,13 @@ and must not be freed. </p>
 <hr>
 <div class="refsect2">
 <a name="gdk-seat-grab"></a><h3>gdk_seat_grab ()</h3>
-<pre class="programlisting"><a class="link" href="gdk3-General.html#GdkGrabStatus" title="enum GdkGrabStatus"><span class="returnvalue">GdkGrabStatus</span></a>
+<pre class="programlisting"><span class="returnvalue">GdkGrabStatus</span>
 gdk_seat_grab (<em class="parameter"><code><a class="link" href="GdkSeat.html" title="GdkSeat"><span class="type">GdkSeat</span></a> *seat</code></em>,
                <em class="parameter"><code><a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> *window</code></em>,
-               <em class="parameter"><code><a class="link" href="GdkSeat.html#GdkSeatCapabilities" title="enum GdkSeatCapabilities"><span class="type">GdkSeatCapabilities</span></a> capabilities</code></em>,
+               <em class="parameter"><code><span class="type">GdkSeatCapabilities</span> capabilities</code></em>,
                <em class="parameter"><code><span class="type">gboolean</span> owner_events</code></em>,
                <em class="parameter"><code><a class="link" href="gdk3-Cursors.html#GdkCursor"><span class="type">GdkCursor</span></a> *cursor</code></em>,
-               <em class="parameter"><code>const <a class="link" href="gdk3-Event-Structures.html#GdkEvent" title="union GdkEvent"><span class="type">GdkEvent</span></a> *event</code></em>,
+               <em class="parameter"><code>const <span class="type">GdkEvent</span> *event</code></em>,
                <em class="parameter"><code><a class="link" href="GdkSeat.html#GdkSeatGrabPrepareFunc" title="GdkSeatGrabPrepareFunc ()"><span class="type">GdkSeatGrabPrepareFunc</span></a> prepare_func</code></em>,
                <em class="parameter"><code><span class="type">gpointer</span> prepare_func_data</code></em>);</pre>
 <p>Grabs the seat so that all events corresponding to the given <em class="parameter"><code>capabilities</code></em>
@@ -279,10 +279,10 @@ gdk_seat_grab (<em class="parameter"><code><a class="link" href="GdkSeat.html" t
 are passed to this application until the seat is ungrabbed with <a class="link" href="GdkSeat.html#gdk-seat-ungrab" title="gdk_seat_ungrab ()"><code class="function">gdk_seat_ungrab()</code></a>,
 or the window becomes hidden. This overrides any previous grab on the
 seat by this client.</p>
-<p>As a rule of thumb, if a grab is desired over <a class="link" href="GdkSeat.html#GDK-SEAT-CAPABILITY-POINTER:CAPS"><code class="literal">GDK_SEAT_CAPABILITY_POINTER</code></a>,
-all other "pointing" capabilities (eg. <a class="link" href="GdkSeat.html#GDK-SEAT-CAPABILITY-TOUCH:CAPS"><code class="literal">GDK_SEAT_CAPABILITY_TOUCH</code></a>) should
+<p>As a rule of thumb, if a grab is desired over <code class="literal">GDK_SEAT_CAPABILITY_POINTER</code>,
+all other "pointing" capabilities (eg. <code class="literal">GDK_SEAT_CAPABILITY_TOUCH</code>) should
 be grabbed too, so the user is able to interact with all of those while
-the grab holds, you should thus use <a class="link" href="GdkSeat.html#GDK-SEAT-CAPABILITY-ALL-POINTING:CAPS"><code class="literal">GDK_SEAT_CAPABILITY_ALL_POINTING</code></a> most
+the grab holds, you should thus use <code class="literal">GDK_SEAT_CAPABILITY_ALL_POINTING</code> most
 commonly.</p>
 <p>Grabs are used for operations which need complete control over the
 events corresponding to the given capabilities. For example in GTK+ this
@@ -294,7 +294,7 @@ grab on the window with <em class="parameter"><code>owner_events</code></em>
  set to <code class="literal">TRUE</code>. This is done because most
 applications expect to receive paired press and release events.</p>
 <p>If you set up anything at the time you take the grab that needs to be
-cleaned up when the grab ends, you should handle the <a class="link" href="gdk3-Event-Structures.html#GdkEventGrabBroken" title="struct GdkEventGrabBroken"><span class="type">GdkEventGrabBroken</span></a>
+cleaned up when the grab ends, you should handle the <span class="type">GdkEventGrabBroken</span>
 events that are emitted when the grab ends unvoluntarily.</p>
 <div class="refsect3">
 <a name="gdk-seat-grab.parameters"></a><h4>Parameters</h4>
@@ -369,7 +369,7 @@ visible before this call. </p></td>
 </div>
 <div class="refsect3">
 <a name="gdk-seat-grab.returns"></a><h4>Returns</h4>
-<p> <a class="link" href="gdk3-General.html#GDK-GRAB-SUCCESS:CAPS"><code class="literal">GDK_GRAB_SUCCESS</code></a> if the grab was successful.</p>
+<p> <code class="literal">GDK_GRAB_SUCCESS</code> if the grab was successful.</p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-20.html#api-index-3.20">3.20</a></p>
 </div>
@@ -399,7 +399,7 @@ gdk_seat_ungrab (<em class="parameter"><code><a class="link" href="GdkSeat.html"
 <hr>
 <div class="refsect2">
 <a name="gdk-seat-get-capabilities"></a><h3>gdk_seat_get_capabilities ()</h3>
-<pre class="programlisting"><a class="link" href="GdkSeat.html#GdkSeatCapabilities" title="enum GdkSeatCapabilities"><span class="returnvalue">GdkSeatCapabilities</span></a>
+<pre class="programlisting"><span class="returnvalue">GdkSeatCapabilities</span>
 gdk_seat_get_capabilities (<em class="parameter"><code><a class="link" href="GdkSeat.html" title="GdkSeat"><span class="type">GdkSeat</span></a> *seat</code></em>);</pre>
 <p>Returns the capabilities this <a class="link" href="GdkSeat.html" title="GdkSeat"><span class="type">GdkSeat</span></a> currently has.</p>
 <div class="refsect3">
@@ -486,7 +486,7 @@ capabilities. This object is owned by GTK+ and must not be freed. </p>
 <a name="gdk-seat-get-slaves"></a><h3>gdk_seat_get_slaves ()</h3>
 <pre class="programlisting"><span class="returnvalue">GList</span> *
 gdk_seat_get_slaves (<em class="parameter"><code><a class="link" href="GdkSeat.html" title="GdkSeat"><span class="type">GdkSeat</span></a> *seat</code></em>,
-                     <em class="parameter"><code><a class="link" href="GdkSeat.html#GdkSeatCapabilities" title="enum GdkSeatCapabilities"><span class="type">GdkSeatCapabilities</span></a> capabilities</code></em>);</pre>
+                     <em class="parameter"><code><span class="type">GdkSeatCapabilities</span> capabilities</code></em>);</pre>
 <p>Returns the slave devices that match the given capabilities.</p>
 <div class="refsect3">
 <a name="gdk-seat-get-slaves.parameters"></a><h4>Parameters</h4>
@@ -512,84 +512,10 @@ gdk_seat_get_slaves (<em class="parameter"><code><a class="link" href="GdkSeat.h
 </div>
 <div class="refsect3">
 <a name="gdk-seat-get-slaves.returns"></a><h4>Returns</h4>
-<p>A list of <a href="GdkDevice.html#GdkDevice-struct"><span class="type">GdkDevices</span></a>.
+<p>A list of <span class="type">GdkDevices</span>.
 The list must be freed with <code class="function">g_list_free()</code>, the elements are owned
 by GDK and must not be freed. </p>
 <p><span class="annotation">[<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GdkDevice]</span></p>
-</div>
-<p class="since">Since: <a class="link" href="api-index-3-20.html#api-index-3.20">3.20</a></p>
-</div>
-</div>
-<div class="refsect1">
-<a name="GdkSeat.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GdkSeat-struct"></a><h3>GdkSeat</h3>
-<pre class="programlisting">typedef struct _GdkSeat GdkSeat;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GdkSeatCapabilities"></a><h3>enum GdkSeatCapabilities</h3>
-<p>Flags describing the seat capabilities.</p>
-<div class="refsect3">
-<a name="GdkSeatCapabilities.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="enum_members_name">
-<col class="enum_members_description">
-<col width="200px" class="enum_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="enum_member_name"><p><a name="GDK-SEAT-CAPABILITY-NONE:CAPS"></a>GDK_SEAT_CAPABILITY_NONE</p></td>
-<td class="enum_member_description">
-<p>No input capabilities</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GDK-SEAT-CAPABILITY-POINTER:CAPS"></a>GDK_SEAT_CAPABILITY_POINTER</p></td>
-<td class="enum_member_description">
-<p>The seat has a pointer (e.g. mouse)</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GDK-SEAT-CAPABILITY-TOUCH:CAPS"></a>GDK_SEAT_CAPABILITY_TOUCH</p></td>
-<td class="enum_member_description">
-<p>The seat has touchscreen(s) attached</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GDK-SEAT-CAPABILITY-TABLET-STYLUS:CAPS"></a>GDK_SEAT_CAPABILITY_TABLET_STYLUS</p></td>
-<td class="enum_member_description">
-<p>The seat has drawing tablet(s) attached</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GDK-SEAT-CAPABILITY-KEYBOARD:CAPS"></a>GDK_SEAT_CAPABILITY_KEYBOARD</p></td>
-<td class="enum_member_description">
-<p>The seat has keyboard(s) attached</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GDK-SEAT-CAPABILITY-ALL-POINTING:CAPS"></a>GDK_SEAT_CAPABILITY_ALL_POINTING</p></td>
-<td class="enum_member_description">
-<p>The union of all pointing capabilities</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GDK-SEAT-CAPABILITY-ALL:CAPS"></a>GDK_SEAT_CAPABILITY_ALL</p></td>
-<td class="enum_member_description">
-<p>The union of all capabilities</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-20.html#api-index-3.20">3.20</a></p>
 </div>
@@ -600,7 +526,8 @@ by GDK and must not be freed. </p>
 <a name="GdkSeat--display"></a><h3>The <code class="literal">“display”</code> property</h3>
 <pre class="programlisting">  “display”                  <a class="link" href="GdkDisplay.html" title="GdkDisplay"><span class="type">GdkDisplay</span></a> *</pre>
 <p><a class="link" href="GdkDisplay.html" title="GdkDisplay"><span class="type">GdkDisplay</span></a> of this seat.</p>
-<p>Flags: Read / Write / Construct Only</p>
+<p>Owner: GdkSeat</p>
+<p>Flags: Read / Write / Construct Only</p>
 <p class="since">Since: <a class="link" href="api-index-3-20.html#api-index-3.20">3.20</a></p>
 </div>
 </div>
@@ -772,6 +699,6 @@ to this <em class="parameter"><code>seat</code></em>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

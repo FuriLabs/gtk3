@@ -8,7 +8,7 @@
 <link rel="up" href="ButtonWidgets.html" title="Buttons and Toggles">
 <link rel="prev" href="GtkCheckButton.html" title="GtkCheckButton">
 <link rel="next" href="GtkToggleButton.html" title="GtkToggleButton">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -39,8 +39,8 @@
 <a name="GtkRadioButton.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -138,9 +138,9 @@
 <a name="GtkRadioButton.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody><tr>
 <td class="signal_type"><span class="returnvalue">void</span></td>
@@ -153,12 +153,12 @@
 <a name="GtkRadioButton.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkRadioButton.html#GtkRadioButton-struct" title="struct GtkRadioButton">GtkRadioButton</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkRadioButton.html#GtkRadioButton-struct">GtkRadioButton</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -219,9 +219,9 @@ itself and its list item when it is destroyed.</p>
         <td class="listing_lines" align="right"><pre>1
 2
 3</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">radiobutton</span>
-<span class="normal">├── radio</span>
-<span class="normal">╰── </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">radiobutton</span>
+<span class="err">├──</span> <span class="n">radio</span>
+<span class="err">╰──</span> <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -237,9 +237,9 @@ main CSS node with name radiobutton and a subnode with name radio.</p>
         <td class="listing_lines" align="right"><pre>1
 2
 3</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">button</span><span class="symbol">.</span><span class="normal">radio</span>
-<span class="normal">├── radio</span>
-<span class="normal">╰── </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">button</span><span class="p">.</span><span class="n">radio</span>
+<span class="err">├──</span> <span class="n">radio</span>
+<span class="err">╰──</span> <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -279,30 +279,30 @@ in this case.</p>
 22
 23
 24</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="type">void</span><span class="normal"> </span><span class="function">create_radio_buttons</span><span class="normal"> </span><span class="symbol">(</span><span class="type">void</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+        <td class="listing_code"><pre class="programlisting"><span class="kt">void</span> <span class="nf">create_radio_buttons</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
 
-<span class="normal">   </span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">window</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">radio1</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">radio2</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">box</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">entry</span><span class="symbol">;</span>
-<span class="normal">   window </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkWindow.html#gtk-window-new">gtk_window_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="GtkWindow.html#GTK-WINDOW-TOPLEVEL:CAPS">GTK_WINDOW_TOPLEVEL</a></span><span class="symbol">);</span>
-<span class="normal">   box </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkBox.html#gtk-box-new">gtk_box_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="gtk3-Standard-Enumerations.html#GTK-ORIENTATION-VERTICAL:CAPS">GTK_ORIENTATION_VERTICAL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="number">2</span><span class="symbol">);</span>
-<span class="normal">   </span><span class="function"><a href="GtkBox.html#gtk-box-set-homogeneous">gtk_box_set_homogeneous</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_BOX</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">box</span><span class="symbol">),</span><span class="normal"> TRUE</span><span class="symbol">);</span>
+   <span class="n">GtkWidget</span> <span class="o">*</span><span class="n">window</span><span class="p">,</span> <span class="o">*</span><span class="n">radio1</span><span class="p">,</span> <span class="o">*</span><span class="n">radio2</span><span class="p">,</span> <span class="o">*</span><span class="n">box</span><span class="p">,</span> <span class="o">*</span><span class="n">entry</span><span class="p">;</span>
+   <span class="n">window</span> <span class="o">=</span> <span class="n">gtk_window_new</span> <span class="p">(</span><span class="n">GTK_WINDOW_TOPLEVEL</span><span class="p">);</span>
+   <span class="n">box</span> <span class="o">=</span> <span class="n">gtk_box_new</span> <span class="p">(</span><span class="n">GTK_ORIENTATION_VERTICAL</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+   <span class="n">gtk_box_set_homogeneous</span> <span class="p">(</span><span class="n">GTK_BOX</span> <span class="p">(</span><span class="n">box</span><span class="p">),</span> <span class="n">TRUE</span><span class="p">);</span>
 
-<span class="normal">   </span><span class="comment">// Create a radio button with a GtkEntry widget</span>
-<span class="normal">   radio1 </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkRadioButton.html#gtk-radio-button-new">gtk_radio_button_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">);</span>
-<span class="normal">   entry </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkEntry.html#gtk-entry-new">gtk_entry_new</a></span><span class="normal"> </span><span class="symbol">();</span>
-<span class="normal">   </span><span class="function"><a href="GtkContainer.html#gtk-container-add">gtk_container_add</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_CONTAINER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">radio1</span><span class="symbol">),</span><span class="normal"> entry</span><span class="symbol">);</span>
+   <span class="c1">// Create a radio button with a GtkEntry widget</span>
+   <span class="n">radio1</span> <span class="o">=</span> <span class="n">gtk_radio_button_new</span> <span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+   <span class="n">entry</span> <span class="o">=</span> <span class="n">gtk_entry_new</span> <span class="p">();</span>
+   <span class="n">gtk_container_add</span> <span class="p">(</span><span class="n">GTK_CONTAINER</span> <span class="p">(</span><span class="n">radio1</span><span class="p">),</span> <span class="n">entry</span><span class="p">);</span>
 
 
-<span class="normal">   </span><span class="comment">// Create a radio button with a label</span>
-<span class="normal">   radio2 </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkRadioButton.html#gtk-radio-button-new-with-label-from-widget">gtk_radio_button_new_with_label_from_widget</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_RADIO_BUTTON</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">radio1</span><span class="symbol">),</span>
-<span class="normal">                                                         </span><span class="string">"I’m the second radio button."</span><span class="symbol">);</span>
+   <span class="c1">// Create a radio button with a label</span>
+   <span class="n">radio2</span> <span class="o">=</span> <span class="n">gtk_radio_button_new_with_label_from_widget</span> <span class="p">(</span><span class="n">GTK_RADIO_BUTTON</span> <span class="p">(</span><span class="n">radio1</span><span class="p">),</span>
+                                                         <span class="s">&quot;I’m the second radio button.&quot;</span><span class="p">);</span>
 
-<span class="normal">   </span><span class="comment">// Pack them into a box, then show all the widgets</span>
-<span class="normal">   </span><span class="function"><a href="GtkBox.html#gtk-box-pack-start">gtk_box_pack_start</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_BOX</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">box</span><span class="symbol">),</span><span class="normal"> radio1</span><span class="symbol">);</span>
-<span class="normal">   </span><span class="function"><a href="GtkBox.html#gtk-box-pack-start">gtk_box_pack_start</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_BOX</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">box</span><span class="symbol">),</span><span class="normal"> radio2</span><span class="symbol">);</span>
-<span class="normal">   </span><span class="function"><a href="GtkContainer.html#gtk-container-add">gtk_container_add</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_CONTAINER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">),</span><span class="normal"> box</span><span class="symbol">);</span>
-<span class="normal">   </span><span class="function"><a href="GtkWidget.html#gtk-widget-show-all">gtk_widget_show_all</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">);</span>
-<span class="normal">   </span><span class="keyword">return</span><span class="symbol">;</span>
-<span class="cbracket">}</span></pre></td>
+   <span class="c1">// Pack them into a box, then show all the widgets</span>
+   <span class="n">gtk_box_pack_start</span> <span class="p">(</span><span class="n">GTK_BOX</span> <span class="p">(</span><span class="n">box</span><span class="p">),</span> <span class="n">radio1</span><span class="p">);</span>
+   <span class="n">gtk_box_pack_start</span> <span class="p">(</span><span class="n">GTK_BOX</span> <span class="p">(</span><span class="n">box</span><span class="p">),</span> <span class="n">radio2</span><span class="p">);</span>
+   <span class="n">gtk_container_add</span> <span class="p">(</span><span class="n">GTK_CONTAINER</span> <span class="p">(</span><span class="n">window</span><span class="p">),</span> <span class="n">box</span><span class="p">);</span>
+   <span class="n">gtk_widget_show_all</span> <span class="p">(</span><span class="n">window</span><span class="p">);</span>
+   <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -622,16 +622,16 @@ and <a class="link" href="GtkRadioButton.html#gtk-radio-button-set-group" title=
 8
 9
 10</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkRadioButton</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">radio_button</span><span class="symbol">;</span>
-<span class="usertype">GtkRadioButton</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">last_button</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkRadioButton</span> <span class="o">*</span><span class="n">radio_button</span><span class="p">;</span>
+<span class="n">GtkRadioButton</span> <span class="o">*</span><span class="n">last_button</span><span class="p">;</span>
 
-<span class="keyword">while</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">some_condition</span><span class="symbol">)</span>
-<span class="normal">  </span><span class="cbracket">{</span>
-<span class="normal">     radio_button </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkRadioButton.html#gtk-radio-button-new">gtk_radio_button_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">);</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">some_condition</span><span class="p">)</span>
+  <span class="p">{</span>
+     <span class="n">radio_button</span> <span class="o">=</span> <span class="n">gtk_radio_button_new</span> <span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
 
-<span class="normal">     </span><span class="function"><a href="GtkRadioButton.html#gtk-radio-button-join-group">gtk_radio_button_join_group</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">radio_button</span><span class="symbol">,</span><span class="normal"> last_button</span><span class="symbol">);</span>
-<span class="normal">     last_button </span><span class="symbol">=</span><span class="normal"> radio_button</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="cbracket">}</span></pre></td>
+     <span class="n">gtk_radio_button_join_group</span> <span class="p">(</span><span class="n">radio_button</span><span class="p">,</span> <span class="n">last_button</span><span class="p">);</span>
+     <span class="n">last_button</span> <span class="o">=</span> <span class="n">radio_button</span><span class="p">;</span>
+  <span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -665,18 +665,12 @@ joining, or <code class="literal">NULL</code> to remove the radio button from it
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkRadioButton.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkRadioButton-struct"></a><h3>struct GtkRadioButton</h3>
-<pre class="programlisting">struct GtkRadioButton;</pre>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkRadioButton.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkRadioButton--group"></a><h3>The <code class="literal">“group”</code> property</h3>
 <pre class="programlisting">  “group”                    <a class="link" href="GtkRadioButton.html" title="GtkRadioButton"><span class="type">GtkRadioButton</span></a> *</pre>
 <p>Sets a new group for a radio button.</p>
+<p>Owner: GtkRadioButton</p>
 <p>Flags: Write</p>
 </div>
 </div>
@@ -725,6 +719,6 @@ of the group that a button belongs to changes.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

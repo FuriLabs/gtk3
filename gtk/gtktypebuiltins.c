@@ -1634,6 +1634,7 @@ gtk_input_purpose_get_type (void)
         { GTK_INPUT_PURPOSE_NAME, "GTK_INPUT_PURPOSE_NAME", "name" },
         { GTK_INPUT_PURPOSE_PASSWORD, "GTK_INPUT_PURPOSE_PASSWORD", "password" },
         { GTK_INPUT_PURPOSE_PIN, "GTK_INPUT_PURPOSE_PIN", "pin" },
+        { GTK_INPUT_PURPOSE_TERMINAL, "GTK_INPUT_PURPOSE_TERMINAL", "terminal" },
         { 0, NULL, NULL }
       };
       GType g_define_type_id =

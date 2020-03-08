@@ -8,7 +8,7 @@
 <link rel="up" href="MiscObjects.html" title="Miscellaneous">
 <link rel="prev" href="MiscObjects.html" title="Miscellaneous">
 <link rel="next" href="GtkCalendar.html" title="GtkCalendar">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -38,8 +38,8 @@
 <a name="GtkAdjustment.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -235,9 +235,9 @@
 <a name="GtkAdjustment.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody>
 <tr>
@@ -257,12 +257,12 @@
 <a name="GtkAdjustment.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name"><a class="link" href="GtkAdjustment.html#GtkAdjustment-struct" title="GtkAdjustment">GtkAdjustment</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkAdjustment.html#GtkAdjustment-struct">GtkAdjustment</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -917,20 +917,12 @@ multiple adjustment properties.</p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkAdjustment.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkAdjustment-struct"></a><h3>GtkAdjustment</h3>
-<pre class="programlisting">typedef struct _GtkAdjustment GtkAdjustment;</pre>
-<p>The <a class="link" href="GtkAdjustment.html#GtkAdjustment-struct" title="GtkAdjustment"><span class="type">GtkAdjustment</span></a> contains only private fields and
-should not be directly accessed.</p>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkAdjustment.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkAdjustment--lower"></a><h3>The <code class="literal">“lower”</code> property</h3>
 <pre class="programlisting">  “lower”                    <span class="type">gdouble</span></pre>
 <p>The minimum value of the adjustment.</p>
+<p>Owner: GtkAdjustment</p>
 <p>Flags: Read / Write</p>
 <p>Default value: 0</p>
 <p class="since">Since: 2.4</p>
@@ -940,6 +932,7 @@ should not be directly accessed.</p>
 <a name="GtkAdjustment--page-increment"></a><h3>The <code class="literal">“page-increment”</code> property</h3>
 <pre class="programlisting">  “page-increment”           <span class="type">gdouble</span></pre>
 <p>The page increment of the adjustment.</p>
+<p>Owner: GtkAdjustment</p>
 <p>Flags: Read / Write</p>
 <p>Default value: 0</p>
 <p class="since">Since: 2.4</p>
@@ -952,6 +945,7 @@ should not be directly accessed.</p>
 Note that the page-size is irrelevant and should be set to zero
 if the adjustment is used for a simple scalar value, e.g. in a
 <a class="link" href="GtkSpinButton.html" title="GtkSpinButton"><span class="type">GtkSpinButton</span></a>.</p>
+<p>Owner: GtkAdjustment</p>
 <p>Flags: Read / Write</p>
 <p>Default value: 0</p>
 <p class="since">Since: 2.4</p>
@@ -961,6 +955,7 @@ if the adjustment is used for a simple scalar value, e.g. in a
 <a name="GtkAdjustment--step-increment"></a><h3>The <code class="literal">“step-increment”</code> property</h3>
 <pre class="programlisting">  “step-increment”           <span class="type">gdouble</span></pre>
 <p>The step increment of the adjustment.</p>
+<p>Owner: GtkAdjustment</p>
 <p>Flags: Read / Write</p>
 <p>Default value: 0</p>
 <p class="since">Since: 2.4</p>
@@ -973,6 +968,7 @@ if the adjustment is used for a simple scalar value, e.g. in a
 Note that values will be restricted by
 <code class="literal">upper - page-size</code> if the page-size
 property is nonzero.</p>
+<p>Owner: GtkAdjustment</p>
 <p>Flags: Read / Write</p>
 <p>Default value: 0</p>
 <p class="since">Since: 2.4</p>
@@ -982,6 +978,7 @@ property is nonzero.</p>
 <a name="GtkAdjustment--value"></a><h3>The <code class="literal">“value”</code> property</h3>
 <pre class="programlisting">  “value”                    <span class="type">gdouble</span></pre>
 <p>The value of the adjustment.</p>
+<p>Owner: GtkAdjustment</p>
 <p>Flags: Read / Write</p>
 <p>Default value: 0</p>
 <p class="since">Since: 2.4</p>
@@ -1054,6 +1051,6 @@ user_function (<a class="link" href="GtkAdjustment.html" title="GtkAdjustment"><
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 project('gtk+-3.0', 'c',
-        version: '3.24.13',
+        version: '3.24.14',
         default_options: [
           'buildtype=debugoptimized',
           'warning_level=1'
@@ -31,7 +31,7 @@ cairo_req          = '>= 1.14.0'
 gdk_pixbuf_req     = '>= 2.30.0'
 introspection_req  = '>= 1.39.0'
 wayland_proto_req  = '>= 1.14'
-wayland_req        = '>= 1.9.91'
+wayland_req        = '>= 1.14.91'
 epoxy_req          = '>= 1.4'
 cloudproviders_req = '>= 0.2.5'
 xkbcommon_req      = '>= 0.2.0'

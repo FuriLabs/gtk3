@@ -8,7 +8,7 @@
 <link rel="up" href="MenusAndCombos.html" title="Menus, Combo Box, Toolbar">
 <link rel="prev" href="GtkToolItemGroup.html" title="GtkToolItemGroup">
 <link rel="next" href="GtkToolButton.html" title="GtkToolButton">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -31,7 +31,7 @@
 <td valign="top">
 <h2><span class="refentrytitle"><a name="GtkSeparatorToolItem.top_of_page"></a>GtkSeparatorToolItem</span></h2>
 <p>GtkSeparatorToolItem — A toolbar item that separates groups of other
-  toolbar items</p>
+toolbar items</p>
 </td>
 <td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
@@ -39,8 +39,8 @@
 <a name="GtkSeparatorToolItem.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -89,17 +89,17 @@
 <a name="GtkSeparatorToolItem.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkSeparatorToolItem.html#GtkSeparatorToolItem-struct" title="struct GtkSeparatorToolItem">GtkSeparatorToolItem</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkSeparatorToolItem.html#GtkSeparatorToolItem-struct">GtkSeparatorToolItem</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkSeparatorToolItem.html#GtkSeparatorToolItemClass" title="struct GtkSeparatorToolItemClass">GtkSeparatorToolItemClass</a></td>
+<td class="function_name">GtkSeparatorToolItemClass</td>
 </tr>
 </tbody>
 </table></div>
@@ -129,7 +129,7 @@ GtkSeparatorToolItem implements
 <div class="refsect1">
 <a name="GtkSeparatorToolItem.description"></a><h2>Description</h2>
 <p>A <a class="link" href="GtkSeparatorToolItem.html" title="GtkSeparatorToolItem"><span class="type">GtkSeparatorToolItem</span></a> is a <a class="link" href="GtkToolItem.html" title="GtkToolItem"><span class="type">GtkToolItem</span></a> that separates groups of other
-<a href="GtkToolItem.html#GtkToolItem-struct"><span class="type">GtkToolItems</span></a>. Depending on the theme, a <a class="link" href="GtkSeparatorToolItem.html" title="GtkSeparatorToolItem"><span class="type">GtkSeparatorToolItem</span></a> will
+<a href="https://developer.gnome.org/gtk4/GtkToolItem.html#GtkToolItem-struct"><span class="type">GtkToolItems</span></a>. Depending on the theme, a <a class="link" href="GtkSeparatorToolItem.html" title="GtkSeparatorToolItem"><span class="type">GtkSeparatorToolItem</span></a> will
 often look like a vertical line on horizontally docked toolbars.</p>
 <p>If the <a class="link" href="GtkToolbar.html" title="GtkToolbar"><span class="type">GtkToolbar</span></a> child property “expand” is <code class="literal">TRUE</code> and the property
 <a class="link" href="GtkSeparatorToolItem.html#GtkSeparatorToolItem--draw" title="The “draw” property"><span class="type">“draw”</span></a> is <code class="literal">FALSE</code>, a <a class="link" href="GtkSeparatorToolItem.html" title="GtkSeparatorToolItem"><span class="type">GtkSeparatorToolItem</span></a> will act as
@@ -220,37 +220,12 @@ is drawn as a line, or just blank.</p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkSeparatorToolItem.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkSeparatorToolItem-struct"></a><h3>struct GtkSeparatorToolItem</h3>
-<pre class="programlisting">struct GtkSeparatorToolItem;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkSeparatorToolItemClass"></a><h3>struct GtkSeparatorToolItemClass</h3>
-<pre class="programlisting">struct GtkSeparatorToolItemClass {
-  GtkToolItemClass parent_class;
-};
-</pre>
-<div class="refsect3">
-<a name="GtkSeparatorToolItemClass.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody></tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkSeparatorToolItem.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkSeparatorToolItem--draw"></a><h3>The <code class="literal">“draw”</code> property</h3>
 <pre class="programlisting">  “draw”                     <span class="type">gboolean</span></pre>
 <p>Whether the separator is drawn, or just blank.</p>
+<p>Owner: GtkSeparatorToolItem</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 </div>
@@ -261,6 +236,6 @@ is drawn as a line, or just blank.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <link rel="up" href="ButtonWidgets.html" title="Buttons and Toggles">
 <link rel="prev" href="GtkToggleButton.html" title="GtkToggleButton">
 <link rel="next" href="GtkMenuButton.html" title="GtkMenuButton">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -39,8 +39,8 @@
 <a name="GtkLinkButton.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -120,9 +120,9 @@
 <a name="GtkLinkButton.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody><tr>
 <td class="signal_type"><span class="returnvalue">gboolean</span></td>
@@ -135,17 +135,17 @@
 <a name="GtkLinkButton.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkLinkButton.html#GtkLinkButton-struct" title="struct GtkLinkButton">GtkLinkButton</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkLinkButton.html#GtkLinkButton-struct">GtkLinkButton</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkLinkButton.html#GtkLinkButtonClass" title="struct GtkLinkButtonClass">GtkLinkButtonClass</a></td>
+<td class="function_name">GtkLinkButtonClass</td>
 </tr>
 </tbody>
 </table></div>
@@ -381,45 +381,12 @@ points.  See <a class="link" href="GtkLinkButton.html#gtk-link-button-get-visite
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkLinkButton.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkLinkButton-struct"></a><h3>struct GtkLinkButton</h3>
-<pre class="programlisting">struct GtkLinkButton;</pre>
-<p>The <a class="link" href="GtkLinkButton.html#GtkLinkButton-struct" title="struct GtkLinkButton"><span class="type">GtkLinkButton</span></a> contains only
-private data and should be accessed using the provided API.</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkLinkButtonClass"></a><h3>struct GtkLinkButtonClass</h3>
-<pre class="programlisting">struct GtkLinkButtonClass {
-  gboolean (* activate_link) (GtkLinkButton *button);
-};
-</pre>
-<p>The <a class="link" href="GtkLinkButton.html#GtkLinkButtonClass" title="struct GtkLinkButtonClass"><span class="type">GtkLinkButtonClass</span></a> contains only
-private data.</p>
-<div class="refsect3">
-<a name="GtkLinkButtonClass.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody><tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkLinkButtonClass.activate-link"></a>activate_link</code></em> ()</p></td>
-<td class="struct_member_description"><p>class handler for the <a class="link" href="GtkLinkButton.html#GtkLinkButton-activate-link" title="The “activate-link” signal"><span class="type">“activate-link”</span></a> signal</p></td>
-<td class="struct_member_annotations"> </td>
-</tr></tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkLinkButton.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkLinkButton--uri"></a><h3>The <code class="literal">“uri”</code> property</h3>
 <pre class="programlisting">  “uri”                      <span class="type">gchar</span> *</pre>
 <p>The URI bound to this button.</p>
+<p>Owner: GtkLinkButton</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 <p class="since">Since: 2.10</p>
@@ -430,6 +397,7 @@ private data.</p>
 <pre class="programlisting">  “visited”                  <span class="type">gboolean</span></pre>
 <p>The 'visited' state of this button. A visited link is drawn in a
 different color.</p>
+<p>Owner: GtkLinkButton</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: 2.14</p>
@@ -480,6 +448,6 @@ your handler.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

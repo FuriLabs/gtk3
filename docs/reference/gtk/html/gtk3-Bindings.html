@@ -8,7 +8,7 @@
 <link rel="up" href="gtkbase.html" title="Part III. GTK+ Core Reference">
 <link rel="prev" href="GtkSettings.html" title="Settings">
 <link rel="next" href="gtk3-Standard-Enumerations.html" title="Standard Enumerations">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -35,8 +35,8 @@
 <a name="gtk3-Bindings.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -49,7 +49,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="returnvalue">GtkBindingSet</span></a> *
+<a href="https://developer.gnome.org/gtk4/gtk4-Bindings.html#GtkBindingSet"><span class="returnvalue">GtkBindingSet</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="gtk3-Bindings.html#gtk-binding-set-new" title="gtk_binding_set_new ()">gtk_binding_set_new</a> <span class="c_punctuation">()</span>
@@ -57,7 +57,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="returnvalue">GtkBindingSet</span></a> *
+<a href="https://developer.gnome.org/gtk4/gtk4-Bindings.html#GtkBindingSet"><span class="returnvalue">GtkBindingSet</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="gtk3-Bindings.html#gtk-binding-set-by-class" title="gtk_binding_set_by_class ()">gtk_binding_set_by_class</a> <span class="c_punctuation">()</span>
@@ -65,7 +65,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="returnvalue">GtkBindingSet</span></a> *
+<a href="https://developer.gnome.org/gtk4/gtk4-Bindings.html#GtkBindingSet"><span class="returnvalue">GtkBindingSet</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="gtk3-Bindings.html#gtk-binding-set-find" title="gtk_binding_set_find ()">gtk_binding_set_find</a> <span class="c_punctuation">()</span>
@@ -142,25 +142,25 @@
 <a name="gtk3-Bindings.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet">GtkBindingSet</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/gtk4-Bindings.html#GtkBindingSet">GtkBindingSet</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="gtk3-Bindings.html#GtkBindingEntry" title="struct GtkBindingEntry">GtkBindingEntry</a></td>
+<td class="function_name">GtkBindingEntry</td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">GtkBindingSignal</a></td>
+<td class="function_name">GtkBindingSignal</td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="gtk3-Bindings.html#GtkBindingArg" title="struct GtkBindingArg">GtkBindingArg</a></td>
+<td class="function_name">GtkBindingArg</td>
 </tr>
 </tbody>
 </table></div>
@@ -172,7 +172,7 @@
 </div>
 <div class="refsect1">
 <a name="gtk3-Bindings.description"></a><h2>Description</h2>
-<p><a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="type">GtkBindingSet</span></a> provides a mechanism for configuring GTK+ key bindings
+<p><a href="https://developer.gnome.org/gtk4/gtk4-Bindings.html#GtkBindingSet"><span class="type">GtkBindingSet</span></a> provides a mechanism for configuring GTK+ key bindings
 through CSS files. This eases key binding adjustments for application
 developers as well as users and provides GTK+ users or administrators
 with high key  binding configurability which requires no application
@@ -194,7 +194,7 @@ signal emissions on the target widget. Key combinations are strings
 consisting of an optional <span class="type">GdkModifierType</span> name and
 key names
 such as those defined in <code class="literal">gdk/gdkkeysyms.h</code>
-or returned from <code class="function">gdk_keyval_name()</code>, they have to be parsable by
+or returned from <a href="https://developer.gnome.org/gdk4/gdk4-Keyboard-Handling.html#gdk-keyval-name"><code class="function">gdk_keyval_name()</code></a>, they have to be parsable by
 <a class="link" href="gtk3-Keyboard-Accelerators.html#gtk-accelerator-parse" title="gtk_accelerator_parse ()"><code class="function">gtk_accelerator_parse()</code></a>. Specifications of signal emissions consist
 of a string identifying the signal name, and a list of signal specific
 arguments in parenthesis.</p>
@@ -216,16 +216,16 @@ used:</p>
 8
 9
 10</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">@binding</span><span class="symbol">-</span><span class="normal">set MoveCursor3</span>
-<span class="cbracket">{</span>
-<span class="normal">  bind </span><span class="string">"&lt;Control&gt;Right"</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"move-cursor"</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">visual</span><span class="symbol">-</span><span class="normal">positions</span><span class="symbol">,</span><span class="normal"> </span><span class="number">3</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">}</span><span class="symbol">;</span>
-<span class="normal">  bind </span><span class="string">"&lt;Control&gt;Left"</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal"> </span><span class="string">"move-cursor"</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">visual</span><span class="symbol">-</span><span class="normal">positions</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">-</span><span class="number">3</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">}</span><span class="symbol">;</span>
-<span class="cbracket">}</span>
+        <td class="listing_code"><pre class="programlisting"><span class="err">@</span><span class="n">binding</span><span class="o">-</span><span class="n">set</span> <span class="n">MoveCursor3</span>
+<span class="p">{</span>
+  <span class="n">bind</span> <span class="s">&quot;&lt;Control&gt;Right&quot;</span> <span class="p">{</span> <span class="s">&quot;move-cursor&quot;</span> <span class="p">(</span><span class="n">visual</span><span class="o">-</span><span class="n">positions</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="p">};</span>
+  <span class="n">bind</span> <span class="s">&quot;&lt;Control&gt;Left&quot;</span> <span class="p">{</span> <span class="s">&quot;move-cursor&quot;</span> <span class="p">(</span><span class="n">visual</span><span class="o">-</span><span class="n">positions</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="p">};</span>
+<span class="p">}</span>
 
-<span class="normal">entry</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="symbol">-</span><span class="normal">gtk</span><span class="symbol">-</span><span class="normal">key</span><span class="symbol">-</span><span class="normal">bindings</span><span class="symbol">:</span><span class="normal"> MoveCursor3</span><span class="symbol">;</span>
-<span class="cbracket">}</span></pre></td>
+<span class="n">entry</span>
+<span class="p">{</span>
+  <span class="o">-</span><span class="n">gtk</span><span class="o">-</span><span class="n">key</span><span class="o">-</span><span class="nl">bindings</span><span class="p">:</span> <span class="n">MoveCursor3</span><span class="p">;</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -257,16 +257,16 @@ existing bindings, however.</p>
 8
 9
 10</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">@binding</span><span class="symbol">-</span><span class="normal">set MoveCursor3</span>
-<span class="cbracket">{</span>
-<span class="normal">  bind </span><span class="string">"&lt;Control&gt;Right"</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal">  </span><span class="cbracket">}</span><span class="symbol">;</span>
-<span class="normal">  bind </span><span class="string">"&lt;Control&gt;Left"</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal">  </span><span class="cbracket">}</span><span class="symbol">;</span>
-<span class="cbracket">}</span>
+        <td class="listing_code"><pre class="programlisting"><span class="err">@</span><span class="n">binding</span><span class="o">-</span><span class="n">set</span> <span class="n">MoveCursor3</span>
+<span class="p">{</span>
+  <span class="n">bind</span> <span class="s">&quot;&lt;Control&gt;Right&quot;</span> <span class="p">{</span>  <span class="p">};</span>
+  <span class="n">bind</span> <span class="s">&quot;&lt;Control&gt;Left&quot;</span> <span class="p">{</span>  <span class="p">};</span>
+<span class="p">}</span>
 
-<span class="normal">entry</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="symbol">-</span><span class="normal">gtk</span><span class="symbol">-</span><span class="normal">key</span><span class="symbol">-</span><span class="normal">bindings</span><span class="symbol">:</span><span class="normal"> MoveCursor3</span><span class="symbol">;</span>
-<span class="cbracket">}</span></pre></td>
+<span class="n">entry</span>
+<span class="p">{</span>
+  <span class="o">-</span><span class="n">gtk</span><span class="o">-</span><span class="n">key</span><span class="o">-</span><span class="nl">bindings</span><span class="p">:</span> <span class="n">MoveCursor3</span><span class="p">;</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -297,16 +297,16 @@ like this:</p>
 8
 9
 10</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">@binding</span><span class="symbol">-</span><span class="normal">set MoveCursor3</span>
-<span class="cbracket">{</span>
-<span class="normal">  unbind </span><span class="string">"&lt;Control&gt;Right"</span><span class="symbol">;</span>
-<span class="normal">  unbind </span><span class="string">"&lt;Control&gt;Left"</span><span class="symbol">;</span>
-<span class="cbracket">}</span>
+        <td class="listing_code"><pre class="programlisting"><span class="err">@</span><span class="n">binding</span><span class="o">-</span><span class="n">set</span> <span class="n">MoveCursor3</span>
+<span class="p">{</span>
+  <span class="n">unbind</span> <span class="s">&quot;&lt;Control&gt;Right&quot;</span><span class="p">;</span>
+  <span class="n">unbind</span> <span class="s">&quot;&lt;Control&gt;Left&quot;</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="normal">entry</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="symbol">-</span><span class="normal">gtk</span><span class="symbol">-</span><span class="normal">key</span><span class="symbol">-</span><span class="normal">bindings</span><span class="symbol">:</span><span class="normal"> MoveCursor3</span><span class="symbol">;</span>
-<span class="cbracket">}</span></pre></td>
+<span class="n">entry</span>
+<span class="p">{</span>
+  <span class="o">-</span><span class="n">gtk</span><span class="o">-</span><span class="n">key</span><span class="o">-</span><span class="nl">bindings</span><span class="p">:</span> <span class="n">MoveCursor3</span><span class="p">;</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -325,7 +325,7 @@ of the key presses, e.g. by an entry’s parent widget, is now possible.</p>
 <div class="refsect2">
 <a name="gtk-binding-entry-add-signall"></a><h3>gtk_binding_entry_add_signall ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
-gtk_binding_entry_add_signall (<em class="parameter"><code><a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="type">GtkBindingSet</span></a> *binding_set</code></em>,
+gtk_binding_entry_add_signall (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/gtk4-Bindings.html#GtkBindingSet"><span class="type">GtkBindingSet</span></a> *binding_set</code></em>,
                                <em class="parameter"><code><span class="type">guint</span> keyval</code></em>,
                                <em class="parameter"><code><span class="type">GdkModifierType</span> modifiers</code></em>,
                                <em class="parameter"><code>const <span class="type">gchar</span> *signal_name</code></em>,
@@ -346,7 +346,7 @@ gtk_binding_entry_add_signall (<em class="parameter"><code><a class="link" href=
 <tbody>
 <tr>
 <td class="parameter_name"><p>binding_set</p></td>
-<td class="parameter_description"><p>a <a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="type">GtkBindingSet</span></a> to add a signal to</p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/gtk4-Bindings.html#GtkBindingSet"><span class="type">GtkBindingSet</span></a> to add a signal to</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -366,7 +366,7 @@ gtk_binding_entry_add_signall (<em class="parameter"><code><a class="link" href=
 </tr>
 <tr>
 <td class="parameter_name"><p>binding_args</p></td>
-<td class="parameter_description"><p>list of <a class="link" href="gtk3-Bindings.html#GtkBindingArg" title="struct GtkBindingArg"><span class="type">GtkBindingArg</span></a> signal arguments. </p></td>
+<td class="parameter_description"><p>list of <span class="type">GtkBindingArg</span> signal arguments. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GtkBindingArg]</span></td>
 </tr>
 </tbody>
@@ -376,7 +376,7 @@ gtk_binding_entry_add_signall (<em class="parameter"><code><a class="link" href=
 <hr>
 <div class="refsect2">
 <a name="gtk-binding-set-new"></a><h3>gtk_binding_set_new ()</h3>
-<pre class="programlisting"><a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="returnvalue">GtkBindingSet</span></a> *
+<pre class="programlisting"><a href="https://developer.gnome.org/gtk4/gtk4-Bindings.html#GtkBindingSet"><span class="returnvalue">GtkBindingSet</span></a> *
 gtk_binding_set_new (<em class="parameter"><code>const <span class="type">gchar</span> *set_name</code></em>);</pre>
 <p>GTK+ maintains a global list of binding sets. Each binding set has
 a unique name which needs to be specified upon creation.</p>
@@ -405,7 +405,7 @@ a unique name which needs to be specified upon creation.</p>
 <hr>
 <div class="refsect2">
 <a name="gtk-binding-set-by-class"></a><h3>gtk_binding_set_by_class ()</h3>
-<pre class="programlisting"><a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="returnvalue">GtkBindingSet</span></a> *
+<pre class="programlisting"><a href="https://developer.gnome.org/gtk4/gtk4-Bindings.html#GtkBindingSet"><span class="returnvalue">GtkBindingSet</span></a> *
 gtk_binding_set_by_class (<em class="parameter"><code><span class="type">gpointer</span> object_class</code></em>);</pre>
 <p>This function returns the binding set named after the type name of
 the passed in class structure. New binding sets are created on
@@ -437,7 +437,7 @@ demand by this function.</p>
 <hr>
 <div class="refsect2">
 <a name="gtk-binding-set-find"></a><h3>gtk_binding_set_find ()</h3>
-<pre class="programlisting"><a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="returnvalue">GtkBindingSet</span></a> *
+<pre class="programlisting"><a href="https://developer.gnome.org/gtk4/gtk4-Bindings.html#GtkBindingSet"><span class="returnvalue">GtkBindingSet</span></a> *
 gtk_binding_set_find (<em class="parameter"><code>const <span class="type">gchar</span> *set_name</code></em>);</pre>
 <p>Find a binding set by its globally unique name.</p>
 <p>The <em class="parameter"><code>set_name</code></em>
@@ -550,7 +550,7 @@ gtk_bindings_activate_event (<em class="parameter"><code><span class="type">GObj
 <div class="refsect2">
 <a name="gtk-binding-set-activate"></a><h3>gtk_binding_set_activate ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
-gtk_binding_set_activate (<em class="parameter"><code><a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="type">GtkBindingSet</span></a> *binding_set</code></em>,
+gtk_binding_set_activate (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/gtk4-Bindings.html#GtkBindingSet"><span class="type">GtkBindingSet</span></a> *binding_set</code></em>,
                           <em class="parameter"><code><span class="type">guint</span> keyval</code></em>,
                           <em class="parameter"><code><span class="type">GdkModifierType</span> modifiers</code></em>,
                           <em class="parameter"><code><span class="type">GObject</span> *object</code></em>);</pre>
@@ -571,7 +571,7 @@ gtk_binding_set_activate (<em class="parameter"><code><a class="link" href="gtk3
 <tbody>
 <tr>
 <td class="parameter_name"><p>binding_set</p></td>
-<td class="parameter_description"><p>a <a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="type">GtkBindingSet</span></a> set to activate</p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/gtk4-Bindings.html#GtkBindingSet"><span class="type">GtkBindingSet</span></a> set to activate</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -601,7 +601,7 @@ gtk_binding_set_activate (<em class="parameter"><code><a class="link" href="gtk3
 <div class="refsect2">
 <a name="gtk-binding-entry-add-signal"></a><h3>gtk_binding_entry_add_signal ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
-gtk_binding_entry_add_signal (<em class="parameter"><code><a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="type">GtkBindingSet</span></a> *binding_set</code></em>,
+gtk_binding_entry_add_signal (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/gtk4-Bindings.html#GtkBindingSet"><span class="type">GtkBindingSet</span></a> *binding_set</code></em>,
                               <em class="parameter"><code><span class="type">guint</span> keyval</code></em>,
                               <em class="parameter"><code><span class="type">GdkModifierType</span> modifiers</code></em>,
                               <em class="parameter"><code>const <span class="type">gchar</span> *signal_name</code></em>,
@@ -637,16 +637,16 @@ be of the given type). There must be <em class="parameter"><code>n_args</code></
 8
 9
 10</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkBindingSet</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">binding_set</span><span class="symbol">;</span>
-<span class="usertype">GdkModifierType</span><span class="normal"> modmask </span><span class="symbol">=</span><span class="normal"> GDK_CONTROL_MASK</span><span class="symbol">;</span>
-<span class="type">int</span><span class="normal"> count </span><span class="symbol">=</span><span class="normal"> </span><span class="number">1</span><span class="symbol">;</span>
-<span class="function"><a href="gtk3-Bindings.html#gtk-binding-entry-add-signal">gtk_binding_entry_add_signal</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">binding_set</span><span class="symbol">,</span>
-<span class="normal">                              GDK_KEY_space</span><span class="symbol">,</span>
-<span class="normal">                              modmask</span><span class="symbol">,</span>
-<span class="normal">                              </span><span class="string">"move-cursor"</span><span class="symbol">,</span><span class="normal"> </span><span class="number">2</span><span class="symbol">,</span>
-<span class="normal">                              GTK_TYPE_MOVEMENT_STEP</span><span class="symbol">,</span><span class="normal"> <a href="gtk3-Standard-Enumerations.html#GTK-MOVEMENT-PAGES:CAPS">GTK_MOVEMENT_PAGES</a></span><span class="symbol">,</span>
-<span class="normal">                              G_TYPE_INT</span><span class="symbol">,</span><span class="normal"> count</span><span class="symbol">,</span>
-<span class="normal">                              G_TYPE_BOOLEAN</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkBindingSet</span> <span class="o">*</span><span class="n">binding_set</span><span class="p">;</span>
+<span class="n">GdkModifierType</span> <span class="n">modmask</span> <span class="o">=</span> <span class="n">GDK_CONTROL_MASK</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">gtk_binding_entry_add_signal</span> <span class="p">(</span><span class="n">binding_set</span><span class="p">,</span>
+                              <span class="n">GDK_KEY_space</span><span class="p">,</span>
+                              <span class="n">modmask</span><span class="p">,</span>
+                              <span class="s">&quot;move-cursor&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span>
+                              <span class="n">GTK_TYPE_MOVEMENT_STEP</span><span class="p">,</span> <span class="n">GTK_MOVEMENT_PAGES</span><span class="p">,</span>
+                              <span class="n">G_TYPE_INT</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span>
+                              <span class="n">G_TYPE_BOOLEAN</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -665,7 +665,7 @@ be of the given type). There must be <em class="parameter"><code>n_args</code></
 <tbody>
 <tr>
 <td class="parameter_name"><p>binding_set</p></td>
-<td class="parameter_description"><p>a <a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="type">GtkBindingSet</span></a> to install an entry for</p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/gtk4-Bindings.html#GtkBindingSet"><span class="type">GtkBindingSet</span></a> to install an entry for</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -704,7 +704,7 @@ be of the given type). There must be <em class="parameter"><code>n_args</code></
 <a name="gtk-binding-entry-add-signal-from-string"></a><h3>gtk_binding_entry_add_signal_from_string ()</h3>
 <pre class="programlisting"><span class="returnvalue">GTokenType</span>
 gtk_binding_entry_add_signal_from_string
-                               (<em class="parameter"><code><a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="type">GtkBindingSet</span></a> *binding_set</code></em>,
+                               (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/gtk4-Bindings.html#GtkBindingSet"><span class="type">GtkBindingSet</span></a> *binding_set</code></em>,
                                 <em class="parameter"><code>const <span class="type">gchar</span> *signal_desc</code></em>);</pre>
 <p>Parses a signal description from <em class="parameter"><code>signal_desc</code></em>
  and incorporates
@@ -720,10 +720,10 @@ one or more signals:</p>
 2
 3
 4</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">bind </span><span class="string">"key"</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">  </span><span class="string">"signalname"</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">param</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">...)</span>
-<span class="normal">  </span><span class="symbol">...</span>
-<span class="cbracket">}</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">bind</span> <span class="s">&quot;key&quot;</span> <span class="p">{</span>
+  <span class="s">&quot;signalname&quot;</span> <span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="p">...)</span>
+  <span class="p">...</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -736,7 +736,7 @@ one or more signals:</p>
     <tbody>
       <tr>
         <td class="listing_lines" align="right"><pre>1</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">unbind </span><span class="string">"key"</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">unbind</span> <span class="s">&quot;key&quot;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -756,7 +756,7 @@ one or more signals:</p>
 <tbody>
 <tr>
 <td class="parameter_name"><p>binding_set</p></td>
-<td class="parameter_description"><p>a <a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="type">GtkBindingSet</span></a></p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/gtk4-Bindings.html#GtkBindingSet"><span class="type">GtkBindingSet</span></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -778,7 +778,7 @@ the expected token otherwise</p>
 <div class="refsect2">
 <a name="gtk-binding-entry-skip"></a><h3>gtk_binding_entry_skip ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
-gtk_binding_entry_skip (<em class="parameter"><code><a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="type">GtkBindingSet</span></a> *binding_set</code></em>,
+gtk_binding_entry_skip (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/gtk4-Bindings.html#GtkBindingSet"><span class="type">GtkBindingSet</span></a> *binding_set</code></em>,
                         <em class="parameter"><code><span class="type">guint</span> keyval</code></em>,
                         <em class="parameter"><code><span class="type">GdkModifierType</span> modifiers</code></em>);</pre>
 <p>Install a binding on <em class="parameter"><code>binding_set</code></em>
@@ -796,7 +796,7 @@ to be activated.</p>
 <tbody>
 <tr>
 <td class="parameter_name"><p>binding_set</p></td>
-<td class="parameter_description"><p>a <a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="type">GtkBindingSet</span></a> to skip an entry of</p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/gtk4-Bindings.html#GtkBindingSet"><span class="type">GtkBindingSet</span></a> to skip an entry of</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -818,7 +818,7 @@ to be activated.</p>
 <div class="refsect2">
 <a name="gtk-binding-entry-remove"></a><h3>gtk_binding_entry_remove ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
-gtk_binding_entry_remove (<em class="parameter"><code><a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="type">GtkBindingSet</span></a> *binding_set</code></em>,
+gtk_binding_entry_remove (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/gtk4-Bindings.html#GtkBindingSet"><span class="type">GtkBindingSet</span></a> *binding_set</code></em>,
                           <em class="parameter"><code><span class="type">guint</span> keyval</code></em>,
                           <em class="parameter"><code><span class="type">GdkModifierType</span> modifiers</code></em>);</pre>
 <p>Remove a binding previously installed via
@@ -835,7 +835,7 @@ gtk_binding_entry_remove (<em class="parameter"><code><a class="link" href="gtk3
 <tbody>
 <tr>
 <td class="parameter_name"><p>binding_set</p></td>
-<td class="parameter_description"><p>a <a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="type">GtkBindingSet</span></a> to remove an entry of</p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/gtk4-Bindings.html#GtkBindingSet"><span class="type">GtkBindingSet</span></a> to remove an entry of</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -856,13 +856,13 @@ gtk_binding_entry_remove (<em class="parameter"><code><a class="link" href="gtk3
 <div class="refsect2">
 <a name="gtk-binding-set-add-path"></a><h3>gtk_binding_set_add_path ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
-gtk_binding_set_add_path (<em class="parameter"><code><a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="type">GtkBindingSet</span></a> *binding_set</code></em>,
-                          <em class="parameter"><code><a class="link" href="gtk3-Resource-Files.html#GtkPathType" title="enum GtkPathType"><span class="type">GtkPathType</span></a> path_type</code></em>,
+gtk_binding_set_add_path (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/gtk4-Bindings.html#GtkBindingSet"><span class="type">GtkBindingSet</span></a> *binding_set</code></em>,
+                          <em class="parameter"><code><span class="type">GtkPathType</span> path_type</code></em>,
                           <em class="parameter"><code>const <span class="type">gchar</span> *path_pattern</code></em>,
-                          <em class="parameter"><code><a class="link" href="gtk3-Resource-Files.html#GtkPathPriorityType" title="enum GtkPathPriorityType"><span class="type">GtkPathPriorityType</span></a> priority</code></em>);</pre>
+                          <em class="parameter"><code><span class="type">GtkPathPriorityType</span> priority</code></em>);</pre>
 <div class="warning"><p><code class="literal">gtk_binding_set_add_path</code> has been deprecated since version 3.0 and should not be used in newly-written code.</p></div>
 <p>This function was used internally by the GtkRC parsing mechanism
-to assign match patterns to <a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="type">GtkBindingSet</span></a> structures.</p>
+to assign match patterns to <a href="https://developer.gnome.org/gtk4/gtk4-Bindings.html#GtkBindingSet"><span class="type">GtkBindingSet</span></a> structures.</p>
 <p>In GTK+ 3, these match patterns are unused.</p>
 <div class="refsect3">
 <a name="gtk-binding-set-add-path.parameters"></a><h4>Parameters</h4>
@@ -875,7 +875,7 @@ to assign match patterns to <a class="link" href="gtk3-Bindings.html#GtkBindingS
 <tbody>
 <tr>
 <td class="parameter_name"><p>binding_set</p></td>
-<td class="parameter_description"><p>a <a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="type">GtkBindingSet</span></a> to add a path to</p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/gtk4-Bindings.html#GtkBindingSet"><span class="type">GtkBindingSet</span></a> to add a path to</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -899,240 +899,11 @@ to assign match patterns to <a class="link" href="gtk3-Bindings.html#GtkBindingS
 </div>
 </div>
 <div class="refsect1">
-<a name="gtk3-Bindings.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkBindingSet"></a><h3>struct GtkBindingSet</h3>
-<pre class="programlisting">struct GtkBindingSet {
-  gchar           *set_name;
-  gint             priority;
-  GSList          *widget_path_pspecs;
-  GSList          *widget_class_pspecs;
-  GSList          *class_branch_pspecs;
-  GtkBindingEntry *entries;
-  GtkBindingEntry *current;
-  guint            parsed : 1;
-};
-</pre>
-<p>A binding set maintains a list of activatable key bindings.
-A single binding set can match multiple types of widgets.
-Similar to style contexts, can be matched by any information contained
-in a widgets <a class="link" href="gtk3-GtkWidgetPath.html#GtkWidgetPath" title="GtkWidgetPath"><span class="type">GtkWidgetPath</span></a>. When a binding within a set is matched upon
-activation, an action signal is emitted on the target widget to carry out
-the actual activation.</p>
-<div class="refsect3">
-<a name="GtkBindingSet.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="struct_member_name"><p><span class="type">gchar</span> *<em class="structfield"><code><a name="GtkBindingSet.set-name"></a>set_name</code></em>;</p></td>
-<td class="struct_member_description"><p>unique name of this binding set</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><span class="type">gint</span> <em class="structfield"><code><a name="GtkBindingSet.priority"></a>priority</code></em>;</p></td>
-<td class="struct_member_description"><p>unused</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><span class="type">GSList</span> *<em class="structfield"><code><a name="GtkBindingSet.widget-path-pspecs"></a>widget_path_pspecs</code></em>;</p></td>
-<td class="struct_member_description"><p>unused</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><span class="type">GSList</span> *<em class="structfield"><code><a name="GtkBindingSet.widget-class-pspecs"></a>widget_class_pspecs</code></em>;</p></td>
-<td class="struct_member_description"><p>unused</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><span class="type">GSList</span> *<em class="structfield"><code><a name="GtkBindingSet.class-branch-pspecs"></a>class_branch_pspecs</code></em>;</p></td>
-<td class="struct_member_description"><p>unused</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><a class="link" href="gtk3-Bindings.html#GtkBindingEntry" title="struct GtkBindingEntry"><span class="type">GtkBindingEntry</span></a> *<em class="structfield"><code><a name="GtkBindingSet.entries"></a>entries</code></em>;</p></td>
-<td class="struct_member_description"><p>the key binding entries in this binding set</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><a class="link" href="gtk3-Bindings.html#GtkBindingEntry" title="struct GtkBindingEntry"><span class="type">GtkBindingEntry</span></a> *<em class="structfield"><code><a name="GtkBindingSet.current"></a>current</code></em>;</p></td>
-<td class="struct_member_description"><p>implementation detail</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><span class="type">guint</span> <em class="structfield"><code><a name="GtkBindingSet.parsed"></a>parsed</code></em> : 1;</p></td>
-<td class="struct_member_description"><p>whether this binding set stems from a CSS file and is reset upon theme changes</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkBindingEntry"></a><h3>struct GtkBindingEntry</h3>
-<pre class="programlisting">struct GtkBindingEntry {
-  /* key portion */
-  guint             keyval;
-  GdkModifierType   modifiers;
-
-  GtkBindingSet    *binding_set;
-  guint             destroyed     : 1;
-  guint             in_emission   : 1;
-  guint             marks_unbound : 1;
-  GtkBindingEntry  *set_next;
-  GtkBindingEntry  *hash_next;
-  GtkBindingSignal *signals;
-};
-</pre>
-<p>Each key binding element of a binding sets binding list is
-represented by a GtkBindingEntry.</p>
-<div class="refsect3">
-<a name="GtkBindingEntry.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="struct_member_name"><p><span class="type">guint</span> <em class="structfield"><code><a name="GtkBindingEntry.keyval"></a>keyval</code></em>;</p></td>
-<td class="struct_member_description"><p>key value to match</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><span class="type">GdkModifierType</span> <em class="structfield"><code><a name="GtkBindingEntry.modifiers"></a>modifiers</code></em>;</p></td>
-<td class="struct_member_description"><p>key modifiers to match</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="type">GtkBindingSet</span></a> *<em class="structfield"><code><a name="GtkBindingEntry.binding-set"></a>binding_set</code></em>;</p></td>
-<td class="struct_member_description"><p>binding set this entry belongs to</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><span class="type">guint</span> <em class="structfield"><code><a name="GtkBindingEntry.destroyed"></a>destroyed</code></em> : 1;</p></td>
-<td class="struct_member_description"><p>implementation detail</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><span class="type">guint</span> <em class="structfield"><code><a name="GtkBindingEntry.in-emission"></a>in_emission</code></em> : 1;</p></td>
-<td class="struct_member_description"><p>implementation detail</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><span class="type">guint</span> <em class="structfield"><code><a name="GtkBindingEntry.marks-unbound"></a>marks_unbound</code></em> : 1;</p></td>
-<td class="struct_member_description"><p>implementation detail</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><a class="link" href="gtk3-Bindings.html#GtkBindingEntry" title="struct GtkBindingEntry"><span class="type">GtkBindingEntry</span></a> *<em class="structfield"><code><a name="GtkBindingEntry.set-next"></a>set_next</code></em>;</p></td>
-<td class="struct_member_description"><p>linked list of entries maintained by binding set</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><a class="link" href="gtk3-Bindings.html#GtkBindingEntry" title="struct GtkBindingEntry"><span class="type">GtkBindingEntry</span></a> *<em class="structfield"><code><a name="GtkBindingEntry.hash-next"></a>hash_next</code></em>;</p></td>
-<td class="struct_member_description"><p>implementation detail</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal"><span class="type">GtkBindingSignal</span></a> *<em class="structfield"><code><a name="GtkBindingEntry.signals"></a>signals</code></em>;</p></td>
-<td class="struct_member_description"><p>action signals of this entry</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkBindingSignal"></a><h3>struct GtkBindingSignal</h3>
-<pre class="programlisting">struct GtkBindingSignal {
-  GtkBindingSignal *next;
-  gchar            *signal_name;
-  guint             n_args;
-  GtkBindingArg    *args;
-};
-</pre>
-<p>A GtkBindingSignal stores the necessary information to
-activate a widget in response to a key press via a signal
-emission.</p>
-<div class="refsect3">
-<a name="GtkBindingSignal.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="struct_member_name"><p><a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal"><span class="type">GtkBindingSignal</span></a> *<em class="structfield"><code><a name="GtkBindingSignal.next"></a>next</code></em>;</p></td>
-<td class="struct_member_description"><p>implementation detail</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><span class="type">gchar</span> *<em class="structfield"><code><a name="GtkBindingSignal.signal-name"></a>signal_name</code></em>;</p></td>
-<td class="struct_member_description"><p>the action signal to be emitted</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><span class="type">guint</span> <em class="structfield"><code><a name="GtkBindingSignal.n-args"></a>n_args</code></em>;</p></td>
-<td class="struct_member_description"><p>number of arguments specified for the signal</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><a class="link" href="gtk3-Bindings.html#GtkBindingArg" title="struct GtkBindingArg"><span class="type">GtkBindingArg</span></a> *<em class="structfield"><code><a name="GtkBindingSignal.args"></a>args</code></em>;</p></td>
-<td class="struct_member_description"><p>the arguments specified for the signal. </p></td>
-<td class="struct_member_annotations"><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> length=n_args]</span></td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkBindingArg"></a><h3>struct GtkBindingArg</h3>
-<pre class="programlisting">struct GtkBindingArg {
-  GType      arg_type;
-  union {
-    glong    long_data;
-    gdouble  double_data;
-    gchar   *string_data;
-  } d;
-};
-</pre>
-<p>A <a class="link" href="gtk3-Bindings.html#GtkBindingArg" title="struct GtkBindingArg"><span class="type">GtkBindingArg</span></a> holds the data associated with
-an argument for a key binding signal emission as
-stored in <a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal"><span class="type">GtkBindingSignal</span></a>.</p>
-<div class="refsect3">
-<a name="GtkBindingArg.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody><tr>
-<td class="struct_member_name"><p><span class="type">GType</span> <em class="structfield"><code><a name="GtkBindingArg.arg-type"></a>arg_type</code></em>;</p></td>
-<td class="struct_member_description"><p>implementation detail</p></td>
-<td class="struct_member_annotations"> </td>
-</tr></tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="gtk3-Bindings.see-also"></a><h2>See Also</h2>
 <p>Keyboard Accelerators, Mnemonics, <a class="link" href="GtkCssProvider.html" title="GtkCssProvider"><span class="type">GtkCssProvider</span></a></p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

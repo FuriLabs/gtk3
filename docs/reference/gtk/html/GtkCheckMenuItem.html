@@ -8,7 +8,7 @@
 <link rel="up" href="MenusAndCombos.html" title="Menus, Combo Box, Toolbar">
 <link rel="prev" href="GtkRadioMenuItem.html" title="GtkRadioMenuItem">
 <link rel="next" href="GtkSeparatorMenuItem.html" title="GtkSeparatorMenuItem">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -40,8 +40,8 @@
 <a name="GtkCheckMenuItem.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -173,9 +173,9 @@
 <a name="GtkCheckMenuItem.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody><tr>
 <td class="signal_type"><span class="returnvalue">void</span></td>
@@ -188,17 +188,17 @@
 <a name="GtkCheckMenuItem.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkCheckMenuItem.html#GtkCheckMenuItem-struct" title="struct GtkCheckMenuItem">GtkCheckMenuItem</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkCheckMenuItem.html#GtkCheckMenuItem-struct">GtkCheckMenuItem</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkCheckMenuItem.html#GtkCheckMenuItemClass" title="struct GtkCheckMenuItemClass">GtkCheckMenuItemClass</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkCheckMenuItem.html#GtkCheckMenuItemClass">GtkCheckMenuItemClass</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -243,9 +243,9 @@ toggles the value.</p>
         <td class="listing_lines" align="right"><pre>1
 2
 3</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">menuitem</span>
-<span class="normal">├── check</span><span class="symbol">.</span><span class="normal">left</span>
-<span class="normal">╰── </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">menuitem</span>
+<span class="err">├──</span> <span class="n">check</span><span class="p">.</span><span class="n">left</span>
+<span class="err">╰──</span> <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -530,53 +530,12 @@ looks like a <a class="link" href="GtkRadioMenuItem.html" title="GtkRadioMenuIte
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkCheckMenuItem.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkCheckMenuItem-struct"></a><h3>struct GtkCheckMenuItem</h3>
-<pre class="programlisting">struct GtkCheckMenuItem;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkCheckMenuItemClass"></a><h3>struct GtkCheckMenuItemClass</h3>
-<pre class="programlisting">struct GtkCheckMenuItemClass {
-  GtkMenuItemClass parent_class;
-
-
-  void (* toggled)	  (GtkCheckMenuItem *check_menu_item);
-  void (* draw_indicator) (GtkCheckMenuItem *check_menu_item,
-			   cairo_t          *cr);
-};
-</pre>
-<div class="refsect3">
-<a name="GtkCheckMenuItemClass.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkCheckMenuItemClass.toggled"></a>toggled</code></em> ()</p></td>
-<td class="struct_member_description"><p>Signal emitted when the state of the check box is changed.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkCheckMenuItemClass.draw-indicator"></a>draw_indicator</code></em> ()</p></td>
-<td class="struct_member_description"><p>Called to draw the check indicator.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkCheckMenuItem.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkCheckMenuItem--active"></a><h3>The <code class="literal">“active”</code> property</h3>
 <pre class="programlisting">  “active”                   <span class="type">gboolean</span></pre>
 <p>Whether the menu item is checked.</p>
+<p>Owner: GtkCheckMenuItem</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -585,6 +544,7 @@ looks like a <a class="link" href="GtkRadioMenuItem.html" title="GtkRadioMenuIte
 <a name="GtkCheckMenuItem--draw-as-radio"></a><h3>The <code class="literal">“draw-as-radio”</code> property</h3>
 <pre class="programlisting">  “draw-as-radio”            <span class="type">gboolean</span></pre>
 <p>Whether the menu item looks like a radio menu item.</p>
+<p>Owner: GtkCheckMenuItem</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -593,6 +553,7 @@ looks like a <a class="link" href="GtkRadioMenuItem.html" title="GtkRadioMenuIte
 <a name="GtkCheckMenuItem--inconsistent"></a><h3>The <code class="literal">“inconsistent”</code> property</h3>
 <pre class="programlisting">  “inconsistent”             <span class="type">gboolean</span></pre>
 <p>Whether to display an "inconsistent" state.</p>
+<p>Owner: GtkCheckMenuItem</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -608,6 +569,7 @@ looks like a <a class="link" href="GtkRadioMenuItem.html" title="GtkRadioMenuIte
 <p>Use the standard CSS property min-width on the check or
   radio nodes; the value of this style property is ignored.</p>
 </div>
+<p>Owner: GtkCheckMenuItem</p>
 <p>Flags: Read</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 16</p>
@@ -650,6 +612,6 @@ to discover the new state.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

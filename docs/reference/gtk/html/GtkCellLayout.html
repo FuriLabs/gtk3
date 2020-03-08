@@ -8,7 +8,7 @@
 <link rel="up" href="TreeWidgetObjects.html" title="Tree, List and Icon Grid Widgets">
 <link rel="prev" href="GtkTreeModelFilter.html" title="GtkTreeModelFilter">
 <link rel="next" href="GtkCellArea.html" title="GtkCellArea">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -38,8 +38,8 @@
 <a name="GtkCellLayout.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -137,17 +137,17 @@
 <a name="GtkCellLayout.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name"><a class="link" href="GtkCellLayout.html#GtkCellLayout-struct" title="GtkCellLayout">GtkCellLayout</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkCellLayout.html#GtkCellLayout-struct">GtkCellLayout</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkCellLayout.html#GtkCellLayoutIface" title="struct GtkCellLayoutIface">GtkCellLayoutIface</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkCellLayout.html#GtkCellLayoutIface">GtkCellLayoutIface</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -212,14 +212,14 @@ attribute value.</p>
 6
 7
 8</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkCellView"</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkCellRendererText"</span><span class="symbol">/&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">attributes</span><span class="symbol">&gt;</span>
-<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"text"</span><span class="symbol">&gt;</span><span class="number">0</span><span class="symbol">&lt;/</span><span class="normal">attribute</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">attributes</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span><span class="string">"</span>
-<span class="string">&lt;/object&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkCellView&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkCellRendererText&quot;</span><span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="n">attributes</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;text&quot;</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">&lt;/</span><span class="n">attribute</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">attributes</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span><span class="s">&quot;</span>
+<span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -245,15 +245,15 @@ specifying the custom &lt;cell-packing&gt; attribute which can contain multiple
 7
 8
 9</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkTreeViewColumn"</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkCellRendererText"</span><span class="symbol">/&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">cell</span><span class="symbol">-</span><span class="normal">packing</span><span class="symbol">&gt;</span>
-<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"align"</span><span class="symbol">&gt;</span><span class="normal">True</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
-<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"expand"</span><span class="symbol">&gt;</span><span class="normal">False</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">cell</span><span class="symbol">-</span><span class="normal">packing</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span><span class="string">"</span>
-<span class="string">&lt;/object&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkTreeViewColumn&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkCellRendererText&quot;</span><span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="n">cell</span><span class="o">-</span><span class="n">packing</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;align&quot;</span><span class="o">&gt;</span><span class="n">True</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;expand&quot;</span><span class="o">&gt;</span><span class="n">False</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">cell</span><span class="o">-</span><span class="n">packing</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span><span class="s">&quot;</span>
+<span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -274,7 +274,7 @@ widgets. This means that it is possible to e.g. do</p>
     <tbody>
       <tr>
         <td class="listing_lines" align="right"><pre>1</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">combo </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_object_new</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">GTK_TYPE_COMBO_BOX</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"cell-area"</span><span class="symbol">,</span><span class="normal"> my_cell_area</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">combo</span> <span class="o">=</span> <span class="n">g_object_new</span> <span class="p">(</span><span class="n">GTK_TYPE_COMBO_BOX</span><span class="p">,</span> <span class="s">&quot;cell-area&quot;</span><span class="p">,</span> <span class="n">my_cell_area</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -310,24 +310,24 @@ you to the problem).</p>
 16
 17
 18</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
-<span class="function">my_combo_box_init</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">MyComboBox</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">b</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="usertype">GtkCellRenderer</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">cell</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
+<span class="nf">my_combo_box_init</span> <span class="p">(</span><span class="n">MyComboBox</span> <span class="o">*</span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">GtkCellRenderer</span> <span class="o">*</span><span class="n">cell</span><span class="p">;</span>
 
-<span class="normal">  cell </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkCellRendererPixbuf.html#gtk-cell-renderer-pixbuf-new">gtk_cell_renderer_pixbuf_new</a></span><span class="normal"> </span><span class="symbol">();</span>
-<span class="normal">  </span><span class="comment">// The following call causes the default cell area for combo boxes,</span>
-<span class="normal">  </span><span class="comment">// a GtkCellAreaBox, to be instantiated</span>
-<span class="normal">  </span><span class="function"><a href="GtkCellLayout.html#gtk-cell-layout-pack-start">gtk_cell_layout_pack_start</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_CELL_LAYOUT</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">b</span><span class="symbol">),</span><span class="normal"> cell</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="symbol">...</span>
-<span class="cbracket">}</span>
+  <span class="n">cell</span> <span class="o">=</span> <span class="n">gtk_cell_renderer_pixbuf_new</span> <span class="p">();</span>
+  <span class="c1">// The following call causes the default cell area for combo boxes,</span>
+  <span class="c1">// a GtkCellAreaBox, to be instantiated</span>
+  <span class="n">gtk_cell_layout_pack_start</span> <span class="p">(</span><span class="n">GTK_CELL_LAYOUT</span> <span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">cell</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">);</span>
+  <span class="p">...</span>
+<span class="p">}</span>
 
-<span class="normal"><a href="GtkWidget.html#GtkWidget-struct">GtkWidget</a> </span><span class="symbol">*</span>
-<span class="function">my_combo_box_new</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkCellArea</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">area</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="comment">// This call is going to cause a warning about area being ignored</span>
-<span class="normal">  </span><span class="keyword">return</span><span class="normal"> </span><span class="function">g_object_new</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">MY_TYPE_COMBO_BOX</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"cell-area"</span><span class="symbol">,</span><span class="normal"> area</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">);</span>
-<span class="cbracket">}</span></pre></td>
+<span class="n">GtkWidget</span> <span class="o">*</span>
+<span class="nf">my_combo_box_new</span> <span class="p">(</span><span class="n">GtkCellArea</span> <span class="o">*</span><span class="n">area</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// This call is going to cause a warning about area being ignored</span>
+  <span class="k">return</span> <span class="n">g_object_new</span> <span class="p">(</span><span class="n">MY_TYPE_COMBO_BOX</span><span class="p">,</span> <span class="s">&quot;cell-area&quot;</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -804,111 +804,8 @@ gtk_cell_layout_clear_attributes (<em class="parameter"><code><a class="link" hr
 <p class="since">Since: 2.4</p>
 </div>
 </div>
-<div class="refsect1">
-<a name="GtkCellLayout.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkCellLayout-struct"></a><h3>GtkCellLayout</h3>
-<pre class="programlisting">typedef struct _GtkCellLayout GtkCellLayout;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkCellLayoutIface"></a><h3>struct GtkCellLayoutIface</h3>
-<pre class="programlisting">struct GtkCellLayoutIface {
-  /* Virtual Table */
-  void (* pack_start)         (GtkCellLayout         *cell_layout,
-                               GtkCellRenderer       *cell,
-                               gboolean               expand);
-  void (* pack_end)           (GtkCellLayout         *cell_layout,
-                               GtkCellRenderer       *cell,
-                               gboolean               expand);
-  void (* clear)              (GtkCellLayout         *cell_layout);
-  void (* add_attribute)      (GtkCellLayout         *cell_layout,
-                               GtkCellRenderer       *cell,
-                               const gchar           *attribute,
-                               gint                   column);
-  void (* set_cell_data_func) (GtkCellLayout         *cell_layout,
-                               GtkCellRenderer       *cell,
-                               GtkCellLayoutDataFunc  func,
-                               gpointer               func_data,
-                               GDestroyNotify         destroy);
-  void (* clear_attributes)   (GtkCellLayout         *cell_layout,
-                               GtkCellRenderer       *cell);
-  void (* reorder)            (GtkCellLayout         *cell_layout,
-                               GtkCellRenderer       *cell,
-                               gint                   position);
-  GList* (* get_cells)        (GtkCellLayout         *cell_layout);
-
-  GtkCellArea *(* get_area)   (GtkCellLayout         *cell_layout);
-};
-</pre>
-<div class="refsect3">
-<a name="GtkCellLayoutIface.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkCellLayoutIface.pack-start"></a>pack_start</code></em> ()</p></td>
-<td class="struct_member_description"><p>Packs the cell into the beginning of cell_layout.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkCellLayoutIface.pack-end"></a>pack_end</code></em> ()</p></td>
-<td class="struct_member_description"><p>Adds the cell to the end of cell_layout.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkCellLayoutIface.clear"></a>clear</code></em> ()</p></td>
-<td class="struct_member_description"><p>Unsets all the mappings on all renderers on cell_layout and
-removes all renderers from cell_layout.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkCellLayoutIface.add-attribute"></a>add_attribute</code></em> ()</p></td>
-<td class="struct_member_description"><p>Adds an attribute mapping to the list in
-cell_layout.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkCellLayoutIface.set-cell-data-func"></a>set_cell_data_func</code></em> ()</p></td>
-<td class="struct_member_description"><p>Sets the <a class="link" href="GtkCellLayout.html#GtkCellLayoutDataFunc" title="GtkCellLayoutDataFunc ()"><span class="type">GtkCellLayoutDataFunc</span></a> to use for
-cell_layout.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkCellLayoutIface.clear-attributes"></a>clear_attributes</code></em> ()</p></td>
-<td class="struct_member_description"><p>Clears all existing attributes previously set
-with <a class="link" href="GtkCellLayout.html#gtk-cell-layout-set-attributes" title="gtk_cell_layout_set_attributes ()"><code class="function">gtk_cell_layout_set_attributes()</code></a>.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkCellLayoutIface.reorder"></a>reorder</code></em> ()</p></td>
-<td class="struct_member_description"><p>Re-inserts cell at position.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkCellLayoutIface.get-cells"></a>get_cells</code></em> ()</p></td>
-<td class="struct_member_description"><p>Get the cell renderers which have been added to
-cell_layout.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkCellLayoutIface.get-area"></a>get_area</code></em> ()</p></td>
-<td class="struct_member_description"><p>Get the underlying <a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a> which might be
-cell_layout if called on a <a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a> or might be NULL if no
-<a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a> is used by cell_layout.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
-</div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

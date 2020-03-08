@@ -8,7 +8,7 @@
 <link rel="up" href="SelectorWidgets.html" title="Selector Widgets and Dialogs">
 <link rel="prev" href="GtkFileChooser.html" title="GtkFileChooser">
 <link rel="next" href="gtk3-GtkFileChooserNative.html" title="GtkFileChooserNative">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -39,8 +39,8 @@
 <a name="GtkFileChooserButton.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -122,7 +122,7 @@
 <td class="property_type">
 <a class="link" href="GtkFileChooser.html" title="GtkFileChooser"><span class="type">GtkFileChooser</span></a> *</td>
 <td class="property_name"><a class="link" href="GtkFileChooserButton.html#GtkFileChooserButton--dialog" title="The “dialog” property">dialog</a></td>
-<td class="property_flags">Write / Construct Only</td>
+<td class="property_flags">Write / Construct Only</td>
 </tr>
 <tr>
 <td class="property_type">
@@ -142,9 +142,9 @@
 <a name="GtkFileChooserButton.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody><tr>
 <td class="signal_type"><span class="returnvalue">void</span></td>
@@ -157,17 +157,17 @@
 <a name="GtkFileChooserButton.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkFileChooserButton.html#GtkFileChooserButton-struct" title="struct GtkFileChooserButton">GtkFileChooserButton</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkFileChooserButton.html#GtkFileChooserButton-struct">GtkFileChooserButton</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkFileChooserButton.html#GtkFileChooserButtonClass" title="struct GtkFileChooserButtonClass">GtkFileChooserButtonClass</a></td>
+<td class="function_name">GtkFileChooserButtonClass</td>
 </tr>
 </tbody>
 </table></div>
@@ -215,22 +215,22 @@ that button.  This widget does not support setting the
 6
 7
 8</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="cbracket">{</span>
-<span class="normal">  </span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">button</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="p">{</span>
+  <span class="n">GtkWidget</span> <span class="o">*</span><span class="n">button</span><span class="p">;</span>
 
-<span class="normal">  button </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkFileChooserButton.html#gtk-file-chooser-button-new">gtk_file_chooser_button_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">_</span><span class="symbol">(</span><span class="string">"Select a file"</span><span class="symbol">),</span>
-<span class="normal">                                        <a href="GtkFileChooser.html#GTK-FILE-CHOOSER-ACTION-OPEN:CAPS">GTK_FILE_CHOOSER_ACTION_OPEN</a></span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="GtkFileChooser.html#gtk-file-chooser-set-current-folder">gtk_file_chooser_set_current_folder</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_FILE_CHOOSER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">button</span><span class="symbol">),</span>
-<span class="normal">                                       </span><span class="string">"/etc"</span><span class="symbol">);</span>
-<span class="cbracket">}</span></pre></td>
+  <span class="n">button</span> <span class="o">=</span> <span class="n">gtk_file_chooser_button_new</span> <span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s">&quot;Select a file&quot;</span><span class="p">),</span>
+                                        <span class="n">GTK_FILE_CHOOSER_ACTION_OPEN</span><span class="p">);</span>
+  <span class="n">gtk_file_chooser_set_current_folder</span> <span class="p">(</span><span class="n">GTK_FILE_CHOOSER</span> <span class="p">(</span><span class="n">button</span><span class="p">),</span>
+                                       <span class="s">&quot;/etc&quot;</span><span class="p">);</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
 </div>
 
 <p></p>
-<p>The <a class="link" href="GtkFileChooserButton.html" title="GtkFileChooserButton"><span class="type">GtkFileChooserButton</span></a> supports the <a href="GtkFileChooser.html#GtkFileChooserAction"><span class="type">GtkFileChooserActions</span></a>
-<a class="link" href="GtkFileChooser.html#GTK-FILE-CHOOSER-ACTION-OPEN:CAPS"><code class="literal">GTK_FILE_CHOOSER_ACTION_OPEN</code></a> and <a class="link" href="GtkFileChooser.html#GTK-FILE-CHOOSER-ACTION-SELECT-FOLDER:CAPS"><code class="literal">GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER</code></a>.</p>
+<p>The <a class="link" href="GtkFileChooserButton.html" title="GtkFileChooserButton"><span class="type">GtkFileChooserButton</span></a> supports the <a href="https://developer.gnome.org/gtk4/GtkFileChooser.html#GtkFileChooserAction"><span class="type">GtkFileChooserActions</span></a>
+<a href="https://developer.gnome.org/gtk4/GtkFileChooser.html#GTK-FILE-CHOOSER-ACTION-OPEN:CAPS"><code class="literal">GTK_FILE_CHOOSER_ACTION_OPEN</code></a> and <a href="https://developer.gnome.org/gtk4/GtkFileChooser.html#GTK-FILE-CHOOSER-ACTION-SELECT-FOLDER:CAPS"><code class="literal">GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER</code></a>.</p>
 <div class="blockquote"><blockquote class="blockquote"><p>The <a class="link" href="GtkFileChooserButton.html" title="GtkFileChooserButton"><span class="type">GtkFileChooserButton</span></a> will ellipsize the label, and will thus
 request little horizontal space.  To give the button more space,
 you should call <a class="link" href="GtkWidget.html#gtk-widget-get-preferred-size" title="gtk_widget_get_preferred_size ()"><code class="function">gtk_widget_get_preferred_size()</code></a>,
@@ -250,7 +250,7 @@ a subnode for the internal button with name “button” and style class “.fil
 <a name="gtk-file-chooser-button-new"></a><h3>gtk_file_chooser_button_new ()</h3>
 <pre class="programlisting"><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="returnvalue">GtkWidget</span></a> *
 gtk_file_chooser_button_new (<em class="parameter"><code>const <span class="type">gchar</span> *title</code></em>,
-                             <em class="parameter"><code><a class="link" href="GtkFileChooser.html#GtkFileChooserAction" title="enum GtkFileChooserAction"><span class="type">GtkFileChooserAction</span></a> action</code></em>);</pre>
+                             <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkFileChooser.html#GtkFileChooserAction"><span class="type">GtkFileChooserAction</span></a> action</code></em>);</pre>
 <p>Creates a new file-selecting button widget.</p>
 <div class="refsect3">
 <a name="gtk-file-chooser-button-new.parameters"></a><h4>Parameters</h4>
@@ -292,9 +292,9 @@ file-picking window.</p>
 <p>Note that <em class="parameter"><code>dialog</code></em>
  must be a <a class="link" href="GtkDialog.html" title="GtkDialog"><span class="type">GtkDialog</span></a> (or subclass) which
 implements the <a class="link" href="GtkFileChooser.html" title="GtkFileChooser"><span class="type">GtkFileChooser</span></a> interface and must not have
-<a class="link" href="GtkDialog.html#GTK-DIALOG-DESTROY-WITH-PARENT:CAPS"><code class="literal">GTK_DIALOG_DESTROY_WITH_PARENT</code></a> set.</p>
+<a href="https://developer.gnome.org/gtk4/GtkDialog.html#GTK-DIALOG-DESTROY-WITH-PARENT:CAPS"><code class="literal">GTK_DIALOG_DESTROY_WITH_PARENT</code></a> set.</p>
 <p>Also note that the dialog needs to have its confirmative button
-added with response <a class="link" href="GtkDialog.html#GTK-RESPONSE-ACCEPT:CAPS"><code class="literal">GTK_RESPONSE_ACCEPT</code></a> or <a class="link" href="GtkDialog.html#GTK-RESPONSE-OK:CAPS"><code class="literal">GTK_RESPONSE_OK</code></a> in
+added with response <a href="https://developer.gnome.org/gtk4/GtkDialog.html#GTK-RESPONSE-ACCEPT:CAPS"><code class="literal">GTK_RESPONSE_ACCEPT</code></a> or <a href="https://developer.gnome.org/gtk4/GtkDialog.html#GTK-RESPONSE-OK:CAPS"><code class="literal">GTK_RESPONSE_OK</code></a> in
 order for the button to take over the file selected in the dialog.</p>
 <div class="refsect3">
 <a name="gtk-file-chooser-button-new-with-dialog.parameters"></a><h4>Parameters</h4>
@@ -517,45 +517,13 @@ application.</p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkFileChooserButton.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkFileChooserButton-struct"></a><h3>struct GtkFileChooserButton</h3>
-<pre class="programlisting">struct GtkFileChooserButton;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkFileChooserButtonClass"></a><h3>struct GtkFileChooserButtonClass</h3>
-<pre class="programlisting">struct GtkFileChooserButtonClass {
-  GtkBoxClass parent_class;
-
-
-  void (* file_set) (GtkFileChooserButton *fc);
-};
-</pre>
-<div class="refsect3">
-<a name="GtkFileChooserButtonClass.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody><tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkFileChooserButtonClass.file-set"></a>file_set</code></em> ()</p></td>
-<td class="struct_member_description"><p>Signal emitted when the user selects a file.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr></tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkFileChooserButton.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkFileChooserButton--dialog"></a><h3>The <code class="literal">“dialog”</code> property</h3>
 <pre class="programlisting">  “dialog”                   <a class="link" href="GtkFileChooser.html" title="GtkFileChooser"><span class="type">GtkFileChooser</span></a> *</pre>
 <p>Instance of the <a class="link" href="GtkFileChooserDialog.html" title="GtkFileChooserDialog"><span class="type">GtkFileChooserDialog</span></a> associated with the button.</p>
-<p>Flags: Write / Construct Only</p>
+<p>Owner: GtkFileChooserButton</p>
+<p>Flags: Write / Construct Only</p>
 <p class="since">Since: 2.6</p>
 </div>
 <hr>
@@ -563,6 +531,7 @@ application.</p>
 <a name="GtkFileChooserButton--title"></a><h3>The <code class="literal">“title”</code> property</h3>
 <pre class="programlisting">  “title”                    <span class="type">gchar</span> *</pre>
 <p>Title to put on the <a class="link" href="GtkFileChooserDialog.html" title="GtkFileChooserDialog"><span class="type">GtkFileChooserDialog</span></a> associated with the button.</p>
+<p>Owner: GtkFileChooserButton</p>
 <p>Flags: Read / Write</p>
 <p>Default value: "Select a File"</p>
 <p class="since">Since: 2.6</p>
@@ -572,6 +541,7 @@ application.</p>
 <a name="GtkFileChooserButton--width-chars"></a><h3>The <code class="literal">“width-chars”</code> property</h3>
 <pre class="programlisting">  “width-chars”              <span class="type">gint</span></pre>
 <p>The width of the entry and label inside the button, in characters.</p>
+<p>Owner: GtkFileChooserButton</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
@@ -620,6 +590,6 @@ changes the file.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

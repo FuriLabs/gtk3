@@ -8,7 +8,7 @@
 <link rel="up" href="reference.html" title="API Reference">
 <link rel="prev" href="GdkDevice.html" title="GdkDevice">
 <link rel="next" href="gdk3-Points-Rectangles-and-Regions.html" title="Points and Rectangles">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -37,8 +37,8 @@
 <a name="GdkDevicePad.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -80,17 +80,17 @@
 <a name="GdkDevicePad.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name"><a class="link" href="GdkDevicePad.html#GdkDevicePad-struct" title="GdkDevicePad">GdkDevicePad</a></td>
+<td class="function_name">GdkDevicePad</td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name"><a class="link" href="GdkDevicePad.html#GdkDevicePadFeature" title="enum GdkDevicePadFeature">GdkDevicePadFeature</a></td>
+<td class="function_name">GdkDevicePadFeature</td>
 </tr>
 </tbody>
 </table></div>
@@ -115,7 +115,7 @@ GdkDevicePad requires
 <div class="refsect1">
 <a name="GdkDevicePad.description"></a><h2>Description</h2>
 <p><a class="link" href="GdkDevicePad.html" title="GtkDevicePad"><span class="type">GdkDevicePad</span></a> is an interface implemented by devices of type
-<a class="link" href="GdkDevice.html#GDK-SOURCE-TABLET-PAD:CAPS"><code class="literal">GDK_SOURCE_TABLET_PAD</code></a>, it allows querying the features provided
+<code class="literal">GDK_SOURCE_TABLET_PAD</code>, it allows querying the features provided
 by the pad device.</p>
 <p>Tablet pads may contain one or more groups, each containing a subset
 of the buttons/rings/strips available. <a class="link" href="GdkDevicePad.html#gdk-device-pad-get-n-groups" title="gdk_device_pad_get_n_groups ()"><code class="function">gdk_device_pad_get_n_groups()</code></a>
@@ -127,7 +127,7 @@ each individual pad feature to multiple actions. Only one mode is
 effective (current) for each given group, different groups may have
 different current modes. The number of available modes in a group can
 be found out through <a class="link" href="GdkDevicePad.html#gdk-device-pad-get-group-n-modes" title="gdk_device_pad_get_group_n_modes ()"><code class="function">gdk_device_pad_get_group_n_modes()</code></a>, and the current
-mode for a given group will be notified through the <a class="link" href="gdk3-Event-Structures.html#GdkEventPadGroupMode" title="struct GdkEventPadGroupMode"><span class="type">GdkEventPadGroupMode</span></a>
+mode for a given group will be notified through the <span class="type">GdkEventPadGroupMode</span>
 event.</p>
 </div>
 <div class="refsect1">
@@ -203,7 +203,7 @@ gdk_device_pad_get_group_n_modes (<em class="parameter"><code><a class="link" hr
 <a name="gdk-device-pad-get-n-features"></a><h3>gdk_device_pad_get_n_features ()</h3>
 <pre class="programlisting"><span class="returnvalue">gint</span>
 gdk_device_pad_get_n_features (<em class="parameter"><code><a class="link" href="GdkDevicePad.html" title="GtkDevicePad"><span class="type">GdkDevicePad</span></a> *pad</code></em>,
-                               <em class="parameter"><code><a class="link" href="GdkDevicePad.html#GdkDevicePadFeature" title="enum GdkDevicePadFeature"><span class="type">GdkDevicePadFeature</span></a> feature</code></em>);</pre>
+                               <em class="parameter"><code><span class="type">GdkDevicePadFeature</span> feature</code></em>);</pre>
 <p>Returns the number of features a tablet pad has.</p>
 <div class="refsect3">
 <a name="gdk-device-pad-get-n-features.parameters"></a><h4>Parameters</h4>
@@ -239,7 +239,7 @@ that this pad has.</p>
 <a name="gdk-device-pad-get-feature-group"></a><h3>gdk_device_pad_get_feature_group ()</h3>
 <pre class="programlisting"><span class="returnvalue">gint</span>
 gdk_device_pad_get_feature_group (<em class="parameter"><code><a class="link" href="GdkDevicePad.html" title="GtkDevicePad"><span class="type">GdkDevicePad</span></a> *pad</code></em>,
-                                  <em class="parameter"><code><a class="link" href="GdkDevicePad.html#GdkDevicePadFeature" title="enum GdkDevicePadFeature"><span class="type">GdkDevicePadFeature</span></a> feature</code></em>,
+                                  <em class="parameter"><code><span class="type">GdkDevicePadFeature</span> feature</code></em>,
                                   <em class="parameter"><code><span class="type">gint</span> feature_idx</code></em>);</pre>
 <p>Returns the group the given <em class="parameter"><code>feature</code></em>
  and <em class="parameter"><code>idx</code></em>
@@ -280,53 +280,8 @@ or -1 if feature/index do not exist in <em class="parameter"><code>pad</code></e
 <p class="since">Since: <a class="link" href="api-index-3-22.html#api-index-3.22">3.22</a></p>
 </div>
 </div>
-<div class="refsect1">
-<a name="GdkDevicePad.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GdkDevicePad-struct"></a><h3>GdkDevicePad</h3>
-<pre class="programlisting">typedef struct _GdkDevicePad GdkDevicePad;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GdkDevicePadFeature"></a><h3>enum GdkDevicePadFeature</h3>
-<p>A pad feature.</p>
-<div class="refsect3">
-<a name="GdkDevicePadFeature.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="enum_members_name">
-<col class="enum_members_description">
-<col width="200px" class="enum_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="enum_member_name"><p><a name="GDK-DEVICE-PAD-FEATURE-BUTTON:CAPS"></a>GDK_DEVICE_PAD_FEATURE_BUTTON</p></td>
-<td class="enum_member_description">
-<p>a button</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GDK-DEVICE-PAD-FEATURE-RING:CAPS"></a>GDK_DEVICE_PAD_FEATURE_RING</p></td>
-<td class="enum_member_description">
-<p>a ring-shaped interactive area</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GDK-DEVICE-PAD-FEATURE-STRIP:CAPS"></a>GDK_DEVICE_PAD_FEATURE_STRIP</p></td>
-<td class="enum_member_description">
-<p>a straight interactive area</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
-</div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

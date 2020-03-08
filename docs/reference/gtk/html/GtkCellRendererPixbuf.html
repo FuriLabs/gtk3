@@ -8,7 +8,7 @@
 <link rel="up" href="TreeWidgetObjects.html" title="Tree, List and Icon Grid Widgets">
 <link rel="prev" href="GtkCellRendererCombo.html" title="GtkCellRendererCombo">
 <link rel="next" href="GtkCellRendererProgress.html" title="GtkCellRendererProgress">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -37,8 +37,8 @@
 <a name="GtkCellRendererPixbuf.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody><tr>
 <td class="function_type">
@@ -124,12 +124,12 @@
 <a name="GtkCellRendererPixbuf.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkCellRendererPixbuf.html#GtkCellRendererPixbuf-struct" title="struct GtkCellRendererPixbuf">GtkCellRendererPixbuf</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkCellRendererPixbuf.html#GtkCellRendererPixbuf-struct">GtkCellRendererPixbuf</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -180,23 +180,17 @@ in the model, thus rendering a different image in each row of the
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkCellRendererPixbuf.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkCellRendererPixbuf-struct"></a><h3>struct GtkCellRendererPixbuf</h3>
-<pre class="programlisting">struct GtkCellRendererPixbuf;</pre>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkCellRendererPixbuf.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkCellRendererPixbuf--follow-state"></a><h3>The <code class="literal">“follow-state”</code> property</h3>
 <pre class="programlisting">  “follow-state”             <span class="type">gboolean</span></pre>
 <p>Specifies whether the rendered pixbuf should be colorized
-according to the <a class="link" href="GtkCellRenderer.html#GtkCellRendererState" title="enum GtkCellRendererState"><span class="type">GtkCellRendererState</span></a>.</p>
+according to the <a href="https://developer.gnome.org/gtk4/GtkCellRenderer.html#GtkCellRendererState"><span class="type">GtkCellRendererState</span></a>.</p>
 <div class="warning">
 <p><code class="literal">GtkCellRendererPixbuf:follow-state</code> has been deprecated since version 3.16 and should not be used in newly-written code.</p>
 <p>Cell renderers always follow state.</p>
 </div>
+<p>Owner: GtkCellRendererPixbuf</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 <p class="since">Since: 2.8</p>
@@ -208,6 +202,7 @@ according to the <a class="link" href="GtkCellRenderer.html#GtkCellRendererState
 <p>The GIcon representing the icon to display.
 If the icon theme is changed, the image will be updated
 automatically.</p>
+<p>Owner: GtkCellRendererPixbuf</p>
 <p>Flags: Read / Write</p>
 <p class="since">Since: 2.14</p>
 </div>
@@ -219,6 +214,7 @@ automatically.</p>
 This property only has an effect if not overridden by "stock_id"
 
 or "pixbuf" properties.</p>
+<p>Owner: GtkCellRendererPixbuf</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 <p class="since">Since: 2.8</p>
@@ -228,6 +224,7 @@ or "pixbuf" properties.</p>
 <a name="GtkCellRendererPixbuf--pixbuf"></a><h3>The <code class="literal">“pixbuf”</code> property</h3>
 <pre class="programlisting">  “pixbuf”                   <a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a> *</pre>
 <p>The pixbuf to render.</p>
+<p>Owner: GtkCellRendererPixbuf</p>
 <p>Flags: Read / Write</p>
 </div>
 <hr>
@@ -235,6 +232,7 @@ or "pixbuf" properties.</p>
 <a name="GtkCellRendererPixbuf--pixbuf-expander-closed"></a><h3>The <code class="literal">“pixbuf-expander-closed”</code> property</h3>
 <pre class="programlisting">  “pixbuf-expander-closed”   <a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a> *</pre>
 <p>Pixbuf for closed expander.</p>
+<p>Owner: GtkCellRendererPixbuf</p>
 <p>Flags: Read / Write</p>
 </div>
 <hr>
@@ -242,6 +240,7 @@ or "pixbuf" properties.</p>
 <a name="GtkCellRendererPixbuf--pixbuf-expander-open"></a><h3>The <code class="literal">“pixbuf-expander-open”</code> property</h3>
 <pre class="programlisting">  “pixbuf-expander-open”     <a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a> *</pre>
 <p>Pixbuf for open expander.</p>
+<p>Owner: GtkCellRendererPixbuf</p>
 <p>Flags: Read / Write</p>
 </div>
 <hr>
@@ -249,6 +248,7 @@ or "pixbuf" properties.</p>
 <a name="GtkCellRendererPixbuf--stock-detail"></a><h3>The <code class="literal">“stock-detail”</code> property</h3>
 <pre class="programlisting">  “stock-detail”             <span class="type">gchar</span> *</pre>
 <p>Render detail to pass to the theme engine.</p>
+<p>Owner: GtkCellRendererPixbuf</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -261,6 +261,7 @@ or "pixbuf" properties.</p>
 <p><code class="literal">GtkCellRendererPixbuf:stock-id</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="GtkCellRendererPixbuf.html#GtkCellRendererPixbuf--icon-name" title="The “icon-name” property"><span class="type">“icon-name”</span></a> instead.</p>
 </div>
+<p>Owner: GtkCellRendererPixbuf</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 <p class="since">Since: 2.2</p>
@@ -269,7 +270,8 @@ or "pixbuf" properties.</p>
 <div class="refsect2">
 <a name="GtkCellRendererPixbuf--stock-size"></a><h3>The <code class="literal">“stock-size”</code> property</h3>
 <pre class="programlisting">  “stock-size”               <span class="type">guint</span></pre>
-<p>The <a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSize" title="enum GtkIconSize"><span class="type">GtkIconSize</span></a> value that specifies the size of the rendered icon.</p>
+<p>The <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkIconSize"><span class="type">GtkIconSize</span></a> value that specifies the size of the rendered icon.</p>
+<p>Owner: GtkCellRendererPixbuf</p>
 <p>Flags: Read / Write</p>
 <p>Default value: 1</p>
 <p class="since">Since: 2.2</p>
@@ -279,12 +281,13 @@ or "pixbuf" properties.</p>
 <a name="GtkCellRendererPixbuf--surface"></a><h3>The <code class="literal">“surface”</code> property</h3>
 <pre class="programlisting">  “surface”                  <span class="type">CairoSurface</span> *</pre>
 <p>The surface to render.</p>
+<p>Owner: GtkCellRendererPixbuf</p>
 <p>Flags: Read / Write</p>
 <p class="since">Since: <a class="link" href="api-index-3-10.html#api-index-3.10">3.10</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

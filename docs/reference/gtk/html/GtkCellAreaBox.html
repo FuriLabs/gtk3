@@ -8,7 +8,7 @@
 <link rel="up" href="TreeWidgetObjects.html" title="Tree, List and Icon Grid Widgets">
 <link rel="prev" href="GtkCellArea.html" title="GtkCellArea">
 <link rel="next" href="GtkCellAreaContext.html" title="GtkCellAreaContext">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -32,7 +32,7 @@
 <td valign="top">
 <h2><span class="refentrytitle"><a name="GtkCellAreaBox.top_of_page"></a>GtkCellAreaBox</span></h2>
 <p>GtkCellAreaBox — A cell area that renders GtkCellRenderers
-    into a row or a column</p>
+into a row or a column</p>
 </td>
 <td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
@@ -40,8 +40,8 @@
 <a name="GtkCellAreaBox.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -127,7 +127,7 @@
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><a class="link" href="gtk3-Standard-Enumerations.html#GtkPackType" title="enum GtkPackType"><span class="type">GtkPackType</span></a></td>
+<td class="property_type"><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkPackType"><span class="type">GtkPackType</span></a></td>
 <td class="property_name"><a class="link" href="GtkCellAreaBox.html#GtkCellAreaBox--c-pack-type" title="The “pack-type” child property">pack-type</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -138,17 +138,17 @@
 <a name="GtkCellAreaBox.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkCellAreaBox.html#GtkCellAreaBox-struct" title="struct GtkCellAreaBox">GtkCellAreaBox</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkCellAreaBox.html#GtkCellAreaBox-struct">GtkCellAreaBox</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkCellAreaBox.html#GtkCellAreaBoxClass" title="struct GtkCellAreaBoxClass">GtkCellAreaBoxClass</a></td>
+<td class="function_name">GtkCellAreaBoxClass</td>
 </tr>
 </tbody>
 </table></div>
@@ -175,17 +175,17 @@ GtkCellAreaBox implements
 <div class="refsect1">
 <a name="GtkCellAreaBox.description"></a><h2>Description</h2>
 <p>The <a class="link" href="GtkCellAreaBox.html" title="GtkCellAreaBox"><span class="type">GtkCellAreaBox</span></a> renders cell renderers into a row or a column
-depending on its <a class="link" href="gtk3-Standard-Enumerations.html#GtkOrientation" title="enum GtkOrientation"><span class="type">GtkOrientation</span></a>.</p>
+depending on its <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkOrientation"><span class="type">GtkOrientation</span></a>.</p>
 <p>GtkCellAreaBox uses a notion of packing. Packing
 refers to adding cell renderers with reference to a particular position
 in a <a class="link" href="GtkCellAreaBox.html" title="GtkCellAreaBox"><span class="type">GtkCellAreaBox</span></a>. There are two reference positions: the
 start and the end of the box.
-When the <a class="link" href="GtkCellAreaBox.html" title="GtkCellAreaBox"><span class="type">GtkCellAreaBox</span></a> is oriented in the <a class="link" href="gtk3-Standard-Enumerations.html#GTK-ORIENTATION-VERTICAL:CAPS"><code class="literal">GTK_ORIENTATION_VERTICAL</code></a>
+When the <a class="link" href="GtkCellAreaBox.html" title="GtkCellAreaBox"><span class="type">GtkCellAreaBox</span></a> is oriented in the <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-ORIENTATION-VERTICAL:CAPS"><code class="literal">GTK_ORIENTATION_VERTICAL</code></a>
 orientation, the start is defined as the top of the box and the end is
-defined as the bottom. In the <a class="link" href="gtk3-Standard-Enumerations.html#GTK-ORIENTATION-HORIZONTAL:CAPS"><code class="literal">GTK_ORIENTATION_HORIZONTAL</code></a> orientation
+defined as the bottom. In the <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-ORIENTATION-HORIZONTAL:CAPS"><code class="literal">GTK_ORIENTATION_HORIZONTAL</code></a> orientation
 start is defined as the left side and the end is defined as the right
 side.</p>
-<p>Alignments of <a href="GtkCellRenderer.html#GtkCellRenderer-struct"><span class="type">GtkCellRenderers</span></a> rendered in adjacent rows can be
+<p>Alignments of <a href="https://developer.gnome.org/gtk4/GtkCellRenderer.html#GtkCellRenderer-struct"><span class="type">GtkCellRenderers</span></a> rendered in adjacent rows can be
 configured by configuring the <a class="link" href="GtkCellAreaBox.html" title="GtkCellAreaBox"><span class="type">GtkCellAreaBox</span></a> align child cell property
 with <a class="link" href="GtkCellArea.html#gtk-cell-area-cell-set-property" title="gtk_cell_area_cell_set_property ()"><code class="function">gtk_cell_area_cell_set_property()</code></a> or by specifying the "align"
 argument to <a class="link" href="GtkCellAreaBox.html#gtk-cell-area-box-pack-start" title="gtk_cell_area_box_pack_start ()"><code class="function">gtk_cell_area_box_pack_start()</code></a> and <a class="link" href="GtkCellAreaBox.html#gtk-cell-area-box-pack-end" title="gtk_cell_area_box_pack_end ()"><code class="function">gtk_cell_area_box_pack_end()</code></a>.</p>
@@ -375,7 +375,7 @@ gtk_cell_area_box_set_spacing (<em class="parameter"><code><a class="link" href=
 </tr>
 <tr>
 <td class="parameter_name"><p>spacing</p></td>
-<td class="parameter_description"><p>the space to add between <a href="GtkCellRenderer.html#GtkCellRenderer-struct"><span class="type">GtkCellRenderers</span></a></p></td>
+<td class="parameter_description"><p>the space to add between <a href="https://developer.gnome.org/gtk4/GtkCellRenderer.html#GtkCellRenderer-struct"><span class="type">GtkCellRenderers</span></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -385,25 +385,12 @@ gtk_cell_area_box_set_spacing (<em class="parameter"><code><a class="link" href=
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkCellAreaBox.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkCellAreaBox-struct"></a><h3>struct GtkCellAreaBox</h3>
-<pre class="programlisting">struct GtkCellAreaBox;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkCellAreaBoxClass"></a><h3>struct GtkCellAreaBoxClass</h3>
-<pre class="programlisting">struct GtkCellAreaBoxClass {
-};
-</pre>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkCellAreaBox.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkCellAreaBox--spacing"></a><h3>The <code class="literal">“spacing”</code> property</h3>
 <pre class="programlisting">  “spacing”                  <span class="type">gint</span></pre>
 <p>The amount of space to reserve between cells.</p>
+<p>Owner: GtkCellAreaBox</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 0</p>
@@ -416,6 +403,7 @@ gtk_cell_area_box_set_spacing (<em class="parameter"><code><a class="link" href=
 <a name="GtkCellAreaBox--c-align"></a><h3>The <code class="literal">“align”</code> child property</h3>
 <pre class="programlisting">  “align”                    <span class="type">gboolean</span></pre>
 <p>Whether the cell renderer should be aligned in adjacent rows.</p>
+<p>Owner: GtkCellAreaBox</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
@@ -426,6 +414,7 @@ gtk_cell_area_box_set_spacing (<em class="parameter"><code><a class="link" href=
 <pre class="programlisting">  “expand”                   <span class="type">gboolean</span></pre>
 <p>Whether the cell renderer should receive extra space
 when the area receives more than its natural size.</p>
+<p>Owner: GtkCellAreaBox</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
@@ -436,6 +425,7 @@ when the area receives more than its natural size.</p>
 <pre class="programlisting">  “fixed-size”               <span class="type">gboolean</span></pre>
 <p>Whether the cell renderer should require the same size
 for all rows for which it was requested.</p>
+<p>Owner: GtkCellAreaBox</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
@@ -443,9 +433,10 @@ for all rows for which it was requested.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkCellAreaBox--c-pack-type"></a><h3>The <code class="literal">“pack-type”</code> child property</h3>
-<pre class="programlisting">  “pack-type”                <a class="link" href="gtk3-Standard-Enumerations.html#GtkPackType" title="enum GtkPackType"><span class="type">GtkPackType</span></a></pre>
+<pre class="programlisting">  “pack-type”                <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkPackType"><span class="type">GtkPackType</span></a></pre>
 <p>A GtkPackType indicating whether the cell renderer is packed
 with reference to the start or end of the area.</p>
+<p>Owner: GtkCellAreaBox</p>
 <p>Flags: Read / Write</p>
 <p>Default value: GTK_PACK_START</p>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
@@ -453,6 +444,6 @@ with reference to the start or end of the area.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

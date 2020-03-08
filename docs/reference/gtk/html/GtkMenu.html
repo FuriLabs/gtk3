@@ -8,7 +8,7 @@
 <link rel="up" href="MenusAndCombos.html" title="Menus, Combo Box, Toolbar">
 <link rel="prev" href="GtkComboBoxText.html" title="GtkComboBoxText">
 <link rel="next" href="GtkMenuBar.html" title="GtkMenuBar">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -41,8 +41,8 @@
 <a name="GtkMenu.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -428,7 +428,7 @@
 </colgroup>
 <tbody>
 <tr>
-<td class="property_type"><a class="link" href="GtkMenu.html#GtkArrowPlacement" title="enum GtkArrowPlacement"><span class="type">GtkArrowPlacement</span></a></td>
+<td class="property_type"><span class="type">GtkArrowPlacement</span></td>
 <td class="property_name"><a class="link" href="GtkMenu.html#GtkMenu--s-arrow-placement" title="The “arrow-placement” style property">arrow-placement</a></td>
 <td class="property_flags">Read</td>
 </tr>
@@ -469,9 +469,9 @@
 <a name="GtkMenu.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody>
 <tr>
@@ -491,17 +491,17 @@
 <a name="GtkMenu.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkMenu.html#GtkMenu-struct" title="struct GtkMenu">GtkMenu</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkMenu.html#GtkMenu-struct">GtkMenu</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name"><a class="link" href="GtkMenu.html#GtkArrowPlacement" title="enum GtkArrowPlacement">GtkArrowPlacement</a></td>
+<td class="function_name">GtkArrowPlacement</td>
 </tr>
 </tbody>
 </table></div>
@@ -551,9 +551,9 @@ can pop up a menu when the 3rd mouse button is pressed.  </p>
         <td class="listing_lines" align="right"><pre>1
 2
 3</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="comment">// connect our handler which will popup the menu</span>
-<span class="function">g_signal_connect_swapped</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"button_press_event"</span><span class="symbol">,</span>
-<span class="function">G_CALLBACK</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">my_popup_handler</span><span class="symbol">),</span><span class="normal"> menu</span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="c1">// connect our handler which will popup the menu</span>
+<span class="n">g_signal_connect_swapped</span> <span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="s">&quot;button_press_event&quot;</span><span class="p">,</span>
+<span class="n">G_CALLBACK</span> <span class="p">(</span><span class="n">my_popup_handler</span><span class="p">),</span> <span class="n">menu</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -594,33 +594,33 @@ can pop up a menu when the 3rd mouse button is pressed.  </p>
 25
 26
 27</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> gint</span>
-<span class="function">my_popup_handler</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">widget</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">GdkEvent</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">event</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="usertype">GtkMenu</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">menu</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="usertype">GdkEventButton</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">event_button</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="n">gint</span>
+<span class="nf">my_popup_handler</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span> <span class="n">GdkEvent</span> <span class="o">*</span><span class="n">event</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">GtkMenu</span> <span class="o">*</span><span class="n">menu</span><span class="p">;</span>
+  <span class="n">GdkEventButton</span> <span class="o">*</span><span class="n">event_button</span><span class="p">;</span>
 
-<span class="normal">  </span><span class="function">g_return_val_if_fail</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function">g_return_val_if_fail</span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_IS_MENU</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">),</span><span class="normal"> FALSE</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function">g_return_val_if_fail</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">event </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> FALSE</span><span class="symbol">);</span>
+  <span class="n">g_return_val_if_fail</span> <span class="p">(</span><span class="n">widget</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">);</span>
+  <span class="n">g_return_val_if_fail</span> <span class="p">(</span><span class="n">GTK_IS_MENU</span> <span class="p">(</span><span class="n">widget</span><span class="p">),</span> <span class="n">FALSE</span><span class="p">);</span>
+  <span class="n">g_return_val_if_fail</span> <span class="p">(</span><span class="n">event</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="comment">// The "widget" is the menu that was supplied when </span>
-<span class="normal">  </span><span class="comment">// g_signal_connect_swapped() was called.</span>
-<span class="normal">  menu </span><span class="symbol">=</span><span class="normal"> </span><span class="function">GTK_MENU</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">);</span>
+  <span class="c1">// The &quot;widget&quot; is the menu that was supplied when </span>
+  <span class="c1">// g_signal_connect_swapped() was called.</span>
+  <span class="n">menu</span> <span class="o">=</span> <span class="n">GTK_MENU</span> <span class="p">(</span><span class="n">widget</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">event</span><span class="symbol">-&gt;</span><span class="normal">type </span><span class="symbol">==</span><span class="normal"> GDK_BUTTON_PRESS</span><span class="symbol">)</span>
-<span class="normal">    </span><span class="cbracket">{</span>
-<span class="normal">      event_button </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">GdkEventButton </span><span class="symbol">*)</span><span class="normal"> event</span><span class="symbol">;</span>
-<span class="normal">      </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">event_button</span><span class="symbol">-&gt;</span><span class="normal">button </span><span class="symbol">==</span><span class="normal"> GDK_BUTTON_SECONDARY</span><span class="symbol">)</span>
-<span class="normal">        </span><span class="cbracket">{</span>
-<span class="normal">          </span><span class="function"><a href="GtkMenu.html#gtk-menu-popup">gtk_menu_popup</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">menu</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> NULL</span><span class="symbol">,</span><span class="normal"> </span>
-<span class="normal">                          event_button</span><span class="symbol">-&gt;</span><span class="normal">button</span><span class="symbol">,</span><span class="normal"> event_button</span><span class="symbol">-&gt;</span><span class="normal">time</span><span class="symbol">);</span>
-<span class="normal">          </span><span class="keyword">return</span><span class="normal"> TRUE</span><span class="symbol">;</span>
-<span class="normal">        </span><span class="cbracket">}</span>
-<span class="normal">    </span><span class="cbracket">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">event</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">==</span> <span class="n">GDK_BUTTON_PRESS</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">event_button</span> <span class="o">=</span> <span class="p">(</span><span class="n">GdkEventButton</span> <span class="o">*</span><span class="p">)</span> <span class="n">event</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">event_button</span><span class="o">-&gt;</span><span class="n">button</span> <span class="o">==</span> <span class="n">GDK_BUTTON_SECONDARY</span><span class="p">)</span>
+        <span class="p">{</span>
+          <span class="n">gtk_menu_popup</span> <span class="p">(</span><span class="n">menu</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> 
+                          <span class="n">event_button</span><span class="o">-&gt;</span><span class="n">button</span><span class="p">,</span> <span class="n">event_button</span><span class="o">-&gt;</span><span class="n">time</span><span class="p">);</span>
+          <span class="k">return</span> <span class="n">TRUE</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 
-<span class="normal">  </span><span class="keyword">return</span><span class="normal"> FALSE</span><span class="symbol">;</span>
-<span class="cbracket">}</span></pre></td>
+  <span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -640,12 +640,12 @@ can pop up a menu when the 3rd mouse button is pressed.  </p>
 4
 5
 6</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">menu</span>
-<span class="normal">├── arrow</span><span class="symbol">.</span><span class="normal">top</span>
-<span class="normal">├── </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
-<span class="normal">┊</span>
-<span class="normal">├── </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
-<span class="normal">╰── arrow</span><span class="symbol">.</span><span class="normal">bottom</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">menu</span>
+<span class="err">├──</span> <span class="n">arrow</span><span class="p">.</span><span class="n">top</span>
+<span class="err">├──</span> <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span>
+<span class="err">┊</span>
+<span class="err">├──</span> <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span>
+<span class="err">╰──</span> <span class="n">arrow</span><span class="p">.</span><span class="n">bottom</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -680,7 +680,7 @@ submenus according to <em class="parameter"><code>model</code></em>
 <p>The created menu items are connected to actions found in the
 <a class="link" href="GtkApplicationWindow.html" title="GtkApplicationWindow"><span class="type">GtkApplicationWindow</span></a> to which the menu belongs - typically
 by means of being attached to a widget (see <a class="link" href="GtkMenu.html#gtk-menu-attach-to-widget" title="gtk_menu_attach_to_widget ()"><code class="function">gtk_menu_attach_to_widget()</code></a>)
-that is contained within the <a href="GtkApplicationWindow.html#GtkApplicationWindow-struct"><span class="type">GtkApplicationWindows</span></a> widget hierarchy.</p>
+that is contained within the <a href="https://developer.gnome.org/gtk4/GtkApplicationWindow.html#GtkApplicationWindow-struct"><span class="type">GtkApplicationWindows</span></a> widget hierarchy.</p>
 <p>Actions can also be added using <a class="link" href="GtkWidget.html#gtk-widget-insert-action-group" title="gtk_widget_insert_action_group ()"><code class="function">gtk_widget_insert_action_group()</code></a> on the menu's
 attach widget or on any of its parent widgets.</p>
 <div class="refsect3">
@@ -1464,7 +1464,7 @@ and should not be modified or freed.</p>
 gtk_menu_set_monitor (<em class="parameter"><code><a class="link" href="GtkMenu.html" title="GtkMenu"><span class="type">GtkMenu</span></a> *menu</code></em>,
                       <em class="parameter"><code><span class="type">gint</span> monitor_num</code></em>);</pre>
 <p>Informs GTK+ on which monitor a menu should be popped up.
-See <code class="function">gdk_monitor_get_geometry()</code>.</p>
+See <a href="https://developer.gnome.org/gdk4/GdkMonitor.html#gdk-monitor-get-geometry"><code class="function">gdk_monitor_get_geometry()</code></a>.</p>
 <p>This function should be called from a <a class="link" href="GtkMenu.html#GtkMenuPositionFunc" title="GtkMenuPositionFunc ()"><span class="type">GtkMenuPositionFunc</span></a>
 if the menu should not appear on the same monitor as the pointer.
 This information can’t be reliably inferred from the coordinates
@@ -2011,56 +2011,12 @@ will be called when the menu is later detached from the widget.</p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkMenu.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkMenu-struct"></a><h3>struct GtkMenu</h3>
-<pre class="programlisting">struct GtkMenu;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkArrowPlacement"></a><h3>enum GtkArrowPlacement</h3>
-<p>Used to specify the placement of scroll arrows in scrolling menus.</p>
-<div class="refsect3">
-<a name="GtkArrowPlacement.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="enum_members_name">
-<col class="enum_members_description">
-<col width="200px" class="enum_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-ARROWS-BOTH:CAPS"></a>GTK_ARROWS_BOTH</p></td>
-<td class="enum_member_description">
-<p>Place one arrow on each end of the menu.</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-ARROWS-START:CAPS"></a>GTK_ARROWS_START</p></td>
-<td class="enum_member_description">
-<p>Place both arrows at the top of the menu.</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-ARROWS-END:CAPS"></a>GTK_ARROWS_END</p></td>
-<td class="enum_member_description">
-<p>Place both arrows at the bottom of the menu.</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkMenu.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkMenu--accel-group"></a><h3>The <code class="literal">“accel-group”</code> property</h3>
 <pre class="programlisting">  “accel-group”              <a class="link" href="gtk3-Keyboard-Accelerators.html#GtkAccelGroup"><span class="type">GtkAccelGroup</span></a> *</pre>
 <p>The accel group holding accelerators for the menu.</p>
+<p>Owner: GtkMenu</p>
 <p>Flags: Read / Write</p>
 <p class="since">Since: 2.14</p>
 </div>
@@ -2069,6 +2025,7 @@ will be called when the menu is later detached from the widget.</p>
 <a name="GtkMenu--accel-path"></a><h3>The <code class="literal">“accel-path”</code> property</h3>
 <pre class="programlisting">  “accel-path”               <span class="type">gchar</span> *</pre>
 <p>An accel path used to conveniently construct accel paths of child items.</p>
+<p>Owner: GtkMenu</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 <p class="since">Since: 2.14</p>
@@ -2079,6 +2036,7 @@ will be called when the menu is later detached from the widget.</p>
 <pre class="programlisting">  “active”                   <span class="type">gint</span></pre>
 <p>The index of the currently selected menu item, or -1 if no
 menu item is selected.</p>
+<p>Owner: GtkMenu</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
@@ -2098,6 +2056,7 @@ bottom edge of the monitor.</p>
 <p>See <a class="link" href="GtkMenu.html#gtk-menu-popup-at-rect" title="gtk_menu_popup_at_rect ()"><code class="function">gtk_menu_popup_at_rect()</code></a>, <a class="link" href="GtkMenu.html#gtk-menu-popup-at-widget" title="gtk_menu_popup_at_widget ()"><code class="function">gtk_menu_popup_at_widget()</code></a>,
 <a class="link" href="GtkMenu.html#gtk-menu-popup-at-pointer" title="gtk_menu_popup_at_pointer ()"><code class="function">gtk_menu_popup_at_pointer()</code></a>, <a class="link" href="GtkMenu.html#GtkMenu--rect-anchor-dx" title="The “rect-anchor-dx” property"><span class="type">“rect-anchor-dx”</span></a>,
 <a class="link" href="GtkMenu.html#GtkMenu--rect-anchor-dy" title="The “rect-anchor-dy” property"><span class="type">“rect-anchor-dy”</span></a>, <a class="link" href="GtkMenu.html#GtkMenu--menu-type-hint" title="The “menu-type-hint” property"><span class="type">“menu-type-hint”</span></a>, and <a class="link" href="GtkMenu.html#GtkMenu-popped-up" title="The “popped-up” signal"><span class="type">“popped-up”</span></a>.</p>
+<p>Owner: GtkMenu</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: GDK_ANCHOR_FLIP_X | GDK_ANCHOR_FLIP_Y | GDK_ANCHOR_SLIDE_X | GDK_ANCHOR_SLIDE_Y | GDK_ANCHOR_RESIZE_X | GDK_ANCHOR_RESIZE_Y</p>
 <p class="since">Since: <a class="link" href="api-index-3-22.html#api-index-3.22">3.22</a></p>
@@ -2109,6 +2068,7 @@ bottom edge of the monitor.</p>
 <p>The widget the menu is attached to. Setting this property attaches
 the menu without a <a class="link" href="GtkMenu.html#GtkMenuDetachFunc" title="GtkMenuDetachFunc ()"><span class="type">GtkMenuDetachFunc</span></a>. If you need to use a detacher,
 use <a class="link" href="GtkMenu.html#gtk-menu-attach-to-widget" title="gtk_menu_attach_to_widget ()"><code class="function">gtk_menu_attach_to_widget()</code></a> directly.</p>
+<p>Owner: GtkMenu</p>
 <p>Flags: Read / Write</p>
 <p class="since">Since: 2.14</p>
 </div>
@@ -2120,6 +2080,7 @@ use <a class="link" href="GtkMenu.html#gtk-menu-attach-to-widget" title="gtk_men
 <p>See <a class="link" href="GtkMenu.html#gtk-menu-popup-at-rect" title="gtk_menu_popup_at_rect ()"><code class="function">gtk_menu_popup_at_rect()</code></a>, <a class="link" href="GtkMenu.html#gtk-menu-popup-at-widget" title="gtk_menu_popup_at_widget ()"><code class="function">gtk_menu_popup_at_widget()</code></a>,
 <a class="link" href="GtkMenu.html#gtk-menu-popup-at-pointer" title="gtk_menu_popup_at_pointer ()"><code class="function">gtk_menu_popup_at_pointer()</code></a>, <a class="link" href="GtkMenu.html#GtkMenu--anchor-hints" title="The “anchor-hints” property"><span class="type">“anchor-hints”</span></a>,
 <a class="link" href="GtkMenu.html#GtkMenu--rect-anchor-dx" title="The “rect-anchor-dx” property"><span class="type">“rect-anchor-dx”</span></a>, <a class="link" href="GtkMenu.html#GtkMenu--rect-anchor-dy" title="The “rect-anchor-dy” property"><span class="type">“rect-anchor-dy”</span></a>, and <a class="link" href="GtkMenu.html#GtkMenu-popped-up" title="The “popped-up” signal"><span class="type">“popped-up”</span></a>.</p>
+<p>Owner: GtkMenu</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: GDK_WINDOW_TYPE_HINT_POPUP_MENU</p>
 <p class="since">Since: <a class="link" href="api-index-3-22.html#api-index-3.22">3.22</a></p>
@@ -2129,6 +2090,7 @@ use <a class="link" href="GtkMenu.html#gtk-menu-attach-to-widget" title="gtk_men
 <a name="GtkMenu--monitor"></a><h3>The <code class="literal">“monitor”</code> property</h3>
 <pre class="programlisting">  “monitor”                  <span class="type">gint</span></pre>
 <p>The monitor the menu will be popped up on.</p>
+<p>Owner: GtkMenu</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
@@ -2143,6 +2105,7 @@ anchor.</p>
 <p>See <a class="link" href="GtkMenu.html#gtk-menu-popup-at-rect" title="gtk_menu_popup_at_rect ()"><code class="function">gtk_menu_popup_at_rect()</code></a>, <a class="link" href="GtkMenu.html#gtk-menu-popup-at-widget" title="gtk_menu_popup_at_widget ()"><code class="function">gtk_menu_popup_at_widget()</code></a>,
 <a class="link" href="GtkMenu.html#gtk-menu-popup-at-pointer" title="gtk_menu_popup_at_pointer ()"><code class="function">gtk_menu_popup_at_pointer()</code></a>, <a class="link" href="GtkMenu.html#GtkMenu--anchor-hints" title="The “anchor-hints” property"><span class="type">“anchor-hints”</span></a>,
 <a class="link" href="GtkMenu.html#GtkMenu--rect-anchor-dy" title="The “rect-anchor-dy” property"><span class="type">“rect-anchor-dy”</span></a>, <a class="link" href="GtkMenu.html#GtkMenu--menu-type-hint" title="The “menu-type-hint” property"><span class="type">“menu-type-hint”</span></a>, and <a class="link" href="GtkMenu.html#GtkMenu-popped-up" title="The “popped-up” signal"><span class="type">“popped-up”</span></a>.</p>
+<p>Owner: GtkMenu</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: 0</p>
 <p class="since">Since: <a class="link" href="api-index-3-22.html#api-index-3.22">3.22</a></p>
@@ -2155,6 +2118,7 @@ anchor.</p>
 <p>See <a class="link" href="GtkMenu.html#gtk-menu-popup-at-rect" title="gtk_menu_popup_at_rect ()"><code class="function">gtk_menu_popup_at_rect()</code></a>, <a class="link" href="GtkMenu.html#gtk-menu-popup-at-widget" title="gtk_menu_popup_at_widget ()"><code class="function">gtk_menu_popup_at_widget()</code></a>,
 <a class="link" href="GtkMenu.html#gtk-menu-popup-at-pointer" title="gtk_menu_popup_at_pointer ()"><code class="function">gtk_menu_popup_at_pointer()</code></a>, <a class="link" href="GtkMenu.html#GtkMenu--anchor-hints" title="The “anchor-hints” property"><span class="type">“anchor-hints”</span></a>,
 <a class="link" href="GtkMenu.html#GtkMenu--rect-anchor-dx" title="The “rect-anchor-dx” property"><span class="type">“rect-anchor-dx”</span></a>, <a class="link" href="GtkMenu.html#GtkMenu--menu-type-hint" title="The “menu-type-hint” property"><span class="type">“menu-type-hint”</span></a>, and <a class="link" href="GtkMenu.html#GtkMenu-popped-up" title="The “popped-up” signal"><span class="type">“popped-up”</span></a>.</p>
+<p>Owner: GtkMenu</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: 0</p>
 <p class="since">Since: <a class="link" href="api-index-3-22.html#api-index-3.22">3.22</a></p>
@@ -2169,6 +2133,7 @@ toggles and icons, regardless of their actual presence.</p>
 for special-purposes such as tabular menus. Regular menus that
 are connected to a menu bar or context menus should reserve
 toggle space for consistency.</p>
+<p>Owner: GtkMenu</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 <p class="since">Since: 2.18</p>
@@ -2179,6 +2144,7 @@ toggle space for consistency.</p>
 <pre class="programlisting">  “tearoff-state”            <span class="type">gboolean</span></pre>
 <p>A boolean that indicates whether the menu is torn-off.</p>
 <div class="warning"><p><code class="literal">GtkMenu:tearoff-state</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p></div>
+<p>Owner: GtkMenu</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: 2.6</p>
@@ -2190,6 +2156,7 @@ toggle space for consistency.</p>
 <p>A title that may be displayed by the window manager when this
 menu is torn-off.</p>
 <div class="warning"><p><code class="literal">GtkMenu:tearoff-title</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p></div>
+<p>Owner: GtkMenu</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -2200,6 +2167,7 @@ menu is torn-off.</p>
 <a name="GtkMenu--c-bottom-attach"></a><h3>The <code class="literal">“bottom-attach”</code> child property</h3>
 <pre class="programlisting">  “bottom-attach”            <span class="type">gint</span></pre>
 <p>The row number to attach the bottom of the child to.</p>
+<p>Owner: GtkMenu</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
@@ -2209,6 +2177,7 @@ menu is torn-off.</p>
 <a name="GtkMenu--c-left-attach"></a><h3>The <code class="literal">“left-attach”</code> child property</h3>
 <pre class="programlisting">  “left-attach”              <span class="type">gint</span></pre>
 <p>The column number to attach the left side of the child to.</p>
+<p>Owner: GtkMenu</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
@@ -2218,6 +2187,7 @@ menu is torn-off.</p>
 <a name="GtkMenu--c-right-attach"></a><h3>The <code class="literal">“right-attach”</code> child property</h3>
 <pre class="programlisting">  “right-attach”             <span class="type">gint</span></pre>
 <p>The column number to attach the right side of the child to.</p>
+<p>Owner: GtkMenu</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
@@ -2227,6 +2197,7 @@ menu is torn-off.</p>
 <a name="GtkMenu--c-top-attach"></a><h3>The <code class="literal">“top-attach”</code> child property</h3>
 <pre class="programlisting">  “top-attach”               <span class="type">gint</span></pre>
 <p>The row number to attach the top of the child to.</p>
+<p>Owner: GtkMenu</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
@@ -2236,12 +2207,13 @@ menu is torn-off.</p>
 <a name="GtkMenu.style-property-details"></a><h2>Style Property Details</h2>
 <div class="refsect2">
 <a name="GtkMenu--s-arrow-placement"></a><h3>The <code class="literal">“arrow-placement”</code> style property</h3>
-<pre class="programlisting">  “arrow-placement”          <a class="link" href="GtkMenu.html#GtkArrowPlacement" title="enum GtkArrowPlacement"><span class="type">GtkArrowPlacement</span></a></pre>
+<pre class="programlisting">  “arrow-placement”          <span class="type">GtkArrowPlacement</span></pre>
 <p>Indicates where scroll arrows should be placed.</p>
 <div class="warning">
 <p><code class="literal">GtkMenu:arrow-placement</code> has been deprecated since version 3.20 and should not be used in newly-written code.</p>
 <p>the value of this style property is ignored.</p>
 </div>
+<p>Owner: GtkMenu</p>
 <p>Flags: Read</p>
 <p>Default value: GTK_ARROWS_BOTH</p>
 <p class="since">Since: 2.16</p>
@@ -2256,6 +2228,7 @@ menu is torn-off.</p>
 <p>use the standard min-width/min-height CSS properties on
   the arrow node; the value of this style property is ignored.</p>
 </div>
+<p>Owner: GtkMenu</p>
 <p>Flags: Read</p>
 <p>Allowed values: [0,1]</p>
 <p>Default value: 0.7</p>
@@ -2270,6 +2243,7 @@ menu is torn-off.</p>
 <p><code class="literal">GtkMenu:double-arrows</code> has been deprecated since version 3.20 and should not be used in newly-written code.</p>
 <p>the value of this style property is ignored.</p>
 </div>
+<p>Owner: GtkMenu</p>
 <p>Flags: Read</p>
 <p>Default value: TRUE</p>
 </div>
@@ -2278,6 +2252,7 @@ menu is torn-off.</p>
 <a name="GtkMenu--s-horizontal-offset"></a><h3>The <code class="literal">“horizontal-offset”</code> style property</h3>
 <pre class="programlisting">  “horizontal-offset”        <span class="type">gint</span></pre>
 <p>When the menu is a submenu, position it this number of pixels offset horizontally.</p>
+<p>Owner: GtkMenu</p>
 <p>Flags: Read</p>
 <p>Default value: -2</p>
 </div>
@@ -2292,6 +2267,7 @@ menu is torn-off.</p>
   like <a class="link" href="GtkStyleContext.html" title="GtkStyleContext"><span class="type">GtkStyleContext</span></a> and <a class="link" href="GtkCssProvider.html" title="GtkCssProvider"><span class="type">GtkCssProvider</span></a>); the value of this style
   property is ignored.</p>
 </div>
+<p>Owner: GtkMenu</p>
 <p>Flags: Read</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 0</p>
@@ -2301,6 +2277,7 @@ menu is torn-off.</p>
 <a name="GtkMenu--s-vertical-offset"></a><h3>The <code class="literal">“vertical-offset”</code> style property</h3>
 <pre class="programlisting">  “vertical-offset”          <span class="type">gint</span></pre>
 <p>When the menu is a submenu, position it this number of pixels offset vertically.</p>
+<p>Owner: GtkMenu</p>
 <p>Flags: Read</p>
 <p>Default value: 0</p>
 </div>
@@ -2315,6 +2292,7 @@ menu is torn-off.</p>
   like <a class="link" href="GtkStyleContext.html" title="GtkStyleContext"><span class="type">GtkStyleContext</span></a> and <a class="link" href="GtkCssProvider.html" title="GtkCssProvider"><span class="type">GtkCssProvider</span></a>); the value of this style
   property is ignored.</p>
 </div>
+<p>Owner: GtkMenu</p>
 <p>Flags: Read</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 1</p>
@@ -2326,7 +2304,7 @@ menu is torn-off.</p>
 <a name="GtkMenu-move-scroll"></a><h3>The <code class="literal">“move-scroll”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkMenu.html" title="GtkMenu"><span class="type">GtkMenu</span></a>      *menu,
-               <a class="link" href="gtk3-Standard-Enumerations.html#GtkScrollType" title="enum GtkScrollType"><span class="type">GtkScrollType</span></a> scroll_type,
+               <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkScrollType"><span class="type">GtkScrollType</span></a> scroll_type,
                <span class="type">gpointer</span>      user_data)</pre>
 <div class="refsect3">
 <a name="GtkMenu-move-scroll.parameters"></a><h4>Parameters</h4>
@@ -2344,7 +2322,7 @@ user_function (<a class="link" href="GtkMenu.html" title="GtkMenu"><span class="
 </tr>
 <tr>
 <td class="parameter_name"><p>scroll_type</p></td>
-<td class="parameter_description"><p>a <a class="link" href="gtk3-Standard-Enumerations.html#GtkScrollType" title="enum GtkScrollType"><span class="type">GtkScrollType</span></a></p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkScrollType"><span class="type">GtkScrollType</span></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -2448,6 +2426,6 @@ backend can't obtain it. </p></td>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

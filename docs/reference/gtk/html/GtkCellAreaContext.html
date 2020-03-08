@@ -8,7 +8,7 @@
 <link rel="up" href="TreeWidgetObjects.html" title="Tree, List and Icon Grid Widgets">
 <link rel="prev" href="GtkCellAreaBox.html" title="GtkCellAreaBox">
 <link rel="next" href="GtkCellRenderer.html" title="GtkCellRenderer">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -37,8 +37,8 @@
 <a name="GtkCellAreaContext.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -137,7 +137,7 @@
 <td class="property_type">
 <a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a> *</td>
 <td class="property_name"><a class="link" href="GtkCellAreaContext.html#GtkCellAreaContext--area" title="The “area” property">area</a></td>
-<td class="property_flags">Read / Write / Construct Only</td>
+<td class="property_flags">Read / Write / Construct Only</td>
 </tr>
 <tr>
 <td class="property_type"><span class="type">gint</span></td>
@@ -166,17 +166,17 @@
 <a name="GtkCellAreaContext.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkCellAreaContext.html#GtkCellAreaContextClass" title="struct GtkCellAreaContextClass">GtkCellAreaContextClass</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkCellAreaContext.html#GtkCellAreaContextClass">GtkCellAreaContextClass</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name"><a class="link" href="GtkCellAreaContext.html#GtkCellAreaContext-struct" title="GtkCellAreaContext">GtkCellAreaContext</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkCellAreaContext.html#GtkCellAreaContext-struct">GtkCellAreaContext</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -195,7 +195,7 @@
 <div class="refsect1">
 <a name="GtkCellAreaContext.description"></a><h2>Description</h2>
 <p>The <a class="link" href="GtkCellAreaContext.html" title="GtkCellAreaContext"><span class="type">GtkCellAreaContext</span></a> object is created by a given <a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a>
-implementation via its <a class="link" href="GtkCellArea.html#GtkCellAreaClass.create-context"><code class="function">GtkCellAreaClass.create_context()</code></a> virtual
+implementation via its <a href="https://developer.gnome.org/gtk4/GtkCellArea.html#GtkCellAreaClass.create-context"><code class="function">GtkCellAreaClass.create_context()</code></a> virtual
 method and is used to store cell sizes and alignments for a series of
 <a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span class="type">GtkTreeModel</span></a> rows that are requested and rendered in the same context.</p>
 <p><a class="link" href="GtkCellLayout.html" title="GtkCellLayout"><span class="type">GtkCellLayout</span></a> widgets can create any number of contexts in which to
@@ -215,7 +215,7 @@ gtk_cell_area_context_get_area (<em class="parameter"><code><a class="link" href
 <p>This is generally unneeded by layouting widgets; however,
 it is important for the context implementation itself to
 fetch information about the area it is being used for.</p>
-<p>For instance at <a class="link" href="GtkCellAreaContext.html#GtkCellAreaContextClass.allocate"><code class="function">GtkCellAreaContextClass.allocate()</code></a> time
+<p>For instance at <a href="https://developer.gnome.org/gtk4/GtkCellAreaContext.html#GtkCellAreaContextClass.allocate"><code class="function">GtkCellAreaContextClass.allocate()</code></a> time
 it’s important to know details about any cell spacing
 that the <a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a> is configured with in order to
 compute a proper allocation.</p>
@@ -653,76 +653,13 @@ progressively push the requested height over a series of
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkCellAreaContext.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkCellAreaContextClass"></a><h3>struct GtkCellAreaContextClass</h3>
-<pre class="programlisting">struct GtkCellAreaContextClass {
-  void    (* allocate)                       (GtkCellAreaContext *context,
-                                              gint                width,
-                                              gint                height);
-  void    (* reset)                          (GtkCellAreaContext *context);
-  void    (* get_preferred_height_for_width) (GtkCellAreaContext *context,
-                                              gint                width,
-                                              gint               *minimum_height,
-                                              gint               *natural_height);
-  void    (* get_preferred_width_for_height) (GtkCellAreaContext *context,
-                                              gint                height,
-                                              gint               *minimum_width,
-                                              gint               *natural_width);
-};
-</pre>
-<div class="refsect3">
-<a name="GtkCellAreaContextClass.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkCellAreaContextClass.allocate"></a>allocate</code></em> ()</p></td>
-<td class="struct_member_description"><p>This tells the context that an allocation width or height
-(or both) have been decided for a group of rows. The context should
-store any allocations for internally aligned cells at this point so
-that they dont need to be recalculated at <a class="link" href="GtkCellArea.html#gtk-cell-area-render" title="gtk_cell_area_render ()"><code class="function">gtk_cell_area_render()</code></a> time.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkCellAreaContextClass.reset"></a>reset</code></em> ()</p></td>
-<td class="struct_member_description"><p>Clear any previously stored information about requested and
-allocated sizes for the context.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkCellAreaContextClass.get-preferred-height-for-width"></a>get_preferred_height_for_width</code></em> ()</p></td>
-<td class="struct_member_description"><p>Returns the aligned height for the given
-width that context must store while collecting sizes for it’s rows.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkCellAreaContextClass.get-preferred-width-for-height"></a>get_preferred_width_for_height</code></em> ()</p></td>
-<td class="struct_member_description"><p>Returns the aligned width for the given
-height that context must store while collecting sizes for it’s rows.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkCellAreaContext-struct"></a><h3>GtkCellAreaContext</h3>
-<pre class="programlisting">typedef struct _GtkCellAreaContext GtkCellAreaContext;</pre>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkCellAreaContext.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkCellAreaContext--area"></a><h3>The <code class="literal">“area”</code> property</h3>
 <pre class="programlisting">  “area”                     <a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a> *</pre>
 <p>The <a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a> this context was created by</p>
-<p>Flags: Read / Write / Construct Only</p>
+<p>Owner: GtkCellAreaContext</p>
+<p>Flags: Read / Write / Construct Only</p>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
 </div>
 <hr>
@@ -732,6 +669,7 @@ height that context must store while collecting sizes for it’s rows.</p></td>
 <p>The minimum height for the <a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a> in this context
 for all <a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span class="type">GtkTreeModel</span></a> rows that this context was requested
 for using <a class="link" href="GtkCellArea.html#gtk-cell-area-get-preferred-height" title="gtk_cell_area_get_preferred_height ()"><code class="function">gtk_cell_area_get_preferred_height()</code></a>.</p>
+<p>Owner: GtkCellAreaContext</p>
 <p>Flags: Read</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
@@ -744,6 +682,7 @@ for using <a class="link" href="GtkCellArea.html#gtk-cell-area-get-preferred-hei
 <p>The minimum width for the <a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a> in this context
 for all <a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span class="type">GtkTreeModel</span></a> rows that this context was requested
 for using <a class="link" href="GtkCellArea.html#gtk-cell-area-get-preferred-width" title="gtk_cell_area_get_preferred_width ()"><code class="function">gtk_cell_area_get_preferred_width()</code></a>.</p>
+<p>Owner: GtkCellAreaContext</p>
 <p>Flags: Read</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
@@ -756,6 +695,7 @@ for using <a class="link" href="GtkCellArea.html#gtk-cell-area-get-preferred-wid
 <p>The natural height for the <a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a> in this context
 for all <a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span class="type">GtkTreeModel</span></a> rows that this context was requested
 for using <a class="link" href="GtkCellArea.html#gtk-cell-area-get-preferred-height" title="gtk_cell_area_get_preferred_height ()"><code class="function">gtk_cell_area_get_preferred_height()</code></a>.</p>
+<p>Owner: GtkCellAreaContext</p>
 <p>Flags: Read</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
@@ -768,6 +708,7 @@ for using <a class="link" href="GtkCellArea.html#gtk-cell-area-get-preferred-hei
 <p>The natural width for the <a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a> in this context
 for all <a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span class="type">GtkTreeModel</span></a> rows that this context was requested
 for using <a class="link" href="GtkCellArea.html#gtk-cell-area-get-preferred-width" title="gtk_cell_area_get_preferred_width ()"><code class="function">gtk_cell_area_get_preferred_width()</code></a>.</p>
+<p>Owner: GtkCellAreaContext</p>
 <p>Flags: Read</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
@@ -776,6 +717,6 @@ for using <a class="link" href="GtkCellArea.html#gtk-cell-area-get-preferred-wid
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

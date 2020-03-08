@@ -8,7 +8,7 @@
 <link rel="up" href="SelectorWidgets.html" title="Selector Widgets and Dialogs">
 <link rel="prev" href="GtkColorChooser.html" title="GtkColorChooser">
 <link rel="next" href="GtkColorChooserWidget.html" title="GtkColorChooserWidget">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -39,8 +39,8 @@
 <a name="GtkColorButton.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -198,9 +198,9 @@
 <a name="GtkColorButton.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody><tr>
 <td class="signal_type"><span class="returnvalue">void</span></td>
@@ -213,12 +213,12 @@
 <a name="GtkColorButton.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkColorButton.html#GtkColorButton-struct" title="struct GtkColorButton">GtkColorButton</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkColorButton.html#GtkColorButton-struct">GtkColorButton</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -670,18 +670,12 @@ gtk_color_button_get_title (<em class="parameter"><code><a class="link" href="Gt
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkColorButton.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkColorButton-struct"></a><h3>struct GtkColorButton</h3>
-<pre class="programlisting">struct GtkColorButton;</pre>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkColorButton.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkColorButton--alpha"></a><h3>The <code class="literal">“alpha”</code> property</h3>
 <pre class="programlisting">  “alpha”                    <span class="type">guint</span></pre>
 <p>The selected opacity value (0 fully transparent, 65535 fully opaque).</p>
+<p>Owner: GtkColorButton</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &lt;= 65535</p>
 <p>Default value: 65535</p>
@@ -696,6 +690,7 @@ gtk_color_button_get_title (<em class="parameter"><code><a class="link" href="Gt
 <p><code class="literal">GtkColorButton:color</code> has been deprecated since version 3.4 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="GtkColorButton.html#GtkColorButton--rgba" title="The “rgba” property"><span class="type">“rgba”</span></a> instead.</p>
 </div>
+<p>Owner: GtkColorButton</p>
 <p>Flags: Read / Write</p>
 <p class="since">Since: 2.4</p>
 </div>
@@ -704,6 +699,7 @@ gtk_color_button_get_title (<em class="parameter"><code><a class="link" href="Gt
 <a name="GtkColorButton--rgba"></a><h3>The <code class="literal">“rgba”</code> property</h3>
 <pre class="programlisting">  “rgba”                     <span class="type">GdkRGBA</span> *</pre>
 <p>The RGBA color.</p>
+<p>Owner: GtkColorButton</p>
 <p>Flags: Read / Write</p>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
 </div>
@@ -716,6 +712,7 @@ in the dialog and go directly to the color editor.</p>
 <p>This property should be used in cases where the palette
 in the editor would be redundant, such as when the color
 button is already part of a palette.</p>
+<p>Owner: GtkColorButton</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: <a class="link" href="api-index-3-20.html#api-index-3.20">3.20</a></p>
@@ -725,6 +722,7 @@ button is already part of a palette.</p>
 <a name="GtkColorButton--title"></a><h3>The <code class="literal">“title”</code> property</h3>
 <pre class="programlisting">  “title”                    <span class="type">gchar</span> *</pre>
 <p>The title of the color selection dialog</p>
+<p>Owner: GtkColorButton</p>
 <p>Flags: Read / Write</p>
 <p>Default value: "Pick a Color"</p>
 <p class="since">Since: 2.4</p>
@@ -736,6 +734,7 @@ button is already part of a palette.</p>
 <p>If this property is set to <code class="literal">TRUE</code>, the color swatch on the button is
 rendered against a checkerboard background to show its opacity and
 the opacity slider is displayed in the color selection dialog.</p>
+<p>Owner: GtkColorButton</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: 2.4</p>
@@ -786,6 +785,6 @@ as well, use the notify::color signal.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

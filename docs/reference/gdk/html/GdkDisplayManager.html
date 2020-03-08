@@ -8,7 +8,7 @@
 <link rel="up" href="reference.html" title="API Reference">
 <link rel="prev" href="gdk3-General.html" title="General">
 <link rel="next" href="GdkDisplay.html" title="GdkDisplay">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -38,8 +38,8 @@
 <a name="GdkDisplayManager.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -105,9 +105,9 @@
 <a name="GdkDisplayManager.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody><tr>
 <td class="signal_type"><span class="returnvalue">void</span></td>
@@ -120,12 +120,12 @@
 <a name="GdkDisplayManager.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name"><a class="link" href="GdkDisplayManager.html#GdkDisplayManager-struct" title="GdkDisplayManager">GdkDisplayManager</a></td>
+<td class="function_name">GdkDisplayManager</td>
 </tr></tbody>
 </table></div>
 </div>
@@ -154,7 +154,7 @@ The <a class="link" href="GdkDisplayManager.html" title="GdkDisplayManager"><spa
 at runtime.</p>
 <p>When writing backend-specific code that is supposed to work with
 multiple GDK backends, you have to consider both compile time and
-runtime. At compile time, use the <a class="link" href="gdk3-General.html#GDK-WINDOWING-X11:CAPS" title="GDK_WINDOWING_X11"><span class="type">GDK_WINDOWING_X11</span></a>, <a class="link" href="gdk3-General.html#GDK-WINDOWING-WIN32:CAPS" title="GDK_WINDOWING_WIN32"><span class="type">GDK_WINDOWING_WIN32</span></a>
+runtime. At compile time, use the <span class="type">GDK_WINDOWING_X11</span>, <span class="type">GDK_WINDOWING_WIN32</span>
 macros, etc. to find out which backends are present in the GDK library
 you are building your application against. At runtime, use type-check
 macros like <code class="function">GDK_IS_X11_DISPLAY()</code> to find out which backend is in use:</p>
@@ -179,21 +179,21 @@ macros like <code class="function">GDK_IS_X11_DISPLAY()</code> to find out which
 13
 14
 15</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="preproc">#ifdef</span><span class="normal"> <a href="gdk3-General.html#GDK-WINDOWING-X11:CAPS">GDK_WINDOWING_X11</a></span>
-<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDK_IS_X11_DISPLAY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">display</span><span class="symbol">))</span>
-<span class="normal">    </span><span class="cbracket">{</span>
-<span class="normal">      </span><span class="comment">// make X11-specific calls here</span>
-<span class="normal">    </span><span class="cbracket">}</span>
-<span class="normal">  </span><span class="keyword">else</span>
-<span class="preproc">#endif</span>
-<span class="preproc">#ifdef</span><span class="normal"> <a href="gdk3-General.html#GDK-WINDOWING-QUARTZ:CAPS">GDK_WINDOWING_QUARTZ</a></span>
-<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function">GDK_IS_QUARTZ_DISPLAY</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">display</span><span class="symbol">))</span>
-<span class="normal">    </span><span class="cbracket">{</span>
-<span class="normal">      </span><span class="comment">// make Quartz-specific calls here</span>
-<span class="normal">    </span><span class="cbracket">}</span>
-<span class="normal">  </span><span class="keyword">else</span>
-<span class="preproc">#endif</span>
-<span class="normal">  </span><span class="function">g_error</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Unsupported GDK backend"</span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="cp">#ifdef GDK_WINDOWING_X11</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">GDK_IS_X11_DISPLAY</span> <span class="p">(</span><span class="n">display</span><span class="p">))</span>
+    <span class="p">{</span>
+      <span class="c1">// make X11-specific calls here</span>
+    <span class="p">}</span>
+  <span class="k">else</span>
+<span class="cp">#endif</span>
+<span class="cp">#ifdef GDK_WINDOWING_QUARTZ</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">GDK_IS_QUARTZ_DISPLAY</span> <span class="p">(</span><span class="n">display</span><span class="p">))</span>
+    <span class="p">{</span>
+      <span class="c1">// make Quartz-specific calls here</span>
+    <span class="p">}</span>
+  <span class="k">else</span>
+<span class="cp">#endif</span>
+  <span class="n">g_error</span> <span class="p">(</span><span class="s">&quot;Unsupported GDK backend&quot;</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -355,18 +355,12 @@ display could not be opened. </p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GdkDisplayManager.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GdkDisplayManager-struct"></a><h3>GdkDisplayManager</h3>
-<pre class="programlisting">typedef struct _GdkDisplayManager GdkDisplayManager;</pre>
-</div>
-</div>
-<div class="refsect1">
 <a name="GdkDisplayManager.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GdkDisplayManager--default-display"></a><h3>The <code class="literal">“default-display”</code> property</h3>
 <pre class="programlisting">  “default-display”          <a class="link" href="GdkDisplay.html" title="GdkDisplay"><span class="type">GdkDisplay</span></a> *</pre>
 <p>The default display for GDK.</p>
+<p>Owner: GdkDisplayManager</p>
 <p>Flags: Read / Write</p>
 </div>
 </div>
@@ -412,6 +406,6 @@ user_function (<a class="link" href="GdkDisplayManager.html" title="GdkDisplayMa
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

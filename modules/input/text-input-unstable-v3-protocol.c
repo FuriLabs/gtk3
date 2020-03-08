@@ -32,6 +32,16 @@
 #include <stdint.h>
 #include "wayland-util.h"
 
+#ifndef __has_attribute
+# define __has_attribute(x) 0  /* Compatibility with non-clang compilers. */
+#endif
+
+#if (__has_attribute(visibility) || defined(__GNUC__) && __GNUC__ >= 4)
+#define WL_PRIVATE __attribute__ ((visibility("hidden")))
+#else
+#define WL_PRIVATE
+#endif
+
 extern const struct wl_interface wl_seat_interface;
 extern const struct wl_interface wl_surface_interface;
 extern const struct wl_interface zwp_text_input_v3_interface;
@@ -67,7 +77,7 @@ static const struct wl_message zwp_text_input_v3_events[] = {
 	{ "done", "u", types + 0 },
 };
 
-const struct wl_interface zwp_text_input_v3_interface = {
+WL_PRIVATE const struct wl_interface zwp_text_input_v3_interface = {
 	"zwp_text_input_v3", 1,
 	8, zwp_text_input_v3_requests,
 	6, zwp_text_input_v3_events,
@@ -78,7 +88,7 @@ static const struct wl_message zwp_text_input_manager_v3_requests[] = {
 	{ "get_text_input", "no", types + 6 },
 };
 
-const struct wl_interface zwp_text_input_manager_v3_interface = {
+WL_PRIVATE const struct wl_interface zwp_text_input_manager_v3_interface = {
 	"zwp_text_input_manager_v3", 1,
 	2, zwp_text_input_manager_v3_requests,
 	0, NULL,

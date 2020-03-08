@@ -10,8 +10,8 @@
 
 m4_define([gtk_major_version], [3])
 m4_define([gtk_minor_version], [24])
-m4_define([gtk_micro_version], [13])
-m4_define([gtk_interface_age], [9])
+m4_define([gtk_micro_version], [14])
+m4_define([gtk_interface_age], [10])
 m4_define([gtk_binary_age],
           [m4_eval(100 * gtk_minor_version + gtk_micro_version)])
 m4_define([gtk_version],
@@ -60,7 +60,7 @@ m4_define([atk_required_version], [2.15.1])
 m4_define([cairo_required_version], [1.14.0])
 m4_define([gdk_pixbuf_required_version], [2.30.0])
 m4_define([introspection_required_version], [1.39.0])
-m4_define([wayland_required_version], [1.9.91])
+m4_define([wayland_required_version], [1.14.91])
 m4_define([wayland_protocols_required_version], [1.14])
 m4_define([epoxy_required_version], [1.4])
 m4_define([cloudproviders_required_version], [0.2.5])

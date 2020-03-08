@@ -8,7 +8,7 @@
 <link rel="up" href="MenusAndCombos.html" title="Menus, Combo Box, Toolbar">
 <link rel="prev" href="GtkMenuToolButton.html" title="GtkMenuToolButton">
 <link rel="next" href="GtkRadioToolButton.html" title="GtkRadioToolButton">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -39,8 +39,8 @@
 <a name="GtkToggleToolButton.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -97,9 +97,9 @@
 <a name="GtkToggleToolButton.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody><tr>
 <td class="signal_type"><span class="returnvalue">void</span></td>
@@ -112,17 +112,17 @@
 <a name="GtkToggleToolButton.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkToggleToolButton.html#GtkToggleToolButton-struct" title="struct GtkToggleToolButton">GtkToggleToolButton</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkToggleToolButton.html#GtkToggleToolButton-struct">GtkToggleToolButton</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkToggleToolButton.html#GtkToggleToolButtonClass" title="struct GtkToggleToolButtonClass">GtkToggleToolButtonClass</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkToggleToolButton.html#GtkToggleToolButtonClass">GtkToggleToolButtonClass</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -184,8 +184,8 @@ gtk_toggle_tool_button_new_from_stock (<em class="parameter"><code>const <span c
 <p>Use <a class="link" href="GtkToggleToolButton.html#gtk-toggle-tool-button-new" title="gtk_toggle_tool_button_new ()"><code class="function">gtk_toggle_tool_button_new()</code></a> instead.</p>
 </div>
 <p>Creates a new <a class="link" href="GtkToggleToolButton.html" title="GtkToggleToolButton"><span class="type">GtkToggleToolButton</span></a> containing the image and text from a
-stock item. Some stock ids have preprocessor macros like <a class="link" href="gtk3-Stock-Items.html#GTK-STOCK-OK:CAPS" title="GTK_STOCK_OK"><span class="type">GTK_STOCK_OK</span></a>
-and <a class="link" href="gtk3-Stock-Items.html#GTK-STOCK-APPLY:CAPS" title="GTK_STOCK_APPLY"><span class="type">GTK_STOCK_APPLY</span></a>.</p>
+stock item. Some stock ids have preprocessor macros like <span class="type">GTK_STOCK_OK</span>
+and <span class="type">GTK_STOCK_APPLY</span>.</p>
 <p>It is an error if <em class="parameter"><code>stock_id</code></em>
  is not a name of a stock item.</p>
 <div class="refsect3">
@@ -273,45 +273,12 @@ Returns <code class="literal">TRUE</code> if the toggle button is pressed in and
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkToggleToolButton.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkToggleToolButton-struct"></a><h3>struct GtkToggleToolButton</h3>
-<pre class="programlisting">struct GtkToggleToolButton;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkToggleToolButtonClass"></a><h3>struct GtkToggleToolButtonClass</h3>
-<pre class="programlisting">struct GtkToggleToolButtonClass {
-  GtkToolButtonClass parent_class;
-
-
-  /* signal */
-  void (* toggled) (GtkToggleToolButton *button);
-};
-</pre>
-<div class="refsect3">
-<a name="GtkToggleToolButtonClass.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody><tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkToggleToolButtonClass.toggled"></a>toggled</code></em> ()</p></td>
-<td class="struct_member_description"><p>Signal emitted whenever the toggle tool button changes state.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr></tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkToggleToolButton.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkToggleToolButton--active"></a><h3>The <code class="literal">“active”</code> property</h3>
 <pre class="programlisting">  “active”                   <span class="type">gboolean</span></pre>
 <p>If the toggle tool button should be pressed in.</p>
+<p>Owner: GtkToggleToolButton</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: 2.8</p>
@@ -356,6 +323,6 @@ user_function (<a class="link" href="GtkToggleToolButton.html" title="GtkToggleT
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

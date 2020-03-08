@@ -8,7 +8,7 @@
 <link rel="up" href="SelectorWidgets.html" title="Selector Widgets and Dialogs">
 <link rel="prev" href="SelectorWidgets.html" title="Selector Widgets and Dialogs">
 <link rel="next" href="GtkColorButton.html" title="GtkColorButton">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -40,8 +40,8 @@
 <a name="GtkColorChooser.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -114,9 +114,9 @@
 <a name="GtkColorChooser.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody><tr>
 <td class="signal_type"><span class="returnvalue">void</span></td>
@@ -129,12 +129,12 @@
 <a name="GtkColorChooser.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name"><a class="link" href="GtkColorChooser.html#GtkColorChooser-struct" title="GtkColorChooser">GtkColorChooser</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkColorChooser.html#GtkColorChooser-struct">GtkColorChooser</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -296,7 +296,7 @@ gtk_color_chooser_set_use_alpha (<em class="parameter"><code><a class="link" hre
 <a name="gtk-color-chooser-add-palette"></a><h3>gtk_color_chooser_add_palette ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_color_chooser_add_palette (<em class="parameter"><code><a class="link" href="GtkColorChooser.html" title="GtkColorChooser"><span class="type">GtkColorChooser</span></a> *chooser</code></em>,
-                               <em class="parameter"><code><a class="link" href="gtk3-Standard-Enumerations.html#GtkOrientation" title="enum GtkOrientation"><span class="type">GtkOrientation</span></a> orientation</code></em>,
+                               <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkOrientation"><span class="type">GtkOrientation</span></a> orientation</code></em>,
                                <em class="parameter"><code><span class="type">gint</span> colors_per_line</code></em>,
                                <em class="parameter"><code><span class="type">gint</span> n_colors</code></em>,
                                <em class="parameter"><code><span class="type">GdkRGBA</span> *colors</code></em>);</pre>
@@ -333,8 +333,8 @@ from the color chooser.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>orientation</p></td>
-<td class="parameter_description"><p><a class="link" href="gtk3-Standard-Enumerations.html#GTK-ORIENTATION-HORIZONTAL:CAPS"><code class="literal">GTK_ORIENTATION_HORIZONTAL</code></a> if the palette should
-be displayed in rows, <a class="link" href="gtk3-Standard-Enumerations.html#GTK-ORIENTATION-VERTICAL:CAPS"><code class="literal">GTK_ORIENTATION_VERTICAL</code></a> for columns</p></td>
+<td class="parameter_description"><p><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-ORIENTATION-HORIZONTAL:CAPS"><code class="literal">GTK_ORIENTATION_HORIZONTAL</code></a> if the palette should
+be displayed in rows, <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-ORIENTATION-VERTICAL:CAPS"><code class="literal">GTK_ORIENTATION_VERTICAL</code></a> for columns</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -360,13 +360,6 @@ be displayed in rows, <a class="link" href="gtk3-Standard-Enumerations.html#GTK-
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkColorChooser.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkColorChooser-struct"></a><h3>GtkColorChooser</h3>
-<pre class="programlisting">typedef struct _GtkColorChooser GtkColorChooser;</pre>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkColorChooser.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkColorChooser--rgba"></a><h3>The <code class="literal">“rgba”</code> property</h3>
@@ -374,6 +367,7 @@ be displayed in rows, <a class="link" href="gtk3-Standard-Enumerations.html#GTK-
 <p>The ::rgba property contains the currently selected color,
 as a <span class="type">GdkRGBA</span> struct. The property can be set to change
 the current selection programmatically.</p>
+<p>Owner: GtkColorChooser</p>
 <p>Flags: Read / Write</p>
 <p class="since">Since: <a class="link" href="api-index-3-4.html#api-index-3.4">3.4</a></p>
 </div>
@@ -387,6 +381,7 @@ via the <a class="link" href="GtkColorChooser.html#GtkColorChooser--rgba" title=
 alpha == 1.</p>
 <p>Implementations are expected to show alpha by rendering the color
 over a non-uniform background (like a checkerboard pattern).</p>
+<p>Owner: GtkColorChooser</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 <p class="since">Since: <a class="link" href="api-index-3-4.html#api-index-3.4">3.4</a></p>
@@ -441,6 +436,6 @@ Space, Shift+Space, Return or Enter.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

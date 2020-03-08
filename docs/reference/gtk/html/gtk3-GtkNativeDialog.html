@@ -8,7 +8,7 @@
 <link rel="up" href="AbstractObjects.html" title="Abstract Base Classes">
 <link rel="prev" href="GtkIMContext.html" title="GtkIMContext">
 <link rel="next" href="PlugSocket.html" title="Cross-process Embedding">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -35,8 +35,8 @@
 <a name="gtk3-GtkNativeDialog.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -133,17 +133,17 @@
 <a name="gtk3-GtkNativeDialog.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="define_keyword">#define</td>
-<td class="function_name"><a class="link" href="gtk3-GtkNativeDialog.html#GTK-TYPE-NATIVE-DIALOG:CAPS" title="GTK_TYPE_NATIVE_DIALOG">GTK_TYPE_NATIVE_DIALOG</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/gtk4-GtkNativeDialog.html#GTK-TYPE-NATIVE-DIALOG:CAPS">GTK_TYPE_NATIVE_DIALOG</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="gtk3-GtkNativeDialog.html#GtkNativeDialogClass" title="struct GtkNativeDialogClass">GtkNativeDialogClass</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/gtk4-GtkNativeDialog.html#GtkNativeDialogClass">GtkNativeDialogClass</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -498,17 +498,17 @@ calls <a class="link" href="gtk3-GtkNativeDialog.html#gtk-native-dialog-show" ti
 9
 10
 11</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">gint</span><span class="normal"> result </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="gtk3-GtkNativeDialog.html#gtk-native-dialog-run">gtk_native_dialog_run</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_NATIVE_DIALOG</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">dialog</span><span class="symbol">));</span>
-<span class="keyword">switch</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">result</span><span class="symbol">)</span>
-<span class="normal">  </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="keyword">case</span><span class="normal"> <a href="GtkDialog.html#GTK-RESPONSE-ACCEPT:CAPS">GTK_RESPONSE_ACCEPT</a></span><span class="symbol">:</span>
-<span class="normal">       </span><span class="function">do_application_specific_something</span><span class="normal"> </span><span class="symbol">();</span>
-<span class="normal">       </span><span class="keyword">break</span><span class="symbol">;</span>
-<span class="label">    default:</span>
-<span class="normal">       </span><span class="function">do_nothing_since_dialog_was_cancelled</span><span class="normal"> </span><span class="symbol">();</span>
-<span class="normal">       </span><span class="keyword">break</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="cbracket">}</span>
-<span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">dialog</span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">gint</span> <span class="n">result</span> <span class="o">=</span> <span class="n">gtk_native_dialog_run</span> <span class="p">(</span><span class="n">GTK_NATIVE_DIALOG</span> <span class="p">(</span><span class="n">dialog</span><span class="p">));</span>
+<span class="k">switch</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">case</span> <span class="nl">GTK_RESPONSE_ACCEPT</span><span class="p">:</span>
+       <span class="n">do_application_specific_something</span> <span class="p">();</span>
+       <span class="k">break</span><span class="p">;</span>
+    <span class="k">default</span><span class="o">:</span>
+       <span class="n">do_nothing_since_dialog_was_cancelled</span> <span class="p">();</span>
+       <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="n">g_object_unref</span> <span class="p">(</span><span class="n">dialog</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -543,29 +543,11 @@ be triggered during a <code class="function">gtk_nautilus_dialog_run()</code> ca
 </div>
 </div>
 <div class="refsect1">
-<a name="gtk3-GtkNativeDialog.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GTK-TYPE-NATIVE-DIALOG:CAPS"></a><h3>GTK_TYPE_NATIVE_DIALOG</h3>
-<pre class="programlisting">#define GTK_TYPE_NATIVE_DIALOG             (gtk_native_dialog_get_type ())
-</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkNativeDialogClass"></a><h3>struct GtkNativeDialogClass</h3>
-<pre class="programlisting">struct GtkNativeDialogClass {
-  GObjectClass parent_class;
-
-  void (* response) (GtkNativeDialog *self, gint response_id);
-};
-</pre>
-</div>
-</div>
-<div class="refsect1">
 <a name="gtk3-GtkNativeDialog.see-also"></a><h2>See Also</h2>
 <p><span class="type">GtkFileChooserNative</span>, <a class="link" href="GtkDialog.html" title="GtkDialog"><span class="type">GtkDialog</span></a></p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

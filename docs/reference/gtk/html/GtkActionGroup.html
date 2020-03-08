@@ -8,7 +8,7 @@
 <link rel="up" href="DeprecatedObjects.html" title="Deprecated">
 <link rel="prev" href="GtkUIManager.html" title="GtkUIManager">
 <link rel="next" href="GtkAction.html" title="GtkAction">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -39,8 +39,8 @@
 <a name="GtkActionGroup.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -247,7 +247,7 @@
 <td class="property_type">
 <span class="type">gchar</span> *</td>
 <td class="property_name"><a class="link" href="GtkActionGroup.html#GtkActionGroup--name" title="The “name” property">name</a></td>
-<td class="property_flags">Read / Write / Construct Only</td>
+<td class="property_flags">Read / Write / Construct Only</td>
 </tr>
 <tr>
 <td class="property_type"><span class="type">gboolean</span></td>
@@ -266,9 +266,9 @@
 <a name="GtkActionGroup.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody>
 <tr>
@@ -298,29 +298,29 @@
 <a name="GtkActionGroup.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkActionGroup.html#GtkActionGroup-struct" title="struct GtkActionGroup">GtkActionGroup</a></td>
+<td class="function_name">GtkActionGroup</td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkActionGroup.html#GtkActionGroupClass" title="struct GtkActionGroupClass">GtkActionGroupClass</a></td>
+<td class="function_name">GtkActionGroupClass</td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkActionGroup.html#GtkActionEntry" title="struct GtkActionEntry">GtkActionEntry</a></td>
+<td class="function_name">GtkActionEntry</td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkActionGroup.html#GtkToggleActionEntry" title="struct GtkToggleActionEntry">GtkToggleActionEntry</a></td>
+<td class="function_name">GtkToggleActionEntry</td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkActionGroup.html#GtkRadioActionEntry" title="struct GtkRadioActionEntry">GtkRadioActionEntry</a></td>
+<td class="function_name">GtkRadioActionEntry</td>
 </tr>
 </tbody>
 </table></div>
@@ -391,16 +391,16 @@ it doesn’t allow you to specify a signal.</p>
 8
 9
 10</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkActionGroup"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"actiongroup"</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
-<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkAction"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"About"</span><span class="symbol">&gt;</span>
-<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"name"</span><span class="symbol">&gt;</span><span class="normal">About</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
-<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"stock_id"</span><span class="symbol">&gt;</span><span class="normal">gtk</span><span class="symbol">-</span><span class="normal">about</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
-<span class="normal">          </span><span class="symbol">&lt;</span><span class="usertype">signal</span><span class="normal"> handler</span><span class="symbol">=</span><span class="string">"about_activate"</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"activate"</span><span class="symbol">/&gt;</span>
-<span class="normal">      </span><span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span>
-<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">accelerator</span><span class="normal"> key</span><span class="symbol">=</span><span class="string">"F1"</span><span class="normal"> modifiers</span><span class="symbol">=</span><span class="string">"GDK_CONTROL_MASK | GDK_SHIFT_MASK"</span><span class="symbol">/&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
-<span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkActionGroup&quot;</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;actiongroup&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkAction&quot;</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;About&quot;</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;name&quot;</span><span class="o">&gt;</span><span class="n">About</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;stock_id&quot;</span><span class="o">&gt;</span><span class="n">gtk</span><span class="o">-</span><span class="n">about</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">signal</span> <span class="n">handler</span><span class="o">=</span><span class="s">&quot;about_activate&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;activate&quot;</span><span class="o">/&gt;</span>
+      <span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">accelerator</span> <span class="n">key</span><span class="o">=</span><span class="s">&quot;F1&quot;</span> <span class="n">modifiers</span><span class="o">=</span><span class="s">&quot;GDK_CONTROL_MASK | GDK_SHIFT_MASK&quot;</span><span class="o">/&gt;</span>
+  <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -844,7 +844,7 @@ gtk_action_group_remove_action (<em class="parameter"><code><a class="link" href
 <a name="gtk-action-group-add-actions"></a><h3>gtk_action_group_add_actions ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_action_group_add_actions (<em class="parameter"><code><a class="link" href="GtkActionGroup.html" title="GtkActionGroup"><span class="type">GtkActionGroup</span></a> *action_group</code></em>,
-                              <em class="parameter"><code>const <a class="link" href="GtkActionGroup.html#GtkActionEntry" title="struct GtkActionEntry"><span class="type">GtkActionEntry</span></a> *entries</code></em>,
+                              <em class="parameter"><code>const <span class="type">GtkActionEntry</span> *entries</code></em>,
                               <em class="parameter"><code><span class="type">guint</span> n_entries</code></em>,
                               <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
 <div class="warning"><p><code class="literal">gtk_action_group_add_actions</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p></div>
@@ -892,7 +892,7 @@ and their accel paths are set to <code class="literal">&lt;Actions&gt;/group-nam
 <a name="gtk-action-group-add-actions-full"></a><h3>gtk_action_group_add_actions_full ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_action_group_add_actions_full (<em class="parameter"><code><a class="link" href="GtkActionGroup.html" title="GtkActionGroup"><span class="type">GtkActionGroup</span></a> *action_group</code></em>,
-                                   <em class="parameter"><code>const <a class="link" href="GtkActionGroup.html#GtkActionEntry" title="struct GtkActionEntry"><span class="type">GtkActionEntry</span></a> *entries</code></em>,
+                                   <em class="parameter"><code>const <span class="type">GtkActionEntry</span> *entries</code></em>,
                                    <em class="parameter"><code><span class="type">guint</span> n_entries</code></em>,
                                    <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>,
                                    <em class="parameter"><code><span class="type">GDestroyNotify</span> destroy</code></em>);</pre>
@@ -946,7 +946,7 @@ callback for <em class="parameter"><code>user_data</code></em>
 <a name="gtk-action-group-add-toggle-actions"></a><h3>gtk_action_group_add_toggle_actions ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_action_group_add_toggle_actions (<em class="parameter"><code><a class="link" href="GtkActionGroup.html" title="GtkActionGroup"><span class="type">GtkActionGroup</span></a> *action_group</code></em>,
-                                     <em class="parameter"><code>const <a class="link" href="GtkActionGroup.html#GtkToggleActionEntry" title="struct GtkToggleActionEntry"><span class="type">GtkToggleActionEntry</span></a> *entries</code></em>,
+                                     <em class="parameter"><code>const <span class="type">GtkToggleActionEntry</span> *entries</code></em>,
                                      <em class="parameter"><code><span class="type">guint</span> n_entries</code></em>,
                                      <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
 <div class="warning"><p><code class="literal">gtk_action_group_add_toggle_actions</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p></div>
@@ -995,7 +995,7 @@ and their accel paths are set to <code class="literal">&lt;Actions&gt;/group-nam
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_action_group_add_toggle_actions_full
                                (<em class="parameter"><code><a class="link" href="GtkActionGroup.html" title="GtkActionGroup"><span class="type">GtkActionGroup</span></a> *action_group</code></em>,
-                                <em class="parameter"><code>const <a class="link" href="GtkActionGroup.html#GtkToggleActionEntry" title="struct GtkToggleActionEntry"><span class="type">GtkToggleActionEntry</span></a> *entries</code></em>,
+                                <em class="parameter"><code>const <span class="type">GtkToggleActionEntry</span> *entries</code></em>,
                                 <em class="parameter"><code><span class="type">guint</span> n_entries</code></em>,
                                 <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>,
                                 <em class="parameter"><code><span class="type">GDestroyNotify</span> destroy</code></em>);</pre>
@@ -1049,7 +1049,7 @@ gtk_action_group_add_toggle_actions_full
 <a name="gtk-action-group-add-radio-actions"></a><h3>gtk_action_group_add_radio_actions ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_action_group_add_radio_actions (<em class="parameter"><code><a class="link" href="GtkActionGroup.html" title="GtkActionGroup"><span class="type">GtkActionGroup</span></a> *action_group</code></em>,
-                                    <em class="parameter"><code>const <a class="link" href="GtkActionGroup.html#GtkRadioActionEntry" title="struct GtkRadioActionEntry"><span class="type">GtkRadioActionEntry</span></a> *entries</code></em>,
+                                    <em class="parameter"><code>const <span class="type">GtkRadioActionEntry</span> *entries</code></em>,
                                     <em class="parameter"><code><span class="type">guint</span> n_entries</code></em>,
                                     <em class="parameter"><code><span class="type">gint</span> value</code></em>,
                                     <em class="parameter"><code><span class="type">GCallback</span> on_change</code></em>,
@@ -1113,7 +1113,7 @@ no action should be activated</p></td>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_action_group_add_radio_actions_full
                                (<em class="parameter"><code><a class="link" href="GtkActionGroup.html" title="GtkActionGroup"><span class="type">GtkActionGroup</span></a> *action_group</code></em>,
-                                <em class="parameter"><code>const <a class="link" href="GtkActionGroup.html#GtkRadioActionEntry" title="struct GtkRadioActionEntry"><span class="type">GtkRadioActionEntry</span></a> *entries</code></em>,
+                                <em class="parameter"><code>const <span class="type">GtkRadioActionEntry</span> *entries</code></em>,
                                 <em class="parameter"><code><span class="type">guint</span> n_entries</code></em>,
                                 <em class="parameter"><code><span class="type">gint</span> value</code></em>,
                                 <em class="parameter"><code><span class="type">GCallback</span> on_change</code></em>,
@@ -1196,7 +1196,7 @@ and <a class="link" href="GtkActionGroup.html" title="GtkActionGroup"><span clas
 <tr>
 <td class="parameter_name"><p>path</p></td>
 <td class="parameter_description"><p>The id of the message. In <a class="link" href="GtkActionGroup.html" title="GtkActionGroup"><span class="type">GtkActionGroup</span></a> this will be a label
-or tooltip from a <a class="link" href="GtkActionGroup.html#GtkActionEntry" title="struct GtkActionEntry"><span class="type">GtkActionEntry</span></a>.</p></td>
+or tooltip from a <span class="type">GtkActionEntry</span>.</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -1225,7 +1225,7 @@ gtk_action_group_set_translate_func (<em class="parameter"><code><a class="link"
 <p>Sets a function to be used for translating the <em class="parameter"><code>label</code></em>
  and <em class="parameter"><code>tooltip</code></em>
  of 
-<a href="GtkActionGroup.html#GtkActionEntry"><span class="type">GtkActionEntrys</span></a> added by <a class="link" href="GtkActionGroup.html#gtk-action-group-add-actions" title="gtk_action_group_add_actions ()"><code class="function">gtk_action_group_add_actions()</code></a>.</p>
+<span class="type">GtkActionEntrys</span> added by <a class="link" href="GtkActionGroup.html#gtk-action-group-add-actions" title="gtk_action_group_add_actions ()"><code class="function">gtk_action_group_add_actions()</code></a>.</p>
 <p>If you’re using <code class="function">gettext()</code>, it is enough to set the translation domain
 with <a class="link" href="GtkActionGroup.html#gtk-action-group-set-translation-domain" title="gtk_action_group_set_translation_domain ()"><code class="function">gtk_action_group_set_translation_domain()</code></a>.</p>
 <div class="refsect3">
@@ -1277,7 +1277,7 @@ gtk_action_group_set_translation_domain
 <p>Sets the translation domain and uses <code class="function">g_dgettext()</code> for translating the 
 <em class="parameter"><code>label</code></em>
  and <em class="parameter"><code>tooltip</code></em>
- of <a href="GtkActionGroup.html#GtkActionEntry"><span class="type">GtkActionEntrys</span></a> added by 
+ of <span class="type">GtkActionEntrys</span> added by 
 <a class="link" href="GtkActionGroup.html#gtk-action-group-add-actions" title="gtk_action_group_add_actions ()"><code class="function">gtk_action_group_add_actions()</code></a>.</p>
 <p>If you’re not using <code class="function">gettext()</code> for localization, see 
 <a class="link" href="GtkActionGroup.html#gtk-action-group-set-translate-func" title="gtk_action_group_set_translate_func ()"><code class="function">gtk_action_group_set_translate_func()</code></a>.</p>
@@ -1347,241 +1347,13 @@ is mainly intended for language bindings.</p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkActionGroup.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkActionGroup-struct"></a><h3>struct GtkActionGroup</h3>
-<pre class="programlisting">struct GtkActionGroup;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkActionGroupClass"></a><h3>struct GtkActionGroupClass</h3>
-<pre class="programlisting">struct GtkActionGroupClass {
-  GObjectClass parent_class;
-
-  GtkAction *(* get_action) (GtkActionGroup *action_group,
-                             const gchar    *action_name);
-};
-</pre>
-<div class="refsect3">
-<a name="GtkActionGroupClass.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody><tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkActionGroupClass.get-action"></a>get_action</code></em> ()</p></td>
-<td class="struct_member_description"><p>Looks up an action in the action group by name.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr></tbody>
-</table></div>
-</div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkActionEntry"></a><h3>struct GtkActionEntry</h3>
-<pre class="programlisting">struct GtkActionEntry {
-  const gchar     *name;
-  const gchar     *stock_id;
-  const gchar     *label;
-  const gchar     *accelerator;
-  const gchar     *tooltip;
-  GCallback  callback;
-};
-</pre>
-<div class="warning"><p><code class="literal">GtkActionEntry</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p></div>
-<p><a class="link" href="GtkActionGroup.html#GtkActionEntry" title="struct GtkActionEntry"><span class="type">GtkActionEntry</span></a> structs are used with <a class="link" href="GtkActionGroup.html#gtk-action-group-add-actions" title="gtk_action_group_add_actions ()"><code class="function">gtk_action_group_add_actions()</code></a> to
-construct actions.</p>
-<div class="refsect3">
-<a name="GtkActionEntry.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="struct_member_name"><p>const <span class="type">gchar</span> *<em class="structfield"><code><a name="GtkActionEntry.name"></a>name</code></em>;</p></td>
-<td class="struct_member_description"><p>The name of the action.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p>const <span class="type">gchar</span> *<em class="structfield"><code><a name="GtkActionEntry.stock-id"></a>stock_id</code></em>;</p></td>
-<td class="struct_member_description"><p>The stock id for the action, or the name of an icon from the
-icon theme.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p>const <span class="type">gchar</span> *<em class="structfield"><code><a name="GtkActionEntry.label"></a>label</code></em>;</p></td>
-<td class="struct_member_description"><p>The label for the action. This field should typically be marked
-for translation, see <a class="link" href="GtkActionGroup.html#gtk-action-group-set-translation-domain" title="gtk_action_group_set_translation_domain ()"><code class="function">gtk_action_group_set_translation_domain()</code></a>. If
-<em class="parameter"><code>label</code></em>
-is <code class="literal">NULL</code>, the label of the stock item with id <em class="parameter"><code>stock_id</code></em>
-is used.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p>const <span class="type">gchar</span> *<em class="structfield"><code><a name="GtkActionEntry.accelerator"></a>accelerator</code></em>;</p></td>
-<td class="struct_member_description"><p>The accelerator for the action, in the format understood by
-<a class="link" href="gtk3-Keyboard-Accelerators.html#gtk-accelerator-parse" title="gtk_accelerator_parse ()"><code class="function">gtk_accelerator_parse()</code></a>.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p>const <span class="type">gchar</span> *<em class="structfield"><code><a name="GtkActionEntry.tooltip"></a>tooltip</code></em>;</p></td>
-<td class="struct_member_description"><p>The tooltip for the action. This field should typically be
-marked for translation, see <a class="link" href="GtkActionGroup.html#gtk-action-group-set-translation-domain" title="gtk_action_group_set_translation_domain ()"><code class="function">gtk_action_group_set_translation_domain()</code></a>.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><span class="type">GCallback</span> <em class="structfield"><code><a name="GtkActionEntry.callback"></a>callback</code></em>;</p></td>
-<td class="struct_member_description"><p>The function to call when the action is activated.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkToggleActionEntry"></a><h3>struct GtkToggleActionEntry</h3>
-<pre class="programlisting">struct GtkToggleActionEntry {
-  const gchar     *name;
-  const gchar     *stock_id;
-  const gchar     *label;
-  const gchar     *accelerator;
-  const gchar     *tooltip;
-  GCallback  callback;
-  gboolean   is_active;
-};
-</pre>
-<div class="warning"><p><code class="literal">GtkToggleActionEntry</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p></div>
-<p><a class="link" href="GtkActionGroup.html#GtkToggleActionEntry" title="struct GtkToggleActionEntry"><span class="type">GtkToggleActionEntry</span></a> structs are used with
-<a class="link" href="GtkActionGroup.html#gtk-action-group-add-toggle-actions" title="gtk_action_group_add_toggle_actions ()"><code class="function">gtk_action_group_add_toggle_actions()</code></a> to construct toggle actions.</p>
-<div class="refsect3">
-<a name="GtkToggleActionEntry.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="struct_member_name"><p>const <span class="type">gchar</span> *<em class="structfield"><code><a name="GtkToggleActionEntry.name"></a>name</code></em>;</p></td>
-<td class="struct_member_description"><p>The name of the action.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p>const <span class="type">gchar</span> *<em class="structfield"><code><a name="GtkToggleActionEntry.stock-id"></a>stock_id</code></em>;</p></td>
-<td class="struct_member_description"><p>The stock id for the action, or the name of an icon from the
-icon theme.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p>const <span class="type">gchar</span> *<em class="structfield"><code><a name="GtkToggleActionEntry.label"></a>label</code></em>;</p></td>
-<td class="struct_member_description"><p>The label for the action. This field should typically be marked
-for translation, see <a class="link" href="GtkActionGroup.html#gtk-action-group-set-translation-domain" title="gtk_action_group_set_translation_domain ()"><code class="function">gtk_action_group_set_translation_domain()</code></a>.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p>const <span class="type">gchar</span> *<em class="structfield"><code><a name="GtkToggleActionEntry.accelerator"></a>accelerator</code></em>;</p></td>
-<td class="struct_member_description"><p>The accelerator for the action, in the format understood by
-<a class="link" href="gtk3-Keyboard-Accelerators.html#gtk-accelerator-parse" title="gtk_accelerator_parse ()"><code class="function">gtk_accelerator_parse()</code></a>.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p>const <span class="type">gchar</span> *<em class="structfield"><code><a name="GtkToggleActionEntry.tooltip"></a>tooltip</code></em>;</p></td>
-<td class="struct_member_description"><p>The tooltip for the action. This field should typically be
-marked for translation, see <a class="link" href="GtkActionGroup.html#gtk-action-group-set-translation-domain" title="gtk_action_group_set_translation_domain ()"><code class="function">gtk_action_group_set_translation_domain()</code></a>.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><span class="type">GCallback</span> <em class="structfield"><code><a name="GtkToggleActionEntry.callback"></a>callback</code></em>;</p></td>
-<td class="struct_member_description"><p>The function to call when the action is activated.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><span class="type">gboolean</span> <em class="structfield"><code><a name="GtkToggleActionEntry.is-active"></a>is_active</code></em>;</p></td>
-<td class="struct_member_description"><p>The initial state of the toggle action.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkRadioActionEntry"></a><h3>struct GtkRadioActionEntry</h3>
-<pre class="programlisting">struct GtkRadioActionEntry {
-  const gchar *name;
-  const gchar *stock_id;
-  const gchar *label;
-  const gchar *accelerator;
-  const gchar *tooltip;
-  gint   value; 
-};
-</pre>
-<div class="warning"><p><code class="literal">GtkRadioActionEntry</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p></div>
-<p><a class="link" href="GtkActionGroup.html#GtkRadioActionEntry" title="struct GtkRadioActionEntry"><span class="type">GtkRadioActionEntry</span></a> structs are used with
-<a class="link" href="GtkActionGroup.html#gtk-action-group-add-radio-actions" title="gtk_action_group_add_radio_actions ()"><code class="function">gtk_action_group_add_radio_actions()</code></a> to construct groups of radio actions.</p>
-<div class="refsect3">
-<a name="GtkRadioActionEntry.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="struct_member_name"><p>const <span class="type">gchar</span> *<em class="structfield"><code><a name="GtkRadioActionEntry.name"></a>name</code></em>;</p></td>
-<td class="struct_member_description"><p>The name of the action.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p>const <span class="type">gchar</span> *<em class="structfield"><code><a name="GtkRadioActionEntry.stock-id"></a>stock_id</code></em>;</p></td>
-<td class="struct_member_description"><p>The stock id for the action, or the name of an icon from the
-icon theme.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p>const <span class="type">gchar</span> *<em class="structfield"><code><a name="GtkRadioActionEntry.label"></a>label</code></em>;</p></td>
-<td class="struct_member_description"><p>The label for the action. This field should typically be marked
-for translation, see <a class="link" href="GtkActionGroup.html#gtk-action-group-set-translation-domain" title="gtk_action_group_set_translation_domain ()"><code class="function">gtk_action_group_set_translation_domain()</code></a>.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p>const <span class="type">gchar</span> *<em class="structfield"><code><a name="GtkRadioActionEntry.accelerator"></a>accelerator</code></em>;</p></td>
-<td class="struct_member_description"><p>The accelerator for the action, in the format understood by
-<a class="link" href="gtk3-Keyboard-Accelerators.html#gtk-accelerator-parse" title="gtk_accelerator_parse ()"><code class="function">gtk_accelerator_parse()</code></a>.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p>const <span class="type">gchar</span> *<em class="structfield"><code><a name="GtkRadioActionEntry.tooltip"></a>tooltip</code></em>;</p></td>
-<td class="struct_member_description"><p>The tooltip for the action. This field should typically be
-marked for translation, see <a class="link" href="GtkActionGroup.html#gtk-action-group-set-translation-domain" title="gtk_action_group_set_translation_domain ()"><code class="function">gtk_action_group_set_translation_domain()</code></a>.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><span class="type">gint</span> <em class="structfield"><code><a name="GtkRadioActionEntry.value"></a>value</code></em>;</p></td>
-<td class="struct_member_description"><p>The value to set on the radio action. See
-<a class="link" href="GtkRadioAction.html#gtk-radio-action-get-current-value" title="gtk_radio_action_get_current_value ()"><code class="function">gtk_radio_action_get_current_value()</code></a>.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkActionGroup.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkActionGroup--accel-group"></a><h3>The <code class="literal">“accel-group”</code> property</h3>
 <pre class="programlisting">  “accel-group”              <a class="link" href="gtk3-Keyboard-Accelerators.html#GtkAccelGroup"><span class="type">GtkAccelGroup</span></a> *</pre>
 <p>The accelerator group the actions of this group should use.</p>
 <div class="warning"><p><code class="literal">GtkActionGroup:accel-group</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p></div>
+<p>Owner: GtkActionGroup</p>
 <p>Flags: Read / Write</p>
 </div>
 <hr>
@@ -1590,7 +1362,8 @@ marked for translation, see <a class="link" href="GtkActionGroup.html#gtk-action
 <pre class="programlisting">  “name”                     <span class="type">gchar</span> *</pre>
 <p>A name for the action.</p>
 <div class="warning"><p><code class="literal">GtkActionGroup:name</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p></div>
-<p>Flags: Read / Write / Construct Only</p>
+<p>Owner: GtkActionGroup</p>
+<p>Flags: Read / Write / Construct Only</p>
 <p>Default value: NULL</p>
 </div>
 <hr>
@@ -1599,6 +1372,7 @@ marked for translation, see <a class="link" href="GtkActionGroup.html#gtk-action
 <pre class="programlisting">  “sensitive”                <span class="type">gboolean</span></pre>
 <p>Whether the action group is enabled.</p>
 <div class="warning"><p><code class="literal">GtkActionGroup:sensitive</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p></div>
+<p>Owner: GtkActionGroup</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 </div>
@@ -1608,6 +1382,7 @@ marked for translation, see <a class="link" href="GtkActionGroup.html#gtk-action
 <pre class="programlisting">  “visible”                  <span class="type">gboolean</span></pre>
 <p>Whether the action group is visible.</p>
 <div class="warning"><p><code class="literal">GtkActionGroup:visible</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p></div>
+<p>Owner: GtkActionGroup</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 </div>
@@ -1807,6 +1582,6 @@ notification just before any action is activated.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

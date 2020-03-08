@@ -8,7 +8,7 @@
 <link rel="up" href="Printing.html" title="Printing">
 <link rel="prev" href="gtk3-High-level-Printing-API.html" title="GtkPrintOperation">
 <link rel="next" href="GtkPrintSettings.html" title="GtkPrintSettings">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -36,8 +36,8 @@
 <a name="GtkPrintContext.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -135,12 +135,12 @@
 <a name="GtkPrintContext.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name"><a class="link" href="GtkPrintContext.html#GtkPrintContext-struct" title="GtkPrintContext">GtkPrintContext</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkPrintContext.html#GtkPrintContext-struct">GtkPrintContext</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -222,57 +222,57 @@ of the cairo surface.</p>
 49
 50
 51</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
-<span class="function">draw_page</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkPrintOperation</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">operation</span><span class="symbol">,</span>
-<span class="normal">       </span><span class="usertype">GtkPrintContext</span><span class="normal">   </span><span class="symbol">*</span><span class="normal">context</span><span class="symbol">,</span>
-<span class="normal">       </span><span class="type">int</span><span class="normal">                page_nr</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="usertype">cairo_t</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">cr</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="usertype">PangoLayout</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">layout</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="usertype">PangoFontDescription</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">desc</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
+<span class="nf">draw_page</span> <span class="p">(</span><span class="n">GtkPrintOperation</span> <span class="o">*</span><span class="n">operation</span><span class="p">,</span>
+	   <span class="n">GtkPrintContext</span>   <span class="o">*</span><span class="n">context</span><span class="p">,</span>
+	   <span class="kt">int</span>                <span class="n">page_nr</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">cairo_t</span> <span class="o">*</span><span class="n">cr</span><span class="p">;</span>
+  <span class="n">PangoLayout</span> <span class="o">*</span><span class="n">layout</span><span class="p">;</span>
+  <span class="n">PangoFontDescription</span> <span class="o">*</span><span class="n">desc</span><span class="p">;</span>
 
-<span class="normal">  cr </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkPrintContext.html#gtk-print-context-get-cairo-context">gtk_print_context_get_cairo_context</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">);</span>
+  <span class="n">cr</span> <span class="o">=</span> <span class="n">gtk_print_context_get_cairo_context</span> <span class="p">(</span><span class="n">context</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="comment">// Draw a red rectangle, as wide as the paper (inside the margins)</span>
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-set-source-rgb">cairo_set_source_rgb</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="number">1.0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-Paths.html#cairo-rectangle">cairo_rectangle</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="function"><a href="GtkPrintContext.html#gtk-print-context-get-width">gtk_print_context_get_width</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">),</span><span class="normal"> </span><span class="number">50</span><span class="symbol">);</span>
+  <span class="c1">// Draw a red rectangle, as wide as the paper (inside the margins)</span>
+  <span class="n">cairo_set_source_rgb</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">cairo_rectangle</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">gtk_print_context_get_width</span> <span class="p">(</span><span class="n">context</span><span class="p">),</span> <span class="mi">50</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-fill">cairo_fill</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span>
+  <span class="n">cairo_fill</span> <span class="p">(</span><span class="n">cr</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="comment">// Draw some lines</span>
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-Paths.html#cairo-move-to">cairo_move_to</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="number">20</span><span class="symbol">,</span><span class="normal"> </span><span class="number">10</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-Paths.html#cairo-line-to">cairo_line_to</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="number">40</span><span class="symbol">,</span><span class="normal"> </span><span class="number">20</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-Paths.html#cairo-arc">cairo_arc</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="number">60</span><span class="symbol">,</span><span class="normal"> </span><span class="number">60</span><span class="symbol">,</span><span class="normal"> </span><span class="number">20</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> M_PI</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-Paths.html#cairo-line-to">cairo_line_to</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="number">80</span><span class="symbol">,</span><span class="normal"> </span><span class="number">20</span><span class="symbol">);</span>
+  <span class="c1">// Draw some lines</span>
+  <span class="n">cairo_move_to</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+  <span class="n">cairo_line_to</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+  <span class="n">cairo_arc</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">M_PI</span><span class="p">);</span>
+  <span class="n">cairo_line_to</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-set-source-rgb">cairo_set_source_rgb</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-set-line-width">cairo_set_line_width</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="number">5</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-set-line-cap">cairo_set_line_cap</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#CAIRO-LINE-CAP-ROUND:CAPS">CAIRO_LINE_CAP_ROUND</a></span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-set-line-join">cairo_set_line_join</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#CAIRO-LINE-JOIN-ROUND:CAPS">CAIRO_LINE_JOIN_ROUND</a></span><span class="symbol">);</span>
+  <span class="n">cairo_set_source_rgb</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">cairo_set_line_width</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+  <span class="n">cairo_set_line_cap</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span> <span class="n">CAIRO_LINE_CAP_ROUND</span><span class="p">);</span>
+  <span class="n">cairo_set_line_join</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span> <span class="n">CAIRO_LINE_JOIN_ROUND</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-stroke">cairo_stroke</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span>
+  <span class="n">cairo_stroke</span> <span class="p">(</span><span class="n">cr</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="comment">// Draw some text</span>
-<span class="normal">  layout </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkPrintContext.html#gtk-print-context-create-pango-layout">gtk_print_context_create_pango_layout</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#pango-layout-set-text">pango_layout_set_text</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">layout</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Hello World! Printing is easy"</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">-</span><span class="number">1</span><span class="symbol">);</span>
-<span class="normal">  desc </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="https://developer.gnome.org/pango/pango-Fonts.html#pango-font-description-from-string">pango_font_description_from_string</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"sans 28"</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#pango-layout-set-font-description">pango_layout_set_font_description</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">layout</span><span class="symbol">,</span><span class="normal"> desc</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="https://developer.gnome.org/pango/pango-Fonts.html#pango-font-description-free">pango_font_description_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">desc</span><span class="symbol">);</span>
+  <span class="c1">// Draw some text</span>
+  <span class="n">layout</span> <span class="o">=</span> <span class="n">gtk_print_context_create_pango_layout</span> <span class="p">(</span><span class="n">context</span><span class="p">);</span>
+  <span class="n">pango_layout_set_text</span> <span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="s">&quot;Hello World! Printing is easy&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+  <span class="n">desc</span> <span class="o">=</span> <span class="n">pango_font_description_from_string</span> <span class="p">(</span><span class="s">&quot;sans 28&quot;</span><span class="p">);</span>
+  <span class="n">pango_layout_set_font_description</span> <span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="n">desc</span><span class="p">);</span>
+  <span class="n">pango_font_description_free</span> <span class="p">(</span><span class="n">desc</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-Paths.html#cairo-move-to">cairo_move_to</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="number">30</span><span class="symbol">,</span><span class="normal"> </span><span class="number">20</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="https://developer.gnome.org/pango/pango-Cairo-Rendering.html#pango-cairo-layout-path">pango_cairo_layout_path</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> layout</span><span class="symbol">);</span>
+  <span class="n">cairo_move_to</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+  <span class="n">pango_cairo_layout_path</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span> <span class="n">layout</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="comment">// Font Outline</span>
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-set-source-rgb">cairo_set_source_rgb</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.93</span><span class="symbol">,</span><span class="normal"> </span><span class="number">1.0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.47</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-set-line-width">cairo_set_line_width</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.5</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-stroke-preserve">cairo_stroke_preserve</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span>
+  <span class="c1">// Font Outline</span>
+  <span class="n">cairo_set_source_rgb</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span> <span class="mf">0.93</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.47</span><span class="p">);</span>
+  <span class="n">cairo_set_line_width</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">);</span>
+  <span class="n">cairo_stroke_preserve</span> <span class="p">(</span><span class="n">cr</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="comment">// Font Fill</span>
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-set-source-rgb">cairo_set_source_rgb</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">1.0</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-fill">cairo_fill</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cr</span><span class="symbol">);</span>
+  <span class="c1">// Font Fill</span>
+  <span class="n">cairo_set_source_rgb</span> <span class="p">(</span><span class="n">cr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">);</span>
+  <span class="n">cairo_fill</span> <span class="p">(</span><span class="n">cr</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">layout</span><span class="symbol">);</span>
-<span class="cbracket">}</span></pre></td>
+  <span class="n">g_object_unref</span> <span class="p">(</span><span class="n">layout</span><span class="p">);</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -651,15 +651,8 @@ gtk_print_context_get_hard_margins (<em class="parameter"><code><a class="link" 
 <p class="since">Since: 2.20</p>
 </div>
 </div>
-<div class="refsect1">
-<a name="GtkPrintContext.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkPrintContext-struct"></a><h3>GtkPrintContext</h3>
-<pre class="programlisting">typedef struct _GtkPrintContext GtkPrintContext;</pre>
-</div>
-</div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

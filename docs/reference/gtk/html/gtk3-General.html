@@ -8,7 +8,7 @@
 <link rel="up" href="gtkbase.html" title="Part III. GTK+ Core Reference">
 <link rel="prev" href="gtkbase.html" title="Part III. GTK+ Core Reference">
 <link rel="next" href="gtk3-Feature-Test-Macros.html" title="Version Information">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -35,8 +35,8 @@
 <a name="gtk3-General.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -57,7 +57,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a class="link" href="GtkWidget.html#GtkTextDirection" title="enum GtkTextDirection"><span class="returnvalue">GtkTextDirection</span></a>
+<a href="https://developer.gnome.org/gtk4/GtkWidget.html#GtkTextDirection"><span class="returnvalue">GtkTextDirection</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="gtk3-General.html#gtk-get-locale-direction" title="gtk_get_locale_direction ()">gtk_get_locale_direction</a> <span class="c_punctuation">()</span>
@@ -310,12 +310,12 @@
 <a name="gtk3-General.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody><tr>
 <td class="define_keyword">#define</td>
-<td class="function_name"><a class="link" href="gtk3-General.html#GTK-PRIORITY-RESIZE:CAPS" title="GTK_PRIORITY_RESIZE">GTK_PRIORITY_RESIZE</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/gtk4-General.html#GTK-PRIORITY-RESIZE:CAPS">GTK_PRIORITY_RESIZE</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -379,33 +379,33 @@ main loop and await more user input.</p>
 25
 26
 27</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="type">int</span>
-<span class="function">main</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> argc</span><span class="symbol">,</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">**</span><span class="normal">argv</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal"> </span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">mainwin</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="comment">// Initialize i18n support with bindtextdomain(), etc.</span>
+        <td class="listing_code"><pre class="programlisting"><span class="kt">int</span>
+<span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+ <span class="n">GtkWidget</span> <span class="o">*</span><span class="n">mainwin</span><span class="p">;</span>
+  <span class="c1">// Initialize i18n support with bindtextdomain(), etc.</span>
 
-<span class="normal">  </span><span class="comment">// ...</span>
+  <span class="c1">// ...</span>
 
-<span class="normal">  </span><span class="comment">// Initialize the widget set</span>
-<span class="normal">  </span><span class="function"><a href="gtk3-General.html#gtk-init">gtk_init</a></span><span class="normal"> </span><span class="symbol">(&amp;</span><span class="normal">argc</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">argv</span><span class="symbol">);</span>
+  <span class="c1">// Initialize the widget set</span>
+  <span class="n">gtk_init</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">argv</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="comment">// Create the main window</span>
-<span class="normal">  mainwin </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkWindow.html#gtk-window-new">gtk_window_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="GtkWindow.html#GTK-WINDOW-TOPLEVEL:CAPS">GTK_WINDOW_TOPLEVEL</a></span><span class="symbol">);</span>
+  <span class="c1">// Create the main window</span>
+  <span class="n">mainwin</span> <span class="o">=</span> <span class="n">gtk_window_new</span> <span class="p">(</span><span class="n">GTK_WINDOW_TOPLEVEL</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="comment">// Set up our GUI elements</span>
+  <span class="c1">// Set up our GUI elements</span>
 
-<span class="normal">  </span><span class="comment">// ...</span>
+  <span class="c1">// ...</span>
 
-<span class="normal">  </span><span class="comment">// Show the application window</span>
-<span class="normal">  </span><span class="function"><a href="GtkWidget.html#gtk-widget-show-all">gtk_widget_show_all</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">mainwin</span><span class="symbol">);</span>
+  <span class="c1">// Show the application window</span>
+  <span class="n">gtk_widget_show_all</span> <span class="p">(</span><span class="n">mainwin</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="comment">// Enter the main event loop, and wait for user interaction</span>
-<span class="normal">  </span><span class="function"><a href="gtk3-General.html#gtk-main">gtk_main</a></span><span class="normal"> </span><span class="symbol">();</span>
+  <span class="c1">// Enter the main event loop, and wait for user interaction</span>
+  <span class="n">gtk_main</span> <span class="p">();</span>
 
-<span class="normal">  </span><span class="comment">// The user lost interest</span>
-<span class="normal">  </span><span class="keyword">return</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span>
-<span class="cbracket">}</span></pre></td>
+  <span class="c1">// The user lost interest</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -452,13 +452,13 @@ must not be freed. </p>
 <hr>
 <div class="refsect2">
 <a name="gtk-get-locale-direction"></a><h3>gtk_get_locale_direction ()</h3>
-<pre class="programlisting"><a class="link" href="GtkWidget.html#GtkTextDirection" title="enum GtkTextDirection"><span class="returnvalue">GtkTextDirection</span></a>
+<pre class="programlisting"><a href="https://developer.gnome.org/gtk4/GtkWidget.html#GtkTextDirection"><span class="returnvalue">GtkTextDirection</span></a>
 gtk_get_locale_direction (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
 <p>Get the direction of the current locale. This is the expected
 reading direction for text and UI.</p>
 <p>This function depends on the current locale being set with
-<code class="function">setlocale()</code> and will default to setting the <a class="link" href="GtkWidget.html#GTK-TEXT-DIR-LTR:CAPS"><code class="literal">GTK_TEXT_DIR_LTR</code></a>
-direction otherwise. <a class="link" href="GtkWidget.html#GTK-TEXT-DIR-NONE:CAPS"><code class="literal">GTK_TEXT_DIR_NONE</code></a> will never be returned.</p>
+<code class="function">setlocale()</code> and will default to setting the <a href="https://developer.gnome.org/gtk4/GtkWidget.html#GTK-TEXT-DIR-LTR:CAPS"><code class="literal">GTK_TEXT_DIR_LTR</code></a>
+direction otherwise. <a href="https://developer.gnome.org/gtk4/GtkWidget.html#GTK-TEXT-DIR-NONE:CAPS"><code class="literal">GTK_TEXT_DIR_NONE</code></a> will never be returned.</p>
 <p>GTK+ sets the default text direction according to the locale
 during <a class="link" href="gtk3-General.html#gtk-init" title="gtk_init ()"><code class="function">gtk_init()</code></a>, and you should normally use
 <a class="link" href="GtkWidget.html#gtk-widget-get-direction" title="gtk_widget_get_direction ()"><code class="function">gtk_widget_get_direction()</code></a> or <a class="link" href="GtkWidget.html#gtk-widget-get-default-direction" title="gtk_widget_get_default_direction ()"><code class="function">gtk_widget_get_default_direction()</code></a>
@@ -473,9 +473,9 @@ you can use it to update the default text direction as follows:</p>
         <td class="listing_lines" align="right"><pre>1
 2
 3</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="function">setlocale</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">LC_ALL</span><span class="symbol">,</span><span class="normal"> new_locale</span><span class="symbol">);</span>
-<span class="normal">direction </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="gtk3-General.html#gtk-get-locale-direction">gtk_get_locale_direction</a></span><span class="normal"> </span><span class="symbol">();</span>
-<span class="function"><a href="GtkWidget.html#gtk-widget-set-default-direction">gtk_widget_set_default_direction</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">direction</span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">setlocale</span> <span class="p">(</span><span class="n">LC_ALL</span><span class="p">,</span> <span class="n">new_locale</span><span class="p">);</span>
+<span class="n">direction</span> <span class="o">=</span> <span class="n">gtk_get_locale_direction</span> <span class="p">();</span>
+<span class="n">gtk_widget_set_default_direction</span> <span class="p">(</span><span class="n">direction</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -484,7 +484,7 @@ you can use it to update the default text direction as follows:</p>
 <p></p>
 <div class="refsect3">
 <a name="gtk-get-locale-direction.returns"></a><h4>Returns</h4>
-<p> the <a class="link" href="GtkWidget.html#GtkTextDirection" title="enum GtkTextDirection"><span class="type">GtkTextDirection</span></a> of the current locale</p>
+<p> the <a href="https://developer.gnome.org/gtk4/GtkWidget.html#GtkTextDirection"><span class="type">GtkTextDirection</span></a> of the current locale</p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-12.html#api-index-3.12">3.12</a></p>
 </div>
@@ -496,7 +496,7 @@ gtk_parse_args (<em class="parameter"><code><span class="type">int</span> *argc<
                 <em class="parameter"><code><span class="type">char</span> ***argv</code></em>);</pre>
 <p>Parses command line arguments, and initializes global
 attributes of GTK+, but does not actually open a connection
-to a display. (See <code class="function">gdk_display_open()</code>, <code class="function">gdk_get_display_arg_name()</code>)</p>
+to a display. (See <a href="https://developer.gnome.org/gdk4/GdkDisplay.html#gdk-display-open"><code class="function">gdk_display_open()</code></a>, <code class="function">gdk_get_display_arg_name()</code>)</p>
 <p>Any arguments used by GTK+ or GDK are removed from the array and
 <em class="parameter"><code>argc</code></em>
  and <em class="parameter"><code>argv</code></em>
@@ -776,12 +776,12 @@ while doing some time intensive computation.</p>
 4
 5
 6</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="comment">// computation going on...</span>
+        <td class="listing_code"><pre class="programlisting"><span class="c1">// computation going on...</span>
 
-<span class="keyword">while</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="gtk3-General.html#gtk-events-pending">gtk_events_pending</a></span><span class="normal"> </span><span class="symbol">())</span>
-<span class="normal">  </span><span class="function"><a href="gtk3-General.html#gtk-main-iteration">gtk_main_iteration</a></span><span class="normal"> </span><span class="symbol">();</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">gtk_events_pending</span> <span class="p">())</span>
+  <span class="n">gtk_main_iteration</span> <span class="p">();</span>
 
-<span class="comment">// ...computation continued</span></pre></td>
+<span class="c1">// ...computation continued</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1026,37 +1026,37 @@ a reaction from clicking the close icon of the window...</p>
 29
 30
 31</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="preproc">#include</span><span class="normal"> </span><span class="string">&lt;gtk/gtk.h&gt;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="cp">#include</span> <span class="cpf">&lt;gtk/gtk.h&gt;</span><span class="cp"></span>
 
-<span class="type">int</span>
-<span class="function">main</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> argc</span><span class="symbol">,</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">**</span><span class="normal">argv</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">win</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">but</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">text </span><span class="symbol">=</span><span class="normal"> </span><span class="string">"Close yourself. I mean it!"</span><span class="symbol">;</span>
+<span class="kt">int</span>
+<span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">GtkWidget</span> <span class="o">*</span><span class="n">win</span><span class="p">,</span> <span class="o">*</span><span class="n">but</span><span class="p">;</span>
+  <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">text</span> <span class="o">=</span> <span class="s">&quot;Close yourself. I mean it!&quot;</span><span class="p">;</span>
 
-<span class="normal">  </span><span class="function"><a href="gtk3-General.html#gtk-init">gtk_init</a></span><span class="normal"> </span><span class="symbol">(&amp;</span><span class="normal">argc</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">argv</span><span class="symbol">);</span>
+  <span class="n">gtk_init</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">argv</span><span class="p">);</span>
 
-<span class="normal">  win </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkWindow.html#gtk-window-new">gtk_window_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="GtkWindow.html#GTK-WINDOW-TOPLEVEL:CAPS">GTK_WINDOW_TOPLEVEL</a></span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function">g_signal_connect</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">win</span><span class="symbol">,</span>
-<span class="normal">                    </span><span class="string">"delete-event"</span><span class="symbol">,</span>
-<span class="normal">                    </span><span class="function">G_CALLBACK</span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="gtk3-General.html#gtk-true">gtk_true</a></span><span class="symbol">),</span>
-<span class="normal">                    NULL</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function">g_signal_connect</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">win</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"destroy"</span><span class="symbol">,</span>
-<span class="normal">                    </span><span class="function">G_CALLBACK</span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="gtk3-General.html#gtk-main-quit">gtk_main_quit</a></span><span class="symbol">),</span>
-<span class="normal">                    NULL</span><span class="symbol">);</span>
+  <span class="n">win</span> <span class="o">=</span> <span class="n">gtk_window_new</span> <span class="p">(</span><span class="n">GTK_WINDOW_TOPLEVEL</span><span class="p">);</span>
+  <span class="n">g_signal_connect</span> <span class="p">(</span><span class="n">win</span><span class="p">,</span>
+                    <span class="s">&quot;delete-event&quot;</span><span class="p">,</span>
+                    <span class="n">G_CALLBACK</span> <span class="p">(</span><span class="n">gtk_true</span><span class="p">),</span>
+                    <span class="nb">NULL</span><span class="p">);</span>
+  <span class="n">g_signal_connect</span> <span class="p">(</span><span class="n">win</span><span class="p">,</span> <span class="s">&quot;destroy&quot;</span><span class="p">,</span>
+                    <span class="n">G_CALLBACK</span> <span class="p">(</span><span class="n">gtk_main_quit</span><span class="p">),</span>
+                    <span class="nb">NULL</span><span class="p">);</span>
 
-<span class="normal">  but </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkButton.html#gtk-button-new-with-label">gtk_button_new_with_label</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">text</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function">g_signal_connect_swapped</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">but</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"clicked"</span><span class="symbol">,</span>
-<span class="normal">                            </span><span class="function">G_CALLBACK</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gtk_object_destroy</span><span class="symbol">),</span>
-<span class="normal">                            win</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="GtkContainer.html#gtk-container-add">gtk_container_add</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_CONTAINER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">win</span><span class="symbol">),</span><span class="normal"> but</span><span class="symbol">);</span>
+  <span class="n">but</span> <span class="o">=</span> <span class="n">gtk_button_new_with_label</span> <span class="p">(</span><span class="n">text</span><span class="p">);</span>
+  <span class="n">g_signal_connect_swapped</span> <span class="p">(</span><span class="n">but</span><span class="p">,</span> <span class="s">&quot;clicked&quot;</span><span class="p">,</span>
+                            <span class="n">G_CALLBACK</span> <span class="p">(</span><span class="n">gtk_object_destroy</span><span class="p">),</span>
+                            <span class="n">win</span><span class="p">);</span>
+  <span class="n">gtk_container_add</span> <span class="p">(</span><span class="n">GTK_CONTAINER</span> <span class="p">(</span><span class="n">win</span><span class="p">),</span> <span class="n">but</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="function"><a href="GtkWidget.html#gtk-widget-show-all">gtk_widget_show_all</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">win</span><span class="symbol">);</span>
+  <span class="n">gtk_widget_show_all</span> <span class="p">(</span><span class="n">win</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="function"><a href="gtk3-General.html#gtk-main">gtk_main</a></span><span class="normal"> </span><span class="symbol">();</span>
+  <span class="n">gtk_main</span> <span class="p">();</span>
 
-<span class="normal">  </span><span class="keyword">return</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span>
-<span class="cbracket">}</span></pre></td>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1492,24 +1492,12 @@ of making up expose events.</p>
 </div>
 </div>
 <div class="refsect1">
-<a name="gtk3-General.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GTK-PRIORITY-RESIZE:CAPS"></a><h3>GTK_PRIORITY_RESIZE</h3>
-<pre class="programlisting">#define GTK_PRIORITY_RESIZE (G_PRIORITY_HIGH_IDLE + 10)
-</pre>
-<p>Use this priority for functionality related to size allocation.</p>
-<p>It is used internally by GTK+ to compute the sizes of widgets.
-This priority is higher than <code class="literal">GDK_PRIORITY_REDRAW</code> to avoid
-resizing a widget which was just redrawn.</p>
-</div>
-</div>
-<div class="refsect1">
 <a name="gtk3-General.see-also"></a><h2>See Also</h2>
 <p>See the GLib manual, especially <span class="type">GMainLoop</span> and signal-related
-   functions such as <code class="function">g_signal_connect()</code></p>
+functions such as <code class="function">g_signal_connect()</code></p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

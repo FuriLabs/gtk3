@@ -8,7 +8,7 @@
 <link rel="up" href="DeprecatedObjects.html" title="Deprecated">
 <link rel="prev" href="GtkTearoffMenuItem.html" title="GtkTearoffMenuItem">
 <link rel="next" href="GtkColorSelectionDialog.html" title="GtkColorSelectionDialog">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -39,8 +39,8 @@
 <a name="GtkColorSelection.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -273,9 +273,9 @@
 <a name="GtkColorSelection.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody><tr>
 <td class="signal_type"><span class="returnvalue">void</span></td>
@@ -288,17 +288,17 @@
 <a name="GtkColorSelection.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkColorSelection.html#GtkColorSelection-struct" title="struct GtkColorSelection">GtkColorSelection</a></td>
+<td class="function_name">GtkColorSelection</td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkColorSelection.html#GtkColorSelectionClass" title="struct GtkColorSelectionClass">GtkColorSelectionClass</a></td>
+<td class="function_name">GtkColorSelectionClass</td>
 </tr>
 </tbody>
 </table></div>
@@ -1088,43 +1088,12 @@ GtkColorSelection widgets will be modified.</p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkColorSelection.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkColorSelection-struct"></a><h3>struct GtkColorSelection</h3>
-<pre class="programlisting">struct GtkColorSelection;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkColorSelectionClass"></a><h3>struct GtkColorSelectionClass</h3>
-<pre class="programlisting">struct GtkColorSelectionClass {
-  GtkBoxClass parent_class;
-
-  void (*color_changed) (GtkColorSelection *color_selection);
-};
-</pre>
-<div class="refsect3">
-<a name="GtkColorSelectionClass.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody><tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkColorSelectionClass.color-changed"></a>color_changed</code></em> ()</p></td>
-<td class="struct_member_description"> </td>
-<td class="struct_member_annotations"> </td>
-</tr></tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkColorSelection.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkColorSelection--current-alpha"></a><h3>The <code class="literal">“current-alpha”</code> property</h3>
 <pre class="programlisting">  “current-alpha”            <span class="type">guint</span></pre>
 <p>The current opacity value (0 fully transparent, 65535 fully opaque).</p>
+<p>Owner: GtkColorSelection</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &lt;= 65535</p>
 <p>Default value: 65535</p>
@@ -1138,6 +1107,7 @@ GtkColorSelection widgets will be modified.</p>
 <p><code class="literal">GtkColorSelection:current-color</code> has been deprecated since version 3.4 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="GtkColorSelection.html#GtkColorSelection--current-rgba" title="The “current-rgba” property"><span class="type">“current-rgba”</span></a> instead.</p>
 </div>
+<p>Owner: GtkColorSelection</p>
 <p>Flags: Read / Write</p>
 </div>
 <hr>
@@ -1145,6 +1115,7 @@ GtkColorSelection widgets will be modified.</p>
 <a name="GtkColorSelection--current-rgba"></a><h3>The <code class="literal">“current-rgba”</code> property</h3>
 <pre class="programlisting">  “current-rgba”             <span class="type">GdkRGBA</span> *</pre>
 <p>The current RGBA color.</p>
+<p>Owner: GtkColorSelection</p>
 <p>Flags: Read / Write</p>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
 </div>
@@ -1153,6 +1124,7 @@ GtkColorSelection widgets will be modified.</p>
 <a name="GtkColorSelection--has-opacity-control"></a><h3>The <code class="literal">“has-opacity-control”</code> property</h3>
 <pre class="programlisting">  “has-opacity-control”      <span class="type">gboolean</span></pre>
 <p>Whether the color selector should allow setting opacity.</p>
+<p>Owner: GtkColorSelection</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -1161,6 +1133,7 @@ GtkColorSelection widgets will be modified.</p>
 <a name="GtkColorSelection--has-palette"></a><h3>The <code class="literal">“has-palette”</code> property</h3>
 <pre class="programlisting">  “has-palette”              <span class="type">gboolean</span></pre>
 <p>Whether a palette should be used.</p>
+<p>Owner: GtkColorSelection</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -1201,6 +1174,6 @@ according to its update policy.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

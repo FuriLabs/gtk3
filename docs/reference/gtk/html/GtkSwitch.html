@@ -8,7 +8,7 @@
 <link rel="up" href="ButtonWidgets.html" title="Buttons and Toggles">
 <link rel="prev" href="GtkMenuButton.html" title="GtkMenuButton">
 <link rel="next" href="GtkScaleButton.html" title="GtkScaleButton">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -40,8 +40,8 @@
 <a name="GtkSwitch.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -135,9 +135,9 @@
 <a name="GtkSwitch.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody>
 <tr>
@@ -157,17 +157,17 @@
 <a name="GtkSwitch.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkSwitch.html#GtkSwitch-struct" title="struct GtkSwitch">GtkSwitch</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkSwitch.html#GtkSwitch-struct">GtkSwitch</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkSwitch.html#GtkSwitchClass" title="struct GtkSwitchClass">GtkSwitchClass</a></td>
+<td class="function_name">GtkSwitchClass</td>
 </tr>
 </tbody>
 </table></div>
@@ -206,8 +206,8 @@ a delay. See <a class="link" href="GtkSwitch.html#GtkSwitch-state-set" title="Th
       <tr>
         <td class="listing_lines" align="right"><pre>1
 2</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">switch</span>
-<span class="normal">╰── slider</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="k">switch</span>
+<span class="err">╰──</span> <span class="n">slider</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -355,55 +355,12 @@ gtk_switch_get_state (<em class="parameter"><code><a class="link" href="GtkSwitc
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkSwitch.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkSwitch-struct"></a><h3>struct GtkSwitch</h3>
-<pre class="programlisting">struct GtkSwitch;</pre>
-<p>The <a class="link" href="GtkSwitch.html#GtkSwitch-struct" title="struct GtkSwitch"><span class="type">GtkSwitch</span></a> contains private
-data and it should only be accessed using the provided API.</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkSwitchClass"></a><h3>struct GtkSwitchClass</h3>
-<pre class="programlisting">struct GtkSwitchClass {
-  GtkWidgetClass parent_class;
-
-
-  void (* activate) (GtkSwitch *sw);
-
-  gboolean (* state_set) (GtkSwitch *sw, gboolean state);
-};
-</pre>
-<div class="refsect3">
-<a name="GtkSwitchClass.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkSwitchClass.activate"></a>activate</code></em> ()</p></td>
-<td class="struct_member_description"><p>An action signal and emitting it causes the switch to animate.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkSwitchClass.state-set"></a>state_set</code></em> ()</p></td>
-<td class="struct_member_description"><p>Class handler for the ::state-set signal.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkSwitch.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkSwitch--active"></a><h3>The <code class="literal">“active”</code> property</h3>
 <pre class="programlisting">  “active”                   <span class="type">gboolean</span></pre>
 <p>Whether the <a class="link" href="GtkSwitch.html" title="GtkSwitch"><span class="type">GtkSwitch</span></a> widget is in its on or off state.</p>
+<p>Owner: GtkSwitch</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -414,6 +371,7 @@ data and it should only be accessed using the provided API.</p>
 <p>The backend state that is controlled by the switch.
 
 See <a class="link" href="GtkSwitch.html#GtkSwitch-state-set" title="The “state-set” signal"><span class="type">“state-set”</span></a> for details.</p>
+<p>Owner: GtkSwitch</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: <a class="link" href="api-index-3-14.html#api-index-3.14">3.14</a></p>
@@ -429,6 +387,7 @@ See <a class="link" href="GtkSwitch.html#GtkSwitch-state-set" title="The “stat
 <p><code class="literal">GtkSwitch:slider-height</code> has been deprecated since version 3.20 and should not be used in newly-written code.</p>
 <p>Use the CSS min-height property instead.</p>
 </div>
+<p>Owner: GtkSwitch</p>
 <p>Flags: Read</p>
 <p>Allowed values: &gt;= 22</p>
 <p>Default value: 22</p>
@@ -443,6 +402,7 @@ See <a class="link" href="GtkSwitch.html#GtkSwitch-state-set" title="The “stat
 <p><code class="literal">GtkSwitch:slider-width</code> has been deprecated since version 3.20 and should not be used in newly-written code.</p>
 <p>Use the CSS min-width property instead.</p>
 </div>
+<p>Owner: GtkSwitch</p>
 <p>Flags: Read</p>
 <p>Allowed values: &gt;= 36</p>
 <p>Default value: 36</p>
@@ -542,6 +502,6 @@ position of the switch.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

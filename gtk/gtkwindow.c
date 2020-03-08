@@ -1315,17 +1315,23 @@ send_delete_event (gpointer data)
 {
   GtkWidget *window = data;
   GtkWindowPrivate *priv = GTK_WINDOW (window)->priv;
+  GdkWindow *gdk_window;
 
-  GdkEvent *event;
-
-  event = gdk_event_new (GDK_DELETE);
-
-  event->any.window = g_object_ref (_gtk_widget_get_window (window));
-  event->any.send_event = TRUE;
   priv->delete_event_handler = 0;
 
-  gtk_main_do_event (event);
-  gdk_event_free (event);
+  gdk_window = _gtk_widget_get_window (window);
+  if (gdk_window)
+    {
+      GdkEvent *event;
+
+      event = gdk_event_new (GDK_DELETE);
+      event->any.window = g_object_ref (gdk_window);
+      event->any.send_event = TRUE;
+
+      gtk_main_do_event (event);
+
+      gdk_event_free (event);
+    }
 
   return G_SOURCE_REMOVE;
 }
@@ -7236,12 +7242,19 @@ corner_rect (cairo_rectangle_int_t *rect,
 }
 
 static void
-subtract_corners_from_region (cairo_region_t        *region,
-                              cairo_rectangle_int_t *extents,
-                              GtkStyleContext       *context,
-                              GtkWindow             *window)
+subtract_decoration_corners_from_region (cairo_region_t        *region,
+                                         cairo_rectangle_int_t *extents,
+                                         GtkStyleContext       *context,
+                                         GtkWindow             *window)
 {
+  GtkWindowPrivate *priv = window->priv;
   cairo_rectangle_int_t rect;
+
+  if (!priv->client_decorated ||
+      !priv->decorated ||
+      priv->fullscreen ||
+      priv->maximized)
+    return;
 
   gtk_style_context_save_to_node (context, window->priv->decoration_node);
 
@@ -7304,7 +7317,7 @@ update_opaque_region (GtkWindow           *window,
 
       opaque_region = cairo_region_create_rectangle (&rect);
 
-      subtract_corners_from_region (opaque_region, &rect, context, window);
+      subtract_decoration_corners_from_region (opaque_region, &rect, context, window);
     }
   else
     {

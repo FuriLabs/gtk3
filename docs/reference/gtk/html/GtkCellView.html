@@ -8,7 +8,7 @@
 <link rel="up" href="TreeWidgetObjects.html" title="Tree, List and Icon Grid Widgets">
 <link rel="prev" href="gtk3-GtkTreeView-drag-and-drop.html" title="GtkTreeView drag-and-drop">
 <link rel="next" href="GtkIconView.html" title="GtkIconView">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -38,8 +38,8 @@
 <a name="GtkCellView.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -209,13 +209,13 @@
 <td class="property_type">
 <a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a> *</td>
 <td class="property_name"><a class="link" href="GtkCellView.html#GtkCellView--cell-area" title="The “cell-area” property">cell-area</a></td>
-<td class="property_flags">Read / Write / Construct Only</td>
+<td class="property_flags">Read / Write / Construct Only</td>
 </tr>
 <tr>
 <td class="property_type">
 <a class="link" href="GtkCellAreaContext.html" title="GtkCellAreaContext"><span class="type">GtkCellAreaContext</span></a> *</td>
 <td class="property_name"><a class="link" href="GtkCellView.html#GtkCellView--cell-area-context" title="The “cell-area-context” property">cell-area-context</a></td>
-<td class="property_flags">Read / Write / Construct Only</td>
+<td class="property_flags">Read / Write / Construct Only</td>
 </tr>
 <tr>
 <td class="property_type"><span class="type">gboolean</span></td>
@@ -240,17 +240,17 @@
 <a name="GtkCellView.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkCellView.html#GtkCellView-struct" title="struct GtkCellView">GtkCellView</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkCellView.html#GtkCellView-struct">GtkCellView</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkCellView.html#GtkCellViewClass" title="struct GtkCellViewClass">GtkCellViewClass</a></td>
+<td class="function_name">GtkCellViewClass</td>
 </tr>
 </tbody>
 </table></div>
@@ -821,37 +821,12 @@ the entire <a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span c
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkCellView.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkCellView-struct"></a><h3>struct GtkCellView</h3>
-<pre class="programlisting">struct GtkCellView;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkCellViewClass"></a><h3>struct GtkCellViewClass</h3>
-<pre class="programlisting">struct GtkCellViewClass {
-  GtkWidgetClass parent_class;
-};
-</pre>
-<div class="refsect3">
-<a name="GtkCellViewClass.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody></tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkCellView.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkCellView--background"></a><h3>The <code class="literal">“background”</code> property</h3>
 <pre class="programlisting">  “background”               <span class="type">gchar</span> *</pre>
 <p>Background color as a string.</p>
+<p>Owner: GtkCellView</p>
 <p>Flags: Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -864,6 +839,7 @@ the entire <a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span c
 <p><code class="literal">GtkCellView:background-gdk</code> has been deprecated since version 3.4 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="GtkCellView.html#GtkCellView--background-rgba" title="The “background-rgba” property"><span class="type">“background-rgba”</span></a> instead.</p>
 </div>
+<p>Owner: GtkCellView</p>
 <p>Flags: Read / Write</p>
 </div>
 <hr>
@@ -871,6 +847,7 @@ the entire <a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span c
 <a name="GtkCellView--background-rgba"></a><h3>The <code class="literal">“background-rgba”</code> property</h3>
 <pre class="programlisting">  “background-rgba”          <span class="type">GdkRGBA</span> *</pre>
 <p>The background color as a <span class="type">GdkRGBA</span></p>
+<p>Owner: GtkCellView</p>
 <p>Flags: Read / Write</p>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
 </div>
@@ -879,6 +856,7 @@ the entire <a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span c
 <a name="GtkCellView--background-set"></a><h3>The <code class="literal">“background-set”</code> property</h3>
 <pre class="programlisting">  “background-set”           <span class="type">gboolean</span></pre>
 <p>Whether this tag affects the background color.</p>
+<p>Owner: GtkCellView</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -891,7 +869,8 @@ the entire <a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span c
 
 a horizontally oriented <a class="link" href="GtkCellAreaBox.html" title="GtkCellAreaBox"><span class="type">GtkCellAreaBox</span></a> will be used.</p>
 <p>since 3.0</p>
-<p>Flags: Read / Write / Construct Only</p>
+<p>Owner: GtkCellView</p>
+<p>Flags: Read / Write / Construct Only</p>
 </div>
 <hr>
 <div class="refsect2">
@@ -906,7 +885,8 @@ in the menu items for a single menu (each submenu creates its own
 context since the size of each submenu does not depend on parent
 or sibling menus).</p>
 <p>since 3.0</p>
-<p>Flags: Read / Write / Construct Only</p>
+<p>Owner: GtkCellView</p>
+<p>Flags: Read / Write / Construct Only</p>
 </div>
 <hr>
 <div class="refsect2">
@@ -916,6 +896,7 @@ or sibling menus).</p>
 of the actual cell properties (used to make menus with submenus appear
 sensitive when the items in submenus might be insensitive).</p>
 <p>since 3.0</p>
+<p>Owner: GtkCellView</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -928,6 +909,7 @@ the size of every row in the model (used by the combo box to
 ensure the combo box size doesnt change when different items
 are selected).</p>
 <p>since 3.0</p>
+<p>Owner: GtkCellView</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -937,11 +919,12 @@ are selected).</p>
 <pre class="programlisting">  “model”                    <a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span class="type">GtkTreeModel</span></a> *</pre>
 <p>The model for cell view</p>
 <p>since 2.10</p>
+<p>Owner: GtkCellView</p>
 <p>Flags: Read / Write</p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

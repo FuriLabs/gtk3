@@ -8,7 +8,7 @@
 <link rel="up" href="ApplicationChoosing.html" title="Choosing from installed applications">
 <link rel="prev" href="GtkAppChooser.html" title="GtkAppChooser">
 <link rel="next" href="GtkAppChooserDialog.html" title="GtkAppChooserDialog">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -39,8 +39,8 @@
 <a name="GtkAppChooserButton.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -157,9 +157,9 @@
 <a name="GtkAppChooserButton.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody><tr>
 <td class="signal_type"><span class="returnvalue">void</span></td>
@@ -172,17 +172,17 @@
 <a name="GtkAppChooserButton.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkAppChooserButton.html#GtkAppChooserButton-struct" title="struct GtkAppChooserButton">GtkAppChooserButton</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkAppChooserButton.html#GtkAppChooserButton-struct">GtkAppChooserButton</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkAppChooserButton.html#GtkAppChooserButtonClass" title="struct GtkAppChooserButtonClass">GtkAppChooserButtonClass</a></td>
+<td class="function_name">GtkAppChooserButtonClass</td>
 </tr>
 </tbody>
 </table></div>
@@ -553,48 +553,13 @@ If the heading is not set, the dialog displays a default text.</p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkAppChooserButton.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkAppChooserButton-struct"></a><h3>struct GtkAppChooserButton</h3>
-<pre class="programlisting">struct GtkAppChooserButton;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkAppChooserButtonClass"></a><h3>struct GtkAppChooserButtonClass</h3>
-<pre class="programlisting">struct GtkAppChooserButtonClass {
-  GtkComboBoxClass parent_class;
-
-
-  void (* custom_item_activated) (GtkAppChooserButton *self,
-                                  const gchar *item_name);
-};
-</pre>
-<div class="refsect3">
-<a name="GtkAppChooserButtonClass.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody><tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkAppChooserButtonClass.custom-item-activated"></a>custom_item_activated</code></em> ()</p></td>
-<td class="struct_member_description"><p>Signal emitted when a custom item,
-previously added with <a class="link" href="GtkAppChooserButton.html#gtk-app-chooser-button-append-custom-item" title="gtk_app_chooser_button_append_custom_item ()"><code class="function">gtk_app_chooser_button_append_custom_item()</code></a>,
-is activated from the dropdown menu.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr></tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkAppChooserButton.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkAppChooserButton--heading"></a><h3>The <code class="literal">“heading”</code> property</h3>
 <pre class="programlisting">  “heading”                  <span class="type">gchar</span> *</pre>
 <p>The text to show at the top of the dialog that can be
 opened from the button. The string may contain Pango markup.</p>
+<p>Owner: GtkAppChooserButton</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -605,6 +570,7 @@ opened from the button. The string may contain Pango markup.</p>
 <p>The <a class="link" href="GtkAppChooserButton.html#GtkAppChooserButton--show-default-item" title="The “show-default-item” property"><span class="type">“show-default-item”</span></a> property determines
 whether the dropdown menu should show the default application
 on top for the provided content type.</p>
+<p>Owner: GtkAppChooserButton</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: <a class="link" href="api-index-3-2.html#api-index-3.2">3.2</a></p>
@@ -616,6 +582,7 @@ on top for the provided content type.</p>
 <p>The <a class="link" href="GtkAppChooserButton.html#GtkAppChooserButton--show-dialog-item" title="The “show-dialog-item” property"><span class="type">“show-dialog-item”</span></a> property determines
 whether the dropdown menu should show an item that triggers
 a <a class="link" href="GtkAppChooserDialog.html" title="GtkAppChooserDialog"><span class="type">GtkAppChooserDialog</span></a> when clicked.</p>
+<p>Owner: GtkAppChooserButton</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: FALSE</p>
 </div>
@@ -663,6 +630,6 @@ dropdown menu.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

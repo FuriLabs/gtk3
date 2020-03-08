@@ -8,7 +8,7 @@
 <link rel="up" href="TreeWidgetObjects.html" title="Tree, List and Icon Grid Widgets">
 <link rel="prev" href="GtkCellRendererSpin.html" title="GtkCellRendererSpin">
 <link rel="next" href="GtkCellRendererToggle.html" title="GtkCellRendererToggle">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -38,8 +38,8 @@
 <a name="GtkCellRendererText.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -331,9 +331,9 @@
 <a name="GtkCellRendererText.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody><tr>
 <td class="signal_type"><span class="returnvalue">void</span></td>
@@ -346,12 +346,12 @@
 <a name="GtkCellRendererText.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkCellRendererText.html#GtkCellRendererText-struct" title="struct GtkCellRendererText">GtkCellRendererText</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkCellRendererText.html#GtkCellRendererText-struct">GtkCellRendererText</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -376,7 +376,7 @@
 <p>A <a class="link" href="GtkCellRendererText.html" title="GtkCellRendererText"><span class="type">GtkCellRendererText</span></a> renders a given text in its cell, using the font, color and
 style information provided by its properties. The text will be ellipsized if it is
 too long and the <a class="link" href="GtkCellRendererText.html#GtkCellRendererText--ellipsize" title="The “ellipsize” property"><span class="type">“ellipsize”</span></a> property allows it.</p>
-<p>If the <a class="link" href="GtkCellRenderer.html#GtkCellRenderer--mode" title="The “mode” property"><span class="type">“mode”</span></a> is <a class="link" href="GtkCellRenderer.html#GTK-CELL-RENDERER-MODE-EDITABLE:CAPS"><code class="literal">GTK_CELL_RENDERER_MODE_EDITABLE</code></a>,
+<p>If the <a class="link" href="GtkCellRenderer.html#GtkCellRenderer--mode" title="The “mode” property"><span class="type">“mode”</span></a> is <a href="https://developer.gnome.org/gtk4/GtkCellRenderer.html#GTK-CELL-RENDERER-MODE-EDITABLE:CAPS"><code class="literal">GTK_CELL_RENDERER_MODE_EDITABLE</code></a>,
 the <a class="link" href="GtkCellRendererText.html" title="GtkCellRendererText"><span class="type">GtkCellRendererText</span></a> allows to edit its text using an entry.</p>
 </div>
 <div class="refsect1">
@@ -437,18 +437,12 @@ the height is determined by the properties again.</p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkCellRendererText.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkCellRendererText-struct"></a><h3>struct GtkCellRendererText</h3>
-<pre class="programlisting">struct GtkCellRendererText;</pre>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkCellRendererText.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkCellRendererText--align-set"></a><h3>The <code class="literal">“align-set”</code> property</h3>
 <pre class="programlisting">  “align-set”                <span class="type">gboolean</span></pre>
 <p>Whether this tag affects the alignment mode.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -460,6 +454,7 @@ the height is determined by the properties again.</p>
 <p>Note that this property describes how to align the lines of text in
 case there are several of them. The "xalign" property of <a class="link" href="GtkCellRenderer.html" title="GtkCellRenderer"><span class="type">GtkCellRenderer</span></a>,
 on the other hand, sets the horizontal alignment of the whole text.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: PANGO_ALIGN_LEFT</p>
 <p class="since">Since: 2.10</p>
@@ -469,6 +464,7 @@ on the other hand, sets the horizontal alignment of the whole text.</p>
 <a name="GtkCellRendererText--attributes"></a><h3>The <code class="literal">“attributes”</code> property</h3>
 <pre class="programlisting">  “attributes”               <a href="https://developer.gnome.org/pango/pango-Text-Attributes.html#PangoAttrList-struct"><span class="type">PangoAttrList</span></a> *</pre>
 <p>A list of style attributes to apply to the text of the renderer.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 </div>
 <hr>
@@ -476,6 +472,7 @@ on the other hand, sets the horizontal alignment of the whole text.</p>
 <a name="GtkCellRendererText--background"></a><h3>The <code class="literal">“background”</code> property</h3>
 <pre class="programlisting">  “background”               <span class="type">gchar</span> *</pre>
 <p>Background color as a string.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -488,6 +485,7 @@ on the other hand, sets the horizontal alignment of the whole text.</p>
 <p><code class="literal">GtkCellRendererText:background-gdk</code> has been deprecated since version 3.4 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="GtkCellRendererText.html#GtkCellRendererText--background-rgba" title="The “background-rgba” property"><span class="type">“background-rgba”</span></a> instead.</p>
 </div>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 </div>
 <hr>
@@ -495,6 +493,7 @@ on the other hand, sets the horizontal alignment of the whole text.</p>
 <a name="GtkCellRendererText--background-rgba"></a><h3>The <code class="literal">“background-rgba”</code> property</h3>
 <pre class="programlisting">  “background-rgba”          <span class="type">GdkRGBA</span> *</pre>
 <p>Background color as a <span class="type">GdkRGBA</span></p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
 </div>
@@ -503,6 +502,7 @@ on the other hand, sets the horizontal alignment of the whole text.</p>
 <a name="GtkCellRendererText--background-set"></a><h3>The <code class="literal">“background-set”</code> property</h3>
 <pre class="programlisting">  “background-set”           <span class="type">gboolean</span></pre>
 <p>Whether this tag affects the background color.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -511,6 +511,7 @@ on the other hand, sets the horizontal alignment of the whole text.</p>
 <a name="GtkCellRendererText--editable"></a><h3>The <code class="literal">“editable”</code> property</h3>
 <pre class="programlisting">  “editable”                 <span class="type">gboolean</span></pre>
 <p>Whether the text can be modified by the user.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -519,6 +520,7 @@ on the other hand, sets the horizontal alignment of the whole text.</p>
 <a name="GtkCellRendererText--editable-set"></a><h3>The <code class="literal">“editable-set”</code> property</h3>
 <pre class="programlisting">  “editable-set”             <span class="type">gboolean</span></pre>
 <p>Whether this tag affects text editability.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -530,6 +532,7 @@ on the other hand, sets the horizontal alignment of the whole text.</p>
 does not have enough room to display the entire string. Setting it to
 <a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PANGO-ELLIPSIZE-NONE:CAPS"><code class="literal">PANGO_ELLIPSIZE_NONE</code></a> turns off ellipsizing. See the wrap-width property
 for another way of making the text fit into a given width.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: PANGO_ELLIPSIZE_NONE</p>
 <p class="since">Since: 2.6</p>
@@ -539,6 +542,7 @@ for another way of making the text fit into a given width.</p>
 <a name="GtkCellRendererText--ellipsize-set"></a><h3>The <code class="literal">“ellipsize-set”</code> property</h3>
 <pre class="programlisting">  “ellipsize-set”            <span class="type">gboolean</span></pre>
 <p>Whether this tag affects the ellipsize mode.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -547,6 +551,7 @@ for another way of making the text fit into a given width.</p>
 <a name="GtkCellRendererText--family"></a><h3>The <code class="literal">“family”</code> property</h3>
 <pre class="programlisting">  “family”                   <span class="type">gchar</span> *</pre>
 <p>Name of the font family, e.g. Sans, Helvetica, Times, Monospace.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -555,6 +560,7 @@ for another way of making the text fit into a given width.</p>
 <a name="GtkCellRendererText--family-set"></a><h3>The <code class="literal">“family-set”</code> property</h3>
 <pre class="programlisting">  “family-set”               <span class="type">gboolean</span></pre>
 <p>Whether this tag affects the font family.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -563,6 +569,7 @@ for another way of making the text fit into a given width.</p>
 <a name="GtkCellRendererText--font"></a><h3>The <code class="literal">“font”</code> property</h3>
 <pre class="programlisting">  “font”                     <span class="type">gchar</span> *</pre>
 <p>Font description as a string, e.g. "Sans Italic 12".</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -571,6 +578,7 @@ for another way of making the text fit into a given width.</p>
 <a name="GtkCellRendererText--font-desc"></a><h3>The <code class="literal">“font-desc”</code> property</h3>
 <pre class="programlisting">  “font-desc”                <a href="https://developer.gnome.org/pango/pango-Fonts.html#PangoFontDescription-struct"><span class="type">PangoFontDescription</span></a> *</pre>
 <p>Font description as a PangoFontDescription struct.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 </div>
 <hr>
@@ -578,6 +586,7 @@ for another way of making the text fit into a given width.</p>
 <a name="GtkCellRendererText--foreground"></a><h3>The <code class="literal">“foreground”</code> property</h3>
 <pre class="programlisting">  “foreground”               <span class="type">gchar</span> *</pre>
 <p>Foreground color as a string.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -590,6 +599,7 @@ for another way of making the text fit into a given width.</p>
 <p><code class="literal">GtkCellRendererText:foreground-gdk</code> has been deprecated since version 3.4 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="GtkCellRendererText.html#GtkCellRendererText--foreground-rgba" title="The “foreground-rgba” property"><span class="type">“foreground-rgba”</span></a> instead.</p>
 </div>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 </div>
 <hr>
@@ -597,6 +607,7 @@ for another way of making the text fit into a given width.</p>
 <a name="GtkCellRendererText--foreground-rgba"></a><h3>The <code class="literal">“foreground-rgba”</code> property</h3>
 <pre class="programlisting">  “foreground-rgba”          <span class="type">GdkRGBA</span> *</pre>
 <p>Foreground color as a <span class="type">GdkRGBA</span></p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
 </div>
@@ -605,6 +616,7 @@ for another way of making the text fit into a given width.</p>
 <a name="GtkCellRendererText--foreground-set"></a><h3>The <code class="literal">“foreground-set”</code> property</h3>
 <pre class="programlisting">  “foreground-set”           <span class="type">gboolean</span></pre>
 <p>Whether this tag affects the foreground color.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -613,6 +625,7 @@ for another way of making the text fit into a given width.</p>
 <a name="GtkCellRendererText--language"></a><h3>The <code class="literal">“language”</code> property</h3>
 <pre class="programlisting">  “language”                 <span class="type">gchar</span> *</pre>
 <p>The language this text is in, as an ISO code. Pango can use this as a hint when rendering the text. If you don't understand this parameter, you probably don't need it.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -621,6 +634,7 @@ for another way of making the text fit into a given width.</p>
 <a name="GtkCellRendererText--language-set"></a><h3>The <code class="literal">“language-set”</code> property</h3>
 <pre class="programlisting">  “language-set”             <span class="type">gboolean</span></pre>
 <p>Whether this tag affects the language the text is rendered as.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -629,6 +643,7 @@ for another way of making the text fit into a given width.</p>
 <a name="GtkCellRendererText--markup"></a><h3>The <code class="literal">“markup”</code> property</h3>
 <pre class="programlisting">  “markup”                   <span class="type">gchar</span> *</pre>
 <p>Marked up text to render.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -643,6 +658,7 @@ controls the maximum reported width of the cell. The
 cell should not receive any greater allocation unless it is
 set to expand in its <a class="link" href="GtkCellLayout.html" title="GtkCellLayout"><span class="type">GtkCellLayout</span></a> and all of the cell's siblings
 have received their natural width.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
@@ -655,6 +671,7 @@ have received their natural width.</p>
 <p>The text that will be displayed in the <a class="link" href="GtkCellRenderer.html" title="GtkCellRenderer"><span class="type">GtkCellRenderer</span></a> if
 <a class="link" href="GtkCellRendererText.html#GtkCellRendererText--editable" title="The “editable” property"><span class="type">“editable”</span></a> is <code class="literal">TRUE</code> and the cell is empty.</p>
 <p>Since 3.6</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -663,6 +680,7 @@ have received their natural width.</p>
 <a name="GtkCellRendererText--rise"></a><h3>The <code class="literal">“rise”</code> property</h3>
 <pre class="programlisting">  “rise”                     <span class="type">gint</span></pre>
 <p>Offset of text above the baseline (below the baseline if rise is negative).</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= -2147483647</p>
 <p>Default value: 0</p>
@@ -672,6 +690,7 @@ have received their natural width.</p>
 <a name="GtkCellRendererText--rise-set"></a><h3>The <code class="literal">“rise-set”</code> property</h3>
 <pre class="programlisting">  “rise-set”                 <span class="type">gboolean</span></pre>
 <p>Whether this tag affects the rise.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -680,6 +699,7 @@ have received their natural width.</p>
 <a name="GtkCellRendererText--scale"></a><h3>The <code class="literal">“scale”</code> property</h3>
 <pre class="programlisting">  “scale”                    <span class="type">gdouble</span></pre>
 <p>Font scaling factor.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 1</p>
@@ -689,6 +709,7 @@ have received their natural width.</p>
 <a name="GtkCellRendererText--scale-set"></a><h3>The <code class="literal">“scale-set”</code> property</h3>
 <pre class="programlisting">  “scale-set”                <span class="type">gboolean</span></pre>
 <p>Whether this tag scales the font size by a factor.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -697,6 +718,7 @@ have received their natural width.</p>
 <a name="GtkCellRendererText--single-paragraph-mode"></a><h3>The <code class="literal">“single-paragraph-mode”</code> property</h3>
 <pre class="programlisting">  “single-paragraph-mode”    <span class="type">gboolean</span></pre>
 <p>Whether to keep all text in a single paragraph.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -705,6 +727,7 @@ have received their natural width.</p>
 <a name="GtkCellRendererText--size"></a><h3>The <code class="literal">“size”</code> property</h3>
 <pre class="programlisting">  “size”                     <span class="type">gint</span></pre>
 <p>Font size.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 0</p>
@@ -714,6 +737,7 @@ have received their natural width.</p>
 <a name="GtkCellRendererText--size-points"></a><h3>The <code class="literal">“size-points”</code> property</h3>
 <pre class="programlisting">  “size-points”              <span class="type">gdouble</span></pre>
 <p>Font size in points.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 0</p>
@@ -723,6 +747,7 @@ have received their natural width.</p>
 <a name="GtkCellRendererText--size-set"></a><h3>The <code class="literal">“size-set”</code> property</h3>
 <pre class="programlisting">  “size-set”                 <span class="type">gboolean</span></pre>
 <p>Whether this tag affects the font size.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -731,6 +756,7 @@ have received their natural width.</p>
 <a name="GtkCellRendererText--stretch"></a><h3>The <code class="literal">“stretch”</code> property</h3>
 <pre class="programlisting">  “stretch”                  <a href="https://developer.gnome.org/pango/pango-Fonts.html#PangoStretch"><span class="type">PangoStretch</span></a></pre>
 <p>Font stretch.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: PANGO_STRETCH_NORMAL</p>
 </div>
@@ -739,6 +765,7 @@ have received their natural width.</p>
 <a name="GtkCellRendererText--stretch-set"></a><h3>The <code class="literal">“stretch-set”</code> property</h3>
 <pre class="programlisting">  “stretch-set”              <span class="type">gboolean</span></pre>
 <p>Whether this tag affects the font stretch.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -747,6 +774,7 @@ have received their natural width.</p>
 <a name="GtkCellRendererText--strikethrough"></a><h3>The <code class="literal">“strikethrough”</code> property</h3>
 <pre class="programlisting">  “strikethrough”            <span class="type">gboolean</span></pre>
 <p>Whether to strike through the text.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -755,6 +783,7 @@ have received their natural width.</p>
 <a name="GtkCellRendererText--strikethrough-set"></a><h3>The <code class="literal">“strikethrough-set”</code> property</h3>
 <pre class="programlisting">  “strikethrough-set”        <span class="type">gboolean</span></pre>
 <p>Whether this tag affects strikethrough.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -763,6 +792,7 @@ have received their natural width.</p>
 <a name="GtkCellRendererText--style"></a><h3>The <code class="literal">“style”</code> property</h3>
 <pre class="programlisting">  “style”                    <a href="https://developer.gnome.org/pango/pango-Fonts.html#PangoStyle"><span class="type">PangoStyle</span></a></pre>
 <p>Font style.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: PANGO_STYLE_NORMAL</p>
 </div>
@@ -771,6 +801,7 @@ have received their natural width.</p>
 <a name="GtkCellRendererText--style-set"></a><h3>The <code class="literal">“style-set”</code> property</h3>
 <pre class="programlisting">  “style-set”                <span class="type">gboolean</span></pre>
 <p>Whether this tag affects the font style.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -779,6 +810,7 @@ have received their natural width.</p>
 <a name="GtkCellRendererText--text"></a><h3>The <code class="literal">“text”</code> property</h3>
 <pre class="programlisting">  “text”                     <span class="type">gchar</span> *</pre>
 <p>Text to render.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -787,6 +819,7 @@ have received their natural width.</p>
 <a name="GtkCellRendererText--underline"></a><h3>The <code class="literal">“underline”</code> property</h3>
 <pre class="programlisting">  “underline”                <a href="https://developer.gnome.org/pango/pango-Text-Attributes.html#PangoUnderline"><span class="type">PangoUnderline</span></a></pre>
 <p>Style of underline for this text.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: PANGO_UNDERLINE_NONE</p>
 </div>
@@ -795,6 +828,7 @@ have received their natural width.</p>
 <a name="GtkCellRendererText--underline-set"></a><h3>The <code class="literal">“underline-set”</code> property</h3>
 <pre class="programlisting">  “underline-set”            <span class="type">gboolean</span></pre>
 <p>Whether this tag affects underlining.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -803,6 +837,7 @@ have received their natural width.</p>
 <a name="GtkCellRendererText--variant"></a><h3>The <code class="literal">“variant”</code> property</h3>
 <pre class="programlisting">  “variant”                  <a href="https://developer.gnome.org/pango/pango-Fonts.html#PangoVariant"><span class="type">PangoVariant</span></a></pre>
 <p>Font variant.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: PANGO_VARIANT_NORMAL</p>
 </div>
@@ -811,6 +846,7 @@ have received their natural width.</p>
 <a name="GtkCellRendererText--variant-set"></a><h3>The <code class="literal">“variant-set”</code> property</h3>
 <pre class="programlisting">  “variant-set”              <span class="type">gboolean</span></pre>
 <p>Whether this tag affects the font variant.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -819,6 +855,7 @@ have received their natural width.</p>
 <a name="GtkCellRendererText--weight"></a><h3>The <code class="literal">“weight”</code> property</h3>
 <pre class="programlisting">  “weight”                   <span class="type">gint</span></pre>
 <p>Font weight.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 400</p>
@@ -828,6 +865,7 @@ have received their natural width.</p>
 <a name="GtkCellRendererText--weight-set"></a><h3>The <code class="literal">“weight-set”</code> property</h3>
 <pre class="programlisting">  “weight-set”               <span class="type">gboolean</span></pre>
 <p>Whether this tag affects the font weight.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -838,6 +876,7 @@ have received their natural width.</p>
 <p>The desired width of the cell, in characters. If this property is set to
 -1, the width will be calculated automatically, otherwise the cell will
 request either 3 characters or the property value, whichever is greater.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
@@ -850,6 +889,7 @@ request either 3 characters or the property value, whichever is greater.</p>
 <p>Specifies how to break the string into multiple lines, if the cell
 renderer does not have enough room to display the entire string.
 This property has no effect unless the wrap-width property is set.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Default value: PANGO_WRAP_CHAR</p>
 <p class="since">Since: 2.8</p>
@@ -861,6 +901,7 @@ This property has no effect unless the wrap-width property is set.</p>
 <p>Specifies the minimum width at which the text is wrapped. The wrap-mode property can
 be used to influence at what character positions the line breaks can be placed.
 Setting wrap-width to -1 turns wrapping off.</p>
+<p>Owner: GtkCellRendererText</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
@@ -919,6 +960,6 @@ and store <em class="parameter"><code>new_text</code></em>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

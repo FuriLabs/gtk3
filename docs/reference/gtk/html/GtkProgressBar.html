@@ -8,7 +8,7 @@
 <link rel="up" href="DisplayWidgets.html" title="Display Widgets">
 <link rel="prev" href="GtkInfoBar.html" title="GtkInfoBar">
 <link rel="next" href="GtkLevelBar.html" title="GtkLevelBar">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -39,8 +39,8 @@
 <a name="GtkProgressBar.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -246,12 +246,12 @@
 <a name="GtkProgressBar.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkProgressBar.html#GtkProgressBar-struct" title="struct GtkProgressBar">GtkProgressBar</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkProgressBar.html#GtkProgressBar-struct">GtkProgressBar</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -305,10 +305,10 @@ step size used in activity mode can be set.</p>
 2
 3
 4</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">progressbar</span><span class="symbol">[.</span><span class="normal">osd</span><span class="symbol">]</span>
-<span class="normal">├── </span><span class="symbol">[</span><span class="normal">text</span><span class="symbol">]</span>
-<span class="normal">╰── trough</span><span class="symbol">[.</span><span class="normal">empty</span><span class="symbol">][.</span><span class="normal">full</span><span class="symbol">]</span>
-<span class="normal">    ╰── progress</span><span class="symbol">[.</span><span class="normal">pulse</span><span class="symbol">]</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">progressbar</span><span class="p">[.</span><span class="n">osd</span><span class="p">]</span>
+<span class="err">├──</span> <span class="p">[</span><span class="n">text</span><span class="p">]</span>
+<span class="err">╰──</span> <span class="n">trough</span><span class="p">[.</span><span class="n">empty</span><span class="p">][.</span><span class="n">full</span><span class="p">]</span>
+    <span class="err">╰──</span> <span class="n">progress</span><span class="p">[.</span><span class="n">pulse</span><span class="p">]</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -733,13 +733,6 @@ gtk_progress_bar_get_pulse_step (<em class="parameter"><code><a class="link" hre
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkProgressBar.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkProgressBar-struct"></a><h3>struct GtkProgressBar</h3>
-<pre class="programlisting">struct GtkProgressBar;</pre>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkProgressBar.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkProgressBar--ellipsize"></a><h3>The <code class="literal">“ellipsize”</code> property</h3>
@@ -751,6 +744,7 @@ not have enough room to display the entire string, specified as a
 <a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PANGO-ELLIPSIZE-NONE:CAPS"><code class="literal">PANGO_ELLIPSIZE_NONE</code></a> has the side-effect that the progress bar requests
 only enough space to display the ellipsis ("..."). Another means to set a
 progress bar's width is <a class="link" href="GtkWidget.html#gtk-widget-set-size-request" title="gtk_widget_set_size_request ()"><code class="function">gtk_widget_set_size_request()</code></a>.</p>
+<p>Owner: GtkProgressBar</p>
 <p>Flags: Read / Write</p>
 <p>Default value: PANGO_ELLIPSIZE_NONE</p>
 <p class="since">Since: 2.6</p>
@@ -760,6 +754,7 @@ progress bar's width is <a class="link" href="GtkWidget.html#gtk-widget-set-size
 <a name="GtkProgressBar--fraction"></a><h3>The <code class="literal">“fraction”</code> property</h3>
 <pre class="programlisting">  “fraction”                 <span class="type">gdouble</span></pre>
 <p>The fraction of total work that has been completed.</p>
+<p>Owner: GtkProgressBar</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: [0,1]</p>
 <p>Default value: 0</p>
@@ -769,6 +764,7 @@ progress bar's width is <a class="link" href="GtkWidget.html#gtk-widget-set-size
 <a name="GtkProgressBar--inverted"></a><h3>The <code class="literal">“inverted”</code> property</h3>
 <pre class="programlisting">  “inverted”                 <span class="type">gboolean</span></pre>
 <p>Invert the direction in which the progress bar grows.</p>
+<p>Owner: GtkProgressBar</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -777,6 +773,7 @@ progress bar's width is <a class="link" href="GtkWidget.html#gtk-widget-set-size
 <a name="GtkProgressBar--pulse-step"></a><h3>The <code class="literal">“pulse-step”</code> property</h3>
 <pre class="programlisting">  “pulse-step”               <span class="type">gdouble</span></pre>
 <p>The fraction of total progress to move the bouncing block when pulsed.</p>
+<p>Owner: GtkProgressBar</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: [0,1]</p>
 <p>Default value: 0.1</p>
@@ -793,6 +790,7 @@ the <a class="link" href="GtkProgressBar.html#GtkProgressBar--fraction" title="T
 showing text (even if the actual text is blank), set
 <a class="link" href="GtkProgressBar.html#GtkProgressBar--show-text" title="The “show-text” property"><span class="type">“show-text”</span></a> to <code class="literal">TRUE</code> and <a class="link" href="GtkProgressBar.html#GtkProgressBar--text" title="The “text” property"><span class="type">“text”</span></a>
 to the empty string (not <code class="literal">NULL</code>).</p>
+<p>Owner: GtkProgressBar</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
@@ -802,6 +800,7 @@ to the empty string (not <code class="literal">NULL</code>).</p>
 <a name="GtkProgressBar--text"></a><h3>The <code class="literal">“text”</code> property</h3>
 <pre class="programlisting">  “text”                     <span class="type">gchar</span> *</pre>
 <p>Text to be displayed in the progress bar.</p>
+<p>Owner: GtkProgressBar</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -816,6 +815,7 @@ to the empty string (not <code class="literal">NULL</code>).</p>
 <p><code class="literal">GtkProgressBar:min-horizontal-bar-height</code> has been deprecated since version 3.20 and should not be used in newly-written code.</p>
 <p>Use the standard CSS property min-height.</p>
 </div>
+<p>Owner: GtkProgressBar</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= 1</p>
 <p>Default value: 6</p>
@@ -830,6 +830,7 @@ to the empty string (not <code class="literal">NULL</code>).</p>
 <p><code class="literal">GtkProgressBar:min-horizontal-bar-width</code> has been deprecated since version 3.20 and should not be used in newly-written code.</p>
 <p>Use the standard CSS property min-width.</p>
 </div>
+<p>Owner: GtkProgressBar</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= 1</p>
 <p>Default value: 150</p>
@@ -844,6 +845,7 @@ to the empty string (not <code class="literal">NULL</code>).</p>
 <p><code class="literal">GtkProgressBar:min-vertical-bar-height</code> has been deprecated since version 3.20 and should not be used in newly-written code.</p>
 <p>Use the standard CSS property min-height.</p>
 </div>
+<p>Owner: GtkProgressBar</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= 1</p>
 <p>Default value: 80</p>
@@ -858,6 +860,7 @@ to the empty string (not <code class="literal">NULL</code>).</p>
 <p><code class="literal">GtkProgressBar:min-vertical-bar-width</code> has been deprecated since version 3.20 and should not be used in newly-written code.</p>
 <p>Use the standard CSS property min-width.</p>
 </div>
+<p>Owner: GtkProgressBar</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= 1</p>
 <p>Default value: 7</p>
@@ -873,6 +876,7 @@ to the empty string (not <code class="literal">NULL</code>).</p>
 <p>Use the standard CSS padding and margins; the
     value of this style property is ignored.</p>
 </div>
+<p>Owner: GtkProgressBar</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 2</p>
@@ -887,6 +891,7 @@ to the empty string (not <code class="literal">NULL</code>).</p>
 <p>Use the standard CSS padding and margins; the
     value of this style property is ignored.</p>
 </div>
+<p>Owner: GtkProgressBar</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 2</p>
@@ -894,6 +899,6 @@ to the empty string (not <code class="literal">NULL</code>).</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

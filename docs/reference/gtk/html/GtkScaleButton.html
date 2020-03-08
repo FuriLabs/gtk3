@@ -8,7 +8,7 @@
 <link rel="up" href="ButtonWidgets.html" title="Buttons and Toggles">
 <link rel="prev" href="GtkSwitch.html" title="GtkSwitch">
 <link rel="next" href="GtkVolumeButton.html" title="GtkVolumeButton">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -39,8 +39,8 @@
 <a name="GtkScaleButton.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -139,7 +139,7 @@
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSize" title="enum GtkIconSize"><span class="type">GtkIconSize</span></a></td>
+<td class="property_type"><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkIconSize"><span class="type">GtkIconSize</span></a></td>
 <td class="property_name"><a class="link" href="GtkScaleButton.html#GtkScaleButton--size" title="The “size” property">size</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -155,9 +155,9 @@
 <a name="GtkScaleButton.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody>
 <tr>
@@ -182,12 +182,12 @@
 <a name="GtkScaleButton.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkScaleButton.html#GtkScaleButton-struct" title="struct GtkScaleButton">GtkScaleButton</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkScaleButton.html#GtkScaleButton-struct">GtkScaleButton</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -224,6 +224,7 @@ is tailored for this use case.</p>
 <a name="id-1.3.9.9.10.3"></a><h3>CSS nodes</h3>
 <p>GtkScaleButton has a single CSS node with name button. To differentiate
 it from a plain <a class="link" href="GtkButton.html" title="GtkButton"><span class="type">GtkButton</span></a>, it gets the .scale style class.</p>
+<p>The popup widget that contains the scale has a .scale-popup style class.</p>
 </div>
 </div>
 <div class="refsect1">
@@ -231,7 +232,7 @@ it from a plain <a class="link" href="GtkButton.html" title="GtkButton"><span cl
 <div class="refsect2">
 <a name="gtk-scale-button-new"></a><h3>gtk_scale_button_new ()</h3>
 <pre class="programlisting"><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="returnvalue">GtkWidget</span></a> *
-gtk_scale_button_new (<em class="parameter"><code><a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSize" title="enum GtkIconSize"><span class="type">GtkIconSize</span></a> size</code></em>,
+gtk_scale_button_new (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkIconSize"><span class="type">GtkIconSize</span></a> size</code></em>,
                       <em class="parameter"><code><span class="type">gdouble</span> min</code></em>,
                       <em class="parameter"><code><span class="type">gdouble</span> max</code></em>,
                       <em class="parameter"><code><span class="type">gdouble</span> step</code></em>,
@@ -252,7 +253,7 @@ a stepping of <em class="parameter"><code>step</code></em>
 <tbody>
 <tr>
 <td class="parameter_name"><p>size</p></td>
-<td class="parameter_description"><p>a stock icon size (<a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSize" title="enum GtkIconSize"><span class="type">GtkIconSize</span></a>). </p></td>
+<td class="parameter_description"><p>a stock icon size (<a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkIconSize"><span class="type">GtkIconSize</span></a>). </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> int]</span></td>
 </tr>
 <tr>
@@ -528,18 +529,12 @@ gtk_scale_button_get_minus_button (<em class="parameter"><code><a class="link" h
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkScaleButton.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkScaleButton-struct"></a><h3>struct GtkScaleButton</h3>
-<pre class="programlisting">struct GtkScaleButton;</pre>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkScaleButton.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkScaleButton--adjustment"></a><h3>The <code class="literal">“adjustment”</code> property</h3>
 <pre class="programlisting">  “adjustment”               <a class="link" href="GtkAdjustment.html" title="GtkAdjustment"><span class="type">GtkAdjustment</span></a> *</pre>
 <p>The GtkAdjustment that contains the current value of this scale button object.</p>
+<p>Owner: GtkScaleButton</p>
 <p>Flags: Read / Write</p>
 </div>
 <hr>
@@ -561,14 +556,16 @@ the <em class="parameter"><code>icons</code></em>
 <p>It is recommended to use at least 3 icons so that the
 <a class="link" href="GtkScaleButton.html" title="GtkScaleButton"><span class="type">GtkScaleButton</span></a> reflects the current value of the scale
 better for the users.</p>
+<p>Owner: GtkScaleButton</p>
 <p>Flags: Read / Write</p>
 <p class="since">Since: 2.12</p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="GtkScaleButton--size"></a><h3>The <code class="literal">“size”</code> property</h3>
-<pre class="programlisting">  “size”                     <a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSize" title="enum GtkIconSize"><span class="type">GtkIconSize</span></a></pre>
+<pre class="programlisting">  “size”                     <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkIconSize"><span class="type">GtkIconSize</span></a></pre>
 <p>The icon size.</p>
+<p>Owner: GtkScaleButton</p>
 <p>Flags: Read / Write</p>
 <p>Default value: GTK_ICON_SIZE_SMALL_TOOLBAR</p>
 </div>
@@ -577,6 +574,7 @@ better for the users.</p>
 <a name="GtkScaleButton--value"></a><h3>The <code class="literal">“value”</code> property</h3>
 <pre class="programlisting">  “value”                    <span class="type">gdouble</span></pre>
 <p>The value of the scale.</p>
+<p>Owner: GtkScaleButton</p>
 <p>Flags: Read / Write</p>
 <p>Default value: 0</p>
 </div>
@@ -589,7 +587,7 @@ better for the users.</p>
 user_function (<a class="link" href="GtkScaleButton.html" title="GtkScaleButton"><span class="type">GtkScaleButton</span></a> *button,
                <span class="type">gpointer</span>        user_data)</pre>
 <p>The ::popdown signal is a
-<a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
+keybinding signal
 which gets emitted to popdown the scale widget.</p>
 <p>The default binding for this signal is Escape.</p>
 <div class="refsect3">
@@ -624,7 +622,7 @@ which gets emitted to popdown the scale widget.</p>
 user_function (<a class="link" href="GtkScaleButton.html" title="GtkScaleButton"><span class="type">GtkScaleButton</span></a> *button,
                <span class="type">gpointer</span>        user_data)</pre>
 <p>The ::popup signal is a
-<a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
+keybinding signal
 which gets emitted to popup the scale widget.</p>
 <p>The default bindings for this signal are Space, Enter and Return.</p>
 <div class="refsect3">
@@ -694,6 +692,6 @@ changed.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

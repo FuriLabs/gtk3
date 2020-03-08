@@ -8,7 +8,7 @@
 <link rel="up" href="MenusAndCombos.html" title="Menus, Combo Box, Toolbar">
 <link rel="prev" href="GtkToolButton.html" title="GtkToolButton">
 <link rel="next" href="GtkToggleToolButton.html" title="GtkToggleToolButton">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -39,8 +39,8 @@
 <a name="GtkMenuToolButton.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -114,9 +114,9 @@
 <a name="GtkMenuToolButton.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody><tr>
 <td class="signal_type"><span class="returnvalue">void</span></td>
@@ -129,17 +129,17 @@
 <a name="GtkMenuToolButton.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkMenuToolButton.html#GtkMenuToolButton-struct" title="struct GtkMenuToolButton">GtkMenuToolButton</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkMenuToolButton.html#GtkMenuToolButton-struct">GtkMenuToolButton</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkMenuToolButton.html#GtkMenuToolButtonClass" title="struct GtkMenuToolButtonClass">GtkMenuToolButtonClass</a></td>
+<td class="function_name">GtkMenuToolButtonClass</td>
 </tr>
 </tbody>
 </table></div>
@@ -189,11 +189,11 @@ of a &lt;child&gt; element.</p>
 3
 4
 5</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkMenuToolButton"</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="usertype">child</span><span class="normal"> type</span><span class="symbol">=</span><span class="string">"menu"</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkMenu"</span><span class="symbol">/&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
-<span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkMenuToolButton&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">child</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;menu&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkMenu&quot;</span><span class="o">/&gt;</span>
+  <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -407,44 +407,12 @@ a tooltip on the whole <a class="link" href="GtkMenuToolButton.html" title="GtkM
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkMenuToolButton.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkMenuToolButton-struct"></a><h3>struct GtkMenuToolButton</h3>
-<pre class="programlisting">struct GtkMenuToolButton;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkMenuToolButtonClass"></a><h3>struct GtkMenuToolButtonClass</h3>
-<pre class="programlisting">struct GtkMenuToolButtonClass {
-  GtkToolButtonClass parent_class;
-
-
-  void (*show_menu) (GtkMenuToolButton *button);
-};
-</pre>
-<div class="refsect3">
-<a name="GtkMenuToolButtonClass.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody><tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkMenuToolButtonClass.show-menu"></a>show_menu</code></em> ()</p></td>
-<td class="struct_member_description"><p>Signal emitted before the menu is shown.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr></tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkMenuToolButton.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkMenuToolButton--menu"></a><h3>The <code class="literal">“menu”</code> property</h3>
 <pre class="programlisting">  “menu”                     <a class="link" href="GtkMenu.html" title="GtkMenu"><span class="type">GtkMenu</span></a> *</pre>
 <p>The dropdown menu.</p>
+<p>Owner: GtkMenuToolButton</p>
 <p>Flags: Read / Write</p>
 </div>
 </div>
@@ -492,6 +460,6 @@ since the arrow is made insensitive if the menu is not set.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <link rel="up" href="NumericEntry.html" title="Numeric and Text Data Entry">
 <link rel="prev" href="GtkEntryBuffer.html" title="GtkEntryBuffer">
 <link rel="next" href="GtkScale.html" title="GtkScale">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -39,8 +39,8 @@
 <a name="GtkEntryCompletion.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -282,7 +282,7 @@
 <td class="property_type">
 <a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a> *</td>
 <td class="property_name"><a class="link" href="GtkEntryCompletion.html#GtkEntryCompletion--cell-area" title="The “cell-area” property">cell-area</a></td>
-<td class="property_flags">Read / Write / Construct Only</td>
+<td class="property_flags">Read / Write / Construct Only</td>
 </tr>
 <tr>
 <td class="property_type"><span class="type">gboolean</span></td>
@@ -332,9 +332,9 @@
 <a name="GtkEntryCompletion.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody>
 <tr>
@@ -369,12 +369,12 @@
 <a name="GtkEntryCompletion.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkEntryCompletion.html#GtkEntryCompletion-struct" title="struct GtkEntryCompletion">GtkEntryCompletion</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkEntryCompletion.html#GtkEntryCompletion-struct">GtkEntryCompletion</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -1372,13 +1372,6 @@ number of matches</p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkEntryCompletion.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkEntryCompletion-struct"></a><h3>struct GtkEntryCompletion</h3>
-<pre class="programlisting">struct GtkEntryCompletion;</pre>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkEntryCompletion.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkEntryCompletion--cell-area"></a><h3>The <code class="literal">“cell-area”</code> property</h3>
@@ -1387,7 +1380,8 @@ number of matches</p>
 <p>If no area is specified when creating the entry completion with
 <a class="link" href="GtkEntryCompletion.html#gtk-entry-completion-new-with-area" title="gtk_entry_completion_new_with_area ()"><code class="function">gtk_entry_completion_new_with_area()</code></a> a horizontally oriented
 <a class="link" href="GtkCellAreaBox.html" title="GtkCellAreaBox"><span class="type">GtkCellAreaBox</span></a> will be used.</p>
-<p>Flags: Read / Write / Construct Only</p>
+<p>Owner: GtkEntryCompletion</p>
+<p>Flags: Read / Write / Construct Only</p>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
 </div>
 <hr>
@@ -1398,6 +1392,7 @@ number of matches</p>
 should be inserted automatically in the entry. Note that this
 requires text-column to be set, even if you are using a custom
 match function.</p>
+<p>Owner: GtkEntryCompletion</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: 2.6</p>
@@ -1408,6 +1403,7 @@ match function.</p>
 <pre class="programlisting">  “inline-selection”         <span class="type">gboolean</span></pre>
 <p>Determines whether the possible completions on the popup
 will appear in the entry as you navigate through them.</p>
+<p>Owner: GtkEntryCompletion</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: 2.12</p>
@@ -1417,6 +1413,7 @@ will appear in the entry as you navigate through them.</p>
 <a name="GtkEntryCompletion--minimum-key-length"></a><h3>The <code class="literal">“minimum-key-length”</code> property</h3>
 <pre class="programlisting">  “minimum-key-length”       <span class="type">gint</span></pre>
 <p>Minimum length of the search key in order to look up matches.</p>
+<p>Owner: GtkEntryCompletion</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 1</p>
@@ -1426,6 +1423,7 @@ will appear in the entry as you navigate through them.</p>
 <a name="GtkEntryCompletion--model"></a><h3>The <code class="literal">“model”</code> property</h3>
 <pre class="programlisting">  “model”                    <a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span class="type">GtkTreeModel</span></a> *</pre>
 <p>The model to find matches in.</p>
+<p>Owner: GtkEntryCompletion</p>
 <p>Flags: Read / Write</p>
 </div>
 <hr>
@@ -1434,6 +1432,7 @@ will appear in the entry as you navigate through them.</p>
 <pre class="programlisting">  “popup-completion”         <span class="type">gboolean</span></pre>
 <p>Determines whether the possible completions should be
 shown in a popup window.</p>
+<p>Owner: GtkEntryCompletion</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 <p class="since">Since: 2.6</p>
@@ -1444,6 +1443,7 @@ shown in a popup window.</p>
 <pre class="programlisting">  “popup-set-width”          <span class="type">gboolean</span></pre>
 <p>Determines whether the completions popup window will be
 resized to the width of the entry.</p>
+<p>Owner: GtkEntryCompletion</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 <p class="since">Since: 2.8</p>
@@ -1456,6 +1456,7 @@ resized to the width of the entry.</p>
 for a single possible completion. You probably want to set
 this to <code class="literal">FALSE</code> if you are using
 <a class="link" href="GtkEntryCompletion.html#GtkEntryCompletion--inline-completion" title="The “inline-completion” property">inline completion</a>.</p>
+<p>Owner: GtkEntryCompletion</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 <p class="since">Since: 2.8</p>
@@ -1466,6 +1467,7 @@ this to <code class="literal">FALSE</code> if you are using
 <pre class="programlisting">  “text-column”              <span class="type">gint</span></pre>
 <p>The column of the model containing the strings.
 Note that the strings must be UTF-8.</p>
+<p>Owner: GtkEntryCompletion</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
@@ -1708,6 +1710,6 @@ number of rows in completion_complete method.
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

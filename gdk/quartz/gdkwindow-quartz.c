@@ -191,8 +191,11 @@ static void
 gdk_window_impl_quartz_release_context (GdkWindowImplQuartz *window_impl,
                                         CGContextRef         cg_context)
 {
-  CGContextRestoreGState (cg_context);
-  CGContextSetAllowsAntialiasing (cg_context, TRUE);
+  if (cg_context)
+    {
+      CGContextRestoreGState (cg_context);
+      CGContextSetAllowsAntialiasing (cg_context, TRUE);
+    }
 
   /* See comment in gdk_quartz_window_get_context(). */
   if (window_impl->in_paint_rect_count == 0)
@@ -2860,8 +2863,8 @@ _gdk_quartz_window_update_fullscreen_state (GdkWindow *window)
   if (gdk_quartz_osx_version() >= GDK_OSX_LION)
     {
       gboolean is_fullscreen = window_is_fullscreen (window);
-      gboolean was_fullscreen = (gdk_window_get_state (window) &&
-                                 GDK_WINDOW_STATE_FULLSCREEN != 0);
+      gboolean was_fullscreen = (gdk_window_get_state (window) &
+                                 GDK_WINDOW_STATE_FULLSCREEN) != 0;
 
       if (is_fullscreen != was_fullscreen)
         {
@@ -3079,7 +3082,6 @@ gdk_window_impl_quartz_class_init (GdkWindowImplQuartzClass *klass)
   impl_class->set_group = gdk_quartz_window_set_group;
   impl_class->set_decorations = gdk_quartz_window_set_decorations;
   impl_class->get_decorations = gdk_quartz_window_get_decorations;
-  impl_class->set_functions = gdk_quartz_window_set_functions;
   impl_class->set_functions = gdk_quartz_window_set_functions;
   impl_class->begin_resize_drag = gdk_quartz_window_begin_resize_drag;
   impl_class->begin_move_drag = gdk_quartz_window_begin_move_drag;

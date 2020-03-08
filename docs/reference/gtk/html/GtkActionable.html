@@ -8,7 +8,7 @@
 <link rel="up" href="Application.html" title="Application support">
 <link rel="prev" href="GtkApplicationWindow.html" title="GtkApplicationWindow">
 <link rel="next" href="Builder.html" title="Interface builder">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -32,7 +32,7 @@
 <td valign="top">
 <h2><span class="refentrytitle"><a name="GtkActionable.top_of_page"></a>GtkActionable</span></h2>
 <p>GtkActionable — An interface for widgets that can be associated
-    with actions</p>
+with actions</p>
 </td>
 <td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
@@ -40,8 +40,8 @@
 <a name="GtkActionable.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -122,17 +122,17 @@
 <a name="GtkActionable.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name"><a class="link" href="GtkActionable.html#GtkActionable-struct" title="GtkActionable">GtkActionable</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkActionable.html#GtkActionable-struct">GtkActionable</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkActionable.html#GtkActionableInterface" title="struct GtkActionableInterface">GtkActionableInterface</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkActionable.html#GtkActionableInterface">GtkActionableInterface</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -412,65 +412,12 @@ as the target.)</p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkActionable.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkActionable-struct"></a><h3>GtkActionable</h3>
-<pre class="programlisting">typedef struct _GtkActionable GtkActionable;</pre>
-<p>An opaque pointer type.</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkActionableInterface"></a><h3>struct GtkActionableInterface</h3>
-<pre class="programlisting">struct GtkActionableInterface {
-  const gchar * (* get_action_name)             (GtkActionable *actionable);
-  void          (* set_action_name)             (GtkActionable *actionable,
-                                                 const gchar   *action_name);
-  GVariant *    (* get_action_target_value)     (GtkActionable *actionable);
-  void          (* set_action_target_value)     (GtkActionable *actionable,
-                                                 GVariant      *target_value);
-};
-</pre>
-<p>The interface vtable for <a class="link" href="GtkActionable.html" title="GtkActionable"><span class="type">GtkActionable</span></a>.</p>
-<div class="refsect3">
-<a name="GtkActionableInterface.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkActionableInterface.get-action-name"></a>get_action_name</code></em> ()</p></td>
-<td class="struct_member_description"><p>virtual function for <a class="link" href="GtkActionable.html#gtk-actionable-get-action-name" title="gtk_actionable_get_action_name ()"><code class="function">gtk_actionable_get_action_name()</code></a></p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkActionableInterface.set-action-name"></a>set_action_name</code></em> ()</p></td>
-<td class="struct_member_description"><p>virtual function for <a class="link" href="GtkActionable.html#gtk-actionable-set-action-name" title="gtk_actionable_set_action_name ()"><code class="function">gtk_actionable_set_action_name()</code></a></p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkActionableInterface.get-action-target-value"></a>get_action_target_value</code></em> ()</p></td>
-<td class="struct_member_description"><p>virtual function for <a class="link" href="GtkActionable.html#gtk-actionable-get-action-target-value" title="gtk_actionable_get_action_target_value ()"><code class="function">gtk_actionable_get_action_target_value()</code></a></p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkActionableInterface.set-action-target-value"></a>set_action_target_value</code></em> ()</p></td>
-<td class="struct_member_description"><p>virtual function for <a class="link" href="GtkActionable.html#gtk-actionable-set-action-target-value" title="gtk_actionable_set_action_target_value ()"><code class="function">gtk_actionable_set_action_target_value()</code></a></p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkActionable.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkActionable--action-name"></a><h3>The <code class="literal">“action-name”</code> property</h3>
 <pre class="programlisting">  “action-name”              <span class="type">gchar</span> *</pre>
 <p>The name of the associated action, like 'app.quit'.</p>
+<p>Owner: GtkActionable</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -479,6 +426,7 @@ as the target.)</p>
 <a name="GtkActionable--action-target"></a><h3>The <code class="literal">“action-target”</code> property</h3>
 <pre class="programlisting">  “action-target”            <span class="type">GVariant</span> *</pre>
 <p>The parameter for action invocations.</p>
+<p>Owner: GtkActionable</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: GVariant&lt;*&gt;</p>
 <p>Default value: NULL</p>
@@ -486,6 +434,6 @@ as the target.)</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <link rel="up" href="LayoutContainers.html" title="Layout Containers">
 <link rel="prev" href="GtkNotebook.html" title="GtkNotebook">
 <link rel="next" href="gtk3-Orientable.html" title="GtkOrientable">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -40,8 +40,8 @@
 <a name="GtkExpander.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -270,9 +270,9 @@
 <a name="GtkExpander.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody><tr>
 <td class="signal_type"><span class="returnvalue">void</span></td>
@@ -285,17 +285,17 @@
 <a name="GtkExpander.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkExpander.html#GtkExpander-struct" title="struct GtkExpander">GtkExpander</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkExpander.html#GtkExpander-struct">GtkExpander</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkExpander.html#GtkExpanderClass" title="struct GtkExpanderClass">GtkExpanderClass</a></td>
+<td class="function_name">GtkExpanderClass</td>
 </tr>
 </tbody>
 </table></div>
@@ -370,34 +370,34 @@ connection as follows:</p>
 26
 27
 28</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
-<span class="function">expander_callback</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GObject</span><span class="normal">    </span><span class="symbol">*</span><span class="normal">object</span><span class="symbol">,</span>
-<span class="normal">                   </span><span class="usertype">GParamSpec</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">param_spec</span><span class="symbol">,</span>
-<span class="normal">                   </span><span class="usertype">gpointer</span><span class="normal">    user_data</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="usertype">GtkExpander</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">expander</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
+<span class="nf">expander_callback</span> <span class="p">(</span><span class="n">GObject</span>    <span class="o">*</span><span class="n">object</span><span class="p">,</span>
+                   <span class="n">GParamSpec</span> <span class="o">*</span><span class="n">param_spec</span><span class="p">,</span>
+                   <span class="n">gpointer</span>    <span class="n">user_data</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">GtkExpander</span> <span class="o">*</span><span class="n">expander</span><span class="p">;</span>
 
-<span class="normal">  expander </span><span class="symbol">=</span><span class="normal"> </span><span class="function">GTK_EXPANDER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">object</span><span class="symbol">);</span>
+  <span class="n">expander</span> <span class="o">=</span> <span class="n">GTK_EXPANDER</span> <span class="p">(</span><span class="n">object</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GtkExpander.html#gtk-expander-get-expanded">gtk_expander_get_expanded</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">expander</span><span class="symbol">))</span>
-<span class="normal">    </span><span class="cbracket">{</span>
-<span class="normal">      </span><span class="comment">// Show or create widgets</span>
-<span class="normal">    </span><span class="cbracket">}</span>
-<span class="normal">  </span><span class="keyword">else</span>
-<span class="normal">    </span><span class="cbracket">{</span>
-<span class="normal">      </span><span class="comment">// Hide or destroy widgets</span>
-<span class="normal">    </span><span class="cbracket">}</span>
-<span class="cbracket">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">gtk_expander_get_expanded</span> <span class="p">(</span><span class="n">expander</span><span class="p">))</span>
+    <span class="p">{</span>
+      <span class="c1">// Show or create widgets</span>
+    <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="p">{</span>
+      <span class="c1">// Hide or destroy widgets</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
-<span class="function">create_expander</span><span class="normal"> </span><span class="symbol">(</span><span class="type">void</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">expander </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkExpander.html#gtk-expander-new-with-mnemonic">gtk_expander_new_with_mnemonic</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"_More Options"</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function">g_signal_connect</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">expander</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"notify::expanded"</span><span class="symbol">,</span>
-<span class="normal">                    </span><span class="function">G_CALLBACK</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">expander_callback</span><span class="symbol">),</span><span class="normal"> NULL</span><span class="symbol">);</span>
+<span class="k">static</span> <span class="kt">void</span>
+<span class="nf">create_expander</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">GtkWidget</span> <span class="o">*</span><span class="n">expander</span> <span class="o">=</span> <span class="n">gtk_expander_new_with_mnemonic</span> <span class="p">(</span><span class="s">&quot;_More Options&quot;</span><span class="p">);</span>
+  <span class="n">g_signal_connect</span> <span class="p">(</span><span class="n">expander</span><span class="p">,</span> <span class="s">&quot;notify::expanded&quot;</span><span class="p">,</span>
+                    <span class="n">G_CALLBACK</span> <span class="p">(</span><span class="n">expander_callback</span><span class="p">),</span> <span class="nb">NULL</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="comment">// ...</span>
-<span class="cbracket">}</span></pre></td>
+  <span class="c1">// ...</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -425,14 +425,14 @@ specified without specifying a &lt;child&gt; type attribute.</p>
 6
 7
 8</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkExpander"</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="usertype">child</span><span class="normal"> type</span><span class="symbol">=</span><span class="string">"label"</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkLabel"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"expander-label"</span><span class="symbol">/&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkEntry"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"expander-content"</span><span class="symbol">/&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
-<span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkExpander&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">child</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;label&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkLabel&quot;</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;expander-label&quot;</span><span class="o">/&gt;</span>
+  <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkEntry&quot;</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;expander-content&quot;</span><span class="o">/&gt;</span>
+  <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -452,11 +452,11 @@ specified without specifying a &lt;child&gt; type attribute.</p>
 3
 4
 5</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">expander</span>
-<span class="normal">├── title</span>
-<span class="normal">│   ├── arrow</span>
-<span class="normal">│   ╰── </span><span class="symbol">&lt;</span><span class="usertype">label</span><span class="normal"> widget</span><span class="symbol">&gt;</span>
-<span class="normal">╰── </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">expander</span>
+<span class="err">├──</span> <span class="n">title</span>
+<span class="err">│</span>   <span class="err">├──</span> <span class="n">arrow</span>
+<span class="err">│</span>   <span class="err">╰──</span> <span class="o">&lt;</span><span class="n">label</span> <span class="n">widget</span><span class="o">&gt;</span>
+<span class="err">╰──</span> <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1044,47 +1044,12 @@ containing the expander upon resizing and collpasing.</p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkExpander.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkExpander-struct"></a><h3>struct GtkExpander</h3>
-<pre class="programlisting">struct GtkExpander;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkExpanderClass"></a><h3>struct GtkExpanderClass</h3>
-<pre class="programlisting">struct GtkExpanderClass {
-  GtkBinClass    parent_class;
-
-
-  /* Key binding signal; to get notification on the expansion
-   * state connect to notify:expanded.
-   */
-  void        (* activate) (GtkExpander *expander);
-};
-</pre>
-<div class="refsect3">
-<a name="GtkExpanderClass.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody><tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkExpanderClass.activate"></a>activate</code></em> ()</p></td>
-<td class="struct_member_description"><p>Keybinding signal is emitted when the user hits the Enter key.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr></tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkExpander.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkExpander--expanded"></a><h3>The <code class="literal">“expanded”</code> property</h3>
 <pre class="programlisting">  “expanded”                 <span class="type">gboolean</span></pre>
 <p>Whether the expander has been opened to reveal the child widget.</p>
+<p>Owner: GtkExpander</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: FALSE</p>
 </div>
@@ -1093,6 +1058,7 @@ containing the expander upon resizing and collpasing.</p>
 <a name="GtkExpander--label"></a><h3>The <code class="literal">“label”</code> property</h3>
 <pre class="programlisting">  “label”                    <span class="type">gchar</span> *</pre>
 <p>Text of the expander's label.</p>
+<p>Owner: GtkExpander</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: NULL</p>
 </div>
@@ -1101,6 +1067,7 @@ containing the expander upon resizing and collpasing.</p>
 <a name="GtkExpander--label-fill"></a><h3>The <code class="literal">“label-fill”</code> property</h3>
 <pre class="programlisting">  “label-fill”               <span class="type">gboolean</span></pre>
 <p>Whether the label widget should fill all available horizontal space.</p>
+<p>Owner: GtkExpander</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: FALSE</p>
 </div>
@@ -1109,6 +1076,7 @@ containing the expander upon resizing and collpasing.</p>
 <a name="GtkExpander--label-widget"></a><h3>The <code class="literal">“label-widget”</code> property</h3>
 <pre class="programlisting">  “label-widget”             <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *</pre>
 <p>A widget to display in place of the usual expander label.</p>
+<p>Owner: GtkExpander</p>
 <p>Flags: Read / Write</p>
 </div>
 <hr>
@@ -1117,6 +1085,7 @@ containing the expander upon resizing and collpasing.</p>
 <pre class="programlisting">  “resize-toplevel”          <span class="type">gboolean</span></pre>
 <p>When this property is <code class="literal">TRUE</code>, the expander will resize the toplevel
 widget containing the expander upon expanding and collapsing.</p>
+<p>Owner: GtkExpander</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: <a class="link" href="api-index-3-2.html#api-index-3.2">3.2</a></p>
@@ -1132,6 +1101,7 @@ expander is expanded.</p>
 <p>This property is deprecated and ignored.
     Use margins on the child instead.</p>
 </div>
+<p>Owner: GtkExpander</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 0</p>
@@ -1141,6 +1111,7 @@ expander is expanded.</p>
 <a name="GtkExpander--use-markup"></a><h3>The <code class="literal">“use-markup”</code> property</h3>
 <pre class="programlisting">  “use-markup”               <span class="type">gboolean</span></pre>
 <p>The text of the label includes XML markup. See pango_parse_markup().</p>
+<p>Owner: GtkExpander</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: FALSE</p>
 </div>
@@ -1149,6 +1120,7 @@ expander is expanded.</p>
 <a name="GtkExpander--use-underline"></a><h3>The <code class="literal">“use-underline”</code> property</h3>
 <pre class="programlisting">  “use-underline”            <span class="type">gboolean</span></pre>
 <p>If set, an underline in the text indicates the next character should be used for the mnemonic accelerator key.</p>
+<p>Owner: GtkExpander</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: FALSE</p>
 </div>
@@ -1163,6 +1135,7 @@ expander is expanded.</p>
 <p><code class="literal">GtkExpander:expander-size</code> has been deprecated since version 3.20 and should not be used in newly-written code.</p>
 <p>Use CSS min-width and min-height instead.</p>
 </div>
+<p>Owner: GtkExpander</p>
 <p>Flags: Read</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 10</p>
@@ -1177,6 +1150,7 @@ expander is expanded.</p>
 <p>Use CSS margins instead, the value of this
    style property is ignored.</p>
 </div>
+<p>Owner: GtkExpander</p>
 <p>Flags: Read</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 2</p>
@@ -1194,6 +1168,6 @@ user_function (<a class="link" href="GtkExpander.html" title="GtkExpander"><span
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

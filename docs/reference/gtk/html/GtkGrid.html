@@ -8,7 +8,7 @@
 <link rel="up" href="LayoutContainers.html" title="Layout Containers">
 <link rel="prev" href="GtkBox.html" title="GtkBox">
 <link rel="next" href="GtkRevealer.html" title="GtkRevealer">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -39,8 +39,8 @@
 <a name="GtkGrid.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -197,7 +197,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a class="link" href="gtk3-Standard-Enumerations.html#GtkBaselinePosition" title="enum GtkBaselinePosition"><span class="returnvalue">GtkBaselinePosition</span></a>
+<a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkBaselinePosition"><span class="returnvalue">GtkBaselinePosition</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GtkGrid.html#gtk-grid-get-row-baseline-position" title="gtk_grid_get_row_baseline_position ()">gtk_grid_get_row_baseline_position</a> <span class="c_punctuation">()</span>
@@ -287,17 +287,17 @@
 <a name="GtkGrid.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkGrid.html#GtkGrid-struct" title="struct GtkGrid">GtkGrid</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkGrid.html#GtkGrid-struct">GtkGrid</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkGrid.html#GtkGridClass" title="struct GtkGridClass">GtkGridClass</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkGrid.html#GtkGridClass">GtkGridClass</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -425,7 +425,7 @@ will span</p></td>
 gtk_grid_attach_next_to (<em class="parameter"><code><a class="link" href="GtkGrid.html" title="GtkGrid"><span class="type">GtkGrid</span></a> *grid</code></em>,
                          <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *child</code></em>,
                          <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *sibling</code></em>,
-                         <em class="parameter"><code><a class="link" href="gtk3-Standard-Enumerations.html#GtkPositionType" title="enum GtkPositionType"><span class="type">GtkPositionType</span></a> side</code></em>,
+                         <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkPositionType"><span class="type">GtkPositionType</span></a> side</code></em>,
                          <em class="parameter"><code><span class="type">gint</span> width</code></em>,
                          <em class="parameter"><code><span class="type">gint</span> height</code></em>);</pre>
 <p>Adds a widget to the grid.</p>
@@ -440,7 +440,7 @@ at the end indicated by <em class="parameter"><code>side</code></em>
 <p>Attaching widgets labeled [1], [2], [3] with <em class="parameter"><code>sibling</code></em>
  == <code class="literal">NULL</code> and
 <em class="parameter"><code>side</code></em>
- == <a class="link" href="gtk3-Standard-Enumerations.html#GTK-POS-LEFT:CAPS"><code class="literal">GTK_POS_LEFT</code></a> yields a layout of 3[1].</p>
+ == <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-POS-LEFT:CAPS"><code class="literal">GTK_POS_LEFT</code></a> yields a layout of 3[1].</p>
 <div class="refsect3">
 <a name="gtk-grid-attach-next-to.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -682,15 +682,15 @@ are moved to the left.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_grid_insert_next_to (<em class="parameter"><code><a class="link" href="GtkGrid.html" title="GtkGrid"><span class="type">GtkGrid</span></a> *grid</code></em>,
                          <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *sibling</code></em>,
-                         <em class="parameter"><code><a class="link" href="gtk3-Standard-Enumerations.html#GtkPositionType" title="enum GtkPositionType"><span class="type">GtkPositionType</span></a> side</code></em>);</pre>
+                         <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkPositionType"><span class="type">GtkPositionType</span></a> side</code></em>);</pre>
 <p>Inserts a row or column at the specified position.</p>
 <p>The new row or column is placed next to <em class="parameter"><code>sibling</code></em>
 , on the side
 determined by <em class="parameter"><code>side</code></em>
 . If <em class="parameter"><code>side</code></em>
- is <a class="link" href="gtk3-Standard-Enumerations.html#GTK-POS-TOP:CAPS"><code class="literal">GTK_POS_TOP</code></a> or <a class="link" href="gtk3-Standard-Enumerations.html#GTK-POS-BOTTOM:CAPS"><code class="literal">GTK_POS_BOTTOM</code></a>,
+ is <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-POS-TOP:CAPS"><code class="literal">GTK_POS_TOP</code></a> or <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-POS-BOTTOM:CAPS"><code class="literal">GTK_POS_BOTTOM</code></a>,
 a row is inserted. If <em class="parameter"><code>side</code></em>
- is <a class="link" href="gtk3-Standard-Enumerations.html#GTK-POS-LEFT:CAPS"><code class="literal">GTK_POS_LEFT</code></a> of <a class="link" href="gtk3-Standard-Enumerations.html#GTK-POS-RIGHT:CAPS"><code class="literal">GTK_POS_RIGHT</code></a>,
+ is <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-POS-LEFT:CAPS"><code class="literal">GTK_POS_LEFT</code></a> of <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-POS-RIGHT:CAPS"><code class="literal">GTK_POS_RIGHT</code></a>,
 a column is inserted.</p>
 <div class="refsect3">
 <a name="gtk-grid-insert-next-to.parameters"></a><h4>Parameters</h4>
@@ -1027,13 +1027,13 @@ parent of the <em class="parameter"><code>grid</code></em>
 <hr>
 <div class="refsect2">
 <a name="gtk-grid-get-row-baseline-position"></a><h3>gtk_grid_get_row_baseline_position ()</h3>
-<pre class="programlisting"><a class="link" href="gtk3-Standard-Enumerations.html#GtkBaselinePosition" title="enum GtkBaselinePosition"><span class="returnvalue">GtkBaselinePosition</span></a>
+<pre class="programlisting"><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkBaselinePosition"><span class="returnvalue">GtkBaselinePosition</span></a>
 gtk_grid_get_row_baseline_position (<em class="parameter"><code><a class="link" href="GtkGrid.html" title="GtkGrid"><span class="type">GtkGrid</span></a> *grid</code></em>,
                                     <em class="parameter"><code><span class="type">gint</span> row</code></em>);</pre>
 <p>Returns the baseline position of <em class="parameter"><code>row</code></em>
  as set
 by <a class="link" href="GtkGrid.html#gtk-grid-set-row-baseline-position" title="gtk_grid_set_row_baseline_position ()"><code class="function">gtk_grid_set_row_baseline_position()</code></a> or the default value
-<a class="link" href="gtk3-Standard-Enumerations.html#GTK-BASELINE-POSITION-CENTER:CAPS"><code class="literal">GTK_BASELINE_POSITION_CENTER</code></a>.</p>
+<a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-BASELINE-POSITION-CENTER:CAPS"><code class="literal">GTK_BASELINE_POSITION_CENTER</code></a>.</p>
 <div class="refsect3">
 <a name="gtk-grid-get-row-baseline-position.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1069,7 +1069,7 @@ by <a class="link" href="GtkGrid.html#gtk-grid-set-row-baseline-position" title=
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_grid_set_row_baseline_position (<em class="parameter"><code><a class="link" href="GtkGrid.html" title="GtkGrid"><span class="type">GtkGrid</span></a> *grid</code></em>,
                                     <em class="parameter"><code><span class="type">gint</span> row</code></em>,
-                                    <em class="parameter"><code><a class="link" href="gtk3-Standard-Enumerations.html#GtkBaselinePosition" title="enum GtkBaselinePosition"><span class="type">GtkBaselinePosition</span></a> pos</code></em>);</pre>
+                                    <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkBaselinePosition"><span class="type">GtkBaselinePosition</span></a> pos</code></em>);</pre>
 <p>Sets how the baseline should be positioned on <em class="parameter"><code>row</code></em>
  of the
 grid, in case that row is assigned more space than is requested.</p>
@@ -1094,7 +1094,7 @@ grid, in case that row is assigned more space than is requested.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>pos</p></td>
-<td class="parameter_description"><p>a <a class="link" href="gtk3-Standard-Enumerations.html#GtkBaselinePosition" title="enum GtkBaselinePosition"><span class="type">GtkBaselinePosition</span></a></p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkBaselinePosition"><span class="type">GtkBaselinePosition</span></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1104,37 +1104,12 @@ grid, in case that row is assigned more space than is requested.</p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkGrid.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkGrid-struct"></a><h3>struct GtkGrid</h3>
-<pre class="programlisting">struct GtkGrid;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkGridClass"></a><h3>struct GtkGridClass</h3>
-<pre class="programlisting">struct GtkGridClass {
-  GtkContainerClass parent_class;
-};
-</pre>
-<div class="refsect3">
-<a name="GtkGridClass.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody></tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkGrid.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkGrid--baseline-row"></a><h3>The <code class="literal">“baseline-row”</code> property</h3>
 <pre class="programlisting">  “baseline-row”             <span class="type">gint</span></pre>
 <p>The row to align the to the baseline when valign is GTK_ALIGN_BASELINE.</p>
+<p>Owner: GtkGrid</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 0</p>
@@ -1144,6 +1119,7 @@ grid, in case that row is assigned more space than is requested.</p>
 <a name="GtkGrid--column-homogeneous"></a><h3>The <code class="literal">“column-homogeneous”</code> property</h3>
 <pre class="programlisting">  “column-homogeneous”       <span class="type">gboolean</span></pre>
 <p>If TRUE, the columns are all the same width.</p>
+<p>Owner: GtkGrid</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -1152,6 +1128,7 @@ grid, in case that row is assigned more space than is requested.</p>
 <a name="GtkGrid--column-spacing"></a><h3>The <code class="literal">“column-spacing”</code> property</h3>
 <pre class="programlisting">  “column-spacing”           <span class="type">gint</span></pre>
 <p>The amount of space between two consecutive columns.</p>
+<p>Owner: GtkGrid</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: [0,32767]</p>
 <p>Default value: 0</p>
@@ -1161,6 +1138,7 @@ grid, in case that row is assigned more space than is requested.</p>
 <a name="GtkGrid--row-homogeneous"></a><h3>The <code class="literal">“row-homogeneous”</code> property</h3>
 <pre class="programlisting">  “row-homogeneous”          <span class="type">gboolean</span></pre>
 <p>If TRUE, the rows are all the same height.</p>
+<p>Owner: GtkGrid</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -1169,6 +1147,7 @@ grid, in case that row is assigned more space than is requested.</p>
 <a name="GtkGrid--row-spacing"></a><h3>The <code class="literal">“row-spacing”</code> property</h3>
 <pre class="programlisting">  “row-spacing”              <span class="type">gint</span></pre>
 <p>The amount of space between two consecutive rows.</p>
+<p>Owner: GtkGrid</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: [0,32767]</p>
 <p>Default value: 0</p>
@@ -1180,6 +1159,7 @@ grid, in case that row is assigned more space than is requested.</p>
 <a name="GtkGrid--c-height"></a><h3>The <code class="literal">“height”</code> child property</h3>
 <pre class="programlisting">  “height”                   <span class="type">gint</span></pre>
 <p>The number of rows that a child spans.</p>
+<p>Owner: GtkGrid</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= 1</p>
 <p>Default value: 1</p>
@@ -1189,6 +1169,7 @@ grid, in case that row is assigned more space than is requested.</p>
 <a name="GtkGrid--c-left-attach"></a><h3>The <code class="literal">“left-attach”</code> child property</h3>
 <pre class="programlisting">  “left-attach”              <span class="type">gint</span></pre>
 <p>The column number to attach the left side of the child to.</p>
+<p>Owner: GtkGrid</p>
 <p>Flags: Read / Write</p>
 <p>Default value: 0</p>
 </div>
@@ -1197,6 +1178,7 @@ grid, in case that row is assigned more space than is requested.</p>
 <a name="GtkGrid--c-top-attach"></a><h3>The <code class="literal">“top-attach”</code> child property</h3>
 <pre class="programlisting">  “top-attach”               <span class="type">gint</span></pre>
 <p>The row number to attach the top side of a child widget to.</p>
+<p>Owner: GtkGrid</p>
 <p>Flags: Read / Write</p>
 <p>Default value: 0</p>
 </div>
@@ -1205,6 +1187,7 @@ grid, in case that row is assigned more space than is requested.</p>
 <a name="GtkGrid--c-width"></a><h3>The <code class="literal">“width”</code> child property</h3>
 <pre class="programlisting">  “width”                    <span class="type">gint</span></pre>
 <p>The number of columns that a child spans.</p>
+<p>Owner: GtkGrid</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= 1</p>
 <p>Default value: 1</p>
@@ -1216,6 +1199,6 @@ grid, in case that row is assigned more space than is requested.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <link rel="up" href="reference.html" title="API Reference">
 <link rel="prev" href="GdkDrawingContext.html" title="GdkDrawingContext">
 <link rel="next" href="gdk3-Events.html" title="Events">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -37,8 +37,8 @@
 <a name="GdkGLContext.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -193,19 +193,19 @@
 <td class="property_type">
 <a class="link" href="GdkDisplay.html" title="GdkDisplay"><span class="type">GdkDisplay</span></a> *</td>
 <td class="property_name"><a class="link" href="GdkGLContext.html#GdkGLContext--display" title="The “display” property">display</a></td>
-<td class="property_flags">Read / Write / Construct Only</td>
+<td class="property_flags">Read / Write / Construct Only</td>
 </tr>
 <tr>
 <td class="property_type">
 <a class="link" href="GdkGLContext.html" title="GdkGLContext"><span class="type">GdkGLContext</span></a> *</td>
 <td class="property_name"><a class="link" href="GdkGLContext.html#GdkGLContext--shared-context" title="The “shared-context” property">shared-context</a></td>
-<td class="property_flags">Read / Write / Construct Only</td>
+<td class="property_flags">Read / Write / Construct Only</td>
 </tr>
 <tr>
 <td class="property_type">
 <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> *</td>
 <td class="property_name"><a class="link" href="GdkGLContext.html#GdkGLContext--window" title="The “window” property">window</a></td>
-<td class="property_flags">Read / Write / Construct Only</td>
+<td class="property_flags">Read / Write / Construct Only</td>
 </tr>
 </tbody>
 </table></div>
@@ -214,17 +214,17 @@
 <a name="GdkGLContext.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name"><a class="link" href="GdkGLContext.html#GdkGLContext-struct" title="GdkGLContext">GdkGLContext</a></td>
+<td class="function_name">GdkGLContext</td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name"><a class="link" href="GdkGLContext.html#GdkGLError" title="enum GdkGLError">GdkGLError</a></td>
+<td class="function_name">GdkGLError</td>
 </tr>
 </tbody>
 </table></div>
@@ -244,7 +244,7 @@
 <a name="GdkGLContext.description"></a><h2>Description</h2>
 <p><a class="link" href="GdkGLContext.html" title="GdkGLContext"><span class="type">GdkGLContext</span></a> is an object representing the platform-specific
 OpenGL drawing context.</p>
-<p><a href="GdkGLContext.html#GdkGLContext-struct"><span class="type">GdkGLContexts</span></a> are created for a <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> using
+<p><span class="type">GdkGLContexts</span> are created for a <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> using
 <a class="link" href="gdk3-Windows.html#gdk-window-create-gl-context" title="gdk_window_create_gl_context ()"><code class="function">gdk_window_create_gl_context()</code></a>, and the context will match
 the <a class="link" href="gdk3-Visuals.html#GdkVisual"><span class="type">GdkVisual</span></a> of the window.</p>
 <p>A <a class="link" href="GdkGLContext.html" title="GdkGLContext"><span class="type">GdkGLContext</span></a> is not tied to any particular normal framebuffer.
@@ -282,7 +282,7 @@ want to draw with is the current one before issuing commands:</p>
     <tbody>
       <tr>
         <td class="listing_lines" align="right"><pre>1</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="function"><a href="GdkGLContext.html#gdk-gl-context-make-current">gdk_gl_context_make_current</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">context</span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">gdk_gl_context_make_current</span> <span class="p">(</span><span class="n">context</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -822,58 +822,13 @@ until <a class="link" href="GdkGLContext.html#gdk-gl-context-make-current" title
 </div>
 </div>
 <div class="refsect1">
-<a name="GdkGLContext.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GdkGLContext-struct"></a><h3>GdkGLContext</h3>
-<pre class="programlisting">typedef struct _GdkGLContext GdkGLContext;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GdkGLError"></a><h3>enum GdkGLError</h3>
-<p>Error enumeration for <a class="link" href="GdkGLContext.html" title="GdkGLContext"><span class="type">GdkGLContext</span></a>.</p>
-<div class="refsect3">
-<a name="GdkGLError.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="enum_members_name">
-<col class="enum_members_description">
-<col width="200px" class="enum_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="enum_member_name"><p><a name="GDK-GL-ERROR-NOT-AVAILABLE:CAPS"></a>GDK_GL_ERROR_NOT_AVAILABLE</p></td>
-<td class="enum_member_description">
-<p>OpenGL support is not available</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GDK-GL-ERROR-UNSUPPORTED-FORMAT:CAPS"></a>GDK_GL_ERROR_UNSUPPORTED_FORMAT</p></td>
-<td class="enum_member_description">
-<p>The requested visual format is not supported</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GDK-GL-ERROR-UNSUPPORTED-PROFILE:CAPS"></a>GDK_GL_ERROR_UNSUPPORTED_PROFILE</p></td>
-<td class="enum_member_description">
-<p>The requested profile is not supported</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<p class="since">Since: <a class="link" href="api-index-3-16.html#api-index-3.16">3.16</a></p>
-</div>
-</div>
-<div class="refsect1">
 <a name="GdkGLContext.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GdkGLContext--display"></a><h3>The <code class="literal">“display”</code> property</h3>
 <pre class="programlisting">  “display”                  <a class="link" href="GdkDisplay.html" title="GdkDisplay"><span class="type">GdkDisplay</span></a> *</pre>
 <p>The <a class="link" href="GdkDisplay.html" title="GdkDisplay"><span class="type">GdkDisplay</span></a> used to create the <a class="link" href="GdkGLContext.html" title="GdkGLContext"><span class="type">GdkGLContext</span></a>.</p>
-<p>Flags: Read / Write / Construct Only</p>
+<p>Owner: GdkGLContext</p>
+<p>Flags: Read / Write / Construct Only</p>
 <p class="since">Since: <a class="link" href="api-index-3-16.html#api-index-3.16">3.16</a></p>
 </div>
 <hr>
@@ -881,7 +836,8 @@ until <a class="link" href="GdkGLContext.html#gdk-gl-context-make-current" title
 <a name="GdkGLContext--shared-context"></a><h3>The <code class="literal">“shared-context”</code> property</h3>
 <pre class="programlisting">  “shared-context”           <a class="link" href="GdkGLContext.html" title="GdkGLContext"><span class="type">GdkGLContext</span></a> *</pre>
 <p>The <a class="link" href="GdkGLContext.html" title="GdkGLContext"><span class="type">GdkGLContext</span></a> that this context is sharing data with, or <code class="literal">NULL</code></p>
-<p>Flags: Read / Write / Construct Only</p>
+<p>Owner: GdkGLContext</p>
+<p>Flags: Read / Write / Construct Only</p>
 <p class="since">Since: <a class="link" href="api-index-3-16.html#api-index-3.16">3.16</a></p>
 </div>
 <hr>
@@ -889,12 +845,13 @@ until <a class="link" href="GdkGLContext.html#gdk-gl-context-make-current" title
 <a name="GdkGLContext--window"></a><h3>The <code class="literal">“window”</code> property</h3>
 <pre class="programlisting">  “window”                   <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> *</pre>
 <p>The <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> the gl context is bound to.</p>
-<p>Flags: Read / Write / Construct Only</p>
+<p>Owner: GdkGLContext</p>
+<p>Flags: Read / Write / Construct Only</p>
 <p class="since">Since: <a class="link" href="api-index-3-16.html#api-index-3.16">3.16</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

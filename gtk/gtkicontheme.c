@@ -608,9 +608,10 @@ unset_screen (GtkIconTheme *icon_theme)
       g_signal_handlers_disconnect_by_func (display,
                                             (gpointer) display_closed,
                                             icon_theme);
-      g_signal_handlers_disconnect_by_func (settings,
-                                            (gpointer) theme_changed,
-                                            icon_theme);
+      if (settings)
+        g_signal_handlers_disconnect_by_func (settings,
+                                              (gpointer) theme_changed,
+                                              icon_theme);
 
       priv->screen = NULL;
     }
@@ -4026,8 +4027,8 @@ icon_info_ensure_scale_and_pixbuf (GtkIconInfo *icon_info)
   else
     {
       icon_info->pixbuf = gdk_pixbuf_scale_simple (source_pixbuf,
-                                                   0.5 + image_width * icon_info->scale,
-                                                   0.5 + image_height * icon_info->scale,
+                                                   MAX (1, 0.5 + image_width * icon_info->scale),
+                                                   MAX (1, 0.5 + image_height * icon_info->scale),
                                                    GDK_INTERP_BILINEAR);
       g_object_unref (source_pixbuf);
     }

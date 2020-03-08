@@ -8,7 +8,7 @@
 <link rel="up" href="ApplicationChoosing.html" title="Choosing from installed applications">
 <link rel="prev" href="GtkAppChooserButton.html" title="GtkAppChooserButton">
 <link rel="next" href="GtkAppChooserWidget.html" title="GtkAppChooserWidget">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -38,8 +38,8 @@
 <a name="GtkAppChooserDialog.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -97,7 +97,7 @@
 <td class="property_type">
 <span class="type">GFile</span> *</td>
 <td class="property_name"><a class="link" href="GtkAppChooserDialog.html#GtkAppChooserDialog--gfile" title="The “gfile” property">gfile</a></td>
-<td class="property_flags">Read / Write / Construct Only</td>
+<td class="property_flags">Read / Write / Construct Only</td>
 </tr>
 <tr>
 <td class="property_type">
@@ -112,17 +112,17 @@
 <a name="GtkAppChooserDialog.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkAppChooserDialog.html#GtkAppChooserDialog-struct" title="struct GtkAppChooserDialog">GtkAppChooserDialog</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkAppChooserDialog.html#GtkAppChooserDialog-struct">GtkAppChooserDialog</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkAppChooserDialog.html#GtkAppChooserDialogClass" title="struct GtkAppChooserDialogClass">GtkAppChooserDialogClass</a></td>
+<td class="function_name">GtkAppChooserDialogClass</td>
 </tr>
 </tbody>
 </table></div>
@@ -166,7 +166,7 @@ use <a class="link" href="GtkAppChooserDialog.html#gtk-app-chooser-dialog-set-he
 <a name="gtk-app-chooser-dialog-new"></a><h3>gtk_app_chooser_dialog_new ()</h3>
 <pre class="programlisting"><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="returnvalue">GtkWidget</span></a> *
 gtk_app_chooser_dialog_new (<em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *parent</code></em>,
-                            <em class="parameter"><code><a class="link" href="GtkDialog.html#GtkDialogFlags" title="enum GtkDialogFlags"><span class="type">GtkDialogFlags</span></a> flags</code></em>,
+                            <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkDialog.html#GtkDialogFlags"><span class="type">GtkDialogFlags</span></a> flags</code></em>,
                             <em class="parameter"><code><span class="type">GFile</span> *file</code></em>);</pre>
 <p>Creates a new <a class="link" href="GtkAppChooserDialog.html" title="GtkAppChooserDialog"><span class="type">GtkAppChooserDialog</span></a> for the provided <span class="type">GFile</span>,
 to allow the user to select an application for it.</p>
@@ -209,7 +209,7 @@ to allow the user to select an application for it.</p>
 <pre class="programlisting"><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="returnvalue">GtkWidget</span></a> *
 gtk_app_chooser_dialog_new_for_content_type
                                (<em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *parent</code></em>,
-                                <em class="parameter"><code><a class="link" href="GtkDialog.html#GtkDialogFlags" title="enum GtkDialogFlags"><span class="type">GtkDialogFlags</span></a> flags</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkDialog.html#GtkDialogFlags"><span class="type">GtkDialogFlags</span></a> flags</code></em>,
                                 <em class="parameter"><code>const <span class="type">gchar</span> *content_type</code></em>);</pre>
 <p>Creates a new <a class="link" href="GtkAppChooserDialog.html" title="GtkAppChooserDialog"><span class="type">GtkAppChooserDialog</span></a> for the provided content type,
 to allow the user to select an application for it.</p>
@@ -336,32 +336,6 @@ case a default text is displayed. </p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkAppChooserDialog.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkAppChooserDialog-struct"></a><h3>struct GtkAppChooserDialog</h3>
-<pre class="programlisting">struct GtkAppChooserDialog;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkAppChooserDialogClass"></a><h3>struct GtkAppChooserDialogClass</h3>
-<pre class="programlisting">struct GtkAppChooserDialogClass {
-  GtkDialogClass parent_class;
-};
-</pre>
-<div class="refsect3">
-<a name="GtkAppChooserDialogClass.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody></tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkAppChooserDialog.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkAppChooserDialog--gfile"></a><h3>The <code class="literal">“gfile”</code> property</h3>
@@ -369,7 +343,8 @@ case a default text is displayed. </p>
 <p>The GFile used by the <a class="link" href="GtkAppChooserDialog.html" title="GtkAppChooserDialog"><span class="type">GtkAppChooserDialog</span></a>.
 The dialog's <a class="link" href="GtkAppChooserWidget.html" title="GtkAppChooserWidget"><span class="type">GtkAppChooserWidget</span></a> content type will be guessed from the
 file, if present.</p>
-<p>Flags: Read / Write / Construct Only</p>
+<p>Owner: GtkAppChooserDialog</p>
+<p>Flags: Read / Write / Construct Only</p>
 </div>
 <hr>
 <div class="refsect2">
@@ -377,12 +352,13 @@ file, if present.</p>
 <pre class="programlisting">  “heading”                  <span class="type">gchar</span> *</pre>
 <p>The text to show at the top of the dialog.
 The string may contain Pango markup.</p>
+<p>Owner: GtkAppChooserDialog</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

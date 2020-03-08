@@ -8,7 +8,7 @@
 <link rel="up" href="DeprecatedObjects.html" title="Deprecated">
 <link rel="prev" href="GtkActionGroup.html" title="GtkActionGroup">
 <link rel="next" href="GtkToggleAction.html" title="GtkToggleAction">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -39,8 +39,8 @@
 <a name="GtkAction.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -427,7 +427,7 @@
 <td class="property_type">
 <span class="type">gchar</span> *</td>
 <td class="property_name"><a class="link" href="GtkAction.html#GtkAction--name" title="The “name” property">name</a></td>
-<td class="property_flags">Read / Write / Construct Only</td>
+<td class="property_flags">Read / Write / Construct Only</td>
 </tr>
 <tr>
 <td class="property_type"><span class="type">gboolean</span></td>
@@ -479,9 +479,9 @@
 <a name="GtkAction.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody><tr>
 <td class="signal_type"><span class="returnvalue">void</span></td>
@@ -494,17 +494,17 @@
 <a name="GtkAction.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkAction.html#GtkAction-struct" title="struct GtkAction">GtkAction</a></td>
+<td class="function_name">GtkAction</td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkAction.html#GtkActionClass" title="struct GtkActionClass">GtkActionClass</a></td>
+<td class="function_name">GtkActionClass</td>
 </tr>
 </tbody>
 </table></div>
@@ -907,7 +907,7 @@ activated.</p>
 <a name="gtk-action-create-icon"></a><h3>gtk_action_create_icon ()</h3>
 <pre class="programlisting"><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="returnvalue">GtkWidget</span></a> *
 gtk_action_create_icon (<em class="parameter"><code><a class="link" href="GtkAction.html" title="GtkAction"><span class="type">GtkAction</span></a> *action</code></em>,
-                        <em class="parameter"><code><a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSize" title="enum GtkIconSize"><span class="type">GtkIconSize</span></a> icon_size</code></em>);</pre>
+                        <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkIconSize"><span class="type">GtkIconSize</span></a> icon_size</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gtk_action_create_icon</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p>
 <p>Use <code class="function">g_menu_item_set_icon()</code> to set an icon on a <span class="type">GMenuItem</span>,
@@ -931,7 +931,7 @@ create icons displayed in the proxy widgets.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>icon_size</p></td>
-<td class="parameter_description"><p>the size of the icon (<a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSize" title="enum GtkIconSize"><span class="type">GtkIconSize</span></a>) that should
+<td class="parameter_description"><p>the size of the icon (<a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkIconSize"><span class="type">GtkIconSize</span></a>) that should
 be created. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> int]</span></td>
 </tr>
@@ -2069,40 +2069,6 @@ is important</p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkAction.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkAction-struct"></a><h3>struct GtkAction</h3>
-<pre class="programlisting">struct GtkAction;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkActionClass"></a><h3>struct GtkActionClass</h3>
-<pre class="programlisting">struct GtkActionClass {
-  GObjectClass parent_class;
-
-
-  /* activation signal */
-  void       (* activate)           (GtkAction    *action);
-};
-</pre>
-<div class="refsect3">
-<a name="GtkActionClass.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody><tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkActionClass.activate"></a>activate</code></em> ()</p></td>
-<td class="struct_member_description"><p>Signal emitted when the action is activated.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr></tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkAction.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkAction--action-group"></a><h3>The <code class="literal">“action-group”</code> property</h3>
@@ -2114,6 +2080,7 @@ is important</p>
 <p>Lookup the <span class="type">GAction</span> using <code class="function">g_action_map_lookup_action()</code>
 instead</p>
 </div>
+<p>Owner: GtkAction</p>
 <p>Flags: Read / Write</p>
 </div>
 <hr>
@@ -2130,6 +2097,7 @@ without their image.</p>
 <p>There is no corresponding replacement when using
 <span class="type">GAction</span></p>
 </div>
+<p>Owner: GtkAction</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: 2.20</p>
@@ -2149,6 +2117,7 @@ property holds the id of an existing stock icon.</p>
 <p><code class="literal">GtkAction:gicon</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p>
 <p>Use the "icon" attribute on a <span class="type">GMenuItem</span> instead</p>
 </div>
+<p>Owner: GtkAction</p>
 <p>Flags: Read / Write</p>
 <p class="since">Since: 2.16</p>
 </div>
@@ -2162,6 +2131,7 @@ property holds the id of an existing stock icon.</p>
 <p>There is no corresponding replacement when using
 <span class="type">GAction</span></p>
 </div>
+<p>Owner: GtkAction</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 </div>
@@ -2181,6 +2151,7 @@ preferred if the <a class="link" href="GtkAction.html#GtkAction--gicon" title="T
 <p><code class="literal">GtkAction:icon-name</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p>
 <p>Use the "icon" attribute on a <span class="type">GMenuItem</span> instead</p>
 </div>
+<p>Owner: GtkAction</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 <p class="since">Since: 2.10</p>
@@ -2196,6 +2167,7 @@ proxies for this action show text in GTK_TOOLBAR_BOTH_HORIZ mode.</p>
 <p>There is no corresponding replacement when using
 <span class="type">GAction</span></p>
 </div>
+<p>Owner: GtkAction</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -2214,6 +2186,7 @@ label specified via the stock-id property.</p>
 <p><code class="literal">GtkAction:label</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p>
 <p>Use the "label" attribute on <span class="type">GMenuItem</span> instead</p>
 </div>
+<p>Owner: GtkAction</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -2226,7 +2199,8 @@ label specified via the stock-id property.</p>
 <p><code class="literal">GtkAction:name</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p>
 <p>Use <span class="type">“name”</span> instead</p>
 </div>
-<p>Flags: Read / Write / Construct Only</p>
+<p>Owner: GtkAction</p>
+<p>Flags: Read / Write / Construct Only</p>
 <p>Default value: NULL</p>
 </div>
 <hr>
@@ -2239,6 +2213,7 @@ label specified via the stock-id property.</p>
 <p>Use <span class="type">“enabled”</span> and <span class="type">“enabled”</span>
 instead</p>
 </div>
+<p>Owner: GtkAction</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 </div>
@@ -2255,6 +2230,7 @@ instead</p>
 <p>There is no corresponding replacement when using
 <span class="type">GAction</span></p>
 </div>
+<p>Owner: GtkAction</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -2271,6 +2247,7 @@ instead</p>
 <p>There is no corresponding replacement when using
 <span class="type">GAction</span></p>
 </div>
+<p>Owner: GtkAction</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -2283,6 +2260,7 @@ instead</p>
 <p><code class="literal">GtkAction:tooltip</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="GtkWidget.html#gtk-widget-set-tooltip-text" title="gtk_widget_set_tooltip_text ()"><code class="function">gtk_widget_set_tooltip_text()</code></a> instead</p>
 </div>
+<p>Owner: GtkAction</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -2296,6 +2274,7 @@ instead</p>
 <p>There is no corresponding replacement when using
 <span class="type">GAction</span></p>
 </div>
+<p>Owner: GtkAction</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 </div>
@@ -2309,6 +2288,7 @@ instead</p>
 <p>There is no corresponding replacement when using
 <span class="type">GAction</span></p>
 </div>
+<p>Owner: GtkAction</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 </div>
@@ -2324,6 +2304,7 @@ toolbar overflow menu.</p>
 <p>There is no corresponding replacement when using
 <span class="type">GAction</span></p>
 </div>
+<p>Owner: GtkAction</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 <p class="since">Since: 2.6</p>
@@ -2338,6 +2319,7 @@ toolbar overflow menu.</p>
 <p>There is no corresponding replacement when using
 <span class="type">GAction</span></p>
 </div>
+<p>Owner: GtkAction</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 </div>
@@ -2386,6 +2368,6 @@ user_function (<a class="link" href="GtkAction.html" title="GtkAction"><span cla
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

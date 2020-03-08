@@ -8,7 +8,7 @@
 <link rel="up" href="AbstractObjects.html" title="Abstract Base Classes">
 <link rel="prev" href="GtkWidget.html" title="GtkWidget">
 <link rel="next" href="GtkBin.html" title="GtkBin">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -39,8 +39,8 @@
 <a name="GtkContainer.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -81,7 +81,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a class="link" href="GtkContainer.html#GtkResizeMode" title="enum GtkResizeMode"><span class="returnvalue">GtkResizeMode</span></a>
+<span class="returnvalue">GtkResizeMode</span>
 </td>
 <td class="function_name">
 <a class="link" href="GtkContainer.html#gtk-container-get-resize-mode" title="gtk_container_get_resize_mode ()">gtk_container_get_resize_mode</a> <span class="c_punctuation">()</span>
@@ -121,7 +121,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a class="link" href="gtk3-GtkWidgetPath.html#GtkWidgetPath" title="GtkWidgetPath"><span class="returnvalue">GtkWidgetPath</span></a> *
+<a href="https://developer.gnome.org/gtk4/gtk4-GtkWidgetPath.html#GtkWidgetPath"><span class="returnvalue">GtkWidgetPath</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkContainer.html#gtk-container-get-path-for-child" title="gtk_container_get_path_for_child ()">gtk_container_get_path_for_child</a> <span class="c_punctuation">()</span>
@@ -383,7 +383,7 @@
 <td class="property_flags">Write</td>
 </tr>
 <tr>
-<td class="property_type"><a class="link" href="GtkContainer.html#GtkResizeMode" title="enum GtkResizeMode"><span class="type">GtkResizeMode</span></a></td>
+<td class="property_type"><span class="type">GtkResizeMode</span></td>
 <td class="property_name"><a class="link" href="GtkContainer.html#GtkContainer--resize-mode" title="The “resize-mode” property">resize-mode</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -394,9 +394,9 @@
 <a name="GtkContainer.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody>
 <tr>
@@ -426,21 +426,21 @@
 <a name="GtkContainer.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkContainer.html#GtkContainer-struct" title="struct GtkContainer">GtkContainer</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkContainer.html#GtkContainer-struct">GtkContainer</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkContainer.html#GtkContainerClass" title="struct GtkContainerClass">GtkContainerClass</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkContainer.html#GtkContainerClass">GtkContainerClass</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name"><a class="link" href="GtkContainer.html#GtkResizeMode" title="enum GtkResizeMode">GtkResizeMode</a></td>
+<td class="function_name">GtkResizeMode</td>
 </tr>
 </tbody>
 </table></div>
@@ -504,14 +504,14 @@ manage layout. This means that these containers assign
 sizes and positions to their children. For example, a <a class="link" href="GtkHBox.html" title="GtkHBox"><span class="type">GtkHBox</span></a> arranges its
 children in a horizontal row, and a <a class="link" href="GtkGrid.html" title="GtkGrid"><span class="type">GtkGrid</span></a> arranges the widgets it contains
 in a two-dimensional grid.</p>
-<p>For implementations of <a class="link" href="GtkContainer.html" title="GtkContainer"><span class="type">GtkContainer</span></a> the virtual method <a class="link" href="GtkContainer.html#GtkContainerClass.forall"><code class="function">GtkContainerClass.forall()</code></a>
+<p>For implementations of <a class="link" href="GtkContainer.html" title="GtkContainer"><span class="type">GtkContainer</span></a> the virtual method <a href="https://developer.gnome.org/gtk4/GtkContainer.html#GtkContainerClass.forall"><code class="function">GtkContainerClass.forall()</code></a>
 is always required, since it's used for drawing and other internal operations
 on the children.
 If the <a class="link" href="GtkContainer.html" title="GtkContainer"><span class="type">GtkContainer</span></a> implementation expect to have non internal children
-it's needed to implement both <a class="link" href="GtkContainer.html#GtkContainerClass.add"><code class="function">GtkContainerClass.add()</code></a> and <a class="link" href="GtkContainer.html#GtkContainerClass.remove"><code class="function">GtkContainerClass.remove()</code></a>.
+it's needed to implement both <a href="https://developer.gnome.org/gtk4/GtkContainer.html#GtkContainerClass.add"><code class="function">GtkContainerClass.add()</code></a> and <a href="https://developer.gnome.org/gtk4/GtkContainer.html#GtkContainerClass.remove"><code class="function">GtkContainerClass.remove()</code></a>.
 If the GtkContainer implementation has internal children, they should be added
 with <a class="link" href="GtkWidget.html#gtk-widget-set-parent" title="gtk_widget_set_parent ()"><code class="function">gtk_widget_set_parent()</code></a> on <code class="function">init()</code> and removed with <a class="link" href="GtkWidget.html#gtk-widget-unparent" title="gtk_widget_unparent ()"><code class="function">gtk_widget_unparent()</code></a>
-in the <a class="link" href="GtkWidget.html#GtkWidgetClass.destroy"><code class="function">GtkWidgetClass.destroy()</code></a> implementation.
+in the <a href="https://developer.gnome.org/gtk4/GtkWidget.html#GtkWidgetClass.destroy"><code class="function">GtkWidgetClass.destroy()</code></a> implementation.
 See more about implementing custom widgets at https://wiki.gnome.org/HowDoI/CustomWidgets</p>
 <div class="refsect2">
 <a name="id-1.3.20.3.10.7"></a><h3>Height for width geometry management</h3>
@@ -523,8 +523,8 @@ width-for-height).</p>
 that make use of GTK+’s height for width geometry management system. First,
 it’s important to note that a container must prioritize one of its
 dimensions, that is to say that a widget or container can only have a
-<a class="link" href="GtkWidget.html#GtkSizeRequestMode" title="enum GtkSizeRequestMode"><span class="type">GtkSizeRequestMode</span></a> that is <a class="link" href="GtkWidget.html#GTK-SIZE-REQUEST-HEIGHT-FOR-WIDTH:CAPS"><code class="literal">GTK_SIZE_REQUEST_HEIGHT_FOR_WIDTH</code></a> or
-<a class="link" href="GtkWidget.html#GTK-SIZE-REQUEST-WIDTH-FOR-HEIGHT:CAPS"><code class="literal">GTK_SIZE_REQUEST_WIDTH_FOR_HEIGHT</code></a>. However, every widget and container
+<a href="https://developer.gnome.org/gtk4/GtkWidget.html#GtkSizeRequestMode"><span class="type">GtkSizeRequestMode</span></a> that is <a href="https://developer.gnome.org/gtk4/GtkWidget.html#GTK-SIZE-REQUEST-HEIGHT-FOR-WIDTH:CAPS"><code class="literal">GTK_SIZE_REQUEST_HEIGHT_FOR_WIDTH</code></a> or
+<a href="https://developer.gnome.org/gtk4/GtkWidget.html#GTK-SIZE-REQUEST-WIDTH-FOR-HEIGHT:CAPS"><code class="literal">GTK_SIZE_REQUEST_WIDTH_FOR_HEIGHT</code></a>. However, every widget and container
 must be able to respond to the APIs for both dimensions, i.e. even if a
 widget has a request mode that is height-for-width, it is possible that
 its parent will request its sizes using the width-for-height APIs.</p>
@@ -532,7 +532,7 @@ its parent will request its sizes using the width-for-height APIs.</p>
 when implementing height-for-width (or width-for-height) containers.</p>
 <p>Each request mode involves 2 virtual methods. Height-for-width apis run
 through <a class="link" href="GtkWidget.html#gtk-widget-get-preferred-width" title="gtk_widget_get_preferred_width ()"><code class="function">gtk_widget_get_preferred_width()</code></a> and then through <a class="link" href="GtkWidget.html#gtk-widget-get-preferred-height-for-width" title="gtk_widget_get_preferred_height_for_width ()"><code class="function">gtk_widget_get_preferred_height_for_width()</code></a>.
-When handling requests in the opposite <a class="link" href="GtkWidget.html#GtkSizeRequestMode" title="enum GtkSizeRequestMode"><span class="type">GtkSizeRequestMode</span></a> it is important that
+When handling requests in the opposite <a href="https://developer.gnome.org/gtk4/GtkWidget.html#GtkSizeRequestMode"><span class="type">GtkSizeRequestMode</span></a> it is important that
 every widget request at least enough space to display all of its content at all times.</p>
 <p>When <a class="link" href="GtkWidget.html#gtk-widget-get-preferred-height" title="gtk_widget_get_preferred_height ()"><code class="function">gtk_widget_get_preferred_height()</code></a> is called on a container that is height-for-width,
 the container must return the height for its minimum width. This is easily achieved by
@@ -568,33 +568,33 @@ simply calling the reverse apis implemented for itself as follows:</p>
 25
 26
 27</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
-<span class="function">foo_container_get_preferred_height</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">widget</span><span class="symbol">,</span>
-<span class="normal">                                    </span><span class="usertype">gint</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">min_height</span><span class="symbol">,</span>
-<span class="normal">                                    </span><span class="usertype">gint</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">nat_height</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">   </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">i_am_in_height_for_width_mode</span><span class="symbol">)</span>
-<span class="normal">     </span><span class="cbracket">{</span>
-<span class="normal">       </span><span class="usertype">gint</span><span class="normal"> min_width</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
+<span class="nf">foo_container_get_preferred_height</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
+                                    <span class="n">gint</span> <span class="o">*</span><span class="n">min_height</span><span class="p">,</span>
+                                    <span class="n">gint</span> <span class="o">*</span><span class="n">nat_height</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="k">if</span> <span class="p">(</span><span class="n">i_am_in_height_for_width_mode</span><span class="p">)</span>
+     <span class="p">{</span>
+       <span class="n">gint</span> <span class="n">min_width</span><span class="p">;</span>
 
-<span class="normal">       </span><span class="function">GTK_WIDGET_GET_CLASS</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">)-&gt;</span><span class="function">get_preferred_width</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">,</span>
-<span class="normal">                                                           </span><span class="symbol">&amp;</span><span class="normal">min_width</span><span class="symbol">,</span>
-<span class="normal">                                                           NULL</span><span class="symbol">);</span>
-<span class="normal">       </span><span class="function">GTK_WIDGET_GET_CLASS</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">)-&gt;</span><span class="normal">get_preferred_height_for_width</span>
-<span class="normal">                                                          </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">,</span>
-<span class="normal">                                                           min_width</span><span class="symbol">,</span>
-<span class="normal">                                                           min_height</span><span class="symbol">,</span>
-<span class="normal">                                                           nat_height</span><span class="symbol">);</span>
-<span class="normal">     </span><span class="cbracket">}</span>
-<span class="normal">   </span><span class="keyword">else</span>
-<span class="normal">     </span><span class="cbracket">{</span>
-<span class="normal">       </span><span class="symbol">...</span><span class="normal"> many containers support both </span><span class="usertype">request</span><span class="normal"> modes</span><span class="symbol">,</span><span class="normal"> execute the</span>
-<span class="normal">       </span><span class="usertype">real</span><span class="normal"> width</span><span class="symbol">-</span><span class="keyword">for</span><span class="symbol">-</span><span class="normal">height request here by returning the</span>
-<span class="normal">       collective heights of all widgets that are stacked</span>
-<span class="normal">       </span><span class="function">vertically</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">or whatever is appropriate </span><span class="keyword">for</span><span class="normal"> </span><span class="usertype">this</span><span class="normal"> container</span><span class="symbol">)</span>
-<span class="normal">       </span><span class="symbol">...</span>
-<span class="normal">     </span><span class="cbracket">}</span>
-<span class="cbracket">}</span></pre></td>
+       <span class="n">GTK_WIDGET_GET_CLASS</span> <span class="p">(</span><span class="n">widget</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">get_preferred_width</span> <span class="p">(</span><span class="n">widget</span><span class="p">,</span>
+                                                           <span class="o">&amp;</span><span class="n">min_width</span><span class="p">,</span>
+                                                           <span class="nb">NULL</span><span class="p">);</span>
+       <span class="n">GTK_WIDGET_GET_CLASS</span> <span class="p">(</span><span class="n">widget</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">get_preferred_height_for_width</span>
+                                                          <span class="p">(</span><span class="n">widget</span><span class="p">,</span>
+                                                           <span class="n">min_width</span><span class="p">,</span>
+                                                           <span class="n">min_height</span><span class="p">,</span>
+                                                           <span class="n">nat_height</span><span class="p">);</span>
+     <span class="p">}</span>
+   <span class="k">else</span>
+     <span class="p">{</span>
+       <span class="p">...</span> <span class="n">many</span> <span class="n">containers</span> <span class="n">support</span> <span class="n">both</span> <span class="n">request</span> <span class="n">modes</span><span class="p">,</span> <span class="n">execute</span> <span class="n">the</span>
+       <span class="n">real</span> <span class="n">width</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">height</span> <span class="n">request</span> <span class="n">here</span> <span class="n">by</span> <span class="n">returning</span> <span class="n">the</span>
+       <span class="n">collective</span> <span class="n">heights</span> <span class="n">of</span> <span class="n">all</span> <span class="n">widgets</span> <span class="n">that</span> <span class="n">are</span> <span class="n">stacked</span>
+       <span class="n">vertically</span> <span class="p">(</span><span class="n">or</span> <span class="n">whatever</span> <span class="n">is</span> <span class="n">appropriate</span> <span class="k">for</span> <span class="n">this</span> <span class="n">container</span><span class="p">)</span>
+       <span class="p">...</span>
+     <span class="p">}</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -626,25 +626,25 @@ that is height-for-width, it then only needs to return the base minimum width li
 17
 18
 19</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
-<span class="function">foo_container_get_preferred_width_for_height</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">widget</span><span class="symbol">,</span>
-<span class="normal">                                              </span><span class="usertype">gint</span><span class="normal"> for_height</span><span class="symbol">,</span>
-<span class="normal">                                              </span><span class="usertype">gint</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">min_width</span><span class="symbol">,</span>
-<span class="normal">                                              </span><span class="usertype">gint</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">nat_width</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">   </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">i_am_in_height_for_width_mode</span><span class="symbol">)</span>
-<span class="normal">     </span><span class="cbracket">{</span>
-<span class="normal">       </span><span class="function">GTK_WIDGET_GET_CLASS</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">)-&gt;</span><span class="function">get_preferred_width</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">widget</span><span class="symbol">,</span>
-<span class="normal">                                                           min_width</span><span class="symbol">,</span>
-<span class="normal">                                                           nat_width</span><span class="symbol">);</span>
-<span class="normal">     </span><span class="cbracket">}</span>
-<span class="normal">   </span><span class="keyword">else</span>
-<span class="normal">     </span><span class="cbracket">{</span>
-<span class="normal">       </span><span class="symbol">...</span><span class="normal"> execute the </span><span class="usertype">real</span><span class="normal"> width</span><span class="symbol">-</span><span class="keyword">for</span><span class="symbol">-</span><span class="normal">height request here based on</span>
-<span class="normal">       the required width of the children collectively </span><span class="keyword">if</span><span class="normal"> the</span>
-<span class="normal">       container were to be allocated the </span><span class="usertype">said</span><span class="normal"> height </span><span class="symbol">...</span>
-<span class="normal">     </span><span class="cbracket">}</span>
-<span class="cbracket">}</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
+<span class="nf">foo_container_get_preferred_width_for_height</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
+                                              <span class="n">gint</span> <span class="n">for_height</span><span class="p">,</span>
+                                              <span class="n">gint</span> <span class="o">*</span><span class="n">min_width</span><span class="p">,</span>
+                                              <span class="n">gint</span> <span class="o">*</span><span class="n">nat_width</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="k">if</span> <span class="p">(</span><span class="n">i_am_in_height_for_width_mode</span><span class="p">)</span>
+     <span class="p">{</span>
+       <span class="n">GTK_WIDGET_GET_CLASS</span> <span class="p">(</span><span class="n">widget</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">get_preferred_width</span> <span class="p">(</span><span class="n">widget</span><span class="p">,</span>
+                                                           <span class="n">min_width</span><span class="p">,</span>
+                                                           <span class="n">nat_width</span><span class="p">);</span>
+     <span class="p">}</span>
+   <span class="k">else</span>
+     <span class="p">{</span>
+       <span class="p">...</span> <span class="n">execute</span> <span class="n">the</span> <span class="n">real</span> <span class="n">width</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">height</span> <span class="n">request</span> <span class="n">here</span> <span class="n">based</span> <span class="n">on</span>
+       <span class="n">the</span> <span class="n">required</span> <span class="n">width</span> <span class="n">of</span> <span class="n">the</span> <span class="n">children</span> <span class="n">collectively</span> <span class="k">if</span> <span class="n">the</span>
+       <span class="n">container</span> <span class="n">were</span> <span class="n">to</span> <span class="n">be</span> <span class="n">allocated</span> <span class="n">the</span> <span class="n">said</span> <span class="n">height</span> <span class="p">...</span>
+     <span class="p">}</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -656,21 +656,21 @@ of widgets in the input orientation. Assuming an height-for-width request mode, 
 would implement the <code class="function">get_preferred_height_for_width()</code> virtual function by first calling
 <a class="link" href="GtkWidget.html#gtk-widget-get-preferred-width" title="gtk_widget_get_preferred_width ()"><code class="function">gtk_widget_get_preferred_width()</code></a> for each of its children.</p>
 <p>For each potential group of children that are lined up horizontally, the values returned by
-<a class="link" href="GtkWidget.html#gtk-widget-get-preferred-width" title="gtk_widget_get_preferred_width ()"><code class="function">gtk_widget_get_preferred_width()</code></a> should be collected in an array of <a class="link" href="GtkWidget.html#GtkRequestedSize" title="struct GtkRequestedSize"><span class="type">GtkRequestedSize</span></a> structures.
+<a class="link" href="GtkWidget.html#gtk-widget-get-preferred-width" title="gtk_widget_get_preferred_width ()"><code class="function">gtk_widget_get_preferred_width()</code></a> should be collected in an array of <a href="https://developer.gnome.org/gtk4/GtkWidget.html#GtkRequestedSize"><span class="type">GtkRequestedSize</span></a> structures.
 Any child spacing should be removed from the input <em class="parameter"><code>for_width</code></em>
  and then the collective size should be
 allocated using the <a class="link" href="GtkWidget.html#gtk-distribute-natural-allocation" title="gtk_distribute_natural_allocation ()"><code class="function">gtk_distribute_natural_allocation()</code></a> convenience function.</p>
 <p>The container will then move on to request the preferred height for each child by using
-<a class="link" href="GtkWidget.html#gtk-widget-get-preferred-height-for-width" title="gtk_widget_get_preferred_height_for_width ()"><code class="function">gtk_widget_get_preferred_height_for_width()</code></a> and using the sizes stored in the <a class="link" href="GtkWidget.html#GtkRequestedSize" title="struct GtkRequestedSize"><span class="type">GtkRequestedSize</span></a> array.</p>
+<a class="link" href="GtkWidget.html#gtk-widget-get-preferred-height-for-width" title="gtk_widget_get_preferred_height_for_width ()"><code class="function">gtk_widget_get_preferred_height_for_width()</code></a> and using the sizes stored in the <a href="https://developer.gnome.org/gtk4/GtkWidget.html#GtkRequestedSize"><span class="type">GtkRequestedSize</span></a> array.</p>
 <p>To allocate a height-for-width container, it’s again important
 to consider that a container must prioritize one dimension over the other. So if
 a container is a height-for-width container it must first allocate all widgets horizontally
-using a <a class="link" href="GtkWidget.html#GtkRequestedSize" title="struct GtkRequestedSize"><span class="type">GtkRequestedSize</span></a> array and <a class="link" href="GtkWidget.html#gtk-distribute-natural-allocation" title="gtk_distribute_natural_allocation ()"><code class="function">gtk_distribute_natural_allocation()</code></a> and then add any
+using a <a href="https://developer.gnome.org/gtk4/GtkWidget.html#GtkRequestedSize"><span class="type">GtkRequestedSize</span></a> array and <a class="link" href="GtkWidget.html#gtk-distribute-natural-allocation" title="gtk_distribute_natural_allocation ()"><code class="function">gtk_distribute_natural_allocation()</code></a> and then add any
 extra space (if and where appropriate) for the widget to expand.</p>
 <p>After adding all the expand space, the container assumes it was allocated sufficient
 height to fit all of its content. At this time, the container must use the total horizontal sizes
 of each widget to request the height-for-width of each of its children and store the requests in a
-<a class="link" href="GtkWidget.html#GtkRequestedSize" title="struct GtkRequestedSize"><span class="type">GtkRequestedSize</span></a> array for any widgets that stack vertically (for tabular containers this can
+<a href="https://developer.gnome.org/gtk4/GtkWidget.html#GtkRequestedSize"><span class="type">GtkRequestedSize</span></a> array for any widgets that stack vertically (for tabular containers this can
 be generalized into the heights and widths of rows and columns).
 The vertical space must then again be distributed using <a class="link" href="GtkWidget.html#gtk-distribute-natural-allocation" title="gtk_distribute_natural_allocation ()"><code class="function">gtk_distribute_natural_allocation()</code></a>
 while this time considering the allocated height of the widget minus any vertical spacing
@@ -730,21 +730,21 @@ chain. The ”name” attribute gives the id of the widget.</p>
 13
 14
 15</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkBox"</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkEntry"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"entry1"</span><span class="symbol">/&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="normal">packing</span><span class="symbol">&gt;</span>
-<span class="normal">      </span><span class="symbol">&lt;</span><span class="usertype">property</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"pack-type"</span><span class="symbol">&gt;</span><span class="normal">start</span><span class="symbol">&lt;/</span><span class="normal">property</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;/</span><span class="normal">packing</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">child</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkEntry"</span><span class="normal"> id</span><span class="symbol">=</span><span class="string">"entry2"</span><span class="symbol">/&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">child</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">focus</span><span class="symbol">-</span><span class="normal">chain</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">widget</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"entry1"</span><span class="symbol">/&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">widget</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"entry2"</span><span class="symbol">/&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">focus</span><span class="symbol">-</span><span class="normal">chain</span><span class="symbol">&gt;</span>
-<span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkBox&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkEntry&quot;</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;entry1&quot;</span><span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="n">packing</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;pack-type&quot;</span><span class="o">&gt;</span><span class="n">start</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">packing</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkEntry&quot;</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;entry2&quot;</span><span class="o">/&gt;</span>
+  <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">focus</span><span class="o">-</span><span class="n">chain</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">widget</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;entry1&quot;</span><span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="n">widget</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;entry2&quot;</span><span class="o">/&gt;</span>
+  <span class="o">&lt;/</span><span class="n">focus</span><span class="o">-</span><span class="n">chain</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -935,7 +935,7 @@ with <em class="parameter"><code>first_prop_name</code></em>
 <hr>
 <div class="refsect2">
 <a name="gtk-container-get-resize-mode"></a><h3>gtk_container_get_resize_mode ()</h3>
-<pre class="programlisting"><a class="link" href="GtkContainer.html#GtkResizeMode" title="enum GtkResizeMode"><span class="returnvalue">GtkResizeMode</span></a>
+<pre class="programlisting"><span class="returnvalue">GtkResizeMode</span>
 gtk_container_get_resize_mode (<em class="parameter"><code><a class="link" href="GtkContainer.html" title="GtkContainer"><span class="type">GtkContainer</span></a> *container</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gtk_container_get_resize_mode</code> has been deprecated since version 3.12 and should not be used in newly-written code.</p>
@@ -970,7 +970,7 @@ gtk_container_get_resize_mode (<em class="parameter"><code><a class="link" href=
 <a name="gtk-container-set-resize-mode"></a><h3>gtk_container_set_resize_mode ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_container_set_resize_mode (<em class="parameter"><code><a class="link" href="GtkContainer.html" title="GtkContainer"><span class="type">GtkContainer</span></a> *container</code></em>,
-                               <em class="parameter"><code><a class="link" href="GtkContainer.html#GtkResizeMode" title="enum GtkResizeMode"><span class="type">GtkResizeMode</span></a> resize_mode</code></em>);</pre>
+                               <em class="parameter"><code><span class="type">GtkResizeMode</span> resize_mode</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gtk_container_set_resize_mode</code> has been deprecated since version 3.12 and should not be used in newly-written code.</p>
 <p>Resize modes are deprecated. They aren’t necessary
@@ -1088,7 +1088,7 @@ gtk_container_get_children (<em class="parameter"><code><a class="link" href="Gt
 <hr>
 <div class="refsect2">
 <a name="gtk-container-get-path-for-child"></a><h3>gtk_container_get_path_for_child ()</h3>
-<pre class="programlisting"><a class="link" href="gtk3-GtkWidgetPath.html#GtkWidgetPath" title="GtkWidgetPath"><span class="returnvalue">GtkWidgetPath</span></a> *
+<pre class="programlisting"><a href="https://developer.gnome.org/gtk4/gtk4-GtkWidgetPath.html#GtkWidgetPath"><span class="returnvalue">GtkWidgetPath</span></a> *
 gtk_container_get_path_for_child (<em class="parameter"><code><a class="link" href="GtkContainer.html" title="GtkContainer"><span class="type">GtkContainer</span></a> *container</code></em>,
                                   <em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *child</code></em>);</pre>
 <p>Returns a newly created widget path representing all the widget hierarchy
@@ -1119,7 +1119,7 @@ from the toplevel down to and including <em class="parameter"><code>child</code>
 </div>
 <div class="refsect3">
 <a name="gtk-container-get-path-for-child.returns"></a><h4>Returns</h4>
-<p> A newly created <a class="link" href="gtk3-GtkWidgetPath.html#GtkWidgetPath" title="GtkWidgetPath"><span class="type">GtkWidgetPath</span></a></p>
+<p> A newly created <a href="https://developer.gnome.org/gtk4/gtk4-GtkWidgetPath.html#GtkWidgetPath"><span class="type">GtkWidgetPath</span></a></p>
 </div>
 </div>
 <hr>
@@ -2082,7 +2082,7 @@ gtk_container_class_find_child_property
 <tbody>
 <tr>
 <td class="parameter_name"><p>cclass</p></td>
-<td class="parameter_description"><p>a <a class="link" href="GtkContainer.html#GtkContainerClass" title="struct GtkContainerClass"><span class="type">GtkContainerClass</span></a>. </p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/GtkContainer.html#GtkContainerClass"><span class="type">GtkContainerClass</span></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> GtkContainerClass]</span></td>
 </tr>
 <tr>
@@ -2107,7 +2107,7 @@ name. </p>
 <a name="gtk-container-class-install-child-property"></a><h3>gtk_container_class_install_child_property ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_container_class_install_child_property
-                               (<em class="parameter"><code><a class="link" href="GtkContainer.html#GtkContainerClass" title="struct GtkContainerClass"><span class="type">GtkContainerClass</span></a> *cclass</code></em>,
+                               (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkContainer.html#GtkContainerClass"><span class="type">GtkContainerClass</span></a> *cclass</code></em>,
                                 <em class="parameter"><code><span class="type">guint</span> property_id</code></em>,
                                 <em class="parameter"><code><span class="type">GParamSpec</span> *pspec</code></em>);</pre>
 <p>Installs a child property on a container class.</p>
@@ -2122,7 +2122,7 @@ gtk_container_class_install_child_property
 <tbody>
 <tr>
 <td class="parameter_name"><p>cclass</p></td>
-<td class="parameter_description"><p>a <a class="link" href="GtkContainer.html#GtkContainerClass" title="struct GtkContainerClass"><span class="type">GtkContainerClass</span></a></p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/GtkContainer.html#GtkContainerClass"><span class="type">GtkContainerClass</span></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -2144,7 +2144,7 @@ gtk_container_class_install_child_property
 <a name="gtk-container-class-install-child-properties"></a><h3>gtk_container_class_install_child_properties ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_container_class_install_child_properties
-                               (<em class="parameter"><code><a class="link" href="GtkContainer.html#GtkContainerClass" title="struct GtkContainerClass"><span class="type">GtkContainerClass</span></a> *cclass</code></em>,
+                               (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkContainer.html#GtkContainerClass"><span class="type">GtkContainerClass</span></a> *cclass</code></em>,
                                 <em class="parameter"><code><span class="type">guint</span> n_pspecs</code></em>,
                                 <em class="parameter"><code><span class="type">GParamSpec</span> **pspecs</code></em>);</pre>
 <p>Installs child properties on a container class.</p>
@@ -2159,7 +2159,7 @@ gtk_container_class_install_child_properties
 <tbody>
 <tr>
 <td class="parameter_name"><p>cclass</p></td>
-<td class="parameter_description"><p>a <a class="link" href="GtkContainer.html#GtkContainerClass" title="struct GtkContainerClass"><span class="type">GtkContainerClass</span></a></p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/GtkContainer.html#GtkContainerClass"><span class="type">GtkContainerClass</span></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -2197,7 +2197,7 @@ gtk_container_class_list_child_properties
 <tbody>
 <tr>
 <td class="parameter_name"><p>cclass</p></td>
-<td class="parameter_description"><p>a <a class="link" href="GtkContainer.html#GtkContainerClass" title="struct GtkContainerClass"><span class="type">GtkContainerClass</span></a>. </p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/GtkContainer.html#GtkContainerClass"><span class="type">GtkContainerClass</span></a>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> GtkContainerClass]</span></td>
 </tr>
 <tr>
@@ -2220,8 +2220,8 @@ The array must be freed with <code class="function">g_free()</code>. </p>
 <a name="gtk-container-class-handle-border-width"></a><h3>gtk_container_class_handle_border_width ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_container_class_handle_border_width
-                               (<em class="parameter"><code><a class="link" href="GtkContainer.html#GtkContainerClass" title="struct GtkContainerClass"><span class="type">GtkContainerClass</span></a> *klass</code></em>);</pre>
-<p>Modifies a subclass of <a class="link" href="GtkContainer.html#GtkContainerClass" title="struct GtkContainerClass"><span class="type">GtkContainerClass</span></a> to automatically add and
+                               (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkContainer.html#GtkContainerClass"><span class="type">GtkContainerClass</span></a> *klass</code></em>);</pre>
+<p>Modifies a subclass of <a href="https://developer.gnome.org/gtk4/GtkContainer.html#GtkContainerClass"><span class="type">GtkContainerClass</span></a> to automatically add and
 remove the border-width setting on GtkContainer.  This allows the
 subclass to ignore the border width in its size request and
 allocate methods. The intent is for a subclass to invoke this
@@ -2248,157 +2248,12 @@ for them.</p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkContainer.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkContainer-struct"></a><h3>struct GtkContainer</h3>
-<pre class="programlisting">struct GtkContainer;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkContainerClass"></a><h3>struct GtkContainerClass</h3>
-<pre class="programlisting">struct GtkContainerClass {
-  GtkWidgetClass parent_class;
-
-
-  void    (*add)       		(GtkContainer	 *container,
-				 GtkWidget	 *widget);
-  void    (*remove)    		(GtkContainer	 *container,
-				 GtkWidget	 *widget);
-  void    (*check_resize) (GtkContainer	 *container);
-  void    (*forall)    		(GtkContainer	 *container,
-				 gboolean	  include_internals,
-				 GtkCallback	  callback,
-				 gpointer	  callback_data);
-  void    (*set_focus_child) (GtkContainer	 *container,
-				 GtkWidget	 *child);
-  GType   (*child_type)		(GtkContainer	 *container);
-  gchar*  (*composite_name) (GtkContainer	 *container,
-				 GtkWidget	 *child);
-  void    (*set_child_property) (GtkContainer    *container,
-				 GtkWidget       *child,
-				 guint            property_id,
-				 const GValue    *value,
-				 GParamSpec      *pspec);
-  void    (*get_child_property) (GtkContainer    *container,
-                                 GtkWidget       *child,
-				 guint            property_id,
-				 GValue          *value,
-				 GParamSpec      *pspec);
-  GtkWidgetPath * (*get_path_for_child) (GtkContainer *container,
-                                         GtkWidget    *child);
-};
-</pre>
-<p>Base class for containers.</p>
-<div class="refsect3">
-<a name="GtkContainerClass.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkContainerClass.add"></a>add</code></em> ()</p></td>
-<td class="struct_member_description"><p>Signal emitted when a widget is added to container.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkContainerClass.remove"></a>remove</code></em> ()</p></td>
-<td class="struct_member_description"><p>Signal emitted when a widget is removed from container.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkContainerClass.check-resize"></a>check_resize</code></em> ()</p></td>
-<td class="struct_member_description"><p>Signal emitted when a size recalculation is needed.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkContainerClass.forall"></a>forall</code></em> ()</p></td>
-<td class="struct_member_description"><p>Invokes callback on each child of container. The callback handler
-may remove the child.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkContainerClass.set-focus-child"></a>set_focus_child</code></em> ()</p></td>
-<td class="struct_member_description"><p>Sets the focused child of container.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkContainerClass.child-type"></a>child_type</code></em> ()</p></td>
-<td class="struct_member_description"><p>Returns the type of the children supported by the container.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkContainerClass.composite-name"></a>composite_name</code></em> ()</p></td>
-<td class="struct_member_description"><p>Gets a widget’s composite name. Deprecated: 3.10.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkContainerClass.set-child-property"></a>set_child_property</code></em> ()</p></td>
-<td class="struct_member_description"><p>Set a property on a child of container.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkContainerClass.get-child-property"></a>get_child_property</code></em> ()</p></td>
-<td class="struct_member_description"><p>Get a property from a child of container.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkContainerClass.get-path-for-child"></a>get_path_for_child</code></em> ()</p></td>
-<td class="struct_member_description"><p>Get path representing entire widget hierarchy
-from the toplevel down to and including <em class="parameter"><code>child</code></em>
-.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkResizeMode"></a><h3>enum GtkResizeMode</h3>
-<div class="refsect3">
-<a name="GtkResizeMode.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="enum_members_name">
-<col class="enum_members_description">
-<col width="200px" class="enum_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-RESIZE-PARENT:CAPS"></a>GTK_RESIZE_PARENT</p></td>
-<td class="enum_member_description">
-<p>Pass resize request to the parent</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-RESIZE-QUEUE:CAPS"></a>GTK_RESIZE_QUEUE</p></td>
-<td class="enum_member_description">
-<p>Queue resizes on this widget</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-RESIZE-IMMEDIATE:CAPS"></a>GTK_RESIZE_IMMEDIATE</p></td>
-<td class="enum_member_description">
-<p>Resize immediately. Deprecated.</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkContainer.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkContainer--border-width"></a><h3>The <code class="literal">“border-width”</code> property</h3>
 <pre class="programlisting">  “border-width”             <span class="type">guint</span></pre>
 <p>The width of the empty border outside the containers children.</p>
+<p>Owner: GtkContainer</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &lt;= 65535</p>
 <p>Default value: 0</p>
@@ -2408,13 +2263,15 @@ from the toplevel down to and including <em class="parameter"><code>child</code>
 <a name="GtkContainer--child"></a><h3>The <code class="literal">“child”</code> property</h3>
 <pre class="programlisting">  “child”                    <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *</pre>
 <p>Can be used to add a new child to the container.</p>
+<p>Owner: GtkContainer</p>
 <p>Flags: Write</p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="GtkContainer--resize-mode"></a><h3>The <code class="literal">“resize-mode”</code> property</h3>
-<pre class="programlisting">  “resize-mode”              <a class="link" href="GtkContainer.html#GtkResizeMode" title="enum GtkResizeMode"><span class="type">GtkResizeMode</span></a></pre>
+<pre class="programlisting">  “resize-mode”              <span class="type">GtkResizeMode</span></pre>
 <p>Specify how resize events are handled.</p>
+<p>Owner: GtkContainer</p>
 <p>Flags: Read / Write</p>
 <p>Default value: GTK_RESIZE_PARENT</p>
 </div>
@@ -2458,6 +2315,6 @@ user_function (<a class="link" href="GtkContainer.html" title="GtkContainer"><sp
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

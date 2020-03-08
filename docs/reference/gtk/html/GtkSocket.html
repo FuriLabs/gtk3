@@ -8,7 +8,7 @@
 <link rel="up" href="PlugSocket.html" title="Cross-process Embedding">
 <link rel="prev" href="GtkPlug.html" title="GtkPlug">
 <link rel="next" href="RecentDocuments.html" title="Recently Used Documents">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -38,8 +38,8 @@
 <a name="GtkSocket.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -81,9 +81,9 @@
 <a name="GtkSocket.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody>
 <tr>
@@ -103,12 +103,12 @@
 <a name="GtkSocket.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkSocket.html#GtkSocket-struct" title="struct GtkSocket">GtkSocket</a></td>
+<td class="function_name">GtkSocket</td>
 </tr></tbody>
 </table></div>
 </div>
@@ -158,15 +158,15 @@ and for hence, have been added to its parent.</p>
 7
 8
 9</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">socket </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkSocket.html#gtk-socket-new">gtk_socket_new</a></span><span class="normal"> </span><span class="symbol">();</span>
-<span class="function"><a href="GtkWidget.html#gtk-widget-show">gtk_widget_show</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">socket</span><span class="symbol">);</span>
-<span class="function"><a href="GtkContainer.html#gtk-container-add">gtk_container_add</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_CONTAINER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">parent</span><span class="symbol">),</span><span class="normal"> socket</span><span class="symbol">);</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">socket</span> <span class="o">=</span> <span class="n">gtk_socket_new</span> <span class="p">();</span>
+<span class="n">gtk_widget_show</span> <span class="p">(</span><span class="n">socket</span><span class="p">);</span>
+<span class="n">gtk_container_add</span> <span class="p">(</span><span class="n">GTK_CONTAINER</span> <span class="p">(</span><span class="n">parent</span><span class="p">),</span> <span class="n">socket</span><span class="p">);</span>
 
-<span class="comment">// The following call is only necessary if one of</span>
-<span class="comment">// the ancestors of the socket is not yet visible.</span>
-<span class="function"><a href="GtkWidget.html#gtk-widget-realize">gtk_widget_realize</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">socket</span><span class="symbol">);</span>
-<span class="function">g_print</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"The ID of the sockets window is %#x</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span>
-<span class="normal">         </span><span class="function"><a href="GtkSocket.html#gtk-socket-get-id">gtk_socket_get_id</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">socket</span><span class="symbol">));</span></pre></td>
+<span class="c1">// The following call is only necessary if one of</span>
+<span class="c1">// the ancestors of the socket is not yet visible.</span>
+<span class="n">gtk_widget_realize</span> <span class="p">(</span><span class="n">socket</span><span class="p">);</span>
+<span class="n">g_print</span> <span class="p">(</span><span class="s">&quot;The ID of the sockets window is %#x</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+         <span class="n">gtk_socket_get_id</span> <span class="p">(</span><span class="n">socket</span><span class="p">));</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -311,13 +311,6 @@ available, or <code class="literal">NULL</code>. </p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkSocket.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkSocket-struct"></a><h3>struct GtkSocket</h3>
-<pre class="programlisting">struct GtkSocket;</pre>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkSocket.signal-details"></a><h2>Signal Details</h2>
 <div class="refsect2">
 <a name="GtkSocket-plug-added"></a><h3>The <code class="literal">“plug-added”</code> signal</h3>
@@ -396,6 +389,6 @@ want to reuse it you must add a signal handler that returns <code class="literal
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

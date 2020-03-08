@@ -30,6 +30,16 @@
 #include <stdint.h>
 #include "wayland-util.h"
 
+#ifndef __has_attribute
+# define __has_attribute(x) 0  /* Compatibility with non-clang compilers. */
+#endif
+
+#if (__has_attribute(visibility) || defined(__GNUC__) && __GNUC__ >= 4)
+#define WL_PRIVATE __attribute__ ((visibility("hidden")))
+#else
+#define WL_PRIVATE
+#endif
+
 extern const struct wl_interface gtk_text_input_interface;
 extern const struct wl_interface wl_seat_interface;
 extern const struct wl_interface wl_surface_interface;
@@ -65,7 +75,7 @@ static const struct wl_message gtk_text_input_events[] = {
 	{ "delete_surrounding_text", "uu", types + 0 },
 };
 
-const struct wl_interface gtk_text_input_interface = {
+WL_PRIVATE const struct wl_interface gtk_text_input_interface = {
 	"gtk_text_input", 1,
 	7, gtk_text_input_requests,
 	5, gtk_text_input_events,
@@ -76,7 +86,7 @@ static const struct wl_message gtk_text_input_manager_requests[] = {
 	{ "get_text_input", "no", types + 8 },
 };
 
-const struct wl_interface gtk_text_input_manager_interface = {
+WL_PRIVATE const struct wl_interface gtk_text_input_manager_interface = {
 	"gtk_text_input_manager", 1,
 	2, gtk_text_input_manager_requests,
 	0, NULL,

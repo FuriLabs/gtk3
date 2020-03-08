@@ -8,7 +8,7 @@
 <link rel="up" href="MiscObjects.html" title="Miscellaneous">
 <link rel="prev" href="GtkDrawingArea.html" title="GtkDrawingArea">
 <link rel="next" href="GtkEventBox.html" title="GtkEventBox">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -39,8 +39,8 @@
 <a name="GtkGLArea.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -245,9 +245,9 @@
 <a name="GtkGLArea.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody>
 <tr>
@@ -273,17 +273,17 @@
 <a name="GtkGLArea.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkGLArea.html#GtkGLArea-struct" title="struct GtkGLArea">GtkGLArea</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkGLArea.html#GtkGLArea-struct">GtkGLArea</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkGLArea.html#GtkGLAreaClass" title="struct GtkGLAreaClass">GtkGLAreaClass</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkGLArea.html#GtkGLAreaClass">GtkGLAreaClass</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -334,11 +334,11 @@ create a widget instance and connect to the <a class="link" href="GtkGLArea.html
 3
 4
 5</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="comment">// create a GtkGLArea instance</span>
-<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">gl_area </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkGLArea.html#gtk-gl-area-new">gtk_gl_area_new</a></span><span class="normal"> </span><span class="symbol">();</span>
+        <td class="listing_code"><pre class="programlisting"><span class="c1">// create a GtkGLArea instance</span>
+<span class="n">GtkWidget</span> <span class="o">*</span><span class="n">gl_area</span> <span class="o">=</span> <span class="n">gtk_gl_area_new</span> <span class="p">();</span>
 
-<span class="comment">// connect to the "render" signal</span>
-<span class="function">g_signal_connect</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">gl_area</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"render"</span><span class="symbol">,</span><span class="normal"> </span><span class="function">G_CALLBACK</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">render</span><span class="symbol">),</span><span class="normal"> NULL</span><span class="symbol">);</span></pre></td>
+<span class="c1">// connect to the &quot;render&quot; signal</span>
+<span class="n">g_signal_connect</span> <span class="p">(</span><span class="n">gl_area</span><span class="p">,</span> <span class="s">&quot;render&quot;</span><span class="p">,</span> <span class="n">G_CALLBACK</span> <span class="p">(</span><span class="n">render</span><span class="p">),</span> <span class="nb">NULL</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -371,26 +371,26 @@ for you to draw its content:</p>
 18
 19
 20</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> gboolean</span>
-<span class="function">render</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkGLArea</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">area</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">GdkGLContext</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">context</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="comment">// inside this function it's safe to use GL; the given</span>
-<span class="normal">  </span><span class="comment">// #GdkGLContext has been made current to the drawable</span>
-<span class="normal">  </span><span class="comment">// surface used by the #GtkGLArea and the viewport has</span>
-<span class="normal">  </span><span class="comment">// already been set to be the size of the allocation</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="n">gboolean</span>
+<span class="nf">render</span> <span class="p">(</span><span class="n">GtkGLArea</span> <span class="o">*</span><span class="n">area</span><span class="p">,</span> <span class="n">GdkGLContext</span> <span class="o">*</span><span class="n">context</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// inside this function it&#39;s safe to use GL; the given</span>
+  <span class="c1">// #GdkGLContext has been made current to the drawable</span>
+  <span class="c1">// surface used by the #GtkGLArea and the viewport has</span>
+  <span class="c1">// already been set to be the size of the allocation</span>
 
-<span class="normal">  </span><span class="comment">// we can start by clearing the buffer</span>
-<span class="normal">  </span><span class="function">glClearColor</span><span class="normal"> </span><span class="symbol">(</span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function">glClear</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">GL_COLOR_BUFFER_BIT</span><span class="symbol">);</span>
+  <span class="c1">// we can start by clearing the buffer</span>
+  <span class="n">glClearColor</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">glClear</span> <span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="comment">// draw your object</span>
-<span class="normal">  </span><span class="function">draw_an_object</span><span class="normal"> </span><span class="symbol">();</span>
+  <span class="c1">// draw your object</span>
+  <span class="n">draw_an_object</span> <span class="p">();</span>
 
-<span class="normal">  </span><span class="comment">// we completed our drawing; the draw commands will be</span>
-<span class="normal">  </span><span class="comment">// flushed at the end of the signal emission chain, and</span>
-<span class="normal">  </span><span class="comment">// the buffers will be drawn on the window</span>
-<span class="normal">  </span><span class="keyword">return</span><span class="normal"> TRUE</span><span class="symbol">;</span>
-<span class="cbracket">}</span></pre></td>
+  <span class="c1">// we completed our drawing; the draw commands will be</span>
+  <span class="c1">// flushed at the end of the signal emission chain, and</span>
+  <span class="c1">// the buffers will be drawn on the window</span>
+  <span class="k">return</span> <span class="n">TRUE</span><span class="p">;</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -440,39 +440,39 @@ of how to safely initialize the GL state is:</p>
 31
 32
 33</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
-<span class="function">on_realize</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkGLarea</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">area</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="comment">// We need to make the context current if we want to</span>
-<span class="normal">  </span><span class="comment">// call GL API</span>
-<span class="normal">  </span><span class="function"><a href="GtkGLArea.html#gtk-gl-area-make-current">gtk_gl_area_make_current</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">area</span><span class="symbol">);</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
+<span class="nf">on_realize</span> <span class="p">(</span><span class="n">GtkGLarea</span> <span class="o">*</span><span class="n">area</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// We need to make the context current if we want to</span>
+  <span class="c1">// call GL API</span>
+  <span class="n">gtk_gl_area_make_current</span> <span class="p">(</span><span class="n">area</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="comment">// If there were errors during the initialization or</span>
-<span class="normal">  </span><span class="comment">// when trying to make the context current, this</span>
-<span class="normal">  </span><span class="comment">// function will return a #GError for you to catch</span>
-<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="GtkGLArea.html#gtk-gl-area-get-error">gtk_gl_area_get_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">area</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span>
-<span class="normal">    </span><span class="keyword">return</span><span class="symbol">;</span>
+  <span class="c1">// If there were errors during the initialization or</span>
+  <span class="c1">// when trying to make the context current, this</span>
+  <span class="c1">// function will return a #GError for you to catch</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">gtk_gl_area_get_error</span> <span class="p">(</span><span class="n">area</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">;</span>
 
-<span class="normal">  </span><span class="comment">// You can also use gtk_gl_area_set_error() in order</span>
-<span class="normal">  </span><span class="comment">// to show eventual initialization errors on the</span>
-<span class="normal">  </span><span class="comment">// GtkGLArea widget itself</span>
-<span class="normal">  </span><span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">internal_error </span><span class="symbol">=</span><span class="normal"> NULL</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="function">init_buffer_objects</span><span class="normal"> </span><span class="symbol">(&amp;</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span>
-<span class="normal">    </span><span class="cbracket">{</span>
-<span class="normal">      </span><span class="function"><a href="GtkGLArea.html#gtk-gl-area-set-error">gtk_gl_area_set_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">area</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">);</span>
-<span class="normal">      </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="normal">      </span><span class="keyword">return</span><span class="symbol">;</span>
-<span class="normal">    </span><span class="cbracket">}</span>
+  <span class="c1">// You can also use gtk_gl_area_set_error() in order</span>
+  <span class="c1">// to show eventual initialization errors on the</span>
+  <span class="c1">// GtkGLArea widget itself</span>
+  <span class="n">GError</span> <span class="o">*</span><span class="n">internal_error</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="n">init_buffer_objects</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">error</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">error</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">gtk_gl_area_set_error</span> <span class="p">(</span><span class="n">area</span><span class="p">,</span> <span class="n">error</span><span class="p">);</span>
+      <span class="n">g_error_free</span> <span class="p">(</span><span class="n">error</span><span class="p">);</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
 
-<span class="normal">  </span><span class="function">init_shaders</span><span class="normal"> </span><span class="symbol">(&amp;</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> NULL</span><span class="symbol">)</span>
-<span class="normal">    </span><span class="cbracket">{</span>
-<span class="normal">      </span><span class="function"><a href="GtkGLArea.html#gtk-gl-area-set-error">gtk_gl_area_set_error</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">area</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">);</span>
-<span class="normal">      </span><span class="function">g_error_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="normal">      </span><span class="keyword">return</span><span class="symbol">;</span>
-<span class="normal">    </span><span class="cbracket">}</span>
-<span class="cbracket">}</span></pre></td>
+  <span class="n">init_shaders</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">error</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">error</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">gtk_gl_area_set_error</span> <span class="p">(</span><span class="n">area</span><span class="p">,</span> <span class="n">error</span><span class="p">);</span>
+      <span class="n">g_error_free</span> <span class="p">(</span><span class="n">error</span><span class="p">);</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1071,57 +1071,6 @@ and <code class="literal">FALSE</code> otherwise</p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkGLArea.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkGLArea-struct"></a><h3>struct GtkGLArea</h3>
-<pre class="programlisting">struct GtkGLArea;</pre>
-<p>A <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> used for drawing with OpenGL.</p>
-<p class="since">Since: <a class="link" href="api-index-3-16.html#api-index-3.16">3.16</a></p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkGLAreaClass"></a><h3>struct GtkGLAreaClass</h3>
-<pre class="programlisting">struct GtkGLAreaClass {
-  gboolean       (* render)         (GtkGLArea        *area,
-                                     GdkGLContext     *context);
-  void           (* resize)         (GtkGLArea        *area,
-                                     int               width,
-                                     int               height);
-  GdkGLContext * (* create_context) (GtkGLArea        *area);
-};
-</pre>
-<p>The <code class="literal">GtkGLAreaClass</code> structure contains only private data.</p>
-<div class="refsect3">
-<a name="GtkGLAreaClass.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkGLAreaClass.render"></a>render</code></em> ()</p></td>
-<td class="struct_member_description"><p>class closure for the <a class="link" href="GtkGLArea.html#GtkGLArea-render" title="The “render” signal"><span class="type">“render”</span></a> signal</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkGLAreaClass.resize"></a>resize</code></em> ()</p></td>
-<td class="struct_member_description"><p>class closeure for the <a class="link" href="GtkGLArea.html#GtkGLArea-resize" title="The “resize” signal"><span class="type">“resize”</span></a> signal</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkGLAreaClass.create-context"></a>create_context</code></em> ()</p></td>
-<td class="struct_member_description"><p>class closure for the <a class="link" href="GtkGLArea.html#GtkGLArea-create-context" title="The “create-context” signal"><span class="type">“create-context”</span></a> signal</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<p class="since">Since: <a class="link" href="api-index-3-16.html#api-index-3.16">3.16</a></p>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkGLArea.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkGLArea--auto-render"></a><h3>The <code class="literal">“auto-render”</code> property</h3>
@@ -1134,6 +1083,7 @@ be used for drawing the widget the next time, unless the window is resized.
 In order to force a rendering <a class="link" href="GtkGLArea.html#gtk-gl-area-queue-render" title="gtk_gl_area_queue_render ()"><code class="function">gtk_gl_area_queue_render()</code></a> must be called.
 This mode is useful when the scene changes seldomly, but takes a long time
 to redraw.</p>
+<p>Owner: GtkGLArea</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 <p class="since">Since: <a class="link" href="api-index-3-16.html#api-index-3.16">3.16</a></p>
@@ -1146,6 +1096,7 @@ to redraw.</p>
 <p>The <a class="link" href="GtkGLArea.html" title="GtkGLArea"><span class="type">GtkGLArea</span></a> widget is responsible for creating the <span class="type">GdkGLContext</span>
 instance. If you need to render with other kinds of buffers (stencil,
 depth, etc), use render buffers.</p>
+<p>Owner: GtkGLArea</p>
 <p>Flags: Read</p>
 <p class="since">Since: <a class="link" href="api-index-3-16.html#api-index-3.16">3.16</a></p>
 </div>
@@ -1158,6 +1109,7 @@ component, and when rendering to the window the result will be composited over
 whatever is below the widget.</p>
 <p>If set to <code class="literal">FALSE</code> there will be no alpha channel, and the buffer will fully
 replace anything below the widget.</p>
+<p>Owner: GtkGLArea</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: <a class="link" href="api-index-3-16.html#api-index-3.16">3.16</a></p>
@@ -1168,6 +1120,7 @@ replace anything below the widget.</p>
 <pre class="programlisting">  “has-depth-buffer”         <span class="type">gboolean</span></pre>
 <p>If set to <code class="literal">TRUE</code> the widget will allocate and enable a depth buffer for the
 target framebuffer.</p>
+<p>Owner: GtkGLArea</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: <a class="link" href="api-index-3-16.html#api-index-3.16">3.16</a></p>
@@ -1178,6 +1131,7 @@ target framebuffer.</p>
 <pre class="programlisting">  “has-stencil-buffer”       <span class="type">gboolean</span></pre>
 <p>If set to <code class="literal">TRUE</code> the widget will allocate and enable a stencil buffer for the
 target framebuffer.</p>
+<p>Owner: GtkGLArea</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: <a class="link" href="api-index-3-16.html#api-index-3.16">3.16</a></p>
@@ -1188,7 +1142,8 @@ target framebuffer.</p>
 <pre class="programlisting">  “use-es”                   <span class="type">gboolean</span></pre>
 <p>If set to <code class="literal">TRUE</code> the widget will try to create a <span class="type">GdkGLContext</span> using
 OpenGL ES instead of OpenGL.</p>
-<p>See also: <code class="function">gdk_gl_context_set_use_es()</code></p>
+<p>See also: <a href="https://developer.gnome.org/gdk4/GdkGLContext.html#gdk-gl-context-set-use-es"><code class="function">gdk_gl_context_set_use_es()</code></a></p>
+<p>Owner: GtkGLArea</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: <a class="link" href="api-index-3-22.html#api-index-3.22">3.22</a></p>
@@ -1347,6 +1302,6 @@ is emitted.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

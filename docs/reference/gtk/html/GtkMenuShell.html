@@ -8,7 +8,7 @@
 <link rel="up" href="AbstractObjects.html" title="Abstract Base Classes">
 <link rel="prev" href="GtkBin.html" title="GtkBin">
 <link rel="next" href="GtkRange.html" title="GtkRange">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -39,8 +39,8 @@
 <a name="GtkMenuShell.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -177,9 +177,9 @@
 <a name="GtkMenuShell.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody>
 <tr>
@@ -229,17 +229,17 @@
 <a name="GtkMenuShell.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkMenuShell.html#GtkMenuShell-struct" title="struct GtkMenuShell">GtkMenuShell</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkMenuShell.html#GtkMenuShell-struct">GtkMenuShell</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name"><a class="link" href="GtkMenuShell.html#GtkMenuDirectionType" title="enum GtkMenuDirectionType">GtkMenuDirectionType</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkMenuShell.html#GtkMenuDirectionType">GtkMenuDirectionType</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -797,58 +797,6 @@ separators between them</p></td>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkMenuShell.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkMenuShell-struct"></a><h3>struct GtkMenuShell</h3>
-<pre class="programlisting">struct GtkMenuShell;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkMenuDirectionType"></a><h3>enum GtkMenuDirectionType</h3>
-<p>An enumeration representing directional movements within a menu.</p>
-<div class="refsect3">
-<a name="GtkMenuDirectionType.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="enum_members_name">
-<col class="enum_members_description">
-<col width="200px" class="enum_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-MENU-DIR-PARENT:CAPS"></a>GTK_MENU_DIR_PARENT</p></td>
-<td class="enum_member_description">
-<p>To the parent menu shell</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-MENU-DIR-CHILD:CAPS"></a>GTK_MENU_DIR_CHILD</p></td>
-<td class="enum_member_description">
-<p>To the submenu, if any, associated with the item</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-MENU-DIR-NEXT:CAPS"></a>GTK_MENU_DIR_NEXT</p></td>
-<td class="enum_member_description">
-<p>To the next menu item</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="GTK-MENU-DIR-PREV:CAPS"></a>GTK_MENU_DIR_PREV</p></td>
-<td class="enum_member_description">
-<p>To the previous menu item</p>
-</td>
-<td class="enum_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkMenuShell.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkMenuShell--take-focus"></a><h3>The <code class="literal">“take-focus”</code> property</h3>
@@ -856,6 +804,7 @@ separators between them</p></td>
 <p>A boolean that determines whether the menu and its submenus grab the
 keyboard focus. See <a class="link" href="GtkMenuShell.html#gtk-menu-shell-set-take-focus" title="gtk_menu_shell_set_take_focus ()"><code class="function">gtk_menu_shell_set_take_focus()</code></a> and
 <a class="link" href="GtkMenuShell.html#gtk-menu-shell-get-take-focus" title="gtk_menu_shell_get_take_focus ()"><code class="function">gtk_menu_shell_get_take_focus()</code></a>.</p>
+<p>Owner: GtkMenuShell</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 <p class="since">Since: 2.8</p>
@@ -937,7 +886,7 @@ Causes the <a class="link" href="GtkMenuShell.html#GtkMenuShell-selection-done" 
 <a name="GtkMenuShell-cycle-focus"></a><h3>The <code class="literal">“cycle-focus”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkMenuShell.html" title="GtkMenuShell"><span class="type">GtkMenuShell</span></a>    *menushell,
-               <a class="link" href="gtk3-Standard-Enumerations.html#GtkDirectionType" title="enum GtkDirectionType"><span class="type">GtkDirectionType</span></a> direction,
+               <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkDirectionType"><span class="type">GtkDirectionType</span></a> direction,
                <span class="type">gpointer</span>         user_data)</pre>
 <p>A keybinding signal which moves the focus in the
 given <em class="parameter"><code>direction</code></em>
@@ -1055,7 +1004,7 @@ parameter.</p>
 <a name="GtkMenuShell-move-current"></a><h3>The <code class="literal">“move-current”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkMenuShell.html" title="GtkMenuShell"><span class="type">GtkMenuShell</span></a>        *menushell,
-               <a class="link" href="GtkMenuShell.html#GtkMenuDirectionType" title="enum GtkMenuDirectionType"><span class="type">GtkMenuDirectionType</span></a> direction,
+               <a href="https://developer.gnome.org/gtk4/GtkMenuShell.html#GtkMenuDirectionType"><span class="type">GtkMenuDirectionType</span></a> direction,
                <span class="type">gpointer</span>             user_data)</pre>
 <p>An keybinding signal which moves the current menu item
 in the direction specified by <em class="parameter"><code>direction</code></em>
@@ -1167,6 +1116,6 @@ completed within a menu shell.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

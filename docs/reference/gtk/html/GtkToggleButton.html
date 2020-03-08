@@ -8,7 +8,7 @@
 <link rel="up" href="ButtonWidgets.html" title="Buttons and Toggles">
 <link rel="prev" href="GtkRadioButton.html" title="GtkRadioButton">
 <link rel="next" href="GtkLinkButton.html" title="GtkLinkButton">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -39,8 +39,8 @@
 <a name="GtkToggleButton.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -157,9 +157,9 @@
 <a name="GtkToggleButton.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody><tr>
 <td class="signal_type"><span class="returnvalue">void</span></td>
@@ -172,12 +172,12 @@
 <a name="GtkToggleButton.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkToggleButton.html#GtkToggleButton-struct" title="struct GtkToggleButton">GtkToggleButton</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkToggleButton.html#GtkToggleButton-struct">GtkToggleButton</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -264,42 +264,42 @@ it from a plain <a class="link" href="GtkButton.html" title="GtkButton"><span cl
 34
 35
 36</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">output_state</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GtkToggleButton</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">source</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">gpointer</span><span class="normal"> user_data</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">  </span><span class="function">printf</span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Active: %d</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span><span class="normal"> </span><span class="function"><a href="GtkToggleButton.html#gtk-toggle-button-get-active">gtk_toggle_button_get_active</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">source</span><span class="symbol">));</span>
-<span class="cbracket">}</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span> <span class="nf">output_state</span> <span class="p">(</span><span class="n">GtkToggleButton</span> <span class="o">*</span><span class="n">source</span><span class="p">,</span> <span class="n">gpointer</span> <span class="n">user_data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">printf</span> <span class="p">(</span><span class="s">&quot;Active: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">gtk_toggle_button_get_active</span> <span class="p">(</span><span class="n">source</span><span class="p">));</span>
+<span class="p">}</span>
 
-<span class="type">void</span><span class="normal"> </span><span class="function">make_toggles</span><span class="normal"> </span><span class="symbol">(</span><span class="type">void</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
-<span class="normal">  </span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">window</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">toggle1</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">toggle2</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">box</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">text</span><span class="symbol">;</span>
+<span class="kt">void</span> <span class="nf">make_toggles</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">GtkWidget</span> <span class="o">*</span><span class="n">window</span><span class="p">,</span> <span class="o">*</span><span class="n">toggle1</span><span class="p">,</span> <span class="o">*</span><span class="n">toggle2</span><span class="p">;</span>
+  <span class="n">GtkWidget</span> <span class="o">*</span><span class="n">box</span><span class="p">;</span>
+  <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">text</span><span class="p">;</span>
 
-<span class="normal">  window </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkWindow.html#gtk-window-new">gtk_window_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="GtkWindow.html#GTK-WINDOW-TOPLEVEL:CAPS">GTK_WINDOW_TOPLEVEL</a></span><span class="symbol">);</span>
-<span class="normal">  box </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkBox.html#gtk-box-new">gtk_box_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="gtk3-Standard-Enumerations.html#GTK-ORIENTATION-VERTICAL:CAPS">GTK_ORIENTATION_VERTICAL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="number">12</span><span class="symbol">);</span>
+  <span class="n">window</span> <span class="o">=</span> <span class="n">gtk_window_new</span> <span class="p">(</span><span class="n">GTK_WINDOW_TOPLEVEL</span><span class="p">);</span>
+  <span class="n">box</span> <span class="o">=</span> <span class="n">gtk_box_new</span> <span class="p">(</span><span class="n">GTK_ORIENTATION_VERTICAL</span><span class="p">,</span> <span class="mi">12</span><span class="p">);</span>
 
-<span class="normal">  text </span><span class="symbol">=</span><span class="normal"> </span><span class="string">"Hi, I’m a toggle button."</span><span class="symbol">;</span>
-<span class="normal">  toggle1 </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkToggleButton.html#gtk-toggle-button-new-with-label">gtk_toggle_button_new_with_label</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">text</span><span class="symbol">);</span>
+  <span class="n">text</span> <span class="o">=</span> <span class="s">&quot;Hi, I’m a toggle button.&quot;</span><span class="p">;</span>
+  <span class="n">toggle1</span> <span class="o">=</span> <span class="n">gtk_toggle_button_new_with_label</span> <span class="p">(</span><span class="n">text</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="comment">// Makes this toggle button invisible</span>
-<span class="normal">  </span><span class="function"><a href="GtkToggleButton.html#gtk-toggle-button-set-mode">gtk_toggle_button_set_mode</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_TOGGLE_BUTTON</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">toggle1</span><span class="symbol">),</span>
-<span class="normal">                              TRUE</span><span class="symbol">);</span>
+  <span class="c1">// Makes this toggle button invisible</span>
+  <span class="n">gtk_toggle_button_set_mode</span> <span class="p">(</span><span class="n">GTK_TOGGLE_BUTTON</span> <span class="p">(</span><span class="n">toggle1</span><span class="p">),</span>
+                              <span class="n">TRUE</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="function">g_signal_connect</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">toggle1</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"toggled"</span><span class="symbol">,</span>
-<span class="normal">                    </span><span class="function">G_CALLBACK</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">output_state</span><span class="symbol">),</span>
-<span class="normal">                    NULL</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="GtkContainer.html#gtk-container-add">gtk_container_add</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_CONTAINER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">box</span><span class="symbol">),</span><span class="normal"> toggle1</span><span class="symbol">);</span>
+  <span class="n">g_signal_connect</span> <span class="p">(</span><span class="n">toggle1</span><span class="p">,</span> <span class="s">&quot;toggled&quot;</span><span class="p">,</span>
+                    <span class="n">G_CALLBACK</span> <span class="p">(</span><span class="n">output_state</span><span class="p">),</span>
+                    <span class="nb">NULL</span><span class="p">);</span>
+  <span class="n">gtk_container_add</span> <span class="p">(</span><span class="n">GTK_CONTAINER</span> <span class="p">(</span><span class="n">box</span><span class="p">),</span> <span class="n">toggle1</span><span class="p">);</span>
 
-<span class="normal">  text </span><span class="symbol">=</span><span class="normal"> </span><span class="string">"Hi, I’m a toggle button."</span><span class="symbol">;</span>
-<span class="normal">  toggle2 </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkToggleButton.html#gtk-toggle-button-new-with-label">gtk_toggle_button_new_with_label</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">text</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="GtkToggleButton.html#gtk-toggle-button-set-mode">gtk_toggle_button_set_mode</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_TOGGLE_BUTTON</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">toggle2</span><span class="symbol">),</span>
-<span class="normal">                              FALSE</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function">g_signal_connect</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">toggle2</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"toggled"</span><span class="symbol">,</span>
-<span class="normal">                    </span><span class="function">G_CALLBACK</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">output_state</span><span class="symbol">),</span>
-<span class="normal">                    NULL</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="GtkContainer.html#gtk-container-add">gtk_container_add</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_CONTAINER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">box</span><span class="symbol">),</span><span class="normal"> toggle2</span><span class="symbol">);</span>
+  <span class="n">text</span> <span class="o">=</span> <span class="s">&quot;Hi, I’m a toggle button.&quot;</span><span class="p">;</span>
+  <span class="n">toggle2</span> <span class="o">=</span> <span class="n">gtk_toggle_button_new_with_label</span> <span class="p">(</span><span class="n">text</span><span class="p">);</span>
+  <span class="n">gtk_toggle_button_set_mode</span> <span class="p">(</span><span class="n">GTK_TOGGLE_BUTTON</span> <span class="p">(</span><span class="n">toggle2</span><span class="p">),</span>
+                              <span class="n">FALSE</span><span class="p">);</span>
+  <span class="n">g_signal_connect</span> <span class="p">(</span><span class="n">toggle2</span><span class="p">,</span> <span class="s">&quot;toggled&quot;</span><span class="p">,</span>
+                    <span class="n">G_CALLBACK</span> <span class="p">(</span><span class="n">output_state</span><span class="p">),</span>
+                    <span class="nb">NULL</span><span class="p">);</span>
+  <span class="n">gtk_container_add</span> <span class="p">(</span><span class="n">GTK_CONTAINER</span> <span class="p">(</span><span class="n">box</span><span class="p">),</span> <span class="n">toggle2</span><span class="p">);</span>
 
-<span class="normal">  </span><span class="function"><a href="GtkContainer.html#gtk-container-add">gtk_container_add</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_CONTAINER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">),</span><span class="normal"> box</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="GtkWidget.html#gtk-widget-show-all">gtk_widget_show_all</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">window</span><span class="symbol">);</span>
-<span class="cbracket">}</span></pre></td>
+  <span class="n">gtk_container_add</span> <span class="p">(</span><span class="n">GTK_CONTAINER</span> <span class="p">(</span><span class="n">window</span><span class="p">),</span> <span class="n">box</span><span class="p">);</span>
+  <span class="n">gtk_widget_show_all</span> <span class="p">(</span><span class="n">window</span><span class="p">);</span>
+<span class="p">}</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -593,18 +593,12 @@ visual appearance, it doesn’t affect the semantics of the button.</p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkToggleButton.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkToggleButton-struct"></a><h3>struct GtkToggleButton</h3>
-<pre class="programlisting">struct GtkToggleButton;</pre>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkToggleButton.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkToggleButton--active"></a><h3>The <code class="literal">“active”</code> property</h3>
 <pre class="programlisting">  “active”                   <span class="type">gboolean</span></pre>
 <p>If the toggle button should be pressed in.</p>
+<p>Owner: GtkToggleButton</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -613,6 +607,7 @@ visual appearance, it doesn’t affect the semantics of the button.</p>
 <a name="GtkToggleButton--draw-indicator"></a><h3>The <code class="literal">“draw-indicator”</code> property</h3>
 <pre class="programlisting">  “draw-indicator”           <span class="type">gboolean</span></pre>
 <p>If the toggle part of the button is displayed.</p>
+<p>Owner: GtkToggleButton</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -621,6 +616,7 @@ visual appearance, it doesn’t affect the semantics of the button.</p>
 <a name="GtkToggleButton--inconsistent"></a><h3>The <code class="literal">“inconsistent”</code> property</h3>
 <pre class="programlisting">  “inconsistent”             <span class="type">gboolean</span></pre>
 <p>If the toggle button is in an "in between" state.</p>
+<p>Owner: GtkToggleButton</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -665,6 +661,6 @@ user_function (<a class="link" href="GtkToggleButton.html" title="GtkToggleButto
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

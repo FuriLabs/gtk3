@@ -8,7 +8,7 @@
 <link rel="up" href="LayoutContainers.html" title="Layout Containers">
 <link rel="prev" href="GtkActionBar.html" title="GtkActionBar">
 <link rel="next" href="GtkOverlay.html" title="GtkOverlay">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -39,8 +39,8 @@
 <a name="GtkHeaderBar.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -229,7 +229,7 @@
 </colgroup>
 <tbody>
 <tr>
-<td class="property_type"><a class="link" href="gtk3-Standard-Enumerations.html#GtkPackType" title="enum GtkPackType"><span class="type">GtkPackType</span></a></td>
+<td class="property_type"><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkPackType"><span class="type">GtkPackType</span></a></td>
 <td class="property_name"><a class="link" href="GtkHeaderBar.html#GtkHeaderBar--c-pack-type" title="The “pack-type” child property">pack-type</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -245,12 +245,12 @@
 <a name="GtkHeaderBar.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkHeaderBar.html#GtkHeaderBar-struct" title="struct GtkHeaderBar">GtkHeaderBar</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkHeaderBar.html#GtkHeaderBar-struct">GtkHeaderBar</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -767,18 +767,12 @@ gtk_header_bar_get_decoration_layout (<em class="parameter"><code><a class="link
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkHeaderBar.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkHeaderBar-struct"></a><h3>struct GtkHeaderBar</h3>
-<pre class="programlisting">struct GtkHeaderBar;</pre>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkHeaderBar.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkHeaderBar--custom-title"></a><h3>The <code class="literal">“custom-title”</code> property</h3>
 <pre class="programlisting">  “custom-title”             <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *</pre>
 <p>Custom title widget to display.</p>
+<p>Owner: GtkHeaderBar</p>
 <p>Flags: Read / Write</p>
 </div>
 <hr>
@@ -790,6 +784,7 @@ not set, the <a class="link" href="GtkSettings.html#GtkSettings--gtk-decoration-
 is used.</p>
 <p>See <a class="link" href="GtkHeaderBar.html#gtk-header-bar-set-decoration-layout" title="gtk_header_bar_set_decoration_layout ()"><code class="function">gtk_header_bar_set_decoration_layout()</code></a> for information
 about the format of this string.</p>
+<p>Owner: GtkHeaderBar</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 <p class="since">Since: <a class="link" href="api-index-3-12.html#api-index-3.12">3.12</a></p>
@@ -799,6 +794,7 @@ about the format of this string.</p>
 <a name="GtkHeaderBar--decoration-layout-set"></a><h3>The <code class="literal">“decoration-layout-set”</code> property</h3>
 <pre class="programlisting">  “decoration-layout-set”    <span class="type">gboolean</span></pre>
 <p>Set to <code class="literal">TRUE</code> if <a class="link" href="GtkHeaderBar.html#GtkHeaderBar--decoration-layout" title="The “decoration-layout” property"><span class="type">“decoration-layout”</span></a> is set.</p>
+<p>Owner: GtkHeaderBar</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: <a class="link" href="api-index-3-12.html#api-index-3.12">3.12</a></p>
@@ -809,6 +805,7 @@ about the format of this string.</p>
 <pre class="programlisting">  “has-subtitle”             <span class="type">gboolean</span></pre>
 <p>If <code class="literal">TRUE</code>, reserve space for a subtitle, even if none
 is currently set.</p>
+<p>Owner: GtkHeaderBar</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 <p class="since">Since: <a class="link" href="api-index-3-12.html#api-index-3.12">3.12</a></p>
@@ -822,6 +819,7 @@ is currently set.</p>
 by the <a class="link" href="GtkHeaderBar.html#GtkHeaderBar--decoration-layout" title="The “decoration-layout” property"><span class="type">“decoration-layout”</span></a> property, and by
 the state of the window (e.g. a close button will not be
 shown if the window can't be closed).</p>
+<p>Owner: GtkHeaderBar</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -830,6 +828,7 @@ shown if the window can't be closed).</p>
 <a name="GtkHeaderBar--spacing"></a><h3>The <code class="literal">“spacing”</code> property</h3>
 <pre class="programlisting">  “spacing”                  <span class="type">gint</span></pre>
 <p>The amount of space between children.</p>
+<p>Owner: GtkHeaderBar</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 6</p>
@@ -839,6 +838,7 @@ shown if the window can't be closed).</p>
 <a name="GtkHeaderBar--subtitle"></a><h3>The <code class="literal">“subtitle”</code> property</h3>
 <pre class="programlisting">  “subtitle”                 <span class="type">gchar</span> *</pre>
 <p>The subtitle to display.</p>
+<p>Owner: GtkHeaderBar</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -847,6 +847,7 @@ shown if the window can't be closed).</p>
 <a name="GtkHeaderBar--title"></a><h3>The <code class="literal">“title”</code> property</h3>
 <pre class="programlisting">  “title”                    <span class="type">gchar</span> *</pre>
 <p>The title to display.</p>
+<p>Owner: GtkHeaderBar</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -855,8 +856,9 @@ shown if the window can't be closed).</p>
 <a name="GtkHeaderBar.child-property-details"></a><h2>Child Property Details</h2>
 <div class="refsect2">
 <a name="GtkHeaderBar--c-pack-type"></a><h3>The <code class="literal">“pack-type”</code> child property</h3>
-<pre class="programlisting">  “pack-type”                <a class="link" href="gtk3-Standard-Enumerations.html#GtkPackType" title="enum GtkPackType"><span class="type">GtkPackType</span></a></pre>
+<pre class="programlisting">  “pack-type”                <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkPackType"><span class="type">GtkPackType</span></a></pre>
 <p>A GtkPackType indicating whether the child is packed with reference to the start or end of the parent.</p>
+<p>Owner: GtkHeaderBar</p>
 <p>Flags: Read / Write</p>
 <p>Default value: GTK_PACK_START</p>
 </div>
@@ -865,6 +867,7 @@ shown if the window can't be closed).</p>
 <a name="GtkHeaderBar--c-position"></a><h3>The <code class="literal">“position”</code> child property</h3>
 <pre class="programlisting">  “position”                 <span class="type">gint</span></pre>
 <p>The index of the child in the parent.</p>
+<p>Owner: GtkHeaderBar</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: 0</p>
@@ -876,6 +879,6 @@ shown if the window can't be closed).</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

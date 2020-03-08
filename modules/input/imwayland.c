@@ -92,6 +92,7 @@ struct _GtkIMContextWayland
 
   cairo_rectangle_int_t cursor_rect;
   guint use_preedit : 1;
+  guint enabled : 1;
 };
 
 GType type_wayland = 0;
@@ -126,6 +127,9 @@ notify_external_change (GtkIMContextWayland *context)
   gboolean result;
 
   if (!global->current)
+    return;
+
+  if (!context->enabled)
     return;
 
   context->surrounding_change = ZWP_TEXT_INPUT_V3_CHANGE_CAUSE_OTHER;
@@ -278,7 +282,7 @@ notify_surrounding_text (GtkIMContextWayland *context)
     return;
   if (global->current != GTK_IM_CONTEXT (context))
     return;
-  if (!context->surrounding.text)
+  if (!context->enabled || !context->surrounding.text)
     return;
 
   len = strlen (context->surrounding.text);
@@ -353,7 +357,7 @@ notify_cursor_location (GtkIMContextWayland *context)
     return;
   if (global->current != GTK_IM_CONTEXT (context))
     return;
-  if (!context->window)
+  if (!context->enabled || !context->window)
     return;
 
   rect = context->cursor_rect;
@@ -419,6 +423,8 @@ translate_purpose (GtkInputPurpose purpose)
       return ZWP_TEXT_INPUT_V3_CONTENT_PURPOSE_PASSWORD;
     case GTK_INPUT_PURPOSE_PIN:
       return ZWP_TEXT_INPUT_V3_CONTENT_PURPOSE_PIN;
+    case GTK_INPUT_PURPOSE_TERMINAL:
+      return ZWP_TEXT_INPUT_V3_CONTENT_PURPOSE_TERMINAL;
     }
 
   return ZWP_TEXT_INPUT_V3_CONTENT_PURPOSE_NORMAL;
@@ -431,6 +437,9 @@ notify_content_type (GtkIMContextWayland *context)
   GtkInputPurpose purpose;
 
   if (global->current != GTK_IM_CONTEXT (context))
+    return;
+
+  if (!context->enabled)
     return;
 
   g_object_get (context,
@@ -447,6 +456,8 @@ static void
 commit_state (GtkIMContextWayland *context)
 {
   if (global->current != GTK_IM_CONTEXT (context))
+    return;
+  if (!context->enabled)
     return;
   global->serial++;
   zwp_text_input_v3_commit (global->text_input);
@@ -467,6 +478,97 @@ gtk_im_context_wayland_finalize (GObject *object)
 
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
+
+static void
+gtk_im_context_wayland_get_preedit_string (GtkIMContext   *context,
+                                           gchar         **str,
+                                           PangoAttrList **attrs,
+                                           gint           *cursor_pos)
+{
+  GtkIMContextWayland *context_wayland = GTK_IM_CONTEXT_WAYLAND (context);
+  gchar *preedit_str;
+
+  if (attrs)
+    *attrs = NULL;
+
+  GTK_IM_CONTEXT_CLASS (parent_class)->get_preedit_string (context,
+                                                           str, attrs,
+                                                           cursor_pos);
+
+  /* If the parent implementation returns a len>0 string, go with it */
+  if (str && *str)
+    {
+      if (**str)
+        return;
+
+      g_free (*str);
+    }
+
+  preedit_str =
+    context_wayland->current_preedit.text ? context_wayland->current_preedit.text : "";
+
+  if (str)
+    *str = g_strdup (preedit_str);
+  if (cursor_pos)
+    *cursor_pos = g_utf8_strlen (preedit_str,
+                                 context_wayland->current_preedit.cursor_begin);
+
+  if (attrs)
+    {
+      if (!*attrs)
+        *attrs = pango_attr_list_new ();
+      pango_attr_list_insert (*attrs,
+                              pango_attr_underline_new (PANGO_UNDERLINE_SINGLE));
+      if (context_wayland->current_preedit.cursor_begin
+          != context_wayland->current_preedit.cursor_end)
+        {
+          /* FIXME: Oh noes, how to highlight while taking into account user preferences? */
+          PangoAttribute *cursor = pango_attr_weight_new (PANGO_WEIGHT_BOLD);
+          cursor->start_index = context_wayland->current_preedit.cursor_begin;
+          cursor->end_index = context_wayland->current_preedit.cursor_end;
+          pango_attr_list_insert (*attrs, cursor);
+        }
+    }
+}
+
+static gboolean
+gtk_im_context_wayland_filter_keypress (GtkIMContext *context,
+                                        GdkEventKey  *key)
+{
+  /* This is done by the compositor */
+  return GTK_IM_CONTEXT_CLASS (parent_class)->filter_keypress (context, key);
+}
+
+static void
+enable (GtkIMContextWayland *context_wayland)
+{
+  gboolean result;
+  /* Technically, text input isn't enabled until after the commit.
+   * In reality, enable can't fail, and notify functions need to know
+   * that they are free to send requests. */
+  context_wayland->enabled = TRUE;
+  zwp_text_input_v3_enable (global->text_input);
+  g_signal_emit_by_name (global->current, "retrieve-surrounding", &result);
+  notify_content_type (context_wayland);
+  notify_cursor_location (context_wayland);
+  commit_state (context_wayland);
+}
+
+static void
+disable (GtkIMContextWayland *context_wayland)
+{
+  zwp_text_input_v3_disable (global->text_input);
+  commit_state (context_wayland);
+  context_wayland->enabled = FALSE;
+
+  /* after disable, incoming state changes won't take effect anyway */
+  if (context_wayland->current_preedit.text)
+    {
+      text_input_preedit (global, global->text_input, NULL, 0, 0);
+      text_input_preedit_apply (global);
+    }
+}
+
 
 static void
 pressed_cb (GtkGestureMultiPress *gesture,
@@ -490,7 +592,6 @@ released_cb (GtkGestureMultiPress *gesture,
              GtkIMContextWayland  *context)
 {
   GtkInputHints hints;
-  gboolean result;
 
   if (!global->current)
     return;
@@ -504,11 +605,7 @@ released_cb (GtkGestureMultiPress *gesture,
                                  context->press_x,
                                  context->press_y,
                                  x, y))
-    {
-      zwp_text_input_v3_enable (global->text_input);
-      g_signal_emit_by_name (global->current, "retrieve-surrounding", &result);
-      commit_state (context);
-    }
+    enable (context);
 }
 
 static void
@@ -546,90 +643,6 @@ gtk_im_context_wayland_set_client_window (GtkIMContext *context,
                             G_CALLBACK (released_cb), context);
           context_wayland->gesture = gesture;
         }
-    }
-}
-
-static void
-gtk_im_context_wayland_get_preedit_string (GtkIMContext   *context,
-                                           gchar         **str,
-                                           PangoAttrList **attrs,
-                                           gint           *cursor_pos)
-{
-  GtkIMContextWayland *context_wayland = GTK_IM_CONTEXT_WAYLAND (context);
-  gchar *preedit_str;
-
-  if (attrs)
-    *attrs = NULL;
-
-  GTK_IM_CONTEXT_CLASS (parent_class)->get_preedit_string (context,
-                                                           str, attrs,
-                                                           cursor_pos);
-
-  /* If the parent implementation returns a len>0 string, go with it */
-  if (str && *str)
-    {
-      if (**str)
-        return;
-
-      g_free (*str);
-    }
-
-  preedit_str =
-    context_wayland->current_preedit.text ? context_wayland->current_preedit.text : "";
-
-  if (str)
-    *str = g_strdup (preedit_str);
-  if (cursor_pos)
-    *cursor_pos = context_wayland->current_preedit.cursor_begin;
-
-  if (attrs)
-    {
-      if (!*attrs)
-        *attrs = pango_attr_list_new ();
-      pango_attr_list_insert (*attrs,
-                              pango_attr_underline_new (PANGO_UNDERLINE_SINGLE));
-      if (context_wayland->current_preedit.cursor_begin
-          != context_wayland->current_preedit.cursor_end)
-        {
-          /* FIXME: Oh noes, how to highlight while taking into account user preferences? */
-          PangoAttribute *cursor = pango_attr_weight_new (PANGO_WEIGHT_BOLD);
-          cursor->start_index = context_wayland->current_preedit.cursor_begin;
-          cursor->end_index = context_wayland->current_preedit.cursor_end;
-          pango_attr_list_insert (*attrs, cursor);
-        }
-    }
-}
-
-static gboolean
-gtk_im_context_wayland_filter_keypress (GtkIMContext *context,
-                                        GdkEventKey  *key)
-{
-  /* This is done by the compositor */
-  return GTK_IM_CONTEXT_CLASS (parent_class)->filter_keypress (context, key);
-}
-
-static void
-enable (GtkIMContextWayland *context_wayland)
-{
-  gboolean result;
-  zwp_text_input_v3_enable (global->text_input);
-  g_signal_emit_by_name (global->current, "retrieve-surrounding", &result);
-  notify_content_type (context_wayland);
-  notify_cursor_location (context_wayland);
-  commit_state (context_wayland);
-}
-
-static void
-disable (GtkIMContextWayland *context_wayland)
-{
-  zwp_text_input_v3_disable (global->text_input);
-  commit_state (context_wayland);
-
-  /* after disable, incoming state changes won't take effect anyway */
-  if (context_wayland->current_preedit.text)
-    {
-      text_input_preedit (global, global->text_input, NULL, 0, 0);
-      text_input_preedit_apply (global);
     }
 }
 

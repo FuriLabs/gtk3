@@ -8,7 +8,7 @@
 <link rel="up" href="SelectorWidgets.html" title="Selector Widgets and Dialogs">
 <link rel="prev" href="GtkFileChooserButton.html" title="GtkFileChooserButton">
 <link rel="next" href="GtkFileChooserDialog.html" title="GtkFileChooserDialog">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -35,8 +35,8 @@
 <a name="gtk3-GtkFileChooserNative.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -128,27 +128,27 @@ Showing, hiding and running the dialog is handled by the <span class="type">GtkN
 19
 20
 21</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkFileChooserNative</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">native</span><span class="symbol">;</span>
-<span class="usertype">GtkFileChooserAction</span><span class="normal"> action </span><span class="symbol">=</span><span class="normal"> <a href="GtkFileChooser.html#GTK-FILE-CHOOSER-ACTION-OPEN:CAPS">GTK_FILE_CHOOSER_ACTION_OPEN</a></span><span class="symbol">;</span>
-<span class="usertype">gint</span><span class="normal"> res</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkFileChooserNative</span> <span class="o">*</span><span class="n">native</span><span class="p">;</span>
+<span class="n">GtkFileChooserAction</span> <span class="n">action</span> <span class="o">=</span> <span class="n">GTK_FILE_CHOOSER_ACTION_OPEN</span><span class="p">;</span>
+<span class="n">gint</span> <span class="n">res</span><span class="p">;</span>
 
-<span class="normal">native </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="gtk3-GtkFileChooserNative.html#gtk-file-chooser-native-new">gtk_file_chooser_native_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Open File"</span><span class="symbol">,</span>
-<span class="normal">                                      parent_window</span><span class="symbol">,</span>
-<span class="normal">                                      action</span><span class="symbol">,</span>
-<span class="normal">                                      </span><span class="string">"_Open"</span><span class="symbol">,</span>
-<span class="normal">                                      </span><span class="string">"_Cancel"</span><span class="symbol">);</span>
+<span class="n">native</span> <span class="o">=</span> <span class="n">gtk_file_chooser_native_new</span> <span class="p">(</span><span class="s">&quot;Open File&quot;</span><span class="p">,</span>
+                                      <span class="n">parent_window</span><span class="p">,</span>
+                                      <span class="n">action</span><span class="p">,</span>
+                                      <span class="s">&quot;_Open&quot;</span><span class="p">,</span>
+                                      <span class="s">&quot;_Cancel&quot;</span><span class="p">);</span>
 
-<span class="normal">res </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="gtk3-GtkNativeDialog.html#gtk-native-dialog-run">gtk_native_dialog_run</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_NATIVE_DIALOG</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">native</span><span class="symbol">));</span>
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">res </span><span class="symbol">==</span><span class="normal"> <a href="GtkDialog.html#GTK-RESPONSE-ACCEPT:CAPS">GTK_RESPONSE_ACCEPT</a></span><span class="symbol">)</span>
-<span class="normal">  </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">filename</span><span class="symbol">;</span>
-<span class="normal">    </span><span class="usertype">GtkFileChooser</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">chooser </span><span class="symbol">=</span><span class="normal"> </span><span class="function">GTK_FILE_CHOOSER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">native</span><span class="symbol">);</span>
-<span class="normal">    filename </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkFileChooser.html#gtk-file-chooser-get-filename">gtk_file_chooser_get_filename</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">chooser</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">open_file</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">filename</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">filename</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="cbracket">}</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">gtk_native_dialog_run</span> <span class="p">(</span><span class="n">GTK_NATIVE_DIALOG</span> <span class="p">(</span><span class="n">native</span><span class="p">));</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">==</span> <span class="n">GTK_RESPONSE_ACCEPT</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">filename</span><span class="p">;</span>
+    <span class="n">GtkFileChooser</span> <span class="o">*</span><span class="n">chooser</span> <span class="o">=</span> <span class="n">GTK_FILE_CHOOSER</span> <span class="p">(</span><span class="n">native</span><span class="p">);</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">gtk_file_chooser_get_filename</span> <span class="p">(</span><span class="n">chooser</span><span class="p">);</span>
+    <span class="n">open_file</span> <span class="p">(</span><span class="n">filename</span><span class="p">);</span>
+    <span class="n">g_free</span> <span class="p">(</span><span class="n">filename</span><span class="p">);</span>
+  <span class="p">}</span>
 
-<span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">native</span><span class="symbol">);</span></pre></td>
+<span class="n">g_object_unref</span> <span class="p">(</span><span class="n">native</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -192,38 +192,38 @@ Showing, hiding and running the dialog is handled by the <span class="type">GtkN
 30
 31
 32</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkFileChooserNative</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">native</span><span class="symbol">;</span>
-<span class="usertype">GtkFileChooser</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">chooser</span><span class="symbol">;</span>
-<span class="usertype">GtkFileChooserAction</span><span class="normal"> action </span><span class="symbol">=</span><span class="normal"> <a href="GtkFileChooser.html#GTK-FILE-CHOOSER-ACTION-SAVE:CAPS">GTK_FILE_CHOOSER_ACTION_SAVE</a></span><span class="symbol">;</span>
-<span class="usertype">gint</span><span class="normal"> res</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkFileChooserNative</span> <span class="o">*</span><span class="n">native</span><span class="p">;</span>
+<span class="n">GtkFileChooser</span> <span class="o">*</span><span class="n">chooser</span><span class="p">;</span>
+<span class="n">GtkFileChooserAction</span> <span class="n">action</span> <span class="o">=</span> <span class="n">GTK_FILE_CHOOSER_ACTION_SAVE</span><span class="p">;</span>
+<span class="n">gint</span> <span class="n">res</span><span class="p">;</span>
 
-<span class="normal">native </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="gtk3-GtkFileChooserNative.html#gtk-file-chooser-native-new">gtk_file_chooser_native_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Save File"</span><span class="symbol">,</span>
-<span class="normal">                                      parent_window</span><span class="symbol">,</span>
-<span class="normal">                                      action</span><span class="symbol">,</span>
-<span class="normal">                                      </span><span class="string">"_Save"</span><span class="symbol">,</span>
-<span class="normal">                                      </span><span class="string">"_Cancel"</span><span class="symbol">);</span>
-<span class="normal">chooser </span><span class="symbol">=</span><span class="normal"> </span><span class="function">GTK_FILE_CHOOSER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">native</span><span class="symbol">);</span>
+<span class="n">native</span> <span class="o">=</span> <span class="n">gtk_file_chooser_native_new</span> <span class="p">(</span><span class="s">&quot;Save File&quot;</span><span class="p">,</span>
+                                      <span class="n">parent_window</span><span class="p">,</span>
+                                      <span class="n">action</span><span class="p">,</span>
+                                      <span class="s">&quot;_Save&quot;</span><span class="p">,</span>
+                                      <span class="s">&quot;_Cancel&quot;</span><span class="p">);</span>
+<span class="n">chooser</span> <span class="o">=</span> <span class="n">GTK_FILE_CHOOSER</span> <span class="p">(</span><span class="n">native</span><span class="p">);</span>
 
-<span class="function"><a href="GtkFileChooser.html#gtk-file-chooser-set-do-overwrite-confirmation">gtk_file_chooser_set_do_overwrite_confirmation</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">chooser</span><span class="symbol">,</span><span class="normal"> TRUE</span><span class="symbol">);</span>
+<span class="n">gtk_file_chooser_set_do_overwrite_confirmation</span> <span class="p">(</span><span class="n">chooser</span><span class="p">,</span> <span class="n">TRUE</span><span class="p">);</span>
 
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">user_edited_a_new_document</span><span class="symbol">)</span>
-<span class="normal">  </span><span class="function"><a href="GtkFileChooser.html#gtk-file-chooser-set-current-name">gtk_file_chooser_set_current_name</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">chooser</span><span class="symbol">,</span>
-<span class="normal">                                     </span><span class="function">_</span><span class="symbol">(</span><span class="string">"Untitled document"</span><span class="symbol">));</span>
-<span class="keyword">else</span>
-<span class="normal">  </span><span class="function"><a href="GtkFileChooser.html#gtk-file-chooser-set-filename">gtk_file_chooser_set_filename</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">chooser</span><span class="symbol">,</span>
-<span class="normal">                                 existing_filename</span><span class="symbol">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">user_edited_a_new_document</span><span class="p">)</span>
+  <span class="n">gtk_file_chooser_set_current_name</span> <span class="p">(</span><span class="n">chooser</span><span class="p">,</span>
+                                     <span class="n">_</span><span class="p">(</span><span class="s">&quot;Untitled document&quot;</span><span class="p">));</span>
+<span class="k">else</span>
+  <span class="nf">gtk_file_chooser_set_filename</span> <span class="p">(</span><span class="n">chooser</span><span class="p">,</span>
+                                 <span class="n">existing_filename</span><span class="p">);</span>
 
-<span class="normal">res </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="gtk3-GtkNativeDialog.html#gtk-native-dialog-run">gtk_native_dialog_run</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_NATIVE_DIALOG</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">native</span><span class="symbol">));</span>
-<span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">res </span><span class="symbol">==</span><span class="normal"> <a href="GtkDialog.html#GTK-RESPONSE-ACCEPT:CAPS">GTK_RESPONSE_ACCEPT</a></span><span class="symbol">)</span>
-<span class="normal">  </span><span class="cbracket">{</span>
-<span class="normal">    </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">filename</span><span class="symbol">;</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">gtk_native_dialog_run</span> <span class="p">(</span><span class="n">GTK_NATIVE_DIALOG</span> <span class="p">(</span><span class="n">native</span><span class="p">));</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">==</span> <span class="n">GTK_RESPONSE_ACCEPT</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">filename</span><span class="p">;</span>
 
-<span class="normal">    filename </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkFileChooser.html#gtk-file-chooser-get-filename">gtk_file_chooser_get_filename</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">chooser</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">save_to_file</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">filename</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="function">g_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">filename</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="cbracket">}</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">gtk_file_chooser_get_filename</span> <span class="p">(</span><span class="n">chooser</span><span class="p">);</span>
+    <span class="n">save_to_file</span> <span class="p">(</span><span class="n">filename</span><span class="p">);</span>
+    <span class="n">g_free</span> <span class="p">(</span><span class="n">filename</span><span class="p">);</span>
+  <span class="p">}</span>
 
-<span class="function">g_object_unref</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">native</span><span class="symbol">);</span></pre></td>
+<span class="n">g_object_unref</span> <span class="p">(</span><span class="n">native</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -235,9 +235,9 @@ Showing, hiding and running the dialog is handled by the <span class="type">GtkN
 <div class="refsect3">
 <a name="gtkfilechooserdialognative-responses"></a><h4>Response Codes</h4>
 <p><span class="type">GtkFileChooserNative</span> inherits from <span class="type">GtkNativeDialog</span>, which means it
-will return <a class="link" href="GtkDialog.html#GTK-RESPONSE-ACCEPT:CAPS"><span class="type">GTK_RESPONSE_ACCEPT</span></a> if the user accepted, and
-<a class="link" href="GtkDialog.html#GTK-RESPONSE-CANCEL:CAPS"><span class="type">GTK_RESPONSE_CANCEL</span></a> if he pressed cancel. It can also return
-<a class="link" href="GtkDialog.html#GTK-RESPONSE-DELETE-EVENT:CAPS"><span class="type">GTK_RESPONSE_DELETE_EVENT</span></a> if the window was unexpectedly closed.</p>
+will return <a href="https://developer.gnome.org/gtk4/GtkDialog.html#GTK-RESPONSE-ACCEPT:CAPS"><span class="type">GTK_RESPONSE_ACCEPT</span></a> if the user accepted, and
+<a href="https://developer.gnome.org/gtk4/GtkDialog.html#GTK-RESPONSE-CANCEL:CAPS"><span class="type">GTK_RESPONSE_CANCEL</span></a> if he pressed cancel. It can also return
+<a href="https://developer.gnome.org/gtk4/GtkDialog.html#GTK-RESPONSE-DELETE-EVENT:CAPS"><span class="type">GTK_RESPONSE_DELETE_EVENT</span></a> if the window was unexpectedly closed.</p>
 </div>
 <div class="refsect3">
 <a name="gtkfilechooserdialognative-differences"></a><h4>Differences from <a class="link" href="GtkFileChooserDialog.html" title="GtkFileChooserDialog"><span class="type">GtkFileChooserDialog</span></a>
@@ -311,7 +311,7 @@ to set the NSSavePanel message instance property.</p></li>
 <pre class="programlisting"><span class="returnvalue">GtkFileChooserNative</span> *
 gtk_file_chooser_native_new (<em class="parameter"><code>const <span class="type">gchar</span> *title</code></em>,
                              <em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *parent</code></em>,
-                             <em class="parameter"><code><a class="link" href="GtkFileChooser.html#GtkFileChooserAction" title="enum GtkFileChooserAction"><span class="type">GtkFileChooserAction</span></a> action</code></em>,
+                             <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkFileChooser.html#GtkFileChooserAction"><span class="type">GtkFileChooserAction</span></a> action</code></em>,
                              <em class="parameter"><code>const <span class="type">gchar</span> *accept_label</code></em>,
                              <em class="parameter"><code>const <span class="type">gchar</span> *cancel_label</code></em>);</pre>
 <p>Creates a new <span class="type">GtkFileChooserNative</span>.</p>
@@ -496,14 +496,11 @@ Pressing Alt and that key activates the button.</p>
 </div>
 </div>
 <div class="refsect1">
-<a name="gtk3-GtkFileChooserNative.other_details"></a><h2>Types and Values</h2>
-</div>
-<div class="refsect1">
 <a name="gtk3-GtkFileChooserNative.see-also"></a><h2>See Also</h2>
 <p><a class="link" href="GtkFileChooser.html" title="GtkFileChooser"><span class="type">GtkFileChooser</span></a>, <span class="type">GtkNativeDialog</span>, <a class="link" href="GtkFileChooserDialog.html" title="GtkFileChooserDialog"><span class="type">GtkFileChooserDialog</span></a></p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

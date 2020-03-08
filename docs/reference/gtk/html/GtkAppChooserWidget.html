@@ -8,7 +8,7 @@
 <link rel="up" href="ApplicationChoosing.html" title="Choosing from installed applications">
 <link rel="prev" href="GtkAppChooserDialog.html" title="GtkAppChooserDialog">
 <link rel="next" href="Gestures.html" title="Gestures and event handling">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -39,8 +39,8 @@
 <a name="GtkAppChooserWidget.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -196,9 +196,9 @@
 <a name="GtkAppChooserWidget.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody>
 <tr>
@@ -223,17 +223,17 @@
 <a name="GtkAppChooserWidget.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkAppChooserWidget.html#GtkAppChooserWidget-struct" title="struct GtkAppChooserWidget">GtkAppChooserWidget</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkAppChooserWidget.html#GtkAppChooserWidget-struct">GtkAppChooserWidget</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkAppChooserWidget.html#GtkAppChooserWidgetClass" title="struct GtkAppChooserWidgetClass">GtkAppChooserWidgetClass</a></td>
+<td class="function_name">GtkAppChooserWidgetClass</td>
 </tr>
 </tbody>
 </table></div>
@@ -679,62 +679,6 @@ that can handle the content type.</p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkAppChooserWidget.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkAppChooserWidget-struct"></a><h3>struct GtkAppChooserWidget</h3>
-<pre class="programlisting">struct GtkAppChooserWidget;</pre>
-</div>
-<hr>
-<div class="refsect2">
-<a name="GtkAppChooserWidgetClass"></a><h3>struct GtkAppChooserWidgetClass</h3>
-<pre class="programlisting">struct GtkAppChooserWidgetClass {
-  GtkBoxClass parent_class;
-
-
-  void (* application_selected)  (GtkAppChooserWidget *self,
-                                  GAppInfo            *app_info);
-
-  void (* application_activated) (GtkAppChooserWidget *self,
-                                  GAppInfo            *app_info);
-
-  void (* populate_popup)        (GtkAppChooserWidget *self,
-                                  GtkMenu             *menu,
-                                  GAppInfo            *app_info);
-};
-</pre>
-<div class="refsect3">
-<a name="GtkAppChooserWidgetClass.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="300px" class="struct_members_name">
-<col class="struct_members_description">
-<col width="200px" class="struct_members_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkAppChooserWidgetClass.application-selected"></a>application_selected</code></em> ()</p></td>
-<td class="struct_member_description"><p>Signal emitted when an application item is
-selected from the widget’s list.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkAppChooserWidgetClass.application-activated"></a>application_activated</code></em> ()</p></td>
-<td class="struct_member_description"><p>Signal emitted when an application item is
-activated from the widget’s list.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-<tr>
-<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkAppChooserWidgetClass.populate-popup"></a>populate_popup</code></em> ()</p></td>
-<td class="struct_member_description"><p>Signal emitted when a context menu is about to
-popup over an application item.</p></td>
-<td class="struct_member_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkAppChooserWidget.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkAppChooserWidget--default-text"></a><h3>The <code class="literal">“default-text”</code> property</h3>
@@ -743,6 +687,7 @@ popup over an application item.</p></td>
 that appears in the widget when there are no applications for the
 given content type.
 See also <a class="link" href="GtkAppChooserWidget.html#gtk-app-chooser-widget-set-default-text" title="gtk_app_chooser_widget_set_default_text ()"><code class="function">gtk_app_chooser_widget_set_default_text()</code></a>.</p>
+<p>Owner: GtkAppChooserWidget</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -753,6 +698,7 @@ See also <a class="link" href="GtkAppChooserWidget.html#gtk-app-chooser-widget-s
 <p>If the <a class="link" href="GtkAppChooserWidget.html#GtkAppChooserWidget--show-all" title="The “show-all” property"><span class="type">“show-all”</span></a> property is <code class="literal">TRUE</code>, the app
 chooser presents all applications in a single list, without
 subsections for default, recommended or related applications.</p>
+<p>Owner: GtkAppChooserWidget</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: FALSE</p>
 </div>
@@ -764,6 +710,7 @@ subsections for default, recommended or related applications.</p>
 should show the default handler for the content type in a
 separate section. If <code class="literal">FALSE</code>, the default handler is listed
 among the recommended applications.</p>
+<p>Owner: GtkAppChooserWidget</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: FALSE</p>
 </div>
@@ -775,6 +722,7 @@ among the recommended applications.</p>
 the app chooser should show a section for fallback applications.
 If <code class="literal">FALSE</code>, the fallback applications are listed among the other
 applications.</p>
+<p>Owner: GtkAppChooserWidget</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: FALSE</p>
 </div>
@@ -784,6 +732,7 @@ applications.</p>
 <pre class="programlisting">  “show-other”               <span class="type">gboolean</span></pre>
 <p>The <a class="link" href="GtkAppChooserWidget.html#GtkAppChooserWidget--show-other" title="The “show-other” property"><span class="type">“show-other”</span></a> property determines whether
 the app chooser should show a section for other applications.</p>
+<p>Owner: GtkAppChooserWidget</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: FALSE</p>
 </div>
@@ -795,6 +744,7 @@ the app chooser should show a section for other applications.</p>
 whether the app chooser should show a section for recommended
 applications. If <code class="literal">FALSE</code>, the recommended applications are listed
 among the other applications.</p>
+<p>Owner: GtkAppChooserWidget</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Default value: TRUE</p>
 </div>
@@ -926,6 +876,6 @@ if at least one item has been added to the menu.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <link rel="up" href="DisplayWidgets.html" title="Display Widgets">
 <link rel="prev" href="DisplayWidgets.html" title="Display Widgets">
 <link rel="next" href="GtkImage.html" title="GtkImage">
-<meta name="generator" content="GTK-Doc V1.29 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -39,8 +39,8 @@
 <a name="GtkLabel.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -244,7 +244,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a class="link" href="gtk3-Standard-Enumerations.html#GtkJustification" title="enum GtkJustification"><span class="returnvalue">GtkJustification</span></a>
+<a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkJustification"><span class="returnvalue">GtkJustification</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GtkLabel.html#gtk-label-get-justify" title="gtk_label_get_justify ()">gtk_label_get_justify</a> <span class="c_punctuation">()</span>
@@ -474,7 +474,7 @@
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><a class="link" href="gtk3-Standard-Enumerations.html#GtkJustification" title="enum GtkJustification"><span class="type">GtkJustification</span></a></td>
+<td class="property_type"><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkJustification"><span class="type">GtkJustification</span></a></td>
 <td class="property_name"><a class="link" href="GtkLabel.html#GtkLabel--justify" title="The “justify” property">justify</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -573,9 +573,9 @@
 <a name="GtkLabel.signals"></a><h2>Signals</h2>
 <div class="informaltable"><table class="informaltable" border="0">
 <colgroup>
-<col width="150px" class="signals_return">
-<col width="300px" class="signals_name">
-<col width="200px" class="signals_flags">
+<col width="150px" class="signal_proto_type">
+<col width="300px" class="signal_proto_name">
+<col width="200px" class="signal_proto_flags">
 </colgroup>
 <tbody>
 <tr>
@@ -610,12 +610,12 @@
 <a name="GtkLabel.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a class="link" href="GtkLabel.html#GtkLabel-struct" title="struct GtkLabel">GtkLabel</a></td>
+<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkLabel.html#GtkLabel-struct">GtkLabel</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -656,11 +656,11 @@ implies, most labels are used to label another widget such as a
 3
 4
 5</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="normal">label</span>
-<span class="normal">├── </span><span class="symbol">[</span><span class="normal">selection</span><span class="symbol">]</span>
-<span class="normal">├── </span><span class="symbol">[</span><span class="normal">link</span><span class="symbol">]</span>
-<span class="normal">┊</span>
-<span class="normal">╰── </span><span class="symbol">[</span><span class="normal">link</span><span class="symbol">]</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">label</span>
+<span class="err">├──</span> <span class="p">[</span><span class="n">selection</span><span class="p">]</span>
+<span class="err">├──</span> <span class="p">[</span><span class="n">link</span><span class="p">]</span>
+<span class="err">┊</span>
+<span class="err">╰──</span> <span class="p">[</span><span class="n">link</span><span class="p">]</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -695,12 +695,12 @@ this label.</p>
 4
 5
 6</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="symbol">&lt;</span><span class="usertype">object</span><span class="normal"> class</span><span class="symbol">=</span><span class="string">"GtkLabel"</span><span class="symbol">&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;</span><span class="normal">attributes</span><span class="symbol">&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"weight"</span><span class="normal"> value</span><span class="symbol">=</span><span class="string">"PANGO_WEIGHT_BOLD"</span><span class="symbol">/&gt;</span>
-<span class="normal">    </span><span class="symbol">&lt;</span><span class="usertype">attribute</span><span class="normal"> name</span><span class="symbol">=</span><span class="string">"background"</span><span class="normal"> value</span><span class="symbol">=</span><span class="string">"red"</span><span class="normal"> start</span><span class="symbol">=</span><span class="string">"5"</span><span class="normal"> end</span><span class="symbol">=</span><span class="string">"10"</span><span class="symbol">/&gt;</span>
-<span class="normal">  </span><span class="symbol">&lt;/</span><span class="normal">attributes</span><span class="symbol">&gt;</span>
-<span class="symbol">&lt;/</span><span class="normal">object</span><span class="symbol">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkLabel&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">attributes</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;weight&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;PANGO_WEIGHT_BOLD&quot;</span><span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;background&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;red&quot;</span> <span class="n">start</span><span class="o">=</span><span class="s">&quot;5&quot;</span> <span class="n">end</span><span class="o">=</span><span class="s">&quot;10&quot;</span><span class="o">/&gt;</span>
+  <span class="o">&lt;/</span><span class="n">attributes</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -735,10 +735,10 @@ the label is inside a button:</p>
 2
 3
 4</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="comment">// Pressing Alt+H will activate this button</span>
-<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">button </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkButton.html#gtk-button-new">gtk_button_new</a></span><span class="normal"> </span><span class="symbol">();</span>
-<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">label </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkLabel.html#gtk-label-new-with-mnemonic">gtk_label_new_with_mnemonic</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"_Hello"</span><span class="symbol">);</span>
-<span class="function"><a href="GtkContainer.html#gtk-container-add">gtk_container_add</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_CONTAINER</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">button</span><span class="symbol">),</span><span class="normal"> label</span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="c1">// Pressing Alt+H will activate this button</span>
+<span class="n">GtkWidget</span> <span class="o">*</span><span class="n">button</span> <span class="o">=</span> <span class="n">gtk_button_new</span> <span class="p">();</span>
+<span class="n">GtkWidget</span> <span class="o">*</span><span class="n">label</span> <span class="o">=</span> <span class="n">gtk_label_new_with_mnemonic</span> <span class="p">(</span><span class="s">&quot;_Hello&quot;</span><span class="p">);</span>
+<span class="n">gtk_container_add</span> <span class="p">(</span><span class="n">GTK_CONTAINER</span> <span class="p">(</span><span class="n">button</span><span class="p">),</span> <span class="n">label</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -753,8 +753,8 @@ already inside:</p>
       <tr>
         <td class="listing_lines" align="right"><pre>1
 2</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="comment">// Pressing Alt+H will activate this button</span>
-<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">button </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkButton.html#gtk-button-new-with-mnemonic">gtk_button_new_with_mnemonic</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"_Hello"</span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="c1">// Pressing Alt+H will activate this button</span>
+<span class="n">GtkWidget</span> <span class="o">*</span><span class="n">button</span> <span class="o">=</span> <span class="n">gtk_button_new_with_mnemonic</span> <span class="p">(</span><span class="s">&quot;_Hello&quot;</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -772,10 +772,10 @@ already inside:</p>
 2
 3
 4</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="comment">// Pressing Alt+H will focus the entry</span>
-<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">entry </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkEntry.html#gtk-entry-new">gtk_entry_new</a></span><span class="normal"> </span><span class="symbol">();</span>
-<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">label </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkLabel.html#gtk-label-new-with-mnemonic">gtk_label_new_with_mnemonic</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"_Hello"</span><span class="symbol">);</span>
-<span class="function"><a href="GtkLabel.html#gtk-label-set-mnemonic-widget">gtk_label_set_mnemonic_widget</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_LABEL</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">label</span><span class="symbol">),</span><span class="normal"> entry</span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="c1">// Pressing Alt+H will focus the entry</span>
+<span class="n">GtkWidget</span> <span class="o">*</span><span class="n">entry</span> <span class="o">=</span> <span class="n">gtk_entry_new</span> <span class="p">();</span>
+<span class="n">GtkWidget</span> <span class="o">*</span><span class="n">label</span> <span class="o">=</span> <span class="n">gtk_label_new_with_mnemonic</span> <span class="p">(</span><span class="s">&quot;_Hello&quot;</span><span class="p">);</span>
+<span class="n">gtk_label_set_mnemonic_widget</span> <span class="p">(</span><span class="n">GTK_LABEL</span> <span class="p">(</span><span class="n">label</span><span class="p">),</span> <span class="n">entry</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -796,8 +796,8 @@ markup format.</p>
       <tr>
         <td class="listing_lines" align="right"><pre>1
 2</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">label </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkLabel.html#gtk-label-new">gtk_label_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">);</span>
-<span class="function"><a href="GtkLabel.html#gtk-label-set-markup">gtk_label_set_markup</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_LABEL</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">label</span><span class="symbol">),</span><span class="normal"> </span><span class="string">"&lt;small&gt;Small text&lt;/small&gt;"</span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">label</span> <span class="o">=</span> <span class="n">gtk_label_new</span> <span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="n">gtk_label_set_markup</span> <span class="p">(</span><span class="n">GTK_LABEL</span> <span class="p">(</span><span class="n">label</span><span class="p">),</span> <span class="s">&quot;&lt;small&gt;Small text&lt;/small&gt;&quot;</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -872,12 +872,12 @@ text. The “title“ attribute is displayed as a tooltip on the link.</p>
 4
 5
 6</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="keyword">const</span><span class="normal"> </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">text </span><span class="symbol">=</span>
-<span class="string">"Go to the"</span>
-<span class="string">"&lt;a href=</span><span class="specialchar">\"</span><span class="string">http://www.gtk.org title=</span><span class="specialchar">\"</span><span class="string">&lt;i&gt;Our&lt;/i&gt; website</span><span class="specialchar">\"</span><span class="string">&gt;"</span>
-<span class="string">"GTK+ website&lt;/a&gt; for more..."</span><span class="symbol">;</span>
-<span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">label </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkLabel.html#gtk-label-new">gtk_label_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">);</span>
-<span class="function"><a href="GtkLabel.html#gtk-label-set-markup">gtk_label_set_markup</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_LABEL</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">label</span><span class="symbol">),</span><span class="normal"> text</span><span class="symbol">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="k">const</span> <span class="n">gchar</span> <span class="o">*</span><span class="n">text</span> <span class="o">=</span>
+<span class="s">&quot;Go to the&quot;</span>
+<span class="s">&quot;&lt;a href=</span><span class="se">\&quot;</span><span class="s">http://www.gtk.org title=</span><span class="se">\&quot;</span><span class="s">&lt;i&gt;Our&lt;/i&gt; website</span><span class="se">\&quot;</span><span class="s">&gt;&quot;</span>
+<span class="s">&quot;GTK+ website&lt;/a&gt; for more...&quot;</span><span class="p">;</span>
+<span class="n">GtkWidget</span> <span class="o">*</span><span class="n">label</span> <span class="o">=</span> <span class="n">gtk_label_new</span> <span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="n">gtk_label_set_markup</span> <span class="p">(</span><span class="n">GTK_LABEL</span> <span class="p">(</span><span class="n">label</span><span class="p">),</span> <span class="n">text</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1014,14 +1014,14 @@ label’s text and attribute list based on the parse results.</p>
 6
 7
 8</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="usertype">GtkWidget</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">label </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="GtkLabel.html#gtk-label-new">gtk_label_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">NULL</span><span class="symbol">);</span>
-<span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">str </span><span class="symbol">=</span><span class="normal"> </span><span class="string">"some text"</span><span class="symbol">;</span>
-<span class="keyword">const</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">format </span><span class="symbol">=</span><span class="normal"> </span><span class="string">"&lt;span style=</span><span class="specialchar">\"</span><span class="string">italic</span><span class="specialchar">\"</span><span class="string">&gt;</span><span class="specialchar">\%</span><span class="string">s&lt;/span&gt;"</span><span class="symbol">;</span>
-<span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">markup</span><span class="symbol">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">label</span> <span class="o">=</span> <span class="n">gtk_label_new</span> <span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="s">&quot;some text&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">format</span> <span class="o">=</span> <span class="s">&quot;&lt;span style=</span><span class="se">\&quot;</span><span class="s">italic</span><span class="se">\&quot;</span><span class="s">&gt;\%s&lt;/span&gt;&quot;</span><span class="p">;</span>
+<span class="kt">char</span> <span class="o">*</span><span class="n">markup</span><span class="p">;</span>
 
-<span class="normal">markup </span><span class="symbol">=</span><span class="normal"> </span><span class="function">g_markup_printf_escaped</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">format</span><span class="symbol">,</span><span class="normal"> str</span><span class="symbol">);</span>
-<span class="function"><a href="GtkLabel.html#gtk-label-set-markup">gtk_label_set_markup</a></span><span class="normal"> </span><span class="symbol">(</span><span class="function">GTK_LABEL</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">label</span><span class="symbol">),</span><span class="normal"> markup</span><span class="symbol">);</span>
-<span class="function">g_free</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">markup</span><span class="symbol">);</span></pre></td>
+<span class="n">markup</span> <span class="o">=</span> <span class="n">g_markup_printf_escaped</span> <span class="p">(</span><span class="n">format</span><span class="p">,</span> <span class="n">str</span><span class="p">);</span>
+<span class="n">gtk_label_set_markup</span> <span class="p">(</span><span class="n">GTK_LABEL</span> <span class="p">(</span><span class="n">label</span><span class="p">),</span> <span class="n">markup</span><span class="p">);</span>
+<span class="n">g_free</span> <span class="p">(</span><span class="n">markup</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1134,9 +1134,9 @@ gtk_label_set_pattern (<em class="parameter"><code><a class="link" href="GtkLabe
 <a name="gtk-label-set-justify"></a><h3>gtk_label_set_justify ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_label_set_justify (<em class="parameter"><code><a class="link" href="GtkLabel.html" title="GtkLabel"><span class="type">GtkLabel</span></a> *label</code></em>,
-                       <em class="parameter"><code><a class="link" href="gtk3-Standard-Enumerations.html#GtkJustification" title="enum GtkJustification"><span class="type">GtkJustification</span></a> jtype</code></em>);</pre>
+                       <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkJustification"><span class="type">GtkJustification</span></a> jtype</code></em>);</pre>
 <p>Sets the alignment of the lines in the text of the label relative to
-each other. <a class="link" href="gtk3-Standard-Enumerations.html#GTK-JUSTIFY-LEFT:CAPS"><code class="literal">GTK_JUSTIFY_LEFT</code></a> is the default value when the widget is
+each other. <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-JUSTIFY-LEFT:CAPS"><code class="literal">GTK_JUSTIFY_LEFT</code></a> is the default value when the widget is
 first created with <a class="link" href="GtkLabel.html#gtk-label-new" title="gtk_label_new ()"><code class="function">gtk_label_new()</code></a>. If you instead want to set the
 alignment of the label as a whole, use <a class="link" href="GtkWidget.html#gtk-widget-set-halign" title="gtk_widget_set_halign ()"><code class="function">gtk_widget_set_halign()</code></a> instead.
 <a class="link" href="GtkLabel.html#gtk-label-set-justify" title="gtk_label_set_justify ()"><code class="function">gtk_label_set_justify()</code></a> has no effect on labels containing only a
@@ -1157,7 +1157,7 @@ single line.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>jtype</p></td>
-<td class="parameter_description"><p>a <a class="link" href="gtk3-Standard-Enumerations.html#GtkJustification" title="enum GtkJustification"><span class="type">GtkJustification</span></a></p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkJustification"><span class="type">GtkJustification</span></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1783,7 +1783,7 @@ if none was set. </p>
 <hr>
 <div class="refsect2">
 <a name="gtk-label-get-justify"></a><h3>gtk_label_get_justify ()</h3>
-<pre class="programlisting"><a class="link" href="gtk3-Standard-Enumerations.html#GtkJustification" title="enum GtkJustification"><span class="returnvalue">GtkJustification</span></a>
+<pre class="programlisting"><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkJustification"><span class="returnvalue">GtkJustification</span></a>
 gtk_label_get_justify (<em class="parameter"><code><a class="link" href="GtkLabel.html" title="GtkLabel"><span class="type">GtkLabel</span></a> *label</code></em>);</pre>
 <p>Returns the justification of the label. See <a class="link" href="GtkLabel.html#gtk-label-set-justify" title="gtk_label_set_justify ()"><code class="function">gtk_label_set_justify()</code></a>.</p>
 <div class="refsect3">
@@ -1803,7 +1803,7 @@ gtk_label_get_justify (<em class="parameter"><code><a class="link" href="GtkLabe
 </div>
 <div class="refsect3">
 <a name="gtk-label-get-justify.returns"></a><h4>Returns</h4>
-<p> <a class="link" href="gtk3-Standard-Enumerations.html#GtkJustification" title="enum GtkJustification"><span class="type">GtkJustification</span></a></p>
+<p> <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkJustification"><span class="type">GtkJustification</span></a></p>
 </div>
 </div>
 <hr>
@@ -2530,13 +2530,6 @@ of clicked links.</p>
 </div>
 </div>
 <div class="refsect1">
-<a name="GtkLabel.other_details"></a><h2>Types and Values</h2>
-<div class="refsect2">
-<a name="GtkLabel-struct"></a><h3>struct GtkLabel</h3>
-<pre class="programlisting">struct GtkLabel;</pre>
-</div>
-</div>
-<div class="refsect1">
 <a name="GtkLabel.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkLabel--angle"></a><h3>The <code class="literal">“angle”</code> property</h3>
@@ -2545,6 +2538,7 @@ of clicked links.</p>
 in degrees, measured counterclockwise. An angle of 90 reads from
 from bottom to top, an angle of 270, from top to bottom. Ignored
 if the label is selectable.</p>
+<p>Owner: GtkLabel</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: [0,360]</p>
 <p>Default value: 0</p>
@@ -2555,6 +2549,7 @@ if the label is selectable.</p>
 <a name="GtkLabel--attributes"></a><h3>The <code class="literal">“attributes”</code> property</h3>
 <pre class="programlisting">  “attributes”               <a href="https://developer.gnome.org/pango/pango-Text-Attributes.html#PangoAttrList-struct"><span class="type">PangoAttrList</span></a> *</pre>
 <p>A list of style attributes to apply to the text of the label.</p>
+<p>Owner: GtkLabel</p>
 <p>Flags: Read / Write</p>
 </div>
 <hr>
@@ -2562,6 +2557,7 @@ if the label is selectable.</p>
 <a name="GtkLabel--cursor-position"></a><h3>The <code class="literal">“cursor-position”</code> property</h3>
 <pre class="programlisting">  “cursor-position”          <span class="type">gint</span></pre>
 <p>The current position of the insertion cursor in chars.</p>
+<p>Owner: GtkLabel</p>
 <p>Flags: Read</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 0</p>
@@ -2580,6 +2576,7 @@ means that ellipsizing labels do not work well in notebook tabs, unless
 the <a class="link" href="GtkNotebook.html" title="GtkNotebook"><span class="type">GtkNotebook</span></a> tab-expand child property is set to <code class="literal">TRUE</code>. Other ways
 to set a label's width are <a class="link" href="GtkWidget.html#gtk-widget-set-size-request" title="gtk_widget_set_size_request ()"><code class="function">gtk_widget_set_size_request()</code></a> and
 <a class="link" href="GtkLabel.html#gtk-label-set-width-chars" title="gtk_label_set_width_chars ()"><code class="function">gtk_label_set_width_chars()</code></a>.</p>
+<p>Owner: GtkLabel</p>
 <p>Flags: Read / Write</p>
 <p>Default value: PANGO_ELLIPSIZE_NONE</p>
 <p class="since">Since: 2.6</p>
@@ -2587,8 +2584,9 @@ to set a label's width are <a class="link" href="GtkWidget.html#gtk-widget-set-s
 <hr>
 <div class="refsect2">
 <a name="GtkLabel--justify"></a><h3>The <code class="literal">“justify”</code> property</h3>
-<pre class="programlisting">  “justify”                  <a class="link" href="gtk3-Standard-Enumerations.html#GtkJustification" title="enum GtkJustification"><span class="type">GtkJustification</span></a></pre>
+<pre class="programlisting">  “justify”                  <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkJustification"><span class="type">GtkJustification</span></a></pre>
 <p>The alignment of the lines in the text of the label relative to each other. This does NOT affect the alignment of the label within its allocation. See GtkLabel:xalign for that.</p>
+<p>Owner: GtkLabel</p>
 <p>Flags: Read / Write</p>
 <p>Default value: GTK_JUSTIFY_LEFT</p>
 </div>
@@ -2605,6 +2603,7 @@ for a convenience function that sets both this property and the
 <p>If the string contains underlines acting as mnemonics, you will have to
 set the <a class="link" href="GtkLabel.html#GtkLabel--use-underline" title="The “use-underline” property"><span class="type">“use-underline”</span></a> property to <code class="literal">TRUE</code> in order for the label
 to display them.</p>
+<p>Owner: GtkLabel</p>
 <p>Flags: Read / Write</p>
 <p>Default value: ""</p>
 </div>
@@ -2616,6 +2615,7 @@ to display them.</p>
 should be limited. This property has no effect if the
 label is not wrapping or ellipsized. Set this property to
 -1 if you don't want to limit the number of lines.</p>
+<p>Owner: GtkLabel</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
@@ -2630,6 +2630,7 @@ is set to -1, the width will be calculated automatically.</p>
 <p>See the section on <a class="link" href="GtkLabel.html#label-text-layout" title="Text layout">text layout</a>
 for details of how <a class="link" href="GtkLabel.html#GtkLabel--width-chars" title="The “width-chars” property"><span class="type">“width-chars”</span></a> and <a class="link" href="GtkLabel.html#GtkLabel--max-width-chars" title="The “max-width-chars” property"><span class="type">“max-width-chars”</span></a>
 determine the width of ellipsized and wrapped labels.</p>
+<p>Owner: GtkLabel</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
@@ -2640,6 +2641,7 @@ determine the width of ellipsized and wrapped labels.</p>
 <a name="GtkLabel--mnemonic-keyval"></a><h3>The <code class="literal">“mnemonic-keyval”</code> property</h3>
 <pre class="programlisting">  “mnemonic-keyval”          <span class="type">guint</span></pre>
 <p>The mnemonic accelerator key for this label.</p>
+<p>Owner: GtkLabel</p>
 <p>Flags: Read</p>
 <p>Default value: 16777215</p>
 </div>
@@ -2648,6 +2650,7 @@ determine the width of ellipsized and wrapped labels.</p>
 <a name="GtkLabel--mnemonic-widget"></a><h3>The <code class="literal">“mnemonic-widget”</code> property</h3>
 <pre class="programlisting">  “mnemonic-widget”          <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *</pre>
 <p>The widget to be activated when the label's mnemonic key is pressed.</p>
+<p>Owner: GtkLabel</p>
 <p>Flags: Read / Write</p>
 </div>
 <hr>
@@ -2655,6 +2658,7 @@ determine the width of ellipsized and wrapped labels.</p>
 <a name="GtkLabel--pattern"></a><h3>The <code class="literal">“pattern”</code> property</h3>
 <pre class="programlisting">  “pattern”                  <span class="type">gchar</span> *</pre>
 <p>A string with _ characters in positions correspond to characters in the text to underline.</p>
+<p>Owner: GtkLabel</p>
 <p>Flags: Write</p>
 <p>Default value: NULL</p>
 </div>
@@ -2663,6 +2667,7 @@ determine the width of ellipsized and wrapped labels.</p>
 <a name="GtkLabel--selectable"></a><h3>The <code class="literal">“selectable”</code> property</h3>
 <pre class="programlisting">  “selectable”               <span class="type">gboolean</span></pre>
 <p>Whether the label text can be selected with the mouse.</p>
+<p>Owner: GtkLabel</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -2671,6 +2676,7 @@ determine the width of ellipsized and wrapped labels.</p>
 <a name="GtkLabel--selection-bound"></a><h3>The <code class="literal">“selection-bound”</code> property</h3>
 <pre class="programlisting">  “selection-bound”          <span class="type">gint</span></pre>
 <p>The position of the opposite end of the selection from the cursor in chars.</p>
+<p>Owner: GtkLabel</p>
 <p>Flags: Read</p>
 <p>Allowed values: &gt;= 0</p>
 <p>Default value: 0</p>
@@ -2684,6 +2690,7 @@ the height of the label does not depend on the actual text, it
 is always set to ascent + descent of the font. This can be an
 advantage in situations where resizing the label because of text
 changes would be distracting, e.g. in a statusbar.</p>
+<p>Owner: GtkLabel</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 <p class="since">Since: 2.6</p>
@@ -2693,8 +2700,9 @@ changes would be distracting, e.g. in a statusbar.</p>
 <a name="GtkLabel--track-visited-links"></a><h3>The <code class="literal">“track-visited-links”</code> property</h3>
 <pre class="programlisting">  “track-visited-links”      <span class="type">gboolean</span></pre>
 <p>Set this property to <code class="literal">TRUE</code> to make the label track which links
-have been visited. It will then apply the <a class="link" href="gtk3-Standard-Enumerations.html#GTK-STATE-FLAG-VISITED:CAPS"><span class="type">GTK_STATE_FLAG_VISITED</span></a>
-when rendering this link, in addition to <a class="link" href="gtk3-Standard-Enumerations.html#GTK-STATE-FLAG-LINK:CAPS"><span class="type">GTK_STATE_FLAG_LINK</span></a>.</p>
+have been visited. It will then apply the <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-STATE-FLAG-VISITED:CAPS"><span class="type">GTK_STATE_FLAG_VISITED</span></a>
+when rendering this link, in addition to <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-STATE-FLAG-LINK:CAPS"><span class="type">GTK_STATE_FLAG_LINK</span></a>.</p>
+<p>Owner: GtkLabel</p>
 <p>Flags: Read / Write</p>
 <p>Default value: TRUE</p>
 <p class="since">Since: 2.18</p>
@@ -2704,6 +2712,7 @@ when rendering this link, in addition to <a class="link" href="gtk3-Standard-Enu
 <a name="GtkLabel--use-markup"></a><h3>The <code class="literal">“use-markup”</code> property</h3>
 <pre class="programlisting">  “use-markup”               <span class="type">gboolean</span></pre>
 <p>The text of the label includes XML markup. See pango_parse_markup().</p>
+<p>Owner: GtkLabel</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -2712,6 +2721,7 @@ when rendering this link, in addition to <a class="link" href="gtk3-Standard-Enu
 <a name="GtkLabel--use-underline"></a><h3>The <code class="literal">“use-underline”</code> property</h3>
 <pre class="programlisting">  “use-underline”            <span class="type">gboolean</span></pre>
 <p>If set, an underline in the text indicates the next character should be used for the mnemonic accelerator key.</p>
+<p>Owner: GtkLabel</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -2724,6 +2734,7 @@ when rendering this link, in addition to <a class="link" href="gtk3-Standard-Enu
 <p>See the section on <a class="link" href="GtkLabel.html#label-text-layout" title="Text layout">text layout</a>
 for details of how <a class="link" href="GtkLabel.html#GtkLabel--width-chars" title="The “width-chars” property"><span class="type">“width-chars”</span></a> and <a class="link" href="GtkLabel.html#GtkLabel--max-width-chars" title="The “max-width-chars” property"><span class="type">“max-width-chars”</span></a>
 determine the width of ellipsized and wrapped labels.</p>
+<p>Owner: GtkLabel</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &gt;= -1</p>
 <p>Default value: -1</p>
@@ -2734,6 +2745,7 @@ determine the width of ellipsized and wrapped labels.</p>
 <a name="GtkLabel--wrap"></a><h3>The <code class="literal">“wrap”</code> property</h3>
 <pre class="programlisting">  “wrap”                     <span class="type">gboolean</span></pre>
 <p>If set, wrap lines if the text becomes too wide.</p>
+<p>Owner: GtkLabel</p>
 <p>Flags: Read / Write</p>
 <p>Default value: FALSE</p>
 </div>
@@ -2744,6 +2756,7 @@ determine the width of ellipsized and wrapped labels.</p>
 <p>If line wrapping is on (see the <a class="link" href="GtkLabel.html#GtkLabel--wrap" title="The “wrap” property"><span class="type">“wrap”</span></a> property) this controls
 how the line wrapping is done. The default is <a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PANGO-WRAP-WORD:CAPS"><code class="literal">PANGO_WRAP_WORD</code></a>, which
 means wrap on word boundaries.</p>
+<p>Owner: GtkLabel</p>
 <p>Flags: Read / Write</p>
 <p>Default value: PANGO_WRAP_WORD</p>
 <p class="since">Since: 2.10</p>
@@ -2756,6 +2769,7 @@ means wrap on word boundaries.</p>
 inside the labels size allocation. Compare this to <a class="link" href="GtkWidget.html#GtkWidget--halign" title="The “halign” property"><span class="type">“halign”</span></a>,
 which determines how the labels size allocation is positioned in the
 space available for the label.</p>
+<p>Owner: GtkLabel</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: [0,1]</p>
 <p>Default value: 0.5</p>
@@ -2769,6 +2783,7 @@ space available for the label.</p>
 inside the labels size allocation. Compare this to <a class="link" href="GtkWidget.html#GtkWidget--valign" title="The “valign” property"><span class="type">“valign”</span></a>,
 which determines how the labels size allocation is positioned in the
 space available for the label.</p>
+<p>Owner: GtkLabel</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: [0,1]</p>
 <p>Default value: 0.5</p>
@@ -2782,7 +2797,7 @@ space available for the label.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkLabel.html" title="GtkLabel"><span class="type">GtkLabel</span></a> *label,
                <span class="type">gpointer</span>  user_data)</pre>
-<p>A <a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
+<p>A keybinding signal
 which gets emitted when the user activates a link in the label.</p>
 <p>Applications may also emit the signal with <code class="function">g_signal_emit_by_name()</code>
 if they need to control activation of URIs programmatically.</p>
@@ -2863,7 +2878,7 @@ which is to call <a class="link" href="gtk3-Filesystem-utilities.html#gtk-show-u
 user_function (<a class="link" href="GtkLabel.html" title="GtkLabel"><span class="type">GtkLabel</span></a> *label,
                <span class="type">gpointer</span>  user_data)</pre>
 <p>The ::copy-clipboard signal is a
-<a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
+keybinding signal
 which gets emitted to copy the selection to the clipboard.</p>
 <p>The default binding for this signal is Ctrl-c.</p>
 <div class="refsect3">
@@ -2895,12 +2910,12 @@ which gets emitted to copy the selection to the clipboard.</p>
 <a name="GtkLabel-move-cursor"></a><h3>The <code class="literal">“move-cursor”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkLabel.html" title="GtkLabel"><span class="type">GtkLabel</span></a>       *entry,
-               <a class="link" href="gtk3-Standard-Enumerations.html#GtkMovementStep" title="enum GtkMovementStep"><span class="type">GtkMovementStep</span></a> step,
+               <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkMovementStep"><span class="type">GtkMovementStep</span></a> step,
                <span class="type">gint</span>            count,
                <span class="type">gboolean</span>        extend_selection,
                <span class="type">gpointer</span>        user_data)</pre>
 <p>The ::move-cursor signal is a
-<a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
+keybinding signal
 which gets emitted when the user initiates a cursor movement.
 If the cursor is not visible in <em class="parameter"><code>entry</code></em>
 , this signal causes
@@ -2933,7 +2948,7 @@ There are too many key combinations to list them all here.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>step</p></td>
-<td class="parameter_description"><p>the granularity of the move, as a <a class="link" href="gtk3-Standard-Enumerations.html#GtkMovementStep" title="enum GtkMovementStep"><span class="type">GtkMovementStep</span></a></p></td>
+<td class="parameter_description"><p>the granularity of the move, as a <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkMovementStep"><span class="type">GtkMovementStep</span></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -3002,6 +3017,6 @@ to this signal and append your menuitems to the <em class="parameter"><code>menu
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.29</div>
+<hr>Generated by GTK-Doc V1.32.1</div>
 </body>
 </html>

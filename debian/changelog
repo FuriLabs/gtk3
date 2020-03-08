@@ -1,3 +1,23 @@
+gtk+3.0 (3.24.14-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release
+    - Update Wayland dependency version
+  * d/patches: Apply upstream bug fixes from gtk-3-24 branch up to
+    3.24.14-20-g4c027d458b
+  * d/tests/build: Use correct compiler for proposed autopkgtest
+    cross-architecture testing support, based on a patch for clutter-1.0
+    by Steve Langasek
+  * d/tests/build: Fix shellcheck warnings
+  * d/tests/build: Remove trailing whitespace
+  * d/tests/build: Show commands before they are executed
+  * d/tests/build: Fail if using an undefined variable ("unofficial strict
+    mode")
+  * d/upstream/metadata: Add upstream URLs
+  * Standards-Version: 4.5.0 (no changes required)
+
+ -- Simon McVittie <smcv@debian.org>  Sat, 29 Feb 2020 20:34:56 +0000
+
 gtk+3.0 (3.24.13-1ubuntu1) focal; urgency=medium
 
   * Merge with Debian. Remaining changes:
@@ -49,7 +69,7 @@ gtk+3.0 (3.24.13-1) unstable; urgency=medium
       - Properly handle bubbling of scroll events
       - Handle modifier key events properly
       - Run key controllers in the bubble phase
-      - Do not use VIQR for Vietnamese by default 
+      - Do not use VIQR for Vietnamese by default
     + statusicons: Render sharply on hi-dpi
     + wayland: Fix handling of selection ownership
     + broadway: Fix (lack of) clipboard handling
@@ -1659,7 +1679,8 @@ gtk+3.0 (3.20.1-1) experimental; urgency=medium
   * New upstream release.
   * Drop debian/patches/git_a11y_GTK_CSD_distcheck.patch, included in release.
   * Add debian/patches/git_fix_emacs.patch, cherry-picked from upstream git.
-    Thanks to Matteo F. Vescovi for verifying the commit fixed the emacs problem.
+    Thanks to Matteo F. Vescovi for verifying the commit fixed the emacs
+    problem.
 
  -- Andreas Henriksson <andreas@fatal.se>  Wed, 30 Mar 2016 11:08:26 +0200
 
