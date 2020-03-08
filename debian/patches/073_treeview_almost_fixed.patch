@@ -10,10 +10,10 @@ Bug-Ubuntu: https://launchpad.net/bugs/514879
  gtk/gtktreeview.c | 24 +++++++++++++++++++++++-
  1 file changed, 23 insertions(+), 1 deletion(-)
 
-Index: gtk+3.0-3.24.10/gtk/gtktreeview.c
-===================================================================
---- gtk+3.0-3.24.10.orig/gtk/gtktreeview.c
-+++ gtk+3.0-3.24.10/gtk/gtktreeview.c
+diff --git a/gtk/gtktreeview.c b/gtk/gtktreeview.c
+index 20f09ef..ce8beb7 100644
+--- a/gtk/gtktreeview.c
++++ b/gtk/gtktreeview.c
 @@ -467,6 +467,7 @@ struct _GtkTreeViewPrivate
  
    guint fixed_height_mode : 1;
@@ -30,7 +30,7 @@ Index: gtk+3.0-3.24.10/gtk/gtktreeview.c
    PROP_HOVER_SELECTION,
    PROP_HOVER_EXPAND,
    PROP_SHOW_EXPANDERS,
-@@ -1109,6 +1111,14 @@ gtk_tree_view_class_init (GtkTreeViewCla
+@@ -1109,6 +1111,14 @@ gtk_tree_view_class_init (GtkTreeViewClass *class)
                              FALSE,
                              GTK_PARAM_READWRITE|G_PARAM_EXPLICIT_NOTIFY);
  
@@ -45,7 +45,7 @@ Index: gtk+3.0-3.24.10/gtk/gtktreeview.c
    /**
     * GtkTreeView:hover-selection:
     * 
-@@ -1847,6 +1857,7 @@ gtk_tree_view_init (GtkTreeView *tree_vi
+@@ -1847,6 +1857,7 @@ gtk_tree_view_init (GtkTreeView *tree_view)
    priv->fixed_height = -1;
    priv->fixed_height_mode = FALSE;
    priv->fixed_height_check = 0;
@@ -63,7 +63,7 @@ Index: gtk+3.0-3.24.10/gtk/gtktreeview.c
      case PROP_HOVER_SELECTION:
        if (tree_view->priv->hover_selection != g_value_get_boolean (value))
          {
-@@ -9028,7 +9042,15 @@ gtk_tree_view_row_changed (GtkTreeModel
+@@ -9030,7 +9044,15 @@ gtk_tree_view_row_changed (GtkTreeModel *model,
  
    _gtk_tree_view_accessible_changed (tree_view, tree, node);
  

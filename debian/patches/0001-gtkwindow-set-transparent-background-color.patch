@@ -8,10 +8,10 @@ To reduce black flickering when new windows are created on compiz.
  1 file changed, 3 insertions(+)
 
 diff --git a/gtk/gtkwindow.c b/gtk/gtkwindow.c
-index 874b053..13c9902 100644
+index c8fb476..2ae56a0 100644
 --- a/gtk/gtkwindow.c
 +++ b/gtk/gtkwindow.c
-@@ -7491,6 +7491,9 @@ gtk_window_realize (GtkWidget *widget)
+@@ -7495,6 +7495,9 @@ gtk_window_realize (GtkWidget *widget)
    gtk_widget_register_window (widget, gdk_window);
    gtk_widget_set_realized (widget, TRUE);
  
