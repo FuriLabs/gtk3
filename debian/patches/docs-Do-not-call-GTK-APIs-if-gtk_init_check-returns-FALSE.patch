@@ -1,0 +1,25 @@
+From: Nicola Fontana <ntd@entidi.it>
+Date: Fri, 3 Apr 2020 17:00:59 +0200
+Subject: docs: Do not call GTK APIs if gtk_init_check returns FALSE
+
+See issue #994.
+
+Origin: upstream, 3.24.18
+---
+ gtk/gtkmain.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/gtk/gtkmain.c b/gtk/gtkmain.c
+index ca56f94..f7cbb34 100644
+--- a/gtk/gtkmain.c
++++ b/gtk/gtkmain.c
+@@ -1090,6 +1090,9 @@ gtk_parse_args (int    *argc,
+  * communication with the user - for example a curses or command line
+  * interface.
+  *
++ * Note that calling any GTK function or instantiating any GTK type after
++ * this function returns %FALSE results in undefined behavior.
++ *
+  * Returns: %TRUE if the commandline arguments (if any) were valid and
+  *     the windowing system has been successfully initialized, %FALSE
+  *     otherwise

@@ -1986,6 +1986,7 @@ keyboard_handle_leave (void               *data,
   g_object_unref (seat->keyboard_focus);
   seat->keyboard_focus = NULL;
   seat->repeat_key = 0;
+  seat->key_modifiers = 0;
 
   GDK_NOTE (EVENTS,
             g_message ("focus out, seat %p surface %p",
@@ -3671,8 +3672,10 @@ tablet_tool_handle_proximity_out (void                      *data,
 {
   GdkWaylandTabletToolData *tool = data;
   GdkWaylandTabletData *tablet = tool->current_tablet;
-  GdkWaylandSeat *seat = GDK_WAYLAND_SEAT (tool->seat);
   GdkEvent *event;
+#ifdef G_ENABLE_DEBUG
+  GdkWaylandSeat *seat = GDK_WAYLAND_SEAT (tool->seat);
+#endif
 
   GDK_NOTE (EVENTS,
             g_message ("proximity out, seat %p, tool %d", seat,

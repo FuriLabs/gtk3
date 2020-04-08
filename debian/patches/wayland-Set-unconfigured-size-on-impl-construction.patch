@@ -1,0 +1,26 @@
+From: =?utf-8?q?Jonas_=C3=85dahl?= <jadahl@gmail.com>
+Date: Mon, 6 Apr 2020 21:12:09 +0200
+Subject: wayland: Set unconfigured size on impl construction
+
+Who knows who might use this for something, so lets make the
+unconfigured size slightly more predictable. This doesn't fix anything
+known to be broken though.
+
+Origin: upstream, 3.24.18
+---
+ gdk/wayland/gdkwindow-wayland.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/gdk/wayland/gdkwindow-wayland.c b/gdk/wayland/gdkwindow-wayland.c
+index 8502473..cbd9412 100644
+--- a/gdk/wayland/gdkwindow-wayland.c
++++ b/gdk/wayland/gdkwindow-wayland.c
+@@ -749,6 +749,8 @@ _gdk_wayland_display_create_window_impl (GdkDisplay    *display,
+ 
+   impl = g_object_new (GDK_TYPE_WINDOW_IMPL_WAYLAND, NULL);
+   window->impl = GDK_WINDOW_IMPL (impl);
++  impl->unconfigured_width = window->width;
++  impl->unconfigured_height = window->height;
+   impl->wrapper = GDK_WINDOW (window);
+   impl->shortcuts_inhibitors = g_hash_table_new (NULL, NULL);
+   impl->using_csd = TRUE;

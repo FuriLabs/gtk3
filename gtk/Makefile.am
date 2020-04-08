@@ -583,6 +583,7 @@ gtk_private_h_sources =		\
 	gtktextmarkprivate.h	\
 	gtktextsegment.h	\
 	gtktexttagprivate.h	\
+	gtktexttagtableprivate.h	\
 	gtktexttypes.h		\
 	gtktextutil.h		\
 	gtktrashmonitor.h	\
@@ -1370,9 +1371,7 @@ adwaita_theme_scss = \
 	$()
 
 highcontrast_theme_scss = \
-	theme/HighContrast/_colors.scss 	\
-	theme/HighContrast/_common.scss 	\
-	theme/HighContrast/_drawing.scss 	\
+	theme/HighContrast/_colors-hc.scss 	\
 	theme/HighContrast/gtk-contained-inverse.scss \
 	theme/HighContrast/gtk-contained.scss 	\
 	$()

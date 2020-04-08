@@ -1,3 +1,74 @@
+gtk+3.0 (3.24.17-3ubuntu1) UNRELEASED; urgency=medium
+
+  * Update to the current stable version (based on Debian)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 08 Apr 2020 11:22:15 +0200
+
+gtk+3.0 (3.24.17-3) unstable; urgency=medium
+
+  * Team upload
+  * Update to upstream gtk-3-24 branch, commit 3.24.17-22-g99bae0fb5f
+    (effectively a release-candidate for 3.24.18)
+    - Fix even more Wayland window-sizing regressions
+      (Closes: #955820, we hope)
+  * d/p/wayland-don-t-call-gdk_wayland_window_configure-without-v.patch:
+    Drop patch, superseded by other upstream fixes.
+
+ -- Simon McVittie <smcv@debian.org>  Tue, 07 Apr 2020 13:54:03 +0100
+
+gtk+3.0 (3.24.17-2) unstable; urgency=medium
+
+  * Team upload
+  * d/p/Do-not-require-an-initial-configure-for-custom-Wayland-su.patch,
+    d/p/Do-not-require-an-initial-configure-for-DnD-windows.patch:
+    Apply patches from upstream gtk-3-24 branch to fix some Wayland
+    window-sizing regressions (partially resolves: #955820)
+  * d/p/wayland-don-t-call-gdk_wayland_window_configure-without-v.patch:
+    Apply a patch proposed upstream to fix additional Wayland window-sizing
+    regressions (hopefully resolves the rest of #955820)
+
+ -- Simon McVittie <smcv@debian.org>  Sun, 05 Apr 2020 20:17:59 +0100
+
+gtk+3.0 (3.24.17-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release
+    - Fix some regressions in 3.24.16
+    - When using the "simple" input method context, load the same compose
+      sequences for Wayland as for X11 (in order of preference:
+      $XDG_CONFIG_HOME/gtk-3.0/Compose, ~/.XCompose, or a language-specific
+      system-wide compose file for el_GR, fi_FI or pt_BR)
+  * d/p/supp-Use-a-single-suppressions-file-for-lib-lib64-and-mul.patch:
+    Drop, applied upstream
+
+ -- Simon McVittie <smcv@debian.org>  Fri, 03 Apr 2020 19:00:28 +0100
+
+gtk+3.0 (3.24.16-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release
+  * Drop patches that came from upstream
+  * d/p/supp-Use-a-single-suppressions-file-for-lib-lib64-and-mul.patch:
+    Add patch to make valgrind suppressions match Debian libraries
+  * Update forwarding status for some patches that were sent upstream
+  * d/p/Don-t-test-default-constructed-GdkPixbuf-properties.patch:
+    Drop patch. Build-depend on gdk-pixbuf 2.40 instead of working around
+    a bug in older versions.
+  * d/rules: Mark some reftests as allowed to fail.
+    These reftests are sensitive to the build environment (exact versions
+    of Pango, fonts etc.) and are disabled in upstream's CI.
+    (Closes: #954584)
+  * d/p/updateiconcache-Sort-list-of-entries.patch:
+    Backport patch from GTK 4 to make the icon cache reproducible
+    (Closes: #953105)
+  * d/p/build-Generate-gdk.gresource.xml-in-sorted-order.patch:
+    Sort GDK resources to improve reproducibility.
+    The combination of this and fixing #953105 should hopefully make the
+    package reliably reproducible.
+  * d/README.source: Write down how to inspect reftest failures
+
+ -- Simon McVittie <smcv@debian.org>  Thu, 02 Apr 2020 13:15:25 +0100
+
 gtk+3.0 (3.24.14-1ubuntu1) focal; urgency=medium
 
   * Merge with Debian unstable. Remaining changes:

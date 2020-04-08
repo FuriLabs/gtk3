@@ -1,0 +1,27 @@
+From: William Wold <wm@wmww.sh>
+Date: Sun, 5 Apr 2020 07:11:45 -0400
+Subject: Do not require an initial configure for DnD windows
+
+Fixes #2075
+
+Bug: https://gitlab.gnome.org/GNOME/gtk/-/issues/2575
+Bug-Debian: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=955820
+Forwarded: https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/1633
+Applied-upstream: 3.24.18, commit:5a52af20cba76474e631b2a7548963bcad22d66d
+---
+ gdk/wayland/gdkwindow-wayland.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/gdk/wayland/gdkwindow-wayland.c b/gdk/wayland/gdkwindow-wayland.c
+index 5f39c57..0450650 100644
+--- a/gdk/wayland/gdkwindow-wayland.c
++++ b/gdk/wayland/gdkwindow-wayland.c
+@@ -1089,6 +1089,8 @@ needs_initial_configure (GdkWindow *window)
+     return FALSE;
+   else if (impl->use_custom_surface)
+     return FALSE;
++  else if (impl->hint == GDK_WINDOW_TYPE_HINT_DND)
++    return FALSE;
+   else if (is_realized_toplevel (window))
+     return TRUE;
+   else if (is_realized_popup (window))

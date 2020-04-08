@@ -169,8 +169,9 @@ am__uninstall_files_from_dir = { \
     || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
-am__installdirs = "$(DESTDIR)$(pkgconfigdir)"
-DATA = $(pkgconfig_DATA)
+am__installdirs = "$(DESTDIR)$(pkgconfigdir)" \
+	"$(DESTDIR)$(valgrinddir)"
+DATA = $(pkgconfig_DATA) $(valgrind_DATA)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 am__recursive_targets = \
@@ -215,8 +216,8 @@ am__DIST_COMMON = $(srcdir)/INSTALL.in $(srcdir)/Makefile.in \
 	$(top_srcdir)/build-aux/missing ABOUT-NLS AUTHORS COPYING \
 	ChangeLog INSTALL NEWS README build-aux/compile \
 	build-aux/config.guess build-aux/config.rpath \
-	build-aux/config.sub build-aux/depcomp build-aux/install-sh \
-	build-aux/ltmain.sh build-aux/missing
+	build-aux/config.sub build-aux/install-sh build-aux/ltmain.sh \
+	build-aux/missing
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -539,7 +540,7 @@ EXTRA_DIST = autogen.sh HACKING README README.in INSTALL INSTALL.in \
 	po/README.translators po/po2tbl.sed.in make-pot \
 	meson_options.txt meson.build po/meson.build \
 	po-properties/meson.build build-aux/meson/post-install.py \
-	config.h.meson
+	config.h.meson gtk.supp
 TEST_PROGS = 
 
 ### testing rules
@@ -581,6 +582,8 @@ MAINTAINERCLEANFILES = \
 	$(srcdir)/gtk-doc.make \
 	$(srcdir)/ChangeLog
 
+@OS_UNIX_TRUE@valgrinddir = $(datadir)/gtk-3.0/valgrind
+@OS_UNIX_TRUE@valgrind_DATA = gtk.supp
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = gdk-3.0.pc gtk+-3.0.pc gail-3.0.pc \
 	${GDK_BACKENDS:%=gtk+-%-3.0.pc} ${GDK_BACKENDS:%=gdk-%-3.0.pc} \
@@ -711,6 +714,27 @@ uninstall-pkgconfigDATA:
 	@list='$(pkgconfig_DATA)'; test -n "$(pkgconfigdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(pkgconfigdir)'; $(am__uninstall_files_from_dir)
+install-valgrindDATA: $(valgrind_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(valgrind_DATA)'; test -n "$(valgrinddir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(valgrinddir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(valgrinddir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(valgrinddir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(valgrinddir)" || exit $$?; \
+	done
+
+uninstall-valgrindDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(valgrind_DATA)'; test -n "$(valgrinddir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(valgrinddir)'; $(am__uninstall_files_from_dir)
 
 # This directory's subdirectories are mostly independent; you can cd
 # into them and run 'make' without going through this Makefile.
@@ -1017,7 +1041,7 @@ check: check-recursive
 all-am: Makefile $(DATA) config.h
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(pkgconfigdir)"; do \
+	for dir in "$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(valgrinddir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-recursive
@@ -1074,7 +1098,7 @@ info: info-recursive
 
 info-am:
 
-install-data-am: install-pkgconfigDATA
+install-data-am: install-pkgconfigDATA install-valgrindDATA
 
 install-dvi: install-dvi-recursive
 
@@ -1120,7 +1144,8 @@ ps: ps-recursive
 
 ps-am:
 
-uninstall-am: uninstall-local uninstall-pkgconfigDATA
+uninstall-am: uninstall-local uninstall-pkgconfigDATA \
+	uninstall-valgrindDATA
 
 .MAKE: $(am__recursive_targets) all check-am install-am install-strip
 
@@ -1136,11 +1161,12 @@ uninstall-am: uninstall-local uninstall-pkgconfigDATA
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am install-man \
 	install-pdf install-pdf-am install-pkgconfigDATA install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs installdirs-am maintainer-clean \
+	install-ps-am install-strip install-valgrindDATA installcheck \
+	installcheck-am installdirs installdirs-am maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-am uninstall \
-	uninstall-am uninstall-local uninstall-pkgconfigDATA
+	uninstall-am uninstall-local uninstall-pkgconfigDATA \
+	uninstall-valgrindDATA
 
 .PRECIOUS: Makefile
 
