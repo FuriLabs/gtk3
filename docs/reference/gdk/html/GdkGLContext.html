@@ -220,11 +220,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name">GdkGLContext</td>
+<td class="function_name"><a class="link" href="GdkGLContext.html#GdkGLContext-struct" title="GdkGLContext">GdkGLContext</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name">GdkGLError</td>
+<td class="function_name"><a class="link" href="GdkGLContext.html#GdkGLError" title="enum GdkGLError">GdkGLError</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -244,7 +244,7 @@
 <a name="GdkGLContext.description"></a><h2>Description</h2>
 <p><a class="link" href="GdkGLContext.html" title="GdkGLContext"><span class="type">GdkGLContext</span></a> is an object representing the platform-specific
 OpenGL drawing context.</p>
-<p><span class="type">GdkGLContexts</span> are created for a <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> using
+<p><a href="GdkGLContext.html#GdkGLContext-struct"><span class="type">GdkGLContexts</span></a> are created for a <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> using
 <a class="link" href="gdk3-Windows.html#gdk-window-create-gl-context" title="gdk_window_create_gl_context ()"><code class="function">gdk_window_create_gl_context()</code></a>, and the context will match
 the <a class="link" href="gdk3-Visuals.html#GdkVisual"><span class="type">GdkVisual</span></a> of the window.</p>
 <p>A <a class="link" href="GdkGLContext.html" title="GdkGLContext"><span class="type">GdkGLContext</span></a> is not tied to any particular normal framebuffer.
@@ -818,6 +818,52 @@ gdk_gl_context_clear_current (<em class="parameter"><code><span class="type">voi
 <p>Clears the current <a class="link" href="GdkGLContext.html" title="GdkGLContext"><span class="type">GdkGLContext</span></a>.</p>
 <p>Any OpenGL call after this function returns will be ignored
 until <a class="link" href="GdkGLContext.html#gdk-gl-context-make-current" title="gdk_gl_context_make_current ()"><code class="function">gdk_gl_context_make_current()</code></a> is called.</p>
+<p class="since">Since: <a class="link" href="api-index-3-16.html#api-index-3.16">3.16</a></p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GdkGLContext.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GdkGLContext-struct"></a><h3>GdkGLContext</h3>
+<pre class="programlisting">typedef struct _GdkGLContext GdkGLContext;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GdkGLError"></a><h3>enum GdkGLError</h3>
+<p>Error enumeration for <a class="link" href="GdkGLContext.html" title="GdkGLContext"><span class="type">GdkGLContext</span></a>.</p>
+<div class="refsect3">
+<a name="GdkGLError.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="GDK-GL-ERROR-NOT-AVAILABLE:CAPS"></a>GDK_GL_ERROR_NOT_AVAILABLE</p></td>
+<td class="enum_member_description">
+<p>OpenGL support is not available</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GDK-GL-ERROR-UNSUPPORTED-FORMAT:CAPS"></a>GDK_GL_ERROR_UNSUPPORTED_FORMAT</p></td>
+<td class="enum_member_description">
+<p>The requested visual format is not supported</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GDK-GL-ERROR-UNSUPPORTED-PROFILE:CAPS"></a>GDK_GL_ERROR_UNSUPPORTED_PROFILE</p></td>
+<td class="enum_member_description">
+<p>The requested profile is not supported</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
 <p class="since">Since: <a class="link" href="api-index-3-16.html#api-index-3.16">3.16</a></p>
 </div>
 </div>

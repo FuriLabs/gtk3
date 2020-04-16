@@ -194,11 +194,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkCheckMenuItem.html#GtkCheckMenuItem-struct">GtkCheckMenuItem</a></td>
+<td class="function_name"><a class="link" href="GtkCheckMenuItem.html#GtkCheckMenuItem-struct" title="struct GtkCheckMenuItem">GtkCheckMenuItem</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkCheckMenuItem.html#GtkCheckMenuItemClass">GtkCheckMenuItemClass</a></td>
+<td class="function_name"><a class="link" href="GtkCheckMenuItem.html#GtkCheckMenuItemClass" title="struct GtkCheckMenuItemClass">GtkCheckMenuItemClass</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -527,6 +527,47 @@ gtk_check_menu_item_get_draw_as_radio (<em class="parameter"><code><a class="lin
 looks like a <a class="link" href="GtkRadioMenuItem.html" title="GtkRadioMenuItem"><span class="type">GtkRadioMenuItem</span></a></p>
 </div>
 <p class="since">Since: 2.4</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GtkCheckMenuItem.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkCheckMenuItem-struct"></a><h3>struct GtkCheckMenuItem</h3>
+<pre class="programlisting">struct GtkCheckMenuItem;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkCheckMenuItemClass"></a><h3>struct GtkCheckMenuItemClass</h3>
+<pre class="programlisting">struct GtkCheckMenuItemClass {
+  GtkMenuItemClass parent_class;
+
+  void (* toggled)	  (GtkCheckMenuItem *check_menu_item);
+  void (* draw_indicator) (GtkCheckMenuItem *check_menu_item,
+			   cairo_t          *cr);
+};
+</pre>
+<div class="refsect3">
+<a name="GtkCheckMenuItemClass.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="struct_members_name">
+<col class="struct_members_description">
+<col width="200px" class="struct_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkCheckMenuItemClass.toggled"></a>toggled</code></em> ()</p></td>
+<td class="struct_member_description"><p>Signal emitted when the state of the check box is changed.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkCheckMenuItemClass.draw-indicator"></a>draw_indicator</code></em> ()</p></td>
+<td class="struct_member_description"><p>Called to draw the check indicator.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
 </div>
 </div>
 <div class="refsect1">

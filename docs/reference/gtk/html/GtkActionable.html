@@ -128,11 +128,11 @@ with actions</p>
 <tbody>
 <tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkActionable.html#GtkActionable-struct">GtkActionable</a></td>
+<td class="function_name"><a class="link" href="GtkActionable.html#GtkActionable-struct" title="GtkActionable">GtkActionable</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkActionable.html#GtkActionableInterface">GtkActionableInterface</a></td>
+<td class="function_name"><a class="link" href="GtkActionable.html#GtkActionableInterface" title="struct GtkActionableInterface">GtkActionableInterface</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -409,6 +409,60 @@ as the target.)</p>
 </table></div>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-4.html#api-index-3.4">3.4</a></p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GtkActionable.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkActionable-struct"></a><h3>GtkActionable</h3>
+<pre class="programlisting">typedef struct _GtkActionable GtkActionable;</pre>
+<p>An opaque pointer type.</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkActionableInterface"></a><h3>struct GtkActionableInterface</h3>
+<pre class="programlisting">struct GtkActionableInterface {
+  const gchar * (* get_action_name)             (GtkActionable *actionable);
+  void          (* set_action_name)             (GtkActionable *actionable,
+                                                 const gchar   *action_name);
+  GVariant *    (* get_action_target_value)     (GtkActionable *actionable);
+  void          (* set_action_target_value)     (GtkActionable *actionable,
+                                                 GVariant      *target_value);
+};
+</pre>
+<p>The interface vtable for <a class="link" href="GtkActionable.html" title="GtkActionable"><span class="type">GtkActionable</span></a>.</p>
+<div class="refsect3">
+<a name="GtkActionableInterface.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="struct_members_name">
+<col class="struct_members_description">
+<col width="200px" class="struct_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkActionableInterface.get-action-name"></a>get_action_name</code></em> ()</p></td>
+<td class="struct_member_description"><p>virtual function for <a class="link" href="GtkActionable.html#gtk-actionable-get-action-name" title="gtk_actionable_get_action_name ()"><code class="function">gtk_actionable_get_action_name()</code></a></p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkActionableInterface.set-action-name"></a>set_action_name</code></em> ()</p></td>
+<td class="struct_member_description"><p>virtual function for <a class="link" href="GtkActionable.html#gtk-actionable-set-action-name" title="gtk_actionable_set_action_name ()"><code class="function">gtk_actionable_set_action_name()</code></a></p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkActionableInterface.get-action-target-value"></a>get_action_target_value</code></em> ()</p></td>
+<td class="struct_member_description"><p>virtual function for <a class="link" href="GtkActionable.html#gtk-actionable-get-action-target-value" title="gtk_actionable_get_action_target_value ()"><code class="function">gtk_actionable_get_action_target_value()</code></a></p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkActionableInterface.set-action-target-value"></a>set_action_target_value</code></em> ()</p></td>
+<td class="struct_member_description"><p>virtual function for <a class="link" href="GtkActionable.html#gtk-actionable-set-action-target-value" title="gtk_actionable_set_action_target_value ()"><code class="function">gtk_actionable_set_action_target_value()</code></a></p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
 </div>
 </div>
 <div class="refsect1">

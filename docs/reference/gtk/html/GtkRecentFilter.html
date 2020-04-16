@@ -130,7 +130,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<span class="returnvalue">GtkRecentFilterFlags</span>
+<a class="link" href="GtkRecentFilter.html#GtkRecentFilterFlags" title="enum GtkRecentFilterFlags"><span class="returnvalue">GtkRecentFilterFlags</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GtkRecentFilter.html#gtk-recent-filter-get-needed" title="gtk_recent_filter_get_needed ()">gtk_recent_filter_get_needed</a> <span class="c_punctuation">()</span>
@@ -157,15 +157,15 @@
 <tbody>
 <tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name">GtkRecentFilter</td>
+<td class="function_name"><a class="link" href="GtkRecentFilter.html#GtkRecentFilter-struct" title="GtkRecentFilter">GtkRecentFilter</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name">GtkRecentFilterInfo</td>
+<td class="function_name"><a class="link" href="GtkRecentFilter.html#GtkRecentFilterInfo" title="struct GtkRecentFilterInfo">GtkRecentFilterInfo</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name">GtkRecentFilterFlags</td>
+<td class="function_name"><a class="link" href="GtkRecentFilter.html#GtkRecentFilterFlags" title="enum GtkRecentFilterFlags">GtkRecentFilterFlags</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -261,7 +261,7 @@ calling <a class="link" href="GtkRecentFilter.html#gtk-recent-filter-add-mime-ty
 <div class="refsect2">
 <a name="GtkRecentFilterFunc"></a><h3>GtkRecentFilterFunc ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
-<span class="c_punctuation">(</span>*GtkRecentFilterFunc<span class="c_punctuation">)</span> (<em class="parameter"><code>const <span class="type">GtkRecentFilterInfo</span> *filter_info</code></em>,
+<span class="c_punctuation">(</span>*GtkRecentFilterFunc<span class="c_punctuation">)</span> (<em class="parameter"><code>const <a class="link" href="GtkRecentFilter.html#GtkRecentFilterInfo" title="struct GtkRecentFilterInfo"><span class="type">GtkRecentFilterInfo</span></a> *filter_info</code></em>,
                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
 <p>The type of function that is used with custom filters,
 see <a class="link" href="GtkRecentFilter.html#gtk-recent-filter-add-custom" title="gtk_recent_filter_add_custom ()"><code class="function">gtk_recent_filter_add_custom()</code></a>.</p>
@@ -276,7 +276,7 @@ see <a class="link" href="GtkRecentFilter.html#gtk-recent-filter-add-custom" tit
 <tbody>
 <tr>
 <td class="parameter_name"><p>filter_info</p></td>
-<td class="parameter_description"><p>a <span class="type">GtkRecentFilterInfo</span> that is filled according
+<td class="parameter_description"><p>a <a class="link" href="GtkRecentFilter.html#GtkRecentFilterInfo" title="struct GtkRecentFilterInfo"><span class="type">GtkRecentFilterInfo</span></a> that is filled according
 to the <em class="parameter"><code>needed</code></em>
 flags passed to <a class="link" href="GtkRecentFilter.html#gtk-recent-filter-add-custom" title="gtk_recent_filter_add_custom ()"><code class="function">gtk_recent_filter_add_custom()</code></a></p></td>
 <td class="parameter_annotations"> </td>
@@ -577,7 +577,7 @@ of days elapsed since they were last modified.</p>
 <a name="gtk-recent-filter-add-custom"></a><h3>gtk_recent_filter_add_custom ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_recent_filter_add_custom (<em class="parameter"><code><a class="link" href="GtkRecentFilter.html" title="GtkRecentFilter"><span class="type">GtkRecentFilter</span></a> *filter</code></em>,
-                              <em class="parameter"><code><span class="type">GtkRecentFilterFlags</span> needed</code></em>,
+                              <em class="parameter"><code><a class="link" href="GtkRecentFilter.html#GtkRecentFilterFlags" title="enum GtkRecentFilterFlags"><span class="type">GtkRecentFilterFlags</span></a> needed</code></em>,
                               <em class="parameter"><code><a class="link" href="GtkRecentFilter.html#GtkRecentFilterFunc" title="GtkRecentFilterFunc ()"><span class="type">GtkRecentFilterFunc</span></a> func</code></em>,
                               <em class="parameter"><code><span class="type">gpointer</span> data</code></em>,
                               <em class="parameter"><code><span class="type">GDestroyNotify</span> data_destroy</code></em>);</pre>
@@ -633,9 +633,9 @@ when it is no longer needed.</p></td>
 <hr>
 <div class="refsect2">
 <a name="gtk-recent-filter-get-needed"></a><h3>gtk_recent_filter_get_needed ()</h3>
-<pre class="programlisting"><span class="returnvalue">GtkRecentFilterFlags</span>
+<pre class="programlisting"><a class="link" href="GtkRecentFilter.html#GtkRecentFilterFlags" title="enum GtkRecentFilterFlags"><span class="returnvalue">GtkRecentFilterFlags</span></a>
 gtk_recent_filter_get_needed (<em class="parameter"><code><a class="link" href="GtkRecentFilter.html" title="GtkRecentFilter"><span class="type">GtkRecentFilter</span></a> *filter</code></em>);</pre>
-<p>Gets the fields that need to be filled in for the <span class="type">GtkRecentFilterInfo</span>
+<p>Gets the fields that need to be filled in for the <a class="link" href="GtkRecentFilter.html#GtkRecentFilterInfo" title="struct GtkRecentFilterInfo"><span class="type">GtkRecentFilterInfo</span></a>
 passed to <a class="link" href="GtkRecentFilter.html#gtk-recent-filter-filter" title="gtk_recent_filter_filter ()"><code class="function">gtk_recent_filter_filter()</code></a></p>
 <p>This function will not typically be used by applications; it
 is intended principally for use in the implementation of
@@ -667,13 +667,13 @@ calling <a class="link" href="GtkRecentFilter.html#gtk-recent-filter-filter" tit
 <a name="gtk-recent-filter-filter"></a><h3>gtk_recent_filter_filter ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_recent_filter_filter (<em class="parameter"><code><a class="link" href="GtkRecentFilter.html" title="GtkRecentFilter"><span class="type">GtkRecentFilter</span></a> *filter</code></em>,
-                          <em class="parameter"><code>const <span class="type">GtkRecentFilterInfo</span> *filter_info</code></em>);</pre>
+                          <em class="parameter"><code>const <a class="link" href="GtkRecentFilter.html#GtkRecentFilterInfo" title="struct GtkRecentFilterInfo"><span class="type">GtkRecentFilterInfo</span></a> *filter_info</code></em>);</pre>
 <p>Tests whether a file should be displayed according to <em class="parameter"><code>filter</code></em>
 .
-The <span class="type">GtkRecentFilterInfo</span> <em class="parameter"><code>filter_info</code></em>
+The <a class="link" href="GtkRecentFilter.html#GtkRecentFilterInfo" title="struct GtkRecentFilterInfo"><span class="type">GtkRecentFilterInfo</span></a> <em class="parameter"><code>filter_info</code></em>
  should include
 the fields returned from <a class="link" href="GtkRecentFilter.html#gtk-recent-filter-get-needed" title="gtk_recent_filter_get_needed ()"><code class="function">gtk_recent_filter_get_needed()</code></a>, and
-must set the <span class="type">GtkRecentFilterInfo.contains</span> field of <em class="parameter"><code>filter_info</code></em>
+must set the <a class="link" href="GtkRecentFilter.html#GtkRecentFilterInfo.contains"><span class="type">GtkRecentFilterInfo.contains</span></a> field of <em class="parameter"><code>filter_info</code></em>
 
 to indicate which fields have been set.</p>
 <p>This function will not typically be used by applications; it
@@ -695,7 +695,7 @@ is intended principally for use in the implementation of
 </tr>
 <tr>
 <td class="parameter_name"><p>filter_info</p></td>
-<td class="parameter_description"><p>a <span class="type">GtkRecentFilterInfo</span> containing information
+<td class="parameter_description"><p>a <a class="link" href="GtkRecentFilter.html#GtkRecentFilterInfo" title="struct GtkRecentFilterInfo"><span class="type">GtkRecentFilterInfo</span></a> containing information
 about a recently used resource</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
@@ -707,6 +707,145 @@ about a recently used resource</p></td>
 <p> <code class="literal">TRUE</code> if the file should be displayed</p>
 </div>
 <p class="since">Since: 2.10</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GtkRecentFilter.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkRecentFilter-struct"></a><h3>GtkRecentFilter</h3>
+<pre class="programlisting">typedef struct _GtkRecentFilter GtkRecentFilter;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkRecentFilterInfo"></a><h3>struct GtkRecentFilterInfo</h3>
+<pre class="programlisting">struct GtkRecentFilterInfo {
+  GtkRecentFilterFlags contains;
+
+  const gchar *uri;
+  const gchar *display_name;
+  const gchar *mime_type;
+  const gchar **applications;
+  const gchar **groups;
+
+  gint age;
+};
+</pre>
+<p>A GtkRecentFilterInfo struct is used
+to pass information about the tested file to <a class="link" href="GtkRecentFilter.html#gtk-recent-filter-filter" title="gtk_recent_filter_filter ()"><code class="function">gtk_recent_filter_filter()</code></a>.</p>
+<div class="refsect3">
+<a name="GtkRecentFilterInfo.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="struct_members_name">
+<col class="struct_members_description">
+<col width="200px" class="struct_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="struct_member_name"><p><a class="link" href="GtkRecentFilter.html#GtkRecentFilterFlags" title="enum GtkRecentFilterFlags"><span class="type">GtkRecentFilterFlags</span></a> <em class="structfield"><code><a name="GtkRecentFilterInfo.contains"></a>contains</code></em>;</p></td>
+<td class="struct_member_description"><p><a class="link" href="GtkRecentFilter.html#GtkRecentFilterFlags" title="enum GtkRecentFilterFlags"><span class="type">GtkRecentFilterFlags</span></a> to indicate which fields are set.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p>const <span class="type">gchar</span> *<em class="structfield"><code><a name="GtkRecentFilterInfo.uri"></a>uri</code></em>;</p></td>
+<td class="struct_member_description"><p>The URI of the file being tested. </p></td>
+<td class="struct_member_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="struct_member_name"><p>const <span class="type">gchar</span> *<em class="structfield"><code><a name="GtkRecentFilterInfo.display-name"></a>display_name</code></em>;</p></td>
+<td class="struct_member_description"><p>The string that will be used to display
+the file in the recent chooser. </p></td>
+<td class="struct_member_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="struct_member_name"><p>const <span class="type">gchar</span> *<em class="structfield"><code><a name="GtkRecentFilterInfo.mime-type"></a>mime_type</code></em>;</p></td>
+<td class="struct_member_description"><p>MIME type of the file. </p></td>
+<td class="struct_member_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
+</tr>
+<tr>
+<td class="struct_member_name"><p>const <span class="type">gchar</span> **<em class="structfield"><code><a name="GtkRecentFilterInfo.applications"></a>applications</code></em>;</p></td>
+<td class="struct_member_description"><p>The list of
+applications that have registered the file. </p></td>
+<td class="struct_member_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> zero-terminated=1]</span></td>
+</tr>
+<tr>
+<td class="struct_member_name"><p>const <span class="type">gchar</span> **<em class="structfield"><code><a name="GtkRecentFilterInfo.groups"></a>groups</code></em>;</p></td>
+<td class="struct_member_description"><p>The groups to which
+the file belongs to. </p></td>
+<td class="struct_member_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> zero-terminated=1]</span></td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><span class="type">gint</span> <em class="structfield"><code><a name="GtkRecentFilterInfo.age"></a>age</code></em>;</p></td>
+<td class="struct_member_description"><p>The number of days elapsed since the file has been
+registered.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkRecentFilterFlags"></a><h3>enum GtkRecentFilterFlags</h3>
+<p>These flags indicate what parts of a <a class="link" href="GtkRecentFilter.html#GtkRecentFilterInfo" title="struct GtkRecentFilterInfo"><span class="type">GtkRecentFilterInfo</span></a> struct
+are filled or need to be filled.</p>
+<div class="refsect3">
+<a name="GtkRecentFilterFlags.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-RECENT-FILTER-URI:CAPS"></a>GTK_RECENT_FILTER_URI</p></td>
+<td class="enum_member_description">
+<p>the URI of the file being tested</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-RECENT-FILTER-DISPLAY-NAME:CAPS"></a>GTK_RECENT_FILTER_DISPLAY_NAME</p></td>
+<td class="enum_member_description">
+<p>the string that will be used to
+display the file in the recent chooser</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-RECENT-FILTER-MIME-TYPE:CAPS"></a>GTK_RECENT_FILTER_MIME_TYPE</p></td>
+<td class="enum_member_description">
+<p>the mime type of the file</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-RECENT-FILTER-APPLICATION:CAPS"></a>GTK_RECENT_FILTER_APPLICATION</p></td>
+<td class="enum_member_description">
+<p>the list of applications that have
+registered the file</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-RECENT-FILTER-GROUP:CAPS"></a>GTK_RECENT_FILTER_GROUP</p></td>
+<td class="enum_member_description">
+<p>the groups to which the file belongs to</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-RECENT-FILTER-AGE:CAPS"></a>GTK_RECENT_FILTER_AGE</p></td>
+<td class="enum_member_description">
+<p>the number of days elapsed since the file
+has been registered</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
 </div>
 </div>
 </div>

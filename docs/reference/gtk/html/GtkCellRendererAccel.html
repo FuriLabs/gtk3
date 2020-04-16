@@ -66,7 +66,7 @@
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><a href="https://developer.gnome.org/gtk4/GtkCellRendererAccel.html#GtkCellRendererAccelMode"><span class="type">GtkCellRendererAccelMode</span></a></td>
+<td class="property_type"><a class="link" href="GtkCellRendererAccel.html#GtkCellRendererAccelMode" title="enum GtkCellRendererAccelMode"><span class="type">GtkCellRendererAccelMode</span></a></td>
 <td class="property_name"><a class="link" href="GtkCellRendererAccel.html#GtkCellRendererAccel--accel-mode" title="The “accel-mode” property">accel-mode</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -115,11 +115,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkCellRendererAccel.html#GtkCellRendererAccel-struct">GtkCellRendererAccel</a></td>
+<td class="function_name"><a class="link" href="GtkCellRendererAccel.html#GtkCellRendererAccel-struct" title="struct GtkCellRendererAccel">GtkCellRendererAccel</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkCellRendererAccel.html#GtkCellRendererAccelMode">GtkCellRendererAccelMode</a></td>
+<td class="function_name"><a class="link" href="GtkCellRendererAccel.html#GtkCellRendererAccelMode" title="enum GtkCellRendererAccelMode">GtkCellRendererAccelMode</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -160,6 +160,47 @@ gtk_cell_renderer_accel_new (<em class="parameter"><code><span class="type">void
 </div>
 </div>
 <div class="refsect1">
+<a name="GtkCellRendererAccel.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkCellRendererAccel-struct"></a><h3>struct GtkCellRendererAccel</h3>
+<pre class="programlisting">struct GtkCellRendererAccel;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkCellRendererAccelMode"></a><h3>enum GtkCellRendererAccelMode</h3>
+<p>Determines if the edited accelerators are GTK+ accelerators. If
+they are, consumed modifiers are suppressed, only accelerators
+accepted by GTK+ are allowed, and the accelerators are rendered
+in the same way as they are in menus.</p>
+<div class="refsect3">
+<a name="GtkCellRendererAccelMode.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-CELL-RENDERER-ACCEL-MODE-GTK:CAPS"></a>GTK_CELL_RENDERER_ACCEL_MODE_GTK</p></td>
+<td class="enum_member_description">
+<p>GTK+ accelerators mode</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-CELL-RENDERER-ACCEL-MODE-OTHER:CAPS"></a>GTK_CELL_RENDERER_ACCEL_MODE_OTHER</p></td>
+<td class="enum_member_description">
+<p>Other accelerator mode</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="refsect1">
 <a name="GtkCellRendererAccel.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkCellRendererAccel--accel-key"></a><h3>The <code class="literal">“accel-key”</code> property</h3>
@@ -174,7 +215,7 @@ gtk_cell_renderer_accel_new (<em class="parameter"><code><span class="type">void
 <hr>
 <div class="refsect2">
 <a name="GtkCellRendererAccel--accel-mode"></a><h3>The <code class="literal">“accel-mode”</code> property</h3>
-<pre class="programlisting">  “accel-mode”               <a href="https://developer.gnome.org/gtk4/GtkCellRendererAccel.html#GtkCellRendererAccelMode"><span class="type">GtkCellRendererAccelMode</span></a></pre>
+<pre class="programlisting">  “accel-mode”               <a class="link" href="GtkCellRendererAccel.html#GtkCellRendererAccelMode" title="enum GtkCellRendererAccelMode"><span class="type">GtkCellRendererAccelMode</span></a></pre>
 <p>Determines if the edited accelerators are GTK+ accelerators. If
 they are, consumed modifiers are suppressed, only accelerators
 accepted by GTK+ are allowed, and the accelerators are rendered

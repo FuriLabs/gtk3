@@ -62,7 +62,7 @@
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><a href="https://developer.gnome.org/gtk4/GtkWidget.html#GtkTextDirection"><span class="type">GtkTextDirection</span></a></td>
+<td class="property_type"><a class="link" href="GtkWidget.html#GtkTextDirection" title="enum GtkTextDirection"><span class="type">GtkTextDirection</span></a></td>
 <td class="property_name"><a class="link" href="GtkShortcutsShortcut.html#GtkShortcutsShortcut--direction" title="The “direction” property">direction</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -78,7 +78,7 @@
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><a href="https://developer.gnome.org/gtk4/GtkShortcutsShortcut.html#GtkShortcutType"><span class="type">GtkShortcutType</span></a></td>
+<td class="property_type"><a class="link" href="GtkShortcutsShortcut.html#GtkShortcutType" title="enum GtkShortcutType"><span class="type">GtkShortcutType</span></a></td>
 <td class="property_name"><a class="link" href="GtkShortcutsShortcut.html#GtkShortcutsShortcut--shortcut-type" title="The “shortcut-type” property">shortcut-type</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -118,11 +118,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkShortcutsShortcut.html#GtkShortcutsShortcut-struct">GtkShortcutsShortcut</a></td>
+<td class="function_name"><a class="link" href="GtkShortcutsShortcut.html#GtkShortcutsShortcut-struct" title="GtkShortcutsShortcut">GtkShortcutsShortcut</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkShortcutsShortcut.html#GtkShortcutType">GtkShortcutType</a></td>
+<td class="function_name"><a class="link" href="GtkShortcutsShortcut.html#GtkShortcutType" title="enum GtkShortcutType">GtkShortcutType</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -158,6 +158,90 @@ with a short text. This widget is only meant to be used with <a class="link" hre
 <p></p>
 </div>
 <div class="refsect1">
+<a name="GtkShortcutsShortcut.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkShortcutsShortcut-struct"></a><h3>GtkShortcutsShortcut</h3>
+<pre class="programlisting">typedef struct _GtkShortcutsShortcut GtkShortcutsShortcut;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkShortcutType"></a><h3>enum GtkShortcutType</h3>
+<p>GtkShortcutType specifies the kind of shortcut that is being described.
+More values may be added to this enumeration over time.</p>
+<div class="refsect3">
+<a name="GtkShortcutType.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-SHORTCUT-ACCELERATOR:CAPS"></a>GTK_SHORTCUT_ACCELERATOR</p></td>
+<td class="enum_member_description">
+<p>The shortcut is a keyboard accelerator. The <a class="link" href="GtkShortcutsShortcut.html#GtkShortcutsShortcut--accelerator" title="The “accelerator” property"><span class="type">“accelerator”</span></a>
+property will be used.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-SHORTCUT-GESTURE-PINCH:CAPS"></a>GTK_SHORTCUT_GESTURE_PINCH</p></td>
+<td class="enum_member_description">
+<p>The shortcut is a pinch gesture. GTK+ provides an icon and subtitle.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-SHORTCUT-GESTURE-STRETCH:CAPS"></a>GTK_SHORTCUT_GESTURE_STRETCH</p></td>
+<td class="enum_member_description">
+<p>The shortcut is a stretch gesture. GTK+ provides an icon and subtitle.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-SHORTCUT-GESTURE-ROTATE-CLOCKWISE:CAPS"></a>GTK_SHORTCUT_GESTURE_ROTATE_CLOCKWISE</p></td>
+<td class="enum_member_description">
+<p>The shortcut is a clockwise rotation gesture. GTK+ provides an icon and subtitle.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-SHORTCUT-GESTURE-ROTATE-COUNTERCLOCKWISE:CAPS"></a>GTK_SHORTCUT_GESTURE_ROTATE_COUNTERCLOCKWISE</p></td>
+<td class="enum_member_description">
+<p>The shortcut is a counterclockwise rotation gesture. GTK+ provides an icon and subtitle.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-SHORTCUT-GESTURE-TWO-FINGER-SWIPE-LEFT:CAPS"></a>GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_LEFT</p></td>
+<td class="enum_member_description">
+<p>The shortcut is a two-finger swipe gesture. GTK+ provides an icon and subtitle.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-SHORTCUT-GESTURE-TWO-FINGER-SWIPE-RIGHT:CAPS"></a>GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_RIGHT</p></td>
+<td class="enum_member_description">
+<p>The shortcut is a two-finger swipe gesture. GTK+ provides an icon and subtitle.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-SHORTCUT-GESTURE:CAPS"></a>GTK_SHORTCUT_GESTURE</p></td>
+<td class="enum_member_description">
+<p>The shortcut is a gesture. The <a class="link" href="GtkShortcutsShortcut.html#GtkShortcutsShortcut--icon" title="The “icon” property"><span class="type">“icon”</span></a> property will be
+used.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-3-20.html#api-index-3.20">3.20</a></p>
+</div>
+</div>
+<div class="refsect1">
 <a name="GtkShortcutsShortcut.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkShortcutsShortcut--accel-size-group"></a><h3>The <code class="literal">“accel-size-group”</code> property</h3>
@@ -172,7 +256,7 @@ with a short text. This widget is only meant to be used with <a class="link" hre
 <a name="GtkShortcutsShortcut--accelerator"></a><h3>The <code class="literal">“accelerator”</code> property</h3>
 <pre class="programlisting">  “accelerator”              <span class="type">gchar</span> *</pre>
 <p>The accelerator(s) represented by this object. This property is used
-if <a class="link" href="GtkShortcutsShortcut.html#GtkShortcutsShortcut--shortcut-type" title="The “shortcut-type” property"><span class="type">“shortcut-type”</span></a> is set to <a href="https://developer.gnome.org/gtk4/GtkShortcutsShortcut.html#GTK-SHORTCUT-ACCELERATOR:CAPS"><span class="type">GTK_SHORTCUT_ACCELERATOR</span></a>.</p>
+if <a class="link" href="GtkShortcutsShortcut.html#GtkShortcutsShortcut--shortcut-type" title="The “shortcut-type” property"><span class="type">“shortcut-type”</span></a> is set to <a class="link" href="GtkShortcutsShortcut.html#GTK-SHORTCUT-ACCELERATOR:CAPS"><span class="type">GTK_SHORTCUT_ACCELERATOR</span></a>.</p>
 <p>The syntax of this property is (an extension of) the syntax understood by
 <a class="link" href="gtk3-Keyboard-Accelerators.html#gtk-accelerator-parse" title="gtk_accelerator_parse ()"><code class="function">gtk_accelerator_parse()</code></a>. Multiple accelerators can be specified by separating
 them with a space, but keep in mind that the available width is limited.
@@ -199,7 +283,7 @@ in .ui files.</p>
 <a name="GtkShortcutsShortcut--action-name"></a><h3>The <code class="literal">“action-name”</code> property</h3>
 <pre class="programlisting">  “action-name”              <span class="type">gchar</span> *</pre>
 <p>A detailed action name. If this is set for a shortcut
-of type <a href="https://developer.gnome.org/gtk4/GtkShortcutsShortcut.html#GTK-SHORTCUT-ACCELERATOR:CAPS"><code class="literal">GTK_SHORTCUT_ACCELERATOR</code></a>, then GTK+ will use
+of type <a class="link" href="GtkShortcutsShortcut.html#GTK-SHORTCUT-ACCELERATOR:CAPS"><code class="literal">GTK_SHORTCUT_ACCELERATOR</code></a>, then GTK+ will use
 the accelerators that are associated with the action
 via <a class="link" href="GtkApplication.html#gtk-application-set-accels-for-action" title="gtk_application_set_accels_for_action ()"><code class="function">gtk_application_set_accels_for_action()</code></a>, and setting
 <span class="type">“accelerator”</span> is not necessary.</p>
@@ -211,10 +295,10 @@ via <a class="link" href="GtkApplication.html#gtk-application-set-accels-for-act
 <hr>
 <div class="refsect2">
 <a name="GtkShortcutsShortcut--direction"></a><h3>The <code class="literal">“direction”</code> property</h3>
-<pre class="programlisting">  “direction”                <a href="https://developer.gnome.org/gtk4/GtkWidget.html#GtkTextDirection"><span class="type">GtkTextDirection</span></a></pre>
+<pre class="programlisting">  “direction”                <a class="link" href="GtkWidget.html#GtkTextDirection" title="enum GtkTextDirection"><span class="type">GtkTextDirection</span></a></pre>
 <p>The text direction for which this shortcut is active. If the shortcut
 is used regardless of the text direction, set this property to
-<a href="https://developer.gnome.org/gtk4/GtkWidget.html#GTK-TEXT-DIR-NONE:CAPS"><span class="type">GTK_TEXT_DIR_NONE</span></a>.</p>
+<a class="link" href="GtkWidget.html#GTK-TEXT-DIR-NONE:CAPS"><span class="type">GTK_TEXT_DIR_NONE</span></a>.</p>
 <p>Owner: GtkShortcutsShortcut</p>
 <p>Flags: Read / Write</p>
 <p>Default value: GTK_TEXT_DIR_NONE</p>
@@ -224,7 +308,7 @@ is used regardless of the text direction, set this property to
 <a name="GtkShortcutsShortcut--icon"></a><h3>The <code class="literal">“icon”</code> property</h3>
 <pre class="programlisting">  “icon”                     <span class="type">GIcon</span> *</pre>
 <p>An icon to represent the shortcut or gesture. This property is used if
-<a class="link" href="GtkShortcutsShortcut.html#GtkShortcutsShortcut--shortcut-type" title="The “shortcut-type” property"><span class="type">“shortcut-type”</span></a> is set to <a href="https://developer.gnome.org/gtk4/GtkShortcutsShortcut.html#GTK-SHORTCUT-GESTURE:CAPS"><span class="type">GTK_SHORTCUT_GESTURE</span></a>.
+<a class="link" href="GtkShortcutsShortcut.html#GtkShortcutsShortcut--shortcut-type" title="The “shortcut-type” property"><span class="type">“shortcut-type”</span></a> is set to <a class="link" href="GtkShortcutsShortcut.html#GTK-SHORTCUT-GESTURE:CAPS"><span class="type">GTK_SHORTCUT_GESTURE</span></a>.
 For the other predefined gesture types, GTK+ provides an icon on its own.</p>
 <p>Owner: GtkShortcutsShortcut</p>
 <p>Flags: Read / Write</p>
@@ -241,7 +325,7 @@ For the other predefined gesture types, GTK+ provides an icon on its own.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkShortcutsShortcut--shortcut-type"></a><h3>The <code class="literal">“shortcut-type”</code> property</h3>
-<pre class="programlisting">  “shortcut-type”            <a href="https://developer.gnome.org/gtk4/GtkShortcutsShortcut.html#GtkShortcutType"><span class="type">GtkShortcutType</span></a></pre>
+<pre class="programlisting">  “shortcut-type”            <a class="link" href="GtkShortcutsShortcut.html#GtkShortcutType" title="enum GtkShortcutType"><span class="type">GtkShortcutType</span></a></pre>
 <p>The type of shortcut that is represented.</p>
 <p>Owner: GtkShortcutsShortcut</p>
 <p>Flags: Read / Write</p>

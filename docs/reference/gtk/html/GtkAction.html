@@ -500,11 +500,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name">GtkAction</td>
+<td class="function_name"><a class="link" href="GtkAction.html#GtkAction-struct" title="struct GtkAction">GtkAction</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name">GtkActionClass</td>
+<td class="function_name"><a class="link" href="GtkAction.html#GtkActionClass" title="struct GtkActionClass">GtkActionClass</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -907,7 +907,7 @@ activated.</p>
 <a name="gtk-action-create-icon"></a><h3>gtk_action_create_icon ()</h3>
 <pre class="programlisting"><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="returnvalue">GtkWidget</span></a> *
 gtk_action_create_icon (<em class="parameter"><code><a class="link" href="GtkAction.html" title="GtkAction"><span class="type">GtkAction</span></a> *action</code></em>,
-                        <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkIconSize"><span class="type">GtkIconSize</span></a> icon_size</code></em>);</pre>
+                        <em class="parameter"><code><a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSize" title="enum GtkIconSize"><span class="type">GtkIconSize</span></a> icon_size</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gtk_action_create_icon</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p>
 <p>Use <code class="function">g_menu_item_set_icon()</code> to set an icon on a <span class="type">GMenuItem</span>,
@@ -931,7 +931,7 @@ create icons displayed in the proxy widgets.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>icon_size</p></td>
-<td class="parameter_description"><p>the size of the icon (<a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkIconSize"><span class="type">GtkIconSize</span></a>) that should
+<td class="parameter_description"><p>the size of the icon (<a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSize" title="enum GtkIconSize"><span class="type">GtkIconSize</span></a>) that should
 be created. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> int]</span></td>
 </tr>
@@ -2066,6 +2066,39 @@ labels are shown directly</p>
 is important</p>
 </div>
 <p class="since">Since: 2.16</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GtkAction.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkAction-struct"></a><h3>struct GtkAction</h3>
+<pre class="programlisting">struct GtkAction;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkActionClass"></a><h3>struct GtkActionClass</h3>
+<pre class="programlisting">struct GtkActionClass {
+  GObjectClass parent_class;
+
+  /* activation signal */
+  void       (* activate)           (GtkAction    *action);
+};
+</pre>
+<div class="refsect3">
+<a name="GtkActionClass.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="struct_members_name">
+<col class="struct_members_description">
+<col width="200px" class="struct_members_annotations">
+</colgroup>
+<tbody><tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkActionClass.activate"></a>activate</code></em> ()</p></td>
+<td class="struct_member_description"><p>Signal emitted when the action is activated.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
 </div>
 </div>
 <div class="refsect1">

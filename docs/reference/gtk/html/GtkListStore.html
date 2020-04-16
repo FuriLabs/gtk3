@@ -221,7 +221,7 @@
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkListStore.html#GtkListStore-struct">GtkListStore</a></td>
+<td class="function_name"><a class="link" href="GtkListStore.html#GtkListStore-struct" title="struct GtkListStore">GtkListStore</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -370,8 +370,8 @@ application writer to call <a class="link" href="GtkTreeModel.html#gtk-tree-mode
 <p>Internally, the <a class="link" href="GtkListStore.html" title="GtkListStore"><span class="type">GtkListStore</span></a> was implemented with a linked list with
 a tail pointer prior to GTK+ 2.6.  As a result, it was fast at data
 insertion and deletion, and not fast at random data access.  The
-<a class="link" href="GtkListStore.html" title="GtkListStore"><span class="type">GtkListStore</span></a> sets the <a href="https://developer.gnome.org/gtk4/GtkTreeModel.html#GTK-TREE-MODEL-ITERS-PERSIST:CAPS"><span class="type">GTK_TREE_MODEL_ITERS_PERSIST</span></a> flag, which means
-that <a href="https://developer.gnome.org/gtk4/GtkTreeModel.html#GtkTreeIter-struct"><span class="type">GtkTreeIters</span></a> can be cached while the row exists.  Thus, if
+<a class="link" href="GtkListStore.html" title="GtkListStore"><span class="type">GtkListStore</span></a> sets the <a class="link" href="GtkTreeModel.html#GTK-TREE-MODEL-ITERS-PERSIST:CAPS"><span class="type">GTK_TREE_MODEL_ITERS_PERSIST</span></a> flag, which means
+that <a href="GtkTreeModel.html#GtkTreeIter-struct"><span class="type">GtkTreeIters</span></a> can be cached while the row exists.  Thus, if
 access to a particular row is needed often and your code is expected to
 run on older versions of GTK+, it is worth keeping the iter around.</p>
 </div>
@@ -1369,6 +1369,13 @@ will be moved to the start of the list.</p>
 </table></div>
 </div>
 <p class="since">Since: 2.2</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GtkListStore.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkListStore-struct"></a><h3>struct GtkListStore</h3>
+<pre class="programlisting">struct GtkListStore;</pre>
 </div>
 </div>
 <div class="refsect1">

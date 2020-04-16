@@ -428,7 +428,7 @@
 </colgroup>
 <tbody>
 <tr>
-<td class="property_type"><span class="type">GtkArrowPlacement</span></td>
+<td class="property_type"><a class="link" href="GtkMenu.html#GtkArrowPlacement" title="enum GtkArrowPlacement"><span class="type">GtkArrowPlacement</span></a></td>
 <td class="property_name"><a class="link" href="GtkMenu.html#GtkMenu--s-arrow-placement" title="The “arrow-placement” style property">arrow-placement</a></td>
 <td class="property_flags">Read</td>
 </tr>
@@ -497,11 +497,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkMenu.html#GtkMenu-struct">GtkMenu</a></td>
+<td class="function_name"><a class="link" href="GtkMenu.html#GtkMenu-struct" title="struct GtkMenu">GtkMenu</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name">GtkArrowPlacement</td>
+<td class="function_name"><a class="link" href="GtkMenu.html#GtkArrowPlacement" title="enum GtkArrowPlacement">GtkArrowPlacement</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -680,7 +680,7 @@ submenus according to <em class="parameter"><code>model</code></em>
 <p>The created menu items are connected to actions found in the
 <a class="link" href="GtkApplicationWindow.html" title="GtkApplicationWindow"><span class="type">GtkApplicationWindow</span></a> to which the menu belongs - typically
 by means of being attached to a widget (see <a class="link" href="GtkMenu.html#gtk-menu-attach-to-widget" title="gtk_menu_attach_to_widget ()"><code class="function">gtk_menu_attach_to_widget()</code></a>)
-that is contained within the <a href="https://developer.gnome.org/gtk4/GtkApplicationWindow.html#GtkApplicationWindow-struct"><span class="type">GtkApplicationWindows</span></a> widget hierarchy.</p>
+that is contained within the <a href="GtkApplicationWindow.html#GtkApplicationWindow-struct"><span class="type">GtkApplicationWindows</span></a> widget hierarchy.</p>
 <p>Actions can also be added using <a class="link" href="GtkWidget.html#gtk-widget-insert-action-group" title="gtk_widget_insert_action_group ()"><code class="function">gtk_widget_insert_action_group()</code></a> on the menu's
 attach widget or on any of its parent widgets.</p>
 <div class="refsect3">
@@ -2011,6 +2011,51 @@ will be called when the menu is later detached from the widget.</p>
 </div>
 </div>
 <div class="refsect1">
+<a name="GtkMenu.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkMenu-struct"></a><h3>struct GtkMenu</h3>
+<pre class="programlisting">struct GtkMenu;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkArrowPlacement"></a><h3>enum GtkArrowPlacement</h3>
+<p>Used to specify the placement of scroll arrows in scrolling menus.</p>
+<div class="refsect3">
+<a name="GtkArrowPlacement.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-ARROWS-BOTH:CAPS"></a>GTK_ARROWS_BOTH</p></td>
+<td class="enum_member_description">
+<p>Place one arrow on each end of the menu.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-ARROWS-START:CAPS"></a>GTK_ARROWS_START</p></td>
+<td class="enum_member_description">
+<p>Place both arrows at the top of the menu.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-ARROWS-END:CAPS"></a>GTK_ARROWS_END</p></td>
+<td class="enum_member_description">
+<p>Place both arrows at the bottom of the menu.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="refsect1">
 <a name="GtkMenu.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkMenu--accel-group"></a><h3>The <code class="literal">“accel-group”</code> property</h3>
@@ -2207,7 +2252,7 @@ menu is torn-off.</p>
 <a name="GtkMenu.style-property-details"></a><h2>Style Property Details</h2>
 <div class="refsect2">
 <a name="GtkMenu--s-arrow-placement"></a><h3>The <code class="literal">“arrow-placement”</code> style property</h3>
-<pre class="programlisting">  “arrow-placement”          <span class="type">GtkArrowPlacement</span></pre>
+<pre class="programlisting">  “arrow-placement”          <a class="link" href="GtkMenu.html#GtkArrowPlacement" title="enum GtkArrowPlacement"><span class="type">GtkArrowPlacement</span></a></pre>
 <p>Indicates where scroll arrows should be placed.</p>
 <div class="warning">
 <p><code class="literal">GtkMenu:arrow-placement</code> has been deprecated since version 3.20 and should not be used in newly-written code.</p>
@@ -2304,7 +2349,7 @@ menu is torn-off.</p>
 <a name="GtkMenu-move-scroll"></a><h3>The <code class="literal">“move-scroll”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkMenu.html" title="GtkMenu"><span class="type">GtkMenu</span></a>      *menu,
-               <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkScrollType"><span class="type">GtkScrollType</span></a> scroll_type,
+               <a class="link" href="gtk3-Standard-Enumerations.html#GtkScrollType" title="enum GtkScrollType"><span class="type">GtkScrollType</span></a> scroll_type,
                <span class="type">gpointer</span>      user_data)</pre>
 <div class="refsect3">
 <a name="GtkMenu-move-scroll.parameters"></a><h4>Parameters</h4>
@@ -2322,7 +2367,7 @@ user_function (<a class="link" href="GtkMenu.html" title="GtkMenu"><span class="
 </tr>
 <tr>
 <td class="parameter_name"><p>scroll_type</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkScrollType"><span class="type">GtkScrollType</span></a></p></td>
+<td class="parameter_description"><p>a <a class="link" href="gtk3-Standard-Enumerations.html#GtkScrollType" title="enum GtkScrollType"><span class="type">GtkScrollType</span></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>

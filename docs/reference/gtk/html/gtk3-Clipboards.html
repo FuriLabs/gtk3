@@ -372,7 +372,7 @@
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name">GtkClipboard</td>
+<td class="function_name"><a class="link" href="gtk3-Clipboards.html#GtkClipboard-struct" title="GtkClipboard">GtkClipboard</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -753,7 +753,7 @@ data should be stored.</p></td>
 <tr>
 <td class="parameter_name"><p>info</p></td>
 <td class="parameter_description"><p>the info field corresponding to the requested target from the
-<span class="type">GtkTargetEntry</span> array passed to <a class="link" href="gtk3-Clipboards.html#gtk-clipboard-set-with-data" title="gtk_clipboard_set_with_data ()"><code class="function">gtk_clipboard_set_with_data()</code></a> or
+<a class="link" href="gtk3-Selections.html#GtkTargetEntry" title="struct GtkTargetEntry"><span class="type">GtkTargetEntry</span></a> array passed to <a class="link" href="gtk3-Clipboards.html#gtk-clipboard-set-with-data" title="gtk_clipboard_set_with_data ()"><code class="function">gtk_clipboard_set_with_data()</code></a> or
 <a class="link" href="gtk3-Clipboards.html#gtk-clipboard-set-with-owner" title="gtk_clipboard_set_with_owner ()"><code class="function">gtk_clipboard_set_with_owner()</code></a>.</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
@@ -963,7 +963,7 @@ and keyboard shortcuts.</p>
 <a name="gtk-clipboard-set-with-data"></a><h3>gtk_clipboard_set_with_data ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_clipboard_set_with_data (<em class="parameter"><code><a class="link" href="gtk3-Clipboards.html#GtkClipboard"><span class="type">GtkClipboard</span></a> *clipboard</code></em>,
-                             <em class="parameter"><code>const <span class="type">GtkTargetEntry</span> *targets</code></em>,
+                             <em class="parameter"><code>const <a class="link" href="gtk3-Selections.html#GtkTargetEntry" title="struct GtkTargetEntry"><span class="type">GtkTargetEntry</span></a> *targets</code></em>,
                              <em class="parameter"><code><span class="type">guint</span> n_targets</code></em>,
                              <em class="parameter"><code><a class="link" href="gtk3-Clipboards.html#GtkClipboardGetFunc" title="GtkClipboardGetFunc ()"><span class="type">GtkClipboardGetFunc</span></a> get_func</code></em>,
                              <em class="parameter"><code><a class="link" href="gtk3-Clipboards.html#GtkClipboardClearFunc" title="GtkClipboardClearFunc ()"><span class="type">GtkClipboardClearFunc</span></a> clear_func</code></em>,
@@ -1033,7 +1033,7 @@ functions will be ignored.</p>
 <a name="gtk-clipboard-set-with-owner"></a><h3>gtk_clipboard_set_with_owner ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_clipboard_set_with_owner (<em class="parameter"><code><a class="link" href="gtk3-Clipboards.html#GtkClipboard"><span class="type">GtkClipboard</span></a> *clipboard</code></em>,
-                              <em class="parameter"><code>const <span class="type">GtkTargetEntry</span> *targets</code></em>,
+                              <em class="parameter"><code>const <a class="link" href="gtk3-Selections.html#GtkTargetEntry" title="struct GtkTargetEntry"><span class="type">GtkTargetEntry</span></a> *targets</code></em>,
                               <em class="parameter"><code><span class="type">guint</span> n_targets</code></em>,
                               <em class="parameter"><code><a class="link" href="gtk3-Clipboards.html#GtkClipboardGetFunc" title="GtkClipboardGetFunc ()"><span class="type">GtkClipboardGetFunc</span></a> get_func</code></em>,
                               <em class="parameter"><code><a class="link" href="gtk3-Clipboards.html#GtkClipboardClearFunc" title="GtkClipboardClearFunc ()"><span class="type">GtkClipboardClearFunc</span></a> clear_func</code></em>,
@@ -1968,7 +1968,7 @@ insensitive or not.</p>
 <a name="gtk-clipboard-set-can-store"></a><h3>gtk_clipboard_set_can_store ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_clipboard_set_can_store (<em class="parameter"><code><a class="link" href="gtk3-Clipboards.html#GtkClipboard"><span class="type">GtkClipboard</span></a> *clipboard</code></em>,
-                             <em class="parameter"><code>const <span class="type">GtkTargetEntry</span> *targets</code></em>,
+                             <em class="parameter"><code>const <a class="link" href="gtk3-Selections.html#GtkTargetEntry" title="struct GtkTargetEntry"><span class="type">GtkTargetEntry</span></a> *targets</code></em>,
                              <em class="parameter"><code><span class="type">gint</span> n_targets</code></em>);</pre>
 <p>Hints that the clipboard data should be stored somewhere when the
 application exits or when <a class="link" href="gtk3-Clipboards.html#gtk-clipboard-store" title="gtk_clipboard_store ()"><code class="function">gtk_clipboard_store()</code></a> is called.</p>
@@ -2057,6 +2057,13 @@ gtk_clipboard_get_selection (<em class="parameter"><code><a class="link" href="g
 <p> the selection</p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-22.html#api-index-3.22">3.22</a></p>
+</div>
+</div>
+<div class="refsect1">
+<a name="gtk3-Clipboards.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkClipboard-struct"></a><h3>GtkClipboard</h3>
+<pre class="programlisting">typedef struct _GtkClipboard GtkClipboard;</pre>
 </div>
 </div>
 <div class="refsect1">

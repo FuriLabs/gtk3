@@ -262,19 +262,19 @@
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkDialog.html#GtkDialog-struct">GtkDialog</a></td>
+<td class="function_name"><a class="link" href="GtkDialog.html#GtkDialog-struct" title="struct GtkDialog">GtkDialog</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkDialog.html#GtkDialogClass">GtkDialogClass</a></td>
+<td class="function_name"><a class="link" href="GtkDialog.html#GtkDialogClass" title="struct GtkDialogClass">GtkDialogClass</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkDialog.html#GtkDialogFlags">GtkDialogFlags</a></td>
+<td class="function_name"><a class="link" href="GtkDialog.html#GtkDialogFlags" title="enum GtkDialogFlags">GtkDialogFlags</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkDialog.html#GtkResponseType">GtkResponseType</a></td>
+<td class="function_name"><a class="link" href="GtkDialog.html#GtkResponseType" title="enum GtkResponseType">GtkResponseType</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -334,16 +334,16 @@ window can be accessed through <a class="link" href="GtkDialog.html#gtk-dialog-g
 from user input), can be created by calling <a class="link" href="GtkWindow.html#gtk-window-set-modal" title="gtk_window_set_modal ()"><code class="function">gtk_window_set_modal()</code></a> on the
 dialog. Use the <code class="function">GTK_WINDOW()</code> macro to cast the widget returned from
 <a class="link" href="GtkDialog.html#gtk-dialog-new" title="gtk_dialog_new ()"><code class="function">gtk_dialog_new()</code></a> into a <a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a>. When using <a class="link" href="GtkDialog.html#gtk-dialog-new-with-buttons" title="gtk_dialog_new_with_buttons ()"><code class="function">gtk_dialog_new_with_buttons()</code></a>
-you can also pass the <a href="https://developer.gnome.org/gtk4/GtkDialog.html#GTK-DIALOG-MODAL:CAPS"><span class="type">GTK_DIALOG_MODAL</span></a> flag to make a dialog modal.</p>
+you can also pass the <a class="link" href="GtkDialog.html#GTK-DIALOG-MODAL:CAPS"><span class="type">GTK_DIALOG_MODAL</span></a> flag to make a dialog modal.</p>
 <p>If you add buttons to <a class="link" href="GtkDialog.html" title="GtkDialog"><span class="type">GtkDialog</span></a> using <a class="link" href="GtkDialog.html#gtk-dialog-new-with-buttons" title="gtk_dialog_new_with_buttons ()"><code class="function">gtk_dialog_new_with_buttons()</code></a>,
 <a class="link" href="GtkDialog.html#gtk-dialog-add-button" title="gtk_dialog_add_button ()"><code class="function">gtk_dialog_add_button()</code></a>, <a class="link" href="GtkDialog.html#gtk-dialog-add-buttons" title="gtk_dialog_add_buttons ()"><code class="function">gtk_dialog_add_buttons()</code></a>, or
 <a class="link" href="GtkDialog.html#gtk-dialog-add-action-widget" title="gtk_dialog_add_action_widget ()"><code class="function">gtk_dialog_add_action_widget()</code></a>, clicking the button will emit a signal
 called <a class="link" href="GtkDialog.html#GtkDialog-response" title="The “response” signal"><span class="type">“response”</span></a> with a response ID that you specified. GTK+
 will never assign a meaning to positive response IDs; these are entirely
 user-defined. But for convenience, you can use the response IDs in the
-<a href="https://developer.gnome.org/gtk4/GtkDialog.html#GtkResponseType"><span class="type">GtkResponseType</span></a> enumeration (these all have values less than zero). If
+<a class="link" href="GtkDialog.html#GtkResponseType" title="enum GtkResponseType"><span class="type">GtkResponseType</span></a> enumeration (these all have values less than zero). If
 a dialog receives a delete event, the <a class="link" href="GtkDialog.html#GtkDialog-response" title="The “response” signal"><span class="type">“response”</span></a> signal will
-be emitted with a response ID of <a href="https://developer.gnome.org/gtk4/GtkDialog.html#GTK-RESPONSE-DELETE-EVENT:CAPS"><span class="type">GTK_RESPONSE_DELETE_EVENT</span></a>.</p>
+be emitted with a response ID of <a class="link" href="GtkDialog.html#GTK-RESPONSE-DELETE-EVENT:CAPS"><span class="type">GTK_RESPONSE_DELETE_EVENT</span></a>.</p>
 <p>If you want to block waiting for a dialog to return before returning
 control flow to your code, you can call <a class="link" href="GtkDialog.html#gtk-dialog-run" title="gtk_dialog_run ()"><code class="function">gtk_dialog_run()</code></a>. This function
 enters a recursive main loop and waits for the user to respond to the
@@ -506,7 +506,7 @@ directly, but into the <em class="parameter"><code>vbox</code></em>
 <pre class="programlisting"><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="returnvalue">GtkWidget</span></a> *
 gtk_dialog_new_with_buttons (<em class="parameter"><code>const <span class="type">gchar</span> *title</code></em>,
                              <em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *parent</code></em>,
-                             <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkDialog.html#GtkDialogFlags"><span class="type">GtkDialogFlags</span></a> flags</code></em>,
+                             <em class="parameter"><code><a class="link" href="GtkDialog.html#GtkDialogFlags" title="enum GtkDialogFlags"><span class="type">GtkDialogFlags</span></a> flags</code></em>,
                              <em class="parameter"><code>const <span class="type">gchar</span> *first_button_text</code></em>,
                              <em class="parameter"><code>...</code></em>);</pre>
 <p>Creates a new <a class="link" href="GtkDialog.html" title="GtkDialog"><span class="type">GtkDialog</span></a> with title <em class="parameter"><code>title</code></em>
@@ -515,20 +515,20 @@ title; see <a class="link" href="GtkWindow.html#gtk-window-set-title" title="gtk
  (or
 <code class="literal">NULL</code> for none; see <a class="link" href="GtkWindow.html#gtk-window-set-transient-for" title="gtk_window_set_transient_for ()"><code class="function">gtk_window_set_transient_for()</code></a>). The <em class="parameter"><code>flags</code></em>
 
-argument can be used to make the dialog modal (<a href="https://developer.gnome.org/gtk4/GtkDialog.html#GTK-DIALOG-MODAL:CAPS"><span class="type">GTK_DIALOG_MODAL</span></a>)
+argument can be used to make the dialog modal (<a class="link" href="GtkDialog.html#GTK-DIALOG-MODAL:CAPS"><span class="type">GTK_DIALOG_MODAL</span></a>)
 and/or to have it destroyed along with its transient parent
-(<a href="https://developer.gnome.org/gtk4/GtkDialog.html#GTK-DIALOG-DESTROY-WITH-PARENT:CAPS"><span class="type">GTK_DIALOG_DESTROY_WITH_PARENT</span></a>). After <em class="parameter"><code>flags</code></em>
+(<a class="link" href="GtkDialog.html#GTK-DIALOG-DESTROY-WITH-PARENT:CAPS"><span class="type">GTK_DIALOG_DESTROY_WITH_PARENT</span></a>). After <em class="parameter"><code>flags</code></em>
 , button
 text/response ID pairs should be listed, with a <code class="literal">NULL</code> pointer ending
 the list. Button text can be arbitrary text. A response ID can be
-any positive number, or one of the values in the <a href="https://developer.gnome.org/gtk4/GtkDialog.html#GtkResponseType"><span class="type">GtkResponseType</span></a>
+any positive number, or one of the values in the <a class="link" href="GtkDialog.html#GtkResponseType" title="enum GtkResponseType"><span class="type">GtkResponseType</span></a>
 enumeration. If the user clicks one of these dialog buttons,
 <a class="link" href="GtkDialog.html" title="GtkDialog"><span class="type">GtkDialog</span></a> will emit the <a class="link" href="GtkDialog.html#GtkDialog-response" title="The “response” signal"><span class="type">“response”</span></a> signal with the corresponding
 response ID. If a <a class="link" href="GtkDialog.html" title="GtkDialog"><span class="type">GtkDialog</span></a> receives the <a class="link" href="GtkWidget.html#GtkWidget-delete-event" title="The “delete-event” signal"><span class="type">“delete-event”</span></a> signal,
-it will emit ::response with a response ID of <a href="https://developer.gnome.org/gtk4/GtkDialog.html#GTK-RESPONSE-DELETE-EVENT:CAPS"><span class="type">GTK_RESPONSE_DELETE_EVENT</span></a>.
+it will emit ::response with a response ID of <a class="link" href="GtkDialog.html#GTK-RESPONSE-DELETE-EVENT:CAPS"><span class="type">GTK_RESPONSE_DELETE_EVENT</span></a>.
 However, destroying a dialog does not emit the ::response signal;
 so be careful relying on ::response when using the
-<a href="https://developer.gnome.org/gtk4/GtkDialog.html#GTK-DIALOG-DESTROY-WITH-PARENT:CAPS"><span class="type">GTK_DIALOG_DESTROY_WITH_PARENT</span></a> flag. Buttons are from left to right,
+<a class="link" href="GtkDialog.html#GTK-DIALOG-DESTROY-WITH-PARENT:CAPS"><span class="type">GTK_DIALOG_DESTROY_WITH_PARENT</span></a> flag. Buttons are from left to right,
 so the first button in the list will be the leftmost button in the dialog.</p>
 <p>Here’s a simple example:</p>
 <div class="informalexample">
@@ -584,7 +584,7 @@ so the first button in the list will be the leftmost button in the dialog.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>flags</p></td>
-<td class="parameter_description"><p>from <a href="https://developer.gnome.org/gtk4/GtkDialog.html#GtkDialogFlags"><span class="type">GtkDialogFlags</span></a></p></td>
+<td class="parameter_description"><p>from <a class="link" href="GtkDialog.html#GtkDialogFlags" title="enum GtkDialogFlags"><span class="type">GtkDialogFlags</span></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -614,7 +614,7 @@ gtk_dialog_run (<em class="parameter"><code><a class="link" href="GtkDialog.html
  either emits the
 <a class="link" href="GtkDialog.html#GtkDialog-response" title="The “response” signal"><span class="type">“response”</span></a> signal, or is destroyed. If the dialog is
 destroyed during the call to <a class="link" href="GtkDialog.html#gtk-dialog-run" title="gtk_dialog_run ()"><code class="function">gtk_dialog_run()</code></a>, <a class="link" href="GtkDialog.html#gtk-dialog-run" title="gtk_dialog_run ()"><code class="function">gtk_dialog_run()</code></a> returns
-<a href="https://developer.gnome.org/gtk4/GtkDialog.html#GTK-RESPONSE-NONE:CAPS"><span class="type">GTK_RESPONSE_NONE</span></a>. Otherwise, it returns the response ID from the
+<a class="link" href="GtkDialog.html#GTK-RESPONSE-NONE:CAPS"><span class="type">GTK_RESPONSE_NONE</span></a>. Otherwise, it returns the response ID from the
 ::response signal emission.</p>
 <p>Before entering the recursive main loop, <a class="link" href="GtkDialog.html#gtk-dialog-run" title="gtk_dialog_run ()"><code class="function">gtk_dialog_run()</code></a> calls
 <a class="link" href="GtkWidget.html#gtk-widget-show" title="gtk_widget_show ()"><code class="function">gtk_widget_show()</code></a> on the dialog for you. Note that you still
@@ -622,7 +622,7 @@ need to show any children of the dialog yourself.</p>
 <p>During <a class="link" href="GtkDialog.html#gtk-dialog-run" title="gtk_dialog_run ()"><code class="function">gtk_dialog_run()</code></a>, the default behavior of <a class="link" href="GtkWidget.html#GtkWidget-delete-event" title="The “delete-event” signal"><span class="type">“delete-event”</span></a>
 is disabled; if the dialog receives ::delete_event, it will not be
 destroyed as windows usually are, and <a class="link" href="GtkDialog.html#gtk-dialog-run" title="gtk_dialog_run ()"><code class="function">gtk_dialog_run()</code></a> will return
-<a href="https://developer.gnome.org/gtk4/GtkDialog.html#GTK-RESPONSE-DELETE-EVENT:CAPS"><span class="type">GTK_RESPONSE_DELETE_EVENT</span></a>. Also, during <a class="link" href="GtkDialog.html#gtk-dialog-run" title="gtk_dialog_run ()"><code class="function">gtk_dialog_run()</code></a> the dialog
+<a class="link" href="GtkDialog.html#GTK-RESPONSE-DELETE-EVENT:CAPS"><span class="type">GTK_RESPONSE_DELETE_EVENT</span></a>. Also, during <a class="link" href="GtkDialog.html#gtk-dialog-run" title="gtk_dialog_run ()"><code class="function">gtk_dialog_run()</code></a> the dialog
 will be modal. You can force <a class="link" href="GtkDialog.html#gtk-dialog-run" title="gtk_dialog_run ()"><code class="function">gtk_dialog_run()</code></a> to return at any time by
 calling <a class="link" href="GtkDialog.html#gtk-dialog-response" title="gtk_dialog_response ()"><code class="function">gtk_dialog_response()</code></a> to emit the ::response signal. Destroying
 the dialog during <a class="link" href="GtkDialog.html#gtk-dialog-run" title="gtk_dialog_run ()"><code class="function">gtk_dialog_run()</code></a> is a very bad idea, because your
@@ -960,7 +960,7 @@ of a dialog.</p>
 <div class="refsect3">
 <a name="gtk-dialog-get-response-for-widget.returns"></a><h4>Returns</h4>
 <p> the response id of <em class="parameter"><code>widget</code></em>
-, or <a href="https://developer.gnome.org/gtk4/GtkDialog.html#GTK-RESPONSE-NONE:CAPS"><code class="literal">GTK_RESPONSE_NONE</code></a>
+, or <a class="link" href="GtkDialog.html#GTK-RESPONSE-NONE:CAPS"><code class="literal">GTK_RESPONSE_NONE</code></a>
 if <em class="parameter"><code>widget</code></em>
 doesn’t have a response id set.</p>
 </div>
@@ -1161,7 +1161,7 @@ response ids passed to this function.</p>
 <a class="ulink" href="http://library.gnome.org/devel/hig-book/stable/" target="_top">GNOME Human Interface Guidelines</a>
 with the affirmative button at the far
 right, and the cancel button left of it. But the builtin GTK+ dialogs
-and <a href="https://developer.gnome.org/gtk4/GtkMessageDialog.html#GtkMessageDialog-struct"><span class="type">GtkMessageDialogs</span></a> do provide an alternative button order,
+and <a href="GtkMessageDialog.html#GtkMessageDialog-struct"><span class="type">GtkMessageDialogs</span></a> do provide an alternative button order,
 which is more suitable on some platforms, e.g. Windows.</p>
 <p>Use this function after adding all the buttons to your dialog, as the
 following example shows:</p>
@@ -1297,6 +1297,189 @@ response ids in <em class="parameter"><code>new_order</code></em>
 </div>
 </div>
 <div class="refsect1">
+<a name="GtkDialog.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkDialog-struct"></a><h3>struct GtkDialog</h3>
+<pre class="programlisting">struct GtkDialog;</pre>
+<p>The <a class="link" href="GtkDialog.html#GtkDialog-struct" title="struct GtkDialog"><span class="type">GtkDialog</span></a> contains only private fields
+and should not be directly accessed.</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkDialogClass"></a><h3>struct GtkDialogClass</h3>
+<pre class="programlisting">struct GtkDialogClass {
+  GtkWindowClass parent_class;
+
+  void (* response) (GtkDialog *dialog, gint response_id);
+
+  /* Keybinding signals */
+
+  void (* close)    (GtkDialog *dialog);
+};
+</pre>
+<div class="refsect3">
+<a name="GtkDialogClass.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="struct_members_name">
+<col class="struct_members_description">
+<col width="200px" class="struct_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkDialogClass.response"></a>response</code></em> ()</p></td>
+<td class="struct_member_description"><p>Signal emitted when an action widget is activated.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkDialogClass.close"></a>close</code></em> ()</p></td>
+<td class="struct_member_description"><p>Signal emitted when the user uses a keybinding to close the dialog.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkDialogFlags"></a><h3>enum GtkDialogFlags</h3>
+<p>Flags used to influence dialog construction.</p>
+<div class="refsect3">
+<a name="GtkDialogFlags.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-DIALOG-MODAL:CAPS"></a>GTK_DIALOG_MODAL</p></td>
+<td class="enum_member_description">
+<p>Make the constructed dialog modal,
+see <a class="link" href="GtkWindow.html#gtk-window-set-modal" title="gtk_window_set_modal ()"><code class="function">gtk_window_set_modal()</code></a></p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-DIALOG-DESTROY-WITH-PARENT:CAPS"></a>GTK_DIALOG_DESTROY_WITH_PARENT</p></td>
+<td class="enum_member_description">
+<p>Destroy the dialog when its
+parent is destroyed, see <a class="link" href="GtkWindow.html#gtk-window-set-destroy-with-parent" title="gtk_window_set_destroy_with_parent ()"><code class="function">gtk_window_set_destroy_with_parent()</code></a></p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-DIALOG-USE-HEADER-BAR:CAPS"></a>GTK_DIALOG_USE_HEADER_BAR</p></td>
+<td class="enum_member_description">
+<p>Create dialog with actions in header
+bar instead of action area. Since 3.12.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkResponseType"></a><h3>enum GtkResponseType</h3>
+<p>Predefined values for use as response ids in <a class="link" href="GtkDialog.html#gtk-dialog-add-button" title="gtk_dialog_add_button ()"><code class="function">gtk_dialog_add_button()</code></a>.
+All predefined values are negative; GTK+ leaves values of 0 or greater for
+application-defined response ids.</p>
+<div class="refsect3">
+<a name="GtkResponseType.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-RESPONSE-NONE:CAPS"></a>GTK_RESPONSE_NONE</p></td>
+<td class="enum_member_description">
+<p>Returned if an action widget has no response id,
+or if the dialog gets programmatically hidden or destroyed</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-RESPONSE-REJECT:CAPS"></a>GTK_RESPONSE_REJECT</p></td>
+<td class="enum_member_description">
+<p>Generic response id, not used by GTK+ dialogs</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-RESPONSE-ACCEPT:CAPS"></a>GTK_RESPONSE_ACCEPT</p></td>
+<td class="enum_member_description">
+<p>Generic response id, not used by GTK+ dialogs</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-RESPONSE-DELETE-EVENT:CAPS"></a>GTK_RESPONSE_DELETE_EVENT</p></td>
+<td class="enum_member_description">
+<p>Returned if the dialog is deleted</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-RESPONSE-OK:CAPS"></a>GTK_RESPONSE_OK</p></td>
+<td class="enum_member_description">
+<p>Returned by OK buttons in GTK+ dialogs</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-RESPONSE-CANCEL:CAPS"></a>GTK_RESPONSE_CANCEL</p></td>
+<td class="enum_member_description">
+<p>Returned by Cancel buttons in GTK+ dialogs</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-RESPONSE-CLOSE:CAPS"></a>GTK_RESPONSE_CLOSE</p></td>
+<td class="enum_member_description">
+<p>Returned by Close buttons in GTK+ dialogs</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-RESPONSE-YES:CAPS"></a>GTK_RESPONSE_YES</p></td>
+<td class="enum_member_description">
+<p>Returned by Yes buttons in GTK+ dialogs</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-RESPONSE-NO:CAPS"></a>GTK_RESPONSE_NO</p></td>
+<td class="enum_member_description">
+<p>Returned by No buttons in GTK+ dialogs</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-RESPONSE-APPLY:CAPS"></a>GTK_RESPONSE_APPLY</p></td>
+<td class="enum_member_description">
+<p>Returned by Apply buttons in GTK+ dialogs</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-RESPONSE-HELP:CAPS"></a>GTK_RESPONSE_HELP</p></td>
+<td class="enum_member_description">
+<p>Returned by Help buttons in GTK+ dialogs</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="refsect1">
 <a name="GtkDialog.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkDialog--use-header-bar"></a><h3>The <code class="literal">“use-header-bar”</code> property</h3>
@@ -1372,7 +1555,7 @@ was called on that widget directly.</p>
 user_function (<a class="link" href="GtkDialog.html" title="GtkDialog"><span class="type">GtkDialog</span></a> *dialog,
                <span class="type">gpointer</span>   user_data)</pre>
 <p>The ::close signal is a
-keybinding signal
+<a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
 which gets emitted when the user uses a keybinding to close
 the dialog.</p>
 <p>The default binding for this signal is the Escape key.</p>
@@ -1402,7 +1585,7 @@ user_function (<a class="link" href="GtkDialog.html" title="GtkDialog"><span cla
                <span class="type">gpointer</span>   user_data)</pre>
 <p>Emitted when an action widget is clicked, the dialog receives a
 delete event, or the application programmer calls <a class="link" href="GtkDialog.html#gtk-dialog-response" title="gtk_dialog_response ()"><code class="function">gtk_dialog_response()</code></a>.
-On a delete event, the response ID is <a href="https://developer.gnome.org/gtk4/GtkDialog.html#GTK-RESPONSE-DELETE-EVENT:CAPS"><span class="type">GTK_RESPONSE_DELETE_EVENT</span></a>.
+On a delete event, the response ID is <a class="link" href="GtkDialog.html#GTK-RESPONSE-DELETE-EVENT:CAPS"><span class="type">GTK_RESPONSE_DELETE_EVENT</span></a>.
 Otherwise, it depends on which action widget was clicked.</p>
 <div class="refsect3">
 <a name="GtkDialog-response.parameters"></a><h4>Parameters</h4>

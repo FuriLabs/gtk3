@@ -139,11 +139,11 @@
 <tbody>
 <tr>
 <td class="define_keyword">#define</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/gtk4-GtkNativeDialog.html#GTK-TYPE-NATIVE-DIALOG:CAPS">GTK_TYPE_NATIVE_DIALOG</a></td>
+<td class="function_name"><a class="link" href="gtk3-GtkNativeDialog.html#GTK-TYPE-NATIVE-DIALOG:CAPS" title="GTK_TYPE_NATIVE_DIALOG">GTK_TYPE_NATIVE_DIALOG</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/gtk4-GtkNativeDialog.html#GtkNativeDialogClass">GtkNativeDialogClass</a></td>
+<td class="function_name"><a class="link" href="gtk3-GtkNativeDialog.html#GtkNativeDialogClass" title="struct GtkNativeDialogClass">GtkNativeDialogClass</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -540,6 +540,24 @@ be triggered during a <code class="function">gtk_nautilus_dialog_run()</code> ca
 <p> response ID</p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-20.html#api-index-3.20">3.20</a></p>
+</div>
+</div>
+<div class="refsect1">
+<a name="gtk3-GtkNativeDialog.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GTK-TYPE-NATIVE-DIALOG:CAPS"></a><h3>GTK_TYPE_NATIVE_DIALOG</h3>
+<pre class="programlisting">#define GTK_TYPE_NATIVE_DIALOG             (gtk_native_dialog_get_type ())
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkNativeDialogClass"></a><h3>struct GtkNativeDialogClass</h3>
+<pre class="programlisting">struct GtkNativeDialogClass {
+  GObjectClass parent_class;
+
+  void (* response) (GtkNativeDialog *self, gint response_id);
+};
+</pre>
 </div>
 </div>
 <div class="refsect1">

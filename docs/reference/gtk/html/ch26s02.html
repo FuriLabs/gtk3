@@ -37,15 +37,15 @@
       which is described in detail in the API documentation
       (see <a class="xref" href="GtkWidget.html#geometry-management" title="Height-for-width Geometry Management">the section called “Height-for-width Geometry Management”</a>). As a consequence,
       the ::size-request signal and vfunc has been removed from
-      <a href="https://developer.gnome.org/gtk4/GtkWidget.html#GtkWidgetClass"><span class="type">GtkWidgetClass</span></a>. The replacement for <code class="function">size_request()</code> can
+      <a class="link" href="GtkWidget.html#GtkWidgetClass" title="struct GtkWidgetClass"><span class="type">GtkWidgetClass</span></a>. The replacement for <code class="function">size_request()</code> can
       take several levels of sophistication:
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
 <p>
         As a minimal replacement to keep current functionality,
-        you can simply implement the <code class="function">GtkWidgetClass.get_preferred_width()</code> and
-        <code class="function">GtkWidgetClass.get_preferred_height()</code> vfuncs by calling your existing
+        you can simply implement the <a class="link" href="GtkWidget.html#GtkWidgetClass.get-preferred-width"><code class="function">GtkWidgetClass.get_preferred_width()</code></a> and
+        <a class="link" href="GtkWidget.html#GtkWidgetClass.get-preferred-height"><code class="function">GtkWidgetClass.get_preferred_height()</code></a> vfuncs by calling your existing
         <code class="function">size_request()</code> function. So you go from
         </p>
 <div class="informalexample">
@@ -290,8 +290,8 @@
 <p>If your widget can cope with a small size,
           but would appreciate getting some more space (a common
           example would be that it contains ellipsizable labels),
-          you can do that by making your <code class="function">GtkWidgetClass.get_preferred_width()</code> /
-          <code class="function">GtkWidgetClass.get_preferred_height()</code>
+          you can do that by making your <a class="link" href="GtkWidget.html#GtkWidgetClass.get-preferred-width"><code class="function">GtkWidgetClass.get_preferred_width()</code></a> /
+          <a class="link" href="GtkWidget.html#GtkWidgetClass.get-preferred-height"><code class="function">GtkWidgetClass.get_preferred_height()</code></a>
           functions return a smaller value for <em class="parameter"><code>minimal</code></em> than for <em class="parameter"><code>natural</code></em>.
           For <em class="parameter"><code>minimal</code></em>, you probably want to return the same value
           that your <code class="function">size_request()</code> function returned before (since
@@ -369,20 +369,20 @@
           </p>
 </li>
 <li class="listitem"><p>
-          Note that the <code class="function">GtkWidgetClass.get_preferred_width()</code> /
-          <code class="function">GtkWidgetClass.get_preferred_height()</code> functions
+          Note that the <a class="link" href="GtkWidget.html#GtkWidgetClass.get-preferred-width"><code class="function">GtkWidgetClass.get_preferred_width()</code></a> /
+          <a class="link" href="GtkWidget.html#GtkWidgetClass.get-preferred-height"><code class="function">GtkWidgetClass.get_preferred_height()</code></a> functions
           only allow you to deal with one dimension at a time. If your
           <code class="function">size_request()</code> handler is doing things that involve both
           width and height at the same time (e.g. limiting the aspect
           ratio), you will have to implement
-          <code class="function">GtkWidgetClass.get_preferred_height_for_width()</code>
-          and <code class="function">GtkWidgetClass.get_preferred_width_for_height()</code>.
+          <a class="link" href="GtkWidget.html#GtkWidgetClass.get-preferred-height-for-width"><code class="function">GtkWidgetClass.get_preferred_height_for_width()</code></a>
+          and <a class="link" href="GtkWidget.html#GtkWidgetClass.get-preferred-width-for-height"><code class="function">GtkWidgetClass.get_preferred_width_for_height()</code></a>.
           </p></li>
 <li class="listitem"><p>
           To make full use of the new capabilities of the
           height-for-width geometry management, you need to additionally
-          implement the <code class="function">GtkWidgetClass.get_preferred_height_for_width()</code> and
-          <code class="function">GtkWidgetClass.get_preferred_width_for_height()</code>. For details on
+          implement the <a class="link" href="GtkWidget.html#GtkWidgetClass.get-preferred-height-for-width"><code class="function">GtkWidgetClass.get_preferred_height_for_width()</code></a> and
+          <a class="link" href="GtkWidget.html#GtkWidgetClass.get-preferred-width-for-height"><code class="function">GtkWidgetClass.get_preferred_width_for_height()</code></a>. For details on
           these functions, see <a class="xref" href="GtkWidget.html#geometry-management" title="Height-for-width Geometry Management">the section called “Height-for-width Geometry Management”</a>.
           </p></li>
 </ul></div>

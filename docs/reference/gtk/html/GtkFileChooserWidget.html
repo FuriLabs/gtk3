@@ -157,11 +157,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkFileChooserWidget.html#GtkFileChooserWidget-struct">GtkFileChooserWidget</a></td>
+<td class="function_name"><a class="link" href="GtkFileChooserWidget.html#GtkFileChooserWidget-struct" title="struct GtkFileChooserWidget">GtkFileChooserWidget</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name">GtkFileChooserWidgetClass</td>
+<td class="function_name"><a class="link" href="GtkFileChooserWidget.html#GtkFileChooserWidgetClass" title="struct GtkFileChooserWidgetClass">GtkFileChooserWidgetClass</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -203,7 +203,7 @@ widget.</p>
 <div class="refsect2">
 <a name="gtk-file-chooser-widget-new"></a><h3>gtk_file_chooser_widget_new ()</h3>
 <pre class="programlisting"><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="returnvalue">GtkWidget</span></a> *
-gtk_file_chooser_widget_new (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkFileChooser.html#GtkFileChooserAction"><span class="type">GtkFileChooserAction</span></a> action</code></em>);</pre>
+gtk_file_chooser_widget_new (<em class="parameter"><code><a class="link" href="GtkFileChooser.html#GtkFileChooserAction" title="enum GtkFileChooserAction"><span class="type">GtkFileChooserAction</span></a> action</code></em>);</pre>
 <p>Creates a new <a class="link" href="GtkFileChooserWidget.html" title="GtkFileChooserWidget"><span class="type">GtkFileChooserWidget</span></a>. This is a file chooser widget that can
 be embedded in custom windows, and it is the same widget that is used by
 <a class="link" href="GtkFileChooserDialog.html" title="GtkFileChooserDialog"><span class="type">GtkFileChooserDialog</span></a>.</p>
@@ -227,6 +227,32 @@ be embedded in custom windows, and it is the same widget that is used by
 <p> a new <a class="link" href="GtkFileChooserWidget.html" title="GtkFileChooserWidget"><span class="type">GtkFileChooserWidget</span></a></p>
 </div>
 <p class="since">Since: 2.4</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GtkFileChooserWidget.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkFileChooserWidget-struct"></a><h3>struct GtkFileChooserWidget</h3>
+<pre class="programlisting">struct GtkFileChooserWidget;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkFileChooserWidgetClass"></a><h3>struct GtkFileChooserWidgetClass</h3>
+<pre class="programlisting">struct GtkFileChooserWidgetClass {
+  GtkBoxClass parent_class;
+};
+</pre>
+<div class="refsect3">
+<a name="GtkFileChooserWidgetClass.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="struct_members_name">
+<col class="struct_members_description">
+<col width="200px" class="struct_members_annotations">
+</colgroup>
+<tbody></tbody>
+</table></div>
+</div>
 </div>
 </div>
 <div class="refsect1">
@@ -256,7 +282,7 @@ be embedded in custom windows, and it is the same widget that is used by
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkFileChooserWidget.html" title="GtkFileChooserWidget"><span class="type">GtkFileChooserWidget</span></a> *widget,
                <span class="type">gpointer</span>              user_data)</pre>
-<p>The ::desktop-folder signal is a keybinding signal
+<p>The ::desktop-folder signal is a <a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
 which gets emitted when the user asks for it.</p>
 <p>This is used to make the file chooser show the user's Desktop
 folder in the file list.</p>
@@ -291,7 +317,7 @@ folder in the file list.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkFileChooserWidget.html" title="GtkFileChooserWidget"><span class="type">GtkFileChooserWidget</span></a> *widget,
                <span class="type">gpointer</span>              user_data)</pre>
-<p>The ::down-folder signal is a keybinding signal
+<p>The ::down-folder signal is a <a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
 which gets emitted when the user asks for it.</p>
 <p>This is used to make the file chooser go to a child of the current folder
 in the file hierarchy. The subfolder that will be used is displayed in the
@@ -329,7 +355,7 @@ chooser to switch to the "baz" subfolder.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkFileChooserWidget.html" title="GtkFileChooserWidget"><span class="type">GtkFileChooserWidget</span></a> *widget,
                <span class="type">gpointer</span>              user_data)</pre>
-<p>The ::home-folder signal is a keybinding signal
+<p>The ::home-folder signal is a <a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
 which gets emitted when the user asks for it.</p>
 <p>This is used to make the file chooser show the user's home
 folder in the file list.</p>
@@ -365,7 +391,7 @@ folder in the file list.</p>
 user_function (<a class="link" href="GtkFileChooserWidget.html" title="GtkFileChooserWidget"><span class="type">GtkFileChooserWidget</span></a> *widget,
                <span class="type">gchar</span>                *path,
                <span class="type">gpointer</span>              user_data)</pre>
-<p>The ::location-popup signal is a keybinding signal
+<p>The ::location-popup signal is a <a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
 which gets emitted when the user asks for it.</p>
 <p>This is used to make the file chooser show a "Location" prompt which
 the user can use to manually type the name of the file he wishes to select.</p>
@@ -412,7 +438,7 @@ itself for access to home directories.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkFileChooserWidget.html" title="GtkFileChooserWidget"><span class="type">GtkFileChooserWidget</span></a> *widget,
                <span class="type">gpointer</span>              user_data)</pre>
-<p>The ::location-popup-on-paste signal is a keybinding signal
+<p>The ::location-popup-on-paste signal is a <a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
 which gets emitted when the user asks for it.</p>
 <p>This is used to make the file chooser show a "Location" prompt when the user
 pastes into a <a class="link" href="GtkFileChooserWidget.html" title="GtkFileChooserWidget"><span class="type">GtkFileChooserWidget</span></a>.</p>
@@ -447,7 +473,7 @@ pastes into a <a class="link" href="GtkFileChooserWidget.html" title="GtkFileCho
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkFileChooserWidget.html" title="GtkFileChooserWidget"><span class="type">GtkFileChooserWidget</span></a> *widget,
                <span class="type">gpointer</span>              user_data)</pre>
-<p>The ::location-toggle-popup signal is a keybinding signal
+<p>The ::location-toggle-popup signal is a <a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
 which gets emitted when the user asks for it.</p>
 <p>This is used to toggle the visibility of a "Location" prompt which the user
 can use to manually type the name of the file he wishes to select.</p>
@@ -482,7 +508,7 @@ can use to manually type the name of the file he wishes to select.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkFileChooserWidget.html" title="GtkFileChooserWidget"><span class="type">GtkFileChooserWidget</span></a> *widget,
                <span class="type">gpointer</span>              user_data)</pre>
-<p>The ::places-shortcut signal is a keybinding signal
+<p>The ::places-shortcut signal is a <a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
 which gets emitted when the user asks for it.</p>
 <p>This is used to move the focus to the places sidebar.</p>
 <p>The default binding for this signal is <code class="literal">Alt + P</code>.</p>
@@ -517,7 +543,7 @@ which gets emitted when the user asks for it.</p>
 user_function (<a class="link" href="GtkFileChooserWidget.html" title="GtkFileChooserWidget"><span class="type">GtkFileChooserWidget</span></a> *widget,
                <span class="type">gint</span>                  bookmark_index,
                <span class="type">gpointer</span>              user_data)</pre>
-<p>The ::quick-bookmark signal is a keybinding signal
+<p>The ::quick-bookmark signal is a <a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
 which gets emitted when the user asks for it.</p>
 <p>This is used to make the file chooser switch to the bookmark specified
 in the <em class="parameter"><code>bookmark_index</code></em>
@@ -563,7 +589,7 @@ bookmark at index 10.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkFileChooserWidget.html" title="GtkFileChooserWidget"><span class="type">GtkFileChooserWidget</span></a> *widget,
                <span class="type">gpointer</span>              user_data)</pre>
-<p>The ::recent-shortcut signal is a keybinding signal
+<p>The ::recent-shortcut signal is a <a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
 which gets emitted when the user asks for it.</p>
 <p>This is used to make the file chooser show the Recent location.</p>
 <p>The default binding for this signal is <code class="literal">Alt + R</code>.</p>
@@ -597,7 +623,7 @@ which gets emitted when the user asks for it.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkFileChooserWidget.html" title="GtkFileChooserWidget"><span class="type">GtkFileChooserWidget</span></a> *widget,
                <span class="type">gpointer</span>              user_data)</pre>
-<p>The ::search-shortcut signal is a keybinding signal
+<p>The ::search-shortcut signal is a <a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
 which gets emitted when the user asks for it.</p>
 <p>This is used to make the file chooser show the search entry.</p>
 <p>The default binding for this signal is <code class="literal">Alt + S</code>.</p>
@@ -631,7 +657,7 @@ which gets emitted when the user asks for it.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkFileChooserWidget.html" title="GtkFileChooserWidget"><span class="type">GtkFileChooserWidget</span></a> *widget,
                <span class="type">gpointer</span>              user_data)</pre>
-<p>The ::show-hidden signal is a keybinding signal
+<p>The ::show-hidden signal is a <a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
 which gets emitted when the user asks for it.</p>
 <p>This is used to make the file chooser display hidden files.</p>
 <p>The default binding for this signal is <code class="literal">Control + H</code>.</p>
@@ -665,7 +691,7 @@ which gets emitted when the user asks for it.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkFileChooserWidget.html" title="GtkFileChooserWidget"><span class="type">GtkFileChooserWidget</span></a> *widget,
                <span class="type">gpointer</span>              user_data)</pre>
-<p>The ::up-folder signal is a keybinding signal
+<p>The ::up-folder signal is a <a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
 which gets emitted when the user asks for it.</p>
 <p>This is used to make the file chooser go to the parent of the current folder
 in the file hierarchy.</p>

@@ -178,11 +178,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkAppChooserButton.html#GtkAppChooserButton-struct">GtkAppChooserButton</a></td>
+<td class="function_name"><a class="link" href="GtkAppChooserButton.html#GtkAppChooserButton-struct" title="struct GtkAppChooserButton">GtkAppChooserButton</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name">GtkAppChooserButtonClass</td>
+<td class="function_name"><a class="link" href="GtkAppChooserButton.html#GtkAppChooserButtonClass" title="struct GtkAppChooserButtonClass">GtkAppChooserButtonClass</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -548,6 +548,41 @@ If the heading is not set, the dialog displays a default text.</p>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="refsect1">
+<a name="GtkAppChooserButton.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkAppChooserButton-struct"></a><h3>struct GtkAppChooserButton</h3>
+<pre class="programlisting">struct GtkAppChooserButton;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkAppChooserButtonClass"></a><h3>struct GtkAppChooserButtonClass</h3>
+<pre class="programlisting">struct GtkAppChooserButtonClass {
+  GtkComboBoxClass parent_class;
+
+  void (* custom_item_activated) (GtkAppChooserButton *self,
+                                  const gchar *item_name);
+};
+</pre>
+<div class="refsect3">
+<a name="GtkAppChooserButtonClass.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="struct_members_name">
+<col class="struct_members_description">
+<col width="200px" class="struct_members_annotations">
+</colgroup>
+<tbody><tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkAppChooserButtonClass.custom-item-activated"></a>custom_item_activated</code></em> ()</p></td>
+<td class="struct_member_description"><p>Signal emitted when a custom item,
+previously added with <a class="link" href="GtkAppChooserButton.html#gtk-app-chooser-button-append-custom-item" title="gtk_app_chooser_button_append_custom_item ()"><code class="function">gtk_app_chooser_button_append_custom_item()</code></a>,
+is activated from the dropdown menu.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr></tbody>
 </table></div>
 </div>
 </div>

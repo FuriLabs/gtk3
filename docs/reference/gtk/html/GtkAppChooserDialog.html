@@ -118,11 +118,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkAppChooserDialog.html#GtkAppChooserDialog-struct">GtkAppChooserDialog</a></td>
+<td class="function_name"><a class="link" href="GtkAppChooserDialog.html#GtkAppChooserDialog-struct" title="struct GtkAppChooserDialog">GtkAppChooserDialog</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name">GtkAppChooserDialogClass</td>
+<td class="function_name"><a class="link" href="GtkAppChooserDialog.html#GtkAppChooserDialogClass" title="struct GtkAppChooserDialogClass">GtkAppChooserDialogClass</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -166,7 +166,7 @@ use <a class="link" href="GtkAppChooserDialog.html#gtk-app-chooser-dialog-set-he
 <a name="gtk-app-chooser-dialog-new"></a><h3>gtk_app_chooser_dialog_new ()</h3>
 <pre class="programlisting"><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="returnvalue">GtkWidget</span></a> *
 gtk_app_chooser_dialog_new (<em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *parent</code></em>,
-                            <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkDialog.html#GtkDialogFlags"><span class="type">GtkDialogFlags</span></a> flags</code></em>,
+                            <em class="parameter"><code><a class="link" href="GtkDialog.html#GtkDialogFlags" title="enum GtkDialogFlags"><span class="type">GtkDialogFlags</span></a> flags</code></em>,
                             <em class="parameter"><code><span class="type">GFile</span> *file</code></em>);</pre>
 <p>Creates a new <a class="link" href="GtkAppChooserDialog.html" title="GtkAppChooserDialog"><span class="type">GtkAppChooserDialog</span></a> for the provided <span class="type">GFile</span>,
 to allow the user to select an application for it.</p>
@@ -209,7 +209,7 @@ to allow the user to select an application for it.</p>
 <pre class="programlisting"><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="returnvalue">GtkWidget</span></a> *
 gtk_app_chooser_dialog_new_for_content_type
                                (<em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *parent</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkDialog.html#GtkDialogFlags"><span class="type">GtkDialogFlags</span></a> flags</code></em>,
+                                <em class="parameter"><code><a class="link" href="GtkDialog.html#GtkDialogFlags" title="enum GtkDialogFlags"><span class="type">GtkDialogFlags</span></a> flags</code></em>,
                                 <em class="parameter"><code>const <span class="type">gchar</span> *content_type</code></em>);</pre>
 <p>Creates a new <a class="link" href="GtkAppChooserDialog.html" title="GtkAppChooserDialog"><span class="type">GtkAppChooserDialog</span></a> for the provided content type,
 to allow the user to select an application for it.</p>
@@ -332,6 +332,32 @@ gtk_app_chooser_dialog_get_heading (<em class="parameter"><code><a class="link" 
 <p>the text to display at the top of the dialog, or <code class="literal">NULL</code>, in which
 case a default text is displayed. </p>
 <p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></p>
+</div>
+</div>
+</div>
+<div class="refsect1">
+<a name="GtkAppChooserDialog.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkAppChooserDialog-struct"></a><h3>struct GtkAppChooserDialog</h3>
+<pre class="programlisting">struct GtkAppChooserDialog;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkAppChooserDialogClass"></a><h3>struct GtkAppChooserDialogClass</h3>
+<pre class="programlisting">struct GtkAppChooserDialogClass {
+  GtkDialogClass parent_class;
+};
+</pre>
+<div class="refsect3">
+<a name="GtkAppChooserDialogClass.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="struct_members_name">
+<col class="struct_members_description">
+<col width="200px" class="struct_members_annotations">
+</colgroup>
+<tbody></tbody>
+</table></div>
 </div>
 </div>
 </div>

@@ -118,11 +118,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkCellEditable.html#GtkCellEditable-struct">GtkCellEditable</a></td>
+<td class="function_name"><a class="link" href="GtkCellEditable.html#GtkCellEditable-struct" title="GtkCellEditable">GtkCellEditable</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkCellEditable.html#GtkCellEditableIface">GtkCellEditableIface</a></td>
+<td class="function_name"><a class="link" href="GtkCellEditable.html#GtkCellEditableIface" title="struct GtkCellEditableIface">GtkCellEditableIface</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -238,6 +238,56 @@ gtk_cell_editable_remove_widget (<em class="parameter"><code><a class="link" hre
 <td class="parameter_description"><p>A <a class="link" href="GtkCellEditable.html" title="GtkCellEditable"><span class="type">GtkCellEditable</span></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr></tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="refsect1">
+<a name="GtkCellEditable.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkCellEditable-struct"></a><h3>GtkCellEditable</h3>
+<pre class="programlisting">typedef struct _GtkCellEditable GtkCellEditable;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkCellEditableIface"></a><h3>struct GtkCellEditableIface</h3>
+<pre class="programlisting">struct GtkCellEditableIface {
+  /* signals */
+  void (* editing_done)  (GtkCellEditable *cell_editable);
+  void (* remove_widget) (GtkCellEditable *cell_editable);
+
+  /* virtual table */
+  void (* start_editing) (GtkCellEditable *cell_editable,
+			  GdkEvent        *event);
+};
+</pre>
+<div class="refsect3">
+<a name="GtkCellEditableIface.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="struct_members_name">
+<col class="struct_members_description">
+<col width="200px" class="struct_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkCellEditableIface.editing-done"></a>editing_done</code></em> ()</p></td>
+<td class="struct_member_description"><p>Signal is a sign for the cell renderer to update its
+value from the cell_editable.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkCellEditableIface.remove-widget"></a>remove_widget</code></em> ()</p></td>
+<td class="struct_member_description"><p>Signal is meant to indicate that the cell is
+finished editing, and the widget may now be destroyed.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkCellEditableIface.start-editing"></a>start_editing</code></em> ()</p></td>
+<td class="struct_member_description"><p>Begins editing on a cell_editable.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+</tbody>
 </table></div>
 </div>
 </div>

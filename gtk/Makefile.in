@@ -1841,8 +1841,10 @@ GTESTER_REPORT = gtester-report		# in $PATH for non-GLIB packages
 EXTRA_DIST = $(gtk_all_private_h_sources) $(gtk_extra_sources) \
 	$(gtk_built_sources) gtkbuilder.rnc gtkbuilder.rng $(its_DATA) \
 	$(resource_files) $(gesture_sources) $(theme_sources) \
-	$(gsettings_SCHEMAS) emoji/convert-emoji.c emoji/emoji.json \
-	a11y/Makefile.inc deprecated/Makefile.inc \
+	$(gsettings_SCHEMAS) compose-parse.py emoji/convert-emoji.c \
+	emoji/emoji.json emoji/emoji1.json a11y/Makefile.inc \
+	deprecated/Makefile.inc glade/README.glade \
+	glade/gtk-private-widgets.xml gtk-compose-lookaside.txt \
 	inspector/Makefile.inc libgtk3.manifest.in \
 	gtk-win32.rc.body.in gtk-win32.rc.body gtkwin32embed.h \
 	gtkwin32embedwidget.h gtkwin32embedwidget.c gtkprint-win32.h \
@@ -1853,7 +1855,11 @@ EXTRA_DIST = $(gtk_all_private_h_sources) $(gtk_extra_sources) \
 	gtkprivatetypebuiltins.h.template meson.build \
 	gen-gtk-gresources-xml.py gen-rc.py gentypefuncs.py \
 	a11y/meson.build deprecated/meson.build inspector/meson.build \
-	theme/Adwaita/meson.build theme/HighContrast/meson.build
+	theme/Adwaita/meson.build theme/Adwaita/parse-sass.sh \
+	theme/Adwaita/render-assets.sh theme/HighContrast/assets.svg \
+	theme/HighContrast/assets.txt theme/HighContrast/meson.build \
+	theme/HighContrast/parse-sass.sh \
+	theme/HighContrast/render-assets.sh
 TEST_PROGS = 
 
 ### testing rules

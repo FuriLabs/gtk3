@@ -279,11 +279,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkGLArea.html#GtkGLArea-struct">GtkGLArea</a></td>
+<td class="function_name"><a class="link" href="GtkGLArea.html#GtkGLArea-struct" title="struct GtkGLArea">GtkGLArea</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkGLArea.html#GtkGLAreaClass">GtkGLAreaClass</a></td>
+<td class="function_name"><a class="link" href="GtkGLArea.html#GtkGLAreaClass" title="struct GtkGLAreaClass">GtkGLAreaClass</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -1068,6 +1068,57 @@ gtk_gl_area_get_use_es (<em class="parameter"><code><a class="link" href="GtkGLA
 and <code class="literal">FALSE</code> otherwise</p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-22.html#api-index-3.22">3.22</a></p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GtkGLArea.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkGLArea-struct"></a><h3>struct GtkGLArea</h3>
+<pre class="programlisting">struct GtkGLArea;</pre>
+<p>A <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> used for drawing with OpenGL.</p>
+<p class="since">Since: <a class="link" href="api-index-3-16.html#api-index-3.16">3.16</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkGLAreaClass"></a><h3>struct GtkGLAreaClass</h3>
+<pre class="programlisting">struct GtkGLAreaClass {
+  gboolean       (* render)         (GtkGLArea        *area,
+                                     GdkGLContext     *context);
+  void           (* resize)         (GtkGLArea        *area,
+                                     int               width,
+                                     int               height);
+  GdkGLContext * (* create_context) (GtkGLArea        *area);
+};
+</pre>
+<p>The <code class="literal">GtkGLAreaClass</code> structure contains only private data.</p>
+<div class="refsect3">
+<a name="GtkGLAreaClass.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="struct_members_name">
+<col class="struct_members_description">
+<col width="200px" class="struct_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkGLAreaClass.render"></a>render</code></em> ()</p></td>
+<td class="struct_member_description"><p>class closure for the <a class="link" href="GtkGLArea.html#GtkGLArea-render" title="The “render” signal"><span class="type">“render”</span></a> signal</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkGLAreaClass.resize"></a>resize</code></em> ()</p></td>
+<td class="struct_member_description"><p>class closeure for the <a class="link" href="GtkGLArea.html#GtkGLArea-resize" title="The “resize” signal"><span class="type">“resize”</span></a> signal</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkGLAreaClass.create-context"></a>create_context</code></em> ()</p></td>
+<td class="struct_member_description"><p>class closure for the <a class="link" href="GtkGLArea.html#GtkGLArea-create-context" title="The “create-context” signal"><span class="type">“create-context”</span></a> signal</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-3-16.html#api-index-3.16">3.16</a></p>
 </div>
 </div>
 <div class="refsect1">

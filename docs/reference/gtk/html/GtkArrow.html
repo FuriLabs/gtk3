@@ -72,12 +72,12 @@
 </colgroup>
 <tbody>
 <tr>
-<td class="property_type"><a href="https://developer.gnome.org/gtk4/GtkMenuButton.html#GtkArrowType"><span class="type">GtkArrowType</span></a></td>
+<td class="property_type"><a class="link" href="GtkMenuButton.html#GtkArrowType" title="enum GtkArrowType"><span class="type">GtkArrowType</span></a></td>
 <td class="property_name"><a class="link" href="GtkArrow.html#GtkArrow--arrow-type" title="The “arrow-type” property">arrow-type</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkShadowType"><span class="type">GtkShadowType</span></a></td>
+<td class="property_type"><a class="link" href="gtk3-Standard-Enumerations.html#GtkShadowType" title="enum GtkShadowType"><span class="type">GtkShadowType</span></a></td>
 <td class="property_name"><a class="link" href="GtkArrow.html#GtkArrow--shadow-type" title="The “shadow-type” property">shadow-type</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -108,7 +108,7 @@
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name">GtkArrow</td>
+<td class="function_name"><a class="link" href="GtkArrow.html#GtkArrow-struct" title="struct GtkArrow">GtkArrow</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -147,7 +147,7 @@ style of an arrow can be changed after creation by using <a class="link" href="G
 <p>GtkArrow has been deprecated; you can simply use a <a class="link" href="GtkImage.html" title="GtkImage"><span class="type">GtkImage</span></a> with a
 suitable icon name, such as “pan-down-symbolic“. When replacing 
 GtkArrow by an image, pay attention to the fact that GtkArrow is
-doing automatic flipping between <a href="https://developer.gnome.org/gtk4/GtkMenuButton.html#GTK-ARROW-LEFT:CAPS"><span class="type">GTK_ARROW_LEFT</span></a> and <a href="https://developer.gnome.org/gtk4/GtkMenuButton.html#GTK-ARROW-RIGHT:CAPS"><span class="type">GTK_ARROW_RIGHT</span></a>,
+doing automatic flipping between <a class="link" href="GtkMenuButton.html#GTK-ARROW-LEFT:CAPS"><span class="type">GTK_ARROW_LEFT</span></a> and <a class="link" href="GtkMenuButton.html#GTK-ARROW-RIGHT:CAPS"><span class="type">GTK_ARROW_RIGHT</span></a>,
 depending on the text direction. To get the same effect with an image,
 use the icon names “pan-start-symbolic“ and “pan-end-symbolic“, which
 react to the text direction.</p>
@@ -157,8 +157,8 @@ react to the text direction.</p>
 <div class="refsect2">
 <a name="gtk-arrow-new"></a><h3>gtk_arrow_new ()</h3>
 <pre class="programlisting"><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="returnvalue">GtkWidget</span></a> *
-gtk_arrow_new (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkMenuButton.html#GtkArrowType"><span class="type">GtkArrowType</span></a> arrow_type</code></em>,
-               <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkShadowType"><span class="type">GtkShadowType</span></a> shadow_type</code></em>);</pre>
+gtk_arrow_new (<em class="parameter"><code><a class="link" href="GtkMenuButton.html#GtkArrowType" title="enum GtkArrowType"><span class="type">GtkArrowType</span></a> arrow_type</code></em>,
+               <em class="parameter"><code><a class="link" href="gtk3-Standard-Enumerations.html#GtkShadowType" title="enum GtkShadowType"><span class="type">GtkShadowType</span></a> shadow_type</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gtk_arrow_new</code> has been deprecated since version 3.14 and should not be used in newly-written code.</p>
 <p>Use a <a class="link" href="GtkImage.html" title="GtkImage"><span class="type">GtkImage</span></a> with a suitable icon.</p>
@@ -175,12 +175,12 @@ gtk_arrow_new (<em class="parameter"><code><a href="https://developer.gnome.org/
 <tbody>
 <tr>
 <td class="parameter_name"><p>arrow_type</p></td>
-<td class="parameter_description"><p>a valid <a href="https://developer.gnome.org/gtk4/GtkMenuButton.html#GtkArrowType"><span class="type">GtkArrowType</span></a>.</p></td>
+<td class="parameter_description"><p>a valid <a class="link" href="GtkMenuButton.html#GtkArrowType" title="enum GtkArrowType"><span class="type">GtkArrowType</span></a>.</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>shadow_type</p></td>
-<td class="parameter_description"><p>a valid <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkShadowType"><span class="type">GtkShadowType</span></a>.</p></td>
+<td class="parameter_description"><p>a valid <a class="link" href="gtk3-Standard-Enumerations.html#GtkShadowType" title="enum GtkShadowType"><span class="type">GtkShadowType</span></a>.</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -196,8 +196,8 @@ gtk_arrow_new (<em class="parameter"><code><a href="https://developer.gnome.org/
 <a name="gtk-arrow-set"></a><h3>gtk_arrow_set ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_arrow_set (<em class="parameter"><code><a class="link" href="GtkArrow.html" title="GtkArrow"><span class="type">GtkArrow</span></a> *arrow</code></em>,
-               <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkMenuButton.html#GtkArrowType"><span class="type">GtkArrowType</span></a> arrow_type</code></em>,
-               <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkShadowType"><span class="type">GtkShadowType</span></a> shadow_type</code></em>);</pre>
+               <em class="parameter"><code><a class="link" href="GtkMenuButton.html#GtkArrowType" title="enum GtkArrowType"><span class="type">GtkArrowType</span></a> arrow_type</code></em>,
+               <em class="parameter"><code><a class="link" href="gtk3-Standard-Enumerations.html#GtkShadowType" title="enum GtkShadowType"><span class="type">GtkShadowType</span></a> shadow_type</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gtk_arrow_set</code> has been deprecated since version 3.14 and should not be used in newly-written code.</p>
 <p>Use a <a class="link" href="GtkImage.html" title="GtkImage"><span class="type">GtkImage</span></a> with a suitable icon.</p>
@@ -220,12 +220,12 @@ gtk_arrow_set (<em class="parameter"><code><a class="link" href="GtkArrow.html" 
 </tr>
 <tr>
 <td class="parameter_name"><p>arrow_type</p></td>
-<td class="parameter_description"><p>a valid <a href="https://developer.gnome.org/gtk4/GtkMenuButton.html#GtkArrowType"><span class="type">GtkArrowType</span></a>.</p></td>
+<td class="parameter_description"><p>a valid <a class="link" href="GtkMenuButton.html#GtkArrowType" title="enum GtkArrowType"><span class="type">GtkArrowType</span></a>.</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>shadow_type</p></td>
-<td class="parameter_description"><p>a valid <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkShadowType"><span class="type">GtkShadowType</span></a>.</p></td>
+<td class="parameter_description"><p>a valid <a class="link" href="gtk3-Standard-Enumerations.html#GtkShadowType" title="enum GtkShadowType"><span class="type">GtkShadowType</span></a>.</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -234,10 +234,17 @@ gtk_arrow_set (<em class="parameter"><code><a class="link" href="GtkArrow.html" 
 </div>
 </div>
 <div class="refsect1">
+<a name="GtkArrow.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkArrow-struct"></a><h3>struct GtkArrow</h3>
+<pre class="programlisting">struct GtkArrow;</pre>
+</div>
+</div>
+<div class="refsect1">
 <a name="GtkArrow.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkArrow--arrow-type"></a><h3>The <code class="literal">“arrow-type”</code> property</h3>
-<pre class="programlisting">  “arrow-type”               <a href="https://developer.gnome.org/gtk4/GtkMenuButton.html#GtkArrowType"><span class="type">GtkArrowType</span></a></pre>
+<pre class="programlisting">  “arrow-type”               <a class="link" href="GtkMenuButton.html#GtkArrowType" title="enum GtkArrowType"><span class="type">GtkArrowType</span></a></pre>
 <p>The direction the arrow should point.</p>
 <p>Owner: GtkArrow</p>
 <p>Flags: Read / Write</p>
@@ -246,7 +253,7 @@ gtk_arrow_set (<em class="parameter"><code><a class="link" href="GtkArrow.html" 
 <hr>
 <div class="refsect2">
 <a name="GtkArrow--shadow-type"></a><h3>The <code class="literal">“shadow-type”</code> property</h3>
-<pre class="programlisting">  “shadow-type”              <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkShadowType"><span class="type">GtkShadowType</span></a></pre>
+<pre class="programlisting">  “shadow-type”              <a class="link" href="gtk3-Standard-Enumerations.html#GtkShadowType" title="enum GtkShadowType"><span class="type">GtkShadowType</span></a></pre>
 <p>Appearance of the shadow surrounding the arrow.</p>
 <p>Owner: GtkArrow</p>
 <p>Flags: Read / Write</p>

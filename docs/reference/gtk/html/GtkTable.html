@@ -233,7 +233,7 @@
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><span class="type">GtkAttachOptions</span></td>
+<td class="property_type"><a class="link" href="GtkTable.html#GtkAttachOptions" title="enum GtkAttachOptions"><span class="type">GtkAttachOptions</span></a></td>
 <td class="property_name"><a class="link" href="GtkTable.html#GtkTable--c-x-options" title="The “x-options” child property">x-options</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -243,7 +243,7 @@
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><span class="type">GtkAttachOptions</span></td>
+<td class="property_type"><a class="link" href="GtkTable.html#GtkAttachOptions" title="enum GtkAttachOptions"><span class="type">GtkAttachOptions</span></a></td>
 <td class="property_name"><a class="link" href="GtkTable.html#GtkTable--c-y-options" title="The “y-options” child property">y-options</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -265,11 +265,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name">GtkTable</td>
+<td class="function_name"><a class="link" href="GtkTable.html#GtkTable-struct" title="struct GtkTable">GtkTable</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name">GtkAttachOptions</td>
+<td class="function_name"><a class="link" href="GtkTable.html#GtkAttachOptions" title="enum GtkAttachOptions">GtkAttachOptions</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -463,8 +463,8 @@ gtk_table_attach (<em class="parameter"><code><a class="link" href="GtkTable.htm
                   <em class="parameter"><code><span class="type">guint</span> right_attach</code></em>,
                   <em class="parameter"><code><span class="type">guint</span> top_attach</code></em>,
                   <em class="parameter"><code><span class="type">guint</span> bottom_attach</code></em>,
-                  <em class="parameter"><code><span class="type">GtkAttachOptions</span> xoptions</code></em>,
-                  <em class="parameter"><code><span class="type">GtkAttachOptions</span> yoptions</code></em>,
+                  <em class="parameter"><code><a class="link" href="GtkTable.html#GtkAttachOptions" title="enum GtkAttachOptions"><span class="type">GtkAttachOptions</span></a> xoptions</code></em>,
+                  <em class="parameter"><code><a class="link" href="GtkTable.html#GtkAttachOptions" title="enum GtkAttachOptions"><span class="type">GtkAttachOptions</span></a> yoptions</code></em>,
                   <em class="parameter"><code><span class="type">guint</span> xpadding</code></em>,
                   <em class="parameter"><code><span class="type">guint</span> ypadding</code></em>);</pre>
 <div class="warning">
@@ -584,7 +584,7 @@ gtk_table_attach_defaults (<em class="parameter"><code><a class="link" href="Gtk
 </div>
 <p>As there are many options associated with <a class="link" href="GtkTable.html#gtk-table-attach" title="gtk_table_attach ()"><code class="function">gtk_table_attach()</code></a>, this convenience
 function provides the programmer with a means to add children to a table with
-identical padding and expansion options. The values used for the <span class="type">GtkAttachOptions</span>
+identical padding and expansion options. The values used for the <a class="link" href="GtkTable.html#GtkAttachOptions" title="enum GtkAttachOptions"><span class="type">GtkAttachOptions</span></a>
 are <code class="literal">GTK_EXPAND | GTK_FILL</code>, and the padding is set to 0.</p>
 <div class="refsect3">
 <a name="gtk-table-attach-defaults.parameters"></a><h4>Parameters</h4>
@@ -1006,6 +1006,53 @@ the spacing that will be used for newly added columns.
 </div>
 </div>
 <div class="refsect1">
+<a name="GtkTable.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkTable-struct"></a><h3>struct GtkTable</h3>
+<pre class="programlisting">struct GtkTable;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkAttachOptions"></a><h3>enum GtkAttachOptions</h3>
+<p>Denotes the expansion properties that a widget will have when it (or its
+parent) is resized.</p>
+<div class="refsect3">
+<a name="GtkAttachOptions.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-EXPAND:CAPS"></a>GTK_EXPAND</p></td>
+<td class="enum_member_description">
+<p>the widget should expand to take up any extra space in its
+container that has been allocated.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-SHRINK:CAPS"></a>GTK_SHRINK</p></td>
+<td class="enum_member_description">
+<p>the widget should shrink as and when possible.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-FILL:CAPS"></a>GTK_FILL</p></td>
+<td class="enum_member_description">
+<p>the widget should fill the space allocated to it.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="refsect1">
 <a name="GtkTable.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkTable--column-spacing"></a><h3>The <code class="literal">“column-spacing”</code> property</h3>
@@ -1100,7 +1147,7 @@ the spacing that will be used for newly added columns.
 <hr>
 <div class="refsect2">
 <a name="GtkTable--c-x-options"></a><h3>The <code class="literal">“x-options”</code> child property</h3>
-<pre class="programlisting">  “x-options”                <span class="type">GtkAttachOptions</span></pre>
+<pre class="programlisting">  “x-options”                <a class="link" href="GtkTable.html#GtkAttachOptions" title="enum GtkAttachOptions"><span class="type">GtkAttachOptions</span></a></pre>
 <p>Options specifying the horizontal behaviour of the child.</p>
 <p>Owner: GtkTable</p>
 <p>Flags: Read / Write</p>
@@ -1119,7 +1166,7 @@ the spacing that will be used for newly added columns.
 <hr>
 <div class="refsect2">
 <a name="GtkTable--c-y-options"></a><h3>The <code class="literal">“y-options”</code> child property</h3>
-<pre class="programlisting">  “y-options”                <span class="type">GtkAttachOptions</span></pre>
+<pre class="programlisting">  “y-options”                <a class="link" href="GtkTable.html#GtkAttachOptions" title="enum GtkAttachOptions"><span class="type">GtkAttachOptions</span></a></pre>
 <p>Options specifying the vertical behaviour of the child.</p>
 <p>Owner: GtkTable</p>
 <p>Flags: Read / Write</p>

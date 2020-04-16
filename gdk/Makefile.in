@@ -1045,7 +1045,7 @@ BUILT_SOURCES = \
 #
 # Resources
 #
-glsl_sources := $(wildcard $(srcdir)/resources/glsl/*.glsl)
+glsl_sources := $(sort $(wildcard $(srcdir)/resources/glsl/*.glsl))
 resource_files = $(shell $(GLIB_COMPILE_RESOURCES) --sourcedir=$(srcdir) --generate-dependencies $(builddir)/gdk.gresource.xml)
 
 # ------------------- MSVC Build Items ----------------

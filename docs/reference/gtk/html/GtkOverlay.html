@@ -133,11 +133,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkOverlay.html#GtkOverlay-struct">GtkOverlay</a></td>
+<td class="function_name"><a class="link" href="GtkOverlay.html#GtkOverlay-struct" title="struct GtkOverlay">GtkOverlay</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name">GtkOverlayClass</td>
+<td class="function_name"><a class="link" href="GtkOverlay.html#GtkOverlayClass" title="struct GtkOverlayClass">GtkOverlayClass</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -168,10 +168,10 @@ GtkOverlay implements
 <p>GtkOverlay is a container which contains a single main child, on top
 of which it can place “overlay” widgets. The position of each overlay
 widget is determined by its <a class="link" href="GtkWidget.html#GtkWidget--halign" title="The “halign” property"><span class="type">“halign”</span></a> and <a class="link" href="GtkWidget.html#GtkWidget--valign" title="The “valign” property"><span class="type">“valign”</span></a>
-properties. E.g. a widget with both alignments set to <a href="https://developer.gnome.org/gtk4/GtkWidget.html#GTK-ALIGN-START:CAPS"><code class="literal">GTK_ALIGN_START</code></a>
+properties. E.g. a widget with both alignments set to <a class="link" href="GtkWidget.html#GTK-ALIGN-START:CAPS"><code class="literal">GTK_ALIGN_START</code></a>
 will be placed at the top left corner of the GtkOverlay container,
-whereas an overlay with halign set to <a href="https://developer.gnome.org/gtk4/GtkWidget.html#GTK-ALIGN-CENTER:CAPS"><code class="literal">GTK_ALIGN_CENTER</code></a> and valign set
-to <a href="https://developer.gnome.org/gtk4/GtkWidget.html#GTK-ALIGN-END:CAPS"><code class="literal">GTK_ALIGN_END</code></a> will be placed a the bottom edge of the GtkOverlay,
+whereas an overlay with halign set to <a class="link" href="GtkWidget.html#GTK-ALIGN-CENTER:CAPS"><code class="literal">GTK_ALIGN_CENTER</code></a> and valign set
+to <a class="link" href="GtkWidget.html#GTK-ALIGN-END:CAPS"><code class="literal">GTK_ALIGN_END</code></a> will be placed a the bottom edge of the GtkOverlay,
 horizontally centered. The position can be adjusted by setting the margin
 properties of the child to non-zero values.</p>
 <p>More complicated placement of overlays is possible by connecting
@@ -372,6 +372,41 @@ child property for <em class="parameter"><code>widget</code></em>
 </div>
 </div>
 <div class="refsect1">
+<a name="GtkOverlay.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkOverlay-struct"></a><h3>struct GtkOverlay</h3>
+<pre class="programlisting">struct GtkOverlay;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkOverlayClass"></a><h3>struct GtkOverlayClass</h3>
+<pre class="programlisting">struct GtkOverlayClass {
+  GtkBinClass parent_class;
+
+  gboolean (*get_child_position) (GtkOverlay    *overlay,
+                                  GtkWidget     *widget,
+                                  GtkAllocation *allocation);
+};
+</pre>
+<div class="refsect3">
+<a name="GtkOverlayClass.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="struct_members_name">
+<col class="struct_members_description">
+<col width="200px" class="struct_members_annotations">
+</colgroup>
+<tbody><tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkOverlayClass.get-child-position"></a>get_child_position</code></em> ()</p></td>
+<td class="struct_member_description"><p>Signal emitted to determine the position and
+size of any overlay child widgets.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="refsect1">
 <a name="GtkOverlay.child-property-details"></a><h2>Child Property Details</h2>
 <div class="refsect2">
 <a name="GtkOverlay--c-index"></a><h3>The <code class="literal">“index”</code> child property</h3>
@@ -417,7 +452,7 @@ the 'main' child of <em class="parameter"><code>overlay</code></em>
 's
 halign and valign properties to determine the position
 and gives the widget its natural size (except that an
-alignment of <a href="https://developer.gnome.org/gtk4/GtkWidget.html#GTK-ALIGN-FILL:CAPS"><code class="literal">GTK_ALIGN_FILL</code></a> will cause the overlay to
+alignment of <a class="link" href="GtkWidget.html#GTK-ALIGN-FILL:CAPS"><code class="literal">GTK_ALIGN_FILL</code></a> will cause the overlay to
 be full-width/height). If the main child is a
 <a class="link" href="GtkScrolledWindow.html" title="GtkScrolledWindow"><span class="type">GtkScrolledWindow</span></a>, the overlays are placed relative
 to its contents.</p>

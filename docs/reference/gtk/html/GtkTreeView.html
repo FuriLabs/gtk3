@@ -846,7 +846,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/gtk4/GtkTreeView.html#GtkTreeViewGridLines"><span class="returnvalue">GtkTreeViewGridLines</span></a>
+<a class="link" href="GtkTreeView.html#GtkTreeViewGridLines" title="enum GtkTreeViewGridLines"><span class="returnvalue">GtkTreeViewGridLines</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GtkTreeView.html#gtk-tree-view-get-grid-lines" title="gtk_tree_view_get_grid_lines ()">gtk_tree_view_get_grid_lines</a> <span class="c_punctuation">()</span>
@@ -918,7 +918,7 @@
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><a href="https://developer.gnome.org/gtk4/GtkTreeView.html#GtkTreeViewGridLines"><span class="type">GtkTreeViewGridLines</span></a></td>
+<td class="property_type"><a class="link" href="GtkTreeView.html#GtkTreeViewGridLines" title="enum GtkTreeViewGridLines"><span class="type">GtkTreeViewGridLines</span></a></td>
 <td class="property_name"><a class="link" href="GtkTreeView.html#GtkTreeView--enable-grid-lines" title="The “enable-grid-lines” property">enable-grid-lines</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -1175,19 +1175,19 @@
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkTreeView.html#GtkTreeView-struct">GtkTreeView</a></td>
+<td class="function_name"><a class="link" href="GtkTreeView.html#GtkTreeView-struct" title="struct GtkTreeView">GtkTreeView</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkTreeView.html#GtkTreeViewDropPosition">GtkTreeViewDropPosition</a></td>
+<td class="function_name"><a class="link" href="GtkTreeView.html#GtkTreeViewDropPosition" title="enum GtkTreeViewDropPosition">GtkTreeViewDropPosition</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name">GtkTreeViewPrivate</td>
+<td class="function_name"><a class="link" href="GtkTreeView.html#GtkTreeViewPrivate" title="GtkTreeViewPrivate">GtkTreeViewPrivate</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkTreeView.html#GtkTreeViewGridLines">GtkTreeViewGridLines</a></td>
+<td class="function_name"><a class="link" href="GtkTreeView.html#GtkTreeViewGridLines" title="enum GtkTreeViewGridLines">GtkTreeViewGridLines</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -3253,8 +3253,8 @@ gtk_tree_view_row_expanded (<em class="parameter"><code><a class="link" href="Gt
 gtk_tree_view_set_reorderable (<em class="parameter"><code><a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class="type">GtkTreeView</span></a> *tree_view</code></em>,
                                <em class="parameter"><code><span class="type">gboolean</span> reorderable</code></em>);</pre>
 <p>This function is a convenience function to allow you to reorder
-models that support the <a href="https://developer.gnome.org/gtk4/gtk4-GtkTreeView-drag-and-drop.html#GtkTreeDragSourceIface"><span class="type">GtkTreeDragSourceIface</span></a> and the
-<a href="https://developer.gnome.org/gtk4/gtk4-GtkTreeView-drag-and-drop.html#GtkTreeDragDestIface"><span class="type">GtkTreeDragDestIface</span></a>.  Both <a class="link" href="GtkTreeStore.html" title="GtkTreeStore"><span class="type">GtkTreeStore</span></a> and <a class="link" href="GtkListStore.html" title="GtkListStore"><span class="type">GtkListStore</span></a> support
+models that support the <a class="link" href="gtk3-GtkTreeView-drag-and-drop.html#GtkTreeDragSourceIface" title="struct GtkTreeDragSourceIface"><span class="type">GtkTreeDragSourceIface</span></a> and the
+<a class="link" href="gtk3-GtkTreeView-drag-and-drop.html#GtkTreeDragDestIface" title="struct GtkTreeDragDestIface"><span class="type">GtkTreeDragDestIface</span></a>.  Both <a class="link" href="GtkTreeStore.html" title="GtkTreeStore"><span class="type">GtkTreeStore</span></a> and <a class="link" href="GtkListStore.html" title="GtkListStore"><span class="type">GtkListStore</span></a> support
 these.  If <em class="parameter"><code>reorderable</code></em>
  is <code class="literal">TRUE</code>, then the user can reorder the
 model by dragging and dropping rows. The developer can listen to
@@ -4054,7 +4054,7 @@ tree (the full scrollable area of the tree).</p>
 <a name="gtk-tree-view-enable-model-drag-dest"></a><h3>gtk_tree_view_enable_model_drag_dest ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_tree_view_enable_model_drag_dest (<em class="parameter"><code><a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class="type">GtkTreeView</span></a> *tree_view</code></em>,
-                                      <em class="parameter"><code>const <span class="type">GtkTargetEntry</span> *targets</code></em>,
+                                      <em class="parameter"><code>const <a class="link" href="gtk3-Selections.html#GtkTargetEntry" title="struct GtkTargetEntry"><span class="type">GtkTargetEntry</span></a> *targets</code></em>,
                                       <em class="parameter"><code><span class="type">gint</span> n_targets</code></em>,
                                       <em class="parameter"><code><span class="type">GdkDragAction</span> actions</code></em>);</pre>
 <p>Turns <em class="parameter"><code>tree_view</code></em>
@@ -4103,7 +4103,7 @@ widget</p></td>
 gtk_tree_view_enable_model_drag_source
                                (<em class="parameter"><code><a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class="type">GtkTreeView</span></a> *tree_view</code></em>,
                                 <em class="parameter"><code><span class="type">GdkModifierType</span> start_button_mask</code></em>,
-                                <em class="parameter"><code>const <span class="type">GtkTargetEntry</span> *targets</code></em>,
+                                <em class="parameter"><code>const <a class="link" href="gtk3-Selections.html#GtkTargetEntry" title="struct GtkTargetEntry"><span class="type">GtkTargetEntry</span></a> *targets</code></em>,
                                 <em class="parameter"><code><span class="type">gint</span> n_targets</code></em>,
                                 <em class="parameter"><code><span class="type">GdkDragAction</span> actions</code></em>);</pre>
 <p>Turns <em class="parameter"><code>tree_view</code></em>
@@ -4203,7 +4203,7 @@ gtk_tree_view_unset_rows_drag_dest (<em class="parameter"><code><a class="link" 
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_tree_view_set_drag_dest_row (<em class="parameter"><code><a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class="type">GtkTreeView</span></a> *tree_view</code></em>,
                                  <em class="parameter"><code><a class="link" href="GtkTreeModel.html#GtkTreePath"><span class="type">GtkTreePath</span></a> *path</code></em>,
-                                 <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkTreeView.html#GtkTreeViewDropPosition"><span class="type">GtkTreeViewDropPosition</span></a> pos</code></em>);</pre>
+                                 <em class="parameter"><code><a class="link" href="GtkTreeView.html#GtkTreeViewDropPosition" title="enum GtkTreeViewDropPosition"><span class="type">GtkTreeViewDropPosition</span></a> pos</code></em>);</pre>
 <p>Sets the row that is highlighted for feedback.
 If <em class="parameter"><code>path</code></em>
  is <code class="literal">NULL</code>, an existing highlight is removed.</p>
@@ -4241,7 +4241,7 @@ If <em class="parameter"><code>path</code></em>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_tree_view_get_drag_dest_row (<em class="parameter"><code><a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class="type">GtkTreeView</span></a> *tree_view</code></em>,
                                  <em class="parameter"><code><a class="link" href="GtkTreeModel.html#GtkTreePath"><span class="type">GtkTreePath</span></a> **path</code></em>,
-                                 <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkTreeView.html#GtkTreeViewDropPosition"><span class="type">GtkTreeViewDropPosition</span></a> *pos</code></em>);</pre>
+                                 <em class="parameter"><code><a class="link" href="GtkTreeView.html#GtkTreeViewDropPosition" title="enum GtkTreeViewDropPosition"><span class="type">GtkTreeViewDropPosition</span></a> *pos</code></em>);</pre>
 <p>Gets information about the row that is highlighted for feedback.</p>
 <div class="refsect3">
 <a name="gtk-tree-view-get-drag-dest-row.parameters"></a><h4>Parameters</h4>
@@ -4279,7 +4279,7 @@ gtk_tree_view_get_dest_row_at_pos (<em class="parameter"><code><a class="link" h
                                    <em class="parameter"><code><span class="type">gint</span> drag_x</code></em>,
                                    <em class="parameter"><code><span class="type">gint</span> drag_y</code></em>,
                                    <em class="parameter"><code><a class="link" href="GtkTreeModel.html#GtkTreePath"><span class="type">GtkTreePath</span></a> **path</code></em>,
-                                   <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkTreeView.html#GtkTreeViewDropPosition"><span class="type">GtkTreeViewDropPosition</span></a> *pos</code></em>);</pre>
+                                   <em class="parameter"><code><a class="link" href="GtkTreeView.html#GtkTreeViewDropPosition" title="enum GtkTreeViewDropPosition"><span class="type">GtkTreeViewDropPosition</span></a> *pos</code></em>);</pre>
 <p>Determines the destination row for a given position.  <em class="parameter"><code>drag_x</code></em>
  and
 <em class="parameter"><code>drag_y</code></em>
@@ -4762,7 +4762,7 @@ gtk_tree_view_set_fixed_height_mode (<em class="parameter"><code><a class="link"
 Fixed height mode speeds up <a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class="type">GtkTreeView</span></a> by assuming that all 
 rows have the same height. 
 Only enable this option if all rows are the same height and all
-columns are of type <a href="https://developer.gnome.org/gtk4/GtkTreeViewColumn.html#GTK-TREE-VIEW-COLUMN-FIXED:CAPS"><code class="literal">GTK_TREE_VIEW_COLUMN_FIXED</code></a>.</p>
+columns are of type <a class="link" href="GtkTreeViewColumn.html#GTK-TREE-VIEW-COLUMN-FIXED:CAPS"><code class="literal">GTK_TREE_VIEW_COLUMN_FIXED</code></a>.</p>
 <div class="refsect3">
 <a name="gtk-tree-view-set-fixed-height-mode.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -4826,7 +4826,7 @@ gtk_tree_view_set_hover_selection (<em class="parameter"><code><a class="link" h
 .
 Hover selection makes the selected row follow the pointer.
 Currently, this works only for the selection modes 
-<a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-SELECTION-SINGLE:CAPS"><code class="literal">GTK_SELECTION_SINGLE</code></a> and <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-SELECTION-BROWSE:CAPS"><code class="literal">GTK_SELECTION_BROWSE</code></a>.</p>
+<a class="link" href="gtk3-Standard-Enumerations.html#GTK-SELECTION-SINGLE:CAPS"><code class="literal">GTK_SELECTION_SINGLE</code></a> and <a class="link" href="gtk3-Standard-Enumerations.html#GTK-SELECTION-BROWSE:CAPS"><code class="literal">GTK_SELECTION_BROWSE</code></a>.</p>
 <div class="refsect3">
 <a name="gtk-tree-view-set-hover-selection.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -5100,7 +5100,7 @@ function is <code class="literal">NULL</code>, no separators are drawn. This is 
 gtk_tree_view_get_rubber_banding (<em class="parameter"><code><a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class="type">GtkTreeView</span></a> *tree_view</code></em>);</pre>
 <p>Returns whether rubber banding is turned on for <em class="parameter"><code>tree_view</code></em>
 .  If the
-selection mode is <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-SELECTION-MULTIPLE:CAPS"><span class="type">GTK_SELECTION_MULTIPLE</span></a>, rubber banding will allow the
+selection mode is <a class="link" href="gtk3-Standard-Enumerations.html#GTK-SELECTION-MULTIPLE:CAPS"><span class="type">GTK_SELECTION_MULTIPLE</span></a>, rubber banding will allow the
 user to select multiple rows by dragging the mouse.</p>
 <div class="refsect3">
 <a name="gtk-tree-view-get-rubber-banding.parameters"></a><h4>Parameters</h4>
@@ -5132,7 +5132,7 @@ gtk_tree_view_set_rubber_banding (<em class="parameter"><code><a class="link" hr
                                   <em class="parameter"><code><span class="type">gboolean</span> enable</code></em>);</pre>
 <p>Enables or disables rubber banding in <em class="parameter"><code>tree_view</code></em>
 .  If the selection mode
-is <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-SELECTION-MULTIPLE:CAPS"><span class="type">GTK_SELECTION_MULTIPLE</span></a>, rubber banding will allow the user to select
+is <a class="link" href="gtk3-Standard-Enumerations.html#GTK-SELECTION-MULTIPLE:CAPS"><span class="type">GTK_SELECTION_MULTIPLE</span></a>, rubber banding will allow the user to select
 multiple rows by dragging the mouse.</p>
 <div class="refsect3">
 <a name="gtk-tree-view-set-rubber-banding.parameters"></a><h4>Parameters</h4>
@@ -5256,7 +5256,7 @@ This does not have any visible effects for lists.</p>
 <hr>
 <div class="refsect2">
 <a name="gtk-tree-view-get-grid-lines"></a><h3>gtk_tree_view_get_grid_lines ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/gtk4/GtkTreeView.html#GtkTreeViewGridLines"><span class="returnvalue">GtkTreeViewGridLines</span></a>
+<pre class="programlisting"><a class="link" href="GtkTreeView.html#GtkTreeViewGridLines" title="enum GtkTreeViewGridLines"><span class="returnvalue">GtkTreeViewGridLines</span></a>
 gtk_tree_view_get_grid_lines (<em class="parameter"><code><a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class="type">GtkTreeView</span></a> *tree_view</code></em>);</pre>
 <p>Returns which grid lines are enabled in <em class="parameter"><code>tree_view</code></em>
 .</p>
@@ -5277,7 +5277,7 @@ gtk_tree_view_get_grid_lines (<em class="parameter"><code><a class="link" href="
 </div>
 <div class="refsect3">
 <a name="gtk-tree-view-get-grid-lines.returns"></a><h4>Returns</h4>
-<p> a <a href="https://developer.gnome.org/gtk4/GtkTreeView.html#GtkTreeViewGridLines"><span class="type">GtkTreeViewGridLines</span></a> value indicating which grid lines
+<p> a <a class="link" href="GtkTreeView.html#GtkTreeViewGridLines" title="enum GtkTreeViewGridLines"><span class="type">GtkTreeViewGridLines</span></a> value indicating which grid lines
 are enabled.</p>
 </div>
 <p class="since">Since: 2.10</p>
@@ -5287,7 +5287,7 @@ are enabled.</p>
 <a name="gtk-tree-view-set-grid-lines"></a><h3>gtk_tree_view_set_grid_lines ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_tree_view_set_grid_lines (<em class="parameter"><code><a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class="type">GtkTreeView</span></a> *tree_view</code></em>,
-                              <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkTreeView.html#GtkTreeViewGridLines"><span class="type">GtkTreeViewGridLines</span></a> grid_lines</code></em>);</pre>
+                              <em class="parameter"><code><a class="link" href="GtkTreeView.html#GtkTreeViewGridLines" title="enum GtkTreeViewGridLines"><span class="type">GtkTreeViewGridLines</span></a> grid_lines</code></em>);</pre>
 <p>Sets which grid lines to draw in <em class="parameter"><code>tree_view</code></em>
 .</p>
 <div class="refsect3">
@@ -5306,7 +5306,7 @@ gtk_tree_view_set_grid_lines (<em class="parameter"><code><a class="link" href="
 </tr>
 <tr>
 <td class="parameter_name"><p>grid_lines</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/GtkTreeView.html#GtkTreeViewGridLines"><span class="type">GtkTreeViewGridLines</span></a> value indicating which grid lines to
+<td class="parameter_description"><p>a <a class="link" href="GtkTreeView.html#GtkTreeViewGridLines" title="enum GtkTreeViewGridLines"><span class="type">GtkTreeViewGridLines</span></a> value indicating which grid lines to
 enable.</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
@@ -5583,6 +5583,108 @@ so &amp;, &lt;, etc have to be escaped in the text.</p>
 </div>
 </div>
 <div class="refsect1">
+<a name="GtkTreeView.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkTreeView-struct"></a><h3>struct GtkTreeView</h3>
+<pre class="programlisting">struct GtkTreeView;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkTreeViewDropPosition"></a><h3>enum GtkTreeViewDropPosition</h3>
+<p>An enum for determining where a dropped row goes.</p>
+<div class="refsect3">
+<a name="GtkTreeViewDropPosition.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-TREE-VIEW-DROP-BEFORE:CAPS"></a>GTK_TREE_VIEW_DROP_BEFORE</p></td>
+<td class="enum_member_description">
+<p>dropped row is inserted before</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-TREE-VIEW-DROP-AFTER:CAPS"></a>GTK_TREE_VIEW_DROP_AFTER</p></td>
+<td class="enum_member_description">
+<p>dropped row is inserted after</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-TREE-VIEW-DROP-INTO-OR-BEFORE:CAPS"></a>GTK_TREE_VIEW_DROP_INTO_OR_BEFORE</p></td>
+<td class="enum_member_description">
+<p>dropped row becomes a child or is inserted before</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-TREE-VIEW-DROP-INTO-OR-AFTER:CAPS"></a>GTK_TREE_VIEW_DROP_INTO_OR_AFTER</p></td>
+<td class="enum_member_description">
+<p>dropped row becomes a child or is inserted after</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkTreeViewPrivate"></a><h3>GtkTreeViewPrivate</h3>
+<pre class="programlisting">typedef struct _GtkTreeViewPrivate GtkTreeViewPrivate;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkTreeViewGridLines"></a><h3>enum GtkTreeViewGridLines</h3>
+<p>Used to indicate which grid lines to draw in a tree view.</p>
+<div class="refsect3">
+<a name="GtkTreeViewGridLines.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-TREE-VIEW-GRID-LINES-NONE:CAPS"></a>GTK_TREE_VIEW_GRID_LINES_NONE</p></td>
+<td class="enum_member_description">
+<p>No grid lines.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-TREE-VIEW-GRID-LINES-HORIZONTAL:CAPS"></a>GTK_TREE_VIEW_GRID_LINES_HORIZONTAL</p></td>
+<td class="enum_member_description">
+<p>Horizontal grid lines.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-TREE-VIEW-GRID-LINES-VERTICAL:CAPS"></a>GTK_TREE_VIEW_GRID_LINES_VERTICAL</p></td>
+<td class="enum_member_description">
+<p>Vertical grid lines.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-TREE-VIEW-GRID-LINES-BOTH:CAPS"></a>GTK_TREE_VIEW_GRID_LINES_BOTH</p></td>
+<td class="enum_member_description">
+<p>Horizontal and vertical grid lines.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="refsect1">
 <a name="GtkTreeView.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkTreeView--activate-on-single-click"></a><h3>The <code class="literal">“activate-on-single-click”</code> property</h3>
@@ -5597,7 +5699,7 @@ will be emitted after a single click.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkTreeView--enable-grid-lines"></a><h3>The <code class="literal">“enable-grid-lines”</code> property</h3>
-<pre class="programlisting">  “enable-grid-lines”        <a href="https://developer.gnome.org/gtk4/GtkTreeView.html#GtkTreeViewGridLines"><span class="type">GtkTreeViewGridLines</span></a></pre>
+<pre class="programlisting">  “enable-grid-lines”        <a class="link" href="GtkTreeView.html#GtkTreeViewGridLines" title="enum GtkTreeViewGridLines"><span class="type">GtkTreeViewGridLines</span></a></pre>
 <p>Whether grid lines should be drawn in the tree view.</p>
 <p>Owner: GtkTreeView</p>
 <p>Flags: Read / Write</p>
@@ -5690,7 +5792,7 @@ in <a class="link" href="GtkComboBox.html" title="GtkComboBox"><span class="type
 Hover selection makes the selected row follow the pointer.
 Currently, this works only for the selection modes
 
-<a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-SELECTION-SINGLE:CAPS"><code class="literal">GTK_SELECTION_SINGLE</code></a> and <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-SELECTION-BROWSE:CAPS"><code class="literal">GTK_SELECTION_BROWSE</code></a>.</p>
+<a class="link" href="gtk3-Standard-Enumerations.html#GTK-SELECTION-SINGLE:CAPS"><code class="literal">GTK_SELECTION_SINGLE</code></a> and <a class="link" href="gtk3-Standard-Enumerations.html#GTK-SELECTION-BROWSE:CAPS"><code class="literal">GTK_SELECTION_BROWSE</code></a>.</p>
 <p>This mode is primarily intended for treeviews in popups, e.g.
 in <a class="link" href="GtkComboBox.html" title="GtkComboBox"><span class="type">GtkComboBox</span></a> or <a class="link" href="GtkEntryCompletion.html" title="GtkEntryCompletion"><span class="type">GtkEntryCompletion</span></a>.</p>
 <p>Owner: GtkTreeView</p>
@@ -5963,11 +6065,11 @@ user_function (<a class="link" href="GtkTreeView.html" title="GtkTreeView"><span
 <a name="GtkTreeView-move-cursor"></a><h3>The <code class="literal">“move-cursor”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 user_function (<a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class="type">GtkTreeView</span></a>    *tree_view,
-               <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkMovementStep"><span class="type">GtkMovementStep</span></a> step,
+               <a class="link" href="gtk3-Standard-Enumerations.html#GtkMovementStep" title="enum GtkMovementStep"><span class="type">GtkMovementStep</span></a> step,
                <span class="type">gint</span>            direction,
                <span class="type">gpointer</span>        user_data)</pre>
-<p>The <a class="link" href="GtkTreeView.html#GtkTreeView-move-cursor" title="The “move-cursor” signal"><span class="type">“move-cursor”</span></a> signal is a <GTKDOCLINK HREF="GtkBindingSignal">keybinding
-signal</GTKDOCLINK> which gets emitted when the user
+<p>The <a class="link" href="GtkTreeView.html#GtkTreeView-move-cursor" title="The “move-cursor” signal"><span class="type">“move-cursor”</span></a> signal is a <a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding
+signal</a> which gets emitted when the user
 presses one of the cursor keys.</p>
 <p>Applications should not connect to it, but may emit it with
 <code class="function">g_signal_emit_by_name()</code> if they need to control the cursor
@@ -5991,11 +6093,11 @@ programmatically. In contrast to <a class="link" href="GtkTreeView.html#gtk-tree
 <tr>
 <td class="parameter_name"><p>step</p></td>
 <td class="parameter_description"><p>the granularity of the move, as a
-<a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkMovementStep"><span class="type">GtkMovementStep</span></a>. <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-MOVEMENT-LOGICAL-POSITIONS:CAPS"><code class="literal">GTK_MOVEMENT_LOGICAL_POSITIONS</code></a>,
-<a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-MOVEMENT-VISUAL-POSITIONS:CAPS"><code class="literal">GTK_MOVEMENT_VISUAL_POSITIONS</code></a>, <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-MOVEMENT-DISPLAY-LINES:CAPS"><code class="literal">GTK_MOVEMENT_DISPLAY_LINES</code></a>,
-<a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-MOVEMENT-PAGES:CAPS"><code class="literal">GTK_MOVEMENT_PAGES</code></a> and <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-MOVEMENT-BUFFER-ENDS:CAPS"><code class="literal">GTK_MOVEMENT_BUFFER_ENDS</code></a> are
-supported. <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-MOVEMENT-LOGICAL-POSITIONS:CAPS"><code class="literal">GTK_MOVEMENT_LOGICAL_POSITIONS</code></a> and
-<a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-MOVEMENT-VISUAL-POSITIONS:CAPS"><code class="literal">GTK_MOVEMENT_VISUAL_POSITIONS</code></a> are treated identically.</p></td>
+<a class="link" href="gtk3-Standard-Enumerations.html#GtkMovementStep" title="enum GtkMovementStep"><span class="type">GtkMovementStep</span></a>. <a class="link" href="gtk3-Standard-Enumerations.html#GTK-MOVEMENT-LOGICAL-POSITIONS:CAPS"><code class="literal">GTK_MOVEMENT_LOGICAL_POSITIONS</code></a>,
+<a class="link" href="gtk3-Standard-Enumerations.html#GTK-MOVEMENT-VISUAL-POSITIONS:CAPS"><code class="literal">GTK_MOVEMENT_VISUAL_POSITIONS</code></a>, <a class="link" href="gtk3-Standard-Enumerations.html#GTK-MOVEMENT-DISPLAY-LINES:CAPS"><code class="literal">GTK_MOVEMENT_DISPLAY_LINES</code></a>,
+<a class="link" href="gtk3-Standard-Enumerations.html#GTK-MOVEMENT-PAGES:CAPS"><code class="literal">GTK_MOVEMENT_PAGES</code></a> and <a class="link" href="gtk3-Standard-Enumerations.html#GTK-MOVEMENT-BUFFER-ENDS:CAPS"><code class="literal">GTK_MOVEMENT_BUFFER_ENDS</code></a> are
+supported. <a class="link" href="gtk3-Standard-Enumerations.html#GTK-MOVEMENT-LOGICAL-POSITIONS:CAPS"><code class="literal">GTK_MOVEMENT_LOGICAL_POSITIONS</code></a> and
+<a class="link" href="gtk3-Standard-Enumerations.html#GTK-MOVEMENT-VISUAL-POSITIONS:CAPS"><code class="literal">GTK_MOVEMENT_VISUAL_POSITIONS</code></a> are treated identically.</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>

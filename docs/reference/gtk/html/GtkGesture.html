@@ -84,7 +84,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/gtk4/GtkGesture.html#GtkEventSequenceState"><span class="returnvalue">GtkEventSequenceState</span></a>
+<a class="link" href="GtkGesture.html#GtkEventSequenceState" title="enum GtkEventSequenceState"><span class="returnvalue">GtkEventSequenceState</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GtkGesture.html#gtk-gesture-get-sequence-state" title="gtk_gesture_get_sequence_state ()">gtk_gesture_get_sequence_state</a> <span class="c_punctuation">()</span>
@@ -266,11 +266,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkGesture.html#GtkGesture-struct">GtkGesture</a></td>
+<td class="function_name"><a class="link" href="GtkGesture.html#GtkGesture-struct" title="GtkGesture">GtkGesture</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkGesture.html#GtkEventSequenceState">GtkEventSequenceState</a></td>
+<td class="function_name"><a class="link" href="GtkGesture.html#GtkEventSequenceState" title="enum GtkEventSequenceState">GtkEventSequenceState</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -320,7 +320,7 @@ target widget, and gestures that are attached to containers above the widget
 get a chance to interact with the event before it reaches the target.</p>
 <p>After the capture phase, GTK+ emits the traditional <a class="link" href="GtkWidget.html#GtkWidget-button-press-event" title="The “button-press-event” signal"><span class="type">“button-press-event”</span></a>,
 <a class="link" href="GtkWidget.html#GtkWidget-button-release-event" title="The “button-release-event” signal"><span class="type">“button-release-event”</span></a>, <a class="link" href="GtkWidget.html#GtkWidget-touch-event" title="The “touch-event” signal"><span class="type">“touch-event”</span></a>, etc signals. Gestures
-with the <a href="https://developer.gnome.org/gtk4/GtkEventController.html#GTK-PHASE-TARGET:CAPS"><code class="literal">GTK_PHASE_TARGET</code></a> phase are fed events from the default <a class="link" href="GtkWidget.html#GtkWidget-event" title="The “event” signal"><span class="type">“event”</span></a>
+with the <a class="link" href="GtkEventController.html#GTK-PHASE-TARGET:CAPS"><code class="literal">GTK_PHASE_TARGET</code></a> phase are fed events from the default <a class="link" href="GtkWidget.html#GtkWidget-event" title="The “event” signal"><span class="type">“event”</span></a>
 handlers.</p>
 <p>In the bubble phase, events are propagated up from the target widget to the
 toplevel, and gestures that are attached to containers above the widget get
@@ -338,27 +338,27 @@ triggering those.</p>
 grouped gestures synchronize the state of sequences, so calling
 <a class="link" href="GtkGesture.html#gtk-gesture-set-sequence-state" title="gtk_gesture_set_sequence_state ()"><code class="function">gtk_gesture_set_sequence_state()</code></a> on one will effectively propagate
 the state throughout the group.</p>
-<p>By default, all sequences start out in the <a href="https://developer.gnome.org/gtk4/GtkGesture.html#GTK-EVENT-SEQUENCE-NONE:CAPS"><span class="type">GTK_EVENT_SEQUENCE_NONE</span></a> state,
+<p>By default, all sequences start out in the <a class="link" href="GtkGesture.html#GTK-EVENT-SEQUENCE-NONE:CAPS"><span class="type">GTK_EVENT_SEQUENCE_NONE</span></a> state,
 sequences in this state trigger the gesture event handler, but event
 propagation will continue unstopped by gestures.</p>
-<p>If a sequence enters into the <a href="https://developer.gnome.org/gtk4/GtkGesture.html#GTK-EVENT-SEQUENCE-DENIED:CAPS"><span class="type">GTK_EVENT_SEQUENCE_DENIED</span></a> state, the gesture
+<p>If a sequence enters into the <a class="link" href="GtkGesture.html#GTK-EVENT-SEQUENCE-DENIED:CAPS"><span class="type">GTK_EVENT_SEQUENCE_DENIED</span></a> state, the gesture
 group will effectively ignore the sequence, letting events go unstopped
 through the gesture, but the "slot" will still remain occupied while
 the touch is active.</p>
-<p>If a sequence enters in the <a href="https://developer.gnome.org/gtk4/GtkGesture.html#GTK-EVENT-SEQUENCE-CLAIMED:CAPS"><span class="type">GTK_EVENT_SEQUENCE_CLAIMED</span></a> state, the gesture
+<p>If a sequence enters in the <a class="link" href="GtkGesture.html#GTK-EVENT-SEQUENCE-CLAIMED:CAPS"><span class="type">GTK_EVENT_SEQUENCE_CLAIMED</span></a> state, the gesture
 group will grab all interaction on the sequence, by:</p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
-<li class="listitem"><p>Setting the same sequence to <a href="https://developer.gnome.org/gtk4/GtkGesture.html#GTK-EVENT-SEQUENCE-DENIED:CAPS"><span class="type">GTK_EVENT_SEQUENCE_DENIED</span></a> on every other gesture
+<li class="listitem"><p>Setting the same sequence to <a class="link" href="GtkGesture.html#GTK-EVENT-SEQUENCE-DENIED:CAPS"><span class="type">GTK_EVENT_SEQUENCE_DENIED</span></a> on every other gesture
 group within the widget, and every gesture on parent widgets in the propagation
 chain.</p></li>
 <li class="listitem"><p>calling <a class="link" href="GtkGesture.html#GtkGesture-cancel" title="The “cancel” signal"><span class="type">“cancel”</span></a> on every gesture in widgets underneath in the
 propagation chain.</p></li>
 <li class="listitem"><p>Stopping event propagation after the gesture group handles the event.</p></li>
 </ul></div>
-<p>Note: if a sequence is set early to <a href="https://developer.gnome.org/gtk4/GtkGesture.html#GTK-EVENT-SEQUENCE-CLAIMED:CAPS"><span class="type">GTK_EVENT_SEQUENCE_CLAIMED</span></a> on
+<p>Note: if a sequence is set early to <a class="link" href="GtkGesture.html#GTK-EVENT-SEQUENCE-CLAIMED:CAPS"><span class="type">GTK_EVENT_SEQUENCE_CLAIMED</span></a> on
 <span class="type">GDK_TOUCH_BEGIN</span>/<span class="type">GDK_BUTTON_PRESS</span> (so those events are captured before
-reaching the event widget, this implies <a href="https://developer.gnome.org/gtk4/GtkEventController.html#GTK-PHASE-CAPTURE:CAPS"><span class="type">GTK_PHASE_CAPTURE</span></a>), one similar
-event will emulated if the sequence changes to <a href="https://developer.gnome.org/gtk4/GtkGesture.html#GTK-EVENT-SEQUENCE-DENIED:CAPS"><span class="type">GTK_EVENT_SEQUENCE_DENIED</span></a>.
+reaching the event widget, this implies <a class="link" href="GtkEventController.html#GTK-PHASE-CAPTURE:CAPS"><span class="type">GTK_PHASE_CAPTURE</span></a>), one similar
+event will emulated if the sequence changes to <a class="link" href="GtkGesture.html#GTK-EVENT-SEQUENCE-DENIED:CAPS"><span class="type">GTK_EVENT_SEQUENCE_DENIED</span></a>.
 This way event coherence is preserved before event propagation is unstopped
 again.</p>
 <p>Sequence states can't be changed freely, see <a class="link" href="GtkGesture.html#gtk-gesture-set-sequence-state" title="gtk_gesture_set_sequence_state ()"><code class="function">gtk_gesture_set_sequence_state()</code></a>
@@ -371,7 +371,7 @@ touchpad gesture events. The only precautions users of <a class="link" href="Gtk
 to enable this support are:</p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>Enabling <code class="literal">GDK_TOUCHPAD_GESTURE_MASK</code> on their <span class="type">GdkWindows</span></p></li>
-<li class="listitem"><p>If the gesture has <a href="https://developer.gnome.org/gtk4/GtkEventController.html#GTK-PHASE-NONE:CAPS"><code class="literal">GTK_PHASE_NONE</code></a>, ensuring events of type
+<li class="listitem"><p>If the gesture has <a class="link" href="GtkEventController.html#GTK-PHASE-NONE:CAPS"><code class="literal">GTK_PHASE_NONE</code></a>, ensuring events of type
 <code class="literal">GDK_TOUCHPAD_SWIPE</code> and <code class="literal">GDK_TOUCHPAD_PINCH</code> are handled by the <a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a></p></li>
 </ul></div>
 </div>
@@ -537,7 +537,7 @@ returned <code class="literal">TRUE</code> for the sequences being currently int
 <hr>
 <div class="refsect2">
 <a name="gtk-gesture-get-sequence-state"></a><h3>gtk_gesture_get_sequence_state ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/gtk4/GtkGesture.html#GtkEventSequenceState"><span class="returnvalue">GtkEventSequenceState</span></a>
+<pre class="programlisting"><a class="link" href="GtkGesture.html#GtkEventSequenceState" title="enum GtkEventSequenceState"><span class="returnvalue">GtkEventSequenceState</span></a>
 gtk_gesture_get_sequence_state (<em class="parameter"><code><a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a> *gesture</code></em>,
                                 <em class="parameter"><code><span class="type">GdkEventSequence</span> *sequence</code></em>);</pre>
 <p>Returns the <em class="parameter"><code>sequence</code></em>
@@ -578,13 +578,13 @@ gtk_gesture_get_sequence_state (<em class="parameter"><code><a class="link" href
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_gesture_set_sequence_state (<em class="parameter"><code><a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a> *gesture</code></em>,
                                 <em class="parameter"><code><span class="type">GdkEventSequence</span> *sequence</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkGesture.html#GtkEventSequenceState"><span class="type">GtkEventSequenceState</span></a> state</code></em>);</pre>
+                                <em class="parameter"><code><a class="link" href="GtkGesture.html#GtkEventSequenceState" title="enum GtkEventSequenceState"><span class="type">GtkEventSequenceState</span></a> state</code></em>);</pre>
 <p>Sets the state of <em class="parameter"><code>sequence</code></em>
  in <em class="parameter"><code>gesture</code></em>
 . Sequences start
-in state <a href="https://developer.gnome.org/gtk4/GtkGesture.html#GTK-EVENT-SEQUENCE-NONE:CAPS"><span class="type">GTK_EVENT_SEQUENCE_NONE</span></a>, and whenever they change
+in state <a class="link" href="GtkGesture.html#GTK-EVENT-SEQUENCE-NONE:CAPS"><span class="type">GTK_EVENT_SEQUENCE_NONE</span></a>, and whenever they change
 state, they can never go back to that state. Likewise,
-sequences in state <a href="https://developer.gnome.org/gtk4/GtkGesture.html#GTK-EVENT-SEQUENCE-DENIED:CAPS"><span class="type">GTK_EVENT_SEQUENCE_DENIED</span></a> cannot turn
+sequences in state <a class="link" href="GtkGesture.html#GTK-EVENT-SEQUENCE-DENIED:CAPS"><span class="type">GTK_EVENT_SEQUENCE_DENIED</span></a> cannot turn
 back to a not denied state. With these rules, the lifetime
 of an event sequence is constrained to the next four:</p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
@@ -687,7 +687,7 @@ and the state is changed successfully</p>
 <a name="gtk-gesture-set-state"></a><h3>gtk_gesture_set_state ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_gesture_set_state (<em class="parameter"><code><a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a> *gesture</code></em>,
-                       <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkGesture.html#GtkEventSequenceState"><span class="type">GtkEventSequenceState</span></a> state</code></em>);</pre>
+                       <em class="parameter"><code><a class="link" href="GtkGesture.html#GtkEventSequenceState" title="enum GtkEventSequenceState"><span class="type">GtkEventSequenceState</span></a> state</code></em>);</pre>
 <p>Sets the state of all sequences that <em class="parameter"><code>gesture</code></em>
  is currently
 interacting with. See <a class="link" href="GtkGesture.html#gtk-gesture-set-sequence-state" title="gtk_gesture_set_sequence_state ()"><code class="function">gtk_gesture_set_sequence_state()</code></a>
@@ -1027,9 +1027,9 @@ are by default isolated in their own groups.</p>
 is kept in sync for all of those, so calling <a class="link" href="GtkGesture.html#gtk-gesture-set-sequence-state" title="gtk_gesture_set_sequence_state ()"><code class="function">gtk_gesture_set_sequence_state()</code></a>,
 on one will transfer the same value to the others.</p>
 <p>Groups also perform an "implicit grabbing" of sequences, if a
-<span class="type">GdkEventSequence</span> state is set to <a href="https://developer.gnome.org/gtk4/GtkGesture.html#GTK-EVENT-SEQUENCE-CLAIMED:CAPS"><span class="type">GTK_EVENT_SEQUENCE_CLAIMED</span></a> on one group,
+<span class="type">GdkEventSequence</span> state is set to <a class="link" href="GtkGesture.html#GTK-EVENT-SEQUENCE-CLAIMED:CAPS"><span class="type">GTK_EVENT_SEQUENCE_CLAIMED</span></a> on one group,
 every other gesture group attached to the same <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> will switch the
-state for that sequence to <a href="https://developer.gnome.org/gtk4/GtkGesture.html#GTK-EVENT-SEQUENCE-DENIED:CAPS"><span class="type">GTK_EVENT_SEQUENCE_DENIED</span></a>.</p>
+state for that sequence to <a class="link" href="GtkGesture.html#GTK-EVENT-SEQUENCE-DENIED:CAPS"><span class="type">GTK_EVENT_SEQUENCE_DENIED</span></a>.</p>
 <div class="refsect3">
 <a name="gtk-gesture-group.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1141,6 +1141,52 @@ gtk_gesture_is_grouped_with (<em class="parameter"><code><a class="link" href="G
 <div class="refsect3">
 <a name="gtk-gesture-is-grouped-with.returns"></a><h4>Returns</h4>
 <p> whether the gestures are grouped</p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-3-14.html#api-index-3.14">3.14</a></p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GtkGesture.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkGesture-struct"></a><h3>GtkGesture</h3>
+<pre class="programlisting">typedef struct _GtkGesture GtkGesture;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkEventSequenceState"></a><h3>enum GtkEventSequenceState</h3>
+<p>Describes the state of a <span class="type">GdkEventSequence</span> in a <a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a>.</p>
+<div class="refsect3">
+<a name="GtkEventSequenceState.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-EVENT-SEQUENCE-NONE:CAPS"></a>GTK_EVENT_SEQUENCE_NONE</p></td>
+<td class="enum_member_description">
+<p>The sequence is handled, but not grabbed.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-EVENT-SEQUENCE-CLAIMED:CAPS"></a>GTK_EVENT_SEQUENCE_CLAIMED</p></td>
+<td class="enum_member_description">
+<p>The sequence is handled and grabbed.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-EVENT-SEQUENCE-DENIED:CAPS"></a>GTK_EVENT_SEQUENCE_DENIED</p></td>
+<td class="enum_member_description">
+<p>The sequence is denied.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-14.html#api-index-3.14">3.14</a></p>
 </div>
@@ -1313,7 +1359,7 @@ by checking through <a class="link" href="GtkGesture.html#gtk-gesture-handles-se
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkGesture.html" title="GtkGesture"><span class="type">GtkGesture</span></a>           *gesture,
                <span class="type">GdkEventSequence</span>     *sequence,
-               <a href="https://developer.gnome.org/gtk4/GtkGesture.html#GtkEventSequenceState"><span class="type">GtkEventSequenceState</span></a> state,
+               <a class="link" href="GtkGesture.html#GtkEventSequenceState" title="enum GtkEventSequenceState"><span class="type">GtkEventSequenceState</span></a> state,
                <span class="type">gpointer</span>              user_data)</pre>
 <p>This signal is emitted whenever a sequence state changes. See
 <a class="link" href="GtkGesture.html#gtk-gesture-set-sequence-state" title="gtk_gesture_set_sequence_state ()"><code class="function">gtk_gesture_set_sequence_state()</code></a> to know more about the expectable

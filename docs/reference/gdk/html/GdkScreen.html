@@ -350,7 +350,7 @@
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name">GdkScreen</td>
+<td class="function_name"><a class="link" href="GdkScreen.html#GdkScreen-struct" title="GdkScreen">GdkScreen</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -901,12 +901,12 @@ will be 0, defaulting to the first monitor.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdk_screen_get_monitor_geometry (<em class="parameter"><code><a class="link" href="GdkScreen.html" title="GdkScreen"><span class="type">GdkScreen</span></a> *screen</code></em>,
                                  <em class="parameter"><code><span class="type">gint</span> monitor_num</code></em>,
-                                 <em class="parameter"><code><span class="type">GdkRectangle</span> *dest</code></em>);</pre>
+                                 <em class="parameter"><code><a class="link" href="gdk3-Points-Rectangles-and-Regions.html#GdkRectangle" title="GdkRectangle"><span class="type">GdkRectangle</span></a> *dest</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gdk_screen_get_monitor_geometry</code> has been deprecated since version 3.22 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="GdkMonitor.html#gdk-monitor-get-geometry" title="gdk_monitor_get_geometry ()"><code class="function">gdk_monitor_get_geometry()</code></a> instead</p>
 </div>
-<p>Retrieves the <span class="type">GdkRectangle</span> representing the size and position of
+<p>Retrieves the <a class="link" href="gdk3-Points-Rectangles-and-Regions.html#GdkRectangle" title="GdkRectangle"><span class="type">GdkRectangle</span></a> representing the size and position of
 the individual monitor within the entire screen area. The returned
 geometry is in ”application pixels”, not in ”device pixels” (see
 <a class="link" href="GdkScreen.html#gdk-screen-get-monitor-scale-factor" title="gdk_screen_get_monitor_scale_factor ()"><code class="function">gdk_screen_get_monitor_scale_factor()</code></a>).</p>
@@ -936,7 +936,7 @@ geometry is in ”application pixels”, not in ”device pixels” (see
 </tr>
 <tr>
 <td class="parameter_name"><p>dest</p></td>
-<td class="parameter_description"><p>a <span class="type">GdkRectangle</span> to be filled with
+<td class="parameter_description"><p>a <a class="link" href="gdk3-Points-Rectangles-and-Regions.html#GdkRectangle" title="GdkRectangle"><span class="type">GdkRectangle</span></a> to be filled with
 the monitor geometry. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
@@ -951,12 +951,12 @@ the monitor geometry. </p></td>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdk_screen_get_monitor_workarea (<em class="parameter"><code><a class="link" href="GdkScreen.html" title="GdkScreen"><span class="type">GdkScreen</span></a> *screen</code></em>,
                                  <em class="parameter"><code><span class="type">gint</span> monitor_num</code></em>,
-                                 <em class="parameter"><code><span class="type">GdkRectangle</span> *dest</code></em>);</pre>
+                                 <em class="parameter"><code><a class="link" href="gdk3-Points-Rectangles-and-Regions.html#GdkRectangle" title="GdkRectangle"><span class="type">GdkRectangle</span></a> *dest</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gdk_screen_get_monitor_workarea</code> has been deprecated since version 3.22 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="GdkMonitor.html#gdk-monitor-get-workarea" title="gdk_monitor_get_workarea ()"><code class="function">gdk_monitor_get_workarea()</code></a> instead</p>
 </div>
-<p>Retrieves the <span class="type">GdkRectangle</span> representing the size and position of
+<p>Retrieves the <a class="link" href="gdk3-Points-Rectangles-and-Regions.html#GdkRectangle" title="GdkRectangle"><span class="type">GdkRectangle</span></a> representing the size and position of
 the “work area” on a monitor within the entire screen area. The returned
 geometry is in ”application pixels”, not in ”device pixels” (see
 <a class="link" href="GdkScreen.html#gdk-screen-get-monitor-scale-factor" title="gdk_screen_get_monitor_scale_factor ()"><code class="function">gdk_screen_get_monitor_scale_factor()</code></a>).</p>
@@ -990,7 +990,7 @@ available, or does not apply.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>dest</p></td>
-<td class="parameter_description"><p>a <span class="type">GdkRectangle</span> to be filled with
+<td class="parameter_description"><p>a <a class="link" href="gdk3-Points-Rectangles-and-Regions.html#GdkRectangle" title="GdkRectangle"><span class="type">GdkRectangle</span></a> to be filled with
 the monitor workarea. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
@@ -1483,7 +1483,7 @@ or <code class="literal">NULL</code>. </p>
 <a name="gdk-screen-get-window-stack"></a><h3>gdk_screen_get_window_stack ()</h3>
 <pre class="programlisting"><span class="returnvalue">GList</span> *
 gdk_screen_get_window_stack (<em class="parameter"><code><a class="link" href="GdkScreen.html" title="GdkScreen"><span class="type">GdkScreen</span></a> *screen</code></em>);</pre>
-<p>Returns a <span class="type">GList</span> of <span class="type">GdkWindows</span> representing the current
+<p>Returns a <span class="type">GList</span> of <a href="gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindows</span></a> representing the current
 window stack.</p>
 <p>On X11, this is done by inspecting the _NET_CLIENT_LIST_STACKING
 property on the root window, as described in the
@@ -1513,10 +1513,17 @@ its windows unrefed using <code class="function">g_object_unref()</code> when no
 <div class="refsect3">
 <a name="gdk-screen-get-window-stack.returns"></a><h4>Returns</h4>
 <p>a
-list of <span class="type">GdkWindows</span> for the current window stack, or <code class="literal">NULL</code>. </p>
+list of <a href="gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindows</span></a> for the current window stack, or <code class="literal">NULL</code>. </p>
 <p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GdkWindow]</span></p>
 </div>
 <p class="since">Since: 2.10</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GdkScreen.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GdkScreen-struct"></a><h3>GdkScreen</h3>
+<pre class="programlisting">typedef struct _GdkScreen GdkScreen;</pre>
 </div>
 </div>
 <div class="refsect1">

@@ -265,11 +265,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name">GtkUIManager</td>
+<td class="function_name"><a class="link" href="GtkUIManager.html#GtkUIManager-struct" title="struct GtkUIManager">GtkUIManager</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name">GtkUIManagerItemType</td>
+<td class="function_name"><a class="link" href="GtkUIManager.html#GtkUIManagerItemType" title="enum GtkUIManagerItemType">GtkUIManagerItemType</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -902,7 +902,7 @@ or <code class="literal">NULL</code> if no widget was found. </p>
 <a name="gtk-ui-manager-get-toplevels"></a><h3>gtk_ui_manager_get_toplevels ()</h3>
 <pre class="programlisting"><span class="returnvalue">GSList</span> *
 gtk_ui_manager_get_toplevels (<em class="parameter"><code><a class="link" href="GtkUIManager.html" title="GtkUIManager"><span class="type">GtkUIManager</span></a> *manager</code></em>,
-                              <em class="parameter"><code><span class="type">GtkUIManagerItemType</span> types</code></em>);</pre>
+                              <em class="parameter"><code><a class="link" href="GtkUIManager.html#GtkUIManagerItemType" title="enum GtkUIManagerItemType"><span class="type">GtkUIManagerItemType</span></a> types</code></em>);</pre>
 <div class="warning"><p><code class="literal">gtk_ui_manager_get_toplevels</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p></div>
 <p>Obtains a list of all toplevel widgets of the requested types.</p>
 <div class="refsect3">
@@ -922,8 +922,8 @@ gtk_ui_manager_get_toplevels (<em class="parameter"><code><a class="link" href="
 <tr>
 <td class="parameter_name"><p>types</p></td>
 <td class="parameter_description"><p>specifies the types of toplevel widgets to include. Allowed
-types are <span class="type">GTK_UI_MANAGER_MENUBAR</span>, <span class="type">GTK_UI_MANAGER_TOOLBAR</span> and
-<span class="type">GTK_UI_MANAGER_POPUP</span>.</p></td>
+types are <a class="link" href="GtkUIManager.html#GTK-UI-MANAGER-MENUBAR:CAPS"><span class="type">GTK_UI_MANAGER_MENUBAR</span></a>, <a class="link" href="GtkUIManager.html#GTK-UI-MANAGER-TOOLBAR:CAPS"><span class="type">GTK_UI_MANAGER_TOOLBAR</span></a> and
+<a class="link" href="GtkUIManager.html#GTK-UI-MANAGER-POPUP:CAPS"><span class="type">GTK_UI_MANAGER_POPUP</span></a>.</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1161,13 +1161,13 @@ gtk_ui_manager_add_ui (<em class="parameter"><code><a class="link" href="GtkUIMa
                        <em class="parameter"><code>const <span class="type">gchar</span> *path</code></em>,
                        <em class="parameter"><code>const <span class="type">gchar</span> *name</code></em>,
                        <em class="parameter"><code>const <span class="type">gchar</span> *action</code></em>,
-                       <em class="parameter"><code><span class="type">GtkUIManagerItemType</span> type</code></em>,
+                       <em class="parameter"><code><a class="link" href="GtkUIManager.html#GtkUIManagerItemType" title="enum GtkUIManagerItemType"><span class="type">GtkUIManagerItemType</span></a> type</code></em>,
                        <em class="parameter"><code><span class="type">gboolean</span> top</code></em>);</pre>
 <div class="warning"><p><code class="literal">gtk_ui_manager_add_ui</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p></div>
 <p>Adds a UI element to the current contents of <em class="parameter"><code>manager</code></em>
 . </p>
 <p>If <em class="parameter"><code>type</code></em>
- is <code class="literal">GTK_UI_MANAGER_AUTO</code>, GTK+ inserts a menuitem, toolitem or 
+ is <a class="link" href="GtkUIManager.html#GTK-UI-MANAGER-AUTO:CAPS"><code class="literal">GTK_UI_MANAGER_AUTO</code></a>, GTK+ inserts a menuitem, toolitem or 
 separator if such an element can be inserted at the place determined by 
 <em class="parameter"><code>path</code></em>
 . Otherwise <em class="parameter"><code>type</code></em>
@@ -1342,6 +1342,110 @@ the main window before showing it:</p>
 </table></div>
 </div>
 <p class="since">Since: 2.4</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GtkUIManager.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkUIManager-struct"></a><h3>struct GtkUIManager</h3>
+<pre class="programlisting">struct GtkUIManager;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkUIManagerItemType"></a><h3>enum GtkUIManagerItemType</h3>
+<div class="warning"><p><code class="literal">GtkUIManagerItemType</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p></div>
+<p>These enumeration values are used by <a class="link" href="GtkUIManager.html#gtk-ui-manager-add-ui" title="gtk_ui_manager_add_ui ()"><code class="function">gtk_ui_manager_add_ui()</code></a> to determine
+what UI element to create.</p>
+<div class="refsect3">
+<a name="GtkUIManagerItemType.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-UI-MANAGER-AUTO:CAPS"></a>GTK_UI_MANAGER_AUTO</p></td>
+<td class="enum_member_description">
+<p>Pick the type of the UI element according to context.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-UI-MANAGER-MENUBAR:CAPS"></a>GTK_UI_MANAGER_MENUBAR</p></td>
+<td class="enum_member_description">
+<p>Create a menubar.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-UI-MANAGER-MENU:CAPS"></a>GTK_UI_MANAGER_MENU</p></td>
+<td class="enum_member_description">
+<p>Create a menu.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-UI-MANAGER-TOOLBAR:CAPS"></a>GTK_UI_MANAGER_TOOLBAR</p></td>
+<td class="enum_member_description">
+<p>Create a toolbar.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-UI-MANAGER-PLACEHOLDER:CAPS"></a>GTK_UI_MANAGER_PLACEHOLDER</p></td>
+<td class="enum_member_description">
+<p>Insert a placeholder.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-UI-MANAGER-POPUP:CAPS"></a>GTK_UI_MANAGER_POPUP</p></td>
+<td class="enum_member_description">
+<p>Create a popup menu.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-UI-MANAGER-MENUITEM:CAPS"></a>GTK_UI_MANAGER_MENUITEM</p></td>
+<td class="enum_member_description">
+<p>Create a menuitem.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-UI-MANAGER-TOOLITEM:CAPS"></a>GTK_UI_MANAGER_TOOLITEM</p></td>
+<td class="enum_member_description">
+<p>Create a toolitem.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-UI-MANAGER-SEPARATOR:CAPS"></a>GTK_UI_MANAGER_SEPARATOR</p></td>
+<td class="enum_member_description">
+<p>Create a separator.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-UI-MANAGER-ACCELERATOR:CAPS"></a>GTK_UI_MANAGER_ACCELERATOR</p></td>
+<td class="enum_member_description">
+<p>Install an accelerator.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-UI-MANAGER-POPUP-WITH-ACCELS:CAPS"></a>GTK_UI_MANAGER_POPUP_WITH_ACCELS</p></td>
+<td class="enum_member_description">
+<p>Same as <a class="link" href="GtkUIManager.html#GTK-UI-MANAGER-POPUP:CAPS"><code class="literal">GTK_UI_MANAGER_POPUP</code></a>, but the
+actions’ accelerators are shown.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
 </div>
 </div>
 <div class="refsect1">

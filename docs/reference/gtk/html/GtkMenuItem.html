@@ -270,7 +270,7 @@
 <td class="property_flags">Read</td>
 </tr>
 <tr>
-<td class="property_type"><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkShadowType"><span class="type">GtkShadowType</span></a></td>
+<td class="property_type"><a class="link" href="gtk3-Standard-Enumerations.html#GtkShadowType" title="enum GtkShadowType"><span class="type">GtkShadowType</span></a></td>
 <td class="property_name"><a class="link" href="GtkMenuItem.html#GtkMenuItem--s-selected-shadow-type" title="The “selected-shadow-type” style property">selected-shadow-type</a></td>
 <td class="property_flags">Read</td>
 </tr>
@@ -339,11 +339,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkMenuItem.html#GtkMenuItem-struct">GtkMenuItem</a></td>
+<td class="function_name"><a class="link" href="GtkMenuItem.html#GtkMenuItem-struct" title="struct GtkMenuItem">GtkMenuItem</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkMenuItem.html#GtkMenuItemClass">GtkMenuItemClass</a></td>
+<td class="function_name"><a class="link" href="GtkMenuItem.html#GtkMenuItemClass" title="struct GtkMenuItemClass">GtkMenuItemClass</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -1055,6 +1055,104 @@ this functions.</p>
 </div>
 </div>
 <div class="refsect1">
+<a name="GtkMenuItem.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkMenuItem-struct"></a><h3>struct GtkMenuItem</h3>
+<pre class="programlisting">struct GtkMenuItem;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkMenuItemClass"></a><h3>struct GtkMenuItemClass</h3>
+<pre class="programlisting">struct GtkMenuItemClass {
+  GtkBinClass parent_class;
+
+  /* If the following flag is true, then we should always
+   * hide the menu when the MenuItem is activated. Otherwise,
+   * it is up to the caller. For instance, when navigating
+   * a menu with the keyboard, &lt;Space&gt; doesn't hide, but
+   * &lt;Return&gt; does.
+   */
+  guint hide_on_activate : 1;
+
+  void (* activate)             (GtkMenuItem *menu_item);
+  void (* activate_item)        (GtkMenuItem *menu_item);
+  void (* toggle_size_request)  (GtkMenuItem *menu_item,
+                                 gint        *requisition);
+  void (* toggle_size_allocate) (GtkMenuItem *menu_item,
+                                 gint         allocation);
+  void (* set_label)            (GtkMenuItem *menu_item,
+                                 const gchar *label);
+  const gchar * (* get_label)   (GtkMenuItem *menu_item);
+
+  void (* select)               (GtkMenuItem *menu_item);
+  void (* deselect)             (GtkMenuItem *menu_item);
+};
+</pre>
+<div class="refsect3">
+<a name="GtkMenuItemClass.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="struct_members_name">
+<col class="struct_members_description">
+<col width="200px" class="struct_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="struct_member_name"><p><span class="type">guint</span> <em class="structfield"><code><a name="GtkMenuItemClass.hide-on-activate"></a>hide_on_activate</code></em> : 1;</p></td>
+<td class="struct_member_description"><p>If <code class="literal">TRUE</code>, then we should always
+hide the menu when the <a class="link" href="GtkMenuItem.html" title="GtkMenuItem"><code class="literal">GtkMenuItem</code></a> is activated. Otherwise,
+it is up to the caller.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkMenuItemClass.activate"></a>activate</code></em> ()</p></td>
+<td class="struct_member_description"><p>Signal emitted when the item is activated.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkMenuItemClass.activate-item"></a>activate_item</code></em> ()</p></td>
+<td class="struct_member_description"><p>Signal emitted when the item is activated, but also
+if the menu item has a submenu.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkMenuItemClass.toggle-size-request"></a>toggle_size_request</code></em> ()</p></td>
+<td class="struct_member_description"> </td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkMenuItemClass.toggle-size-allocate"></a>toggle_size_allocate</code></em> ()</p></td>
+<td class="struct_member_description"> </td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkMenuItemClass.set-label"></a>set_label</code></em> ()</p></td>
+<td class="struct_member_description"><p>Sets <em class="parameter"><code>text</code></em>
+on the <a class="link" href="GtkMenuItem.html" title="GtkMenuItem"><span class="type">GtkMenuItem</span></a> label</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkMenuItemClass.get-label"></a>get_label</code></em> ()</p></td>
+<td class="struct_member_description"><p>Gets <em class="parameter"><code>text</code></em>
+from the <a class="link" href="GtkMenuItem.html" title="GtkMenuItem"><span class="type">GtkMenuItem</span></a> label</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkMenuItemClass.select"></a>select</code></em> ()</p></td>
+<td class="struct_member_description"><p>Signal emitted when the item is selected.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkMenuItemClass.deselect"></a>deselect</code></em> ()</p></td>
+<td class="struct_member_description"><p>Signal emitted when the item is deselected.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="refsect1">
 <a name="GtkMenuItem.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkMenuItem--accel-path"></a><h3>The <code class="literal">“accel-path”</code> property</h3>
@@ -1159,7 +1257,7 @@ size.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkMenuItem--s-selected-shadow-type"></a><h3>The <code class="literal">“selected-shadow-type”</code> style property</h3>
-<pre class="programlisting">  “selected-shadow-type”     <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkShadowType"><span class="type">GtkShadowType</span></a></pre>
+<pre class="programlisting">  “selected-shadow-type”     <a class="link" href="gtk3-Standard-Enumerations.html#GtkShadowType" title="enum GtkShadowType"><span class="type">GtkShadowType</span></a></pre>
 <p>The shadow type when the item is selected.</p>
 <div class="warning">
 <p><code class="literal">GtkMenuItem:selected-shadow-type</code> has been deprecated since version 3.20 and should not be used in newly-written code.</p>

@@ -110,7 +110,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/gtk4/GtkCalendar.html#GtkCalendarDisplayOptions"><span class="returnvalue">GtkCalendarDisplayOptions</span></a>
+<a class="link" href="GtkCalendar.html#GtkCalendarDisplayOptions" title="enum GtkCalendarDisplayOptions"><span class="returnvalue">GtkCalendarDisplayOptions</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GtkCalendar.html#gtk-calendar-get-display-options" title="gtk_calendar_get_display_options ()">gtk_calendar_get_display_options</a> <span class="c_punctuation">()</span>
@@ -321,11 +321,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkCalendar.html#GtkCalendar-struct">GtkCalendar</a></td>
+<td class="function_name"><a class="link" href="GtkCalendar.html#GtkCalendar-struct" title="struct GtkCalendar">GtkCalendar</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkCalendar.html#GtkCalendarDisplayOptions">GtkCalendarDisplayOptions</a></td>
+<td class="function_name"><a class="link" href="GtkCalendar.html#GtkCalendarDisplayOptions" title="enum GtkCalendarDisplayOptions">GtkCalendarDisplayOptions</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -627,7 +627,7 @@ gtk_calendar_clear_marks (<em class="parameter"><code><a class="link" href="GtkC
 <hr>
 <div class="refsect2">
 <a name="gtk-calendar-get-display-options"></a><h3>gtk_calendar_get_display_options ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/gtk4/GtkCalendar.html#GtkCalendarDisplayOptions"><span class="returnvalue">GtkCalendarDisplayOptions</span></a>
+<pre class="programlisting"><a class="link" href="GtkCalendar.html#GtkCalendarDisplayOptions" title="enum GtkCalendarDisplayOptions"><span class="returnvalue">GtkCalendarDisplayOptions</span></a>
 gtk_calendar_get_display_options (<em class="parameter"><code><a class="link" href="GtkCalendar.html" title="GtkCalendar"><span class="type">GtkCalendar</span></a> *calendar</code></em>);</pre>
 <p>Returns the current display options of <em class="parameter"><code>calendar</code></em>
 .</p>
@@ -657,7 +657,7 @@ gtk_calendar_get_display_options (<em class="parameter"><code><a class="link" hr
 <a name="gtk-calendar-set-display-options"></a><h3>gtk_calendar_set_display_options ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_calendar_set_display_options (<em class="parameter"><code><a class="link" href="GtkCalendar.html" title="GtkCalendar"><span class="type">GtkCalendar</span></a> *calendar</code></em>,
-                                  <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkCalendar.html#GtkCalendarDisplayOptions"><span class="type">GtkCalendarDisplayOptions</span></a> flags</code></em>);</pre>
+                                  <em class="parameter"><code><a class="link" href="GtkCalendar.html#GtkCalendarDisplayOptions" title="enum GtkCalendarDisplayOptions"><span class="type">GtkCalendarDisplayOptions</span></a> flags</code></em>);</pre>
 <p>Sets display options (whether to display the heading and the month
 headings).</p>
 <div class="refsect3">
@@ -901,6 +901,67 @@ See <a class="link" href="GtkCalendar.html#GtkCalendar--detail-height-rows" titl
 </table></div>
 </div>
 <p class="since">Since: 2.14</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GtkCalendar.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkCalendar-struct"></a><h3>struct GtkCalendar</h3>
+<pre class="programlisting">struct GtkCalendar;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkCalendarDisplayOptions"></a><h3>enum GtkCalendarDisplayOptions</h3>
+<p>These options can be used to influence the display and behaviour of a <a class="link" href="GtkCalendar.html" title="GtkCalendar"><span class="type">GtkCalendar</span></a>.</p>
+<div class="refsect3">
+<a name="GtkCalendarDisplayOptions.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-CALENDAR-SHOW-HEADING:CAPS"></a>GTK_CALENDAR_SHOW_HEADING</p></td>
+<td class="enum_member_description">
+<p>Specifies that the month and year should be displayed.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-CALENDAR-SHOW-DAY-NAMES:CAPS"></a>GTK_CALENDAR_SHOW_DAY_NAMES</p></td>
+<td class="enum_member_description">
+<p>Specifies that three letter day descriptions should be present.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-CALENDAR-NO-MONTH-CHANGE:CAPS"></a>GTK_CALENDAR_NO_MONTH_CHANGE</p></td>
+<td class="enum_member_description">
+<p>Prevents the user from switching months with the calendar.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-CALENDAR-SHOW-WEEK-NUMBERS:CAPS"></a>GTK_CALENDAR_SHOW_WEEK_NUMBERS</p></td>
+<td class="enum_member_description">
+<p>Displays each week numbers of the current year, down the
+left side of the calendar.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-CALENDAR-SHOW-DETAILS:CAPS"></a>GTK_CALENDAR_SHOW_DETAILS</p></td>
+<td class="enum_member_description">
+<p>Just show an indicator, not the full details
+text when details are provided. See <a class="link" href="GtkCalendar.html#gtk-calendar-set-detail-func" title="gtk_calendar_set_detail_func ()"><code class="function">gtk_calendar_set_detail_func()</code></a>.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
 </div>
 </div>
 <div class="refsect1">

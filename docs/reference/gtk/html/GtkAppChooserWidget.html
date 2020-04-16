@@ -229,11 +229,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkAppChooserWidget.html#GtkAppChooserWidget-struct">GtkAppChooserWidget</a></td>
+<td class="function_name"><a class="link" href="GtkAppChooserWidget.html#GtkAppChooserWidget-struct" title="struct GtkAppChooserWidget">GtkAppChooserWidget</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name">GtkAppChooserWidgetClass</td>
+<td class="function_name"><a class="link" href="GtkAppChooserWidget.html#GtkAppChooserWidgetClass" title="struct GtkAppChooserWidgetClass">GtkAppChooserWidgetClass</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -676,6 +676,61 @@ that can handle the content type.</p>
 <p> the value of <a class="link" href="GtkAppChooserWidget.html#GtkAppChooserWidget--default-text" title="The “default-text” property"><span class="type">“default-text”</span></a></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GtkAppChooserWidget.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkAppChooserWidget-struct"></a><h3>struct GtkAppChooserWidget</h3>
+<pre class="programlisting">struct GtkAppChooserWidget;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkAppChooserWidgetClass"></a><h3>struct GtkAppChooserWidgetClass</h3>
+<pre class="programlisting">struct GtkAppChooserWidgetClass {
+  GtkBoxClass parent_class;
+
+  void (* application_selected)  (GtkAppChooserWidget *self,
+                                  GAppInfo            *app_info);
+
+  void (* application_activated) (GtkAppChooserWidget *self,
+                                  GAppInfo            *app_info);
+
+  void (* populate_popup)        (GtkAppChooserWidget *self,
+                                  GtkMenu             *menu,
+                                  GAppInfo            *app_info);
+};
+</pre>
+<div class="refsect3">
+<a name="GtkAppChooserWidgetClass.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="struct_members_name">
+<col class="struct_members_description">
+<col width="200px" class="struct_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkAppChooserWidgetClass.application-selected"></a>application_selected</code></em> ()</p></td>
+<td class="struct_member_description"><p>Signal emitted when an application item is
+selected from the widget’s list.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkAppChooserWidgetClass.application-activated"></a>application_activated</code></em> ()</p></td>
+<td class="struct_member_description"><p>Signal emitted when an application item is
+activated from the widget’s list.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkAppChooserWidgetClass.populate-popup"></a>populate_popup</code></em> ()</p></td>
+<td class="struct_member_description"><p>Signal emitted when a context menu is about to
+popup over an application item.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
 </div>
 </div>
 <div class="refsect1">

@@ -134,11 +134,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkBuildable.html#GtkBuildable-struct">GtkBuildable</a></td>
+<td class="function_name"><a class="link" href="GtkBuildable.html#GtkBuildable-struct" title="GtkBuildable">GtkBuildable</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkBuildable.html#GtkBuildableIface">GtkBuildableIface</a></td>
+<td class="function_name"><a class="link" href="GtkBuildable.html#GtkBuildableIface" title="struct GtkBuildableIface">GtkBuildableIface</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -622,6 +622,167 @@ gtk_buildable_get_internal_child (<em class="parameter"><code><a class="link" hr
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.12</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GtkBuildable.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkBuildable-struct"></a><h3>GtkBuildable</h3>
+<pre class="programlisting">typedef struct _GtkBuildable GtkBuildable;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkBuildableIface"></a><h3>struct GtkBuildableIface</h3>
+<pre class="programlisting">struct GtkBuildableIface {
+  GTypeInterface g_iface;
+
+  /* virtual table */
+  void          (* set_name)               (GtkBuildable  *buildable,
+                                            const gchar   *name);
+  const gchar * (* get_name)               (GtkBuildable  *buildable);
+  void          (* add_child)              (GtkBuildable  *buildable,
+					    GtkBuilder    *builder,
+					    GObject       *child,
+					    const gchar   *type);
+  void          (* set_buildable_property) (GtkBuildable  *buildable,
+					    GtkBuilder    *builder,
+					    const gchar   *name,
+					    const GValue  *value);
+  GObject *     (* construct_child)        (GtkBuildable  *buildable,
+					    GtkBuilder    *builder,
+					    const gchar   *name);
+  gboolean      (* custom_tag_start)       (GtkBuildable  *buildable,
+					    GtkBuilder    *builder,
+					    GObject       *child,
+					    const gchar   *tagname,
+					    GMarkupParser *parser,
+					    gpointer      *data);
+  void          (* custom_tag_end)         (GtkBuildable  *buildable,
+					    GtkBuilder    *builder,
+					    GObject       *child,
+					    const gchar   *tagname,
+					    gpointer      *data);
+  void          (* custom_finished)        (GtkBuildable  *buildable,
+					    GtkBuilder    *builder,
+					    GObject       *child,
+					    const gchar   *tagname,
+					    gpointer       data);
+  void          (* parser_finished)        (GtkBuildable  *buildable,
+					    GtkBuilder    *builder);
+
+  GObject *     (* get_internal_child)     (GtkBuildable  *buildable,
+					    GtkBuilder    *builder,
+					    const gchar   *childname);
+};
+</pre>
+<p>The <a class="link" href="GtkBuildable.html#GtkBuildableIface" title="struct GtkBuildableIface"><span class="type">GtkBuildableIface</span></a> interface contains method that are
+necessary to allow <a class="link" href="GtkBuilder.html" title="GtkBuilder"><span class="type">GtkBuilder</span></a> to construct an object from
+a <a class="link" href="GtkBuilder.html" title="GtkBuilder"><span class="type">GtkBuilder</span></a> UI definition.</p>
+<div class="refsect3">
+<a name="GtkBuildableIface.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="struct_members_name">
+<col class="struct_members_description">
+<col width="200px" class="struct_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkBuildableIface.set-name"></a>set_name</code></em> ()</p></td>
+<td class="struct_member_description"><p>Stores the name attribute given in the GtkBuilder UI definition.
+<a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> stores the name as object data. Implement this method if your
+object has some notion of “name” and it makes sense to map the XML name
+attribute to it.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkBuildableIface.get-name"></a>get_name</code></em> ()</p></td>
+<td class="struct_member_description"><p>The getter corresponding to <em class="parameter"><code>set_name</code></em>
+. Implement this
+if you implement <em class="parameter"><code>set_name</code></em>
+.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkBuildableIface.add-child"></a>add_child</code></em> ()</p></td>
+<td class="struct_member_description"><p>Adds a child. The <em class="parameter"><code>type</code></em>
+parameter can be used to
+differentiate the kind of child. <a class="link" href="GtkContainer.html" title="GtkContainer"><span class="type">GtkContainer</span></a> implements this
+to add add a child widget to the container, <a class="link" href="GtkNotebook.html" title="GtkNotebook"><span class="type">GtkNotebook</span></a> uses
+the <em class="parameter"><code>type</code></em>
+to distinguish between page labels (of type "page-label")
+and normal children.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkBuildableIface.set-buildable-property"></a>set_buildable_property</code></em> ()</p></td>
+<td class="struct_member_description"><p>Sets a property of a buildable object.
+It is normally not necessary to implement this, <code class="function">g_object_set_property()</code>
+is used by default. <a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> implements this to delay showing itself
+(i.e. setting the <a class="link" href="GtkWidget.html#GtkWidget--visible" title="The “visible” property"><span class="type">“visible”</span></a> property) until the whole interface
+is created.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkBuildableIface.construct-child"></a>construct_child</code></em> ()</p></td>
+<td class="struct_member_description"><p>Constructs a child of a buildable that has been
+specified as “constructor” in the UI definition. <a class="link" href="GtkUIManager.html" title="GtkUIManager"><span class="type">GtkUIManager</span></a> implements
+this to reference to a widget created in a &lt;ui&gt; tag which is outside
+of the normal GtkBuilder UI definition hierarchy.  A reference to the
+constructed object is returned and becomes owned by the caller.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkBuildableIface.custom-tag-start"></a>custom_tag_start</code></em> ()</p></td>
+<td class="struct_member_description"><p>Implement this if the buildable needs to parse
+content below &lt;child&gt;. To handle an element, the implementation
+must fill in the <em class="parameter"><code>parser</code></em>
+and <em class="parameter"><code>user_data</code></em>
+and return <code class="literal">TRUE</code>.
+<a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> implements this to parse keyboard accelerators specified
+in &lt;accelerator&gt; elements. <a class="link" href="GtkContainer.html" title="GtkContainer"><span class="type">GtkContainer</span></a> implements it to map
+properties defined via &lt;packing&gt; elements to child properties.
+Note that <em class="parameter"><code>user_data</code></em>
+must be freed in <em class="parameter"><code>custom_tag_end</code></em>
+or <em class="parameter"><code>custom_finished</code></em>
+.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkBuildableIface.custom-tag-end"></a>custom_tag_end</code></em> ()</p></td>
+<td class="struct_member_description"><p>Called for the end tag of each custom element that is
+handled by the buildable (see <em class="parameter"><code>custom_tag_start</code></em>
+).</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkBuildableIface.custom-finished"></a>custom_finished</code></em> ()</p></td>
+<td class="struct_member_description"><p>Called for each custom tag handled by the buildable
+when the builder finishes parsing (see <em class="parameter"><code>custom_tag_start</code></em>
+)</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkBuildableIface.parser-finished"></a>parser_finished</code></em> ()</p></td>
+<td class="struct_member_description"><p>Called when a builder finishes the parsing
+of a UI definition. It is normally not necessary to implement this,
+unless you need to perform special cleanup actions. <a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> sets
+the <a class="link" href="GtkWidget.html#GtkWidget--visible" title="The “visible” property"><span class="type">“visible”</span></a> property here.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkBuildableIface.get-internal-child"></a>get_internal_child</code></em> ()</p></td>
+<td class="struct_member_description"><p>Returns an internal child of a buildable.
+<a class="link" href="GtkDialog.html" title="GtkDialog"><span class="type">GtkDialog</span></a> implements this to give access to its <em class="parameter"><code>vbox</code></em>
+, making
+it possible to add children to the vbox in a UI definition.
+Implement this if the buildable has internal children that may
+need to be accessed from a UI definition.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
 </div>
 </div>
 </div>

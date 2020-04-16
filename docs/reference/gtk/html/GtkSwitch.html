@@ -163,11 +163,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkSwitch.html#GtkSwitch-struct">GtkSwitch</a></td>
+<td class="function_name"><a class="link" href="GtkSwitch.html#GtkSwitch-struct" title="struct GtkSwitch">GtkSwitch</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name">GtkSwitchClass</td>
+<td class="function_name"><a class="link" href="GtkSwitch.html#GtkSwitchClass" title="struct GtkSwitchClass">GtkSwitchClass</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -352,6 +352,49 @@ gtk_switch_get_state (<em class="parameter"><code><a class="link" href="GtkSwitc
 <p> the underlying state</p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-14.html#api-index-3.14">3.14</a></p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GtkSwitch.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkSwitch-struct"></a><h3>struct GtkSwitch</h3>
+<pre class="programlisting">struct GtkSwitch;</pre>
+<p>The <a class="link" href="GtkSwitch.html#GtkSwitch-struct" title="struct GtkSwitch"><span class="type">GtkSwitch</span></a> contains private
+data and it should only be accessed using the provided API.</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkSwitchClass"></a><h3>struct GtkSwitchClass</h3>
+<pre class="programlisting">struct GtkSwitchClass {
+  GtkWidgetClass parent_class;
+
+  void (* activate) (GtkSwitch *sw);
+
+  gboolean (* state_set) (GtkSwitch *sw, gboolean state);
+};
+</pre>
+<div class="refsect3">
+<a name="GtkSwitchClass.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="struct_members_name">
+<col class="struct_members_description">
+<col width="200px" class="struct_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkSwitchClass.activate"></a>activate</code></em> ()</p></td>
+<td class="struct_member_description"><p>An action signal and emitting it causes the switch to animate.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkSwitchClass.state-set"></a>state_set</code></em> ()</p></td>
+<td class="struct_member_description"><p>Class handler for the ::state-set signal.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
 </div>
 </div>
 <div class="refsect1">

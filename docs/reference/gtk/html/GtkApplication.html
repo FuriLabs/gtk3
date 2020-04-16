@@ -291,15 +291,15 @@
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkApplication.html#GtkApplication-struct">GtkApplication</a></td>
+<td class="function_name"><a class="link" href="GtkApplication.html#GtkApplication-struct" title="struct GtkApplication">GtkApplication</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkApplication.html#GtkApplicationClass">GtkApplicationClass</a></td>
+<td class="function_name"><a class="link" href="GtkApplication.html#GtkApplicationClass" title="struct GtkApplicationClass">GtkApplicationClass</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkApplication.html#GtkApplicationInhibitFlags">GtkApplicationInhibitFlags</a></td>
+<td class="function_name"><a class="link" href="GtkApplication.html#GtkApplicationInhibitFlags" title="enum GtkApplicationInhibitFlags">GtkApplicationInhibitFlags</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -332,7 +332,7 @@ uniqueness, session management, provides some basic scriptability and
 desktop shell integration by exporting actions and menus and manages a
 list of toplevel windows whose life-cycle is automatically tied to the
 life-cycle of your application.</p>
-<p>While GtkApplication works fine with plain <a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindows</span></a>, it is recommended
+<p>While GtkApplication works fine with plain <a href="GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindows</span></a>, it is recommended
 to use it together with <a class="link" href="GtkApplicationWindow.html" title="GtkApplicationWindow"><span class="type">GtkApplicationWindow</span></a>.</p>
 <p>When GDK threads are enabled, GtkApplication will acquire the GDK
 lock when invoking actions that arrive from other processes.  The GDK
@@ -538,7 +538,7 @@ function.</p>
 <a name="gtk-application-get-windows"></a><h3>gtk_application_get_windows ()</h3>
 <pre class="programlisting"><span class="returnvalue">GList</span> *
 gtk_application_get_windows (<em class="parameter"><code><a class="link" href="GtkApplication.html" title="GtkApplication"><span class="type">GtkApplication</span></a> *application</code></em>);</pre>
-<p>Gets a list of the <a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindows</span></a> associated with <em class="parameter"><code>application</code></em>
+<p>Gets a list of the <a href="GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindows</span></a> associated with <em class="parameter"><code>application</code></em>
 .</p>
 <p>The list is sorted by most recently focused window, such that the first
 element is the currently focused window. (Useful for choosing a parent
@@ -647,7 +647,7 @@ there isn't one. </p>
 <pre class="programlisting"><span class="returnvalue">guint</span>
 gtk_application_inhibit (<em class="parameter"><code><a class="link" href="GtkApplication.html" title="GtkApplication"><span class="type">GtkApplication</span></a> *application</code></em>,
                          <em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *window</code></em>,
-                         <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkApplication.html#GtkApplicationInhibitFlags"><span class="type">GtkApplicationInhibitFlags</span></a> flags</code></em>,
+                         <em class="parameter"><code><a class="link" href="GtkApplication.html#GtkApplicationInhibitFlags" title="enum GtkApplicationInhibitFlags"><span class="type">GtkApplicationInhibitFlags</span></a> flags</code></em>,
                          <em class="parameter"><code>const <span class="type">gchar</span> *reason</code></em>);</pre>
 <p>Inform the session manager that certain types of actions should be
 inhibited. This is not guaranteed to work on all platforms and for
@@ -747,7 +747,7 @@ Inhibitors are also cleared when the application exits.</p>
 <a name="gtk-application-is-inhibited"></a><h3>gtk_application_is_inhibited ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_application_is_inhibited (<em class="parameter"><code><a class="link" href="GtkApplication.html" title="GtkApplication"><span class="type">GtkApplication</span></a> *application</code></em>,
-                              <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkApplication.html#GtkApplicationInhibitFlags"><span class="type">GtkApplicationInhibitFlags</span></a> flags</code></em>);</pre>
+                              <em class="parameter"><code><a class="link" href="GtkApplication.html#GtkApplicationInhibitFlags" title="enum GtkApplicationInhibitFlags"><span class="type">GtkApplicationInhibitFlags</span></a> flags</code></em>);</pre>
 <p>Determines if any of the actions specified in <em class="parameter"><code>flags</code></em>
  are
 currently inhibited (possibly by another application).</p>
@@ -1300,6 +1300,100 @@ If you are unsure, check it with <a class="link" href="gtk3-Keyboard-Accelerator
 </div>
 </div>
 <div class="refsect1">
+<a name="GtkApplication.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkApplication-struct"></a><h3>struct GtkApplication</h3>
+<pre class="programlisting">struct GtkApplication;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkApplicationClass"></a><h3>struct GtkApplicationClass</h3>
+<pre class="programlisting">struct GtkApplicationClass {
+  GApplicationClass parent_class;
+
+  void (*window_added)   (GtkApplication *application,
+                          GtkWindow      *window);
+  void (*window_removed) (GtkApplication *application,
+                          GtkWindow      *window);
+};
+</pre>
+<div class="refsect3">
+<a name="GtkApplicationClass.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="struct_members_name">
+<col class="struct_members_description">
+<col width="200px" class="struct_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkApplicationClass.window-added"></a>window_added</code></em> ()</p></td>
+<td class="struct_member_description"><p>Signal emitted when a <a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> is added to
+application through <a class="link" href="GtkApplication.html#gtk-application-add-window" title="gtk_application_add_window ()"><code class="function">gtk_application_add_window()</code></a>.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkApplicationClass.window-removed"></a>window_removed</code></em> ()</p></td>
+<td class="struct_member_description"><p>Signal emitted when a <a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> is removed from
+application, either as a side-effect of being destroyed or
+explicitly through <a class="link" href="GtkApplication.html#gtk-application-remove-window" title="gtk_application_remove_window ()"><code class="function">gtk_application_remove_window()</code></a>.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkApplicationInhibitFlags"></a><h3>enum GtkApplicationInhibitFlags</h3>
+<p>Types of user actions that may be blocked by <a class="link" href="GtkApplication.html#gtk-application-inhibit" title="gtk_application_inhibit ()"><code class="function">gtk_application_inhibit()</code></a>.</p>
+<div class="refsect3">
+<a name="GtkApplicationInhibitFlags.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-APPLICATION-INHIBIT-LOGOUT:CAPS"></a>GTK_APPLICATION_INHIBIT_LOGOUT</p></td>
+<td class="enum_member_description">
+<p>Inhibit ending the user session
+by logging out or by shutting down the computer</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-APPLICATION-INHIBIT-SWITCH:CAPS"></a>GTK_APPLICATION_INHIBIT_SWITCH</p></td>
+<td class="enum_member_description">
+<p>Inhibit user switching</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-APPLICATION-INHIBIT-SUSPEND:CAPS"></a>GTK_APPLICATION_INHIBIT_SUSPEND</p></td>
+<td class="enum_member_description">
+<p>Inhibit suspending the
+session or computer</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-APPLICATION-INHIBIT-IDLE:CAPS"></a>GTK_APPLICATION_INHIBIT_IDLE</p></td>
+<td class="enum_member_description">
+<p>Inhibit the session being
+marked as idle (and possibly locked)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-3-4.html#api-index-3.4">3.4</a></p>
+</div>
+</div>
+<div class="refsect1">
 <a name="GtkApplication.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkApplication--active-window"></a><h3>The <code class="literal">“active-window”</code> property</h3>
@@ -1358,7 +1452,7 @@ user_function (<a class="link" href="GtkApplication.html" title="GtkApplication"
 <p>Emitted when the session manager is about to end the session, only
 if <span class="type">“register-session”</span> is <code class="literal">TRUE</code>. Applications can
 connect to this signal and call <a class="link" href="GtkApplication.html#gtk-application-inhibit" title="gtk_application_inhibit ()"><code class="function">gtk_application_inhibit()</code></a> with
-<a href="https://developer.gnome.org/gtk4/GtkApplication.html#GTK-APPLICATION-INHIBIT-LOGOUT:CAPS"><code class="literal">GTK_APPLICATION_INHIBIT_LOGOUT</code></a> to delay the end of the session
+<a class="link" href="GtkApplication.html#GTK-APPLICATION-INHIBIT-LOGOUT:CAPS"><code class="literal">GTK_APPLICATION_INHIBIT_LOGOUT</code></a> to delay the end of the session
 until state has been saved.</p>
 <div class="refsect3">
 <a name="GtkApplication-query-end.parameters"></a><h4>Parameters</h4>

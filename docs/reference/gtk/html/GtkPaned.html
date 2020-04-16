@@ -269,7 +269,7 @@
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkPaned.html#GtkPaned-struct">GtkPaned</a></td>
+<td class="function_name"><a class="link" href="GtkPaned.html#GtkPaned-struct" title="struct GtkPaned">GtkPaned</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -310,7 +310,7 @@ user.</p>
 small handle that the user can drag to adjust the division. It does not
 draw any relief around the children or around the separator. (The space
 in which the separator is called the gutter.) Often, it is useful to put
-each child inside a <a class="link" href="GtkFrame.html" title="GtkFrame"><span class="type">GtkFrame</span></a> with the shadow type set to <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GTK-SHADOW-IN:CAPS"><code class="literal">GTK_SHADOW_IN</code></a>
+each child inside a <a class="link" href="GtkFrame.html" title="GtkFrame"><span class="type">GtkFrame</span></a> with the shadow type set to <a class="link" href="gtk3-Standard-Enumerations.html#GTK-SHADOW-IN:CAPS"><code class="literal">GTK_SHADOW_IN</code></a>
 so that the gutter appears as a ridge. No separator is drawn if one of
 the children is missing.</p>
 <p>Each child has two options that can be set, <em class="parameter"><code>resize</code></em>
@@ -401,7 +401,7 @@ regardless of text direction.</p>
 <div class="refsect2">
 <a name="gtk-paned-new"></a><h3>gtk_paned_new ()</h3>
 <pre class="programlisting"><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="returnvalue">GtkWidget</span></a> *
-gtk_paned_new (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkOrientation"><span class="type">GtkOrientation</span></a> orientation</code></em>);</pre>
+gtk_paned_new (<em class="parameter"><code><a class="link" href="gtk3-Standard-Enumerations.html#GtkOrientation" title="enum GtkOrientation"><span class="type">GtkOrientation</span></a> orientation</code></em>);</pre>
 <p>Creates a new <a class="link" href="GtkPaned.html" title="GtkPaned"><span class="type">GtkPaned</span></a> widget.</p>
 <div class="refsect3">
 <a name="gtk-paned-new.parameters"></a><h4>Parameters</h4>
@@ -776,6 +776,13 @@ gtk_paned_get_wide_handle (<em class="parameter"><code><a class="link" href="Gtk
 </div>
 </div>
 <div class="refsect1">
+<a name="GtkPaned.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkPaned-struct"></a><h3>struct GtkPaned</h3>
+<pre class="programlisting">struct GtkPaned;</pre>
+</div>
+</div>
+<div class="refsect1">
 <a name="GtkPaned.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkPaned--max-position"></a><h3>The <code class="literal">“max-position”</code> property</h3>
@@ -879,7 +886,7 @@ user_function (<a class="link" href="GtkPaned.html" title="GtkPaned"><span class
                <span class="type">gpointer</span>  user_data)</pre>
 <p>The ::accept-position signal is a
 
-keybinding signal
+<a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
 which gets emitted to accept the current position of the handle when
 
 moving it using key bindings.</p>
@@ -917,7 +924,7 @@ user_function (<a class="link" href="GtkPaned.html" title="GtkPaned"><span class
                <span class="type">gpointer</span>  user_data)</pre>
 <p>The ::cancel-position signal is a
 
-keybinding signal
+<a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
 which gets emitted to cancel moving the position of the handle using key
 
 bindings. The position of the handle will be reset to the value prior to
@@ -958,7 +965,7 @@ user_function (<a class="link" href="GtkPaned.html" title="GtkPaned"><span class
                <span class="type">gpointer</span>  user_data)</pre>
 <p>The ::cycle-child-focus signal is a
 
-keybinding signal
+<a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
 which gets emitted to cycle the focus between the children of the paned.</p>
 <p>The default binding is f6.</p>
 <div class="refsect3">
@@ -1000,7 +1007,7 @@ user_function (<a class="link" href="GtkPaned.html" title="GtkPaned"><span class
                <span class="type">gpointer</span>  user_data)</pre>
 <p>The ::cycle-handle-focus signal is a
 
-keybinding signal
+<a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
 which gets emitted to cycle whether the paned should grab focus to allow
 the user to change position of the handle by using key bindings.</p>
 <p>The default binding for this signal is f8.</p>
@@ -1039,11 +1046,11 @@ the user to change position of the handle by using key bindings.</p>
 <a name="GtkPaned-move-handle"></a><h3>The <code class="literal">“move-handle”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 user_function (<a class="link" href="GtkPaned.html" title="GtkPaned"><span class="type">GtkPaned</span></a>     *widget,
-               <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkScrollType"><span class="type">GtkScrollType</span></a> scroll_type,
+               <a class="link" href="gtk3-Standard-Enumerations.html#GtkScrollType" title="enum GtkScrollType"><span class="type">GtkScrollType</span></a> scroll_type,
                <span class="type">gpointer</span>      user_data)</pre>
 <p>The ::move-handle signal is a
 
-keybinding signal
+<a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
 which gets emitted to move the handle when the user is using key bindings
 
 to move it.</p>
@@ -1063,7 +1070,7 @@ to move it.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>scroll_type</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkScrollType"><span class="type">GtkScrollType</span></a></p></td>
+<td class="parameter_description"><p>a <a class="link" href="gtk3-Standard-Enumerations.html#GtkScrollType" title="enum GtkScrollType"><span class="type">GtkScrollType</span></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -1085,7 +1092,7 @@ user_function (<a class="link" href="GtkPaned.html" title="GtkPaned"><span class
                <span class="type">gpointer</span>  user_data)</pre>
 <p>The ::toggle-handle-focus is a
 
-keybinding signal
+<a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
 which gets emitted to accept the current position of the handle and then
 
 move focus to the next widget in the focus chain.</p>

@@ -177,11 +177,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name">GtkImageMenuItem</td>
+<td class="function_name"><a class="link" href="GtkImageMenuItem.html#GtkImageMenuItem-struct" title="struct GtkImageMenuItem">GtkImageMenuItem</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name">GtkImageMenuItemClass</td>
+<td class="function_name"><a class="link" href="GtkImageMenuItem.html#GtkImageMenuItemClass" title="struct GtkImageMenuItemClass">GtkImageMenuItemClass</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -405,8 +405,8 @@ gtk_image_menu_item_new_from_stock (<em class="parameter"><code>const <span clas
 <p>Use <a class="link" href="GtkMenuItem.html#gtk-menu-item-new-with-mnemonic" title="gtk_menu_item_new_with_mnemonic ()"><code class="function">gtk_menu_item_new_with_mnemonic()</code></a> instead.</p>
 </div>
 <p>Creates a new <a class="link" href="GtkImageMenuItem.html" title="GtkImageMenuItem"><span class="type">GtkImageMenuItem</span></a> containing the image and text from a
-stock item. Some stock ids have preprocessor macros like <span class="type">GTK_STOCK_OK</span>
-and <span class="type">GTK_STOCK_APPLY</span>.</p>
+stock item. Some stock ids have preprocessor macros like <a class="link" href="gtk3-Stock-Items.html#GTK-STOCK-OK:CAPS" title="GTK_STOCK_OK"><span class="type">GTK_STOCK_OK</span></a>
+and <a class="link" href="gtk3-Stock-Items.html#GTK-STOCK-APPLY:CAPS" title="GTK_STOCK_APPLY"><span class="type">GTK_STOCK_APPLY</span></a>.</p>
 <p>If you want this menu item to have changeable accelerators, then pass in
 <code class="literal">NULL</code> for accel_group. Next call <a class="link" href="GtkMenuItem.html#gtk-menu-item-set-accel-path" title="gtk_menu_item_set_accel_path ()"><code class="function">gtk_menu_item_set_accel_path()</code></a> with an
 appropriate path for the menu item, use <a class="link" href="gtk3-Stock-Items.html#gtk-stock-lookup" title="gtk_stock_lookup ()"><code class="function">gtk_stock_lookup()</code></a> to look up the
@@ -670,6 +670,32 @@ you shouldnt need this (see <a class="link" href="GtkImageMenuItem.html#gtk-imag
 </table></div>
 </div>
 <p class="since">Since: 2.16</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GtkImageMenuItem.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkImageMenuItem-struct"></a><h3>struct GtkImageMenuItem</h3>
+<pre class="programlisting">struct GtkImageMenuItem;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkImageMenuItemClass"></a><h3>struct GtkImageMenuItemClass</h3>
+<pre class="programlisting">struct GtkImageMenuItemClass {
+  GtkMenuItemClass parent_class;
+};
+</pre>
+<div class="refsect3">
+<a name="GtkImageMenuItemClass.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="struct_members_name">
+<col class="struct_members_description">
+<col width="200px" class="struct_members_annotations">
+</colgroup>
+<tbody></tbody>
+</table></div>
+</div>
 </div>
 </div>
 <div class="refsect1">

@@ -170,7 +170,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<span class="returnvalue">GdkEvent</span> *
+<a class="link" href="gdk3-Event-Structures.html#GdkEvent" title="union GdkEvent"><span class="returnvalue">GdkEvent</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="GdkDisplay.html#gdk-display-get-event" title="gdk_display_get_event ()">gdk_display_get_event</a> <span class="c_punctuation">()</span>
@@ -178,7 +178,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<span class="returnvalue">GdkEvent</span> *
+<a class="link" href="gdk3-Event-Structures.html#GdkEvent" title="union GdkEvent"><span class="returnvalue">GdkEvent</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="GdkDisplay.html#gdk-display-peek-event" title="gdk_display_peek_event ()">gdk_display_peek_event</a> <span class="c_punctuation">()</span>
@@ -470,7 +470,7 @@
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name">GdkDisplay</td>
+<td class="function_name"><a class="link" href="GdkDisplay.html#GdkDisplay-struct" title="GdkDisplay">GdkDisplay</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -490,7 +490,7 @@
 <p><a class="link" href="GdkDisplay.html" title="GdkDisplay"><span class="type">GdkDisplay</span></a> objects purpose are two fold:</p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>To manage and provide information about input devices (pointers and keyboards)</p></li>
-<li class="listitem"><p>To manage and provide information about the available <span class="type">GdkScreens</span></p></li>
+<li class="listitem"><p>To manage and provide information about the available <a href="GdkScreen.html#GdkScreen-struct"><span class="type">GdkScreens</span></a></p></li>
 </ul></div>
 <p>GdkDisplay objects are the GDK representation of an X Display,
 which can be described as a workstation consisting of
@@ -743,7 +743,7 @@ gdk_display_pointer_ungrab (<em class="parameter"><code><a class="link" href="Gd
 </tr>
 <tr>
 <td class="parameter_name"><p>time_</p></td>
-<td class="parameter_description"><p>a timestap (e.g. <code class="literal">GDK_CURRENT_TIME</code>).</p></td>
+<td class="parameter_description"><p>a timestap (e.g. <a class="link" href="gdk3-Events.html#GDK-CURRENT-TIME:CAPS" title="GDK_CURRENT_TIME"><code class="literal">GDK_CURRENT_TIME</code></a>).</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -779,7 +779,7 @@ gdk_display_keyboard_ungrab (<em class="parameter"><code><a class="link" href="G
 </tr>
 <tr>
 <td class="parameter_name"><p>time_</p></td>
-<td class="parameter_description"><p>a timestap (e.g <span class="type">GDK_CURRENT_TIME</span>).</p></td>
+<td class="parameter_description"><p>a timestap (e.g <a class="link" href="gdk3-Events.html#GDK-CURRENT-TIME:CAPS" title="GDK_CURRENT_TIME"><span class="type">GDK_CURRENT_TIME</span></a>).</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -993,9 +993,9 @@ gdk_display_is_closed (<em class="parameter"><code><a class="link" href="GdkDisp
 <hr>
 <div class="refsect2">
 <a name="gdk-display-get-event"></a><h3>gdk_display_get_event ()</h3>
-<pre class="programlisting"><span class="returnvalue">GdkEvent</span> *
+<pre class="programlisting"><a class="link" href="gdk3-Event-Structures.html#GdkEvent" title="union GdkEvent"><span class="returnvalue">GdkEvent</span></a> *
 gdk_display_get_event (<em class="parameter"><code><a class="link" href="GdkDisplay.html" title="GdkDisplay"><span class="type">GdkDisplay</span></a> *display</code></em>);</pre>
-<p>Gets the next <span class="type">GdkEvent</span> to be processed for <em class="parameter"><code>display</code></em>
+<p>Gets the next <a class="link" href="gdk3-Event-Structures.html#GdkEvent" title="union GdkEvent"><span class="type">GdkEvent</span></a> to be processed for <em class="parameter"><code>display</code></em>
 , fetching events from the
 windowing system if necessary.</p>
 <div class="refsect3">
@@ -1015,8 +1015,8 @@ windowing system if necessary.</p>
 </div>
 <div class="refsect3">
 <a name="gdk-display-get-event.returns"></a><h4>Returns</h4>
-<p>the next <span class="type">GdkEvent</span> to be processed, or <code class="literal">NULL</code>
-if no events are pending. The returned <span class="type">GdkEvent</span> should be freed
+<p>the next <a class="link" href="gdk3-Event-Structures.html#GdkEvent" title="union GdkEvent"><span class="type">GdkEvent</span></a> to be processed, or <code class="literal">NULL</code>
+if no events are pending. The returned <a class="link" href="gdk3-Event-Structures.html#GdkEvent" title="union GdkEvent"><span class="type">GdkEvent</span></a> should be freed
 with <a class="link" href="gdk3-Events.html#gdk-event-free" title="gdk_event_free ()"><code class="function">gdk_event_free()</code></a>. </p>
 <p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></p>
 </div>
@@ -1025,9 +1025,9 @@ with <a class="link" href="gdk3-Events.html#gdk-event-free" title="gdk_event_fre
 <hr>
 <div class="refsect2">
 <a name="gdk-display-peek-event"></a><h3>gdk_display_peek_event ()</h3>
-<pre class="programlisting"><span class="returnvalue">GdkEvent</span> *
+<pre class="programlisting"><a class="link" href="gdk3-Event-Structures.html#GdkEvent" title="union GdkEvent"><span class="returnvalue">GdkEvent</span></a> *
 gdk_display_peek_event (<em class="parameter"><code><a class="link" href="GdkDisplay.html" title="GdkDisplay"><span class="type">GdkDisplay</span></a> *display</code></em>);</pre>
-<p>Gets a copy of the first <span class="type">GdkEvent</span> in the <em class="parameter"><code>display</code></em>
+<p>Gets a copy of the first <a class="link" href="gdk3-Event-Structures.html#GdkEvent" title="union GdkEvent"><span class="type">GdkEvent</span></a> in the <em class="parameter"><code>display</code></em>
 ’s event queue, without
 removing the event from the queue.  (Note that this function will
 not get more events from the windowing system.  It only checks the events
@@ -1049,9 +1049,9 @@ that have already been moved to the GDK event queue.)</p>
 </div>
 <div class="refsect3">
 <a name="gdk-display-peek-event.returns"></a><h4>Returns</h4>
-<p>a copy of the first <span class="type">GdkEvent</span> on the event
+<p>a copy of the first <a class="link" href="gdk3-Event-Structures.html#GdkEvent" title="union GdkEvent"><span class="type">GdkEvent</span></a> on the event
 queue, or <code class="literal">NULL</code> if no events are in the queue. The returned
-<span class="type">GdkEvent</span> should be freed with <a class="link" href="gdk3-Events.html#gdk-event-free" title="gdk_event_free ()"><code class="function">gdk_event_free()</code></a>. </p>
+<a class="link" href="gdk3-Event-Structures.html#GdkEvent" title="union GdkEvent"><span class="type">GdkEvent</span></a> should be freed with <a class="link" href="gdk3-Events.html#gdk-event-free" title="gdk_event_free ()"><code class="function">gdk_event_free()</code></a>. </p>
 <p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.2</p>
@@ -1061,7 +1061,7 @@ queue, or <code class="literal">NULL</code> if no events are in the queue. The r
 <a name="gdk-display-put-event"></a><h3>gdk_display_put_event ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdk_display_put_event (<em class="parameter"><code><a class="link" href="GdkDisplay.html" title="GdkDisplay"><span class="type">GdkDisplay</span></a> *display</code></em>,
-                       <em class="parameter"><code>const <span class="type">GdkEvent</span> *event</code></em>);</pre>
+                       <em class="parameter"><code>const <a class="link" href="gdk3-Event-Structures.html#GdkEvent" title="union GdkEvent"><span class="type">GdkEvent</span></a> *event</code></em>);</pre>
 <p>Appends a copy of the given event onto the front of the event
 queue for <em class="parameter"><code>display</code></em>
 .</p>
@@ -1081,7 +1081,7 @@ queue for <em class="parameter"><code>display</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>event</p></td>
-<td class="parameter_description"><p>a <span class="type">GdkEvent</span>.</p></td>
+<td class="parameter_description"><p>a <a class="link" href="gdk3-Event-Structures.html#GdkEvent" title="union GdkEvent"><span class="type">GdkEvent</span></a>.</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1124,7 +1124,7 @@ to be processed.</p>
 gdk_display_set_double_click_time (<em class="parameter"><code><a class="link" href="GdkDisplay.html" title="GdkDisplay"><span class="type">GdkDisplay</span></a> *display</code></em>,
                                    <em class="parameter"><code><span class="type">guint</span> msec</code></em>);</pre>
 <p>Sets the double click time (two clicks within this time interval
-count as a double click and result in a <span class="type">GDK_2BUTTON_PRESS</span> event).
+count as a double click and result in a <a class="link" href="gdk3-Events.html#GDK-2BUTTON-PRESS:CAPS"><span class="type">GDK_2BUTTON_PRESS</span></a> event).
 Applications should not set this, it is a global 
 user-configured setting.</p>
 <div class="refsect3">
@@ -1158,7 +1158,7 @@ user-configured setting.</p>
 gdk_display_set_double_click_distance (<em class="parameter"><code><a class="link" href="GdkDisplay.html" title="GdkDisplay"><span class="type">GdkDisplay</span></a> *display</code></em>,
                                        <em class="parameter"><code><span class="type">guint</span> distance</code></em>);</pre>
 <p>Sets the double click distance (two clicks within this distance
-count as a double click and result in a <span class="type">GDK_2BUTTON_PRESS</span> event).
+count as a double click and result in a <a class="link" href="gdk3-Events.html#GDK-2BUTTON-PRESS:CAPS"><span class="type">GDK_2BUTTON_PRESS</span></a> event).
 See also <a class="link" href="GdkDisplay.html#gdk-display-set-double-click-time" title="gdk_display_set_double_click_time ()"><code class="function">gdk_display_set_double_click_time()</code></a>.
 Applications should not set this, it is a global 
 user-configured setting.</p>
@@ -1194,7 +1194,7 @@ gdk_display_get_pointer (<em class="parameter"><code><a class="link" href="GdkDi
                          <em class="parameter"><code><a class="link" href="GdkScreen.html" title="GdkScreen"><span class="type">GdkScreen</span></a> **screen</code></em>,
                          <em class="parameter"><code><span class="type">gint</span> *x</code></em>,
                          <em class="parameter"><code><span class="type">gint</span> *y</code></em>,
-                         <em class="parameter"><code><span class="type">GdkModifierType</span> *mask</code></em>);</pre>
+                         <em class="parameter"><code><a class="link" href="gdk3-Windows.html#GdkModifierType" title="enum GdkModifierType"><span class="type">GdkModifierType</span></a> *mask</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gdk_display_get_pointer</code> has been deprecated since version 3.0 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="GdkDevice.html#gdk-device-get-position" title="gdk_device_get_position ()"><code class="function">gdk_device_get_position()</code></a> instead.</p>
@@ -1556,7 +1556,7 @@ for <em class="parameter"><code>display</code></em>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gdk_display_supports_selection_notification
                                (<em class="parameter"><code><a class="link" href="GdkDisplay.html" title="GdkDisplay"><span class="type">GdkDisplay</span></a> *display</code></em>);</pre>
-<p>Returns whether <span class="type">GdkEventOwnerChange</span> events will be
+<p>Returns whether <a class="link" href="gdk3-Event-Structures.html#GdkEventOwnerChange" title="struct GdkEventOwnerChange"><span class="type">GdkEventOwnerChange</span></a> events will be
 sent when the owner of a selection changes.</p>
 <div class="refsect3">
 <a name="gdk-display-supports-selection-notification.parameters"></a><h4>Parameters</h4>
@@ -1575,7 +1575,7 @@ sent when the owner of a selection changes.</p>
 </div>
 <div class="refsect3">
 <a name="gdk-display-supports-selection-notification.returns"></a><h4>Returns</h4>
-<p> whether <span class="type">GdkEventOwnerChange</span> events will
+<p> whether <a class="link" href="gdk3-Event-Structures.html#GdkEventOwnerChange" title="struct GdkEventOwnerChange"><span class="type">GdkEventOwnerChange</span></a> events will
 be sent.</p>
 </div>
 <p class="since">Since: 2.6</p>
@@ -1586,8 +1586,8 @@ be sent.</p>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gdk_display_request_selection_notification
                                (<em class="parameter"><code><a class="link" href="GdkDisplay.html" title="GdkDisplay"><span class="type">GdkDisplay</span></a> *display</code></em>,
-                                <em class="parameter"><code><span class="type">GdkAtom</span> selection</code></em>);</pre>
-<p>Request <span class="type">GdkEventOwnerChange</span> events for ownership changes
+                                <em class="parameter"><code><a class="link" href="gdk3-Properties-and-Atoms.html#GdkAtom" title="GdkAtom"><span class="type">GdkAtom</span></a> selection</code></em>);</pre>
+<p>Request <a class="link" href="gdk3-Event-Structures.html#GdkEventOwnerChange" title="struct GdkEventOwnerChange"><span class="type">GdkEventOwnerChange</span></a> events for ownership changes
 of the selection named by the given atom.</p>
 <div class="refsect3">
 <a name="gdk-display-request-selection-notification.parameters"></a><h4>Parameters</h4>
@@ -1605,7 +1605,7 @@ of the selection named by the given atom.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>selection</p></td>
-<td class="parameter_description"><p>the <span class="type">GdkAtom</span> naming the selection for which
+<td class="parameter_description"><p>the <a class="link" href="gdk3-Properties-and-Atoms.html#GdkAtom" title="GdkAtom"><span class="type">GdkAtom</span></a> naming the selection for which
 ownership change notification is requested</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
@@ -1614,7 +1614,7 @@ ownership change notification is requested</p></td>
 </div>
 <div class="refsect3">
 <a name="gdk-display-request-selection-notification.returns"></a><h4>Returns</h4>
-<p> whether <span class="type">GdkEventOwnerChange</span> events will
+<p> whether <a class="link" href="gdk3-Event-Structures.html#GdkEventOwnerChange" title="struct GdkEventOwnerChange"><span class="type">GdkEventOwnerChange</span></a> events will
 be sent.</p>
 </div>
 <p class="since">Since: 2.6</p>
@@ -1657,7 +1657,7 @@ running.</p>
 gdk_display_store_clipboard (<em class="parameter"><code><a class="link" href="GdkDisplay.html" title="GdkDisplay"><span class="type">GdkDisplay</span></a> *display</code></em>,
                              <em class="parameter"><code><a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> *clipboard_window</code></em>,
                              <em class="parameter"><code><span class="type">guint32</span> time_</code></em>,
-                             <em class="parameter"><code>const <span class="type">GdkAtom</span> *targets</code></em>,
+                             <em class="parameter"><code>const <a class="link" href="gdk3-Properties-and-Atoms.html#GdkAtom" title="GdkAtom"><span class="type">GdkAtom</span></a> *targets</code></em>,
                              <em class="parameter"><code><span class="type">gint</span> n_targets</code></em>);</pre>
 <p>Issues a request to the clipboard manager to store the
 clipboard data. On X11, this is a special program that works
@@ -2110,6 +2110,13 @@ of all monitors.</p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-22.html#api-index-3.22">3.22</a></p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GdkDisplay.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GdkDisplay-struct"></a><h3>GdkDisplay</h3>
+<pre class="programlisting">typedef struct _GdkDisplay GdkDisplay;</pre>
 </div>
 </div>
 <div class="refsect1">

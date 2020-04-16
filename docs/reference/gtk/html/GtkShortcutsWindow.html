@@ -90,7 +90,7 @@
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkShortcutsWindow.html#GtkShortcutsWindow-struct">GtkShortcutsWindow</a></td>
+<td class="function_name"><a class="link" href="GtkShortcutsWindow.html#GtkShortcutsWindow-struct" title="struct GtkShortcutsWindow">GtkShortcutsWindow</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -126,7 +126,7 @@ your application.</p>
 showing information that is not relevant in the current application context.</p>
 <p>The recommended way to construct a GtkShortcutsWindow is with GtkBuilder,
 by populating a <a class="link" href="GtkShortcutsWindow.html" title="GtkShortcutsWindow"><span class="type">GtkShortcutsWindow</span></a> with one or more <a class="link" href="GtkShortcutsSection.html" title="GtkShortcutsSection"><span class="type">GtkShortcutsSection</span></a>
-objects, which contain <a href="https://developer.gnome.org/gtk4/GtkShortcutsGroup.html#GtkShortcutsGroup-struct"><span class="type">GtkShortcutsGroups</span></a> that in turn contain objects of
+objects, which contain <a href="GtkShortcutsGroup.html#GtkShortcutsGroup-struct"><span class="type">GtkShortcutsGroups</span></a> that in turn contain objects of
 class <a class="link" href="GtkShortcutsShortcut.html" title="GtkShortcutsShortcut"><span class="type">GtkShortcutsShortcut</span></a>.</p>
 <div class="refsect2">
 <a name="id-1.3.18.2.9.5"></a><h3>A simple example:</h3>
@@ -156,6 +156,13 @@ and "Terminal Shortcuts".</p>
 <div class="refsect1">
 <a name="GtkShortcutsWindow.functions_details"></a><h2>Functions</h2>
 <p></p>
+</div>
+<div class="refsect1">
+<a name="GtkShortcutsWindow.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkShortcutsWindow-struct"></a><h3>struct GtkShortcutsWindow</h3>
+<pre class="programlisting">struct GtkShortcutsWindow;</pre>
+</div>
 </div>
 <div class="refsect1">
 <a name="GtkShortcutsWindow.property-details"></a><h2>Property Details</h2>
@@ -190,7 +197,7 @@ the <a class="link" href="GtkShortcutsGroup.html" title="GtkShortcutsGroup"><spa
 user_function (<a class="link" href="GtkShortcutsWindow.html" title="GtkShortcutsWindow"><span class="type">GtkShortcutsWindow</span></a> *shortcutswindow,
                <span class="type">gpointer</span>            user_data)</pre>
 <p>The ::close signal is a
-keybinding signal
+<a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
 which gets emitted when the user uses a keybinding to close
 the window.</p>
 <p>The default binding for this signal is the Escape key.</p>
@@ -218,7 +225,7 @@ the window.</p>
 user_function (<a class="link" href="GtkShortcutsWindow.html" title="GtkShortcutsWindow"><span class="type">GtkShortcutsWindow</span></a> *shortcutswindow,
                <span class="type">gpointer</span>            user_data)</pre>
 <p>The ::search signal is a
-keybinding signal
+<a class="link" href="gtk3-Bindings.html#GtkBindingSignal" title="struct GtkBindingSignal">keybinding signal</a>
 which gets emitted when the user uses a keybinding to start a search.</p>
 <p>The default binding for this signal is Control-F.</p>
 <div class="refsect3">

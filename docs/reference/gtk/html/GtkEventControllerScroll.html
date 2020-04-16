@@ -60,7 +60,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<span class="returnvalue">GtkEventControllerScrollFlags</span>
+<a class="link" href="GtkEventControllerScroll.html#GtkEventControllerScrollFlags" title="enum GtkEventControllerScrollFlags"><span class="returnvalue">GtkEventControllerScrollFlags</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GtkEventControllerScroll.html#gtk-event-controller-scroll-get-flags" title="gtk_event_controller_scroll_get_flags ()">gtk_event_controller_scroll_get_flags</a> <span class="c_punctuation">()</span>
@@ -78,7 +78,7 @@
 <col width="200px" class="properties_flags">
 </colgroup>
 <tbody><tr>
-<td class="property_type"><span class="type">GtkEventControllerScrollFlags</span></td>
+<td class="property_type"><a class="link" href="GtkEventControllerScroll.html#GtkEventControllerScrollFlags" title="enum GtkEventControllerScrollFlags"><span class="type">GtkEventControllerScrollFlags</span></a></td>
 <td class="property_name"><a class="link" href="GtkEventControllerScroll.html#GtkEventControllerScroll--flags" title="The “flags” property">flags</a></td>
 <td class="property_flags">Read / Write</td>
 </tr></tbody>
@@ -126,11 +126,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name">GtkEventControllerScroll</td>
+<td class="function_name"><a class="link" href="GtkEventControllerScroll.html#GtkEventControllerScroll-struct" title="GtkEventControllerScroll">GtkEventControllerScroll</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name">GtkEventControllerScrollFlags</td>
+<td class="function_name"><a class="link" href="GtkEventControllerScroll.html#GtkEventControllerScrollFlags" title="enum GtkEventControllerScrollFlags">GtkEventControllerScrollFlags</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -163,16 +163,16 @@ flags given at creation time, or modified at a later point through
 <a class="link" href="GtkEventControllerScroll.html#gtk-event-controller-scroll-set-flags" title="gtk_event_controller_scroll_set_flags ()"><code class="function">gtk_event_controller_scroll_set_flags()</code></a> (e.g. because the scrolling
 conditions of the widget changed).</p>
 <p>The controller can be set up to emit motion for either/both vertical
-and horizontal scroll events through <span class="type">GTK_EVENT_CONTROLLER_SCROLL_VERTICAL</span>,
-<span class="type">GTK_EVENT_CONTROLLER_SCROLL_HORIZONTAL</span> and <span class="type">GTK_EVENT_CONTROLLER_SCROLL_BOTH</span>.
+and horizontal scroll events through <a class="link" href="GtkEventControllerScroll.html#GTK-EVENT-CONTROLLER-SCROLL-VERTICAL:CAPS"><span class="type">GTK_EVENT_CONTROLLER_SCROLL_VERTICAL</span></a>,
+<a class="link" href="GtkEventControllerScroll.html#GTK-EVENT-CONTROLLER-SCROLL-HORIZONTAL:CAPS"><span class="type">GTK_EVENT_CONTROLLER_SCROLL_HORIZONTAL</span></a> and <span class="type">GTK_EVENT_CONTROLLER_SCROLL_BOTH</span>.
 If any axis is disabled, the respective <a class="link" href="GtkEventControllerScroll.html#GtkEventControllerScroll-scroll" title="The “scroll” signal"><span class="type">“scroll”</span></a>
 delta will be 0. Vertical scroll events will be translated to horizontal
 motion for the devices incapable of horizontal scrolling.</p>
 <p>The event controller can also be forced to emit discrete events on all devices
-through <span class="type">GTK_EVENT_CONTROLLER_SCROLL_DISCRETE</span>. This can be used to implement
+through <a class="link" href="GtkEventControllerScroll.html#GTK-EVENT-CONTROLLER-SCROLL-DISCRETE:CAPS"><span class="type">GTK_EVENT_CONTROLLER_SCROLL_DISCRETE</span></a>. This can be used to implement
 discrete actions triggered through scroll events (e.g. switching across
 combobox options).</p>
-<p>The <span class="type">GTK_EVENT_CONTROLLER_SCROLL_KINETIC</span> flag toggles the emission of the
+<p>The <a class="link" href="GtkEventControllerScroll.html#GTK-EVENT-CONTROLLER-SCROLL-KINETIC:CAPS"><span class="type">GTK_EVENT_CONTROLLER_SCROLL_KINETIC</span></a> flag toggles the emission of the
 <a class="link" href="GtkEventControllerScroll.html#GtkEventControllerScroll-decelerate" title="The “decelerate” signal"><span class="type">“decelerate”</span></a> signal, emitted at the end of scrolling
 with two X/Y velocity arguments that are consistent with the motion that
 was received.</p>
@@ -184,7 +184,7 @@ was received.</p>
 <a name="gtk-event-controller-scroll-new"></a><h3>gtk_event_controller_scroll_new ()</h3>
 <pre class="programlisting"><a class="link" href="GtkEventController.html" title="GtkEventController"><span class="returnvalue">GtkEventController</span></a> *
 gtk_event_controller_scroll_new (<em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
-                                 <em class="parameter"><code><span class="type">GtkEventControllerScrollFlags</span> flags</code></em>);</pre>
+                                 <em class="parameter"><code><a class="link" href="GtkEventControllerScroll.html#GtkEventControllerScrollFlags" title="enum GtkEventControllerScrollFlags"><span class="type">GtkEventControllerScrollFlags</span></a> flags</code></em>);</pre>
 <p>Creates a new event controller that will handle scroll events
 for the given <em class="parameter"><code>widget</code></em>
 .</p>
@@ -221,7 +221,7 @@ for the given <em class="parameter"><code>widget</code></em>
 <a name="gtk-event-controller-scroll-set-flags"></a><h3>gtk_event_controller_scroll_set_flags ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_event_controller_scroll_set_flags (<em class="parameter"><code><a class="link" href="GtkEventControllerScroll.html" title="GtkEventControllerScroll"><span class="type">GtkEventControllerScroll</span></a> *controller</code></em>,
-                                       <em class="parameter"><code><span class="type">GtkEventControllerScrollFlags</span> flags</code></em>);</pre>
+                                       <em class="parameter"><code><a class="link" href="GtkEventControllerScroll.html#GtkEventControllerScrollFlags" title="enum GtkEventControllerScrollFlags"><span class="type">GtkEventControllerScrollFlags</span></a> flags</code></em>);</pre>
 <p>Sets the flags conditioning scroll controller behavior.</p>
 <div class="refsect3">
 <a name="gtk-event-controller-scroll-set-flags.parameters"></a><h4>Parameters</h4>
@@ -250,7 +250,7 @@ gtk_event_controller_scroll_set_flags (<em class="parameter"><code><a class="lin
 <hr>
 <div class="refsect2">
 <a name="gtk-event-controller-scroll-get-flags"></a><h3>gtk_event_controller_scroll_get_flags ()</h3>
-<pre class="programlisting"><span class="returnvalue">GtkEventControllerScrollFlags</span>
+<pre class="programlisting"><a class="link" href="GtkEventControllerScroll.html#GtkEventControllerScrollFlags" title="enum GtkEventControllerScrollFlags"><span class="returnvalue">GtkEventControllerScrollFlags</span></a>
 gtk_event_controller_scroll_get_flags (<em class="parameter"><code><a class="link" href="GtkEventControllerScroll.html" title="GtkEventControllerScroll"><span class="type">GtkEventControllerScroll</span></a> *controller</code></em>);</pre>
 <p>Gets the flags conditioning the scroll controller behavior.</p>
 <div class="refsect3">
@@ -276,10 +276,78 @@ gtk_event_controller_scroll_get_flags (<em class="parameter"><code><a class="lin
 </div>
 </div>
 <div class="refsect1">
+<a name="GtkEventControllerScroll.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkEventControllerScroll-struct"></a><h3>GtkEventControllerScroll</h3>
+<pre class="programlisting">typedef struct _GtkEventControllerScroll GtkEventControllerScroll;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkEventControllerScrollFlags"></a><h3>enum GtkEventControllerScrollFlags</h3>
+<p>Describes the behavior of a <a class="link" href="GtkEventControllerScroll.html" title="GtkEventControllerScroll"><span class="type">GtkEventControllerScroll</span></a>.</p>
+<div class="refsect3">
+<a name="GtkEventControllerScrollFlags.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-EVENT-CONTROLLER-SCROLL-NONE:CAPS"></a>GTK_EVENT_CONTROLLER_SCROLL_NONE</p></td>
+<td class="enum_member_description">
+<p>Don't emit scroll.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-EVENT-CONTROLLER-SCROLL-VERTICAL:CAPS"></a>GTK_EVENT_CONTROLLER_SCROLL_VERTICAL</p></td>
+<td class="enum_member_description">
+<p>Emit scroll with vertical deltas.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-EVENT-CONTROLLER-SCROLL-HORIZONTAL:CAPS"></a>GTK_EVENT_CONTROLLER_SCROLL_HORIZONTAL</p></td>
+<td class="enum_member_description">
+<p>Emit scroll with horizontal deltas.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-EVENT-CONTROLLER-SCROLL-DISCRETE:CAPS"></a>GTK_EVENT_CONTROLLER_SCROLL_DISCRETE</p></td>
+<td class="enum_member_description">
+<p>Only emit deltas that are multiples of 1.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-EVENT-CONTROLLER-SCROLL-KINETIC:CAPS"></a>GTK_EVENT_CONTROLLER_SCROLL_KINETIC</p></td>
+<td class="enum_member_description">
+<p>Emit <a class="link" href="GtkEventControllerScroll.html#GtkEventControllerScroll-decelerate" title="The “decelerate” signal"><span class="type">“decelerate”</span></a>
+after continuous scroll finishes.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-EVENT-CONTROLLER-SCROLL-BOTH-AXES:CAPS"></a>GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES</p></td>
+<td class="enum_member_description">
+<p>Emit scroll on both axes.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-3-24.html#api-index-3.24">3.24</a></p>
+</div>
+</div>
+<div class="refsect1">
 <a name="GtkEventControllerScroll.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkEventControllerScroll--flags"></a><h3>The <code class="literal">“flags”</code> property</h3>
-<pre class="programlisting">  “flags”                    <span class="type">GtkEventControllerScrollFlags</span></pre>
+<pre class="programlisting">  “flags”                    <a class="link" href="GtkEventControllerScroll.html#GtkEventControllerScrollFlags" title="enum GtkEventControllerScrollFlags"><span class="type">GtkEventControllerScrollFlags</span></a></pre>
 <p>The flags affecting event controller behavior</p>
 <p>Owner: GtkEventControllerScroll</p>
 <p>Flags: Read / Write</p>
@@ -295,7 +363,7 @@ user_function (<a class="link" href="GtkEventControllerScroll.html" title="GtkEv
                <span class="type">gdouble</span>                   vel_x,
                <span class="type">gdouble</span>                   vel_y,
                <span class="type">gpointer</span>                  user_data)</pre>
-<p>Emitted after scroll is finished if the <span class="type">GTK_EVENT_CONTROLLER_SCROLL_KINETIC</span>
+<p>Emitted after scroll is finished if the <a class="link" href="GtkEventControllerScroll.html#GTK-EVENT-CONTROLLER-SCROLL-KINETIC:CAPS"><span class="type">GTK_EVENT_CONTROLLER_SCROLL_KINETIC</span></a>
 flag is set. <em class="parameter"><code>vel_x</code></em>
  and <em class="parameter"><code>vel_y</code></em>
  express the initial velocity that was

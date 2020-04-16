@@ -110,19 +110,19 @@
 <tbody>
 <tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/gtk4-GtkTreeView-drag-and-drop.html#GtkTreeDragSource-struct">GtkTreeDragSource</a></td>
+<td class="function_name"><a class="link" href="gtk3-GtkTreeView-drag-and-drop.html#GtkTreeDragSource-struct" title="GtkTreeDragSource">GtkTreeDragSource</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/gtk4-GtkTreeView-drag-and-drop.html#GtkTreeDragSourceIface">GtkTreeDragSourceIface</a></td>
+<td class="function_name"><a class="link" href="gtk3-GtkTreeView-drag-and-drop.html#GtkTreeDragSourceIface" title="struct GtkTreeDragSourceIface">GtkTreeDragSourceIface</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/gtk4-GtkTreeView-drag-and-drop.html#GtkTreeDragDest-struct">GtkTreeDragDest</a></td>
+<td class="function_name"><a class="link" href="gtk3-GtkTreeView-drag-and-drop.html#GtkTreeDragDest-struct" title="GtkTreeDragDest">GtkTreeDragDest</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/gtk4-GtkTreeView-drag-and-drop.html#GtkTreeDragDestIface">GtkTreeDragDestIface</a></td>
+<td class="function_name"><a class="link" href="gtk3-GtkTreeView-drag-and-drop.html#GtkTreeDragDestIface" title="struct GtkTreeDragDestIface">GtkTreeDragDestIface</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -484,6 +484,107 @@ in from the current process. The returned path must be freed with
 <p> <code class="literal">TRUE</code> if <em class="parameter"><code>selection_data</code></em>
 had target type <code class="literal">GTK_TREE_MODEL_ROW</code> and
 is otherwise valid</p>
+</div>
+</div>
+</div>
+<div class="refsect1">
+<a name="gtk3-GtkTreeView-drag-and-drop.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkTreeDragSource-struct"></a><h3>GtkTreeDragSource</h3>
+<pre class="programlisting">typedef struct _GtkTreeDragSource GtkTreeDragSource;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkTreeDragSourceIface"></a><h3>struct GtkTreeDragSourceIface</h3>
+<pre class="programlisting">struct GtkTreeDragSourceIface {
+  /* VTable - not signals */
+
+  gboolean     (* row_draggable)        (GtkTreeDragSource   *drag_source,
+                                         GtkTreePath         *path);
+
+  gboolean     (* drag_data_get)        (GtkTreeDragSource   *drag_source,
+                                         GtkTreePath         *path,
+                                         GtkSelectionData    *selection_data);
+
+  gboolean     (* drag_data_delete)     (GtkTreeDragSource *drag_source,
+                                         GtkTreePath       *path);
+};
+</pre>
+<div class="refsect3">
+<a name="GtkTreeDragSourceIface.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="struct_members_name">
+<col class="struct_members_description">
+<col width="200px" class="struct_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkTreeDragSourceIface.row-draggable"></a>row_draggable</code></em> ()</p></td>
+<td class="struct_member_description"><p>Asks the <a class="link" href="gtk3-GtkTreeView-drag-and-drop.html#GtkTreeDragSource"><span class="type">GtkTreeDragSource</span></a> whether a particular
+row can be used as the source of a DND operation.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkTreeDragSourceIface.drag-data-get"></a>drag_data_get</code></em> ()</p></td>
+<td class="struct_member_description"><p>Asks the <a class="link" href="gtk3-GtkTreeView-drag-and-drop.html#GtkTreeDragSource"><span class="type">GtkTreeDragSource</span></a> to fill in
+selection_data with a representation of the row at path.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkTreeDragSourceIface.drag-data-delete"></a>drag_data_delete</code></em> ()</p></td>
+<td class="struct_member_description"><p>Asks the <a class="link" href="gtk3-GtkTreeView-drag-and-drop.html#GtkTreeDragSource"><span class="type">GtkTreeDragSource</span></a> to delete the row at
+path, because it was moved somewhere else via drag-and-drop.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkTreeDragDest-struct"></a><h3>GtkTreeDragDest</h3>
+<pre class="programlisting">typedef struct _GtkTreeDragDest GtkTreeDragDest;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkTreeDragDestIface"></a><h3>struct GtkTreeDragDestIface</h3>
+<pre class="programlisting">struct GtkTreeDragDestIface {
+  /* VTable - not signals */
+
+  gboolean     (* drag_data_received) (GtkTreeDragDest   *drag_dest,
+                                       GtkTreePath       *dest,
+                                       GtkSelectionData  *selection_data);
+
+  gboolean     (* row_drop_possible)  (GtkTreeDragDest   *drag_dest,
+                                       GtkTreePath       *dest_path,
+				       GtkSelectionData  *selection_data);
+};
+</pre>
+<div class="refsect3">
+<a name="GtkTreeDragDestIface.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="struct_members_name">
+<col class="struct_members_description">
+<col width="200px" class="struct_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkTreeDragDestIface.drag-data-received"></a>drag_data_received</code></em> ()</p></td>
+<td class="struct_member_description"><p>Asks the <a class="link" href="gtk3-GtkTreeView-drag-and-drop.html#GtkTreeDragDest"><span class="type">GtkTreeDragDest</span></a> to insert a row
+before the path dest, deriving the contents of the row from
+selection_data.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkTreeDragDestIface.row-drop-possible"></a>row_drop_possible</code></em> ()</p></td>
+<td class="struct_member_description"><p>Determines whether a drop is possible before
+the given dest_path, at the same depth as dest_path.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
 </div>
 </div>
 </div>

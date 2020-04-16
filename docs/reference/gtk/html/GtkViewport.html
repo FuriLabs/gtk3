@@ -92,7 +92,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkShadowType"><span class="returnvalue">GtkShadowType</span></a>
+<a class="link" href="gtk3-Standard-Enumerations.html#GtkShadowType" title="enum GtkShadowType"><span class="returnvalue">GtkShadowType</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GtkViewport.html#gtk-viewport-get-shadow-type" title="gtk_viewport_get_shadow_type ()">gtk_viewport_get_shadow_type</a> <span class="c_punctuation">()</span>
@@ -126,7 +126,7 @@
 <col width="200px" class="properties_flags">
 </colgroup>
 <tbody><tr>
-<td class="property_type"><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkShadowType"><span class="type">GtkShadowType</span></a></td>
+<td class="property_type"><a class="link" href="gtk3-Standard-Enumerations.html#GtkShadowType" title="enum GtkShadowType"><span class="type">GtkShadowType</span></a></td>
 <td class="property_name"><a class="link" href="GtkViewport.html#GtkViewport--shadow-type" title="The “shadow-type” property">shadow-type</a></td>
 <td class="property_flags">Read / Write</td>
 </tr></tbody>
@@ -142,11 +142,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkViewport.html#GtkViewport-struct">GtkViewport</a></td>
+<td class="function_name"><a class="link" href="GtkViewport.html#GtkViewport-struct" title="struct GtkViewport">GtkViewport</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name">GtkViewportClass</td>
+<td class="function_name"><a class="link" href="GtkViewport.html#GtkViewportClass" title="struct GtkViewportClass">GtkViewportClass</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -365,7 +365,7 @@ gtk_viewport_set_vadjustment (<em class="parameter"><code><a class="link" href="
 <a name="gtk-viewport-set-shadow-type"></a><h3>gtk_viewport_set_shadow_type ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_viewport_set_shadow_type (<em class="parameter"><code><a class="link" href="GtkViewport.html" title="GtkViewport"><span class="type">GtkViewport</span></a> *viewport</code></em>,
-                              <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkShadowType"><span class="type">GtkShadowType</span></a> type</code></em>);</pre>
+                              <em class="parameter"><code><a class="link" href="gtk3-Standard-Enumerations.html#GtkShadowType" title="enum GtkShadowType"><span class="type">GtkShadowType</span></a> type</code></em>);</pre>
 <p>Sets the shadow type of the viewport.</p>
 <div class="refsect3">
 <a name="gtk-viewport-set-shadow-type.parameters"></a><h4>Parameters</h4>
@@ -393,7 +393,7 @@ gtk_viewport_set_shadow_type (<em class="parameter"><code><a class="link" href="
 <hr>
 <div class="refsect2">
 <a name="gtk-viewport-get-shadow-type"></a><h3>gtk_viewport_get_shadow_type ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkShadowType"><span class="returnvalue">GtkShadowType</span></a>
+<pre class="programlisting"><a class="link" href="gtk3-Standard-Enumerations.html#GtkShadowType" title="enum GtkShadowType"><span class="returnvalue">GtkShadowType</span></a>
 gtk_viewport_get_shadow_type (<em class="parameter"><code><a class="link" href="GtkViewport.html" title="GtkViewport"><span class="type">GtkViewport</span></a> *viewport</code></em>);</pre>
 <p>Gets the shadow type of the <a class="link" href="GtkViewport.html" title="GtkViewport"><span class="type">GtkViewport</span></a>. See
 <a class="link" href="GtkViewport.html#gtk-viewport-set-shadow-type" title="gtk_viewport_set_shadow_type ()"><code class="function">gtk_viewport_set_shadow_type()</code></a>.</p>
@@ -475,10 +475,36 @@ gtk_viewport_get_view_window (<em class="parameter"><code><a class="link" href="
 </div>
 </div>
 <div class="refsect1">
+<a name="GtkViewport.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkViewport-struct"></a><h3>struct GtkViewport</h3>
+<pre class="programlisting">struct GtkViewport;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkViewportClass"></a><h3>struct GtkViewportClass</h3>
+<pre class="programlisting">struct GtkViewportClass {
+  GtkBinClass parent_class;
+};
+</pre>
+<div class="refsect3">
+<a name="GtkViewportClass.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="struct_members_name">
+<col class="struct_members_description">
+<col width="200px" class="struct_members_annotations">
+</colgroup>
+<tbody></tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="refsect1">
 <a name="GtkViewport.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkViewport--shadow-type"></a><h3>The <code class="literal">“shadow-type”</code> property</h3>
-<pre class="programlisting">  “shadow-type”              <a href="https://developer.gnome.org/gtk4/gtk4-Standard-Enumerations.html#GtkShadowType"><span class="type">GtkShadowType</span></a></pre>
+<pre class="programlisting">  “shadow-type”              <a class="link" href="gtk3-Standard-Enumerations.html#GtkShadowType" title="enum GtkShadowType"><span class="type">GtkShadowType</span></a></pre>
 <p>Determines how the shadowed box around the viewport is drawn.</p>
 <p>Owner: GtkViewport</p>
 <p>Flags: Read / Write</p>

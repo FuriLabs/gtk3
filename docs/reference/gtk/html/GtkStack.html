@@ -188,7 +188,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/gtk4/GtkStack.html#GtkStackTransitionType"><span class="returnvalue">GtkStackTransitionType</span></a>
+<a class="link" href="GtkStack.html#GtkStackTransitionType" title="enum GtkStackTransitionType"><span class="returnvalue">GtkStackTransitionType</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GtkStack.html#gtk-stack-get-transition-type" title="gtk_stack_get_transition_type ()">gtk_stack_get_transition_type</a> <span class="c_punctuation">()</span>
@@ -256,7 +256,7 @@
 <td class="property_flags">Read</td>
 </tr>
 <tr>
-<td class="property_type"><a href="https://developer.gnome.org/gtk4/GtkStack.html#GtkStackTransitionType"><span class="type">GtkStackTransitionType</span></a></td>
+<td class="property_type"><a class="link" href="GtkStack.html#GtkStackTransitionType" title="enum GtkStackTransitionType"><span class="type">GtkStackTransitionType</span></a></td>
 <td class="property_name"><a class="link" href="GtkStack.html#GtkStack--transition-type" title="The “transition-type” property">transition-type</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -330,11 +330,11 @@
 <tbody>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkStack.html#GtkStack-struct">GtkStack</a></td>
+<td class="function_name"><a class="link" href="GtkStack.html#GtkStack-struct" title="struct GtkStack">GtkStack</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkStack.html#GtkStackTransitionType">GtkStackTransitionType</a></td>
+<td class="function_name"><a class="link" href="GtkStack.html#GtkStackTransitionType" title="enum GtkStackTransitionType">GtkStackTransitionType</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -672,7 +672,7 @@ gtk_stack_get_visible_child_name (<em class="parameter"><code><a class="link" hr
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_stack_set_visible_child_full (<em class="parameter"><code><a class="link" href="GtkStack.html" title="GtkStack"><span class="type">GtkStack</span></a> *stack</code></em>,
                                   <em class="parameter"><code>const <span class="type">gchar</span> *name</code></em>,
-                                  <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkStack.html#GtkStackTransitionType"><span class="type">GtkStackTransitionType</span></a> transition</code></em>);</pre>
+                                  <em class="parameter"><code><a class="link" href="GtkStack.html#GtkStackTransitionType" title="enum GtkStackTransitionType"><span class="type">GtkStackTransitionType</span></a> transition</code></em>);</pre>
 <p>Makes the child with the given name visible.</p>
 <p>Note that the child widget has to be visible itself
 (see <a class="link" href="GtkWidget.html#gtk-widget-show" title="gtk_widget_show ()"><code class="function">gtk_widget_show()</code></a>) in order to become the visible
@@ -972,7 +972,7 @@ transitions between pages in <em class="parameter"><code>stack</code></em>
 <a name="gtk-stack-set-transition-type"></a><h3>gtk_stack_set_transition_type ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_stack_set_transition_type (<em class="parameter"><code><a class="link" href="GtkStack.html" title="GtkStack"><span class="type">GtkStack</span></a> *stack</code></em>,
-                               <em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkStack.html#GtkStackTransitionType"><span class="type">GtkStackTransitionType</span></a> transition</code></em>);</pre>
+                               <em class="parameter"><code><a class="link" href="GtkStack.html#GtkStackTransitionType" title="enum GtkStackTransitionType"><span class="type">GtkStackTransitionType</span></a> transition</code></em>);</pre>
 <p>Sets the type of animation that will be used for
 transitions between pages in <em class="parameter"><code>stack</code></em>
 . Available
@@ -1007,7 +1007,7 @@ based on the page that is about to become current.</p>
 <hr>
 <div class="refsect2">
 <a name="gtk-stack-get-transition-type"></a><h3>gtk_stack_get_transition_type ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/gtk4/GtkStack.html#GtkStackTransitionType"><span class="returnvalue">GtkStackTransitionType</span></a>
+<pre class="programlisting"><a class="link" href="GtkStack.html#GtkStackTransitionType" title="enum GtkStackTransitionType"><span class="returnvalue">GtkStackTransitionType</span></a>
 gtk_stack_get_transition_type (<em class="parameter"><code><a class="link" href="GtkStack.html" title="GtkStack"><span class="type">GtkStack</span></a> *stack</code></em>);</pre>
 <p>Gets the type of animation that will be used
 for transitions between pages in <em class="parameter"><code>stack</code></em>
@@ -1130,6 +1130,172 @@ visible child, according to the set transition duration.</p>
 </div>
 </div>
 <div class="refsect1">
+<a name="GtkStack.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkStack-struct"></a><h3>struct GtkStack</h3>
+<pre class="programlisting">struct GtkStack;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkStackTransitionType"></a><h3>enum GtkStackTransitionType</h3>
+<p>These enumeration values describe the possible transitions
+between pages in a <a class="link" href="GtkStack.html" title="GtkStack"><span class="type">GtkStack</span></a> widget.</p>
+<p>New values may be added to this enumeration over time.</p>
+<div class="refsect3">
+<a name="GtkStackTransitionType.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-STACK-TRANSITION-TYPE-NONE:CAPS"></a>GTK_STACK_TRANSITION_TYPE_NONE</p></td>
+<td class="enum_member_description">
+<p>No transition</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-STACK-TRANSITION-TYPE-CROSSFADE:CAPS"></a>GTK_STACK_TRANSITION_TYPE_CROSSFADE</p></td>
+<td class="enum_member_description">
+<p>A cross-fade</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-STACK-TRANSITION-TYPE-SLIDE-RIGHT:CAPS"></a>GTK_STACK_TRANSITION_TYPE_SLIDE_RIGHT</p></td>
+<td class="enum_member_description">
+<p>Slide from left to right</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-STACK-TRANSITION-TYPE-SLIDE-LEFT:CAPS"></a>GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT</p></td>
+<td class="enum_member_description">
+<p>Slide from right to left</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-STACK-TRANSITION-TYPE-SLIDE-UP:CAPS"></a>GTK_STACK_TRANSITION_TYPE_SLIDE_UP</p></td>
+<td class="enum_member_description">
+<p>Slide from bottom up</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-STACK-TRANSITION-TYPE-SLIDE-DOWN:CAPS"></a>GTK_STACK_TRANSITION_TYPE_SLIDE_DOWN</p></td>
+<td class="enum_member_description">
+<p>Slide from top down</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-STACK-TRANSITION-TYPE-SLIDE-LEFT-RIGHT:CAPS"></a>GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT_RIGHT</p></td>
+<td class="enum_member_description">
+<p>Slide from left or right according to the children order</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-STACK-TRANSITION-TYPE-SLIDE-UP-DOWN:CAPS"></a>GTK_STACK_TRANSITION_TYPE_SLIDE_UP_DOWN</p></td>
+<td class="enum_member_description">
+<p>Slide from top down or bottom up according to the order</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-STACK-TRANSITION-TYPE-OVER-UP:CAPS"></a>GTK_STACK_TRANSITION_TYPE_OVER_UP</p></td>
+<td class="enum_member_description">
+<p>Cover the old page by sliding up. Since 3.12</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-STACK-TRANSITION-TYPE-OVER-DOWN:CAPS"></a>GTK_STACK_TRANSITION_TYPE_OVER_DOWN</p></td>
+<td class="enum_member_description">
+<p>Cover the old page by sliding down. Since: 3.12</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-STACK-TRANSITION-TYPE-OVER-LEFT:CAPS"></a>GTK_STACK_TRANSITION_TYPE_OVER_LEFT</p></td>
+<td class="enum_member_description">
+<p>Cover the old page by sliding to the left. Since: 3.12</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-STACK-TRANSITION-TYPE-OVER-RIGHT:CAPS"></a>GTK_STACK_TRANSITION_TYPE_OVER_RIGHT</p></td>
+<td class="enum_member_description">
+<p>Cover the old page by sliding to the right. Since: 3.12</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-STACK-TRANSITION-TYPE-UNDER-UP:CAPS"></a>GTK_STACK_TRANSITION_TYPE_UNDER_UP</p></td>
+<td class="enum_member_description">
+<p>Uncover the new page by sliding up. Since 3.12</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-STACK-TRANSITION-TYPE-UNDER-DOWN:CAPS"></a>GTK_STACK_TRANSITION_TYPE_UNDER_DOWN</p></td>
+<td class="enum_member_description">
+<p>Uncover the new page by sliding down. Since: 3.12</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-STACK-TRANSITION-TYPE-UNDER-LEFT:CAPS"></a>GTK_STACK_TRANSITION_TYPE_UNDER_LEFT</p></td>
+<td class="enum_member_description">
+<p>Uncover the new page by sliding to the left. Since: 3.12</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-STACK-TRANSITION-TYPE-UNDER-RIGHT:CAPS"></a>GTK_STACK_TRANSITION_TYPE_UNDER_RIGHT</p></td>
+<td class="enum_member_description">
+<p>Uncover the new page by sliding to the right. Since: 3.12</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-STACK-TRANSITION-TYPE-OVER-UP-DOWN:CAPS"></a>GTK_STACK_TRANSITION_TYPE_OVER_UP_DOWN</p></td>
+<td class="enum_member_description">
+<p>Cover the old page sliding up or uncover the new page sliding down, according to order. Since: 3.12</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-STACK-TRANSITION-TYPE-OVER-DOWN-UP:CAPS"></a>GTK_STACK_TRANSITION_TYPE_OVER_DOWN_UP</p></td>
+<td class="enum_member_description">
+<p>Cover the old page sliding down or uncover the new page sliding up, according to order. Since: 3.14</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-STACK-TRANSITION-TYPE-OVER-LEFT-RIGHT:CAPS"></a>GTK_STACK_TRANSITION_TYPE_OVER_LEFT_RIGHT</p></td>
+<td class="enum_member_description">
+<p>Cover the old page sliding left or uncover the new page sliding right, according to order. Since: 3.14</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-STACK-TRANSITION-TYPE-OVER-RIGHT-LEFT:CAPS"></a>GTK_STACK_TRANSITION_TYPE_OVER_RIGHT_LEFT</p></td>
+<td class="enum_member_description">
+<p>Cover the old page sliding right or uncover the new page sliding left, according to order. Since: 3.14</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="refsect1">
 <a name="GtkStack.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkStack--hhomogeneous"></a><h3>The <code class="literal">“hhomogeneous”</code> property</h3>
@@ -1179,7 +1345,7 @@ visible child, according to the set transition duration.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkStack--transition-type"></a><h3>The <code class="literal">“transition-type”</code> property</h3>
-<pre class="programlisting">  “transition-type”          <a href="https://developer.gnome.org/gtk4/GtkStack.html#GtkStackTransitionType"><span class="type">GtkStackTransitionType</span></a></pre>
+<pre class="programlisting">  “transition-type”          <a class="link" href="GtkStack.html#GtkStackTransitionType" title="enum GtkStackTransitionType"><span class="type">GtkStackTransitionType</span></a></pre>
 <p>The type of animation used to transition.</p>
 <p>Owner: GtkStack</p>
 <p>Flags: Read / Write</p>

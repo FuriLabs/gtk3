@@ -786,15 +786,15 @@
 <tbody>
 <tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkTextBuffer.html#GtkTextBuffer-struct">GtkTextBuffer</a></td>
+<td class="function_name"><a class="link" href="GtkTextBuffer.html#GtkTextBuffer-struct" title="GtkTextBuffer">GtkTextBuffer</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">struct</td>
-<td class="function_name"><a href="https://developer.gnome.org/gtk4/GtkTextBuffer.html#GtkTextBufferClass">GtkTextBufferClass</a></td>
+<td class="function_name"><a class="link" href="GtkTextBuffer.html#GtkTextBufferClass" title="struct GtkTextBufferClass">GtkTextBufferClass</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
-<td class="function_name">GtkTextBufferTargetInfo</td>
+<td class="function_name"><a class="link" href="GtkTextBuffer.html#GtkTextBufferTargetInfo" title="enum GtkTextBufferTargetInfo">GtkTextBufferTargetInfo</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -3658,7 +3658,7 @@ gtk_text_buffer_get_copy_target_list (<em class="parameter"><code><a class="link
 <p>This function returns the list of targets this text buffer can
 provide for copying and as DND source. The targets in the list are
 added with <em class="parameter"><code>info</code></em>
- values from the <span class="type">GtkTextBufferTargetInfo</span> enum,
+ values from the <a class="link" href="GtkTextBuffer.html#GtkTextBufferTargetInfo" title="enum GtkTextBufferTargetInfo"><span class="type">GtkTextBufferTargetInfo</span></a> enum,
 using <a class="link" href="gtk3-Selections.html#gtk-target-list-add-rich-text-targets" title="gtk_target_list_add_rich_text_targets ()"><code class="function">gtk_target_list_add_rich_text_targets()</code></a> and
 <a class="link" href="gtk3-Selections.html#gtk-target-list-add-text-targets" title="gtk_target_list_add_text_targets ()"><code class="function">gtk_target_list_add_text_targets()</code></a>.</p>
 <div class="refsect3">
@@ -3732,7 +3732,7 @@ gtk_text_buffer_get_paste_target_list (<em class="parameter"><code><a class="lin
 <p>This function returns the list of targets this text buffer supports
 for pasting and as DND destination. The targets in the list are
 added with <em class="parameter"><code>info</code></em>
- values from the <span class="type">GtkTextBufferTargetInfo</span> enum,
+ values from the <a class="link" href="GtkTextBuffer.html#GtkTextBufferTargetInfo" title="enum GtkTextBufferTargetInfo"><span class="type">GtkTextBufferTargetInfo</span></a> enum,
 using <a class="link" href="gtk3-Selections.html#gtk-target-list-add-rich-text-targets" title="gtk_target_list_add_rich_text_targets ()"><code class="function">gtk_target_list_add_rich_text_targets()</code></a> and
 <a class="link" href="gtk3-Selections.html#gtk-target-list-add-text-targets" title="gtk_target_list_add_text_targets ()"><code class="function">gtk_target_list_add_text_targets()</code></a>.</p>
 <div class="refsect3">
@@ -4217,6 +4217,190 @@ registered using <a class="link" href="GtkTextBuffer.html#gtk-text-buffer-regist
 </table></div>
 </div>
 <p class="since">Since: 2.10</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GtkTextBuffer.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GtkTextBuffer-struct"></a><h3>GtkTextBuffer</h3>
+<pre class="programlisting">typedef struct _GtkTextBuffer GtkTextBuffer;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkTextBufferClass"></a><h3>struct GtkTextBufferClass</h3>
+<pre class="programlisting">struct GtkTextBufferClass {
+  GObjectClass parent_class;
+
+  void (* insert_text)            (GtkTextBuffer      *buffer,
+                                   GtkTextIter        *pos,
+                                   const gchar        *new_text,
+                                   gint                new_text_length);
+
+  void (* insert_pixbuf)          (GtkTextBuffer      *buffer,
+                                   GtkTextIter        *iter,
+                                   GdkPixbuf          *pixbuf);
+
+  void (* insert_child_anchor)    (GtkTextBuffer      *buffer,
+                                   GtkTextIter        *iter,
+                                   GtkTextChildAnchor *anchor);
+
+  void (* delete_range)           (GtkTextBuffer      *buffer,
+                                   GtkTextIter        *start,
+                                   GtkTextIter        *end);
+
+  void (* changed)                (GtkTextBuffer      *buffer);
+
+  void (* modified_changed)       (GtkTextBuffer      *buffer);
+
+  void (* mark_set)               (GtkTextBuffer      *buffer,
+                                   const GtkTextIter  *location,
+                                   GtkTextMark        *mark);
+
+  void (* mark_deleted)           (GtkTextBuffer      *buffer,
+                                   GtkTextMark        *mark);
+
+  void (* apply_tag)              (GtkTextBuffer      *buffer,
+                                   GtkTextTag         *tag,
+                                   const GtkTextIter  *start,
+                                   const GtkTextIter  *end);
+
+  void (* remove_tag)             (GtkTextBuffer      *buffer,
+                                   GtkTextTag         *tag,
+                                   const GtkTextIter  *start,
+                                   const GtkTextIter  *end);
+
+  void (* begin_user_action)      (GtkTextBuffer      *buffer);
+
+  void (* end_user_action)        (GtkTextBuffer      *buffer);
+
+  void (* paste_done)             (GtkTextBuffer      *buffer,
+                                   GtkClipboard       *clipboard);
+};
+</pre>
+<div class="refsect3">
+<a name="GtkTextBufferClass.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="struct_members_name">
+<col class="struct_members_description">
+<col width="200px" class="struct_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkTextBufferClass.insert-text"></a>insert_text</code></em> ()</p></td>
+<td class="struct_member_description"><p>The class handler for the <a class="link" href="GtkTextBuffer.html#GtkTextBuffer-insert-text" title="The “insert-text” signal"><span class="type">“insert-text”</span></a> signal.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkTextBufferClass.insert-pixbuf"></a>insert_pixbuf</code></em> ()</p></td>
+<td class="struct_member_description"><p>The class handler for the <a class="link" href="GtkTextBuffer.html#GtkTextBuffer-insert-pixbuf" title="The “insert-pixbuf” signal"><span class="type">“insert-pixbuf”</span></a>
+signal.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkTextBufferClass.insert-child-anchor"></a>insert_child_anchor</code></em> ()</p></td>
+<td class="struct_member_description"><p>The class handler for the
+<a class="link" href="GtkTextBuffer.html#GtkTextBuffer-insert-child-anchor" title="The “insert-child-anchor” signal"><span class="type">“insert-child-anchor”</span></a> signal.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkTextBufferClass.delete-range"></a>delete_range</code></em> ()</p></td>
+<td class="struct_member_description"><p>The class handler for the <a class="link" href="GtkTextBuffer.html#GtkTextBuffer-delete-range" title="The “delete-range” signal"><span class="type">“delete-range”</span></a> signal.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkTextBufferClass.changed"></a>changed</code></em> ()</p></td>
+<td class="struct_member_description"><p>The class handler for the <a class="link" href="GtkTextBuffer.html#GtkTextBuffer-changed" title="The “changed” signal"><span class="type">“changed”</span></a> signal.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkTextBufferClass.modified-changed"></a>modified_changed</code></em> ()</p></td>
+<td class="struct_member_description"><p>The class handler for the <a class="link" href="GtkTextBuffer.html#GtkTextBuffer-modified-changed" title="The “modified-changed” signal"><span class="type">“modified-changed”</span></a>
+signal.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkTextBufferClass.mark-set"></a>mark_set</code></em> ()</p></td>
+<td class="struct_member_description"><p>The class handler for the <a class="link" href="GtkTextBuffer.html#GtkTextBuffer-mark-set" title="The “mark-set” signal"><span class="type">“mark-set”</span></a> signal.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkTextBufferClass.mark-deleted"></a>mark_deleted</code></em> ()</p></td>
+<td class="struct_member_description"><p>The class handler for the <a class="link" href="GtkTextBuffer.html#GtkTextBuffer-mark-deleted" title="The “mark-deleted” signal"><span class="type">“mark-deleted”</span></a> signal.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkTextBufferClass.apply-tag"></a>apply_tag</code></em> ()</p></td>
+<td class="struct_member_description"><p>The class handler for the <a class="link" href="GtkTextBuffer.html#GtkTextBuffer-apply-tag" title="The “apply-tag” signal"><span class="type">“apply-tag”</span></a> signal.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkTextBufferClass.remove-tag"></a>remove_tag</code></em> ()</p></td>
+<td class="struct_member_description"><p>The class handler for the <a class="link" href="GtkTextBuffer.html#GtkTextBuffer-remove-tag" title="The “remove-tag” signal"><span class="type">“remove-tag”</span></a> signal.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkTextBufferClass.begin-user-action"></a>begin_user_action</code></em> ()</p></td>
+<td class="struct_member_description"><p>The class handler for the
+<a class="link" href="GtkTextBuffer.html#GtkTextBuffer-begin-user-action" title="The “begin-user-action” signal"><span class="type">“begin-user-action”</span></a> signal.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkTextBufferClass.end-user-action"></a>end_user_action</code></em> ()</p></td>
+<td class="struct_member_description"><p>The class handler for the <a class="link" href="GtkTextBuffer.html#GtkTextBuffer-end-user-action" title="The “end-user-action” signal"><span class="type">“end-user-action”</span></a>
+signal.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+<tr>
+<td class="struct_member_name"><p><em class="structfield"><code><a name="GtkTextBufferClass.paste-done"></a>paste_done</code></em> ()</p></td>
+<td class="struct_member_description"><p>The class handler for the <a class="link" href="GtkTextBuffer.html#GtkTextBuffer-paste-done" title="The “paste-done” signal"><span class="type">“paste-done”</span></a> signal.</p></td>
+<td class="struct_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="GtkTextBufferTargetInfo"></a><h3>enum GtkTextBufferTargetInfo</h3>
+<p>These values are used as “info” for the targets contained in the
+lists returned by <a class="link" href="GtkTextBuffer.html#gtk-text-buffer-get-copy-target-list" title="gtk_text_buffer_get_copy_target_list ()"><code class="function">gtk_text_buffer_get_copy_target_list()</code></a> and
+<a class="link" href="GtkTextBuffer.html#gtk-text-buffer-get-paste-target-list" title="gtk_text_buffer_get_paste_target_list ()"><code class="function">gtk_text_buffer_get_paste_target_list()</code></a>.</p>
+<p>The values counts down from <code class="literal">-1</code> to avoid clashes
+with application added drag destinations which usually start at 0.</p>
+<div class="refsect3">
+<a name="GtkTextBufferTargetInfo.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-TEXT-BUFFER-TARGET-INFO-BUFFER-CONTENTS:CAPS"></a>GTK_TEXT_BUFFER_TARGET_INFO_BUFFER_CONTENTS</p></td>
+<td class="enum_member_description">
+<p>Buffer contents</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-TEXT-BUFFER-TARGET-INFO-RICH-TEXT:CAPS"></a>GTK_TEXT_BUFFER_TARGET_INFO_RICH_TEXT</p></td>
+<td class="enum_member_description">
+<p>Rich text</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="GTK-TEXT-BUFFER-TARGET-INFO-TEXT:CAPS"></a>GTK_TEXT_BUFFER_TARGET_INFO_TEXT</p></td>
+<td class="enum_member_description">
+<p>Text</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
 </div>
 </div>
 <div class="refsect1">

@@ -129,7 +129,7 @@
 </colgroup>
 <tbody><tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name">GdkDeviceManager</td>
+<td class="function_name"><a class="link" href="GdkDeviceManager.html#GdkDeviceManager-struct" title="GdkDeviceManager">GdkDeviceManager</a></td>
 </tr></tbody>
 </table></div>
 </div>
@@ -164,7 +164,7 @@ to a compatibility mode in which it will emit just one enter/leave
 event pair for all devices on a window. To enable per-device
 enter/leave events and other multi-pointer interaction features,
 <a class="link" href="gdk3-Windows.html#gdk-window-set-support-multidevice" title="gdk_window_set_support_multidevice ()"><code class="function">gdk_window_set_support_multidevice()</code></a> must be called on
-<span class="type">GdkWindows</span> (or <a href="https://developer.gnome.org/gtk4/GtkWidget.html#gtk-widget-set-support-multidevice"><code class="function">gtk_widget_set_support_multidevice()</code></a> on widgets).
+<a href="gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindows</span></a> (or <a href="https://developer.gnome.org/gtk4/GtkWidget.html#gtk-widget-set-support-multidevice"><code class="function">gtk_widget_set_support_multidevice()</code></a> on widgets).
 window. See the <a class="link" href="gdk3-Windows.html#gdk-window-set-support-multidevice" title="gdk_window_set_support_multidevice ()"><code class="function">gdk_window_set_support_multidevice()</code></a> documentation
 for more information.</p>
 <p>On X11, multi-device support is implemented through XInput 2.
@@ -233,13 +233,13 @@ be “floating”, which means they are not attached to any virtual device.</p>
 <p></p>
 <p>By default, GDK will automatically listen for events coming from all
 master devices, setting the <a class="link" href="GdkDevice.html" title="GdkDevice"><span class="type">GdkDevice</span></a> for all events coming from input
-devices. Events containing device information are <span class="type">GDK_MOTION_NOTIFY</span>,
-<span class="type">GDK_BUTTON_PRESS</span>, <span class="type">GDK_2BUTTON_PRESS</span>, <span class="type">GDK_3BUTTON_PRESS</span>,
-<span class="type">GDK_BUTTON_RELEASE</span>, <span class="type">GDK_SCROLL</span>, <span class="type">GDK_KEY_PRESS</span>, <span class="type">GDK_KEY_RELEASE</span>,
-<span class="type">GDK_ENTER_NOTIFY</span>, <span class="type">GDK_LEAVE_NOTIFY</span>, <span class="type">GDK_FOCUS_CHANGE</span>,
-<span class="type">GDK_PROXIMITY_IN</span>, <span class="type">GDK_PROXIMITY_OUT</span>, <span class="type">GDK_DRAG_ENTER</span>, <span class="type">GDK_DRAG_LEAVE</span>,
-<span class="type">GDK_DRAG_MOTION</span>, <span class="type">GDK_DRAG_STATUS</span>, <span class="type">GDK_DROP_START</span>, <span class="type">GDK_DROP_FINISHED</span>
-and <span class="type">GDK_GRAB_BROKEN</span>. When dealing with an event on a master device,
+devices. Events containing device information are <a class="link" href="gdk3-Events.html#GDK-MOTION-NOTIFY:CAPS"><span class="type">GDK_MOTION_NOTIFY</span></a>,
+<a class="link" href="gdk3-Events.html#GDK-BUTTON-PRESS:CAPS"><span class="type">GDK_BUTTON_PRESS</span></a>, <a class="link" href="gdk3-Events.html#GDK-2BUTTON-PRESS:CAPS"><span class="type">GDK_2BUTTON_PRESS</span></a>, <a class="link" href="gdk3-Events.html#GDK-3BUTTON-PRESS:CAPS"><span class="type">GDK_3BUTTON_PRESS</span></a>,
+<a class="link" href="gdk3-Events.html#GDK-BUTTON-RELEASE:CAPS"><span class="type">GDK_BUTTON_RELEASE</span></a>, <a class="link" href="gdk3-Events.html#GDK-SCROLL:CAPS"><span class="type">GDK_SCROLL</span></a>, <a class="link" href="gdk3-Events.html#GDK-KEY-PRESS:CAPS"><span class="type">GDK_KEY_PRESS</span></a>, <a class="link" href="gdk3-Events.html#GDK-KEY-RELEASE:CAPS"><span class="type">GDK_KEY_RELEASE</span></a>,
+<a class="link" href="gdk3-Events.html#GDK-ENTER-NOTIFY:CAPS"><span class="type">GDK_ENTER_NOTIFY</span></a>, <a class="link" href="gdk3-Events.html#GDK-LEAVE-NOTIFY:CAPS"><span class="type">GDK_LEAVE_NOTIFY</span></a>, <a class="link" href="gdk3-Events.html#GDK-FOCUS-CHANGE:CAPS"><span class="type">GDK_FOCUS_CHANGE</span></a>,
+<a class="link" href="gdk3-Events.html#GDK-PROXIMITY-IN:CAPS"><span class="type">GDK_PROXIMITY_IN</span></a>, <a class="link" href="gdk3-Events.html#GDK-PROXIMITY-OUT:CAPS"><span class="type">GDK_PROXIMITY_OUT</span></a>, <a class="link" href="gdk3-Events.html#GDK-DRAG-ENTER:CAPS"><span class="type">GDK_DRAG_ENTER</span></a>, <a class="link" href="gdk3-Events.html#GDK-DRAG-LEAVE:CAPS"><span class="type">GDK_DRAG_LEAVE</span></a>,
+<a class="link" href="gdk3-Events.html#GDK-DRAG-MOTION:CAPS"><span class="type">GDK_DRAG_MOTION</span></a>, <a class="link" href="gdk3-Events.html#GDK-DRAG-STATUS:CAPS"><span class="type">GDK_DRAG_STATUS</span></a>, <a class="link" href="gdk3-Events.html#GDK-DROP-START:CAPS"><span class="type">GDK_DROP_START</span></a>, <a class="link" href="gdk3-Events.html#GDK-DROP-FINISHED:CAPS"><span class="type">GDK_DROP_FINISHED</span></a>
+and <a class="link" href="gdk3-Events.html#GDK-GRAB-BROKEN:CAPS"><span class="type">GDK_GRAB_BROKEN</span></a>. When dealing with an event on a master device,
 it is possible to get the source (slave) device that the event originated
 from via <a class="link" href="gdk3-Events.html#gdk-event-get-source-device" title="gdk_event_get_source_device ()"><code class="function">gdk_event_get_source_device()</code></a>.</p>
 <p>On a standard session, all physical devices are connected by default to
@@ -323,7 +323,7 @@ owned by GDK and must not be freed or unreferenced. </p>
 <a name="gdk-device-manager-list-devices"></a><h3>gdk_device_manager_list_devices ()</h3>
 <pre class="programlisting"><span class="returnvalue">GList</span> *
 gdk_device_manager_list_devices (<em class="parameter"><code><a class="link" href="GdkDeviceManager.html" title="GdkDeviceManager"><span class="type">GdkDeviceManager</span></a> *device_manager</code></em>,
-                                 <em class="parameter"><code><span class="type">GdkDeviceType</span> type</code></em>);</pre>
+                                 <em class="parameter"><code><a class="link" href="GdkDevice.html#GdkDeviceType" title="enum GdkDeviceType"><span class="type">GdkDeviceType</span></a> type</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gdk_device_manager_list_devices</code> has been deprecated since version 3.20 and should not be used in newly-written code.</p>
 <p>, use <a class="link" href="GdkSeat.html#gdk-seat-get-pointer" title="gdk_seat_get_pointer ()"><code class="function">gdk_seat_get_pointer()</code></a>, <a class="link" href="GdkSeat.html#gdk-seat-get-keyboard" title="gdk_seat_get_keyboard ()"><code class="function">gdk_seat_get_keyboard()</code></a>
@@ -377,7 +377,7 @@ gdk_device_manager_get_client_pointer (<em class="parameter"><code><a class="lin
 <p>Returns the client pointer, that is, the master pointer that acts as the core pointer
 for this application. In X11, window managers may change this depending on the interaction
 pattern under the presence of several pointers.</p>
-<p>You should use this function seldomly, only in code that isn’t triggered by a <span class="type">GdkEvent</span>
+<p>You should use this function seldomly, only in code that isn’t triggered by a <a class="link" href="gdk3-Event-Structures.html#GdkEvent" title="union GdkEvent"><span class="type">GdkEvent</span></a>
 and there aren’t other means to get a meaningful <a class="link" href="GdkDevice.html" title="GdkDevice"><span class="type">GdkDevice</span></a> to operate on.</p>
 <div class="refsect3">
 <a name="gdk-device-manager-get-client-pointer.parameters"></a><h4>Parameters</h4>
@@ -401,6 +401,13 @@ owned by GDK and must not be freed or unreferenced. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
+</div>
+</div>
+<div class="refsect1">
+<a name="GdkDeviceManager.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="GdkDeviceManager-struct"></a><h3>GdkDeviceManager</h3>
+<pre class="programlisting">typedef struct _GdkDeviceManager GdkDeviceManager;</pre>
 </div>
 </div>
 <div class="refsect1">
@@ -467,8 +474,8 @@ another one, or master devices being added or removed
 a slave device.</p>
 <p>If a slave device is detached from all master devices
 (<a class="link" href="GdkDevice.html#gdk-device-get-associated-device" title="gdk_device_get_associated_device ()"><code class="function">gdk_device_get_associated_device()</code></a> returns <code class="literal">NULL</code>), its
-<span class="type">GdkDeviceType</span> will change to <code class="literal">GDK_DEVICE_TYPE_FLOATING</code>,
-if it's attached, it will change to <code class="literal">GDK_DEVICE_TYPE_SLAVE</code>.</p>
+<a class="link" href="GdkDevice.html#GdkDeviceType" title="enum GdkDeviceType"><span class="type">GdkDeviceType</span></a> will change to <a class="link" href="GdkDevice.html#GDK-DEVICE-TYPE-FLOATING:CAPS"><code class="literal">GDK_DEVICE_TYPE_FLOATING</code></a>,
+if it's attached, it will change to <a class="link" href="GdkDevice.html#GDK-DEVICE-TYPE-SLAVE:CAPS"><code class="literal">GDK_DEVICE_TYPE_SLAVE</code></a>.</p>
 <div class="refsect3">
 <a name="GdkDeviceManager-device-changed.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -540,7 +547,7 @@ is unplugged.</p>
 </div>
 <div class="refsect1">
 <a name="GdkDeviceManager.see-also"></a><h2>See Also</h2>
-<p><a class="link" href="GdkDevice.html" title="GdkDevice"><span class="type">GdkDevice</span></a>, <span class="type">GdkEvent</span></p>
+<p><a class="link" href="GdkDevice.html" title="GdkDevice"><span class="type">GdkDevice</span></a>, <a class="link" href="gdk3-Event-Structures.html#GdkEvent" title="union GdkEvent"><span class="type">GdkEvent</span></a></p>
 </div>
 </div>
 <div class="footer">
