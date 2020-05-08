@@ -8,7 +8,7 @@
 <link rel="up" href="gtkbase.html" title="Part III. GTK+ Core Reference">
 <link rel="prev" href="gtk3-Clipboards.html" title="Clipboards">
 <link rel="next" href="GtkSettings.html" title="Settings">
-<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.99 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -391,7 +391,7 @@ gtk_drag_dest_set (<em class="parameter"><code><a class="link" href="GtkWidget.h
                    <em class="parameter"><code><a class="link" href="gtk3-Drag-and-Drop.html#GtkDestDefaults" title="enum GtkDestDefaults"><span class="type">GtkDestDefaults</span></a> flags</code></em>,
                    <em class="parameter"><code>const <a class="link" href="gtk3-Selections.html#GtkTargetEntry" title="struct GtkTargetEntry"><span class="type">GtkTargetEntry</span></a> *targets</code></em>,
                    <em class="parameter"><code><span class="type">gint</span> n_targets</code></em>,
-                   <em class="parameter"><code><span class="type">GdkDragAction</span> actions</code></em>);</pre>
+                   <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Drag-and-Drop.html#GdkDragAction"><span class="type">GdkDragAction</span></a> actions</code></em>);</pre>
 <p>Sets a widget as a potential drop destination, and adds default behaviors.</p>
 <p>The default behaviors listed in <em class="parameter"><code>flags</code></em>
  have an effect similar
@@ -1025,9 +1025,9 @@ a widget.</p>
 <pre class="programlisting"><span class="returnvalue">GdkDragContext</span> *
 gtk_drag_begin (<em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
                 <em class="parameter"><code><a class="link" href="gtk3-Selections.html#GtkTargetList"><span class="type">GtkTargetList</span></a> *targets</code></em>,
-                <em class="parameter"><code><span class="type">GdkDragAction</span> actions</code></em>,
+                <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Drag-and-Drop.html#GdkDragAction"><span class="type">GdkDragAction</span></a> actions</code></em>,
                 <em class="parameter"><code><span class="type">gint</span> button</code></em>,
-                <em class="parameter"><code><span class="type">GdkEvent</span> *event</code></em>);</pre>
+                <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Events.html#GdkEvent-struct"><span class="type">GdkEvent</span></a> *event</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gtk_drag_begin</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="gtk3-Drag-and-Drop.html#gtk-drag-begin-with-coordinates" title="gtk_drag_begin_with_coordinates ()"><code class="function">gtk_drag_begin_with_coordinates()</code></a> instead</p>
@@ -1086,9 +1086,9 @@ or <code class="literal">NULL</code> if none can be obtained. </p></td>
 <pre class="programlisting"><span class="returnvalue">GdkDragContext</span> *
 gtk_drag_begin_with_coordinates (<em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
                                  <em class="parameter"><code><a class="link" href="gtk3-Selections.html#GtkTargetList"><span class="type">GtkTargetList</span></a> *targets</code></em>,
-                                 <em class="parameter"><code><span class="type">GdkDragAction</span> actions</code></em>,
+                                 <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Drag-and-Drop.html#GdkDragAction"><span class="type">GdkDragAction</span></a> actions</code></em>,
                                  <em class="parameter"><code><span class="type">gint</span> button</code></em>,
-                                 <em class="parameter"><code><span class="type">GdkEvent</span> *event</code></em>,
+                                 <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Events.html#GdkEvent-struct"><span class="type">GdkEvent</span></a> *event</code></em>,
                                  <em class="parameter"><code><span class="type">gint</span> x</code></em>,
                                  <em class="parameter"><code><span class="type">gint</span> y</code></em>);</pre>
 <p>Initiates a drag on the source side. The function only needs to be used
@@ -1097,7 +1097,7 @@ when the application is starting drags itself, and is not needed when
 <p>The <em class="parameter"><code>event</code></em>
  is used to retrieve the timestamp that will be used internally to
 grab the pointer.  If <em class="parameter"><code>event</code></em>
- is <code class="literal">NULL</code>, then <code class="literal">GDK_CURRENT_TIME</code> will be used.
+ is <code class="literal">NULL</code>, then <a href="https://developer.gnome.org/gdk4/gdk4-Events.html#GDK-CURRENT-TIME:CAPS"><code class="literal">GDK_CURRENT_TIME</code></a> will be used.
 However, you should try to pass a real event in all cases, since that can be
 used to get information about the drag.</p>
 <p>Generally there are three cases when you want to start a drag by hand by
@@ -1113,7 +1113,7 @@ Pass the <em class="parameter"><code>event</code></em>
  that you have in your <a class="link" href="GtkWidget.html#GtkWidget-motion-notify-event" title="The “motion-notify-event” signal"><span class="type">“motion-notify-event”</span></a> handler.</p></li>
 <li class="listitem"><p>During a timeout handler, if you want to start a drag after the mouse
 button is held down for some time.  Try to save the last event that you got
-from the mouse, using <a href="https://developer.gnome.org/gdk4/gdk4-Events.html#gdk-event-copy"><code class="function">gdk_event_copy()</code></a>, and pass it to this function
+from the mouse, using <code class="function">gdk_event_copy()</code>, and pass it to this function
 (remember to free the event with <code class="function">gdk_event_free()</code> when you are done).
 If you really cannot pass a real event, pass <code class="literal">NULL</code> instead.</p></li>
 </ol></div>
@@ -1584,10 +1584,10 @@ should trigger the beginning of a drag-and-drop operation.</p>
 <a name="gtk-drag-source-set"></a><h3>gtk_drag_source_set ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_drag_source_set (<em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
-                     <em class="parameter"><code><span class="type">GdkModifierType</span> start_button_mask</code></em>,
+                     <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/GdkSurface.html#GdkModifierType"><span class="type">GdkModifierType</span></a> start_button_mask</code></em>,
                      <em class="parameter"><code>const <a class="link" href="gtk3-Selections.html#GtkTargetEntry" title="struct GtkTargetEntry"><span class="type">GtkTargetEntry</span></a> *targets</code></em>,
                      <em class="parameter"><code><span class="type">gint</span> n_targets</code></em>,
-                     <em class="parameter"><code><span class="type">GdkDragAction</span> actions</code></em>);</pre>
+                     <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Drag-and-Drop.html#GdkDragAction"><span class="type">GdkDragAction</span></a> actions</code></em>);</pre>
 <p>Sets up a widget so that GTK+ will start a drag operation when the user
 clicks and drags on the widget. The widget must have a window.</p>
 <p><span class="annotation">[<acronym title="This is a method"><span class="acronym">method</span></acronym>]</span></p>
@@ -2119,6 +2119,6 @@ unspecified error.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.32.1</div>
+<hr>Generated by GTK-Doc V1.99</div>
 </body>
 </html>

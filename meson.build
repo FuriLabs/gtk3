@@ -1,5 +1,5 @@
 project('gtk+-3.0', 'c',
-        version: '3.24.17',
+        version: '3.24.20',
         default_options: [
           'buildtype=debugoptimized',
           'warning_level=1'
@@ -986,6 +986,16 @@ if host_machine.system() != 'windows'
   install_data('gtk.supp',
     install_dir : join_paths(gtk_datadir, 'gtk-3.0', 'valgrind'))
 endif
+
+test(
+  'version-check',
+  find_program('check-version.py'),
+  args: [
+    join_paths(meson.current_source_dir(), 'configure.ac'),
+    join_paths(meson.current_source_dir(), 'meson.build'),
+  ],
+  suite: 'gtk',
+)
 
 summary = [
   '',
