@@ -222,6 +222,9 @@ gtk_license_get_type (void)
         { GTK_LICENSE_LGPL_3_0_ONLY, "GTK_LICENSE_LGPL_3_0_ONLY", "lgpl-3-0-only" },
         { GTK_LICENSE_AGPL_3_0, "GTK_LICENSE_AGPL_3_0", "agpl-3-0" },
         { GTK_LICENSE_AGPL_3_0_ONLY, "GTK_LICENSE_AGPL_3_0_ONLY", "agpl-3-0-only" },
+        { GTK_LICENSE_BSD_3, "GTK_LICENSE_BSD_3", "bsd-3" },
+        { GTK_LICENSE_APACHE_2_0, "GTK_LICENSE_APACHE_2_0", "apache-2-0" },
+        { GTK_LICENSE_MPL_2_0, "GTK_LICENSE_MPL_2_0", "mpl-2-0" },
         { 0, NULL, NULL }
       };
       GType g_define_type_id =

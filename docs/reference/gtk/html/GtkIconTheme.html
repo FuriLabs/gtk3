@@ -8,7 +8,7 @@
 <link rel="up" href="theming.html" title="Part IV. Theming in GTK+">
 <link rel="prev" href="gtk3-GtkWidgetPath.html" title="GtkWidgetPath">
 <link rel="next" href="migrating.html" title="Part V. Migrating from Previous Versions of GTK+">
-<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.99 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -2229,10 +2229,10 @@ to the icon. </p>
 <a name="gtk-icon-info-load-symbolic"></a><h3>gtk_icon_info_load_symbolic ()</h3>
 <pre class="programlisting"><a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="returnvalue">GdkPixbuf</span></a> *
 gtk_icon_info_load_symbolic (<em class="parameter"><code><a class="link" href="GtkIconTheme.html#GtkIconInfo" title="GtkIconInfo"><span class="type">GtkIconInfo</span></a> *icon_info</code></em>,
-                             <em class="parameter"><code>const <span class="type">GdkRGBA</span> *fg</code></em>,
-                             <em class="parameter"><code>const <span class="type">GdkRGBA</span> *success_color</code></em>,
-                             <em class="parameter"><code>const <span class="type">GdkRGBA</span> *warning_color</code></em>,
-                             <em class="parameter"><code>const <span class="type">GdkRGBA</span> *error_color</code></em>,
+                             <em class="parameter"><code>const <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> *fg</code></em>,
+                             <em class="parameter"><code>const <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> *success_color</code></em>,
+                             <em class="parameter"><code>const <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> *warning_color</code></em>,
+                             <em class="parameter"><code>const <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> *error_color</code></em>,
                              <em class="parameter"><code><span class="type">gboolean</span> *was_symbolic</code></em>,
                              <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Loads an icon, modifying it to match the system colours for the foreground,
@@ -2263,24 +2263,24 @@ for more information about symbolic icons.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>fg</p></td>
-<td class="parameter_description"><p>a <span class="type">GdkRGBA</span> representing the foreground color of the icon</p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> representing the foreground color of the icon</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>success_color</p></td>
-<td class="parameter_description"><p>a <span class="type">GdkRGBA</span> representing the warning color
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> representing the warning color
 of the icon or <code class="literal">NULL</code> to use the default color. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>warning_color</p></td>
-<td class="parameter_description"><p>a <span class="type">GdkRGBA</span> representing the warning color
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> representing the warning color
 of the icon or <code class="literal">NULL</code> to use the default color. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error_color</p></td>
-<td class="parameter_description"><p>a <span class="type">GdkRGBA</span> representing the error color
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> representing the error color
 of the icon or <code class="literal">NULL</code> to use the default color (allow-none). </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
@@ -2313,10 +2313,10 @@ or <code class="literal">NULL</code>. </p></td>
 <a name="gtk-icon-info-load-symbolic-async"></a><h3>gtk_icon_info_load_symbolic_async ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_icon_info_load_symbolic_async (<em class="parameter"><code><a class="link" href="GtkIconTheme.html#GtkIconInfo" title="GtkIconInfo"><span class="type">GtkIconInfo</span></a> *icon_info</code></em>,
-                                   <em class="parameter"><code>const <span class="type">GdkRGBA</span> *fg</code></em>,
-                                   <em class="parameter"><code>const <span class="type">GdkRGBA</span> *success_color</code></em>,
-                                   <em class="parameter"><code>const <span class="type">GdkRGBA</span> *warning_color</code></em>,
-                                   <em class="parameter"><code>const <span class="type">GdkRGBA</span> *error_color</code></em>,
+                                   <em class="parameter"><code>const <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> *fg</code></em>,
+                                   <em class="parameter"><code>const <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> *success_color</code></em>,
+                                   <em class="parameter"><code>const <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> *warning_color</code></em>,
+                                   <em class="parameter"><code>const <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> *error_color</code></em>,
                                    <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
                                    <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
                                    <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
@@ -2340,24 +2340,24 @@ version of this call.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>fg</p></td>
-<td class="parameter_description"><p>a <span class="type">GdkRGBA</span> representing the foreground color of the icon</p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> representing the foreground color of the icon</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>success_color</p></td>
-<td class="parameter_description"><p>a <span class="type">GdkRGBA</span> representing the warning color
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> representing the warning color
 of the icon or <code class="literal">NULL</code> to use the default color. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>warning_color</p></td>
-<td class="parameter_description"><p>a <span class="type">GdkRGBA</span> representing the warning color
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> representing the warning color
 of the icon or <code class="literal">NULL</code> to use the default color. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error_color</p></td>
-<td class="parameter_description"><p>a <span class="type">GdkRGBA</span> representing the error color
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#GdkRGBA-struct"><span class="type">GdkRGBA</span></a> representing the error color
 of the icon or <code class="literal">NULL</code> to use the default color (allow-none). </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
@@ -2728,7 +2728,7 @@ and attached points should be returned in their original
 <a name="gtk-icon-info-get-embedded-rect"></a><h3>gtk_icon_info_get_embedded_rect ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_icon_info_get_embedded_rect (<em class="parameter"><code><a class="link" href="GtkIconTheme.html#GtkIconInfo" title="GtkIconInfo"><span class="type">GtkIconInfo</span></a> *icon_info</code></em>,
-                                 <em class="parameter"><code><span class="type">GdkRectangle</span> *rectangle</code></em>);</pre>
+                                 <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#GdkRectangle-struct"><span class="type">GdkRectangle</span></a> *rectangle</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gtk_icon_info_get_embedded_rect</code> has been deprecated since version 3.14 and should not be used in newly-written code.</p>
 <p>Embedded rectangles are deprecated</p>
@@ -2750,7 +2750,7 @@ gtk_icon_info_get_embedded_rect (<em class="parameter"><code><a class="link" hre
 </tr>
 <tr>
 <td class="parameter_name"><p>rectangle</p></td>
-<td class="parameter_description"><p><span class="type">GdkRectangle</span> in which to store embedded
+<td class="parameter_description"><p><a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#GdkRectangle-struct"><span class="type">GdkRectangle</span></a> in which to store embedded
 rectangle coordinates; coordinates are only stored
 when this function returns <code class="literal">TRUE</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span></td>
@@ -2769,7 +2769,7 @@ when this function returns <code class="literal">TRUE</code>. </p></td>
 <a name="gtk-icon-info-get-attach-points"></a><h3>gtk_icon_info_get_attach_points ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_icon_info_get_attach_points (<em class="parameter"><code><a class="link" href="GtkIconTheme.html#GtkIconInfo" title="GtkIconInfo"><span class="type">GtkIconInfo</span></a> *icon_info</code></em>,
-                                 <em class="parameter"><code><span class="type">GdkPoint</span> **points</code></em>,
+                                 <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#GdkPoint"><span class="type">GdkPoint</span></a> **points</code></em>,
                                  <em class="parameter"><code><span class="type">gint</span> *n_points</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gtk_icon_info_get_attach_points</code> has been deprecated since version 3.14 and should not be used in newly-written code.</p>
@@ -3090,6 +3090,6 @@ icon theme.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.32.1</div>
+<hr>Generated by GTK-Doc V1.99</div>
 </body>
 </html>

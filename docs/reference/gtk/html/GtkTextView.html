@@ -8,7 +8,7 @@
 <link rel="up" href="TextWidgetObjects.html" title="Multiline Text Editor">
 <link rel="prev" href="GtkTextTagTable.html" title="GtkTextTagTable">
 <link rel="next" href="TreeWidgetObjects.html" title="Tree, List and Icon Grid Widgets">
-<meta name="generator" content="GTK-Doc V1.32.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.99 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -1414,7 +1414,7 @@ buffer, it it isn’t there already.</p>
 <a name="gtk-text-view-get-visible-rect"></a><h3>gtk_text_view_get_visible_rect ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_text_view_get_visible_rect (<em class="parameter"><code><a class="link" href="GtkTextView.html" title="GtkTextView"><span class="type">GtkTextView</span></a> *text_view</code></em>,
-                                <em class="parameter"><code><span class="type">GdkRectangle</span> *visible_rect</code></em>);</pre>
+                                <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#GdkRectangle-struct"><span class="type">GdkRectangle</span></a> *visible_rect</code></em>);</pre>
 <p>Fills <em class="parameter"><code>visible_rect</code></em>
  with the currently-visible
 region of the buffer, in buffer coordinates. Convert to window coordinates
@@ -1448,7 +1448,7 @@ with <a class="link" href="GtkTextView.html#gtk-text-view-buffer-to-window-coord
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_text_view_get_iter_location (<em class="parameter"><code><a class="link" href="GtkTextView.html" title="GtkTextView"><span class="type">GtkTextView</span></a> *text_view</code></em>,
                                  <em class="parameter"><code>const <a class="link" href="GtkTextIter.html" title="GtkTextIter"><span class="type">GtkTextIter</span></a> *iter</code></em>,
-                                 <em class="parameter"><code><span class="type">GdkRectangle</span> *location</code></em>);</pre>
+                                 <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#GdkRectangle-struct"><span class="type">GdkRectangle</span></a> *location</code></em>);</pre>
 <p>Gets a rectangle which roughly contains the character at <em class="parameter"><code>iter</code></em>
 .
 The rectangle position is in buffer coordinates; use
@@ -1489,8 +1489,8 @@ coordinates to coordinates for one of the windows in the text view.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_text_view_get_cursor_locations (<em class="parameter"><code><a class="link" href="GtkTextView.html" title="GtkTextView"><span class="type">GtkTextView</span></a> *text_view</code></em>,
                                     <em class="parameter"><code>const <a class="link" href="GtkTextIter.html" title="GtkTextIter"><span class="type">GtkTextIter</span></a> *iter</code></em>,
-                                    <em class="parameter"><code><span class="type">GdkRectangle</span> *strong</code></em>,
-                                    <em class="parameter"><code><span class="type">GdkRectangle</span> *weak</code></em>);</pre>
+                                    <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#GdkRectangle-struct"><span class="type">GdkRectangle</span></a> *strong</code></em>,
+                                    <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/gdk4-Points-Rectangles-and-Regions.html#GdkRectangle-struct"><span class="type">GdkRectangle</span></a> *weak</code></em>);</pre>
 <p>Given an <em class="parameter"><code>iter</code></em>
  within a text layout, determine the positions of the
 strong and weak cursors if the insertion point is at that
@@ -4590,8 +4590,8 @@ extended at <em class="parameter"><code>location</code></em>
 </div>
 <div class="refsect3">
 <a name="GtkTextView-extend-selection.returns"></a><h4>Returns</h4>
-<p> <code class="literal">GDK_EVENT_STOP</code> to stop other handlers from being invoked for the
-event. <code class="literal">GDK_EVENT_PROPAGATE</code> to propagate the event further.</p>
+<p> <a href="https://developer.gnome.org/gdk4/gdk4-Events.html#GDK-EVENT-STOP:CAPS"><code class="literal">GDK_EVENT_STOP</code></a> to stop other handlers from being invoked for the
+event. <a href="https://developer.gnome.org/gdk4/gdk4-Events.html#GDK-EVENT-PROPAGATE:CAPS"><code class="literal">GDK_EVENT_PROPAGATE</code></a> to propagate the event further.</p>
 </div>
 <p>Flags: Run Last</p>
 <p class="since">Since: <a class="link" href="api-index-3-16.html#api-index-3.16">3.16</a></p>
@@ -5088,6 +5088,6 @@ which gets emitted to toggle the overwrite mode of the text view.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.32.1</div>
+<hr>Generated by GTK-Doc V1.99</div>
 </body>
 </html>

@@ -1,3 +1,80 @@
+/* GTK NAMED COLORS ---------------- use responsibly! */
+/*
+widget text/foreground color */
+@define-color theme_fg_color #f3f3f1;
+/*
+text color for entries, views and content in general */
+@define-color theme_text_color white;
+/*
+widget base background color */
+@define-color theme_bg_color #303030;
+/*
+text widgets and the like base background color */
+@define-color theme_base_color #2d2d2d;
+/*
+base background color of selections */
+@define-color theme_selected_bg_color #0f3b71;
+/*
+text/foreground color of selections */
+@define-color theme_selected_fg_color #ffffff;
+/*
+base background color of insensitive widgets */
+@define-color insensitive_bg_color #2f2f2f;
+/*
+text foreground color of insensitive widgets */
+@define-color insensitive_fg_color #919191;
+/*
+insensitive text widgets and the like base background color */
+@define-color insensitive_base_color #2d2d2d;
+/*
+widget text/foreground color on backdrop windows */
+@define-color theme_unfocused_fg_color #919190;
+/*
+text color for entries, views and content in general on backdrop windows */
+@define-color theme_unfocused_text_color white;
+/*
+widget base background color on backdrop windows */
+@define-color theme_unfocused_bg_color #353535;
+/*
+text widgets and the like base background color on backdrop windows */
+@define-color theme_unfocused_base_color #303030;
+/*
+base background color of selections on backdrop windows */
+@define-color theme_unfocused_selected_bg_color #0f3b71;
+/*
+text/foreground color of selections on backdrop windows */
+@define-color theme_unfocused_selected_fg_color #ffffff;
+/*
+insensitive color on backdrop windows*/
+@define-color unfocused_insensitive_color #5b5b5b;
+/*
+widgets main borders color */
+@define-color borders #686868;
+/*
+widgets main borders color on backdrop windows */
+@define-color unfocused_borders #202020;
+/*
+these are pretty self explicative */
+@define-color warning_color #f57900;
+@define-color error_color #cc0000;
+@define-color success_color #26ab62;
+/*
+these colors are exported for the window manager and shouldn't be used in applications,
+read if you used those and something break with a version upgrade you're on your own... */
+@define-color wm_title shade(#f3f3f1, 1.8);
+@define-color wm_unfocused_title #919190;
+@define-color wm_highlight rgba(0, 0, 0, 0);
+@define-color wm_borders_edge rgba(238, 238, 236, 0.07);
+@define-color wm_bg_a shade(#303030, 1.2);
+@define-color wm_bg_b #303030;
+@define-color wm_shadow alpha(black, 0.35);
+@define-color wm_border alpha(black, 0.18);
+@define-color wm_button_hover_color_a shade(#303030, 1.3);
+@define-color wm_button_hover_color_b #303030;
+@define-color wm_button_active_color_a shade(#303030, 0.85);
+@define-color wm_button_active_color_b shade(#303030, 0.89);
+@define-color wm_button_active_color_c shade(#303030, 0.9);
+@define-color content_view_bg #2d2d2d;
 /*************************** Check and Radio buttons * */
 * { padding: 0; -GtkToolButton-icon-spacing: 4; -GtkTextView-error-underline-color: #cc0000; -GtkScrolledWindow-scrollbar-spacing: 0; -GtkToolItemGroup-expander-size: 11; -GtkWidget-text-handle-width: 20; -GtkWidget-text-handle-height: 24; -GtkDialog-button-spacing: 4; -GtkDialog-action-area-border: 0; outline-color: alpha(currentColor,0.3); outline-style: dashed; outline-offset: -3px; outline-width: 1px; -gtk-outline-radius: 3px; -gtk-secondary-caret-color: #0f3b71; }
 
@@ -216,13 +293,13 @@ notebook > header > tabs > arrow:hover, button.titlebutton:hover, button:hover {
 
 notebook > header > tabs > arrow:active, button.titlebutton:active, notebook > header > tabs > arrow:checked, button.titlebutton:checked, button:active, button:checked { color: #f3f3f1; outline-color: rgba(243, 243, 241, 0.3); border-color: #686868; background-image: image(#191919); box-shadow: inset 0 1px rgba(255, 255, 255, 0); text-shadow: none; -gtk-icon-shadow: none; transition-duration: 50ms; }
 
-notebook > header > tabs > arrow:backdrop.flat, button.titlebutton:backdrop.flat, notebook > header > tabs > arrow:backdrop, button.titlebutton:backdrop, button:backdrop.flat, button:backdrop { color: #919190; border-color: #202020; background-image: image(#353535); text-shadow: none; -gtk-icon-shadow: none; box-shadow: inset 0 1px rgba(255, 255, 255, 0); transition: 200ms ease-out; -gtk-icon-effect: none; }
+notebook > header > tabs > arrow:backdrop.flat, button:backdrop.flat.titlebutton, notebook > header > tabs > arrow:backdrop, button.titlebutton:backdrop, button:backdrop.flat, button:backdrop { color: #919190; border-color: #202020; background-image: image(#353535); text-shadow: none; -gtk-icon-shadow: none; box-shadow: inset 0 1px rgba(255, 255, 255, 0); transition: 200ms ease-out; -gtk-icon-effect: none; }
 
-notebook > header > tabs > arrow:backdrop.flat:active, button.titlebutton:backdrop.flat:active, notebook > header > tabs > arrow:backdrop.flat:checked, button.titlebutton:backdrop.flat:checked, notebook > header > tabs > arrow:backdrop:active, button.titlebutton:backdrop:active, notebook > header > tabs > arrow:backdrop:checked, button.titlebutton:backdrop:checked, button:backdrop.flat:active, button:backdrop.flat:checked, button:backdrop:active, button:backdrop:checked { color: #919190; border-color: #202020; background-image: image(#252525); box-shadow: inset 0 1px rgba(255, 255, 255, 0); }
+notebook > header > tabs > arrow:backdrop.flat:active, button:backdrop.flat.titlebutton:active, notebook > header > tabs > arrow:backdrop.flat:checked, button:backdrop.flat.titlebutton:checked, notebook > header > tabs > arrow:backdrop:active, button.titlebutton:backdrop:active, notebook > header > tabs > arrow:backdrop:checked, button.titlebutton:backdrop:checked, button:backdrop.flat:active, button:backdrop.flat:checked, button:backdrop:active, button:backdrop:checked { color: #919190; border-color: #202020; background-image: image(#252525); box-shadow: inset 0 1px rgba(255, 255, 255, 0); }
 
-notebook > header > tabs > arrow:backdrop.flat:disabled, button.titlebutton:backdrop.flat:disabled, notebook > header > tabs > arrow:backdrop:disabled, button.titlebutton:backdrop:disabled, button:backdrop.flat:disabled, button:backdrop:disabled { color: #5b5b5b; border-color: #202020; background-image: image(#2f2f2f); text-shadow: none; -gtk-icon-shadow: none; box-shadow: inset 0 1px rgba(255, 255, 255, 0); }
+notebook > header > tabs > arrow:backdrop.flat:disabled, button:backdrop.flat.titlebutton:disabled, notebook > header > tabs > arrow:backdrop:disabled, button.titlebutton:backdrop:disabled, button:backdrop.flat:disabled, button:backdrop:disabled { color: #5b5b5b; border-color: #202020; background-image: image(#2f2f2f); text-shadow: none; -gtk-icon-shadow: none; box-shadow: inset 0 1px rgba(255, 255, 255, 0); }
 
-notebook > header > tabs > arrow:backdrop.flat:disabled:active, button.titlebutton:backdrop.flat:disabled:active, notebook > header > tabs > arrow:backdrop.flat:disabled:checked, button.titlebutton:backdrop.flat:disabled:checked, notebook > header > tabs > arrow:backdrop:disabled:active, button.titlebutton:backdrop:disabled:active, notebook > header > tabs > arrow:backdrop:disabled:checked, button.titlebutton:backdrop:disabled:checked, button:backdrop.flat:disabled:active, button:backdrop.flat:disabled:checked, button:backdrop:disabled:active, button:backdrop:disabled:checked { color: #5b5b5b; border-color: #202020; background-image: image(#252525); box-shadow: inset 0 1px rgba(255, 255, 255, 0); }
+notebook > header > tabs > arrow:backdrop.flat:disabled:active, button:backdrop.flat.titlebutton:disabled:active, notebook > header > tabs > arrow:backdrop.flat:disabled:checked, button:backdrop.flat.titlebutton:disabled:checked, notebook > header > tabs > arrow:backdrop:disabled:active, button.titlebutton:backdrop:disabled:active, notebook > header > tabs > arrow:backdrop:disabled:checked, button.titlebutton:backdrop:disabled:checked, button:backdrop.flat:disabled:active, button:backdrop.flat:disabled:checked, button:backdrop:disabled:active, button:backdrop:disabled:checked { color: #5b5b5b; border-color: #202020; background-image: image(#252525); box-shadow: inset 0 1px rgba(255, 255, 255, 0); }
 
 notebook > header > tabs > arrow:backdrop, button.sidebar-button:backdrop, button.titlebutton:backdrop, notebook > header > tabs > arrow:disabled, button.sidebar-button:disabled, button.titlebutton:disabled, notebook > header > tabs > arrow:backdrop:disabled, button.sidebar-button:backdrop:disabled, button.titlebutton:backdrop:disabled, notebook > header > tabs > arrow.flat:backdrop, button.flat.titlebutton:backdrop, notebook > header > tabs > arrow.flat:disabled, button.flat.titlebutton:disabled, notebook > header > tabs > arrow.flat:backdrop:disabled, button.flat.titlebutton:backdrop:disabled, button.flat:backdrop, button.flat:disabled, button.flat:backdrop:disabled { border-color: transparent; background-color: transparent; background-image: none; box-shadow: inset 0 1px rgba(255, 255, 255, 0); text-shadow: none; -gtk-icon-shadow: none; }
 
@@ -394,9 +471,9 @@ button.circular:hover:not(.osd):not(:checked):not(:active):not(:disabled):not(:b
 
 toolbar.inline-toolbar toolbutton > button.flat, toolbar.inline-toolbar toolbutton:backdrop > button.flat, .linked:not(.vertical) > spinbutton:not(.vertical), .linked:not(.vertical) > entry, .inline-toolbar button, .inline-toolbar button:backdrop, .linked > button, .linked > button:hover, .linked > button:active, .linked > button:checked, .linked > button:backdrop, filechooser .path-bar.linked > button, .linked > combobox > box > button.combo:dir(ltr), .linked > combobox > box > button.combo:dir(rtl) { border-radius: 0; border-right-style: none; -gtk-outline-radius: 0; }
 
-toolbar.inline-toolbar toolbutton:first-child > button.flat, toolbar.inline-toolbar toolbutton:backdrop:first-child > button.flat, .linked:not(.vertical) > spinbutton:first-child:not(.vertical), .linked:not(.vertical) > entry:first-child, .inline-toolbar button:first-child, .linked > button:first-child, filechooser .path-bar.linked > button:dir(ltr):first-child, filechooser .path-bar.linked > button:dir(rtl):last-child, combobox.linked button:nth-child(2):dir(rtl), .linked:not(.vertical) > combobox:first-child > box > button.combo { border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 0; border-bottom-right-radius: 0; border-right-style: none; -gtk-outline-bottom-left-radius: 5px; -gtk-outline-top-left-radius: 5px; -gtk-outline-top-right-radius: 0; -gtk-outline-bottom-right-radius: 0; }
+toolbar.inline-toolbar toolbutton:first-child > button.flat, toolbar.inline-toolbar toolbutton:backdrop:first-child > button.flat, .linked:not(.vertical) > spinbutton:first-child:not(.vertical), .linked:not(.vertical) > entry:first-child, .inline-toolbar button:first-child, .linked > button:first-child, filechooser .path-bar.linked > button:first-child:dir(ltr), filechooser .path-bar.linked > button:last-child:dir(rtl), combobox.linked button:nth-child(2):dir(rtl), .linked:not(.vertical) > combobox:first-child > box > button.combo { border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 0; border-bottom-right-radius: 0; border-right-style: none; -gtk-outline-bottom-left-radius: 5px; -gtk-outline-top-left-radius: 5px; -gtk-outline-top-right-radius: 0; -gtk-outline-bottom-right-radius: 0; }
 
-toolbar.inline-toolbar toolbutton:last-child > button.flat, toolbar.inline-toolbar toolbutton:backdrop:last-child > button.flat, .linked:not(.vertical) > spinbutton:last-child:not(.vertical), .linked:not(.vertical) > entry:last-child, .inline-toolbar button:last-child, .linked > button:last-child, filechooser .path-bar.linked > button:dir(ltr):last-child, filechooser .path-bar.linked > button:dir(rtl):first-child, combobox.linked button:nth-child(2):dir(ltr), .linked:not(.vertical) > combobox:last-child > box > button.combo { border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-right-style: solid; -gtk-outline-bottom-right-radius: 5px; -gtk-outline-top-right-radius: 5px; -gtk-outline-bottom-left-radius: 0; -gtk-outline-top-left-radius: 0; }
+toolbar.inline-toolbar toolbutton:last-child > button.flat, toolbar.inline-toolbar toolbutton:backdrop:last-child > button.flat, .linked:not(.vertical) > spinbutton:last-child:not(.vertical), .linked:not(.vertical) > entry:last-child, .inline-toolbar button:last-child, .linked > button:last-child, filechooser .path-bar.linked > button:last-child:dir(ltr), filechooser .path-bar.linked > button:first-child:dir(rtl), combobox.linked button:nth-child(2):dir(ltr), .linked:not(.vertical) > combobox:last-child > box > button.combo { border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-right-style: solid; -gtk-outline-bottom-right-radius: 5px; -gtk-outline-top-right-radius: 5px; -gtk-outline-bottom-left-radius: 0; -gtk-outline-top-left-radius: 0; }
 
 toolbar.inline-toolbar toolbutton:only-child > button.flat, toolbar.inline-toolbar toolbutton:backdrop:only-child > button.flat, .linked:not(.vertical) > spinbutton:only-child:not(.vertical), .linked:not(.vertical) > entry:only-child, .inline-toolbar button:only-child, .linked > button:only-child, filechooser .path-bar.linked > button:only-child, .linked:not(.vertical) > combobox:only-child > box > button.combo { border-radius: 5px; border-style: solid; -gtk-outline-radius: 5px; }
 
@@ -1838,6 +1915,8 @@ decoration:backdrop { box-shadow: 0 3px 9px 1px transparent, 0 2px 6px 2px rgba(
 
 .popup decoration { box-shadow: none; }
 
+.csd decoration { background-color: black; }
+
 .ssd decoration { box-shadow: 0 0 0 1px rgba(104, 104, 104, 0.9); }
 
 .csd.popup decoration { border-radius: 5px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(104, 104, 104, 0.8); }
@@ -1849,8 +1928,6 @@ messagedialog.csd decoration { border-radius: 8px; box-shadow: 0 1px 2px rgba(0,
 .solid-csd decoration { margin: 0; padding: 4px; background-color: #686868; border: solid 1px #686868; border-radius: 0; box-shadow: inset 0 0 0 3px #2d2d2d, inset 0 1px rgba(238, 238, 236, 0.07); }
 
 .solid-csd decoration:backdrop { box-shadow: inset 0 0 0 3px #353535, inset 0 1px rgba(238, 238, 236, 0.07); }
-
-window.csd decoration { background: black; /* transparent makes gtk3 leak light on the corners #2537 */ }
 
 button.titlebutton { text-shadow: 0 -1px rgba(0, 0, 0, 0.850353); -gtk-icon-shadow: 0 -1px rgba(0, 0, 0, 0.850353); }
 
