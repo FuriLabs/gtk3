@@ -1,0 +1,1794 @@
+From: Adrien Plazas <kekun.plazas@laposte.net>
+Date: Wed, 4 Nov 2020 15:33:44 +0500
+Subject: Drop prebuilt files in gtk
+
+This ensures changes for the Librem 5 will be built from the actual
+sources and not from the prebuild sources from the tarball.
+---
+ gtk/gtk-win32.rc.body |  31 ---
+ gtk/gtk.gresource.xml | 570 --------------------------------------------
+ gtk/gtkresources.h    |  11 -
+ gtk/gtktypebuiltins.h | 372 -----------------------------
+ gtk/gtkversion.h      | 104 --------
+ gtk/makefile.msc      | 649 --------------------------------------------------
+ 6 files changed, 1737 deletions(-)
+ delete mode 100644 gtk/gtk-win32.rc.body
+ delete mode 100644 gtk/gtk.gresource.xml
+ delete mode 100644 gtk/gtkresources.h
+ delete mode 100644 gtk/gtktypebuiltins.h
+ delete mode 100644 gtk/gtkversion.h
+ delete mode 100644 gtk/makefile.msc
+
+diff --git a/gtk/gtk-win32.rc.body b/gtk/gtk-win32.rc.body
+deleted file mode 100644
+index dc0f1bb..0000000
+--- a/gtk/gtk-win32.rc.body
++++ /dev/null
+@@ -1,31 +0,0 @@
+-#define WIN32_LEAN_AND_MEAN
+-#include <windows.h>
+-
+-VS_VERSION_INFO VERSIONINFO
+-  FILEVERSION 3,24,35,0
+-  PRODUCTVERSION 3,24,35,0
+-  FILEFLAGSMASK 0
+-  FILEFLAGS 0
+-  FILEOS VOS__WINDOWS32
+-  FILETYPE VFT_DLL
+-  FILESUBTYPE VFT2_UNKNOWN
+-  BEGIN
+-    BLOCK "StringFileInfo"
+-    BEGIN
+-      BLOCK "040904B0"
+-      BEGIN
+-	VALUE "CompanyName", "The GTK developer community"
+-	VALUE "FileDescription", "GIMP Toolkit"
+-	VALUE "FileVersion", "3.24.35.0"
+-	VALUE "InternalName", "libgtk-win32-3.0-0"
+-	VALUE "LegalCopyright", "Copyright (C) 1995-1997 Peter Mattis, Spencer Kimball and Josh MacDonald. Modified by the GTK+ Team and others 1997-2011."
+-	VALUE "OriginalFilename", "libgtk-win32-3.0-0.dll"
+-	VALUE "ProductName", "GTK+"
+-	VALUE "ProductVersion", "3.24.35"
+-      END
+-    END
+-    BLOCK "VarFileInfo"
+-    BEGIN
+-      VALUE "Translation", 0x409, 1200
+-    END
+-  END
+diff --git a/gtk/gtk.gresource.xml b/gtk/gtk.gresource.xml
+deleted file mode 100644
+index b5978c8..0000000
+--- a/gtk/gtk.gresource.xml
++++ /dev/null
+@@ -1,570 +0,0 @@
+-<?xml version='1.0' encoding='UTF-8'?>
+-<gresources>
+-  <gresource prefix='/org/gtk/libgtk'>
+-    <file>theme/Adwaita/gtk.css</file>
+-    <file>theme/Adwaita/gtk-dark.css</file>
+-    <file>theme/Adwaita/gtk-contained.css</file>
+-    <file>theme/Adwaita/gtk-contained-dark.css</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/bullet-symbolic.symbolic.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/check-symbolic.symbolic.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/dash-symbolic.symbolic.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above-active@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above-active-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above-active-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above-active.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above-backdrop@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above-backdrop-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above-backdrop-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above-backdrop-insensitive@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above-backdrop-insensitive-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above-backdrop-insensitive-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above-backdrop-insensitive.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above-backdrop.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above-hover@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above-hover-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above-hover-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above-hover.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above-insensitive@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above-insensitive-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above-insensitive-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above-insensitive.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-above.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below-active@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below-active-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below-active-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below-active.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below-backdrop@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below-backdrop-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below-backdrop-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below-backdrop-insensitive@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below-backdrop-insensitive-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below-backdrop-insensitive-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below-backdrop-insensitive.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below-backdrop.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below-hover@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below-hover-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below-hover-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below-hover.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below-insensitive@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below-insensitive-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below-insensitive-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below-insensitive.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-horz-scale-has-marks-below.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above-active@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above-active-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above-active-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above-active.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above-backdrop@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above-backdrop-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above-backdrop-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above-backdrop-insensitive@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above-backdrop-insensitive-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above-backdrop-insensitive-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above-backdrop-insensitive.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above-backdrop.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above-hover@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above-hover-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above-hover-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above-hover.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above-insensitive@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above-insensitive-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above-insensitive-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above-insensitive.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-above.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below-active@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below-active-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below-active-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below-active.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below-backdrop@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below-backdrop-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below-backdrop-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below-backdrop-insensitive@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below-backdrop-insensitive-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below-backdrop-insensitive-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below-backdrop-insensitive.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below-backdrop.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below-hover@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below-hover-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below-hover-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below-hover.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below-insensitive@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below-insensitive-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below-insensitive-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below-insensitive.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/slider-vert-scale-has-marks-below.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-end@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-end-active@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-end-active-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-end-active-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-end-active.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-end-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-end-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-end-hover@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-end-hover-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-end-hover-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-end-hover.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-end.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-start@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-start-active@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-start-active-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-start-active-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-start-active.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-start-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-start-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-start-hover@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-start-hover-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-start-hover-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-start-hover.png</file>
+-    <file preprocess='to-pixdata'>theme/Adwaita/assets/text-select-start.png</file>
+-    <file>theme/Adwaita/assets/bullet-symbolic.svg</file>
+-    <file>theme/Adwaita/assets/check-symbolic.svg</file>
+-    <file>theme/Adwaita/assets/dash-symbolic.svg</file>
+-    <file>theme/HighContrast/gtk.css</file>
+-    <file alias='theme/HighContrastInverse/gtk.css'>theme/HighContrast/gtk-inverse.css</file>
+-    <file>theme/HighContrast/gtk-contained.css</file>
+-    <file>theme/HighContrast/gtk-contained-inverse.css</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/bullet@2-symbolic.symbolic.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/bullet-symbolic.symbolic.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/check@2-symbolic.symbolic.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/check-symbolic.symbolic.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/dash@2-symbolic.symbolic.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/dash-symbolic.symbolic.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above-active@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above-active-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above-active-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above-active.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above-backdrop@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above-backdrop-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above-backdrop-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above-backdrop-insensitive@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above-backdrop-insensitive-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above-backdrop-insensitive-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above-backdrop-insensitive.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above-backdrop.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above-hover@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above-hover-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above-hover-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above-hover.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above-insensitive@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above-insensitive-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above-insensitive-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above-insensitive.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-above.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below-active@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below-active-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below-active-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below-active.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below-backdrop@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below-backdrop-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below-backdrop-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below-backdrop-insensitive@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below-backdrop-insensitive-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below-backdrop-insensitive-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below-backdrop-insensitive.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below-backdrop.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below-hover@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below-hover-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below-hover-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below-hover.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below-insensitive@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below-insensitive-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below-insensitive-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below-insensitive.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-horz-scale-has-marks-below.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above-active@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above-active-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above-active-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above-active.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above-backdrop@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above-backdrop-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above-backdrop-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above-backdrop-insensitive@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above-backdrop-insensitive-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above-backdrop-insensitive-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above-backdrop-insensitive.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above-backdrop.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above-hover@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above-hover-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above-hover-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above-hover.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above-insensitive@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above-insensitive-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above-insensitive-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above-insensitive.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-above.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below-active@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below-active-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below-active-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below-active.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below-backdrop@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below-backdrop-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below-backdrop-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below-backdrop-insensitive@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below-backdrop-insensitive-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below-backdrop-insensitive-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below-backdrop-insensitive.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below-backdrop.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below-hover@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below-hover-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below-hover-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below-hover.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below-insensitive@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below-insensitive-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below-insensitive-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below-insensitive.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/slider-vert-scale-has-marks-below.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-end@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-end-active@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-end-active-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-end-active-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-end-active.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-end-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-end-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-end-hover@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-end-hover-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-end-hover-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-end-hover.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-end.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-start@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-start-active@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-start-active-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-start-active-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-start-active.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-start-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-start-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-start-hover@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-start-hover-dark@2.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-start-hover-dark.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-start-hover.png</file>
+-    <file preprocess='to-pixdata'>theme/HighContrast/assets/text-select-start.png</file>
+-    <file>theme/HighContrast/assets/bullet-symbolic.svg</file>
+-    <file>theme/HighContrast/assets/check-symbolic.svg</file>
+-    <file>theme/HighContrast/assets/dash-symbolic.svg</file>
+-    <file>theme/win32/gtk-win32-base.css</file>
+-    <file>theme/win32/gtk.css</file>
+-    <file>cursor/dnd-ask.png</file>
+-    <file>cursor/dnd-copy.png</file>
+-    <file>cursor/dnd-link.png</file>
+-    <file>cursor/dnd-move.png</file>
+-    <file>cursor/dnd-none.png</file>
+-    <file alias='icons/64x64/actions/gesture-pinch-symbolic.symbolic.png'>gesture/gesture-pinch-symbolic.symbolic.png</file>
+-    <file alias='icons/64x64/actions/gesture-rotate-anticlockwise-symbolic.symbolic.png'>gesture/gesture-rotate-anticlockwise-symbolic.symbolic.png</file>
+-    <file alias='icons/64x64/actions/gesture-rotate-clockwise-symbolic.symbolic.png'>gesture/gesture-rotate-clockwise-symbolic.symbolic.png</file>
+-    <file alias='icons/64x64/actions/gesture-stretch-symbolic.symbolic.png'>gesture/gesture-stretch-symbolic.symbolic.png</file>
+-    <file alias='icons/64x64/actions/gesture-two-finger-swipe-left-symbolic.symbolic.png'>gesture/gesture-two-finger-swipe-left-symbolic.symbolic.png</file>
+-    <file alias='icons/64x64/actions/gesture-two-finger-swipe-right-symbolic.symbolic.png'>gesture/gesture-two-finger-swipe-right-symbolic.symbolic.png</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkaboutdialog.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkactionbar.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkappchooserdialog.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkappchooserwidget.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkapplication-quartz.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkassistant.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkcolorchooserdialog.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkcoloreditor.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkcombobox.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkdialog.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkemojichooser.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkemojicompletion.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkfilechooserbutton.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkfilechooserdialog.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkfilechooserwidget.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkfontbutton.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkfontchooserdialog.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkfontchooserwidget.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkinfobar.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtklockbutton.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkmessagedialog.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkpagesetupunixdialog.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkpathbar.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkplacesviewrow.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkplacesview.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkprintunixdialog.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkrecentchooserdefault.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkscalebutton.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtksearchbar.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtksidebarrow.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkstatusbar.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtktooltipwindow.ui</file>
+-    <file preprocess='xml-stripblanks'>ui/gtkvolumebutton.ui</file>
+-    <file>icons/16x16/actions/application-exit.png</file>
+-    <file>icons/16x16/actions/dialog-error.png</file>
+-    <file>icons/16x16/actions/dialog-information.png</file>
+-    <file>icons/16x16/actions/dialog-password.png</file>
+-    <file>icons/16x16/actions/dialog-question.png</file>
+-    <file>icons/16x16/actions/dialog-warning.png</file>
+-    <file>icons/16x16/actions/document-new.png</file>
+-    <file>icons/16x16/actions/document-open.png</file>
+-    <file>icons/16x16/actions/document-print.png</file>
+-    <file>icons/16x16/actions/document-print-preview.png</file>
+-    <file>icons/16x16/actions/document-properties.png</file>
+-    <file>icons/16x16/actions/document-revert.png</file>
+-    <file>icons/16x16/actions/document-save-as.png</file>
+-    <file>icons/16x16/actions/document-save.png</file>
+-    <file>icons/16x16/actions/drive-harddisk.png</file>
+-    <file>icons/16x16/actions/edit-clear-all.png</file>
+-    <file>icons/16x16/actions/edit-clear.png</file>
+-    <file>icons/16x16/actions/edit-copy.png</file>
+-    <file>icons/16x16/actions/edit-cut.png</file>
+-    <file>icons/16x16/actions/edit-delete.png</file>
+-    <file>icons/16x16/actions/edit-find.png</file>
+-    <file>icons/16x16/actions/edit-find-replace.png</file>
+-    <file>icons/16x16/actions/edit-paste.png</file>
+-    <file>icons/16x16/actions/edit-redo.png</file>
+-    <file>icons/16x16/actions/edit-select-all.png</file>
+-    <file>icons/16x16/actions/edit-undo.png</file>
+-    <file>icons/16x16/actions/folder.png</file>
+-    <file>icons/16x16/actions/format-indent-less.png</file>
+-    <file>icons/16x16/actions/format-indent-more.png</file>
+-    <file>icons/16x16/actions/format-justify-center.png</file>
+-    <file>icons/16x16/actions/format-justify-fill.png</file>
+-    <file>icons/16x16/actions/format-justify-left.png</file>
+-    <file>icons/16x16/actions/format-justify-right.png</file>
+-    <file>icons/16x16/actions/format-text-bold.png</file>
+-    <file>icons/16x16/actions/format-text-italic.png</file>
+-    <file>icons/16x16/actions/format-text-strikethrough.png</file>
+-    <file>icons/16x16/actions/format-text-underline.png</file>
+-    <file>icons/16x16/actions/go-bottom.png</file>
+-    <file>icons/16x16/actions/go-down.png</file>
+-    <file>icons/16x16/actions/go-first.png</file>
+-    <file>icons/16x16/actions/go-first-rtl.png</file>
+-    <file>icons/16x16/actions/go-home.png</file>
+-    <file>icons/16x16/actions/go-jump.png</file>
+-    <file>icons/16x16/actions/go-last.png</file>
+-    <file>icons/16x16/actions/go-last-rtl.png</file>
+-    <file>icons/16x16/actions/go-next.png</file>
+-    <file>icons/16x16/actions/go-next-rtl.png</file>
+-    <file>icons/16x16/actions/go-previous.png</file>
+-    <file>icons/16x16/actions/go-previous-rtl.png</file>
+-    <file>icons/16x16/actions/go-top.png</file>
+-    <file>icons/16x16/actions/go-up.png</file>
+-    <file>icons/16x16/actions/gtk-caps-lock-warning.png</file>
+-    <file>icons/16x16/actions/gtk-color-picker.png</file>
+-    <file>icons/16x16/actions/gtk-connect.png</file>
+-    <file>icons/16x16/actions/gtk-convert.png</file>
+-    <file>icons/16x16/actions/gtk-disconnect.png</file>
+-    <file>icons/16x16/actions/gtk-edit.png</file>
+-    <file>icons/16x16/actions/gtk-index.png</file>
+-    <file>icons/16x16/actions/gtk-orientation-landscape.png</file>
+-    <file>icons/16x16/actions/gtk-orientation-portrait.png</file>
+-    <file>icons/16x16/actions/gtk-orientation-reverse-landscape.png</file>
+-    <file>icons/16x16/actions/gtk-orientation-reverse-portrait.png</file>
+-    <file>icons/16x16/actions/gtk-page-setup.png</file>
+-    <file>icons/16x16/actions/gtk-preferences.png</file>
+-    <file>icons/16x16/actions/gtk-select-color.png</file>
+-    <file>icons/16x16/actions/gtk-select-font.png</file>
+-    <file>icons/16x16/actions/gtk-undelete.png</file>
+-    <file>icons/16x16/actions/gtk-undelete-rtl.png</file>
+-    <file>icons/16x16/actions/help-about.png</file>
+-    <file>icons/16x16/actions/help-contents.png</file>
+-    <file>icons/16x16/actions/image-missing.png</file>
+-    <file>icons/16x16/actions/list-add.png</file>
+-    <file>icons/16x16/actions/list-remove.png</file>
+-    <file>icons/16x16/actions/media-eject.png</file>
+-    <file>icons/16x16/actions/media-flash.png</file>
+-    <file>icons/16x16/actions/media-floppy.png</file>
+-    <file>icons/16x16/actions/media-optical.png</file>
+-    <file>icons/16x16/actions/media-playback-pause.png</file>
+-    <file>icons/16x16/actions/media-playback-start.png</file>
+-    <file>icons/16x16/actions/media-playback-stop.png</file>
+-    <file>icons/16x16/actions/media-playlist-repeat.png</file>
+-    <file>icons/16x16/actions/media-playlist-shuffle.png</file>
+-    <file>icons/16x16/actions/media-record.png</file>
+-    <file>icons/16x16/actions/media-removable.png</file>
+-    <file>icons/16x16/actions/media-seek-backward.png</file>
+-    <file>icons/16x16/actions/media-seek-forward.png</file>
+-    <file>icons/16x16/actions/media-skip-backward.png</file>
+-    <file>icons/16x16/actions/media-skip-forward.png</file>
+-    <file>icons/16x16/actions/media-tape.png</file>
+-    <file>icons/16x16/actions/multimedia-player.png</file>
+-    <file>icons/16x16/actions/multimedia-volume-control.png</file>
+-    <file>icons/16x16/actions/network-idle.png</file>
+-    <file>icons/16x16/actions/printer-error.png</file>
+-    <file>icons/16x16/actions/process-stop.png</file>
+-    <file>icons/16x16/actions/system-run.png</file>
+-    <file>icons/16x16/actions/text-x-generic.png</file>
+-    <file>icons/16x16/actions/tools-check-spelling.png</file>
+-    <file>icons/16x16/actions/view-fullscreen.png</file>
+-    <file>icons/16x16/actions/view-refresh.png</file>
+-    <file>icons/16x16/actions/view-restore.png</file>
+-    <file>icons/16x16/actions/view-sort-ascending.png</file>
+-    <file>icons/16x16/actions/view-sort-descending.png</file>
+-    <file>icons/16x16/actions/window-close.png</file>
+-    <file>icons/16x16/actions/zoom-fit-best.png</file>
+-    <file>icons/16x16/actions/zoom-in.png</file>
+-    <file>icons/16x16/actions/zoom-original.png</file>
+-    <file>icons/16x16/actions/zoom-out.png</file>
+-    <file>icons/16x16/status/audio-volume-high.png</file>
+-    <file>icons/16x16/status/audio-volume-high-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/audio-volume-low.png</file>
+-    <file>icons/16x16/status/audio-volume-low-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/audio-volume-medium.png</file>
+-    <file>icons/16x16/status/audio-volume-medium-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/audio-volume-muted.png</file>
+-    <file>icons/16x16/status/audio-volume-muted-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/caps-lock-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/changes-allow-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/changes-prevent-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/dialog-password-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/dialog-warning-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/document-open-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/edit-clear-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/edit-find-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/image-missing.png</file>
+-    <file>icons/16x16/status/list-add-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/list-remove-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/open-menu-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/pan-down-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/pan-end-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/pan-start-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/pan-up-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/switch-off-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/switch-on-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/user-trash-full-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/user-trash-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/window-close-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/window-maximize-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/window-minimize-symbolic.symbolic.png</file>
+-    <file>icons/16x16/status/window-restore-symbolic.symbolic.png</file>
+-    <file>icons/16x16/categories/emoji-activities-symbolic.symbolic.png</file>
+-    <file>icons/16x16/categories/emoji-body-symbolic.symbolic.png</file>
+-    <file>icons/16x16/categories/emoji-flags-symbolic.symbolic.png</file>
+-    <file>icons/16x16/categories/emoji-food-symbolic.symbolic.png</file>
+-    <file>icons/16x16/categories/emoji-nature-symbolic.symbolic.png</file>
+-    <file>icons/16x16/categories/emoji-objects-symbolic.symbolic.png</file>
+-    <file>icons/16x16/categories/emoji-people-symbolic.symbolic.png</file>
+-    <file>icons/16x16/categories/emoji-recent-symbolic.symbolic.png</file>
+-    <file>icons/16x16/categories/emoji-symbols-symbolic.symbolic.png</file>
+-    <file>icons/16x16/categories/emoji-travel-symbolic.symbolic.png</file>
+-    <file>icons/22x22/actions/gtk-apply.png</file>
+-    <file>icons/22x22/actions/gtk-cancel.png</file>
+-    <file>icons/22x22/actions/gtk-no.png</file>
+-    <file>icons/22x22/actions/gtk-ok.png</file>
+-    <file>icons/22x22/actions/gtk-yes.png</file>
+-    <file>icons/24x24/actions/gtk-caps-lock-warning.png</file>
+-    <file>icons/24x24/actions/gtk-color-picker.png</file>
+-    <file>icons/24x24/actions/gtk-connect.png</file>
+-    <file>icons/24x24/actions/gtk-convert.png</file>
+-    <file>icons/24x24/actions/gtk-disconnect.png</file>
+-    <file>icons/24x24/actions/gtk-edit.png</file>
+-    <file>icons/24x24/actions/gtk-index.png</file>
+-    <file>icons/24x24/actions/gtk-orientation-landscape.png</file>
+-    <file>icons/24x24/actions/gtk-orientation-portrait.png</file>
+-    <file>icons/24x24/actions/gtk-orientation-reverse-landscape.png</file>
+-    <file>icons/24x24/actions/gtk-orientation-reverse-portrait.png</file>
+-    <file>icons/24x24/actions/gtk-page-setup.png</file>
+-    <file>icons/24x24/actions/gtk-preferences.png</file>
+-    <file>icons/24x24/actions/gtk-select-color.png</file>
+-    <file>icons/24x24/actions/gtk-select-font.png</file>
+-    <file>icons/24x24/actions/gtk-undelete.png</file>
+-    <file>icons/24x24/actions/gtk-undelete-rtl.png</file>
+-    <file>icons/24x24/status/image-missing.png</file>
+-    <file>icons/24x24/categories/emoji-activities-symbolic.symbolic.png</file>
+-    <file>icons/24x24/categories/emoji-body-symbolic.symbolic.png</file>
+-    <file>icons/24x24/categories/emoji-flags-symbolic.symbolic.png</file>
+-    <file>icons/24x24/categories/emoji-food-symbolic.symbolic.png</file>
+-    <file>icons/24x24/categories/emoji-nature-symbolic.symbolic.png</file>
+-    <file>icons/24x24/categories/emoji-objects-symbolic.symbolic.png</file>
+-    <file>icons/24x24/categories/emoji-people-symbolic.symbolic.png</file>
+-    <file>icons/24x24/categories/emoji-recent-symbolic.symbolic.png</file>
+-    <file>icons/24x24/categories/emoji-symbols-symbolic.symbolic.png</file>
+-    <file>icons/24x24/categories/emoji-travel-symbolic.symbolic.png</file>
+-    <file>icons/32x32/actions/gtk-dnd-multiple.png</file>
+-    <file>icons/32x32/actions/gtk-dnd.png</file>
+-    <file>icons/32x32/status/image-missing.png</file>
+-    <file>icons/32x32/categories/emoji-activities-symbolic.symbolic.png</file>
+-    <file>icons/32x32/categories/emoji-body-symbolic.symbolic.png</file>
+-    <file>icons/32x32/categories/emoji-flags-symbolic.symbolic.png</file>
+-    <file>icons/32x32/categories/emoji-food-symbolic.symbolic.png</file>
+-    <file>icons/32x32/categories/emoji-nature-symbolic.symbolic.png</file>
+-    <file>icons/32x32/categories/emoji-objects-symbolic.symbolic.png</file>
+-    <file>icons/32x32/categories/emoji-people-symbolic.symbolic.png</file>
+-    <file>icons/32x32/categories/emoji-recent-symbolic.symbolic.png</file>
+-    <file>icons/32x32/categories/emoji-symbols-symbolic.symbolic.png</file>
+-    <file>icons/32x32/categories/emoji-travel-symbolic.symbolic.png</file>
+-    <file>icons/48x48/status/image-missing.png</file>
+-    <file>icons/48x48/categories/emoji-activities-symbolic.symbolic.png</file>
+-    <file>icons/48x48/categories/emoji-body-symbolic.symbolic.png</file>
+-    <file>icons/48x48/categories/emoji-flags-symbolic.symbolic.png</file>
+-    <file>icons/48x48/categories/emoji-food-symbolic.symbolic.png</file>
+-    <file>icons/48x48/categories/emoji-nature-symbolic.symbolic.png</file>
+-    <file>icons/48x48/categories/emoji-objects-symbolic.symbolic.png</file>
+-    <file>icons/48x48/categories/emoji-people-symbolic.symbolic.png</file>
+-    <file>icons/48x48/categories/emoji-recent-symbolic.symbolic.png</file>
+-    <file>icons/48x48/categories/emoji-symbols-symbolic.symbolic.png</file>
+-    <file>icons/48x48/categories/emoji-travel-symbolic.symbolic.png</file>
+-    <file>icons/scalable/status/audio-volume-high-symbolic.svg</file>
+-    <file>icons/scalable/status/audio-volume-low-symbolic.svg</file>
+-    <file>icons/scalable/status/audio-volume-medium-symbolic.svg</file>
+-    <file>icons/scalable/status/audio-volume-muted-symbolic.svg</file>
+-    <file>icons/scalable/status/caps-lock-symbolic.svg</file>
+-    <file>icons/scalable/status/changes-allow-symbolic.svg</file>
+-    <file>icons/scalable/status/changes-prevent-symbolic.svg</file>
+-    <file>icons/scalable/status/dialog-password-symbolic.svg</file>
+-    <file>icons/scalable/status/dialog-warning-symbolic.svg</file>
+-    <file>icons/scalable/status/document-open-symbolic.svg</file>
+-    <file>icons/scalable/status/edit-clear-symbolic.svg</file>
+-    <file>icons/scalable/status/edit-find-symbolic.svg</file>
+-    <file>icons/scalable/status/list-add-symbolic.svg</file>
+-    <file>icons/scalable/status/list-remove-symbolic.svg</file>
+-    <file>icons/scalable/status/open-menu-symbolic.svg</file>
+-    <file>icons/scalable/status/pan-down-symbolic.svg</file>
+-    <file>icons/scalable/status/pan-end-symbolic.svg</file>
+-    <file>icons/scalable/status/pan-start-symbolic.svg</file>
+-    <file>icons/scalable/status/pan-up-symbolic.svg</file>
+-    <file>icons/scalable/status/switch-off-symbolic.svg</file>
+-    <file>icons/scalable/status/switch-on-symbolic.svg</file>
+-    <file>icons/scalable/status/user-trash-full-symbolic.svg</file>
+-    <file>icons/scalable/status/user-trash-symbolic.svg</file>
+-    <file>icons/scalable/status/window-close-symbolic.svg</file>
+-    <file>icons/scalable/status/window-maximize-symbolic.svg</file>
+-    <file>icons/scalable/status/window-minimize-symbolic.svg</file>
+-    <file>icons/scalable/status/window-restore-symbolic.svg</file>
+-    <file compressed='true' preprocess='xml-stripblanks'>inspector/actions.ui</file>
+-    <file compressed='true' preprocess='xml-stripblanks'>inspector/css-editor.ui</file>
+-    <file compressed='true' preprocess='xml-stripblanks'>inspector/css-node-tree.ui</file>
+-    <file compressed='true' preprocess='xml-stripblanks'>inspector/data-list.ui</file>
+-    <file compressed='true' preprocess='xml-stripblanks'>inspector/general.ui</file>
+-    <file compressed='true' preprocess='xml-stripblanks'>inspector/magnifier.ui</file>
+-    <file compressed='true' preprocess='xml-stripblanks'>inspector/menu.ui</file>
+-    <file compressed='true' preprocess='xml-stripblanks'>inspector/misc-info.ui</file>
+-    <file compressed='true' preprocess='xml-stripblanks'>inspector/object-hierarchy.ui</file>
+-    <file compressed='true' preprocess='xml-stripblanks'>inspector/object-tree.ui</file>
+-    <file compressed='true' preprocess='xml-stripblanks'>inspector/prop-list.ui</file>
+-    <file compressed='true' preprocess='xml-stripblanks'>inspector/resource-list.ui</file>
+-    <file compressed='true' preprocess='xml-stripblanks'>inspector/selector.ui</file>
+-    <file compressed='true' preprocess='xml-stripblanks'>inspector/signals-list.ui</file>
+-    <file compressed='true' preprocess='xml-stripblanks'>inspector/statistics.ui</file>
+-    <file compressed='true' preprocess='xml-stripblanks'>inspector/visual.ui</file>
+-    <file compressed='true' preprocess='xml-stripblanks'>inspector/window.ui</file>
+-    <file>inspector/logo.png</file>
+-    <file>emoji/de.data</file>
+-    <file>emoji/en.data</file>
+-    <file>emoji/es.data</file>
+-    <file>emoji/fr.data</file>
+-    <file>emoji/zh.data</file>
+-  </gresource>
+-</gresources>
+diff --git a/gtk/gtkresources.h b/gtk/gtkresources.h
+deleted file mode 100644
+index afe62c9..0000000
+--- a/gtk/gtkresources.h
++++ /dev/null
+@@ -1,11 +0,0 @@
+-#ifndef __RESOURCE__gtk_H__
+-#define __RESOURCE__gtk_H__
+-
+-#include <gio/gio.h>
+-
+-G_GNUC_INTERNAL GResource *_gtk_get_resource (void);
+-
+-G_GNUC_INTERNAL void _gtk_register_resource (void);
+-G_GNUC_INTERNAL void _gtk_unregister_resource (void);
+-
+-#endif
+diff --git a/gtk/gtktypebuiltins.h b/gtk/gtktypebuiltins.h
+deleted file mode 100644
+index 238a8e0..0000000
+--- a/gtk/gtktypebuiltins.h
++++ /dev/null
+@@ -1,372 +0,0 @@
+-
+-/* This file is generated by glib-mkenums, do not modify it. This code is licensed under the same license as the containing project. Note that it links to GLib, so must comply with the LGPL linking clauses. */
+-
+-#ifndef __GTK_TYPE_BUILTINS_H__
+-#define __GTK_TYPE_BUILTINS_H__
+-
+-#if !defined (__GTK_H_INSIDE__) && !defined (GTK_COMPILATION)
+-#error "Only <gtk/gtk.h> can be included directly."
+-#endif
+-
+-#include <glib-object.h>
+-#include <gdk/gdk.h>
+-
+-G_BEGIN_DECLS
+-
+-/* enumerations from "gtkrc.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_rc_flags_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_RC_FLAGS (gtk_rc_flags_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_rc_token_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_RC_TOKEN_TYPE (gtk_rc_token_type_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_path_priority_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_PATH_PRIORITY_TYPE (gtk_path_priority_type_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_path_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_PATH_TYPE (gtk_path_type_get_type ())
+-
+-/* enumerations from "gtkstyle.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_expander_style_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_EXPANDER_STYLE (gtk_expander_style_get_type ())
+-
+-/* enumerations from "gtktable.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_attach_options_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_ATTACH_OPTIONS (gtk_attach_options_get_type ())
+-
+-/* enumerations from "gtkuimanager.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_ui_manager_item_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_UI_MANAGER_ITEM_TYPE (gtk_ui_manager_item_type_get_type ())
+-
+-/* enumerations from "gtkaboutdialog.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_license_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_LICENSE (gtk_license_get_type ())
+-
+-/* enumerations from "gtkaccelgroup.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_accel_flags_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_ACCEL_FLAGS (gtk_accel_flags_get_type ())
+-
+-/* enumerations from "gtkapplication.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_application_inhibit_flags_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_APPLICATION_INHIBIT_FLAGS (gtk_application_inhibit_flags_get_type ())
+-
+-/* enumerations from "gtkassistant.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_assistant_page_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_ASSISTANT_PAGE_TYPE (gtk_assistant_page_type_get_type ())
+-
+-/* enumerations from "gtkbbox.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_button_box_style_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_BUTTON_BOX_STYLE (gtk_button_box_style_get_type ())
+-
+-/* enumerations from "gtkbuilder.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_builder_error_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_BUILDER_ERROR (gtk_builder_error_get_type ())
+-
+-/* enumerations from "gtkcalendar.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_calendar_display_options_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_CALENDAR_DISPLAY_OPTIONS (gtk_calendar_display_options_get_type ())
+-
+-/* enumerations from "gtkcellrenderer.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_cell_renderer_state_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_CELL_RENDERER_STATE (gtk_cell_renderer_state_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_cell_renderer_mode_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_CELL_RENDERER_MODE (gtk_cell_renderer_mode_get_type ())
+-
+-/* enumerations from "gtkcellrendereraccel.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_cell_renderer_accel_mode_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_CELL_RENDERER_ACCEL_MODE (gtk_cell_renderer_accel_mode_get_type ())
+-
+-/* enumerations from "gtkcontainer.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_resize_mode_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_RESIZE_MODE (gtk_resize_mode_get_type ())
+-
+-/* enumerations from "gtkcssprovider.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_css_provider_error_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_CSS_PROVIDER_ERROR (gtk_css_provider_error_get_type ())
+-
+-/* enumerations from "gtkcsssection.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_css_section_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_CSS_SECTION_TYPE (gtk_css_section_type_get_type ())
+-
+-/* enumerations from "gtkdebug.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_debug_flag_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_DEBUG_FLAG (gtk_debug_flag_get_type ())
+-
+-/* enumerations from "gtkdialog.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_dialog_flags_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_DIALOG_FLAGS (gtk_dialog_flags_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_response_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_RESPONSE_TYPE (gtk_response_type_get_type ())
+-
+-/* enumerations from "gtkdragdest.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_dest_defaults_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_DEST_DEFAULTS (gtk_dest_defaults_get_type ())
+-
+-/* enumerations from "gtkentry.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_entry_icon_position_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_ENTRY_ICON_POSITION (gtk_entry_icon_position_get_type ())
+-
+-/* enumerations from "gtkenums.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_align_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_ALIGN (gtk_align_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_arrow_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_ARROW_TYPE (gtk_arrow_type_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_baseline_position_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_BASELINE_POSITION (gtk_baseline_position_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_delete_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_DELETE_TYPE (gtk_delete_type_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_direction_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_DIRECTION_TYPE (gtk_direction_type_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_icon_size_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_ICON_SIZE (gtk_icon_size_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_sensitivity_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_SENSITIVITY_TYPE (gtk_sensitivity_type_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_text_direction_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_TEXT_DIRECTION (gtk_text_direction_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_justification_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_JUSTIFICATION (gtk_justification_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_menu_direction_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_MENU_DIRECTION_TYPE (gtk_menu_direction_type_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_message_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_MESSAGE_TYPE (gtk_message_type_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_movement_step_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_MOVEMENT_STEP (gtk_movement_step_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_scroll_step_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_SCROLL_STEP (gtk_scroll_step_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_orientation_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_ORIENTATION (gtk_orientation_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_pack_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_PACK_TYPE (gtk_pack_type_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_position_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_POSITION_TYPE (gtk_position_type_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_relief_style_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_RELIEF_STYLE (gtk_relief_style_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_scroll_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_SCROLL_TYPE (gtk_scroll_type_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_selection_mode_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_SELECTION_MODE (gtk_selection_mode_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_shadow_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_SHADOW_TYPE (gtk_shadow_type_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_state_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_STATE_TYPE (gtk_state_type_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_toolbar_style_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_TOOLBAR_STYLE (gtk_toolbar_style_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_wrap_mode_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_WRAP_MODE (gtk_wrap_mode_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_sort_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_SORT_TYPE (gtk_sort_type_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_im_preedit_style_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_IM_PREEDIT_STYLE (gtk_im_preedit_style_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_im_status_style_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_IM_STATUS_STYLE (gtk_im_status_style_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_pack_direction_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_PACK_DIRECTION (gtk_pack_direction_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_print_pages_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_PRINT_PAGES (gtk_print_pages_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_page_set_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_PAGE_SET (gtk_page_set_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_number_up_layout_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_NUMBER_UP_LAYOUT (gtk_number_up_layout_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_page_orientation_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_PAGE_ORIENTATION (gtk_page_orientation_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_print_quality_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_PRINT_QUALITY (gtk_print_quality_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_print_duplex_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_PRINT_DUPLEX (gtk_print_duplex_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_unit_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_UNIT (gtk_unit_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_tree_view_grid_lines_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_TREE_VIEW_GRID_LINES (gtk_tree_view_grid_lines_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_drag_result_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_DRAG_RESULT (gtk_drag_result_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_size_group_mode_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_SIZE_GROUP_MODE (gtk_size_group_mode_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_size_request_mode_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_SIZE_REQUEST_MODE (gtk_size_request_mode_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_scrollable_policy_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_SCROLLABLE_POLICY (gtk_scrollable_policy_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_state_flags_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_STATE_FLAGS (gtk_state_flags_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_region_flags_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_REGION_FLAGS (gtk_region_flags_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_junction_sides_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_JUNCTION_SIDES (gtk_junction_sides_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_border_style_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_BORDER_STYLE (gtk_border_style_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_level_bar_mode_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_LEVEL_BAR_MODE (gtk_level_bar_mode_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_input_purpose_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_INPUT_PURPOSE (gtk_input_purpose_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_input_hints_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_INPUT_HINTS (gtk_input_hints_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_propagation_phase_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_PROPAGATION_PHASE (gtk_propagation_phase_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_event_sequence_state_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_EVENT_SEQUENCE_STATE (gtk_event_sequence_state_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_pan_direction_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_PAN_DIRECTION (gtk_pan_direction_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_popover_constraint_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_POPOVER_CONSTRAINT (gtk_popover_constraint_get_type ())
+-
+-/* enumerations from "gtkeventcontrollerscroll.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_event_controller_scroll_flags_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_EVENT_CONTROLLER_SCROLL_FLAGS (gtk_event_controller_scroll_flags_get_type ())
+-
+-/* enumerations from "gtkfilechooser.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_file_chooser_action_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_FILE_CHOOSER_ACTION (gtk_file_chooser_action_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_file_chooser_confirmation_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_FILE_CHOOSER_CONFIRMATION (gtk_file_chooser_confirmation_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_file_chooser_error_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_FILE_CHOOSER_ERROR (gtk_file_chooser_error_get_type ())
+-
+-/* enumerations from "gtkfilefilter.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_file_filter_flags_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_FILE_FILTER_FLAGS (gtk_file_filter_flags_get_type ())
+-
+-/* enumerations from "gtkfontchooser.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_font_chooser_level_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_FONT_CHOOSER_LEVEL (gtk_font_chooser_level_get_type ())
+-
+-/* enumerations from "gtkicontheme.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_icon_lookup_flags_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_ICON_LOOKUP_FLAGS (gtk_icon_lookup_flags_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_icon_theme_error_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_ICON_THEME_ERROR (gtk_icon_theme_error_get_type ())
+-
+-/* enumerations from "gtkiconview.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_icon_view_drop_position_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_ICON_VIEW_DROP_POSITION (gtk_icon_view_drop_position_get_type ())
+-
+-/* enumerations from "gtkimage.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_image_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_IMAGE_TYPE (gtk_image_type_get_type ())
+-
+-/* enumerations from "gtkmenu.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_arrow_placement_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_ARROW_PLACEMENT (gtk_arrow_placement_get_type ())
+-
+-/* enumerations from "gtkmessagedialog.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_buttons_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_BUTTONS_TYPE (gtk_buttons_type_get_type ())
+-
+-/* enumerations from "gtkmodelbutton.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_button_role_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_BUTTON_ROLE (gtk_button_role_get_type ())
+-
+-/* enumerations from "gtknotebook.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_notebook_tab_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_NOTEBOOK_TAB (gtk_notebook_tab_get_type ())
+-
+-/* enumerations from "gtkpadcontroller.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_pad_action_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_PAD_ACTION_TYPE (gtk_pad_action_type_get_type ())
+-
+-/* enumerations from "gtkplacessidebar.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_places_open_flags_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_PLACES_OPEN_FLAGS (gtk_places_open_flags_get_type ())
+-
+-/* enumerations from "gtkprintoperation.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_print_status_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_PRINT_STATUS (gtk_print_status_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_print_operation_result_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_PRINT_OPERATION_RESULT (gtk_print_operation_result_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_print_operation_action_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_PRINT_OPERATION_ACTION (gtk_print_operation_action_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_print_error_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_PRINT_ERROR (gtk_print_error_get_type ())
+-
+-/* enumerations from "gtkrecentchooser.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_recent_sort_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_RECENT_SORT_TYPE (gtk_recent_sort_type_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_recent_chooser_error_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_RECENT_CHOOSER_ERROR (gtk_recent_chooser_error_get_type ())
+-
+-/* enumerations from "gtkrecentfilter.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_recent_filter_flags_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_RECENT_FILTER_FLAGS (gtk_recent_filter_flags_get_type ())
+-
+-/* enumerations from "gtkrecentmanager.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_recent_manager_error_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_RECENT_MANAGER_ERROR (gtk_recent_manager_error_get_type ())
+-
+-/* enumerations from "gtkrevealer.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_revealer_transition_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_REVEALER_TRANSITION_TYPE (gtk_revealer_transition_type_get_type ())
+-
+-/* enumerations from "gtkscrolledwindow.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_corner_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_CORNER_TYPE (gtk_corner_type_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_policy_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_POLICY_TYPE (gtk_policy_type_get_type ())
+-
+-/* enumerations from "gtkselection.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_target_flags_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_TARGET_FLAGS (gtk_target_flags_get_type ())
+-
+-/* enumerations from "gtkshortcutsshortcut.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_shortcut_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_SHORTCUT_TYPE (gtk_shortcut_type_get_type ())
+-
+-/* enumerations from "gtkspinbutton.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_spin_button_update_policy_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_SPIN_BUTTON_UPDATE_POLICY (gtk_spin_button_update_policy_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_spin_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_SPIN_TYPE (gtk_spin_type_get_type ())
+-
+-/* enumerations from "gtkstack.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_stack_transition_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_STACK_TRANSITION_TYPE (gtk_stack_transition_type_get_type ())
+-
+-/* enumerations from "gtkstylecontext.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_style_context_print_flags_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_STYLE_CONTEXT_PRINT_FLAGS (gtk_style_context_print_flags_get_type ())
+-
+-/* enumerations from "gtktextbuffer.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_text_buffer_target_info_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_TEXT_BUFFER_TARGET_INFO (gtk_text_buffer_target_info_get_type ())
+-
+-/* enumerations from "gtktextiter.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_text_search_flags_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_TEXT_SEARCH_FLAGS (gtk_text_search_flags_get_type ())
+-
+-/* enumerations from "gtktextview.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_text_window_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_TEXT_WINDOW_TYPE (gtk_text_window_type_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_text_view_layer_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_TEXT_VIEW_LAYER (gtk_text_view_layer_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_text_extend_selection_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_TEXT_EXTEND_SELECTION (gtk_text_extend_selection_get_type ())
+-
+-/* enumerations from "gtktoolbar.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_toolbar_space_style_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_TOOLBAR_SPACE_STYLE (gtk_toolbar_space_style_get_type ())
+-
+-/* enumerations from "gtktoolpalette.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_tool_palette_drag_targets_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_TOOL_PALETTE_DRAG_TARGETS (gtk_tool_palette_drag_targets_get_type ())
+-
+-/* enumerations from "gtktreemodel.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_tree_model_flags_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_TREE_MODEL_FLAGS (gtk_tree_model_flags_get_type ())
+-
+-/* enumerations from "gtktreeview.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_tree_view_drop_position_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_TREE_VIEW_DROP_POSITION (gtk_tree_view_drop_position_get_type ())
+-
+-/* enumerations from "gtktreeviewcolumn.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_tree_view_column_sizing_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_TREE_VIEW_COLUMN_SIZING (gtk_tree_view_column_sizing_get_type ())
+-
+-/* enumerations from "gtkwidget.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_widget_help_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_WIDGET_HELP_TYPE (gtk_widget_help_type_get_type ())
+-
+-/* enumerations from "gtkwindow.h" */
+-GDK_AVAILABLE_IN_ALL GType gtk_window_type_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_WINDOW_TYPE (gtk_window_type_get_type ())
+-GDK_AVAILABLE_IN_ALL GType gtk_window_position_get_type (void) G_GNUC_CONST;
+-#define GTK_TYPE_WINDOW_POSITION (gtk_window_position_get_type ())
+-G_END_DECLS
+-
+-#endif /* __GTK_TYPE_BUILTINS_H__ */
+-
+-/* Generated data ends here */
+-
+diff --git a/gtk/gtkversion.h b/gtk/gtkversion.h
+deleted file mode 100644
+index 43b64e2..0000000
+--- a/gtk/gtkversion.h
++++ /dev/null
+@@ -1,104 +0,0 @@
+-/* GTK - The GIMP Toolkit
+- * Copyright (C) 1995-1997 Peter Mattis, Spencer Kimball and Josh MacDonald
+- *
+- * This library is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU Lesser General Public
+- * License as published by the Free Software Foundation; either
+- * version 2 of the License, or (at your option) any later version.
+- *
+- * This library is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * Lesser General Public License for more details.
+- *
+- * You should have received a copy of the GNU Lesser General Public
+- * License along with this library. If not, see <http://www.gnu.org/licenses/>.
+- */
+-
+-/*
+- * Modified by the GTK+ Team and others 1997-1999.  See the AUTHORS
+- * file for a list of people on the GTK+ Team.  See the ChangeLog
+- * files for a list of changes.  These files are distributed with
+- * GTK+ at ftp://ftp.gtk.org/pub/gtk/.
+- */
+-
+-#if !defined (__GTK_H_INSIDE__) && !defined (GTK_COMPILATION)
+-#error "Only <gtk/gtk.h> can be included directly."
+-#endif
+-
+-#ifndef __GTK_VERSION_H__
+-#define __GTK_VERSION_H__
+-
+-/**
+- * SECTION:gtkfeatures
+- * @Short_description: Variables and functions to check the GTK+ version
+- * @Title: Version Information
+- *
+- * GTK+ provides version information, primarily useful in configure checks
+- * for builds that have a configure script. Applications will not typically
+- * use the features described here.
+- */
+-
+-/**
+- * GTK_MAJOR_VERSION:
+- *
+- * Like gtk_get_major_version(), but from the headers used at
+- * application compile time, rather than from the library linked
+- * against at application run time.
+- */
+-#define GTK_MAJOR_VERSION (3)
+-
+-/**
+- * GTK_MINOR_VERSION:
+- *
+- * Like gtk_get_minor_version(), but from the headers used at
+- * application compile time, rather than from the library linked
+- * against at application run time.
+- */
+-#define GTK_MINOR_VERSION (24)
+-
+-/**
+- * GTK_MICRO_VERSION:
+- *
+- * Like gtk_get_micro_version(), but from the headers used at
+- * application compile time, rather than from the library linked
+- * against at application run time.
+- */
+-#define GTK_MICRO_VERSION (35)
+-
+-/**
+- * GTK_BINARY_AGE:
+- *
+- * Like gtk_get_binary_age(), but from the headers used at
+- * application compile time, rather than from the library linked
+- * against at application run time.
+- */
+-#define GTK_BINARY_AGE    (2435)
+-
+-/**
+- * GTK_INTERFACE_AGE:
+- *
+- * Like gtk_get_interface_age(), but from the headers used at
+- * application compile time, rather than from the library linked
+- * against at application run time.
+- */
+-#define GTK_INTERFACE_AGE (31)
+-
+-/**
+- * GTK_CHECK_VERSION:
+- * @major: major version (e.g. 1 for version 1.2.5)
+- * @minor: minor version (e.g. 2 for version 1.2.5)
+- * @micro: micro version (e.g. 5 for version 1.2.5)
+- *
+- * Returns %TRUE if the version of the GTK+ header files
+- * is the same as or newer than the passed-in version.
+- *
+- * Returns: %TRUE if GTK+ headers are new enough
+- */
+-#define GTK_CHECK_VERSION(major,minor,micro)                          \
+-    (GTK_MAJOR_VERSION > (major) ||                                   \
+-     (GTK_MAJOR_VERSION == (major) && GTK_MINOR_VERSION > (minor)) || \
+-     (GTK_MAJOR_VERSION == (major) && GTK_MINOR_VERSION == (minor) && \
+-      GTK_MICRO_VERSION >= (micro)))
+-
+-#endif /* __GTK_VERSION_H__ */
+diff --git a/gtk/makefile.msc b/gtk/makefile.msc
+deleted file mode 100644
+index 5ffcfa8..0000000
+--- a/gtk/makefile.msc
++++ /dev/null
+@@ -1,649 +0,0 @@
+-## Makefile for building the gtk DLL with Microsoft C
+-## Use: nmake -f makefile.msc
+-
+-## There is no install target, you have to decide where and 
+-## how to install for yourself.
+-
+-TOP = ..\..
+-!INCLUDE $(TOP)/glib/build/win32/make.msc
+-
+-################################################################
+-
+-# Not the real version but the one used in the DLL names
+-GTK_VER = 3.0
+-
+-
+-GDK_LIBS = ../gdk/gdk-win32-$(GTK_VER).lib
+-GTK_LIBS = gtk-win32-$(GTK_VER).lib
+-GTK_BINARY_VERSION = 3.0.0
+-
+-# Perl and awk are needed to generate some source files.
+-# These generated source files are distribuyted with the Win32 GTk+ source
+-# distributions, so don't worry if you don't have perl and awk.
+-PERL = perl
+-AWK = gawk
+-
+-INCLUDES = -FImsvc_recommended_pragmas.h -I . -I .. -I ../gdk $(GDK_PIXBUF_CFLAGS)
+-DEPCFLAGS = $(PANGO_CFLAGS) $(GLIB_CFLAGS) $(LIBICONV_CFLAGS) \
+-		$(INTL_CFLAGS) $(ATK_CFLAGS) $(CAIRO_CFLAGS)
+-LDFLAGS = $(ATK_LIBS) /link /machine:ix86 $(LINKDEBUG)
+-# Some files use near as an identifier
+-# Don't define GTK_COMPILATION here, because it's for gtk-x.x.dll only
+-DEFINES = \
+-	-DHAVE_CONFIG_H \
+-	$(G_DEBUGGING) -DGTK_DISABLE_COMPAT_H -DG_LOG_DOMAIN=\"Gtk\" -Dnear=xxnear \
+-	-DPANGO_ENABLE_BACKEND \
+-	-DGTK_VERSION=\"$(GTK_VER)\" -DGTK_BINARY_VERSION=\"$(GTK_BINARY_VERSION)\" \
+-	-DGTK_HOST=\"win32\" \
+-	-DGTK_FILE_SYSTEM_ENABLE_UNSUPPORTED \
+-	-DGTK_PRINT_BACKENDS=\"file,lpr\" \
+-	-DGTK_PRINT_BACKEND_ENABLE_UNSUPPORTED \
+-	-DGTK_PRINT_PREVIEW_COMMAND="\"evince --unlink-tempfile --preview %f\"" \
+-	-DGTK_LIBDIR=\"/magic/path/replaced/at/runtime\"
+-
+-EXTRALIBS = \
+-	$(GDK_LIBS) \
+-	$(GDK_PIXBUF_LIBS) \
+-	$(PANGO_LIBS) $(INTL_LIBS) \
+-	$(GLIB_LIBS) $(GMODULE_LIBS) $(GIO_LIBS) \
+-	$(CAIRO_LIBS) $(PANGOCAIRO_LIBS) $(CAIRO_GOBJECT_LIBS) \
+-
+-TOUCH = copy makefile.msc+nul
+-
+-gtkbuiltincache.h: gtk-update-icon-cache.exe
+-	del gtkicontheme.obj
+-	gtk-update-icon-cache --force --ignore-theme-index 	\
+-	   --source builtin_icons stock-icons > gtkbuiltincache.h
+-
+-GENERATED = \
+-	gtktypebuiltins.h gtktypebuiltins.c \
+-	gtkmarshalers.h gtkmarshalers.c \
+-	gtk.def gtktypefuncs.c
+-
+-all :						\
+-	..\config.h				\
+-	$(GENERATED)				\
+-	gtk-update-icon-cache.exe		\
+-	gtkbuiltincache.h			\
+-	libgtk-win32-$(GTK_VER)-0.dll		\
+-	gtk-query-immodules-$(GTK_VER).exe \
+-#	gtk-win32-$(GTK_VER)s.lib \
+-#	gtk-x11-$(GTK_VER).dll
+-
+-gtk_OBJECTS_cell = \
+-	gtkcellarea.obj \
+-	gtkcellareabox.obj \
+-	gtkcellareaboxcontext.obj \
+-	gtkcellareacontext.obj \
+-	gtkcelleditable.obj \
+-	gtkcelllayout.obj \
+-	gtkcellrenderer.obj \
+-	gtkcellrendereraccel.obj \
+-	gtkcellrenderercombo.obj \
+-	gtkcellrendererpixbuf.obj \
+-	gtkcellrendererprogress.obj \
+-	gtkcellrendererspin.obj	\
+-	gtkcellrendererspinner.obj \
+-	gtkcellrenderertext.obj \
+-	gtkcellrenderertoggle.obj \
+-	gtkcellview.obj \
+-	gtkliststore.obj \
+-	gtktreednd.obj \
+-	gtktreemenu.obj \
+-	gtktreemodel.obj \
+-	gtktreemodelfilter.obj \
+-	gtktreemodelsort.obj \
+-	gtktreeselection.obj \
+-	gtktreesortable.obj \
+-	gtktreestore.obj \
+-	gtktreeview.obj \
+-	gtktreeviewcolumn.obj \
+-
+-gtk_OBJECTS_file = \
+-	gtkfilechooser.obj \
+-	gtkfilechooserbutton.obj \
+-	gtkfilechooserdefault.obj \
+-	gtkfilechooserdialog.obj \
+-	gtkfilechooserembed.obj \
+-	gtkfilechooserentry.obj \
+-#	gtkfilechoosersettings.obj \
+-	gtkfilechooserutils.obj \
+-	gtkfilechooserwidget.obj \
+-	gtkfilefilter.obj \
+-	gtkfilesystem.obj \
+-	gtkfilesystemmodel.obj \
+-
+-gtk_OBJECTS_print = \
+-	gtkprint-win32.obj \
+-	gtkprintcontext.obj \
+-	gtkprintoperation-win32.obj \
+-	gtkprintoperation.obj \
+-	gtkprintoperationpreview.obj \
+-	gtkprintsettings.obj \
+-	gtkprintutils.obj \
+-
+-gtk_OBJECTS_text = \
+-	gtktextattributes.obj \
+-	gtktextbtree.obj \
+-	gtktextbuffer.obj \
+-	gtktextbufferrichtext.obj \
+-	gtktextbufferserialize.obj \
+-	gtktextchild.obj \
+-	gtktextdisplay.obj \
+-	gtktextiter.obj \
+-	gtktextlayout.obj \
+-	gtktextmark.obj \
+-	gtktextsegment.obj \
+-	gtktexttag.obj \
+-	gtktexttagtable.obj \
+-	gtktexttypes.obj \
+-	gtktextutil.obj	\
+-	gtktextview.obj \
+-
+-gtk_OBJECTS_recent = \
+-	gtkrecentaction.obj \
+-	gtkrecentchooserdefault.obj \
+-	gtkrecentchooserdialog.obj \
+-	gtkrecentchoosermenu.obj \
+-	gtkrecentchooserwidget.obj \
+-	gtkrecentchooserutils.obj \
+-	gtkrecentchooser.obj \
+-	gtkrecentfilter.obj \
+-	gtkrecentmanager.obj \
+-
+-gtk_OBJECTS = \
+-	fnmatch.obj \
+-	gtk9slice.obj \
+-	gtkaboutdialog.obj \
+-	gtkaccelgroup.obj \
+-	gtkaccellabel.obj \
+-	gtkaccelmap.obj	\
+-	gtkaccessible.obj \
+-	gtkaction.obj \
+-	gtkactiongroup.obj \
+-	gtkactivatable.obj \
+-	gtkadjustment.obj \
+-	gtkalignment.obj \
+-	gtkanimationdescription.obj \
+-	gtkappchooser.obj \
+-	gtkappchooserbutton.obj \
+-	gtkappchooserdialog.obj \
+-	gtkappchoosermodule.obj \
+-	gtkappchooseronline.obj \
+-	gtkappchooseronlinepk.obj \
+-	gtkappchooserwidget.obj \
+-	gtkapplication.obj \
+-	gtkarrow.obj \
+-	gtkaspectframe.obj \
+-	gtkassistant.obj \
+-	gtkbin.obj \
+-	gtkbindings.obj \
+-	gtkbbox.obj \
+-	gtkbox.obj \
+-	gtkborder.obj \
+-	gtkbuildable.obj \
+-	gtkbuilder.obj \
+-	gtkbuilderparser.obj \
+-	gtkbutton.obj \
+-	gtkcalendar.obj \
+-	gtkcheckbutton.obj \
+-	gtkcheckmenuitem.obj \
+-	gtkclipboard.obj \
+-	gtkcolorbutton.obj \
+-	gtkcolorsel.obj \
+-	gtkcolorseldialog.obj \
+-	gtkcombobox.obj	\
+-	gtkcomboboxtext.obj \
+-	gtkcontainer.obj \
+-	gtkcssprovider.obj \
+-	gtkdialog.obj \
+-	gtkdnd.obj \
+-	gtkdrawingarea.obj \
+-	gtkeditable.obj \
+-	gtkentry.obj \
+-	gtkentrybuffer.obj \
+-	gtkentrycompletion.obj \
+-	gtkeventbox.obj \
+-	gtkexpander.obj \
+-	gtkfixed.obj \
+-	gtkfontsel.obj \
+-	gtkfontbutton.obj \
+-	gtkframe.obj \
+-	gtkgradient.obj \
+-	gtkgrid.obj \
+-	gtkhandlebox.obj \
+-	gtkhbbox.obj \
+-	gtkhbox.obj \
+-	gtkhpaned.obj \
+-	gtkhscale.obj \
+-	gtkhscrollbar.obj \
+-	gtkhseparator.obj \
+-	gtkhsv.obj \
+-	gtkiconcache.obj \
+-	gtkiconcachevalidator.obj \
+-	gtkiconfactory.obj \
+-	gtkicontheme.obj \
+-	gtkiconview.obj \
+-	gtkimage.obj \
+-	gtkimagemenuitem.obj \
+-	gtkimcontext.obj \
+-	gtkimcontextsimple.obj \
+-	gtkimmodule.obj	\
+-	gtkimmulticontext.obj \
+-	gtkinfobar.obj \
+-	gtkinvisible.obj \
+-	gtkkeyhash.obj	\
+-	gtklabel.obj \
+-	gtklayout.obj \
+-	gtklinkbutton.obj \
+-	gtkmain.obj \
+-	gtkmarshalers.obj \
+-	gtkmenu.obj \
+-	gtkmenubar.obj \
+-	gtkmenuitem.obj \
+-	gtkmenushell.obj \
+-	gtkmenutoolbutton.obj \
+-	gtkmessagedialog.obj \
+-	gtkmisc.obj \
+-	gtkmnemonichash.obj \
+-	gtkmodifierstyle.obj \
+-	gtkmodules.obj \
+-	gtkmountoperation.obj \
+-	gtkmountoperation-stub.obj \
+-	gtknotebook.obj \
+-	gtknumerableicon.obj \
+-	gtkoffscreenwindow.obj \
+-	gtkorientable.obj \
+-	gtkpagesetup.obj \
+-	gtkpaned.obj \
+-	gtkpango.obj \
+-	gtkpapersize.obj \
+-	gtkpathbar.obj \
+-	gtkprogressbar.obj \
+-	gtkquery.obj \
+-	gtkradioaction.obj \
+-	gtkradiobutton.obj \
+-	gtkradiotoolbutton.obj \
+-	gtkradiomenuitem.obj \
+-	gtkrange.obj \
+-	gtkrbtree.obj \
+-	gtkrc.obj \
+-	gtkscale.obj \
+-	gtkscalebutton.obj \
+-	gtkscrollable.obj \
+-	gtkscrollbar.obj \
+-	gtkscrolledwindow.obj \
+-	gtksearchengine.obj \
+-	gtksearchenginebeagle.obj \
+-	gtksearchenginesimple.obj \
+-	gtksearchenginetracker.obj \
+-	gtkselection.obj \
+-	gtkseparator.obj \
+-	gtkseparatormenuitem.obj \
+-	gtkseparatortoolitem.obj \
+-	gtksettings.obj \
+-	gtkshow.obj \
+-	gtkstacksidebar.obj \
+-	gtksizegroup.obj \
+-	gtksizerequest.obj \
+-	gtkspinbutton.obj \
+-	gtkspinner.obj \
+-	gtkstatusicon.obj \
+-	gtkstyle.obj \
+-	gtkstylecontext.obj \
+-	gtkstyleproperties.obj \
+-	gtkstyleprovider.obj \
+-	gtkstatusbar.obj \
+-	gtkstock.obj \
+-	gtkswitch.obj \
+-	gtksymboliccolor.obj \
+-	gtktable.obj \
+-	gtktearoffmenuitem.obj \
+-	gtktestutils.obj \
+-	gtkthemingengine.obj \
+-	gtktimeline.obj \
+-	gtktoggleaction.obj \
+-	gtktogglebutton.obj \
+-	gtktoggletoolbutton.obj \
+-	gtktoolbar.obj \
+-	gtktoolbutton.obj \
+-	gtktoolitem.obj \
+-	gtktoolitemgroup.obj \
+-	gtktoolpalette.obj \
+-	gtktoolshell.obj \
+-	gtktooltip.obj \
+-	gtktreedatalist.obj \
+-	gtktypebuiltins.obj \
+-	gtkuimanager.obj \
+-	gtkvbbox.obj \
+-	gtkvbox.obj \
+-	gtkviewport.obj \
+-	gtkvolumebutton.obj \
+-	gtkvpaned.obj \
+-	gtkvscale.obj \
+-	gtkvscrollbar.obj \
+-	gtkvseparator.obj \
+-	gtkwidget.obj \
+-	gtkwidgetpath.obj \
+-	gtkwin32embed.obj \
+-	gtkwin32embedwidget.obj \
+-	gtkwindow.obj \
+-#	gtkwrapbox.obj \
+-
+-# Source headers which are non-autogenerated headers
+-gtk_public_h_sources = 		\
+-	gtk.h			\
+-	gtkaboutdialog.h	\
+-	gtkaccelgroup.h		\
+-	gtkaccellabel.h		\
+-	gtkaccelmap.h		\
+-	gtkaccessible.h		\
+-	gtkaction.h		\
+-	gtkactiongroup.h	\
+-	gtkactivatable.h	\
+-	gtkadjustment.h		\
+-	gtkalignment.h		\
+-	gtkappchooser.h		\
+-	gtkappchooserbutton.h	\
+-	gtkappchooserdialog.h	\
+-	gtkappchooserwidget.h	\
+-	gtkapplication.h	\
+-	gtkarrow.h		\
+-	gtkaspectframe.h	\
+-	gtkassistant.h		\
+-	gtkbbox.h		\
+-	gtkbin.h		\
+-	gtkbindings.h		\
+-	gtkborder.h		\
+-	gtkbox.h		\
+-	gtkbuilder.h		\
+-	gtkbuildable.h		\
+-	gtkbutton.h		\
+-	gtkcalendar.h		\
+-	gtkcellarea.h		\
+-	gtkcellareacontext.h	\
+-	gtkcellareabox.h	\
+-	gtkcelleditable.h	\
+-	gtkcelllayout.h		\
+-	gtkcellrenderer.h	\
+-	gtkcellrendereraccel.h	\
+-	gtkcellrenderercombo.h	\
+-	gtkcellrendererpixbuf.h	\
+-	gtkcellrendererprogress.h \
+-	gtkcellrendererspin.h	\
+-	gtkcellrendererspinner.h\
+-	gtkcellrenderertext.h	\
+-	gtkcellrenderertoggle.h	\
+-	gtkcellview.h		\
+-	gtkcheckbutton.h	\
+-	gtkcheckmenuitem.h	\
+-	gtkclipboard.h		\
+-	gtkcolorbutton.h	\
+-	gtkcolorsel.h		\
+-	gtkcolorseldialog.h	\
+-	gtkcombobox.h		\
+-	gtkcomboboxtext.h	\
+-	gtkcontainer.h		\
+-	gtkcssprovider.h	\
+-	gtkdebug.h		\
+-	gtkdialog.h		\
+-	gtkdnd.h		\
+-	gtkdrawingarea.h	\
+-	gtkeditable.h		\
+-	gtkentry.h		\
+-	gtkentrybuffer.h	\
+-	gtkentrycompletion.h	\
+-	gtkenums.h		\
+-	gtkeventbox.h		\
+-	gtkexpander.h		\
+-	gtkfilechooser.h	\
+-	gtkfilechooserbutton.h	\
+-	gtkfilechooserdialog.h	\
+-	gtkfilechooserwidget.h	\
+-	gtkfilefilter.h		\
+-	gtkfixed.h		\
+-	gtkfontbutton.h		\
+-	gtkfontsel.h		\
+-	gtkframe.h		\
+-	gtkgradient.h		\
+-	gtkgrid.h		\
+-	gtkhandlebox.h		\
+-	gtkhbbox.h		\
+-	gtkhbox.h		\
+-	gtkhpaned.h		\
+-	gtkhscale.h		\
+-	gtkhscrollbar.h		\
+-	gtkhseparator.h		\
+-	gtkhsv.h		\
+-	gtkiconfactory.h	\
+-	gtkicontheme.h		\
+-	gtkiconview.h		\
+-	gtkimage.h		\
+-	gtkimagemenuitem.h	\
+-	gtkimcontext.h		\
+-	gtkimcontextsimple.h	\
+-	gtkimmodule.h		\
+-	gtkimmulticontext.h	\
+-	gtkinfobar.h		\
+-	gtkinvisible.h		\
+-	gtklabel.h		\
+-	gtklayout.h		\
+-	gtklinkbutton.h		\
+-	gtkliststore.h		\
+-	gtkmain.h		\
+-	gtkmenu.h		\
+-	gtkmenubar.h		\
+-	gtkmenuitem.h		\
+-	gtkmenushell.h		\
+-	gtkmenutoolbutton.h	\
+-	gtkmessagedialog.h	\
+-	gtkmisc.h		\
+-	gtkmodules.h		\
+-	gtkmountoperation.h	\
+-	gtknotebook.h		\
+-	gtkoffscreenwindow.h	\
+-	gtkorientable.h		\
+-	gtkpagesetup.h		\
+-	gtkpaned.h		\
+-	gtkpapersize.h		\
+-	gtkplug.h		\
+-	gtkprintcontext.h	\
+-	gtkprintoperation.h	\
+-	gtkprintoperationpreview.h \
+-	gtkprintsettings.h	\
+-	gtkprogressbar.h	\
+-	gtkradioaction.h	\
+-	gtkradiobutton.h	\
+-	gtkradiomenuitem.h	\
+-	gtkradiotoolbutton.h	\
+-	gtkrange.h		\
+-	gtkrc.h			\
+-	gtkrecentaction.h	\
+-	gtkrecentchooser.h	\
+-	gtkrecentchooserdialog.h \
+-	gtkrecentchoosermenu.h	\
+-	gtkrecentchooserwidget.h \
+-	gtkrecentfilter.h	\
+-	gtkrecentmanager.h	\
+-	gtkscale.h		\
+-	gtkscalebutton.h	\
+-	gtkscrollable.h		\
+-	gtkscrollbar.h		\
+-	gtkscrolledwindow.h	\
+-	gtkselection.h		\
+-	gtkseparator.h		\
+-	gtkseparatormenuitem.h	\
+-	gtkseparatortoolitem.h	\
+-	gtksettings.h		\
+-	gtkshow.h		\
+-	gtkstacksidebar.h	\
+-	gtksizegroup.h		\
+-	gtksizerequest.h	\
+-	gtksocket.h		\
+-	gtkspinbutton.h		\
+-	gtkspinner.h		\
+-	gtkstatusbar.h		\
+-	gtkstatusicon.h		\
+-	gtkstock.h		\
+-	gtkstylecontext.h	\
+-	gtkstyleproperties.h	\
+-	gtkstyleprovider.h	\
+-	gtkstyle.h		\
+-	gtkswitch.h		\
+-	gtksymboliccolor.h	\
+-	gtktable.h		\
+-	gtktearoffmenuitem.h	\
+-	gtktestutils.h		\
+-	gtktextbuffer.h		\
+-	gtktextbufferrichtext.h	\
+-	gtktextchild.h		\
+-	gtktextdisplay.h	\
+-	gtktextiter.h		\
+-	gtktextmark.h		\
+-	gtktexttag.h		\
+-	gtktexttagtable.h	\
+-	gtktextview.h		\
+-	gtkthemingengine.h	\
+-	gtktoggleaction.h	\
+-	gtktogglebutton.h	\
+-	gtktoggletoolbutton.h	\
+-	gtktoolbar.h		\
+-	gtktoolbutton.h		\
+-	gtktoolitem.h		\
+-	gtktoolitemgroup.h	\
+-	gtktoolpalette.h	\
+-	gtktoolshell.h		\
+-	gtktooltip.h		\
+-	gtktreednd.h		\
+-	gtktreemodel.h		\
+-	gtktreemodelfilter.h	\
+-	gtktreemodelsort.h	\
+-	gtktreeselection.h	\
+-	gtktreesortable.h	\
+-	gtktreestore.h		\
+-	gtktreeview.h		\
+-	gtktreeviewcolumn.h	\
+-	gtkuimanager.h		\
+-	gtkvbbox.h		\
+-	gtkvbox.h		\
+-	gtkviewport.h		\
+-	gtkvolumebutton.h	\
+-	gtkvpaned.h		\
+-	gtkvscale.h		\
+-	gtkvscrollbar.h		\
+-	gtkvseparator.h		\
+-	gtkwidget.h		\
+-	gtkwidgetpath.h		\
+-	gtkwindow.h
+-
+-# these aren't use here, but listed for reference
+-gtk_extra_sources = \
+-	gtkversion.h		\
+-	gtk-boxed.defs		\
+-	gtkmarshal.list		\
+-
+-..\config.h : ..\config.h.win32
+-	copy ..\config.h.win32 ..\config.h
+-
+-gtk.def: gtk.symbols makefile.msc
+-	echo EXPORTS > gtk.def
+-	cl /EP -DG_OS_WIN32 -DGDK_WINDOWING_WIN32 \
+-		-DG_GNUC_MALLOC= -DG_GNUC_CONST= -DG_GNUC_NULL_TERMINATED= -DG_GNUC_NORETURN= \
+-		-DG_GNUC_PRINTF=;G_GNUC_PRINTF gtk.symbols >> gtk.def
+-
+-# generate type identifier header (GTK_TYPE_WIDGET_FLAGS)
+-# use 'echo' to work around 'command line too long'
+-gtktypebuiltins.h: $(gtk_public_h_sources) makefile.msc
+-	echo #ifndef __GTK_TYPE_BUILTINS_H__ > gtktypebuiltins.h
+-	echo #define __GTK_TYPE_BUILTINS_H__ >> gtktypebuiltins.h
+-	echo #include "glib-object.h" >> gtktypebuiltins.h
+-	echo G_BEGIN_DECLS >> gtktypebuiltins.h
+-	$(PERL) $(GLIB)\gobject\glib-mkenums \
+-		--fprod "/* enumerations from \"@filename@\" */\n" \
+-		--vhead "GType @enum_name@_get_type (void);\n#define GTK_TYPE_@ENUMSHORT@ (@enum_name@_get_type())\n" \
+-		--ftail "G_END_DECLS\n\n#endif /* __GTK_TYPE_BUILTINS_H__ */" \
+-		$(gtk_public_h_sources) >> gtktypebuiltins.h
+-
+-gtktypebuiltins.c: $(gtk_public_h_sources) makefile.msc
+-	$(PERL) $(GLIB)\gobject\glib-mkenums \
+-		--fhead "#define GTK_ENABLE_BROKEN\n#include \"gtk.h\"\n#include \"gtkprivate.h\"" \
+-		--fprod "\n/* enumerations from \"@filename@\" */" \
+-		--vhead "GType\n@enum_name@_get_type (void)\n{\n  static GType etype = 0;\n  if (etype == 0) {\n    static const G@Type@Value values[] = {" \
+-		--vprod "      { @VALUENAME@, \"@VALUENAME@\", \"@valuenick@\" }," \
+-		--vtail "      { 0, NULL, NULL }\n    };\n    etype = g_@type@_register_static (\"@EnumName@\", values);\n  }\n  return etype;\n}\n" \
+-		$(gtk_public_h_sources) > xgen-gtbc
+-	copy xgen-gtbc gtktypebuiltins.c
+-
+-# private marshalers
+-gtkmarshalers.h : gtkmarshalers.list makefile.msc
+-	$(GLIB)\gobject\glib-genmarshal --prefix=_gtk_marshal gtkmarshalers.list --header >gtkmarshalers.h
+-
+-gtkmarshalers.c : gtkmarshalers.list makefile.msc
+-	$(GLIB)\gobject\glib-genmarshal --prefix=_gtk_marshal gtkmarshalers.list --body >gtkmarshalers.c
+-
+-gtktypefuncs.c : makefile.msc
+-	echo /*none*/ > gtktypefuncs.c
+-
+-gtk-win32.res : gtk-win32.rc
+-	rc -DBUILDNUMBER=0 -r -fo gtk-win32.res gtk-win32.rc
+-
+-# build some static limits to covercome command line too long
+-# may also speed up the build
+-
+-gtk-cell.lib : $(gtk_OBJECTS_cell)
+-	lib /out:gtk-cell.lib $(gtk_OBJECTS_cell)
+-
+-gtk-file.lib : $(gtk_OBJECTS_file)
+-	lib /out:gtk-file.lib $(gtk_OBJECTS_file)
+-
+-gtk-print.lib : $(gtk_OBJECTS_print)
+-	lib /out:gtk-print.lib $(gtk_OBJECTS_print)
+-
+-gtk-recent.lib : $(gtk_OBJECTS_recent)
+-	lib /out:gtk-recent.lib $(gtk_OBJECTS_recent)
+-
+-gtk-text.lib : $(gtk_OBJECTS_text)
+-	lib /out:gtk-text.lib $(gtk_OBJECTS_text)
+-
+-gtk-core.lib : $(gtk_OBJECTS) 
+-	lib /out:gtk-core.lib $(gtk_OBJECTS)
+-
+-gtk_SUBLIBS = \
+-	gtk-cell.lib \
+-	gtk-file.lib \
+-	gtk-print.lib \
+-	gtk-recent.lib \
+-	gtk-text.lib \
+-	gtk-core.lib
+-
+-#
+-# Linking:
+-#
+-libgtk-win32-$(GTK_VER)-0.dll : $(gtk_SUBLIBS) gtk.def gtk-win32.res
+-	$(CC) $(CFLAGS) -LD -Fm -Fe$@ $(gtk_SUBLIBS) gtk-win32.res $(EXTRALIBS) \
+-	gdi32.lib user32.lib advapi32.lib wsock32.lib shell32.lib ole32.lib \
+-	comdlg32.lib winspool.lib comctl32.lib \
+-	$(LDFLAGS) /implib:gtk-win32-$(GTK_VER).lib /def:gtk.def
+-
+-gtk-win32-$(GTK_VER)s.lib : $(gtk_OBJECTS)
+-	lib /out:gtk-win32-$(GTK_VER)s.lib $(gtk_OBJECTS)
+-
+-gtk-query-immodules-$(GTK_VER).exe : queryimmodules.obj
+-	$(CC) $(CFLAGS) -Fe$@ queryimmodules.obj $(GTK_LIBS) $(GLIB_LIBS) $(PANGO_LIBS) $(LDFLAGS)
+-
+-gtk-update-icon-cache.exe : updateiconcache.obj
+-	$(CC) $(CFLAGS) -Fe$@ updateiconcache.obj $(GDK_PIXBUF_LIBS) $(GLIB_LIBS) $(INTL_LIBS) $(PANGO_LIBS) $(LDFLAGS)
+-
+-gtk-x11-$(GTK_VER).dll : $(gtk_OBJECTS) gtk.def
+-	$(CC) $(CFLAGS) -LD -Fm -Fegtk-x11-$(GTK_VER).dll $(gtk_OBJECTS) ../gdk/gdk-x11-$(GTK_VER).lib $(GDK_PIXBUF_LIBS) $(PANGO_LIBS) $(INTL_LIBS) $(GLIB_LIBS) gdi32.lib user32.lib advapi32.lib $(LDFLAGS) /def:gtk.def
+-
+-# General rule for compiling the objects into the DLL
+-.c.obj :
+-	$(CC) $(CFLAGS) -GF -Zm400 -GD -c -DGTK_COMPILATION -DG_LOG_DOMAIN=\"Gtk\" $<
+-
+-$(EXAMPLE).obj : ..\examples\$(EXAMPLE)\$(EXAMPLE).c
+-	$(CC) $(CFLAGS) -c -DG_LOG_DOMAIN=\"$(EXAMPLE)\" ..\examples\$(EXAMPLE)\$(EXAMPLE).c
+-
+-$(EXAMPLE).exe : $(EXAMPLE).obj
+-	$(CC) $(CFLAGS) $(EXAMPLE).obj $(GTK_LIBS) $(GDK_LIBS) $(GLIB_LIBS) $(LDFLAGS)
+-
