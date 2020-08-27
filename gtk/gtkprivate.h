@@ -127,6 +127,40 @@ GBytes *get_emoji_data (void);
 
 #endif /* G_ENABLE_DEBUG */
 
+static inline GSettings *
+_gtk_get_purism_settings (void)
+{
+  GSettings *gsettings;
+  GSettingsSchema *schema;
+
+  schema = g_settings_schema_source_lookup (g_settings_schema_source_get_default (),
+                                            "org.gtk.Settings.Purism", TRUE);
+
+  if (!schema)
+    return NULL;
+
+  gsettings = g_settings_new_full (schema, NULL, NULL);
+
+  g_settings_schema_unref (schema);
+
+  return gsettings;
+}
+
+static inline gboolean
+_gtk_get_is_phone (void)
+{
+  GSettings *gsettings = _gtk_get_purism_settings ();
+  gboolean is_phone;
+
+  if (!gsettings)
+    return FALSE;
+
+  is_phone = g_settings_get_boolean (gsettings, "is-phone");
+  g_object_unref (gsettings);
+
+  return is_phone;
+}
+
 G_END_DECLS
 
 #endif /* __GTK_PRIVATE_H__ */
