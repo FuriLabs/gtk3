@@ -76,3 +76,9 @@ $progress_border_color: $selected_borders_color;
 $checkradio_bg_color: if($variant == 'light', $selected_bg_color, lighten($selected_bg_color,10%));
 $checkradio_fg_color: $selected_fg_color;
 $checkradio_borders_color: if($variant == 'light', darken($checkradio_bg_color,20%), darken($checkradio_bg_color,40%));
+
+// HdyFlap
+
+$flap_dimming: rgba(0, 0, 0, if($variant == 'light', 0.12, 0.24));
+$flap_border: rgba(0, 0, 0, if($variant == 'light', 0.05, 0.2));
+$flap_outline: rgba(255, 255, 255, if($variant == 'light', 0.2, 0.05));
