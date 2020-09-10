@@ -389,6 +389,7 @@ gtk_sources = files(
   'hdy-view-switcher-bar.c',
   'hdy-view-switcher-button.c',
   'hdy-view-switcher.c',
+  'hdy-view-switcher-title.c',
   'language-names.c',
   'script-names.c',
 )
@@ -403,6 +404,7 @@ gtk_private_type_headers = files(
   'hdy-view-switcher-bar-private.h',
   'hdy-view-switcher-button-private.h',
   'hdy-view-switcher-private.h',
+  'hdy-view-switcher-title-private.h',
 )
 
 gtk_gir_public_headers = files(
