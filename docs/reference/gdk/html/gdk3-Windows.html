@@ -9327,8 +9327,8 @@ hint must be set before mapping the window.</p>
 <a name="GdkWindow-create-surface"></a><h3>The <code class="literal">“create-surface”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">CairoSurface</span>*
 user_function (<a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> *window,
-               <span class="type">gint</span>       width,
-               <span class="type">gint</span>       height,
+               <span class="type">int</span>        width,
+               <span class="type">int</span>        height,
                <span class="type">gpointer</span>   user_data)</pre>
 <p>The ::create-surface signal is emitted when an offscreen window
 needs its surface (re)created, which happens either when the
@@ -9383,8 +9383,8 @@ surface from within any callback of this signal. Calling
 <a name="GdkWindow-from-embedder"></a><h3>The <code class="literal">“from-embedder”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> *window,
-               <span class="type">gdouble</span>    embedder_x,
-               <span class="type">gdouble</span>    embedder_y,
+               <span class="type">double</span>     embedder_x,
+               <span class="type">double</span>     embedder_y,
                <span class="type">gpointer</span>   offscreen_x,
                <span class="type">gpointer</span>   offscreen_y,
                <span class="type">gpointer</span>   user_data)</pre>
@@ -9524,8 +9524,8 @@ documented ways.
 <a name="GdkWindow-pick-embedded-child"></a><h3>The <code class="literal">“pick-embedded-child”</code> signal</h3>
 <pre class="programlisting"><a class="link" href="gdk3-Windows.html#GdkWindow"><span class="returnvalue">GdkWindow</span></a>*
 user_function (<a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> *window,
-               <span class="type">gdouble</span>    x,
-               <span class="type">gdouble</span>    y,
+               <span class="type">double</span>     x,
+               <span class="type">double</span>     y,
                <span class="type">gpointer</span>   user_data)</pre>
 <p>The ::pick-embedded-child signal is emitted to find an embedded
 child at the given position.</p>
@@ -9577,8 +9577,8 @@ embedded child at <em class="parameter"><code>x</code></em>
 <a name="GdkWindow-to-embedder"></a><h3>The <code class="literal">“to-embedder”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> *window,
-               <span class="type">gdouble</span>    offscreen_x,
-               <span class="type">gdouble</span>    offscreen_y,
+               <span class="type">double</span>     offscreen_x,
+               <span class="type">double</span>     offscreen_y,
                <span class="type">gpointer</span>   embedder_x,
                <span class="type">gpointer</span>   embedder_y,
                <span class="type">gpointer</span>   user_data)</pre>

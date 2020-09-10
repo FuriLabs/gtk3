@@ -1009,7 +1009,7 @@ user_function (<a class="link" href="GtkMenuShell.html" title="GtkMenuShell"><sp
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkMenuShell.html" title="GtkMenuShell"><span class="type">GtkMenuShell</span></a> *menu_shell,
                <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a>    *child,
-               <span class="type">gint</span>          position,
+               <span class="type">int</span>           position,
                <span class="type">gpointer</span>      user_data)</pre>
 <p>The ::insert signal is emitted when a new <a class="link" href="GtkMenuItem.html" title="GtkMenuItem"><span class="type">GtkMenuItem</span></a> is added to
 a <a class="link" href="GtkMenuShell.html" title="GtkMenuShell"><span class="type">GtkMenuShell</span></a>.  A separate signal is used instead of
@@ -1095,7 +1095,7 @@ in the direction specified by <em class="parameter"><code>direction</code></em>
 <a name="GtkMenuShell-move-selected"></a><h3>The <code class="literal">“move-selected”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 user_function (<a class="link" href="GtkMenuShell.html" title="GtkMenuShell"><span class="type">GtkMenuShell</span></a> *menu_shell,
-               <span class="type">gint</span>          distance,
+               <span class="type">int</span>           distance,
                <span class="type">gpointer</span>      user_data)</pre>
 <p>The ::move-selected signal is emitted to move the selection to
 another item.</p>

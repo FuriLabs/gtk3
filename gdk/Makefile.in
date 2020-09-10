@@ -40,8 +40,8 @@
 #   YourProject_HEADERS_EXCLUDES = ... # <list of headers to exclude from installation, separated by '|', wildcards allowed; use random unsed value if none>
 #
 #   dist-hook: \ # (or add to it if it is already there, note the vs9 items will also call the vs10 items in the process)
-#   	$(top_builddir)/build/win32/vs9/YourProject.vcproj	\
-#   	$(top_builddir)/build/win32/vs9/YourProject.headers
+#   	$(top_builddir)/win32/vs9/YourProject.vcproj	\
+#   	$(top_builddir)/win32/vs9/YourProject.headers
 
 # Private functions
 
@@ -381,8 +381,8 @@ CTAGS = ctags
 am__DIST_COMMON = $(srcdir)/Makefile.in \
 	$(srcdir)/gdkversionmacros.h.in $(top_srcdir)/Makefile.decl \
 	$(top_srcdir)/build-aux/depcomp \
-	$(top_srcdir)/build/Makefile.msvc-introspection \
-	$(top_srcdir)/build/Makefile.msvcproj COPYING
+	$(top_srcdir)/win32/Makefile.msvc-introspection \
+	$(top_srcdir)/win32/Makefile.msvcproj COPYING
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
   dir0=`pwd`; \
@@ -606,6 +606,8 @@ SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 SHM_LIBS = @SHM_LIBS@
 STRIP = @STRIP@
+TRACKER3_CFLAGS = @TRACKER3_CFLAGS@
+TRACKER3_LIBS = @TRACKER3_LIBS@
 USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WAYLAND_PROTOCOLS_DATADIR = @WAYLAND_PROTOCOLS_DATADIR@
@@ -1079,14 +1081,14 @@ _headers_destdir = $(subst /,\\,$(_headers_dest_posix))
 @HAVE_INTROSPECTION_TRUE@MSVC_INTROSPECT_GIRS = Gdk-3.0.gir GdkWin32-3.0.gir
 @HAVE_INTROSPECTION_TRUE@BASE_MSVC_GIR_CFLAGS = \
 @HAVE_INTROSPECTION_TRUE@	$(GDK_CFLAGS_DEFINES)		\
-@HAVE_INTROSPECTION_TRUE@	-I../.. -I../../gdk -I.../../gdk/win32
+@HAVE_INTROSPECTION_TRUE@	-I.. -I../gdk -I../gdk/win32
 
 @HAVE_INTROSPECTION_FALSE@INTROSPECTION_INTERMEDIATE_ITEMS = 
 @HAVE_INTROSPECTION_TRUE@INTROSPECTION_INTERMEDIATE_ITEMS = \
-@HAVE_INTROSPECTION_TRUE@	$(top_builddir)/build/win32/Gdk-3.0.gir.msvc.introspect	\
-@HAVE_INTROSPECTION_TRUE@	$(top_builddir)/build/win32/Gdk_3_0_gir_list			\
-@HAVE_INTROSPECTION_TRUE@	$(top_builddir)/build/win32/GdkWin32-3.0.gir.msvc.introspect	\
-@HAVE_INTROSPECTION_TRUE@	$(top_builddir)/build/win32/GdkWin32_3_0_gir_list
+@HAVE_INTROSPECTION_TRUE@	$(top_builddir)/win32/Gdk-3.0.gir.msvc.introspect	\
+@HAVE_INTROSPECTION_TRUE@	$(top_builddir)/win32/Gdk_3_0_gir_list			\
+@HAVE_INTROSPECTION_TRUE@	$(top_builddir)/win32/GdkWin32-3.0.gir.msvc.introspect	\
+@HAVE_INTROSPECTION_TRUE@	$(top_builddir)/win32/GdkWin32_3_0_gir_list
 
 @HAVE_INTROSPECTION_TRUE@Gdk_3_0_gir_MSVC_FILES = $(introspection_files)
 @HAVE_INTROSPECTION_TRUE@Gdk_3_0_gir_MSVC_EXPORT_PACKAGES = $(Gdk_3_0_gir_EXPORT_PACKAGES)
@@ -1137,7 +1139,7 @@ all: $(BUILT_SOURCES)
 
 .SUFFIXES:
 .SUFFIXES: .c .lo .o .obj
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.decl $(top_srcdir)/build/Makefile.msvcproj $(top_srcdir)/build/Makefile.msvc-introspection $(am__configure_deps)
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.decl $(top_srcdir)/win32/Makefile.msvcproj $(top_srcdir)/win32/Makefile.msvc-introspection $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -1157,7 +1159,7 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	    echo ' cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__maybe_remake_depfiles)'; \
 	    cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__maybe_remake_depfiles);; \
 	esac;
-$(top_srcdir)/Makefile.decl $(top_srcdir)/build/Makefile.msvcproj $(top_srcdir)/build/Makefile.msvc-introspection $(am__empty):
+$(top_srcdir)/Makefile.decl $(top_srcdir)/win32/Makefile.msvcproj $(top_srcdir)/win32/Makefile.msvc-introspection $(am__empty):
 
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
@@ -2242,10 +2244,10 @@ gdk.gresource.xml: Makefile.am
 
 gdkresources.h: gdk.gresource.xml
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) $< --target=$@ \
-		--sourcedir=$(srcdir) --c-name _gdk --generate-header --manual-register
+		--sourcedir=$(srcdir) --c-name _gdk --generate-header --manual-register --internal
 gdkresources.c: gdk.gresource.xml $(resource_files)
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) $< --target=$@ \
-		--sourcedir=$(srcdir) --c-name _gdk --generate-source --manual-register
+		--sourcedir=$(srcdir) --c-name _gdk --generate-source --manual-register --internal
 
 #
 # Creates Visual Studio 2008/2010 projects from items passed in from autotools files
@@ -2254,57 +2256,59 @@ gdkresources.c: gdk.gresource.xml $(resource_files)
 
 define msvcproj-builder
 
-$(top_builddir)/build/win32/vs10/$(1).vcxproj: $(top_builddir)/build/win32/vs9/$(1).vcproj
-$(top_builddir)/build/win32/vs10/$(1).vcxproj.filters: $(top_builddir)/build/win32/vs9/$(1).vcproj
-$(1).sourcefiles: $(top_builddir)/build/win32/vs9/$(1).vcproj
-$(1).vs10.sourcefiles: $(top_builddir)/build/win32/vs9/$(1).vcproj
-$(1).vs10.sourcefiles.filters: $(top_builddir)/build/win32/vs9/$(1).vcproj
+$(top_builddir)/win32/vs10/$(1).vcxproj: $(top_builddir)/win32/vs9/$(1).vcproj
+$(top_builddir)/win32/vs10/$(1).vcxproj.filters: $(top_builddir)/win32/vs9/$(1).vcproj
+$(1).sourcefiles: $(top_builddir)/win32/vs9/$(1).vcproj
+$(1).vs10.sourcefiles: $(top_builddir)/win32/vs9/$(1).vcproj
+$(1).vs10.sourcefiles.filters: $(top_builddir)/win32/vs9/$(1).vcproj
 
-$(top_builddir)/build/win32/vs9/$(1).vcproj: Makefile
-	-$(RM) $(top_builddir)/build/win32/vs9/$(1).vcproj
-	-$(RM) $(top_builddir)/build/win32/vs10/$(1).vcxproj
-	-$(RM) $(top_builddir)/build/win32/vs10/$(1).vcxproj.filters
-	-$(RM) $(top_builddir)/build/win32/vs11/$(1).vcxproj
-	-$(RM) $(top_builddir)/build/win32/vs11/$(1).vcxproj.filters
-	-$(RM) $(top_builddir)/build/win32/vs12/$(1).vcxproj
-	-$(RM) $(top_builddir)/build/win32/vs12/$(1).vcxproj.filters
-	-$(RM) $(top_builddir)/build/win32/vs14/$(1).vcxproj
-	-$(RM) $(top_builddir)/build/win32/vs14/$(1).vcxproj.filters
-	-$(RM) $(top_builddir)/build/win32/vs15/$(1).vcxproj
-	-$(RM) $(top_builddir)/build/win32/vs15/$(1).vcxproj.filters
+$(top_builddir)/win32/vs9/$(1).vcproj: Makefile
+	-$(RM) $(top_builddir)/win32/vs9/$(1).vcproj
+	-$(RM) $(top_builddir)/win32/vs10/$(1).vcxproj
+	-$(RM) $(top_builddir)/win32/vs10/$(1).vcxproj.filters
+	-$(RM) $(top_builddir)/win32/vs11/$(1).vcxproj
+	-$(RM) $(top_builddir)/win32/vs11/$(1).vcxproj.filters
+	-$(RM) $(top_builddir)/win32/vs12/$(1).vcxproj
+	-$(RM) $(top_builddir)/win32/vs12/$(1).vcxproj.filters
+	-$(RM) $(top_builddir)/win32/vs14/$(1).vcxproj
+	-$(RM) $(top_builddir)/win32/vs14/$(1).vcxproj.filters
+	-$(RM) $(top_builddir)/win32/vs15/$(1).vcxproj
+	-$(RM) $(top_builddir)/win32/vs15/$(1).vcxproj.filters
+	-$(RM) $(top_builddir)/win32/vs16/$(1).vcxproj
+	-$(RM) $(top_builddir)/win32/vs16/$(1).vcxproj.filters
 
 	for F in $(_proj_files); do \
 		case $$$$F in \
 		$(_proj_filters)) \
 			;; \
 		*.c|*.cpp|*.cc|*.cxx) \
-			echo '   <File RelativePath="..\..\..'$(_proj_subdir)$$$$F'" />' >>$(1).sourcefiles && \
-			echo '   <ClCompile Include="..\..\..'$(_proj_subdir)$$$$F'" />' >>$(1).vs10.sourcefiles && \
-			echo '   <ClCompile Include="..\..\..'$(_proj_subdir)$$$$F'"><Filter>Source Files</Filter></ClCompile>' >>$(1).vs10.sourcefiles.filters \
+			echo '   <File RelativePath="..\..'$(_proj_subdir)$$$$F'" />' >>$(1).sourcefiles && \
+			echo '   <ClCompile Include="..\..'$(_proj_subdir)$$$$F'" />' >>$(1).vs10.sourcefiles && \
+			echo '   <ClCompile Include="..\..'$(_proj_subdir)$$$$F'"><Filter>Source Files</Filter></ClCompile>' >>$(1).vs10.sourcefiles.filters \
 			;; \
 		esac;	\
 	done
 
-	$(CPP) -P - <$(top_srcdir)/build/win32/vs9/$(1).vcprojin >$(top_builddir)/build/win32/vs9/$(1).vcproj
-	$(CPP) -P - <$(top_srcdir)/build/win32/vs10/$(1).vcxprojin >$(top_builddir)/build/win32/vs10/$(1).vcxproj
-	$(CPP) -P - <$(top_srcdir)/build/win32/vs10/$(1).vcxproj.filtersin >$(top_builddir)/build/win32/vs10/$(1).vcxproj.filters
+	$(CPP) -P - <$(top_srcdir)/win32/vs9/$(1).vcprojin >$(top_builddir)/win32/vs9/$(1).vcproj
+	$(CPP) -P - <$(top_srcdir)/win32/vs10/$(1).vcxprojin >$(top_builddir)/win32/vs10/$(1).vcxproj
+	$(CPP) -P - <$(top_srcdir)/win32/vs10/$(1).vcxproj.filtersin >$(top_builddir)/win32/vs10/$(1).vcxproj.filters
 	$(RM) $(1).sourcefiles
 	$(RM) $(1).vs10.sourcefiles
 	$(RM) $(1).vs10.sourcefiles.filters
 
-$(top_builddir)/build/win32/vs10/$(1).vs10.headers: $(top_builddir)/build/win32/vs9/$(1).headers
+$(top_builddir)/win32/vs10/$(1).vs10.headers: $(top_builddir)/win32/vs9/$(1).headers
 
-$(top_builddir)/build/win32/vs9/$(1).headers: Makefile
-	-$(RM) $(top_builddir)/build/win32/vs9/$(1).headers
-	-$(RM) $(top_builddir)/build/win32/vs10/$(1).vs10.headers
+$(top_builddir)/win32/vs9/$(1).headers: Makefile
+	-$(RM) $(top_builddir)/win32/vs9/$(1).headers
+	-$(RM) $(top_builddir)/win32/vs10/$(1).vs10.headers
 
 	for F in $(_proj_headers); do \
 		case $$$$F in \
 		$(_proj_headers_excludes)) \
 			;; \
 		*.h|*.hpp|*.hh|*.hxx) \
-			echo 'copy ..\..\..'$(_proj_subdir)$$$$F' $$$$(CopyDir)\include'$(_headers_destdir)'\'$$$$F'&#x0D;&#x0A;' >>$(top_builddir)/build/win32/vs9/$(1).headers && \
-			echo 'copy ..\..\..'$(_proj_subdir)$$$$F' $$$$(CopyDir)\include'$(_headers_destdir)'\'$$$$F >>$(top_builddir)/build/win32/vs10/$(1).vs10.headers \
+			echo 'copy ..\..'$(_proj_subdir)$$$$F' $$$$(CopyDir)\include'$(_headers_destdir)'\'$$$$F'&#x0D;&#x0A;' >>$(top_builddir)/win32/vs9/$(1).headers && \
+			echo 'copy ..\..'$(_proj_subdir)$$$$F' $$$$(CopyDir)\include'$(_headers_destdir)'\'$$$$F >>$(top_builddir)/win32/vs10/$(1).vs10.headers \
 			;; \
 		esac;	\
 	done
@@ -2328,57 +2332,57 @@ $(foreach proj,$(MSVCPROJS),$(eval $(call msvcproj-builder,$(proj))))
 @HAVE_INTROSPECTION_TRUE@          $($(_gir_name)_MSVC_PROGRAM)),,
 @HAVE_INTROSPECTION_TRUE@    $(error Need to define $(_gir_name)_MSVC_LIBS or $(_gir_name)_MSVC_PROGRAM))
 
-@HAVE_INTROSPECTION_TRUE@$(top_builddir)/build/win32/$(_gir_name)_list: Makefile
-@HAVE_INTROSPECTION_TRUE@	rm -f $(top_builddir)/build/win32/$(_gir_name)_list
+@HAVE_INTROSPECTION_TRUE@$(top_builddir)/win32/$(_gir_name)_list: Makefile
+@HAVE_INTROSPECTION_TRUE@	rm -f $(top_builddir)/win32/$(_gir_name)_list
 @HAVE_INTROSPECTION_TRUE@	for F in $(_gir_files_msvc); do \
 @HAVE_INTROSPECTION_TRUE@		case $$$$F in \
 @HAVE_INTROSPECTION_TRUE@		*.c|*.cpp|*.cc|*.cxx|*.h|*.hpp|*.hh|*.hxx) \
-@HAVE_INTROSPECTION_TRUE@			echo '..\..'$(_gir_source_subdir_msvc)$$$$F >>$(top_builddir)/build/win32/$(_gir_name)_list \
+@HAVE_INTROSPECTION_TRUE@			echo '..'$(_gir_source_subdir_msvc)$$$$F >>$(top_builddir)/win32/$(_gir_name)_list \
 @HAVE_INTROSPECTION_TRUE@			;; \
 @HAVE_INTROSPECTION_TRUE@		esac; \
 @HAVE_INTROSPECTION_TRUE@	done
 
-@HAVE_INTROSPECTION_TRUE@$(top_builddir)/build/win32/$(1).msvc.introspect: Makefile
-@HAVE_INTROSPECTION_TRUE@	-$(RM) $(top_builddir)/build/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@$(top_builddir)/win32/$(1).msvc.introspect: Makefile
+@HAVE_INTROSPECTION_TRUE@	-$(RM) $(top_builddir)/win32/$(1).msvc.introspect
 
 # Assemble the Command to Run g-ir-scanner
-@HAVE_INTROSPECTION_TRUE@	echo 'vs$$$$(VSVER)\$$$$(CFG)\$$$$(PLAT)\bin\'$(1)': '$(_gir_name)'_list '$($(_gir_name)_MSVC_GIR_DEPS)>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	@-echo Generating $$$$@...'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	$$$$(PYTHON) $$$$(G_IR_SCANNER)	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	--verbose -no-libtool	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	--namespace='$(_gir_namespace_msvc)'	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	--nsversion='$(_gir_version_msvc)'	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	'$(_gir_packages_msvc)'	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	'$(_gir_libraries_msvc)'	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	'$(_gir_program_msvc)'	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	--add-include-path=./vs$$$$(VSVER)/$$$$(CFG)/$$$$(PLAT)/bin	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	--add-include-path=$$$$(G_IR_INCLUDEDIR)	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	'$(_gir_includes_msvc)'	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	'$(_gir_export_packages_msvc)'	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	--cflags-begin	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	'$($(_gir_name)_MSVC_CFLAGS)'	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	--cflags-end	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	'$($(_gir_name)_MSVC_SCANNERFLAGS)'	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	--filelist='$(_gir_name)'_list	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	-L.\vs$$$$(VSVER)\$$$$(CFG)\$$$$(PLAT)\bin	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	-o $$$$@'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '' >>$(top_builddir)/build/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo 'vs$$$$(VSVER)\$$$$(CFG)\$$$$(PLAT)\bin\'$(1)': '$(_gir_name)'_list '$($(_gir_name)_MSVC_GIR_DEPS)>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	@-echo Generating $$$$@...'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	$$$$(PYTHON) $$$$(G_IR_SCANNER)	\'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	--verbose -no-libtool	\'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	--namespace='$(_gir_namespace_msvc)'	\'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	--nsversion='$(_gir_version_msvc)'	\'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	'$(_gir_packages_msvc)'	\'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	'$(_gir_libraries_msvc)'	\'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	'$(_gir_program_msvc)'	\'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	--add-include-path=./vs$$$$(VSVER)/$$$$(CFG)/$$$$(PLAT)/bin	\'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	--add-include-path=$$$$(G_IR_INCLUDEDIR)	\'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	'$(_gir_includes_msvc)'	\'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	'$(_gir_export_packages_msvc)'	\'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	--cflags-begin	\'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	'$($(_gir_name)_MSVC_CFLAGS)'	\'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	--cflags-end	\'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	'$($(_gir_name)_MSVC_SCANNERFLAGS)'	\'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	--filelist='$(_gir_name)'_list	\'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	-L.\vs$$$$(VSVER)\$$$$(CFG)\$$$$(PLAT)\bin	\'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	-o $$$$@'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '' >>$(top_builddir)/win32/$(1).msvc.introspect
 
 # Finally Assemble the Command to Compile the generated .gir
-@HAVE_INTROSPECTION_TRUE@	echo 'vs$$$$(VSVER)\$$$$(CFG)\$$$$(PLAT)\bin\$(_typelib_basename_msvc).typelib: vs$$$$(VSVER)\$$$$(CFG)\$$$$(PLAT)\bin\'$(_typelib_basename_msvc)'.gir'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	@-echo Compiling $$$$@...'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	$$$$(G_IR_COMPILER)	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	--includedir=$$$$(@D:\=/) --debug --verbose	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	$$$$(@R:\=/).gir	\'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	-o $$$$@'>>$(top_builddir)/build/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '' >>$(top_builddir)/build/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo 'vs$$$$(VSVER)\$$$$(CFG)\$$$$(PLAT)\bin\$(_typelib_basename_msvc).typelib: vs$$$$(VSVER)\$$$$(CFG)\$$$$(PLAT)\bin\'$(_typelib_basename_msvc)'.gir'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	@-echo Compiling $$$$@...'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	$$$$(G_IR_COMPILER)	\'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	--includedir=$$$$(@D:\=/) --debug --verbose	\'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	$$$$(@R:\=/).gir	\'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	-o $$$$@'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '' >>$(top_builddir)/win32/$(1).msvc.introspect
 @HAVE_INTROSPECTION_TRUE@endef
 
 @HAVE_INTROSPECTION_TRUE@$(foreach gir,$(MSVC_INTROSPECT_GIRS),$(eval $(call gir-nmake-builder,$(gir))))
 
 dist-hook: \
-	$(top_builddir)/build/win32/vs9/gdk-3.vcproj	\
-	$(top_builddir)/build/win32/vs9/gdk-3.headers	\
+	$(top_builddir)/win32/vs9/gdk-3.vcproj	\
+	$(top_builddir)/win32/vs9/gdk-3.headers	\
 	$(INTROSPECTION_INTERMEDIATE_ITEMS)
 
 install-data-local: install-ms-lib install-def-file

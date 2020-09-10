@@ -319,13 +319,13 @@
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkAboutDialog.html#GtkAboutDialog--comments" title="The “comments” property">comments</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkAboutDialog.html#GtkAboutDialog--copyright" title="The “copyright” property">copyright</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -336,7 +336,7 @@
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkAboutDialog.html#GtkAboutDialog--license" title="The “license” property">license</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -353,37 +353,37 @@
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkAboutDialog.html#GtkAboutDialog--logo-icon-name" title="The “logo-icon-name” property">logo-icon-name</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkAboutDialog.html#GtkAboutDialog--program-name" title="The “program-name” property">program-name</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkAboutDialog.html#GtkAboutDialog--translator-credits" title="The “translator-credits” property">translator-credits</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkAboutDialog.html#GtkAboutDialog--version" title="The “version” property">version</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkAboutDialog.html#GtkAboutDialog--website" title="The “website” property">website</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkAboutDialog.html#GtkAboutDialog--website-label" title="The “website-label” property">website-label</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -1665,18 +1665,24 @@ developer</p>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="GTK-LICENSE-BSD-3:CAPS"></a>GTK_LICENSE_BSD_3</p></td>
-<td> </td>
-<td> </td>
+<td class="enum_member_description">
+<p>The 3-clause BSD licence. Since: 3.24.20.</p>
+</td>
+<td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="GTK-LICENSE-APACHE-2-0:CAPS"></a>GTK_LICENSE_APACHE_2_0</p></td>
-<td> </td>
-<td> </td>
+<td class="enum_member_description">
+<p>The Apache License, version 2.0. Since: 3.24.20.</p>
+</td>
+<td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="GTK-LICENSE-MPL-2-0:CAPS"></a>GTK_LICENSE_MPL_2_0</p></td>
-<td> </td>
-<td> </td>
+<td class="enum_member_description">
+<p>The Mozilla Public License, version 2.0. Since: 3.24.20.</p>
+</td>
+<td class="enum_member_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
@@ -1710,7 +1716,7 @@ as links, see the introduction for more details.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkAboutDialog--comments"></a><h3>The <code class="literal">“comments”</code> property</h3>
-<pre class="programlisting">  “comments”                 <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “comments”                 <span class="type">char</span> *</pre>
 <p>Comments about the program. This string is displayed in a label
 in the main dialog, thus it should be a short explanation of
 the main purpose of the program, not a detailed list of features.</p>
@@ -1722,7 +1728,7 @@ the main purpose of the program, not a detailed list of features.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkAboutDialog--copyright"></a><h3>The <code class="literal">“copyright”</code> property</h3>
-<pre class="programlisting">  “copyright”                <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “copyright”                <span class="type">char</span> *</pre>
 <p>Copyright information for the program.</p>
 <p>Owner: GtkAboutDialog</p>
 <p>Flags: Read / Write</p>
@@ -1743,7 +1749,7 @@ as links, see the introduction for more details.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkAboutDialog--license"></a><h3>The <code class="literal">“license”</code> property</h3>
-<pre class="programlisting">  “license”                  <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “license”                  <span class="type">char</span> *</pre>
 <p>The license of the program. This string is displayed in a
 text view in a secondary dialog, therefore it is fine to use
 a long multi-paragraph text. Note that the text is only wrapped
@@ -1790,7 +1796,7 @@ set with <a class="link" href="GtkWindow.html#gtk-window-set-default-icon" title
 <hr>
 <div class="refsect2">
 <a name="GtkAboutDialog--logo-icon-name"></a><h3>The <code class="literal">“logo-icon-name”</code> property</h3>
-<pre class="programlisting">  “logo-icon-name”           <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “logo-icon-name”           <span class="type">char</span> *</pre>
 <p>A named icon to use as the logo for the about box. This property
 overrides the <a class="link" href="GtkAboutDialog.html#GtkAboutDialog--logo" title="The “logo” property"><span class="type">“logo”</span></a> property.</p>
 <p>Owner: GtkAboutDialog</p>
@@ -1801,7 +1807,7 @@ overrides the <a class="link" href="GtkAboutDialog.html#GtkAboutDialog--logo" ti
 <hr>
 <div class="refsect2">
 <a name="GtkAboutDialog--program-name"></a><h3>The <code class="literal">“program-name”</code> property</h3>
-<pre class="programlisting">  “program-name”             <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “program-name”             <span class="type">char</span> *</pre>
 <p>The name of the program.
 If this is not set, it defaults to <code class="function">g_get_application_name()</code>.</p>
 <p>Owner: GtkAboutDialog</p>
@@ -1812,7 +1818,7 @@ If this is not set, it defaults to <code class="function">g_get_application_name
 <hr>
 <div class="refsect2">
 <a name="GtkAboutDialog--translator-credits"></a><h3>The <code class="literal">“translator-credits”</code> property</h3>
-<pre class="programlisting">  “translator-credits”       <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “translator-credits”       <span class="type">char</span> *</pre>
 <p>Credits to the translators. This string should be marked as translatable.
 The string may contain email addresses and URLs, which will be displayed
 as links, see the introduction for more details.</p>
@@ -1824,7 +1830,7 @@ as links, see the introduction for more details.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkAboutDialog--version"></a><h3>The <code class="literal">“version”</code> property</h3>
-<pre class="programlisting">  “version”                  <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “version”                  <span class="type">char</span> *</pre>
 <p>The version of the program.</p>
 <p>Owner: GtkAboutDialog</p>
 <p>Flags: Read / Write</p>
@@ -1834,7 +1840,7 @@ as links, see the introduction for more details.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkAboutDialog--website"></a><h3>The <code class="literal">“website”</code> property</h3>
-<pre class="programlisting">  “website”                  <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “website”                  <span class="type">char</span> *</pre>
 <p>The URL for the link to the website of the program.
 This should be a string starting with "http://.</p>
 <p>Owner: GtkAboutDialog</p>
@@ -1845,7 +1851,7 @@ This should be a string starting with "http://.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkAboutDialog--website-label"></a><h3>The <code class="literal">“website-label”</code> property</h3>
-<pre class="programlisting">  “website-label”            <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “website-label”            <span class="type">char</span> *</pre>
 <p>The label for the link to the website of the program.</p>
 <p>Owner: GtkAboutDialog</p>
 <p>Flags: Read / Write</p>
@@ -1869,7 +1875,7 @@ This should be a string starting with "http://.</p>
 <a name="GtkAboutDialog-activate-link"></a><h3>The <code class="literal">“activate-link”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 user_function (<a class="link" href="GtkAboutDialog.html" title="GtkAboutDialog"><span class="type">GtkAboutDialog</span></a> *label,
-               <span class="type">gchar</span>          *uri,
+               <span class="type">char</span>           *uri,
                <span class="type">gpointer</span>        user_data)</pre>
 <p>The signal which gets emitted to activate a URI.
 Applications may connect to it to override the default behaviour,

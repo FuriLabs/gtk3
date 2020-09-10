@@ -330,7 +330,7 @@
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkStatusIcon.html#GtkStatusIcon--file" title="The “file” property">file</a></td>
 <td class="property_flags">Write</td>
 </tr>
@@ -347,7 +347,7 @@
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkStatusIcon.html#GtkStatusIcon--icon-name" title="The “icon-name” property">icon-name</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -369,13 +369,13 @@
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><span class="type">gint</span></td>
+<td class="property_type"><span class="type">int</span></td>
 <td class="property_name"><a class="link" href="GtkStatusIcon.html#GtkStatusIcon--size" title="The “size” property">size</a></td>
 <td class="property_flags">Read</td>
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkStatusIcon.html#GtkStatusIcon--stock" title="The “stock” property">stock</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -386,19 +386,19 @@
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkStatusIcon.html#GtkStatusIcon--title" title="The “title” property">title</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkStatusIcon.html#GtkStatusIcon--tooltip-markup" title="The “tooltip-markup” property">tooltip-markup</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkStatusIcon.html#GtkStatusIcon--tooltip-text" title="The “tooltip-text” property">tooltip-text</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -1858,7 +1858,7 @@ underlying X11 Window</p>
 <hr>
 <div class="refsect2">
 <a name="GtkStatusIcon--file"></a><h3>The <code class="literal">“file”</code> property</h3>
-<pre class="programlisting">  “file”                     <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “file”                     <span class="type">char</span> *</pre>
 <p>Filename to load and display.</p>
 <p>Owner: GtkStatusIcon</p>
 <p>Flags: Write</p>
@@ -1899,7 +1899,7 @@ For plain text tooltips, use <a class="link" href="GtkStatusIcon.html#GtkStatusI
 <hr>
 <div class="refsect2">
 <a name="GtkStatusIcon--icon-name"></a><h3>The <code class="literal">“icon-name”</code> property</h3>
-<pre class="programlisting">  “icon-name”                <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “icon-name”                <span class="type">char</span> *</pre>
 <p>The name of the icon from the icon theme.</p>
 <p>Owner: GtkStatusIcon</p>
 <p>Flags: Read / Write</p>
@@ -1936,7 +1936,7 @@ is embedded.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkStatusIcon--size"></a><h3>The <code class="literal">“size”</code> property</h3>
-<pre class="programlisting">  “size”                     <span class="type">gint</span></pre>
+<pre class="programlisting">  “size”                     <span class="type">int</span></pre>
 <p>The size of the icon.</p>
 <p>Owner: GtkStatusIcon</p>
 <p>Flags: Read</p>
@@ -1946,7 +1946,7 @@ is embedded.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkStatusIcon--stock"></a><h3>The <code class="literal">“stock”</code> property</h3>
-<pre class="programlisting">  “stock”                    <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “stock”                    <span class="type">char</span> *</pre>
 <p>Stock ID for a stock image to display.</p>
 <div class="warning">
 <p><code class="literal">GtkStatusIcon:stock</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p>
@@ -1968,7 +1968,7 @@ is embedded.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkStatusIcon--title"></a><h3>The <code class="literal">“title”</code> property</h3>
-<pre class="programlisting">  “title”                    <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “title”                    <span class="type">char</span> *</pre>
 <p>The title of this tray icon. This should be a short, human-readable,
 localized string describing the tray icon. It may be used by tools
 like screen readers to render the tray icon.</p>
@@ -1980,7 +1980,7 @@ like screen readers to render the tray icon.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkStatusIcon--tooltip-markup"></a><h3>The <code class="literal">“tooltip-markup”</code> property</h3>
-<pre class="programlisting">  “tooltip-markup”           <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “tooltip-markup”           <span class="type">char</span> *</pre>
 <p>Sets the text of tooltip to be the given string, which is marked up
 with the Pango text markup language.
 Also see <a class="link" href="GtkTooltip.html#gtk-tooltip-set-markup" title="gtk_tooltip_set_markup ()"><code class="function">gtk_tooltip_set_markup()</code></a>.</p>
@@ -1998,7 +1998,7 @@ will take care of displaying the tooltip.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkStatusIcon--tooltip-text"></a><h3>The <code class="literal">“tooltip-text”</code> property</h3>
-<pre class="programlisting">  “tooltip-text”             <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “tooltip-text”             <span class="type">char</span> *</pre>
 <p>Sets the text of tooltip to be the given string.</p>
 <p>Also see <a class="link" href="GtkTooltip.html#gtk-tooltip-set-text" title="gtk_tooltip_set_text ()"><code class="function">gtk_tooltip_set_text()</code></a>.</p>
 <p>This is a convenience property which will take care of getting the
@@ -2218,8 +2218,8 @@ triggered the signal emission</p></td>
 <a name="GtkStatusIcon-query-tooltip"></a><h3>The <code class="literal">“query-tooltip”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 user_function (<a class="link" href="GtkStatusIcon.html" title="GtkStatusIcon"><span class="type">GtkStatusIcon</span></a> *status_icon,
-               <span class="type">gint</span>           x,
-               <span class="type">gint</span>           y,
+               <span class="type">int</span>            x,
+               <span class="type">int</span>            y,
                <span class="type">gboolean</span>       keyboard_mode,
                <a class="link" href="GtkTooltip.html" title="GtkTooltip"><span class="type">GtkTooltip</span></a>    *tooltip,
                <span class="type">gpointer</span>       user_data)</pre>
@@ -2348,7 +2348,7 @@ this signal. </p></td>
 <a name="GtkStatusIcon-size-changed"></a><h3>The <code class="literal">“size-changed”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 user_function (<a class="link" href="GtkStatusIcon.html" title="GtkStatusIcon"><span class="type">GtkStatusIcon</span></a> *status_icon,
-               <span class="type">gint</span>           size,
+               <span class="type">int</span>            size,
                <span class="type">gpointer</span>       user_data)</pre>
 <p>Gets emitted when the size available for the image
 changes, e.g. because the notification area got resized.</p>

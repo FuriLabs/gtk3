@@ -256,7 +256,7 @@
 <tbody>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkCellRenderer.html#GtkCellRenderer--cell-background" title="The “cell-background” property">cell-background</a></td>
 <td class="property_flags">Write</td>
 </tr>
@@ -283,7 +283,7 @@
 <td class="property_flags">Read</td>
 </tr>
 <tr>
-<td class="property_type"><span class="type">gint</span></td>
+<td class="property_type"><span class="type">int</span></td>
 <td class="property_name"><a class="link" href="GtkCellRenderer.html#GtkCellRenderer--height" title="The “height” property">height</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -313,12 +313,12 @@
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><span class="type">gint</span></td>
+<td class="property_type"><span class="type">int</span></td>
 <td class="property_name"><a class="link" href="GtkCellRenderer.html#GtkCellRenderer--width" title="The “width” property">width</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><span class="type">gfloat</span></td>
+<td class="property_type"><span class="type">float</span></td>
 <td class="property_name"><a class="link" href="GtkCellRenderer.html#GtkCellRenderer--xalign" title="The “xalign” property">xalign</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -328,7 +328,7 @@
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><span class="type">gfloat</span></td>
+<td class="property_type"><span class="type">float</span></td>
 <td class="property_name"><a class="link" href="GtkCellRenderer.html#GtkCellRenderer--yalign" title="The “yalign” property">yalign</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -1793,7 +1793,7 @@ inside <em class="parameter"><code>cell_area</code></em>
 <a name="GtkCellRenderer.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkCellRenderer--cell-background"></a><h3>The <code class="literal">“cell-background”</code> property</h3>
-<pre class="programlisting">  “cell-background”          <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “cell-background”          <span class="type">char</span> *</pre>
 <p>Cell background color as a string.</p>
 <p>Owner: GtkCellRenderer</p>
 <p>Flags: Write</p>
@@ -1841,7 +1841,7 @@ inside <em class="parameter"><code>cell_area</code></em>
 <hr>
 <div class="refsect2">
 <a name="GtkCellRenderer--height"></a><h3>The <code class="literal">“height”</code> property</h3>
-<pre class="programlisting">  “height”                   <span class="type">gint</span></pre>
+<pre class="programlisting">  “height”                   <span class="type">int</span></pre>
 <p>The fixed height.</p>
 <p>Owner: GtkCellRenderer</p>
 <p>Flags: Read / Write</p>
@@ -1896,7 +1896,7 @@ inside <em class="parameter"><code>cell_area</code></em>
 <hr>
 <div class="refsect2">
 <a name="GtkCellRenderer--width"></a><h3>The <code class="literal">“width”</code> property</h3>
-<pre class="programlisting">  “width”                    <span class="type">gint</span></pre>
+<pre class="programlisting">  “width”                    <span class="type">int</span></pre>
 <p>The fixed width.</p>
 <p>Owner: GtkCellRenderer</p>
 <p>Flags: Read / Write</p>
@@ -1906,7 +1906,7 @@ inside <em class="parameter"><code>cell_area</code></em>
 <hr>
 <div class="refsect2">
 <a name="GtkCellRenderer--xalign"></a><h3>The <code class="literal">“xalign”</code> property</h3>
-<pre class="programlisting">  “xalign”                   <span class="type">gfloat</span></pre>
+<pre class="programlisting">  “xalign”                   <span class="type">float</span></pre>
 <p>The x-align.</p>
 <p>Owner: GtkCellRenderer</p>
 <p>Flags: Read / Write</p>
@@ -1925,7 +1925,7 @@ inside <em class="parameter"><code>cell_area</code></em>
 <hr>
 <div class="refsect2">
 <a name="GtkCellRenderer--yalign"></a><h3>The <code class="literal">“yalign”</code> property</h3>
-<pre class="programlisting">  “yalign”                   <span class="type">gfloat</span></pre>
+<pre class="programlisting">  “yalign”                   <span class="type">float</span></pre>
 <p>The y-align.</p>
 <p>Owner: GtkCellRenderer</p>
 <p>Flags: Read / Write</p>
@@ -1984,7 +1984,7 @@ editing when the user presses Escape. </p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkCellRenderer.html" title="GtkCellRenderer"><span class="type">GtkCellRenderer</span></a> *renderer,
                <a class="link" href="GtkCellEditable.html" title="GtkCellEditable"><span class="type">GtkCellEditable</span></a> *editable,
-               <span class="type">gchar</span>           *path,
+               <span class="type">char</span>            *path,
                <span class="type">gpointer</span>         user_data)</pre>
 <p>This signal gets emitted when a cell starts to be edited.
 The intended use of this signal is to do special setup

@@ -669,7 +669,7 @@
 <td class="property_flags">Read</td>
 </tr>
 <tr>
-<td class="property_type"><span class="type">gint</span></td>
+<td class="property_type"><span class="type">int</span></td>
 <td class="property_name"><a class="link" href="GtkTextBuffer.html#GtkTextBuffer--cursor-position" title="The “cursor-position” property">cursor-position</a></td>
 <td class="property_flags">Read</td>
 </tr>
@@ -692,7 +692,7 @@
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkTextBuffer.html#GtkTextBuffer--text" title="The “text” property">text</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -4417,7 +4417,7 @@ and as DND source.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkTextBuffer--cursor-position"></a><h3>The <code class="literal">“cursor-position”</code> property</h3>
-<pre class="programlisting">  “cursor-position”          <span class="type">gint</span></pre>
+<pre class="programlisting">  “cursor-position”          <span class="type">int</span></pre>
 <p>The position of the insert mark (as offset from the beginning
 of the buffer). It is useful for getting notified when the
 cursor moves.</p>
@@ -4458,7 +4458,7 @@ and as DND destination.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkTextBuffer--text"></a><h3>The <code class="literal">“text”</code> property</h3>
-<pre class="programlisting">  “text”                     <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “text”                     <span class="type">char</span> *</pre>
 <p>The text content of the buffer. Without child widgets and images,
 see <a class="link" href="GtkTextBuffer.html#gtk-text-buffer-get-text" title="gtk_text_buffer_get_text ()"><code class="function">gtk_text_buffer_get_text()</code></a> for more information.</p>
 <p>Owner: GtkTextBuffer</p>
@@ -4822,8 +4822,8 @@ in <em class="parameter"><code>textbuffer</code></em>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkTextBuffer.html" title="GtkTextBuffer"><span class="type">GtkTextBuffer</span></a> *textbuffer,
                <a class="link" href="GtkTextIter.html" title="GtkTextIter"><span class="type">GtkTextIter</span></a>   *location,
-               <span class="type">gchar</span>         *text,
-               <span class="type">gint</span>           len,
+               <span class="type">char</span>          *text,
+               <span class="type">int</span>            len,
                <span class="type">gpointer</span>       user_data)</pre>
 <p>The ::insert-text signal is emitted to insert text in a <a class="link" href="GtkTextBuffer.html" title="GtkTextBuffer"><span class="type">GtkTextBuffer</span></a>.
 Insertion actually occurs in the default handler.  </p>

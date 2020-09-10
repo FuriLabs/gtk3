@@ -776,8 +776,8 @@ to be emitted).</p>
 <a name="GtkEditable-delete-text"></a><h3>The <code class="literal">“delete-text”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkEditable.html" title="GtkEditable"><span class="type">GtkEditable</span></a> *editable,
-               <span class="type">gint</span>         start_pos,
-               <span class="type">gint</span>         end_pos,
+               <span class="type">int</span>          start_pos,
+               <span class="type">int</span>          end_pos,
                <span class="type">gpointer</span>     user_data)</pre>
 <p>This signal is emitted when text is deleted from
 the widget by the user. The default handler for
@@ -829,8 +829,8 @@ and <em class="parameter"><code>end_pos</code></em>
 <a name="GtkEditable-insert-text"></a><h3>The <code class="literal">“insert-text”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkEditable.html" title="GtkEditable"><span class="type">GtkEditable</span></a> *editable,
-               <span class="type">gchar</span>       *new_text,
-               <span class="type">gint</span>         new_text_length,
+               <span class="type">char</span>        *new_text,
+               <span class="type">int</span>          new_text_length,
                <span class="type">gpointer</span>     position,
                <span class="type">gpointer</span>     user_data)</pre>
 <p>This signal is emitted when text is inserted into

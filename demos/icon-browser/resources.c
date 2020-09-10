@@ -5052,14 +5052,16 @@ static const SECTION union { const guint8 data[40292]; const double alignment; v
 #endif /* !_MSC_VER */
 
 static GStaticResource static_resource = { iconbrowser_resource_data.data, sizeof (iconbrowser_resource_data.data) - 1 /* nul terminator */, NULL, NULL, NULL };
-extern GResource *iconbrowser_get_resource (void);
+
+G_MODULE_EXPORT
+GResource *iconbrowser_get_resource (void);
 GResource *iconbrowser_get_resource (void)
 {
   return g_static_resource_get_resource (&static_resource);
 }
 /*
   If G_HAS_CONSTRUCTORS is true then the compiler support *both* constructors and
-  destructors, in a sane way, including e.g. on library unload. If not you're on
+  destructors, in a usable way, including e.g. on library unload. If not you're on
   your own.
 
   Some compilers need #pragma to handle this, which does not work with macros,

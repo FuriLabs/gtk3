@@ -457,6 +457,8 @@ SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 SHM_LIBS = @SHM_LIBS@
 STRIP = @STRIP@
+TRACKER3_CFLAGS = @TRACKER3_CFLAGS@
+TRACKER3_LIBS = @TRACKER3_LIBS@
 USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WAYLAND_PROTOCOLS_DATADIR = @WAYLAND_PROTOCOLS_DATADIR@
@@ -537,8 +539,8 @@ GTESTER_REPORT = gtester-report		# in $PATH for non-GLIB packages
 
 # initialize variables for unconditional += appending
 EXTRA_DIST = autogen.sh HACKING README README.in INSTALL INSTALL.in \
-	NEWS.pre-1-0 README.commits README.win32 config.h.win32 \
-	makefile.msc gtk-zip.sh.in sanitize-la.sh \
+	NEWS.pre-1-0 README.commits README.win32 check-version.py \
+	config.h.win32 makefile.msc gtk-zip.sh.in sanitize-la.sh \
 	po/README.translators po/po2tbl.sed.in make-pot \
 	meson_options.txt meson.build po/meson.build \
 	po-properties/meson.build build-aux/meson/post-install.py \
@@ -572,7 +574,7 @@ XVFB_START = \
 	&& DISPLAY=:$$XID && export DISPLAY
 
 SRC_SUBDIRS = gdk gtk libgail-util modules demos tests testsuite examples
-SUBDIRS = po po-properties $(SRC_SUBDIRS) docs m4macros build
+SUBDIRS = po po-properties $(SRC_SUBDIRS) docs m4macros win32
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 MAINTAINERCLEANFILES = \
 	$(GITIGNORE_MAINTAINERCLEANFILES_TOPLEVEL) \

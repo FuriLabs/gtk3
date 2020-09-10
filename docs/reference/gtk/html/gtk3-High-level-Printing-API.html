@@ -350,13 +350,13 @@
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><span class="type">gint</span></td>
+<td class="property_type"><span class="type">int</span></td>
 <td class="property_name"><a class="link" href="gtk3-High-level-Printing-API.html#GtkPrintOperation--current-page" title="The “current-page” property">current-page</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="gtk3-High-level-Printing-API.html#GtkPrintOperation--custom-tab-label" title="The “custom-tab-label” property">custom-tab-label</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -373,7 +373,7 @@
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="gtk3-High-level-Printing-API.html#GtkPrintOperation--export-filename" title="The “export-filename” property">export-filename</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -384,17 +384,17 @@
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="gtk3-High-level-Printing-API.html#GtkPrintOperation--job-name" title="The “job-name” property">job-name</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><span class="type">gint</span></td>
+<td class="property_type"><span class="type">int</span></td>
 <td class="property_name"><a class="link" href="gtk3-High-level-Printing-API.html#GtkPrintOperation--n-pages" title="The “n-pages” property">n-pages</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><span class="type">gint</span></td>
+<td class="property_type"><span class="type">int</span></td>
 <td class="property_name"><a class="link" href="gtk3-High-level-Printing-API.html#GtkPrintOperation--n-pages-to-print" title="The “n-pages-to-print” property">n-pages-to-print</a></td>
 <td class="property_flags">Read</td>
 </tr>
@@ -416,7 +416,7 @@
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="gtk3-High-level-Printing-API.html#GtkPrintOperation--status-string" title="The “status-string” property">status-string</a></td>
 <td class="property_flags">Read</td>
 </tr>
@@ -2394,7 +2394,7 @@ is unlikely to change). On other platforms, all actions except for
 <hr>
 <div class="refsect2">
 <a name="GtkPrintOperation--current-page"></a><h3>The <code class="literal">“current-page”</code> property</h3>
-<pre class="programlisting">  “current-page”             <span class="type">gint</span></pre>
+<pre class="programlisting">  “current-page”             <span class="type">int</span></pre>
 <p>The current page in the document.</p>
 <p>If this is set before <a class="link" href="gtk3-High-level-Printing-API.html#gtk-print-operation-run" title="gtk_print_operation_run ()"><code class="function">gtk_print_operation_run()</code></a>,
 
@@ -2409,7 +2409,7 @@ the user will be able to select to print only the current page.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkPrintOperation--custom-tab-label"></a><h3>The <code class="literal">“custom-tab-label”</code> property</h3>
-<pre class="programlisting">  “custom-tab-label”         <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “custom-tab-label”         <span class="type">char</span> *</pre>
 <p>Used as the label of the tab containing custom widgets.
 Note that this property may be ignored on some platforms.</p>
 <p>If this is <code class="literal">NULL</code>, GTK+ uses a default label.</p>
@@ -2443,7 +2443,7 @@ to the <a class="link" href="gtk3-High-level-Printing-API.html#GtkPrintOperation
 <hr>
 <div class="refsect2">
 <a name="GtkPrintOperation--export-filename"></a><h3>The <code class="literal">“export-filename”</code> property</h3>
-<pre class="programlisting">  “export-filename”          <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “export-filename”          <span class="type">char</span> *</pre>
 <p>The name of a file to generate instead of showing the print dialog.
 
 Currently, PDF is the only supported format.</p>
@@ -2474,7 +2474,7 @@ This is typically used to make a "Selection" button sensitive.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkPrintOperation--job-name"></a><h3>The <code class="literal">“job-name”</code> property</h3>
-<pre class="programlisting">  “job-name”                 <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “job-name”                 <span class="type">char</span> *</pre>
 <p>A string used to identify the job (e.g. in monitoring
 
 applications like eggcups). </p>
@@ -2489,7 +2489,7 @@ by numbering successive print jobs.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkPrintOperation--n-pages"></a><h3>The <code class="literal">“n-pages”</code> property</h3>
-<pre class="programlisting">  “n-pages”                  <span class="type">gint</span></pre>
+<pre class="programlisting">  “n-pages”                  <span class="type">int</span></pre>
 <p>The number of pages in the document. </p>
 <p>This must be set to a positive number
 before the rendering starts. It may be set in a
@@ -2514,7 +2514,7 @@ will be for page <em class="parameter"><code>n_pages</code></em>
 <hr>
 <div class="refsect2">
 <a name="GtkPrintOperation--n-pages-to-print"></a><h3>The <code class="literal">“n-pages-to-print”</code> property</h3>
-<pre class="programlisting">  “n-pages-to-print”         <span class="type">gint</span></pre>
+<pre class="programlisting">  “n-pages-to-print”         <span class="type">int</span></pre>
 <p>The number of pages that will be printed.</p>
 <p>Note that this value is set during print preparation phase
 (<a class="link" href="gtk3-High-level-Printing-API.html#GTK-PRINT-STATUS-PREPARING:CAPS"><code class="literal">GTK_PRINT_STATUS_PREPARING</code></a>), so this value should never be
@@ -2568,7 +2568,7 @@ print operation.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkPrintOperation--status-string"></a><h3>The <code class="literal">“status-string”</code> property</h3>
-<pre class="programlisting">  “status-string”            <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “status-string”            <span class="type">char</span> *</pre>
 <p>A string representation of the status of the print operation.
 
 The string is translated and suitable for displaying the print
@@ -2842,7 +2842,7 @@ after <a class="link" href="gtk3-High-level-Printing-API.html#GtkPrintOperation-
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="gtk3-High-level-Printing-API.html#GtkPrintOperation"><span class="type">GtkPrintOperation</span></a> *operation,
                <a class="link" href="GtkPrintContext.html" title="GtkPrintContext"><span class="type">GtkPrintContext</span></a>   *context,
-               <span class="type">gint</span>               page_nr,
+               <span class="type">int</span>                page_nr,
                <span class="type">gpointer</span>           user_data)</pre>
 <p>Emitted for every page that is printed. The signal handler
 must render the <em class="parameter"><code>page_nr</code></em>
@@ -3146,7 +3146,7 @@ finished by calling <a class="link" href="gtk3-High-level-Printing-API.html#gtk-
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="gtk3-High-level-Printing-API.html#GtkPrintOperation"><span class="type">GtkPrintOperation</span></a> *operation,
                <a class="link" href="GtkPrintContext.html" title="GtkPrintContext"><span class="type">GtkPrintContext</span></a>   *context,
-               <span class="type">gint</span>               page_nr,
+               <span class="type">int</span>                page_nr,
                <a class="link" href="GtkPageSetup.html" title="GtkPageSetup"><span class="type">GtkPageSetup</span></a>      *setup,
                <span class="type">gpointer</span>           user_data)</pre>
 <p>Emitted once for every page that is printed, to give

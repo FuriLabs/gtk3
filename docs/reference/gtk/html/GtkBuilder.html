@@ -275,7 +275,7 @@
 </colgroup>
 <tbody><tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkBuilder.html#GtkBuilder--translation-domain" title="The “translation-domain” property">translation-domain</a></td>
 <td class="property_flags">Read / Write</td>
 </tr></tbody>
@@ -355,7 +355,7 @@ Do not confuse GtkBuilder UI Definitions with
 <a class="link" href="GtkUIManager.html#XML-UI" title="UI Definitions">GtkUIManager UI Definitions</a>, which are more limited in scope.
 It is common to use <code class="literal">.ui</code> as the filename extension for files containing
 GtkBuilder UI definitions.</p>
-<p><a class="ulink" href="https://git.gnome.org/browse/gtk+/tree/gtk/gtkbuilder.rnc" target="_top">RELAX NG Compact Syntax</a></p>
+<p><a class="ulink" href="https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/gtkbuilder.rnc" target="_top">RELAX NG Compact Syntax</a></p>
 <p>The toplevel element is &lt;interface&gt;. It optionally takes a “domain”
 attribute, which will make the builder look for translated strings
 using <code class="function">dgettext()</code> in the domain specified. This can also be done by
@@ -1916,7 +1916,7 @@ derived from the type of the composite class being extended with builder XML.</p
 <a name="GtkBuilder.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkBuilder--translation-domain"></a><h3>The <code class="literal">“translation-domain”</code> property</h3>
-<pre class="programlisting">  “translation-domain”       <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “translation-domain”       <span class="type">char</span> *</pre>
 <p>The translation domain used when translating property values that
 have been marked as translatable in interface descriptions.
 If the translation domain is <code class="literal">NULL</code>, <a class="link" href="GtkBuilder.html" title="GtkBuilder"><span class="type">GtkBuilder</span></a> uses <code class="function">gettext()</code>,

@@ -1013,7 +1013,7 @@ should be the default. The asterisk “*” sets the default for all locales.</p
 <a name="GtkIMContext-commit"></a><h3>The <code class="literal">“commit”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkIMContext.html" title="GtkIMContext"><span class="type">GtkIMContext</span></a> *context,
-               <span class="type">gchar</span>        *str,
+               <span class="type">char</span>         *str,
                <span class="type">gpointer</span>      user_data)</pre>
 <p>The ::commit signal is emitted when a complete input sequence
 has been entered by the user. This can be a single character
@@ -1052,8 +1052,8 @@ immediately after a key press or the final result of preediting.</p>
 <a name="GtkIMContext-delete-surrounding"></a><h3>The <code class="literal">“delete-surrounding”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 user_function (<a class="link" href="GtkIMContext.html" title="GtkIMContext"><span class="type">GtkIMContext</span></a> *context,
-               <span class="type">gint</span>          offset,
-               <span class="type">gint</span>          n_chars,
+               <span class="type">int</span>           offset,
+               <span class="type">int</span>           n_chars,
                <span class="type">gpointer</span>      user_data)</pre>
 <p>The ::delete-surrounding signal is emitted when the input method
 needs to delete all or part of the context surrounding the cursor.</p>

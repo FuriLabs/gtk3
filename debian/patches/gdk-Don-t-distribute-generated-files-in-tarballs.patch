@@ -17,7 +17,7 @@ Bug: https://gitlab.gnome.org/GNOME/gtk/issues/357
  1 file changed, 6 insertions(+), 23 deletions(-)
 
 diff --git a/gdk/Makefile.am b/gdk/Makefile.am
-index 3f915b6..8672ea4 100644
+index 710a548..fbdd193 100644
 --- a/gdk/Makefile.am
 +++ b/gdk/Makefile.am
 @@ -203,16 +203,8 @@ nodist_gdkinclude_HEADERS = gdkconfig.h gdkenumtypes.h gdkversionmacros.h
@@ -62,7 +62,7 @@ index 3f915b6..8672ea4 100644
  gdk_3_HEADERS_DIR = $(gdkincludedir)
  
 @@ -553,20 +543,13 @@ dist-hook: \
- 	$(top_builddir)/build/win32/vs9/gdk-3.headers	\
+ 	$(top_builddir)/win32/vs9/gdk-3.headers	\
  	$(INTROSPECTION_INTERMEDIATE_ITEMS)
  
 -DISTCLEANFILES = gdkconfig.h stamp-gc-h

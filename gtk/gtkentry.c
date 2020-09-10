@@ -4667,6 +4667,7 @@ gtk_entry_show_magnifier (GtkEntry *entry,
 
   _gtk_magnifier_set_coords (GTK_MAGNIFIER (priv->magnifier), rect.x,
                              rect.y + rect.height / 2);
+  rect.x = CLAMP (rect.x, 0, allocation.width);
   gtk_popover_set_pointing_to (GTK_POPOVER (priv->magnifier_popover),
                                &rect);
   gtk_popover_popup (GTK_POPOVER (priv->magnifier_popover));
@@ -9794,7 +9795,7 @@ bubble_targets_received (GtkClipboard     *clipboard,
   has_clipboard = gtk_selection_data_targets_include_text (data);
   mode = gtk_entry_get_display_mode (entry);
 
-  if (priv->editable && has_selection && mode == DISPLAY_NORMAL)
+  if (mode == DISPLAY_NORMAL)
     append_bubble_action (entry, toolbar, _("Select all"), "edit-select-all-symbolic", "select-all", !all_selected);
 
   if (priv->editable && has_selection && mode == DISPLAY_NORMAL)

@@ -86,31 +86,31 @@
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkLockButton.html#GtkLockButton--text-lock" title="The “text-lock” property">text-lock</a></td>
 <td class="property_flags">Read / Write / Construct</td>
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkLockButton.html#GtkLockButton--text-unlock" title="The “text-unlock” property">text-unlock</a></td>
 <td class="property_flags">Read / Write / Construct</td>
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkLockButton.html#GtkLockButton--tooltip-lock" title="The “tooltip-lock” property">tooltip-lock</a></td>
 <td class="property_flags">Read / Write / Construct</td>
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkLockButton.html#GtkLockButton--tooltip-not-authorized" title="The “tooltip-not-authorized” property">tooltip-not-authorized</a></td>
 <td class="property_flags">Read / Write / Construct</td>
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkLockButton.html#GtkLockButton--tooltip-unlock" title="The “tooltip-unlock” property">tooltip-unlock</a></td>
 <td class="property_flags">Read / Write / Construct</td>
 </tr>
@@ -165,7 +165,7 @@ preference dialogs to allow users to obtain and revoke authorizations
 needed to operate the controls. The required authorization is represented
 by a <span class="type">GPermission</span> object. Concrete implementations of <span class="type">GPermission</span> may use
 PolicyKit or some other authorization framework. To obtain a PolicyKit-based
-<span class="type">GPermission</span>, use <code class="function">polkit_permission_new()</code>.</p>
+<span class="type">GPermission</span>, use <a href="http://www.freedesktop.org/software/polkit/docs/latest/PolkitPermission.html#polkit-permission-new"><code class="function">polkit_permission_new()</code></a>.</p>
 <p>If the user is not currently allowed to perform the action, but can obtain
 the permission, the widget looks like this:</p>
 <p><span class="inlinemediaobject"><img src="lockbutton-locked.png"></span></p>
@@ -313,7 +313,7 @@ gtk_lock_button_set_permission (<em class="parameter"><code><a class="link" href
 <hr>
 <div class="refsect2">
 <a name="GtkLockButton--text-lock"></a><h3>The <code class="literal">“text-lock”</code> property</h3>
-<pre class="programlisting">  “text-lock”                <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “text-lock”                <span class="type">char</span> *</pre>
 <p>The text to display when prompting the user to lock.</p>
 <p>Owner: GtkLockButton</p>
 <p>Flags: Read / Write / Construct</p>
@@ -322,7 +322,7 @@ gtk_lock_button_set_permission (<em class="parameter"><code><a class="link" href
 <hr>
 <div class="refsect2">
 <a name="GtkLockButton--text-unlock"></a><h3>The <code class="literal">“text-unlock”</code> property</h3>
-<pre class="programlisting">  “text-unlock”              <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “text-unlock”              <span class="type">char</span> *</pre>
 <p>The text to display when prompting the user to unlock.</p>
 <p>Owner: GtkLockButton</p>
 <p>Flags: Read / Write / Construct</p>
@@ -331,7 +331,7 @@ gtk_lock_button_set_permission (<em class="parameter"><code><a class="link" href
 <hr>
 <div class="refsect2">
 <a name="GtkLockButton--tooltip-lock"></a><h3>The <code class="literal">“tooltip-lock”</code> property</h3>
-<pre class="programlisting">  “tooltip-lock”             <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “tooltip-lock”             <span class="type">char</span> *</pre>
 <p>The tooltip to display when prompting the user to lock.</p>
 <p>Owner: GtkLockButton</p>
 <p>Flags: Read / Write / Construct</p>
@@ -340,7 +340,7 @@ gtk_lock_button_set_permission (<em class="parameter"><code><a class="link" href
 <hr>
 <div class="refsect2">
 <a name="GtkLockButton--tooltip-not-authorized"></a><h3>The <code class="literal">“tooltip-not-authorized”</code> property</h3>
-<pre class="programlisting">  “tooltip-not-authorized”   <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “tooltip-not-authorized”   <span class="type">char</span> *</pre>
 <p>The tooltip to display when prompting the user cannot obtain authorization.</p>
 <p>Owner: GtkLockButton</p>
 <p>Flags: Read / Write / Construct</p>
@@ -349,7 +349,7 @@ gtk_lock_button_set_permission (<em class="parameter"><code><a class="link" href
 <hr>
 <div class="refsect2">
 <a name="GtkLockButton--tooltip-unlock"></a><h3>The <code class="literal">“tooltip-unlock”</code> property</h3>
-<pre class="programlisting">  “tooltip-unlock”           <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “tooltip-unlock”           <span class="type">char</span> *</pre>
 <p>The tooltip to display when prompting the user to unlock.</p>
 <p>Owner: GtkLockButton</p>
 <p>Flags: Read / Write / Construct</p>

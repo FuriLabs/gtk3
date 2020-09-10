@@ -91,7 +91,6 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@USE_WAYLAND_TRUE@am__append_1 = $(protocol_built_sources) $(protocol_built_sources_gtk)
 subdir = modules/input
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_prog_cc_for_build.m4 \
@@ -717,6 +716,8 @@ SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 SHM_LIBS = @SHM_LIBS@
 STRIP = @STRIP@
+TRACKER3_CFLAGS = @TRACKER3_CFLAGS@
+TRACKER3_LIBS = @TRACKER3_LIBS@
 USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WAYLAND_PROTOCOLS_DATADIR = @WAYLAND_PROTOCOLS_DATADIR@
@@ -796,8 +797,8 @@ GTESTER = gtester -k		# in $PATH for non-GLIB packages
 GTESTER_REPORT = gtester-report		# in $PATH for non-GLIB packages
 
 # initialize variables for unconditional += appending
-EXTRA_DIST = $(am__append_1) README.multipress meson.build \
-	text-input-unstable-v3.xml gtk-text-input.xml
+EXTRA_DIST = README.multipress meson.build text-input-unstable-v3.xml \
+	gtk-text-input.xml
 TEST_PROGS = 
 
 ### testing rules

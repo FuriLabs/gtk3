@@ -202,6 +202,7 @@ struct _GdkWindowImplWayland
 
   int saved_width;
   int saved_height;
+  gboolean saved_size_changed;
 
   int unconfigured_width;
   int unconfigured_height;
@@ -1637,11 +1638,16 @@ gdk_wayland_window_handle_configure (GdkWindow *window,
    * When transitioning from maximize or fullscreen state, this means
    * the client should configure its size back to what it was before
    * being maximize or fullscreen.
+   * Additionally, if we receive a manual resize request, we must prefer this
+   * new size instead of the compositor's size hints.
+   * In such a scenario, and without letting the compositor know about the new
+   * size, the client has to manage all dimensions and ignore any server hints.
    */
-  if (saved_size && !fixed_size)
+  if (!fixed_size && (saved_size || impl->saved_size_changed))
     {
       width = impl->saved_width;
       height = impl->saved_height;
+      impl->saved_size_changed = FALSE;
     }
 
   if (width > 0 && height > 0)
@@ -1933,6 +1939,36 @@ create_zxdg_toplevel_v6_resources (GdkWindow *window)
                                  window);
 }
 
+void
+gdk_wayland_window_set_application_id (GdkWindow *window, const char* application_id)
+{
+  GdkWindowImplWayland *impl;
+  GdkWaylandDisplay *display_wayland;
+
+  g_return_if_fail (application_id != NULL);
+
+  if (GDK_WINDOW_DESTROYED (window))
+    return;
+
+  if (!is_realized_toplevel (window))
+    return;
+
+  display_wayland = GDK_WAYLAND_DISPLAY (gdk_window_get_display (window));
+  impl = GDK_WINDOW_IMPL_WAYLAND (window->impl);
+
+  switch (display_wayland->shell_variant)
+    {
+    case GDK_WAYLAND_SHELL_VARIANT_XDG_SHELL:
+      xdg_toplevel_set_app_id (impl->display_server.xdg_toplevel,
+                               application_id);
+      break;
+    case GDK_WAYLAND_SHELL_VARIANT_ZXDG_SHELL_V6:
+      zxdg_toplevel_v6_set_app_id (impl->display_server.zxdg_toplevel_v6,
+                                   application_id);
+      break;
+    }
+}
+
 static void
 gdk_wayland_window_create_xdg_toplevel (GdkWindow *window)
 {
@@ -1988,17 +2024,7 @@ G_GNUC_END_IGNORE_DEPRECATIONS
   if (app_id == NULL)
     app_id = gdk_get_program_class ();
 
-  switch (display_wayland->shell_variant)
-    {
-    case GDK_WAYLAND_SHELL_VARIANT_XDG_SHELL:
-      xdg_toplevel_set_app_id (impl->display_server.xdg_toplevel,
-                               app_id);
-      break;
-    case GDK_WAYLAND_SHELL_VARIANT_ZXDG_SHELL_V6:
-      zxdg_toplevel_v6_set_app_id (impl->display_server.zxdg_toplevel_v6,
-                                   app_id);
-      break;
-    }
+  gdk_wayland_window_set_application_id (window, app_id);
 
   maybe_set_gtk_surface_dbus_properties (window);
   maybe_set_gtk_surface_modal (window);
@@ -2535,11 +2561,16 @@ calculate_moved_to_rect_result (GdkWindow    *window,
                                 gboolean     *flipped_x,
                                 gboolean     *flipped_y)
 {
-  GdkWindowImplWayland *impl = GDK_WINDOW_IMPL_WAYLAND (window->impl);
+  GdkWindowImplWayland *impl;
   GdkWindow *parent;
   gint window_x, window_y;
   gint window_width, window_height;
   GdkRectangle best_rect;
+
+  g_return_if_fail (GDK_IS_WAYLAND_WINDOW (window));
+  g_return_if_fail (GDK_IS_WINDOW_IMPL_WAYLAND (window->impl));
+
+  impl = GDK_WINDOW_IMPL_WAYLAND (window->impl);
 
   parent = translate_from_real_parent_window_geometry (window, &x, &y);
   *final_rect = (GdkRectangle) {
@@ -3453,6 +3484,7 @@ gdk_window_wayland_move_resize (GdkWindow *window,
     {
       impl->saved_width = width;
       impl->saved_height = height;
+      impl->saved_size_changed = (width > 0 && height > 0);
     }
 
   /* If this function is called with width and height = -1 then that means
@@ -5328,9 +5360,15 @@ void
 gdk_wayland_window_restore_shortcuts (GdkWindow *window,
                                       GdkSeat   *gdk_seat)
 {
-  GdkWindowImplWayland *impl = GDK_WINDOW_IMPL_WAYLAND (window->impl);
-  struct wl_seat *seat = gdk_wayland_seat_get_wl_seat (gdk_seat);
+  GdkWindowImplWayland *impl;
+  struct wl_seat *seat;
   struct zwp_keyboard_shortcuts_inhibitor_v1 *inhibitor;
+
+  g_return_if_fail (GDK_IS_WAYLAND_WINDOW (window));
+  g_return_if_fail (GDK_IS_WINDOW_IMPL_WAYLAND (window->impl));
+
+  impl = GDK_WINDOW_IMPL_WAYLAND (window->impl);
+  seat = gdk_wayland_seat_get_wl_seat (gdk_seat);
 
   inhibitor = gdk_wayland_window_get_inhibitor (impl, seat);
   if (inhibitor == NULL)

@@ -10,8 +10,8 @@
 
 m4_define([gtk_major_version], [3])
 m4_define([gtk_minor_version], [24])
-m4_define([gtk_micro_version], [20])
-m4_define([gtk_interface_age], [16])
+m4_define([gtk_micro_version], [22])
+m4_define([gtk_interface_age], [18])
 m4_define([gtk_binary_age],
           [m4_eval(100 * gtk_minor_version + gtk_micro_version)])
 m4_define([gtk_version],
@@ -1552,6 +1552,30 @@ else
   fi
 fi
 
+# Checks to see if we should compile with tracker3 search engine
+#
+
+AC_ARG_ENABLE(tracker3,
+              [AS_HELP_STRING([--enable-tracker3],
+                              [enable tracker3 search engine])],
+              [enable_tracker3=yes],
+              [enable_tracker3=no])
+
+if test "x$enable_tracker3" = "xyes"; then
+  PKG_CHECK_MODULES(TRACKER3, [tracker-sparql-3.0], have_tracker3=yes, have_tracker3=no)
+  GTK_DEP_CFLAGS="$GTK_DEP_CFLAGS $TRACKER3_CFLAGS"
+  GTK_DEP_LIBS="$GTK_DEP_LIBS $TRACKER3_LIBS"
+  if test "x$have_tracker3" = "xyes"; then
+    AC_DEFINE([HAVE_TRACKER3], [], [Define if tracker3 is available])
+  else
+    AC_MSG_ERROR([
+*** tracker3 not found.
+])
+  fi
+fi
+
+AM_CONDITIONAL(HAVE_TRACKER3, test "x$have_tracker3" = "xyes")
+
 # Checks to see if we should compile with cloudprint backend for GTK+
 #
 
@@ -1940,18 +1964,17 @@ docs/reference/gtk/getting_started.xml
 docs/reference/libgail-util/Makefile
 docs/reference/libgail-util/version.xml
 docs/tools/Makefile
-build/Makefile
-build/win32/Makefile
-build/win32/config-msvc.mak
-build/win32/vs9/Makefile
-build/win32/vs9/gtk3-version-paths.vsprops
-build/win32/vs10/Makefile
-build/win32/vs10/gtk3-version-paths.props
-build/win32/vs11/Makefile
-build/win32/vs12/Makefile
-build/win32/vs14/Makefile
-build/win32/vs15/Makefile
-build/win32/vs16/Makefile
+win32/Makefile
+win32/config-msvc.mak
+win32/vs9/Makefile
+win32/vs9/gtk3-version-paths.vsprops
+win32/vs10/Makefile
+win32/vs10/gtk3-version-paths.props
+win32/vs11/Makefile
+win32/vs12/Makefile
+win32/vs14/Makefile
+win32/vs15/Makefile
+win32/vs16/Makefile
 gdk/Makefile
 gdk/broadway/Makefile
 gdk/x11/Makefile

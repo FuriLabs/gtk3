@@ -324,19 +324,23 @@ static const SECTION union { const guint8 data[2473]; const double alignment; vo
 #endif /* !_MSC_VER */
 
 static GStaticResource static_resource = { _gdk_resource_data.data, sizeof (_gdk_resource_data.data) - 1 /* nul terminator */, NULL, NULL, NULL };
-extern GResource *_gdk_get_resource (void);
+
+G_GNUC_INTERNAL
+GResource *_gdk_get_resource (void);
 GResource *_gdk_get_resource (void)
 {
   return g_static_resource_get_resource (&static_resource);
 }
 
-extern void _gdk_unregister_resource (void);
+G_GNUC_INTERNAL
+void _gdk_unregister_resource (void);
 void _gdk_unregister_resource (void)
 {
   g_static_resource_fini (&static_resource);
 }
 
-extern void _gdk_register_resource (void);
+G_GNUC_INTERNAL
+void _gdk_register_resource (void);
 void _gdk_register_resource (void)
 {
   g_static_resource_init (&static_resource);

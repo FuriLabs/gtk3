@@ -360,8 +360,8 @@ after continuous scroll finishes.</p>
 <a name="GtkEventControllerScroll-decelerate"></a><h3>The <code class="literal">“decelerate”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkEventControllerScroll.html" title="GtkEventControllerScroll"><span class="type">GtkEventControllerScroll</span></a> *controller,
-               <span class="type">gdouble</span>                   vel_x,
-               <span class="type">gdouble</span>                   vel_y,
+               <span class="type">double</span>                    vel_x,
+               <span class="type">double</span>                    vel_y,
                <span class="type">gpointer</span>                  user_data)</pre>
 <p>Emitted after scroll is finished if the <a class="link" href="GtkEventControllerScroll.html#GTK-EVENT-CONTROLLER-SCROLL-KINETIC:CAPS"><span class="type">GTK_EVENT_CONTROLLER_SCROLL_KINETIC</span></a>
 flag is set. <em class="parameter"><code>vel_x</code></em>
@@ -410,8 +410,8 @@ pixels/ms.</p>
 <a name="GtkEventControllerScroll-scroll"></a><h3>The <code class="literal">“scroll”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkEventControllerScroll.html" title="GtkEventControllerScroll"><span class="type">GtkEventControllerScroll</span></a> *controller,
-               <span class="type">gdouble</span>                   dx,
-               <span class="type">gdouble</span>                   dy,
+               <span class="type">double</span>                    dx,
+               <span class="type">double</span>                    dy,
                <span class="type">gpointer</span>                  user_data)</pre>
 <p>Signals that the widget should scroll by the
 amount specified by <em class="parameter"><code>dx</code></em>

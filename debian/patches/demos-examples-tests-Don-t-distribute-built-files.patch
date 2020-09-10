@@ -23,7 +23,7 @@ Bug: https://gitlab.gnome.org/GNOME/gtk/issues/357
  14 files changed, 58 insertions(+), 28 deletions(-)
 
 diff --git a/demos/gtk-demo/Makefile.am b/demos/gtk-demo/Makefile.am
-index f035c76..444979d 100644
+index 4a2f827..c303551 100644
 --- a/demos/gtk-demo/Makefile.am
 +++ b/demos/gtk-demo/Makefile.am
 @@ -133,13 +133,14 @@ demos.h: $(demos) geninclude.pl
@@ -69,9 +69,9 @@ index f035c76..444979d 100644
 +gtk3_demo_application_FILES = $(gtk3_demo_application_SOURCES) $(nodist_gtk3_demo_application_SOURCES)
  gtk3_demo_application_EXCLUDES = dummy
  
- include $(top_srcdir)/build/Makefile.msvcproj
+ include $(top_srcdir)/win32/Makefile.msvcproj
 diff --git a/demos/icon-browser/Makefile.am b/demos/icon-browser/Makefile.am
-index d5f933b..627b724 100644
+index bf8425c..b168bbb 100644
 --- a/demos/icon-browser/Makefile.am
 +++ b/demos/icon-browser/Makefile.am
 @@ -20,11 +20,12 @@ gtk3_icon_browser_SOURCES = \
@@ -98,7 +98,7 @@ index d5f933b..627b724 100644
 +gtk3_icon_browser_FILES = $(gtk3_icon_browser_SOURCES) $(nodist_gtk3_icon_browser_SOURCES)
  gtk3_icon_browser_EXCLUDES = dummy
  
- include $(top_srcdir)/build/Makefile.msvcproj
+ include $(top_srcdir)/win32/Makefile.msvcproj
 diff --git a/demos/widget-factory/Makefile.am b/demos/widget-factory/Makefile.am
 index c33a6d0..a0d6239 100644
 --- a/demos/widget-factory/Makefile.am

@@ -316,12 +316,12 @@
 </colgroup>
 <tbody>
 <tr>
-<td class="signal_type"><span class="returnvalue">gint</span></td>
+<td class="signal_type"><span class="returnvalue">int</span></td>
 <td class="signal_name"><a class="link" href="GtkPlacesSidebar.html#GtkPlacesSidebar-drag-action-ask" title="The “drag-action-ask” signal">drag-action-ask</a></td>
 <td class="signal_flags">Run Last</td>
 </tr>
 <tr>
-<td class="signal_type"><span class="returnvalue">gint</span></td>
+<td class="signal_type"><span class="returnvalue">int</span></td>
 <td class="signal_name"><a class="link" href="GtkPlacesSidebar.html#GtkPlacesSidebar-drag-action-requested" title="The “drag-action-requested” signal">drag-action-requested</a></td>
 <td class="signal_flags">Run Last</td>
 </tr>
@@ -1443,9 +1443,9 @@ is also emitted for popovers.</p>
 <a name="GtkPlacesSidebar.signal-details"></a><h2>Signal Details</h2>
 <div class="refsect2">
 <a name="GtkPlacesSidebar-drag-action-ask"></a><h3>The <code class="literal">“drag-action-ask”</code> signal</h3>
-<pre class="programlisting"><span class="returnvalue">gint</span>
+<pre class="programlisting"><span class="returnvalue">int</span>
 user_function (<a class="link" href="GtkPlacesSidebar.html" title="GtkPlacesSidebar"><span class="type">GtkPlacesSidebar</span></a> *sidebar,
-               <span class="type">gint</span>              actions,
+               <span class="type">int</span>               actions,
                <span class="type">gpointer</span>          user_data)</pre>
 <p>The places sidebar emits this signal when it needs to ask the application
 to pop up a menu to ask the user for which drag action to perform.</p>
@@ -1487,7 +1487,7 @@ of the drag-and-drop operation.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkPlacesSidebar-drag-action-requested"></a><h3>The <code class="literal">“drag-action-requested”</code> signal</h3>
-<pre class="programlisting"><span class="returnvalue">gint</span>
+<pre class="programlisting"><span class="returnvalue">int</span>
 user_function (<a class="link" href="GtkPlacesSidebar.html" title="GtkPlacesSidebar"><span class="type">GtkPlacesSidebar</span></a> *sidebar,
                <span class="type">GdkDragContext</span>   *context,
                <span class="type">GObject</span>          *dest_file,
@@ -1557,7 +1557,7 @@ are not allowed in the specified <em class="parameter"><code>dest_file</code></e
 user_function (<a class="link" href="GtkPlacesSidebar.html" title="GtkPlacesSidebar"><span class="type">GtkPlacesSidebar</span></a> *sidebar,
                <span class="type">GObject</span>          *dest_file,
                <span class="type">gpointer</span>          source_file_list,
-               <span class="type">gint</span>              action,
+               <span class="type">int</span>               action,
                <span class="type">gpointer</span>          user_data)</pre>
 <p>The places sidebar emits this signal when the user completes a
 drag-and-drop operation and one of the sidebar's items is the
@@ -1856,8 +1856,8 @@ a URL like "http://http.example.com".</p>
 <a name="GtkPlacesSidebar-show-error-message"></a><h3>The <code class="literal">“show-error-message”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkPlacesSidebar.html" title="GtkPlacesSidebar"><span class="type">GtkPlacesSidebar</span></a> *sidebar,
-               <span class="type">gchar</span>            *primary,
-               <span class="type">gchar</span>            *secondary,
+               <span class="type">char</span>             *primary,
+               <span class="type">char</span>             *secondary,
                <span class="type">gpointer</span>          user_data)</pre>
 <p>The places sidebar emits this signal when it needs the calling
 application to present an error message.  Most of these messages

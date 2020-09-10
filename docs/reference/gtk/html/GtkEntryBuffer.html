@@ -147,13 +147,13 @@
 <td class="property_flags">Read</td>
 </tr>
 <tr>
-<td class="property_type"><span class="type">gint</span></td>
+<td class="property_type"><span class="type">int</span></td>
 <td class="property_name"><a class="link" href="GtkEntryBuffer.html#GtkEntryBuffer--max-length" title="The “max-length” property">max-length</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkEntryBuffer.html#GtkEntryBuffer--text" title="The “text” property">text</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -663,7 +663,7 @@ gtk_entry_buffer_emit_inserted_text (<em class="parameter"><code><a class="link"
 <hr>
 <div class="refsect2">
 <a name="GtkEntryBuffer--max-length"></a><h3>The <code class="literal">“max-length”</code> property</h3>
-<pre class="programlisting">  “max-length”               <span class="type">gint</span></pre>
+<pre class="programlisting">  “max-length”               <span class="type">int</span></pre>
 <p>The maximum length (in characters) of the text in the buffer.</p>
 <p>Owner: GtkEntryBuffer</p>
 <p>Flags: Read / Write</p>
@@ -674,7 +674,7 @@ gtk_entry_buffer_emit_inserted_text (<em class="parameter"><code><a class="link"
 <hr>
 <div class="refsect2">
 <a name="GtkEntryBuffer--text"></a><h3>The <code class="literal">“text”</code> property</h3>
-<pre class="programlisting">  “text”                     <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “text”                     <span class="type">char</span> *</pre>
 <p>The contents of the buffer.</p>
 <p>Owner: GtkEntryBuffer</p>
 <p>Flags: Read / Write</p>
@@ -733,7 +733,7 @@ user_function (<a class="link" href="GtkEntryBuffer.html" title="GtkEntryBuffer"
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkEntryBuffer.html" title="GtkEntryBuffer"><span class="type">GtkEntryBuffer</span></a> *buffer,
                <span class="type">guint</span>           position,
-               <span class="type">gchar</span>          *chars,
+               <span class="type">char</span>           *chars,
                <span class="type">guint</span>           n_chars,
                <span class="type">gpointer</span>        user_data)</pre>
 <p>This signal is emitted after text is inserted into the buffer.</p>

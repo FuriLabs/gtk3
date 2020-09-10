@@ -295,7 +295,7 @@
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><span class="type">gint</span></td>
+<td class="property_type"><span class="type">int</span></td>
 <td class="property_name"><a class="link" href="GtkEntryCompletion.html#GtkEntryCompletion--minimum-key-length" title="The “minimum-key-length” property">minimum-key-length</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -321,7 +321,7 @@
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><span class="type">gint</span></td>
+<td class="property_type"><span class="type">int</span></td>
 <td class="property_name"><a class="link" href="GtkEntryCompletion.html#GtkEntryCompletion--text-column" title="The “text-column” property">text-column</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -1418,7 +1418,7 @@ will appear in the entry as you navigate through them.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkEntryCompletion--minimum-key-length"></a><h3>The <code class="literal">“minimum-key-length”</code> property</h3>
-<pre class="programlisting">  “minimum-key-length”       <span class="type">gint</span></pre>
+<pre class="programlisting">  “minimum-key-length”       <span class="type">int</span></pre>
 <p>Minimum length of the search key in order to look up matches.</p>
 <p>Owner: GtkEntryCompletion</p>
 <p>Flags: Read / Write</p>
@@ -1471,7 +1471,7 @@ this to <code class="literal">FALSE</code> if you are using
 <hr>
 <div class="refsect2">
 <a name="GtkEntryCompletion--text-column"></a><h3>The <code class="literal">“text-column”</code> property</h3>
-<pre class="programlisting">  “text-column”              <span class="type">gint</span></pre>
+<pre class="programlisting">  “text-column”              <span class="type">int</span></pre>
 <p>The column of the model containing the strings.
 Note that the strings must be UTF-8.</p>
 <p>Owner: GtkEntryCompletion</p>
@@ -1487,7 +1487,7 @@ Note that the strings must be UTF-8.</p>
 <a name="GtkEntryCompletion-action-activated"></a><h3>The <code class="literal">“action-activated”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkEntryCompletion.html" title="GtkEntryCompletion"><span class="type">GtkEntryCompletion</span></a> *widget,
-               <span class="type">gint</span>                index,
+               <span class="type">int</span>                 index,
                <span class="type">gpointer</span>            user_data)</pre>
 <p>Gets emitted when an action is activated.</p>
 <div class="refsect3">
@@ -1580,7 +1580,7 @@ pointed to by <em class="parameter"><code>iter</code></em>
 <a name="GtkEntryCompletion-insert-prefix"></a><h3>The <code class="literal">“insert-prefix”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 user_function (<a class="link" href="GtkEntryCompletion.html" title="GtkEntryCompletion"><span class="type">GtkEntryCompletion</span></a> *widget,
-               <span class="type">gchar</span>              *prefix,
+               <span class="type">char</span>               *prefix,
                <span class="type">gpointer</span>            user_data)</pre>
 <p>Gets emitted when the inline autocompletion is triggered.
 The default behaviour is to make the entry display the

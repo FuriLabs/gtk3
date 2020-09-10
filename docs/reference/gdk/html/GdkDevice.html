@@ -377,7 +377,7 @@
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GdkDevice.html#GdkDevice--name" title="The “name” property">name</a></td>
 <td class="property_flags">Read / Write / Construct Only</td>
 </tr>
@@ -388,7 +388,7 @@
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GdkDevice.html#GdkDevice--product-id" title="The “product-id” property">product-id</a></td>
 <td class="property_flags">Read / Write / Construct Only</td>
 </tr>
@@ -400,7 +400,7 @@
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">GdkDeviceTool</span> *</td>
+<a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="type">GdkDeviceTool</span></a> *</td>
 <td class="property_name"><a class="link" href="GdkDevice.html#GdkDevice--tool" title="The “tool” property">tool</a></td>
 <td class="property_flags">Read</td>
 </tr>
@@ -411,7 +411,7 @@
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GdkDevice.html#GdkDevice--vendor-id" title="The “vendor-id” property">vendor-id</a></td>
 <td class="property_flags">Read / Write / Construct Only</td>
 </tr>
@@ -1898,7 +1898,7 @@ application's windows.</p>
 <div class="refsect2">
 <a name="gdk-device-tool-get-serial"></a><h3>gdk_device_tool_get_serial ()</h3>
 <pre class="programlisting"><span class="returnvalue">guint64</span>
-gdk_device_tool_get_serial (<em class="parameter"><code><span class="type">GdkDeviceTool</span> *tool</code></em>);</pre>
+gdk_device_tool_get_serial (<em class="parameter"><code><a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="type">GdkDeviceTool</span></a> *tool</code></em>);</pre>
 <p>Gets the serial of this tool, this value can be used to identify a
 physical tool (eg. a tablet pen) across program executions.</p>
 <div class="refsect3">
@@ -1911,7 +1911,7 @@ physical tool (eg. a tablet pen) across program executions.</p>
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>tool</p></td>
-<td class="parameter_description"><p>a <span class="type">GdkDeviceTool</span></p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="type">GdkDeviceTool</span></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr></tbody>
 </table></div>
@@ -1926,7 +1926,7 @@ physical tool (eg. a tablet pen) across program executions.</p>
 <div class="refsect2">
 <a name="gdk-device-tool-get-tool-type"></a><h3>gdk_device_tool_get_tool_type ()</h3>
 <pre class="programlisting"><a class="link" href="GdkDevice.html#GdkDeviceToolType" title="enum GdkDeviceToolType"><span class="returnvalue">GdkDeviceToolType</span></a>
-gdk_device_tool_get_tool_type (<em class="parameter"><code><span class="type">GdkDeviceTool</span> *tool</code></em>);</pre>
+gdk_device_tool_get_tool_type (<em class="parameter"><code><a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="type">GdkDeviceTool</span></a> *tool</code></em>);</pre>
 <p>Gets the <a class="link" href="GdkDevice.html#GdkDeviceToolType" title="enum GdkDeviceToolType"><span class="type">GdkDeviceToolType</span></a> of the tool.</p>
 <div class="refsect3">
 <a name="gdk-device-tool-get-tool-type.parameters"></a><h4>Parameters</h4>
@@ -1938,7 +1938,7 @@ gdk_device_tool_get_tool_type (<em class="parameter"><code><span class="type">Gd
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>tool</p></td>
-<td class="parameter_description"><p>a <span class="type">GdkDeviceTool</span></p></td>
+<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="type">GdkDeviceTool</span></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr></tbody>
 </table></div>
@@ -2534,7 +2534,7 @@ always come in keyboard/pointer pairs. Other device types will have a <code clas
 <hr>
 <div class="refsect2">
 <a name="GdkDevice--name"></a><h3>The <code class="literal">“name”</code> property</h3>
-<pre class="programlisting">  “name”                     <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “name”                     <span class="type">char</span> *</pre>
 <p>The device name.</p>
 <p>Owner: GdkDevice</p>
 <p>Flags: Read / Write / Construct Only</p>
@@ -2556,7 +2556,7 @@ of touches is unknown.</p>
 <hr>
 <div class="refsect2">
 <a name="GdkDevice--product-id"></a><h3>The <code class="literal">“product-id”</code> property</h3>
-<pre class="programlisting">  “product-id”               <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “product-id”               <span class="type">char</span> *</pre>
 <p>Product ID of this device, see <a class="link" href="GdkDevice.html#gdk-device-get-product-id" title="gdk_device_get_product_id ()"><code class="function">gdk_device_get_product_id()</code></a>.</p>
 <p>Owner: GdkDevice</p>
 <p>Flags: Read / Write / Construct Only</p>
@@ -2575,7 +2575,7 @@ of touches is unknown.</p>
 <hr>
 <div class="refsect2">
 <a name="GdkDevice--tool"></a><h3>The <code class="literal">“tool”</code> property</h3>
-<pre class="programlisting">  “tool”                     <span class="type">GdkDeviceTool</span> *</pre>
+<pre class="programlisting">  “tool”                     <a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="type">GdkDeviceTool</span></a> *</pre>
 <p>The tool that is currently used with this device.</p>
 <p>Owner: GdkDevice</p>
 <p>Flags: Read</p>
@@ -2593,7 +2593,7 @@ of touches is unknown.</p>
 <hr>
 <div class="refsect2">
 <a name="GdkDevice--vendor-id"></a><h3>The <code class="literal">“vendor-id”</code> property</h3>
-<pre class="programlisting">  “vendor-id”                <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “vendor-id”                <span class="type">char</span> *</pre>
 <p>Vendor ID of this device, see <a class="link" href="GdkDevice.html#gdk-device-get-vendor-id" title="gdk_device_get_vendor_id ()"><code class="function">gdk_device_get_vendor_id()</code></a>.</p>
 <p>Owner: GdkDevice</p>
 <p>Flags: Read / Write / Construct Only</p>
@@ -2644,7 +2644,7 @@ axes and keys.</p>
 <a name="GdkDevice-tool-changed"></a><h3>The <code class="literal">“tool-changed”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GdkDevice.html" title="GdkDevice"><span class="type">GdkDevice</span></a>     *device,
-               <span class="type">GdkDeviceTool</span> *tool,
+               <a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="type">GdkDeviceTool</span></a> *tool,
                <span class="type">gpointer</span>       user_data)</pre>
 <p>The ::tool-changed signal is emitted on pen/eraser
 <span class="type">GdkDevices</span> whenever tools enter or leave proximity.</p>

@@ -169,7 +169,7 @@
 </colgroup>
 <tbody>
 <tr>
-<td class="property_type"><span class="type">gint</span></td>
+<td class="property_type"><span class="type">int</span></td>
 <td class="property_name"><a class="link" href="GtkScale.html#GtkScale--digits" title="The “digits” property">digits</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -201,12 +201,12 @@
 </colgroup>
 <tbody>
 <tr>
-<td class="property_type"><span class="type">gint</span></td>
+<td class="property_type"><span class="type">int</span></td>
 <td class="property_name"><a class="link" href="GtkScale.html#GtkScale--s-slider-length" title="The “slider-length” style property">slider-length</a></td>
 <td class="property_flags">Read</td>
 </tr>
 <tr>
-<td class="property_type"><span class="type">gint</span></td>
+<td class="property_type"><span class="type">int</span></td>
 <td class="property_name"><a class="link" href="GtkScale.html#GtkScale--s-value-spacing" title="The “value-spacing” style property">value-spacing</a></td>
 <td class="property_flags">Read</td>
 </tr>
@@ -223,7 +223,7 @@
 </colgroup>
 <tbody><tr>
 <td class="signal_type">
-<span class="returnvalue">gchar</span>*</td>
+<span class="returnvalue">char</span>*</td>
 <td class="signal_name"><a class="link" href="GtkScale.html#GtkScale-format-value" title="The “format-value” signal">format-value</a></td>
 <td class="signal_flags">Run Last</td>
 </tr></tbody>
@@ -856,7 +856,7 @@ gtk_scale_clear_marks (<em class="parameter"><code><a class="link" href="GtkScal
 <a name="GtkScale.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkScale--digits"></a><h3>The <code class="literal">“digits”</code> property</h3>
-<pre class="programlisting">  “digits”                   <span class="type">gint</span></pre>
+<pre class="programlisting">  “digits”                   <span class="type">int</span></pre>
 <p>The number of decimal places that are displayed in the value.</p>
 <p>Owner: GtkScale</p>
 <p>Flags: Read / Write</p>
@@ -895,7 +895,7 @@ gtk_scale_clear_marks (<em class="parameter"><code><a class="link" href="GtkScal
 <a name="GtkScale.style-property-details"></a><h2>Style Property Details</h2>
 <div class="refsect2">
 <a name="GtkScale--s-slider-length"></a><h3>The <code class="literal">“slider-length”</code> style property</h3>
-<pre class="programlisting">  “slider-length”            <span class="type">gint</span></pre>
+<pre class="programlisting">  “slider-length”            <span class="type">int</span></pre>
 <p>Length of scale's slider.</p>
 <div class="warning">
 <p><code class="literal">GtkScale:slider-length</code> has been deprecated since version 3.20 and should not be used in newly-written code.</p>
@@ -910,7 +910,7 @@ gtk_scale_clear_marks (<em class="parameter"><code><a class="link" href="GtkScal
 <hr>
 <div class="refsect2">
 <a name="GtkScale--s-value-spacing"></a><h3>The <code class="literal">“value-spacing”</code> style property</h3>
-<pre class="programlisting">  “value-spacing”            <span class="type">gint</span></pre>
+<pre class="programlisting">  “value-spacing”            <span class="type">int</span></pre>
 <p>Space between value text and the slider/trough area.</p>
 <div class="warning">
 <p><code class="literal">GtkScale:value-spacing</code> has been deprecated since version 3.20 and should not be used in newly-written code.</p>
@@ -927,9 +927,9 @@ gtk_scale_clear_marks (<em class="parameter"><code><a class="link" href="GtkScal
 <a name="GtkScale.signal-details"></a><h2>Signal Details</h2>
 <div class="refsect2">
 <a name="GtkScale-format-value"></a><h3>The <code class="literal">“format-value”</code> signal</h3>
-<pre class="programlisting"><span class="returnvalue">gchar</span>*
+<pre class="programlisting"><span class="returnvalue">char</span>*
 user_function (<a class="link" href="GtkScale.html" title="GtkScale"><span class="type">GtkScale</span></a> *scale,
-               <span class="type">gdouble</span>   value,
+               <span class="type">double</span>    value,
                <span class="type">gpointer</span>  user_data)</pre>
 <p>Signal which allows you to change how the scale value is displayed.
 Connect a signal handler which returns an allocated string representing

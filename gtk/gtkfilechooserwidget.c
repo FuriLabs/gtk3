@@ -73,6 +73,7 @@
 #include "gtkmain.h"
 #include "gtkscrollable.h"
 #include "gtkpopover.h"
+#include "gtkpopoverprivate.h"
 #include "gtkrevealer.h"
 #include "gtkspinner.h"
 #include "gtkseparator.h"
@@ -1683,7 +1684,16 @@ rename_file_cb (GSimpleAction *action,
   GtkFileChooserWidget *impl = data;
   GtkFileChooserWidgetPrivate *priv = impl->priv;
   GtkTreeSelection *selection;
+  GtkWidget *prev_default;
+  GtkWindow *window;
 
+  prev_default = gtk_popover_get_prev_default (GTK_POPOVER (priv->browse_files_popover));
+  if (prev_default) {
+    /* set 'default' early so rename popover can get it */
+    window = GTK_WINDOW (gtk_widget_get_ancestor (priv->browse_files_popover, GTK_TYPE_WINDOW));
+    if (window)
+      gtk_window_set_default (window, prev_default);
+  }
   /* insensitive until we change the name */
   gtk_widget_set_sensitive (priv->rename_file_rename_button, FALSE);
 
@@ -5028,7 +5038,7 @@ get_category_from_content_type (const char *content_type)
         {
           if (strcmp (mime_type_map[i].icon_name, icon_name) == 0)
             {
-              basic_type = g_strdup (gettext (mime_type_map[i].display_name));
+              basic_type = g_strdup (_(mime_type_map[i].display_name));
               break;
             }
         }
@@ -7372,6 +7382,7 @@ search_engine_hits_added_cb (GtkSearchEngine      *engine,
 /* Callback used from GtkSearchEngine when the query is done running */
 static void
 search_engine_finished_cb (GtkSearchEngine *engine,
+                           gboolean         got_results,
                            gpointer         data)
 {
   GtkFileChooserWidget *impl = GTK_FILE_CHOOSER_WIDGET (data);
@@ -7386,7 +7397,7 @@ search_engine_finished_cb (GtkSearchEngine *engine,
       priv->show_progress_timeout = 0;
     }
 
-  if (gtk_tree_model_iter_n_children (GTK_TREE_MODEL (priv->search_model), NULL) == 0)
+  if (!got_results)
     {
       gtk_stack_set_visible_child_name (GTK_STACK (priv->browse_files_stack), "empty");
       gtk_entry_grab_focus_without_selecting (GTK_ENTRY (priv->search_entry));

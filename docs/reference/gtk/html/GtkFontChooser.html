@@ -218,7 +218,7 @@
 <tbody>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkFontChooser.html#GtkFontChooser--font" title="The “font” property">font</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -230,13 +230,13 @@
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkFontChooser.html#GtkFontChooser--font-features" title="The “font-features” property">font-features</a></td>
 <td class="property_flags">Read</td>
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkFontChooser.html#GtkFontChooser--language" title="The “language” property">language</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -247,7 +247,7 @@
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
+<span class="type">char</span> *</td>
 <td class="property_name"><a class="link" href="GtkFontChooser.html#GtkFontChooser--preview-text" title="The “preview-text” property">preview-text</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -1022,7 +1022,7 @@ gtk_font_chooser_get_language (<em class="parameter"><code><a class="link" href=
 <a name="GtkFontChooser.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="GtkFontChooser--font"></a><h3>The <code class="literal">“font”</code> property</h3>
-<pre class="programlisting">  “font”                     <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “font”                     <span class="type">char</span> *</pre>
 <p>The font description as a string, e.g. "Sans Italic 12".</p>
 <p>Owner: GtkFontChooser</p>
 <p>Flags: Read / Write</p>
@@ -1039,7 +1039,7 @@ gtk_font_chooser_get_language (<em class="parameter"><code><a class="link" href=
 <hr>
 <div class="refsect2">
 <a name="GtkFontChooser--font-features"></a><h3>The <code class="literal">“font-features”</code> property</h3>
-<pre class="programlisting">  “font-features”            <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “font-features”            <span class="type">char</span> *</pre>
 <p>The selected font features, in a format that is compatible with
 CSS and with Pango attributes.</p>
 <p>Owner: GtkFontChooser</p>
@@ -1050,7 +1050,7 @@ CSS and with Pango attributes.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkFontChooser--language"></a><h3>The <code class="literal">“language”</code> property</h3>
-<pre class="programlisting">  “language”                 <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “language”                 <span class="type">char</span> *</pre>
 <p>The language for which the <a class="link" href="GtkFontChooser.html#GtkFontChooser--font-features" title="The “font-features” property"><span class="type">“font-features”</span></a> were
 selected, in a format that is compatible with CSS and with Pango
 attributes.</p>
@@ -1072,7 +1072,7 @@ attributes.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkFontChooser--preview-text"></a><h3>The <code class="literal">“preview-text”</code> property</h3>
-<pre class="programlisting">  “preview-text”             <span class="type">gchar</span> *</pre>
+<pre class="programlisting">  “preview-text”             <span class="type">char</span> *</pre>
 <p>The string with which to preview the font.</p>
 <p>Owner: GtkFontChooser</p>
 <p>Flags: Read / Write</p>
@@ -1094,7 +1094,7 @@ attributes.</p>
 <a name="GtkFontChooser-font-activated"></a><h3>The <code class="literal">“font-activated”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GtkFontChooser.html" title="GtkFontChooser"><span class="type">GtkFontChooser</span></a> *self,
-               <span class="type">gchar</span>          *fontname,
+               <span class="type">char</span>           *fontname,
                <span class="type">gpointer</span>        user_data)</pre>
 <p>Emitted when a font is activated.
 This usually happens when the user double clicks an item,
