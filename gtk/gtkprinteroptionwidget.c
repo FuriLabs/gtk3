@@ -69,6 +69,8 @@ struct GtkPrinterOptionWidgetPrivate
 
   /* the last location for save to file, that the user selected */
   gchar *last_location;
+
+  GSettings *settings;
 };
 
 enum {
@@ -97,6 +99,17 @@ static gboolean gtk_printer_option_widget_mnemonic_activate (GtkWidget *widget,
 							     gboolean   group_cycling);
 
 static void
+gtk_printer_option_widget_destroy (GtkWidget *widget)
+{
+  GtkPrinterOptionWidget *powidget = GTK_PRINTER_OPTION_WIDGET (widget);
+  GtkPrinterOptionWidgetPrivate *priv = powidget->priv;
+
+  g_clear_object (&priv->settings);
+
+  GTK_WIDGET_CLASS (gtk_printer_option_widget_parent_class)->destroy (widget);
+}
+
+static void
 gtk_printer_option_widget_class_init (GtkPrinterOptionWidgetClass *class)
 {
   GObjectClass *object_class;
@@ -109,6 +122,7 @@ gtk_printer_option_widget_class_init (GtkPrinterOptionWidgetClass *class)
   object_class->set_property = gtk_printer_option_widget_set_property;
   object_class->get_property = gtk_printer_option_widget_get_property;
 
+  widget_class->destroy = gtk_printer_option_widget_destroy;
   widget_class->mnemonic_activate = gtk_printer_option_widget_mnemonic_activate;
 
   signals[CHANGED] =
@@ -749,6 +763,22 @@ alternative_append (GtkWidget              *box,
 }
 
 static void
+update_is_phone (GtkPrinterOptionWidget *widget)
+{
+  GtkPrinterOptionWidgetPrivate *priv = widget->priv;
+  gboolean is_phone;
+
+  if (!priv->box)
+    return;
+
+  is_phone = _gtk_get_is_phone ();
+
+  gtk_box_set_spacing (GTK_BOX (priv->box), is_phone ? 6 : 12);
+  gtk_orientable_set_orientation (GTK_ORIENTABLE (priv->box),
+                                  is_phone ? GTK_ORIENTATION_VERTICAL : GTK_ORIENTATION_HORIZONTAL);
+}
+
+static void
 construct_widgets (GtkPrinterOptionWidget *widget)
 {
   GtkPrinterOptionWidgetPrivate *priv = widget->priv;
@@ -822,6 +852,16 @@ construct_widgets (GtkPrinterOptionWidget *widget)
     case GTK_PRINTER_OPTION_TYPE_ALTERNATIVE:
       group = NULL;
       priv->box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 12);
+
+      priv->settings = _gtk_get_purism_settings ();
+
+      if (priv->settings)
+        g_signal_connect_object (priv->settings, "changed::is-phone",
+                                 G_CALLBACK (update_is_phone), widget,
+                                 G_CONNECT_SWAPPED);
+
+      update_is_phone (widget);
+
       gtk_widget_set_valign (priv->box, GTK_ALIGN_BASELINE);
       gtk_widget_show (priv->box);
       gtk_box_pack_start (GTK_BOX (widget), priv->box, TRUE, TRUE, 0);

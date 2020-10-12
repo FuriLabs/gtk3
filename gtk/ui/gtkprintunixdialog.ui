@@ -50,6 +50,8 @@
   <template class="GtkPrintUnixDialog" parent="GtkDialog">
     <property name="can-focus">False</property>
     <property name="type-hint">dialog</property>
+    <property name="default-width">660</property>
+    <property name="default-height">480</property>
     <signal name="notify::page-setup" handler="redraw_page_layout_preview" swapped="no"/>
     <signal name="response" handler="error_dialogs" swapped="no"/>
     <child internal-child="vbox">
@@ -69,6 +71,11 @@
                 <property name="visible">1</property>
                 <property name="can-focus">1</property>
                 <property name="show-border">0</property>
+                <property name="scrollable">1</property>
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="visible">1</property>
+                    <property name="hscrollbar-policy">never</property>
                 <child>
                   <object class="GtkBox" id="general_main_box">
                     <property name="visible">1</property>
@@ -85,6 +92,7 @@
                             <property name="visible">1</property>
                             <property name="can-focus">1</property>
                             <property name="shadow-type">in</property>
+                            <property name="vscrollbar-policy">never</property>
                             <child>
                               <object class="GtkTreeView" id="printer_treeview">
                                 <property name="visible">1</property>
@@ -165,9 +173,16 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkBox" id="box3">
+                      <object class="GtkFlowBox">
                         <property name="visible">1</property>
-                        <property name="spacing">18</property>
+                        <property name="row-spacing">18</property>
+                        <property name="column-spacing">18</property>
+                        <property name="max-children-per-line">2</property>
+                        <property name="selection-mode">none</property>
+                        <child>
+                          <object class="GtkFlowBoxChild">
+                            <property name="visible">1</property>
+                            <property name="can-focus">0</property>
                         <child>
                           <object class="GtkBox" id="frame_template1">
                             <property name="visible">1</property>
@@ -294,10 +309,13 @@
                               </packing>
                             </child>
                           </object>
-                          <packing>
-                            <property name="expand">1</property>
-                          </packing>
                         </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkFlowBoxChild">
+                            <property name="visible">1</property>
+                            <property name="can-focus">0</property>
                         <child>
                           <object class="GtkBox" id="frame_template2">
                             <property name="visible">1</property>
@@ -407,10 +425,8 @@
                               </packing>
                             </child>
                           </object>
-                          <packing>
-                            <property name="expand">1</property>
-                            <property name="position">1</property>
-                          </packing>
+                        </child>
+                          </object>
                         </child>
                       </object>
                       <packing>
@@ -418,6 +434,8 @@
                         <property name="position">1</property>
                       </packing>
                     </child>
+                  </object>
+                </child>
                   </object>
                 </child>
                 <child type="tab">
@@ -430,15 +448,26 @@
                   </packing>
                 </child>
                 <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="visible">1</property>
+                    <property name="hscrollbar-policy">never</property>
+                <child>
                   <object class="GtkBox" id="page_setup_main_box">
                     <property name="visible">1</property>
                     <property name="border-width">12</property>
                     <property name="orientation">vertical</property>
                     <property name="spacing">18</property>
                     <child>
-                      <object class="GtkBox" id="box4">
+                      <object class="GtkFlowBox">
                         <property name="visible">1</property>
-                        <property name="spacing">18</property>
+                        <property name="row-spacing">18</property>
+                        <property name="column-spacing">18</property>
+                        <property name="max-children-per-line">2</property>
+                        <property name="selection-mode">none</property>
+                        <child>
+                          <object class="GtkFlowBoxChild">
+                            <property name="visible">1</property>
+                            <property name="can-focus">0</property>
                         <child>
                           <object class="GtkBox" id="frame_template3">
                             <property name="visible">1</property>
@@ -632,10 +661,13 @@
                               </packing>
                             </child>
                           </object>
-                          <packing>
-                            <property name="expand">1</property>
-                          </packing>
                         </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkFlowBoxChild">
+                            <property name="visible">1</property>
+                            <property name="can-focus">0</property>
                         <child>
                           <object class="GtkBox" id="frame_template4">
                             <property name="visible">1</property>
@@ -760,7 +792,9 @@
                                     <property name="model">page_setup_list</property>
                                     <property name="valign">baseline</property>
                                     <child>
-                                      <object class="GtkCellRendererText" id="paper_size_renderer"/>
+                                      <object class="GtkCellRendererText" id="paper_size_renderer">
+                                        <property name="ellipsize">end</property>
+                                      </object>
                                     </child>
                                   </object>
                                   <packing>
@@ -812,16 +846,10 @@
                               </packing>
                             </child>
                           </object>
-                          <packing>
-                            <property name="expand">1</property>
-                            <property name="padding">6</property>
-                            <property name="position">1</property>
-                          </packing>
                         </child>
                       </object>
-                      <packing>
-                        <property name="fill">0</property>
-                      </packing>
+                    </child>
+                      </object>
                     </child>
                     <child>
                       <object class="GtkBox" id="box6">
@@ -848,6 +876,8 @@
                     <property name="position">1</property>
                   </packing>
                 </child>
+                  </object>
+                </child>
                 <child type="tab">
                   <object class="GtkLabel" id="label2">
                     <property name="visible">1</property>
@@ -859,10 +889,17 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkGrid" id="job_page">
+                  <object class="GtkFlowBox" id="job_page">
                     <property name="border-width">12</property>
                     <property name="row-spacing">18</property>
                     <property name="column-spacing">18</property>
+                    <property name="max-children-per-line">2</property>
+                    <property name="selection-mode">none</property>
+                    <property name="valign">start</property>
+                    <child>
+                      <object class="GtkFlowBoxChild">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
                     <child>
                       <object class="GtkBox" id="frame_template5">
                         <property name="visible">1</property>
@@ -949,11 +986,13 @@
                           </packing>
                         </child>
                       </object>
-                      <packing>
-                        <property name="left-attach">0</property>
-                        <property name="top-attach">0</property>
-                      </packing>
                     </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkFlowBoxChild">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
                     <child>
                       <object class="GtkBox" id="frame_template6">
                         <property name="visible">1</property>
@@ -1074,11 +1113,13 @@
                           </packing>
                         </child>
                       </object>
-                      <packing>
-                        <property name="left-attach">0</property>
-                        <property name="top-attach">1</property>
-                      </packing>
                     </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkFlowBoxChild">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
                     <child>
                       <object class="GtkBox" id="frame_template7">
                         <property name="visible">1</property>
@@ -1165,10 +1206,8 @@
                           </packing>
                         </child>
                       </object>
-                      <packing>
-                        <property name="left-attach">1</property>
-                        <property name="top-attach">0</property>
-                      </packing>
+                    </child>
+                      </object>
                     </child>
                   </object>
                   <packing>

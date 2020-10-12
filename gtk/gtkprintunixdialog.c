@@ -263,6 +263,7 @@ struct GtkPrintUnixDialogPrivate
 {
   GtkWidget *notebook;
 
+  GtkWidget *printer_swin;
   GtkWidget *printer_treeview;
   GtkTreeViewColumn *printer_icon_column;
   GtkTreeViewColumn *printer_name_column;
@@ -368,6 +369,8 @@ struct GtkPrintUnixDialogPrivate
   gchar *format_for_printer;
 
   gint current_page;
+
+  GSettings *settings;
 };
 
 G_DEFINE_TYPE_WITH_CODE (GtkPrintUnixDialog, gtk_print_unix_dialog, GTK_TYPE_DIALOG,
@@ -480,6 +483,7 @@ gtk_print_unix_dialog_class_init (GtkPrintUnixDialogClass *class)
 					       "/org/gtk/libgtk/ui/gtkprintunixdialog.ui");
 
   /* GtkTreeView / GtkTreeModel */
+  gtk_widget_class_bind_template_child_private (widget_class, GtkPrintUnixDialog, printer_swin);
   gtk_widget_class_bind_template_child_private (widget_class, GtkPrintUnixDialog, printer_treeview);
   gtk_widget_class_bind_template_child_private (widget_class, GtkPrintUnixDialog, printer_list);
   gtk_widget_class_bind_template_child_private (widget_class, GtkPrintUnixDialog, printer_list_filter);
@@ -713,6 +717,44 @@ G_GNUC_END_IGNORE_DEPRECATIONS
 }
 
 static void
+update_is_phone (GtkPrintUnixDialog *dialog)
+{
+  GtkPrintUnixDialogPrivate *priv = gtk_print_unix_dialog_get_instance_private (dialog);
+  gboolean is_phone = _gtk_get_is_phone ();
+  GtkPrintCapabilities caps;
+  GtkWidget *button;
+  GList *children, *l;
+
+  gtk_orientable_set_orientation (GTK_ORIENTABLE (priv->extension_point),
+                                  is_phone ? GTK_ORIENTATION_VERTICAL : GTK_ORIENTATION_HORIZONTAL);
+
+  caps = priv->manual_capabilities | priv->printer_capabilities;
+  button = gtk_dialog_get_widget_for_response (GTK_DIALOG (dialog), GTK_RESPONSE_APPLY);
+  gtk_widget_set_visible (button, (caps & GTK_PRINT_CAPABILITY_PREVIEW) != 0 && !is_phone);
+
+  children = gtk_container_get_children (GTK_CONTAINER (priv->extension_point));
+  l = g_list_last (children);
+  if (l && l != children)
+    gtk_widget_set_halign (GTK_WIDGET (l->data),
+                           is_phone ? GTK_ALIGN_FILL : GTK_ALIGN_END);
+
+  for (l = children; l && l->data; l = l->next)
+    {
+      GtkWidget *hbox = l->data;
+      GtkWidget *widget = g_object_get_data (G_OBJECT (l->data), "gtk-external-label");
+
+      if (!widget)
+        continue;
+
+      gtk_orientable_set_orientation (GTK_ORIENTABLE (hbox),
+                                      is_phone ? GTK_ORIENTATION_VERTICAL : GTK_ORIENTATION_HORIZONTAL);
+      gtk_widget_set_margin_start (widget, is_phone ? 12 : 0);
+    }
+
+  g_list_free (children);
+}
+
+static void
 gtk_print_unix_dialog_init (GtkPrintUnixDialog *dialog)
 {
   GtkPrintUnixDialogPrivate *priv;
@@ -805,6 +847,15 @@ gtk_print_unix_dialog_init (GtkPrintUnixDialog *dialog)
 
   gtk_css_node_set_name (gtk_widget_get_css_node (priv->collate_image), I_("paper"));
   gtk_css_node_set_name (gtk_widget_get_css_node (priv->page_layout_preview), I_("paper"));
+
+  priv->settings = _gtk_get_purism_settings ();
+
+  if (priv->settings)
+    g_signal_connect_object (priv->settings, "changed::is-phone",
+                             G_CALLBACK (update_is_phone), dialog,
+                             G_CONNECT_SWAPPED);
+
+  update_is_phone (dialog);
 }
 
 static void
@@ -837,6 +888,8 @@ gtk_print_unix_dialog_destroy (GtkWidget *widget)
 
   /* Make sure we don't destroy custom widgets owned by the backends */
   clear_per_printer_ui (dialog);
+
+  g_clear_object (&dialog->priv->settings);
 
   GTK_WIDGET_CLASS (gtk_print_unix_dialog_parent_class)->destroy (widget);
 }
@@ -1359,6 +1412,15 @@ add_option_to_extension_point (GtkPrinterOption *option,
       gtk_box_pack_start (GTK_BOX (hbox), widget, FALSE, FALSE, 0);
       gtk_widget_show (hbox);
 
+      g_object_set_data (G_OBJECT (hbox), "gtk-external-label", widget);
+
+      if (_gtk_get_is_phone ())
+        {
+          gtk_orientable_set_orientation (GTK_ORIENTABLE (hbox),
+                                          GTK_ORIENTATION_VERTICAL);
+          gtk_widget_set_margin_start (widget, 12);
+        }
+
       gtk_box_pack_start (GTK_BOX (extension_point), hbox, TRUE, TRUE, 0);
     }
   else
@@ -1600,7 +1662,7 @@ update_dialog_from_settings (GtkPrintUnixDialog *dialog)
    */
   children = gtk_container_get_children (GTK_CONTAINER (priv->extension_point));
   l = g_list_last (children);
-  if (l && l != children)
+  if (l && l != children && !_gtk_get_is_phone ())
     gtk_widget_set_halign (GTK_WIDGET (l->data), GTK_ALIGN_END);
   g_list_free (children);
 
@@ -1660,7 +1722,6 @@ update_dialog_from_capabilities (GtkPrintUnixDialog *dialog)
   GtkPrintUnixDialogPrivate *priv = dialog->priv;
   gboolean can_collate;
   const gchar *copies;
-  GtkWidget *button;
 
   copies = gtk_entry_get_text (GTK_ENTRY (priv->copies_spin));
   can_collate = (*copies != '\0' && atoi (copies) > 1);
@@ -1681,9 +1742,7 @@ update_dialog_from_capabilities (GtkPrintUnixDialog *dialog)
   gtk_widget_set_sensitive (GTK_WIDGET (priv->pages_per_sheet),
                             caps & GTK_PRINT_CAPABILITY_NUMBER_UP);
 
-  button = gtk_dialog_get_widget_for_response (GTK_DIALOG (dialog), GTK_RESPONSE_APPLY);
-  gtk_widget_set_visible (button, (caps & GTK_PRINT_CAPABILITY_PREVIEW) != 0);
-
+  update_is_phone (dialog);
   update_collate_icon (NULL, dialog);
 
   gtk_tree_model_filter_refilter (priv->printer_list_filter);
@@ -3749,6 +3808,13 @@ gtk_print_unix_dialog_add_custom_tab (GtkPrintUnixDialog *dialog,
                                       GtkWidget          *child,
                                       GtkWidget          *tab_label)
 {
+  GtkWidget *scrolled_window = gtk_scrolled_window_new (NULL, NULL);
+
+  gtk_container_add (GTK_CONTAINER (scrolled_window), child);
+  gtk_widget_show (child);
+
+  child = scrolled_window;
+
   gtk_notebook_insert_page (GTK_NOTEBOOK (dialog->priv->notebook),
                             child, tab_label, 2);
   gtk_widget_show (child);
