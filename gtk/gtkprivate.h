@@ -30,6 +30,7 @@
 
 #include "gtkcsstypesprivate.h"
 #include "gtktexthandleprivate.h"
+#include "hdy-navigation-direction-private.h"
 #include "hdy-squeezer-private.h"
 #include "hdy-view-switcher-private.h"
 
