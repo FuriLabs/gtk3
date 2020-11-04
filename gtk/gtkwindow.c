@@ -1589,6 +1589,12 @@ drag_gesture_begin_cb (GtkGestureDrag *gesture,
 
   region = get_active_region_type (window, (GdkEventAny*) event, x, y);
 
+  if (_gtk_get_is_phone ())
+    {
+      gtk_gesture_set_state (GTK_GESTURE (gesture), GTK_EVENT_SEQUENCE_DENIED);
+      return;
+    }
+
   switch (region)
     {
       case GTK_WINDOW_REGION_TITLE:
