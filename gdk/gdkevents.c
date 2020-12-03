@@ -268,30 +268,36 @@ _gdk_event_queue_handle_motion_compression (GdkDisplay *display)
   while (tmp_list)
     {
       GdkEventPrivate *event = tmp_list->data;
+      GdkWindow *window;
+      GdkDevice *device;
 
       if (event->flags & GDK_EVENT_PENDING)
         break;
 
-      if (event->event.type != GDK_MOTION_NOTIFY)
+      if (event->event.type != GDK_MOTION_NOTIFY &&
+          event->event.type != GDK_TOUCH_UPDATE)
         break;
 
+      window = gdk_event_get_window (&event->event);
+      device = gdk_event_get_device (&event->event);
+
       if (pending_motion_window != NULL &&
-          pending_motion_window != event->event.motion.window)
+          pending_motion_window != window)
         break;
 
       if (pending_motion_device != NULL &&
-          pending_motion_device != event->event.motion.device)
+          pending_motion_device != device)
         break;
 
-      pending_motion_window = event->event.motion.window;
+      pending_motion_window = window;
 
-      if (!event->event.motion.window->event_compression)
+      if (!window->event_compression)
         {
           uncompressed_motion = TRUE;
           break;
         }
 
-      pending_motion_device = event->event.motion.device;
+      pending_motion_device = device;
       pending_motions = tmp_list;
 
       tmp_list = tmp_list->prev;
