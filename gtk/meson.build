@@ -383,6 +383,7 @@ gtk_sources = files(
   'gtkwin32draw.c',
   'gtkwin32theme.c',
   'gdkpixbufutils.c',
+  'hdy-animation.c',
   'hdy-css.c',
   'hdy-view-switcher-bar.c',
   'hdy-view-switcher-button.c',
@@ -394,6 +395,7 @@ gtk_sources = files(
 gtk_private_type_headers = files(
   'gtkcsstypesprivate.h',
   'gtktexthandleprivate.h',
+  'hdy-animation-private.h',
   'hdy-css-private.h',
   'hdy-view-switcher-bar-private.h',
   'hdy-view-switcher-button-private.h',
