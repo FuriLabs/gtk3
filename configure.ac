@@ -10,8 +10,8 @@
 
 m4_define([gtk_major_version], [3])
 m4_define([gtk_minor_version], [24])
-m4_define([gtk_micro_version], [23])
-m4_define([gtk_interface_age], [19])
+m4_define([gtk_micro_version], [24])
+m4_define([gtk_interface_age], [20])
 m4_define([gtk_binary_age],
           [m4_eval(100 * gtk_minor_version + gtk_micro_version)])
 m4_define([gtk_version],
@@ -56,12 +56,12 @@ GLIB_VERSION_CFLAGS="-DGLIB_MIN_REQUIRED_VERSION=glib_min_required_version -DGLI
 
 m4_define([pango_required_version], [1.41.0])
 m4_define([fribidi_required_version], [0.19.7])
-m4_define([atk_required_version], [2.15.1])
+m4_define([atk_required_version], [2.32.0])
 m4_define([cairo_required_version], [1.14.0])
 m4_define([gdk_pixbuf_required_version], [2.30.0])
 m4_define([introspection_required_version], [1.39.0])
 m4_define([wayland_required_version], [1.14.91])
-m4_define([wayland_protocols_required_version], [1.14])
+m4_define([wayland_protocols_required_version], [1.17])
 m4_define([epoxy_required_version], [1.4])
 m4_define([cloudproviders_required_version], [0.2.5])
 m4_define([sysprof_required_version], [3.33.2])

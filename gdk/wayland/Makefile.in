@@ -128,7 +128,8 @@ am__objects_1 = pointer-gestures-unstable-v1-protocol.lo \
 	tablet-unstable-v2-protocol.lo \
 	xdg-output-unstable-v1-protocol.lo \
 	keyboard-shortcuts-inhibit-unstable-v1-protocol.lo \
-	server-decoration-protocol.lo gtk-shell-protocol.lo
+	server-decoration-protocol.lo gtk-shell-protocol.lo \
+	primary-selection-unstable-v1-protocol.lo
 nodist_libgdk_wayland_la_OBJECTS = $(am__objects_1)
 libgdk_wayland_la_OBJECTS = $(am_libgdk_wayland_la_OBJECTS) \
 	$(nodist_libgdk_wayland_la_OBJECTS)
@@ -166,6 +167,7 @@ am__depfiles_remade = ./$(DEPDIR)/gdkapplaunchcontext-wayland.Plo \
 	./$(DEPDIR)/gtk-shell-protocol.Plo \
 	./$(DEPDIR)/keyboard-shortcuts-inhibit-unstable-v1-protocol.Plo \
 	./$(DEPDIR)/pointer-gestures-unstable-v1-protocol.Plo \
+	./$(DEPDIR)/primary-selection-unstable-v1-protocol.Plo \
 	./$(DEPDIR)/server-decoration-protocol.Plo \
 	./$(DEPDIR)/tablet-unstable-v2-protocol.Plo \
 	./$(DEPDIR)/wm-button-layout-translation.Plo \
@@ -597,7 +599,9 @@ BUILT_SOURCES = \
 	server-decoration-client-protocol.h		\
 	server-decoration-protocol.c			\
 	gtk-shell-client-protocol.h		\
-	gtk-shell-protocol.c
+	gtk-shell-protocol.c			\
+	primary-selection-unstable-v1-client-protocol.h		\
+	primary-selection-unstable-v1-protocol.c
 
 nodist_libgdk_wayland_la_SOURCES = \
 	$(BUILT_SOURCES)
@@ -710,6 +714,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gtk-shell-protocol.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/keyboard-shortcuts-inhibit-unstable-v1-protocol.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pointer-gestures-unstable-v1-protocol.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/primary-selection-unstable-v1-protocol.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/server-decoration-protocol.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/tablet-unstable-v2-protocol.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wm-button-layout-translation.Plo@am__quote@ # am--include-marker
@@ -945,6 +950,7 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/gtk-shell-protocol.Plo
 	-rm -f ./$(DEPDIR)/keyboard-shortcuts-inhibit-unstable-v1-protocol.Plo
 	-rm -f ./$(DEPDIR)/pointer-gestures-unstable-v1-protocol.Plo
+	-rm -f ./$(DEPDIR)/primary-selection-unstable-v1-protocol.Plo
 	-rm -f ./$(DEPDIR)/server-decoration-protocol.Plo
 	-rm -f ./$(DEPDIR)/tablet-unstable-v2-protocol.Plo
 	-rm -f ./$(DEPDIR)/wm-button-layout-translation.Plo
@@ -1014,6 +1020,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/gtk-shell-protocol.Plo
 	-rm -f ./$(DEPDIR)/keyboard-shortcuts-inhibit-unstable-v1-protocol.Plo
 	-rm -f ./$(DEPDIR)/pointer-gestures-unstable-v1-protocol.Plo
+	-rm -f ./$(DEPDIR)/primary-selection-unstable-v1-protocol.Plo
 	-rm -f ./$(DEPDIR)/server-decoration-protocol.Plo
 	-rm -f ./$(DEPDIR)/tablet-unstable-v2-protocol.Plo
 	-rm -f ./$(DEPDIR)/wm-button-layout-translation.Plo

@@ -297,13 +297,13 @@ am__libgtk_3_la_SOURCES_DIST = a11y/gtkaccessibility.c \
 	a11y/gtkmenuaccessible.c a11y/gtkmenubuttonaccessible.c \
 	a11y/gtkmenushellaccessible.c a11y/gtkmenuitemaccessible.c \
 	a11y/gtknotebookaccessible.c a11y/gtknotebookpageaccessible.c \
-	a11y/gtkpanedaccessible.c a11y/gtkpopoveraccessible.c \
-	a11y/gtkprogressbaraccessible.c \
+	a11y/gtkpanedaccessible.c a11y/gtkplugaccessible.c \
+	a11y/gtkpopoveraccessible.c a11y/gtkprogressbaraccessible.c \
 	a11y/gtkradiobuttonaccessible.c \
 	a11y/gtkradiomenuitemaccessible.c a11y/gtkrangeaccessible.c \
 	a11y/gtkrenderercellaccessible.c a11y/gtkscaleaccessible.c \
 	a11y/gtkscalebuttonaccessible.c \
-	a11y/gtkscrolledwindowaccessible.c \
+	a11y/gtkscrolledwindowaccessible.c a11y/gtksocketaccessible.c \
 	a11y/gtkspinbuttonaccessible.c a11y/gtkspinneraccessible.c \
 	a11y/gtkstatusbaraccessible.c a11y/gtkstackaccessible.c \
 	a11y/gtkswitchaccessible.c a11y/gtktextcellaccessible.c \
@@ -517,6 +517,7 @@ am__objects_1 = a11y/libgtk_3_la-gtkaccessibility.lo \
 	a11y/libgtk_3_la-gtknotebookaccessible.lo \
 	a11y/libgtk_3_la-gtknotebookpageaccessible.lo \
 	a11y/libgtk_3_la-gtkpanedaccessible.lo \
+	a11y/libgtk_3_la-gtkplugaccessible.lo \
 	a11y/libgtk_3_la-gtkpopoveraccessible.lo \
 	a11y/libgtk_3_la-gtkprogressbaraccessible.lo \
 	a11y/libgtk_3_la-gtkradiobuttonaccessible.lo \
@@ -526,6 +527,7 @@ am__objects_1 = a11y/libgtk_3_la-gtkaccessibility.lo \
 	a11y/libgtk_3_la-gtkscaleaccessible.lo \
 	a11y/libgtk_3_la-gtkscalebuttonaccessible.lo \
 	a11y/libgtk_3_la-gtkscrolledwindowaccessible.lo \
+	a11y/libgtk_3_la-gtksocketaccessible.lo \
 	a11y/libgtk_3_la-gtkspinbuttonaccessible.lo \
 	a11y/libgtk_3_la-gtkspinneraccessible.lo \
 	a11y/libgtk_3_la-gtkstatusbaraccessible.lo \
@@ -1413,6 +1415,7 @@ am__depfiles_remade = ./$(DEPDIR)/encodesymbolic.Po \
 	a11y/$(DEPDIR)/libgtk_3_la-gtknotebookaccessible.Plo \
 	a11y/$(DEPDIR)/libgtk_3_la-gtknotebookpageaccessible.Plo \
 	a11y/$(DEPDIR)/libgtk_3_la-gtkpanedaccessible.Plo \
+	a11y/$(DEPDIR)/libgtk_3_la-gtkplugaccessible.Plo \
 	a11y/$(DEPDIR)/libgtk_3_la-gtkpopoveraccessible.Plo \
 	a11y/$(DEPDIR)/libgtk_3_la-gtkprogressbaraccessible.Plo \
 	a11y/$(DEPDIR)/libgtk_3_la-gtkradiobuttonaccessible.Plo \
@@ -1422,6 +1425,7 @@ am__depfiles_remade = ./$(DEPDIR)/encodesymbolic.Po \
 	a11y/$(DEPDIR)/libgtk_3_la-gtkscaleaccessible.Plo \
 	a11y/$(DEPDIR)/libgtk_3_la-gtkscalebuttonaccessible.Plo \
 	a11y/$(DEPDIR)/libgtk_3_la-gtkscrolledwindowaccessible.Plo \
+	a11y/$(DEPDIR)/libgtk_3_la-gtksocketaccessible.Plo \
 	a11y/$(DEPDIR)/libgtk_3_la-gtkspinbuttonaccessible.Plo \
 	a11y/$(DEPDIR)/libgtk_3_la-gtkspinneraccessible.Plo \
 	a11y/$(DEPDIR)/libgtk_3_la-gtkstackaccessible.Plo \
@@ -1985,6 +1989,7 @@ a11y_h_sources = \
 	a11y/gtknotebookaccessible.h		\
 	a11y/gtknotebookpageaccessible.h	\
 	a11y/gtkpanedaccessible.h		\
+	a11y/gtkplugaccessible.h		\
 	a11y/gtkpopoveraccessible.h		\
 	a11y/gtkprogressbaraccessible.h		\
 	a11y/gtkradiobuttonaccessible.h		\
@@ -1994,6 +1999,7 @@ a11y_h_sources = \
 	a11y/gtkscaleaccessible.h		\
 	a11y/gtkscalebuttonaccessible.h		\
 	a11y/gtkscrolledwindowaccessible.h	\
+	a11y/gtksocketaccessible.h		\
 	a11y/gtkspinbuttonaccessible.h		\
 	a11y/gtkspinneraccessible.h		\
 	a11y/gtkstatusbaraccessible.h		\
@@ -2060,6 +2066,7 @@ a11y_c_sources = \
 	a11y/gtknotebookaccessible.c		\
 	a11y/gtknotebookpageaccessible.c	\
 	a11y/gtkpanedaccessible.c		\
+	a11y/gtkplugaccessible.c		\
 	a11y/gtkpopoveraccessible.c		\
 	a11y/gtkprogressbaraccessible.c		\
 	a11y/gtkradiobuttonaccessible.c		\
@@ -2069,6 +2076,7 @@ a11y_c_sources = \
 	a11y/gtkscaleaccessible.c		\
 	a11y/gtkscalebuttonaccessible.c		\
 	a11y/gtkscrolledwindowaccessible.c	\
+	a11y/gtksocketaccessible.c		\
 	a11y/gtkspinbuttonaccessible.c		\
 	a11y/gtkspinneraccessible.c		\
 	a11y/gtkstatusbaraccessible.c		\
@@ -3368,6 +3376,8 @@ a11y/libgtk_3_la-gtknotebookpageaccessible.lo: a11y/$(am__dirstamp) \
 	a11y/$(DEPDIR)/$(am__dirstamp)
 a11y/libgtk_3_la-gtkpanedaccessible.lo: a11y/$(am__dirstamp) \
 	a11y/$(DEPDIR)/$(am__dirstamp)
+a11y/libgtk_3_la-gtkplugaccessible.lo: a11y/$(am__dirstamp) \
+	a11y/$(DEPDIR)/$(am__dirstamp)
 a11y/libgtk_3_la-gtkpopoveraccessible.lo: a11y/$(am__dirstamp) \
 	a11y/$(DEPDIR)/$(am__dirstamp)
 a11y/libgtk_3_la-gtkprogressbaraccessible.lo: a11y/$(am__dirstamp) \
@@ -3385,6 +3395,8 @@ a11y/libgtk_3_la-gtkscaleaccessible.lo: a11y/$(am__dirstamp) \
 a11y/libgtk_3_la-gtkscalebuttonaccessible.lo: a11y/$(am__dirstamp) \
 	a11y/$(DEPDIR)/$(am__dirstamp)
 a11y/libgtk_3_la-gtkscrolledwindowaccessible.lo: a11y/$(am__dirstamp) \
+	a11y/$(DEPDIR)/$(am__dirstamp)
+a11y/libgtk_3_la-gtksocketaccessible.lo: a11y/$(am__dirstamp) \
 	a11y/$(DEPDIR)/$(am__dirstamp)
 a11y/libgtk_3_la-gtkspinbuttonaccessible.lo: a11y/$(am__dirstamp) \
 	a11y/$(DEPDIR)/$(am__dirstamp)
@@ -4061,6 +4073,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtknotebookaccessible.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtknotebookpageaccessible.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkpanedaccessible.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkplugaccessible.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkpopoveraccessible.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkprogressbaraccessible.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkradiobuttonaccessible.Plo@am__quote@ # am--include-marker
@@ -4070,6 +4083,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkscaleaccessible.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkscalebuttonaccessible.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkscrolledwindowaccessible.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtksocketaccessible.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkspinbuttonaccessible.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkspinneraccessible.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkstackaccessible.Plo@am__quote@ # am--include-marker
@@ -4428,6 +4442,13 @@ a11y/libgtk_3_la-gtkpanedaccessible.lo: a11y/gtkpanedaccessible.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o a11y/libgtk_3_la-gtkpanedaccessible.lo `test -f 'a11y/gtkpanedaccessible.c' || echo '$(srcdir)/'`a11y/gtkpanedaccessible.c
 
+a11y/libgtk_3_la-gtkplugaccessible.lo: a11y/gtkplugaccessible.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT a11y/libgtk_3_la-gtkplugaccessible.lo -MD -MP -MF a11y/$(DEPDIR)/libgtk_3_la-gtkplugaccessible.Tpo -c -o a11y/libgtk_3_la-gtkplugaccessible.lo `test -f 'a11y/gtkplugaccessible.c' || echo '$(srcdir)/'`a11y/gtkplugaccessible.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) a11y/$(DEPDIR)/libgtk_3_la-gtkplugaccessible.Tpo a11y/$(DEPDIR)/libgtk_3_la-gtkplugaccessible.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='a11y/gtkplugaccessible.c' object='a11y/libgtk_3_la-gtkplugaccessible.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o a11y/libgtk_3_la-gtkplugaccessible.lo `test -f 'a11y/gtkplugaccessible.c' || echo '$(srcdir)/'`a11y/gtkplugaccessible.c
+
 a11y/libgtk_3_la-gtkpopoveraccessible.lo: a11y/gtkpopoveraccessible.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT a11y/libgtk_3_la-gtkpopoveraccessible.lo -MD -MP -MF a11y/$(DEPDIR)/libgtk_3_la-gtkpopoveraccessible.Tpo -c -o a11y/libgtk_3_la-gtkpopoveraccessible.lo `test -f 'a11y/gtkpopoveraccessible.c' || echo '$(srcdir)/'`a11y/gtkpopoveraccessible.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) a11y/$(DEPDIR)/libgtk_3_la-gtkpopoveraccessible.Tpo a11y/$(DEPDIR)/libgtk_3_la-gtkpopoveraccessible.Plo
@@ -4490,6 +4511,13 @@ a11y/libgtk_3_la-gtkscrolledwindowaccessible.lo: a11y/gtkscrolledwindowaccessibl
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='a11y/gtkscrolledwindowaccessible.c' object='a11y/libgtk_3_la-gtkscrolledwindowaccessible.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o a11y/libgtk_3_la-gtkscrolledwindowaccessible.lo `test -f 'a11y/gtkscrolledwindowaccessible.c' || echo '$(srcdir)/'`a11y/gtkscrolledwindowaccessible.c
+
+a11y/libgtk_3_la-gtksocketaccessible.lo: a11y/gtksocketaccessible.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT a11y/libgtk_3_la-gtksocketaccessible.lo -MD -MP -MF a11y/$(DEPDIR)/libgtk_3_la-gtksocketaccessible.Tpo -c -o a11y/libgtk_3_la-gtksocketaccessible.lo `test -f 'a11y/gtksocketaccessible.c' || echo '$(srcdir)/'`a11y/gtksocketaccessible.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) a11y/$(DEPDIR)/libgtk_3_la-gtksocketaccessible.Tpo a11y/$(DEPDIR)/libgtk_3_la-gtksocketaccessible.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='a11y/gtksocketaccessible.c' object='a11y/libgtk_3_la-gtksocketaccessible.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o a11y/libgtk_3_la-gtksocketaccessible.lo `test -f 'a11y/gtksocketaccessible.c' || echo '$(srcdir)/'`a11y/gtksocketaccessible.c
 
 a11y/libgtk_3_la-gtkspinbuttonaccessible.lo: a11y/gtkspinbuttonaccessible.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT a11y/libgtk_3_la-gtkspinbuttonaccessible.lo -MD -MP -MF a11y/$(DEPDIR)/libgtk_3_la-gtkspinbuttonaccessible.Tpo -c -o a11y/libgtk_3_la-gtkspinbuttonaccessible.lo `test -f 'a11y/gtkspinbuttonaccessible.c' || echo '$(srcdir)/'`a11y/gtkspinbuttonaccessible.c
@@ -8710,6 +8738,7 @@ distclean: distclean-am
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtknotebookaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtknotebookpageaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkpanedaccessible.Plo
+	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkplugaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkpopoveraccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkprogressbaraccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkradiobuttonaccessible.Plo
@@ -8719,6 +8748,7 @@ distclean: distclean-am
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkscaleaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkscalebuttonaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkscrolledwindowaccessible.Plo
+	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtksocketaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkspinbuttonaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkspinneraccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkstackaccessible.Plo
@@ -9302,6 +9332,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtknotebookaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtknotebookpageaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkpanedaccessible.Plo
+	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkplugaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkpopoveraccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkprogressbaraccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkradiobuttonaccessible.Plo
@@ -9311,6 +9342,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkscaleaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkscalebuttonaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkscrolledwindowaccessible.Plo
+	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtksocketaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkspinbuttonaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkspinneraccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkstackaccessible.Plo

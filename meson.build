@@ -1,5 +1,5 @@
 project('gtk+-3.0', 'c',
-        version: '3.24.23',
+        version: '3.24.24',
         default_options: [
           'buildtype=debugoptimized',
           'warning_level=1'
@@ -26,11 +26,12 @@ endif
 glib_req           = '>= @0@.@1@.@2@'.format(glib_major_req, glib_minor_req, glib_micro_req)
 pango_req          = '>= 1.41.0'
 fribidi_req        = '>= 0.19.7'
-atk_req            = '>= 2.15.1'
+atk_req            = '>= 2.35.1'
+at_spi2_atk_req    = '>= 2.15.1'
 cairo_req          = '>= 1.14.0'
 gdk_pixbuf_req     = '>= 2.30.0'
 introspection_req  = '>= 1.39.0'
-wayland_proto_req  = '>= 1.14'
+wayland_proto_req  = '>= 1.17'
 wayland_req        = '>= 1.14.91'
 epoxy_req          = '>= 1.4'
 cloudproviders_req = '>= 0.2.5'
@@ -51,7 +52,7 @@ gtk_version       = meson.project_version()
 gtk_major_version = gtk_version.split('.')[0].to_int()
 gtk_minor_version = gtk_version.split('.')[1].to_int()
 gtk_micro_version = gtk_version.split('.')[2].to_int()
-gtk_interface_age = 19
+gtk_interface_age = 20
 add_project_arguments('-DGTK_VERSION="@0@"'.format(meson.project_version()), language: 'c')
 
 add_project_arguments('-D_GNU_SOURCE', language: 'c')
@@ -575,7 +576,7 @@ if x11_enabled
   xfixes_dep     = dependency('xfixes', required: false)
   xcomposite_dep = dependency('xcomposite', required: false)
   fontconfig_dep = dependency('fontconfig', fallback: ['fontconfig', 'fontconfig_dep'])
-  atkbridge_dep  = dependency('atk-bridge-2.0', version: atk_req)
+  atkbridge_dep  = dependency('atk-bridge-2.0', version: at_spi2_atk_req)
 
   x11_pkgs = ['fontconfig', 'x11', 'xext', 'xi', 'xrandr']
 
@@ -666,19 +667,11 @@ if win32_enabled
   endif
   pc_gdk_extra_libs += ['-lwinmm', '-ldwmapi', '-lsetupapi', '-lcfgmgr32']
 
-# Check whether libepoxy is built with EGL support on Windows
-  win32_has_egl = cc.links(
-     '''
-     #include <epoxy/egl.h>
-
-     int main(int argc, char *argv[]) {
-       return epoxy_egl_version (EGL_NO_DISPLAY);
-     }
-     ''',
-     dependencies : epoxy_dep,
-     name : 'libepoxy supports EGL on Windows'
-    )
-
+  # Check whether libepoxy is built with EGL support on Windows
+  win32_has_egl = epoxy_dep.get_variable(
+    pkgconfig: 'epoxy_has_egl',
+    internal: 'epoxy_has_egl',
+    default_value: '0') == '1'
 endif
 
 # IMModules stuff-unfortunately we need to put items here
@@ -868,8 +861,8 @@ pkgconf = configuration_data()
 
 pkgconf.set('prefix', get_option('prefix'))
 pkgconf.set('exec_prefix', '${prefix}')
-pkgconf.set('libdir', '${prefix}/@0@'.format(get_option('libdir')))
-pkgconf.set('includedir', '${prefix}/@0@'.format(get_option('includedir')))
+pkgconf.set('libdir', '${prefix}' / get_option('libdir'))
+pkgconf.set('includedir', '${prefix}' / get_option('includedir'))
 pkgconf.set('GTK_API_VERSION', gtk_api_version)
 pkgconf.set('VERSION', meson.project_version())
 pkgconf.set('GTK_BINARY_VERSION', gtk_binary_version)

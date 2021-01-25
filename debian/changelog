@@ -1,3 +1,70 @@
+gtk+3.0 (3.24.24-1ubuntu1) UNRELEASED; urgency=medium
+
+  * Merge with Debian. Remaining changes:
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0.symbols
+    + debian/control.in and debian/tests/control (installed-tests):
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + debian/control.in: Build-Depend on dh-sequence-translations
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 25 Jan 2021 12:20:10 +0100
+
+gtk+3.0 (3.24.24-1) unstable; urgency=medium
+
+  * New upstream release
+    - Update the default color palette
+    - Fix font chooser in family-only mode to return regular style
+    - Don't set focus-on-click for tree view header buttons
+    - Add a11y support to GtkPlug/GtkSocket
+    - Implement scrollSubstringTo for a11y
+    - Allow the lpr backend to print pdf and ps files
+    - Update gesture graphics
+    - Update HighContrast css
+    - Support the primary-selection-unstable-v1 Wayland protocol
+    - On X11, fix a crash with parent-relative backgrounds
+    - On Broadway, set modifier state of scroll events
+    - Translation updates
+  * Update versions of (build-)dependencies
+
+ -- Simon McVittie <smcv@debian.org>  Fri, 11 Dec 2020 11:07:01 +0000
+
+gtk+3.0 (3.24.23-3) unstable; urgency=medium
+
+  * Preferentially build-depend on libgdk-pixbuf-2.0-dev.
+    We don't need the deprecated Xlib integration that is also pulled in
+    by the older libgdk-pixbuf2.0-dev package (see #974870).
+  * Standards-Version: 4.5.1 (no changes required)
+  * d/copyright: Consolidate similar licenses into one Files stanza
+  * d/gtk-update-icon-cache.preinst: Remove.
+    This was here for upgrades from versions older than oldstable, but we
+    do not support skipping a stable release.
+  * Silence some Lintian false positives
+  * Add myself to Uploaders
+
+ -- Simon McVittie <smcv@debian.org>  Fri, 27 Nov 2020 12:43:57 +0000
+
+gtk+3.0 (3.24.23-2) unstable; urgency=medium
+
+  * Regenerate CSS themes with sassc during the build.
+    This ensures that they are updated even if upstream forgot to do so,
+    as happened in HighContrast for the GTK 3.4.22 release (#970664).
+
+ -- Simon McVittie <smcv@debian.org>  Mon, 05 Oct 2020 14:36:07 +0100
+
 gtk+3.0 (3.24.23-1ubuntu2) hirsute; urgency=medium
 
   * debian/patches/fontchooser_Fix_family-only_mode.patch:

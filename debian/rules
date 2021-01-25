@@ -144,6 +144,10 @@ override_dh_clean: debian/control
 	# when resources change. Force an update in case we ship a patch which
 	# modifies the theme CSS files.
 	rm -f gtk/gtkresources.c gtk/gtkresources.h
+	rm -f gtk/theme/Adwaita/gtk-contained.css
+	rm -f gtk/theme/Adwaita/gtk-contained-dark.css
+	rm -f gtk/theme/HighContrast/gtk-contained.css
+	rm -f gtk/theme/HighContrast/gtk-contained-inverse.css
 	# We just don't want to have to review these...
 	rm -f demos/gtk-demo/demo_resources.[ch]
 	rm -f demos/icon-browser/resources.[ch]
@@ -184,6 +188,8 @@ ifneq ($(filter %-udeb,$(built_binaries)),)
 endif
 
 override_dh_auto_build:
+	( cd gtk/theme/Adwaita; ./parse-sass.sh )
+	( cd gtk/theme/HighContrast; ./parse-sass.sh )
 	dh_auto_build --builddirectory=debian/build/deb
 ifneq ($(filter %-udeb,$(built_binaries)),)
 	dh_auto_build --builddirectory=debian/build/udeb

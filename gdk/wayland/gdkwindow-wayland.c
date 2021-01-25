@@ -1349,6 +1349,9 @@ gdk_wayland_window_sync_margin (GdkWindow *window)
     return;
 
   gdk_wayland_window_get_window_geometry (window, &geometry);
+
+  g_return_if_fail (geometry.width > 0 && geometry.height > 0);
+
   gdk_window_set_geometry_hints (window,
                                  &impl->geometry_hints,
                                  impl->geometry_mask);
@@ -3495,7 +3498,19 @@ gdk_window_wayland_move_resize (GdkWindow *window,
       if (!should_use_fixed_size (window->state) ||
           (width == impl->fixed_size_width &&
            height == impl->fixed_size_height))
-        gdk_wayland_window_maybe_configure (window, width, height, impl->scale);
+        {
+          gdk_wayland_window_maybe_configure (window,
+                                              width,
+                                              height,
+                                              impl->scale);
+        }
+      else if (!should_inhibit_resize (window))
+        {
+          gdk_wayland_window_configure (window,
+                                        window->width,
+                                        window->height,
+                                        impl->scale);
+        }
     }
 }
 
