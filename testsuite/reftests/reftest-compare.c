@@ -84,12 +84,16 @@ buffer_diff_core (const guchar *buf_a,
         	  const guchar *buf_b,
                   int           stride_b,
         	  int		width,
-        	  int		height)
+        	  int		height,
+                  guint        *max_diff_out,
+                  guint        *pixels_changed_out)
 {
   int x, y;
   guchar *buf_diff = NULL;
   int stride_diff = 0;
   cairo_surface_t *diff = NULL;
+  guint max_diff = 0;
+  guint pixels_changed = 0;
 
   for (y = 0; y < height; y++)
     {
@@ -125,6 +129,10 @@ buffer_diff_core (const guchar *buf_a,
               guint diff;
 
               diff = ABS (value_a - value_b);
+
+              if (diff > max_diff)
+                max_diff = diff;
+
               diff *= 4;  /* emphasize */
               if (diff)
                 diff += 128; /* make sure it's visible */
@@ -132,6 +140,8 @@ buffer_diff_core (const guchar *buf_a,
                 diff = 255;
               diff_pixel |= diff << (channel*8);
             }
+
+          pixels_changed++;
 
           if ((diff_pixel & 0x00ffffff) == 0)
             {
@@ -144,12 +154,21 @@ buffer_diff_core (const guchar *buf_a,
       }
   }
 
+  if (max_diff_out != NULL)
+    *max_diff_out = max_diff;
+
+  if (pixels_changed_out != NULL)
+    *pixels_changed_out = pixels_changed;
+
   return diff;
 }
 
 cairo_surface_t *
 reftest_compare_surfaces (cairo_surface_t *surface1,
-                          cairo_surface_t *surface2)
+                          cairo_surface_t *surface2,
+                          guint           *max_diff_out,
+                          guint           *pixels_changed_out,
+                          guint           *pixels_out)
 {
   int w1, h1, w2, h2, w, h;
   cairo_surface_t *diff;
@@ -165,7 +184,10 @@ reftest_compare_surfaces (cairo_surface_t *surface1,
                            cairo_image_surface_get_stride (surface1),
                            cairo_image_surface_get_data (surface2),
                            cairo_image_surface_get_stride (surface2),
-                           w, h);
+                           w, h, max_diff_out, pixels_changed_out);
+
+  if (pixels_out != NULL)
+    *pixels_out = w * h;
 
   return diff;
 }
