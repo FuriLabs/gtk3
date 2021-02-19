@@ -39,7 +39,7 @@ GDBUS_CODEGEN = $(PREFIX)\bin\gdbus-codegen
 !endif
 
 # Please do not change anything beneath this line unless maintaining the NMake Makefiles
-GTK_VERSION = 3.24.24
+GTK_VERSION = 3.24.25
 
 GDK_PREPROCESSOR_FLAGS =	\
 	/DG_LOG_USE_STRUCTURED=1	\
@@ -56,6 +56,7 @@ GTK_PREPROCESSOR_FLAGS =	\
 	 /I$(PREFIX)\include\gdk-pixbuf-2.0	\
 	 /I$(PREFIX)\include\pango-1.0	\
 	 /I$(PREFIX)\include\atk-1.0	\
+	 /I$(PREFIX)\include\harfbuzz	\
 	 /I$(PREFIX)\include\cairo	\
 	 /I$(PREFIX)\include\gio-win32-2.0	\
 	 /I$(PREFIX)\include\glib-2.0	\

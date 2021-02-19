@@ -425,26 +425,7 @@ GTESTER = gtester -k		# in $PATH for non-GLIB packages
 GTESTER_REPORT = gtester-report		# in $PATH for non-GLIB packages
 
 # initialize variables for unconditional += appending
-EXTRA_DIST = README.txt gtk+.sln gtk3-prebuild.vcxproj \
-	gdk3-win32.vcxproj gdk3-win32.vcxproj.filters gdk-3.vcxproj \
-	gdk-3.vcxproj.filters gtk-3.vcxproj gtk-3.vcxproj.filters \
-	gtk-builder-tool.vcxproj gtk-builder-tool.vcxproj.filters \
-	gtk-encode-symbolic-svg.vcxproj \
-	gtk-encode-symbolic-svg.vcxproj.filters \
-	gtk-query-settings.vcxproj gtk-query-settings.vcxproj.filters \
-	gtk-update-icon-cache.vcxproj \
-	gtk-update-icon-cache.vcxproj.filters gtk3-demo.vcxproj \
-	gtk3-demo.vcxproj.filters gtk3-demo-application.vcxproj \
-	gtk3-demo-application.vcxproj.filters \
-	gtk3-icon-browser.vcxproj gtk3-icon-browser.vcxproj.filters \
-	gailutil-3.vcxproj gailutil-3.vcxproj.filters \
-	gtk3-install.vcxproj gtk3-install.vcxproj.filters \
-	gtk3-introspect.vcxproj broadwayd.vcxproj \
-	broadwayd.vcxproj.filters gdk3-broadway.vcxproj \
-	gdk3-broadway.vcxproj.filters gtk3-build-defines.props \
-	gtk3-copy-gdk-broadway.props gtk3-gen-srcs.props \
-	gtk3-ignore-broadway.props gtk3-install.props \
-	gtk3-version-paths.props
+EXTRA_DIST = $(EXTRA_DIST_COPIED) Directory.Build.props
 TEST_PROGS = 
 
 ### testing rules
@@ -473,7 +454,47 @@ XVFB_START = \
 	|| { echo "Gtk+Tests:ERROR: Failed to start Xvfb environment for X11 target tests."; exit 1; } \
 	&& DISPLAY=:$$XID && export DISPLAY
 
-DISTCLEANFILES = $(EXTRA_DIST)
+EXTRA_DIST_COPIED = \
+	README.txt	\
+	gtk+.sln	\
+	gtk3-prebuild.vcxproj	\
+	gdk3-win32.vcxproj	\
+	gdk3-win32.vcxproj.filters	\
+	gdk-3.vcxproj	\
+	gdk-3.vcxproj.filters	\
+	gtk-3.vcxproj	\
+	gtk-3.vcxproj.filters	\
+	gtk-builder-tool.vcxproj		\
+	gtk-builder-tool.vcxproj.filters	\
+	gtk-encode-symbolic-svg.vcxproj	\
+	gtk-encode-symbolic-svg.vcxproj.filters	\
+	gtk-query-settings.vcxproj		\
+	gtk-query-settings.vcxproj.filters	\
+	gtk-update-icon-cache.vcxproj		\
+	gtk-update-icon-cache.vcxproj.filters	\
+	gtk3-demo.vcxproj	\
+	gtk3-demo.vcxproj.filters	\
+	gtk3-demo-application.vcxproj	\
+	gtk3-demo-application.vcxproj.filters	\
+	gtk3-icon-browser.vcxproj	\
+	gtk3-icon-browser.vcxproj.filters	\
+	gailutil-3.vcxproj	\
+	gailutil-3.vcxproj.filters	\
+	gtk3-install.vcxproj	\
+	gtk3-install.vcxproj.filters	\
+	gtk3-introspect.vcxproj		\
+	broadwayd.vcxproj	\
+	broadwayd.vcxproj.filters	\
+	gdk3-broadway.vcxproj	\
+	gdk3-broadway.vcxproj.filters	\
+	gtk3-build-defines.props	\
+	gtk3-copy-gdk-broadway.props	\
+	gtk3-gen-srcs.props	\
+	gtk3-ignore-broadway.props	\
+	gtk3-install.props	\
+	gtk3-version-paths.props
+
+DISTCLEANFILES = $(EXTRA_DIST_COPIED)
 MSVC_VER = 15
 MSVC_VER_LONG = 15
 @MSVC_NO_TOOLSET_SET_TRUE@MSVC_TOOLSET = $(MSVC_VER)0
@@ -756,7 +777,7 @@ check-local: test-cwd
 %.props: $(top_builddir)/win32/vs10/Makefile
 	if test -e $(top_srcdir)/win32/vs10/$@; then \
 		sed 's/<VSVer>10<\/VSVer>/<VSVer>$(MSVC_VER)<\/VSVer>/g' < $(top_srcdir)/win32/vs10/$@ > $(top_builddir)/win32/vs$(MSVC_VER)/$@; \
-	else \
+	elif test -e $(top_builddir)/win32/vs10/$@; then \
 		sed 's/<VSVer>10<\/VSVer>/<VSVer>$(MSVC_VER)<\/VSVer>/g' < $(top_builddir)/win32/vs10/$@ > $(top_builddir)/win32/vs$(MSVC_VER)/$@; \
 	fi
 
@@ -766,6 +787,9 @@ check-local: test-cwd
 	else \
 		cp $(top_builddir)/win32/vs10/$@ $(top_builddir)/win32/vs$(MSVC_VER)/$@; \
 	fi
+
+Directory.Build.props:
+	@true
 
 -include $(top_srcdir)/git.mk
 

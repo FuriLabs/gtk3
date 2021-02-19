@@ -1,3 +1,62 @@
+gtk+3.0 (3.24.25-1ubuntu1) UNRELEASED; urgency=medium
+
+  * Merge with Debian. Remaining changes:
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0.symbols
+    + debian/control.in and debian/tests/control (installed-tests):
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + debian/control.in: Build-Depend on dh-sequence-translations
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 19 Feb 2021 11:35:15 +0100
+
+gtk+3.0 (3.24.25-1) experimental; urgency=medium
+
+  * New upstream release
+    - Support for cursor aspect ratio setting
+    - Broadway fixes
+    - Avoid crashes with tablet input in Wayland
+    - Add API for better support for Wayland subsurfaces
+    - Make the Inspector available in non-debug builds
+    - Make scrollbars larger
+    - Disable shadows on maximized, fullscreen and tiled windows
+    - Support Avahi-discovered printers better
+    - Show preedit for compose sequences
+    - Support long compose sequences
+    - Support compose sequences producing multiple characters
+    - Translation updates
+  * Upload to experimental for now, to assess whether this is desirable
+    for bullseye
+
+ -- Simon McVittie <smcv@debian.org>  Thu, 18 Feb 2021 16:34:08 +0000
+
+gtk+3.0 (3.24.24-2) unstable; urgency=medium
+
+  * d/watch: Cope with "+" being escaped to "%2B" in links to tarballs
+  * Increase dependency on librsvg2-common from Suggests to Recommends.
+    This is not a hard dependency, but should be installed in nearly all
+    cases. Increasingly many icons are provided in SVG format, so
+    applications will appear broken if the SVG pixbuf loader is not
+    installed. See #980396 for more information.
+    adwaita-icon-theme already Recommends librsvg2-common, but people who
+    routinely do not install recommended packages will get a better hint
+    about how much will be broken by its removal if GTK also recommends it.
+
+ -- Simon McVittie <smcv@debian.org>  Thu, 18 Feb 2021 13:49:58 +0000
+
 gtk+3.0 (3.24.24-1ubuntu1) hirsute; urgency=medium
 
   * Merge with Debian. Remaining changes:

@@ -76,9 +76,9 @@ Depends: adwaita-icon-theme,
          ${shlibs:Depends},
          @COMMON_PKG@ (>= ${source:Version})
 Provides: @GTK_BINVER_DEP@
-Recommends: @BIN_PKG@
+Recommends: @BIN_PKG@,
+            librsvg2-common
 Suggests: gvfs,
-          librsvg2-common
 Description: GTK graphical user interface library
  GTK is a multi-platform toolkit for creating graphical user
  interfaces. Offering a complete set of widgets, GTK is suitable

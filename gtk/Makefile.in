@@ -1872,11 +1872,12 @@ EXTRA_DIST = $(gtk_all_private_h_sources) $(gtk_extra_sources) \
 	gtktypebuiltins.c.template gtktypebuiltins.h.template \
 	gtkprivatetypebuiltins.c.template \
 	gtkprivatetypebuiltins.h.template meson.build \
-	gen-gtk-gresources-xml.py gen-rc.py gentypefuncs.py \
-	a11y/meson.build deprecated/meson.build inspector/meson.build \
-	theme/Adwaita/meson.build theme/Adwaita/parse-sass.sh \
-	theme/Adwaita/render-assets.sh theme/HighContrast/assets.svg \
-	theme/HighContrast/assets.txt theme/HighContrast/meson.build \
+	gen-gtk-gresources-xml.py gen-rc.py generate-uac-manifest.py \
+	gentypefuncs.py a11y/meson.build deprecated/meson.build \
+	inspector/meson.build theme/Adwaita/meson.build \
+	theme/Adwaita/parse-sass.sh theme/Adwaita/render-assets.sh \
+	theme/HighContrast/assets.svg theme/HighContrast/assets.txt \
+	theme/HighContrast/meson.build \
 	theme/HighContrast/parse-sass.sh \
 	theme/HighContrast/render-assets.sh
 TEST_PROGS = 
@@ -2583,14 +2584,13 @@ gtk_private_h_sources = $(inspector_h_sources) \
 	gtkheaderbarprivate.h gtkhslaprivate.h gtkiconcache.h \
 	gtkiconhelperprivate.h gtkiconprivate.h gtkiconthemeprivate.h \
 	gtkiconviewprivate.h gtkimagedefinitionprivate.h \
-	gtkimageprivate.h gtkimcontextsimpleprivate.h \
-	gtkimmoduleprivate.h gtkimcontextsimpleseqs.h gtkintl.h \
-	gtkkeyhash.h gtkkineticscrolling.h gtklabelprivate.h \
-	gtklockbuttonprivate.h gtkmagnifierprivate.h \
-	gtkmenubuttonprivate.h gtkmenuprivate.h gtkmenuitemprivate.h \
-	gtkmenusectionbox.h gtkmenushellprivate.h gtkmenutracker.h \
-	gtkmenutrackeritem.h gtkmnemonichash.h gtkmodelmenuitem.h \
-	gtkmodifierstyle.h gtkmodulesprivate.h \
+	gtkimageprivate.h gtkimmoduleprivate.h \
+	gtkimcontextsimpleseqs.h gtkintl.h gtkkeyhash.h \
+	gtkkineticscrolling.h gtklabelprivate.h gtklockbuttonprivate.h \
+	gtkmagnifierprivate.h gtkmenubuttonprivate.h gtkmenuprivate.h \
+	gtkmenuitemprivate.h gtkmenusectionbox.h gtkmenushellprivate.h \
+	gtkmenutracker.h gtkmenutrackeritem.h gtkmnemonichash.h \
+	gtkmodelmenuitem.h gtkmodifierstyle.h gtkmodulesprivate.h \
 	gtkmountoperationprivate.h gtknativedialogprivate.h \
 	gtkorientableprivate.h gtkpango.h gtkpathbar.h \
 	gtkplacessidebarprivate.h gtkplacesviewprivate.h \
@@ -9904,27 +9904,10 @@ distclean-local:
 
 @HAVE_INTROSPECTION_TRUE@Gtk-3.0.gir: $(INTROSPECTION_SCANNER) libgtk-3.la $(top_builddir)/gdk/Gdk-3.0.gir Makefile
 
-@OS_WIN32_TRUE@$(GTK_UPDATE_ICON_CACHE_MANIFEST):
-@OS_WIN32_TRUE@	(echo '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' ; \
-@OS_WIN32_TRUE@	 echo '<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">' ; \
-@OS_WIN32_TRUE@	 echo '  <assemblyIdentity version="1.0.0.0"' ; \
-@OS_WIN32_TRUE@	 echo '     processorArchitecture="'$(EXE_MANIFEST_ARCHITECTURE)'"' ; \
-@OS_WIN32_TRUE@	 echo '     name="gtk-update-icon-cache.exe"' ; \
-@OS_WIN32_TRUE@	 echo '     type="win32"/>' ; \
-@OS_WIN32_TRUE@	 echo '  <!-- Identify the application security requirements. -->' ; \
-@OS_WIN32_TRUE@	 echo '  <trustInfo xmlns="urn:schemas-microsoft-com:asm.v3">' ; \
-@OS_WIN32_TRUE@	 echo '    <security>' ; \
-@OS_WIN32_TRUE@	 echo '      <requestedPrivileges>' ; \
-@OS_WIN32_TRUE@	 echo '        <requestedExecutionLevel' ; \
-@OS_WIN32_TRUE@	 echo '          level="asInvoker"' ; \
-@OS_WIN32_TRUE@	 echo '          uiAccess="false"/>' ; \
-@OS_WIN32_TRUE@	 echo '        </requestedPrivileges>' ; \
-@OS_WIN32_TRUE@	 echo '       </security>' ; \
-@OS_WIN32_TRUE@	 echo '  </trustInfo>' ; \
-@OS_WIN32_TRUE@	 echo '</assembly>' ) >$@
+@OS_WIN32_TRUE@$(GTK_UPDATE_ICON_CACHE_MANIFEST): Makefile generate-uac-manifest.py
+@OS_WIN32_TRUE@	$(PYTHON) $(srcdir)/generate-uac-manifest.py -p=gtk3 -n=gtk-update-icon-cache --pkg-version=$(GTK_VERSION) --output-dir=$(builddir)
 
-@OS_WIN32_TRUE@$(GTK_UPDATE_ICON_CACHE_RC):
-@OS_WIN32_TRUE@	(echo -e '#include <winuser.h>\nCREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST '$(GTK_UPDATE_ICON_CACHE_MANIFEST)) >$@
+@OS_WIN32_TRUE@$(GTK_UPDATE_ICON_CACHE_RC): $(GTK_UPDATE_ICON_CACHE_MANIFEST)
 
 @OS_WIN32_TRUE@$(GTK_UPDATE_ICON_CACHE_MANIFEST_OBJECT): $(GTK_UPDATE_ICON_CACHE_RC) $(GTK_UPDATE_ICON_CACHE_MANIFEST)
 @OS_WIN32_TRUE@	$(WINDRES) --input $< --output $@ --output-format=coff
