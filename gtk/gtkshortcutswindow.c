@@ -871,7 +871,7 @@ gtk_shortcuts_window_init (GtkShortcutsWindow *self)
   GtkWidget *empty;
   PangoAttrList *attributes;
 
-  gtk_window_set_resizable (GTK_WINDOW (self), FALSE);
+  gtk_window_set_default_size (GTK_WINDOW (self), -1, 600);
   gtk_window_set_type_hint (GTK_WINDOW (self), GDK_WINDOW_TYPE_HINT_DIALOG);
 
   g_signal_connect (self, "key-press-event",
@@ -952,6 +952,7 @@ gtk_shortcuts_window_init (GtkShortcutsWindow *self)
 
   priv->menu_label = g_object_new (GTK_TYPE_LABEL,
                                    "visible", TRUE,
+                                   "ellipsize", PANGO_ELLIPSIZE_END,
                                    NULL);
   gtk_container_add (GTK_CONTAINER (menu_box), GTK_WIDGET (priv->menu_label));
 
@@ -986,7 +987,7 @@ gtk_shortcuts_window_init (GtkShortcutsWindow *self)
   gtk_container_add (GTK_CONTAINER (priv->search_bar), GTK_WIDGET (priv->search_entry));
   g_object_set (priv->search_entry,
                 "placeholder-text", _("Search Shortcuts"),
-                "width-chars", 40,
+                "width-chars", 30,
                 NULL);
   g_signal_connect_object (priv->search_entry,
                            "search-changed",
