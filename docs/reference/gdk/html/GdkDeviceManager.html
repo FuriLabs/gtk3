@@ -8,7 +8,7 @@
 <link rel="up" href="rn02.html" title="Deprecated">
 <link rel="prev" href="gdk3-Colors.html" title="Colors">
 <link rel="next" href="api-index-full.html" title="Index of all symbols">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -209,7 +209,7 @@ be “floating”, which means they are not attached to any virtual device.</p>
 14
 15
 16</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">carlos</span><span class="err">@</span><span class="nl">sacarino</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">xinput</span> <span class="n">list</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">carlos</span><span class="err">@</span><span class="nl">sacarino</span><span class="p">:</span><span class="o">~</span><span class="n">$</span> <span class="n">xinput</span> <span class="n">list</span>
 <span class="err">⎡</span> <span class="n">Virtual</span> <span class="n">core</span> <span class="n">pointer</span>                          <span class="n">id</span><span class="o">=</span><span class="mi">2</span>    <span class="p">[</span><span class="n">master</span> <span class="n">pointer</span>  <span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
 <span class="err">⎜</span>   <span class="err">↳</span> <span class="n">Virtual</span> <span class="n">core</span> <span class="n">XTEST</span> <span class="n">pointer</span>                <span class="n">id</span><span class="o">=</span><span class="mi">4</span>    <span class="p">[</span><span class="n">slave</span>  <span class="n">pointer</span>  <span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
 <span class="err">⎜</span>   <span class="err">↳</span> <span class="n">Wacom</span> <span class="n">ISDv4</span> <span class="n">E6</span> <span class="n">Pen</span> <span class="n">stylus</span>                 <span class="n">id</span><span class="o">=</span><span class="mi">10</span>   <span class="p">[</span><span class="n">slave</span>  <span class="n">pointer</span>  <span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
@@ -278,8 +278,8 @@ written code.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdk_disable_multidevice (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
 <p>Disables multidevice support in GDK. This call must happen prior
-to <a class="link" href="GdkDisplay.html#gdk-display-open" title="gdk_display_open ()"><code class="function">gdk_display_open()</code></a>, <a href="https://developer.gnome.org/gtk4/gtk4-General.html#gtk-init"><code class="function">gtk_init()</code></a>, <code class="function">gtk_init_with_args()</code> or
-<a href="https://developer.gnome.org/gtk4/gtk4-General.html#gtk-init-check"><code class="function">gtk_init_check()</code></a> in order to take effect.</p>
+to <a class="link" href="GdkDisplay.html#gdk-display-open" title="gdk_display_open ()"><code class="function">gdk_display_open()</code></a>, <code class="function">gtk_init()</code>, <code class="function">gtk_init_with_args()</code> or
+<code class="function">gtk_init_check()</code> in order to take effect.</p>
 <p>Most common GTK+ applications won’t ever need to call this. Only
 applications that do mixed GDK/Xlib calls could want to disable
 multidevice support if such Xlib code deals with input devices in
@@ -314,7 +314,7 @@ gdk_device_manager_get_display (<em class="parameter"><code><a class="link" href
 <em class="parameter"><code>device_manager</code></em>
 is associated to, or <code class="literal">NULL</code>. This memory is
 owned by GDK and must not be freed or unreferenced. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
 </div>
@@ -361,7 +361,7 @@ gdk_device_manager_list_devices (<em class="parameter"><code><a class="link" hre
 <span class="type">GdkDevices</span>. The returned list must be
 freed with <code class="function">g_list_free()</code>. The list elements are owned by
 GTK+ and must not be freed or unreffed. </p>
-<p><span class="annotation">[<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> Gdk.Device]</span></p>
+<p><span class="annotation">[<acronym title="The caller owns the data container, but not the data inside it."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> Gdk.Device]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
 </div>
@@ -398,7 +398,7 @@ and there aren’t other means to get a meaningful <a class="link" href="GdkDevi
 <a name="gdk-device-manager-get-client-pointer.returns"></a><h4>Returns</h4>
 <p>The client pointer. This memory is
 owned by GDK and must not be freed or unreferenced. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
 </div>
@@ -551,6 +551,6 @@ is unplugged.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

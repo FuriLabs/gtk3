@@ -8,7 +8,7 @@
 <link rel="up" href="reference.html" title="API Reference">
 <link rel="prev" href="GdkGLContext.html" title="GdkGLContext">
 <link rel="next" href="gdk3-Event-Structures.html" title="Event Structures">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -361,7 +361,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="returnvalue">GdkDeviceTool</span></a> *
+<span class="returnvalue">GdkDeviceTool</span> *
 </td>
 <td class="function_name">
 <a class="link" href="gdk3-Events.html#gdk-event-get-device-tool" title="gdk_event_get_device_tool ()">gdk_event_get_device_tool</a> <span class="c_punctuation">()</span>
@@ -1141,7 +1141,7 @@ gdk_event_get_window (<em class="parameter"><code>const <a class="link" href="gd
 <div class="refsect3">
 <a name="gdk-event-get-window.returns"></a><h4>Returns</h4>
 <p>The <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> associated with the event. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-10.html#api-index-3.10">3.10</a></p>
 </div>
@@ -1199,7 +1199,7 @@ to which the event belongs. Otherwise, return <code class="literal">NULL</code>.
 <div class="refsect3">
 <a name="gdk-event-get-event-sequence.returns"></a><h4>Returns</h4>
 <p>the event sequence that the event belongs to. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-4.html#api-index-3.4">3.4</a></p>
 </div>
@@ -1455,7 +1455,7 @@ gdk_event_get_seat (<em class="parameter"><code>const <a class="link" href="gdk3
 <div class="refsect3">
 <a name="gdk-event-get-seat.returns"></a><h4>Returns</h4>
 <p>The <a class="link" href="GdkSeat.html" title="GdkSeat"><span class="type">GdkSeat</span></a> of this event. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-20.html#api-index-3.20">3.20</a></p>
 </div>
@@ -1676,7 +1676,7 @@ to which <code class="literal">event-&gt;motion.x_root</code> and
 <div class="refsect3">
 <a name="gdk-event-get-screen.returns"></a><h4>Returns</h4>
 <p>the screen for the event. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.2</p>
 </div>
@@ -1705,7 +1705,7 @@ it, else it will return <code class="literal">NULL</code>.</p>
 <div class="refsect3">
 <a name="gdk-event-get-device.returns"></a><h4>Returns</h4>
 <p>a <a class="link" href="GdkDevice.html" title="GdkDevice"><span class="type">GdkDevice</span></a>, or <code class="literal">NULL</code>. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
 </div>
@@ -1775,7 +1775,7 @@ return <code class="literal">NULL</code>.</p>
 <div class="refsect3">
 <a name="gdk-event-get-source-device.returns"></a><h4>Returns</h4>
 <p>a <a class="link" href="GdkDevice.html" title="GdkDevice"><span class="type">GdkDevice</span></a>, or <code class="literal">NULL</code>. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
 </div>
@@ -1817,13 +1817,13 @@ for instance by <a class="link" href="gdk3-Events.html#gdk-event-copy" title="gd
 <hr>
 <div class="refsect2">
 <a name="gdk-event-get-device-tool"></a><h3>gdk_event_get_device_tool ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="returnvalue">GdkDeviceTool</span></a> *
+<pre class="programlisting"><span class="returnvalue">GdkDeviceTool</span> *
 gdk_event_get_device_tool (<em class="parameter"><code>const <a class="link" href="gdk3-Event-Structures.html#GdkEvent" title="union GdkEvent"><span class="type">GdkEvent</span></a> *event</code></em>);</pre>
 <p>If the event was generated by a device that supports
 different tools (eg. a tablet), this function will
-return a <a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="type">GdkDeviceTool</span></a> representing the tool that
+return a <span class="type">GdkDeviceTool</span> representing the tool that
 caused the event. Otherwise, <code class="literal">NULL</code> will be returned.</p>
-<p>Note: the <a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="type">GdkDeviceTool</span></a>&lt;!-- --&gt;s will be constant during
+<p>Note: the <span class="type">GdkDeviceTool</span>&lt;!-- --&gt;s will be constant during
 the application lifetime, if settings must be stored
 persistently across runs, see <a class="link" href="GdkDevice.html#gdk-device-tool-get-serial" title="gdk_device_tool_get_serial ()"><code class="function">gdk_device_tool_get_serial()</code></a></p>
 <div class="refsect3">
@@ -1844,7 +1844,7 @@ persistently across runs, see <a class="link" href="GdkDevice.html#gdk-device-to
 <div class="refsect3">
 <a name="gdk-event-get-device-tool.returns"></a><h4>Returns</h4>
 <p>The current device tool, or <code class="literal">NULL</code>. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-22.html#api-index-3.22">3.22</a></p>
 </div>
@@ -1853,7 +1853,7 @@ persistently across runs, see <a class="link" href="GdkDevice.html#gdk-device-to
 <a name="gdk-event-set-device-tool"></a><h3>gdk_event_set_device_tool ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdk_event_set_device_tool (<em class="parameter"><code><a class="link" href="gdk3-Event-Structures.html#GdkEvent" title="union GdkEvent"><span class="type">GdkEvent</span></a> *event</code></em>,
-                           <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="type">GdkDeviceTool</span></a> *tool</code></em>);</pre>
+                           <em class="parameter"><code><span class="type">GdkDeviceTool</span> *tool</code></em>);</pre>
 <p>Sets the device tool for this event, should be rarely used.</p>
 <div class="refsect3">
 <a name="gdk-event-set-device-tool.parameters"></a><h4>Parameters</h4>
@@ -2627,6 +2627,6 @@ left button in a left-handed setup.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

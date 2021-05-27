@@ -8,7 +8,7 @@
 <link rel="up" href="WindowWidgets.html" title="Windows">
 <link rel="prev" href="GtkInvisible.html" title="GtkInvisible">
 <link rel="next" href="GtkWindowGroup.html" title="GtkWindowGroup">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -59,7 +59,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="returnvalue">GdkPixbuf</span></a> *
+<span class="returnvalue">GdkPixbuf</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkOffscreenWindow.html#gtk-offscreen-window-get-pixbuf" title="gtk_offscreen_window_get_pixbuf ()">gtk_offscreen_window_get_pixbuf</a> <span class="c_punctuation">()</span>
@@ -118,7 +118,7 @@ snapshots of a full window with it since you cannot pack a toplevel
 widget in another toplevel.</p>
 <p>The idea is to take a widget and manually set the state of it,
 add it to a GtkOffscreenWindow and then retrieve the snapshot
-as a <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-surface-t.html#cairo-surface-t"><span class="type">cairo_surface_t</span></a> or <a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a>.</p>
+as a <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-surface-t.html#cairo-surface-t"><span class="type">cairo_surface_t</span></a> or <span class="type">GdkPixbuf</span>.</p>
 <p>GtkOffscreenWindow derives from <a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> only as an implementation
 detail.  Applications should not use any API specific to <a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a>
 to operate on this object.  It should be treated as a <a class="link" href="GtkBin.html" title="GtkBin"><span class="type">GtkBin</span></a> that
@@ -167,17 +167,17 @@ resizes then you should add a reference to it.</p>
 <a name="gtk-offscreen-window-get-surface.returns"></a><h4>Returns</h4>
 <p>A <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-surface-t.html#cairo-surface-t"><span class="type">cairo_surface_t</span></a> pointer to the offscreen
 surface, or <code class="literal">NULL</code>. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.20</p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gtk-offscreen-window-get-pixbuf"></a><h3>gtk_offscreen_window_get_pixbuf ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="returnvalue">GdkPixbuf</span></a> *
+<pre class="programlisting"><span class="returnvalue">GdkPixbuf</span> *
 gtk_offscreen_window_get_pixbuf (<em class="parameter"><code><a class="link" href="GtkOffscreenWindow.html" title="GtkOffscreenWindow"><span class="type">GtkOffscreenWindow</span></a> *offscreen</code></em>);</pre>
 <p>Retrieves a snapshot of the contained widget in the form of
-a <a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a>.  This is a new pixbuf with a reference count of 1,
+a <span class="type">GdkPixbuf</span>.  This is a new pixbuf with a reference count of 1,
 and the application should unreference it once it is no longer
 needed.</p>
 <div class="refsect3">
@@ -197,8 +197,8 @@ needed.</p>
 </div>
 <div class="refsect3">
 <a name="gtk-offscreen-window-get-pixbuf.returns"></a><h4>Returns</h4>
-<p>A <a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a> pointer, or <code class="literal">NULL</code>. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p>A <span class="type">GdkPixbuf</span> pointer, or <code class="literal">NULL</code>. </p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.20</p>
 </div>
@@ -231,6 +231,6 @@ needed.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

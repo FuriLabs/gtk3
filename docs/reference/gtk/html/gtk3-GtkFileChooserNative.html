@@ -8,7 +8,7 @@
 <link rel="up" href="SelectorWidgets.html" title="Selector Widgets and Dialogs">
 <link rel="prev" href="GtkFileChooserButton.html" title="GtkFileChooserButton">
 <link rel="next" href="GtkFileChooserDialog.html" title="GtkFileChooserDialog">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -41,7 +41,7 @@
 <tbody>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/gtk4/GtkFileChooserNative.html#GtkFileChooserNative-struct"><span class="returnvalue">GtkFileChooserNative</span></a> *
+<span class="returnvalue">GtkFileChooserNative</span> *
 </td>
 <td class="function_name">
 <a class="link" href="gtk3-GtkFileChooserNative.html#gtk-file-chooser-native-new" title="gtk_file_chooser_native_new ()">gtk_file_chooser_native_new</a> <span class="c_punctuation">()</span>
@@ -87,18 +87,18 @@
 </div>
 <div class="refsect1">
 <a name="gtk3-GtkFileChooserNative.description"></a><h2>Description</h2>
-<p><a href="https://developer.gnome.org/gtk4/GtkFileChooserNative.html#GtkFileChooserNative-struct"><span class="type">GtkFileChooserNative</span></a> is an abstraction of a dialog box suitable
+<p><span class="type">GtkFileChooserNative</span> is an abstraction of a dialog box suitable
 for use with “File/Open” or “File/Save as” commands. By default, this
 just uses a <a class="link" href="GtkFileChooserDialog.html" title="GtkFileChooserDialog"><span class="type">GtkFileChooserDialog</span></a> to implement the actual dialog.
 However, on certain platforms, such as Windows and macOS, the native platform
 file chooser is used instead. When the application is running in a
 sandboxed environment without direct filesystem access (such as Flatpak),
-<a href="https://developer.gnome.org/gtk4/GtkFileChooserNative.html#GtkFileChooserNative-struct"><span class="type">GtkFileChooserNative</span></a> may call the proper APIs (portals) to let the user
+<span class="type">GtkFileChooserNative</span> may call the proper APIs (portals) to let the user
 choose a file and make it available to the application.</p>
-<p>While the API of <a href="https://developer.gnome.org/gtk4/GtkFileChooserNative.html#GtkFileChooserNative-struct"><span class="type">GtkFileChooserNative</span></a> closely mirrors <a class="link" href="GtkFileChooserDialog.html" title="GtkFileChooserDialog"><span class="type">GtkFileChooserDialog</span></a>, the main
+<p>While the API of <span class="type">GtkFileChooserNative</span> closely mirrors <a class="link" href="GtkFileChooserDialog.html" title="GtkFileChooserDialog"><span class="type">GtkFileChooserDialog</span></a>, the main
 difference is that there is no access to any <a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> or <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> for the dialog.
 This is required, as there may not be one in the case of a platform native dialog.
-Showing, hiding and running the dialog is handled by the <a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a> functions.</p>
+Showing, hiding and running the dialog is handled by the <span class="type">GtkNativeDialog</span> functions.</p>
 <div class="refsect3">
 <a name="gtkfilechoosernative-typical-usage"></a><h4>Typical usage</h4>
 <p>In the simplest of cases, you can the following code to use
@@ -234,7 +234,7 @@ Showing, hiding and running the dialog is handled by the <a href="https://develo
 </div>
 <div class="refsect3">
 <a name="gtkfilechooserdialognative-responses"></a><h4>Response Codes</h4>
-<p><a href="https://developer.gnome.org/gtk4/GtkFileChooserNative.html#GtkFileChooserNative-struct"><span class="type">GtkFileChooserNative</span></a> inherits from <a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a>, which means it
+<p><span class="type">GtkFileChooserNative</span> inherits from <span class="type">GtkNativeDialog</span>, which means it
 will return <a class="link" href="GtkDialog.html#GTK-RESPONSE-ACCEPT:CAPS"><span class="type">GTK_RESPONSE_ACCEPT</span></a> if the user accepted, and
 <a class="link" href="GtkDialog.html#GTK-RESPONSE-CANCEL:CAPS"><span class="type">GTK_RESPONSE_CANCEL</span></a> if he pressed cancel. It can also return
 <a class="link" href="GtkDialog.html#GTK-RESPONSE-DELETE-EVENT:CAPS"><span class="type">GTK_RESPONSE_DELETE_EVENT</span></a> if the window was unexpectedly closed.</p>
@@ -243,7 +243,7 @@ will return <a class="link" href="GtkDialog.html#GTK-RESPONSE-ACCEPT:CAPS"><span
 <a name="gtkfilechooserdialognative-differences"></a><h4>Differences from <a class="link" href="GtkFileChooserDialog.html" title="GtkFileChooserDialog"><span class="type">GtkFileChooserDialog</span></a>
 </h4>
 <p>There are a few things in the GtkFileChooser API that are not
-possible to use with <a href="https://developer.gnome.org/gtk4/GtkFileChooserNative.html#GtkFileChooserNative-struct"><span class="type">GtkFileChooserNative</span></a>, as such use would
+possible to use with <span class="type">GtkFileChooserNative</span>, as such use would
 prohibit the use of a native dialog.</p>
 <p>There is no support for the signals that are emitted when the user
 navigates in the dialog, including:</p>
@@ -308,13 +308,13 @@ to set the NSSavePanel message instance property.</p></li>
 <a name="gtk3-GtkFileChooserNative.functions_details"></a><h2>Functions</h2>
 <div class="refsect2">
 <a name="gtk-file-chooser-native-new"></a><h3>gtk_file_chooser_native_new ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/gtk4/GtkFileChooserNative.html#GtkFileChooserNative-struct"><span class="returnvalue">GtkFileChooserNative</span></a> *
+<pre class="programlisting"><span class="returnvalue">GtkFileChooserNative</span> *
 gtk_file_chooser_native_new (<em class="parameter"><code>const <span class="type">gchar</span> *title</code></em>,
                              <em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *parent</code></em>,
                              <em class="parameter"><code><a class="link" href="GtkFileChooser.html#GtkFileChooserAction" title="enum GtkFileChooserAction"><span class="type">GtkFileChooserAction</span></a> action</code></em>,
                              <em class="parameter"><code>const <span class="type">gchar</span> *accept_label</code></em>,
                              <em class="parameter"><code>const <span class="type">gchar</span> *cancel_label</code></em>);</pre>
-<p>Creates a new <a href="https://developer.gnome.org/gtk4/GtkFileChooserNative.html#GtkFileChooserNative-struct"><span class="type">GtkFileChooserNative</span></a>.</p>
+<p>Creates a new <span class="type">GtkFileChooserNative</span>.</p>
 <div class="refsect3">
 <a name="gtk-file-chooser-native-new.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -354,7 +354,7 @@ gtk_file_chooser_native_new (<em class="parameter"><code>const <span class="type
 </div>
 <div class="refsect3">
 <a name="gtk-file-chooser-native-new.returns"></a><h4>Returns</h4>
-<p> a new <a href="https://developer.gnome.org/gtk4/GtkFileChooserNative.html#GtkFileChooserNative-struct"><span class="type">GtkFileChooserNative</span></a></p>
+<p> a new <span class="type">GtkFileChooserNative</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-20.html#api-index-3.20">3.20</a></p>
 </div>
@@ -363,7 +363,7 @@ gtk_file_chooser_native_new (<em class="parameter"><code>const <span class="type
 <a name="gtk-file-chooser-native-get-accept-label"></a><h3>gtk_file_chooser_native_get_accept_label ()</h3>
 <pre class="programlisting">const <span class="returnvalue">char</span> *
 gtk_file_chooser_native_get_accept_label
-                               (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkFileChooserNative.html#GtkFileChooserNative-struct"><span class="type">GtkFileChooserNative</span></a> *self</code></em>);</pre>
+                               (<em class="parameter"><code><span class="type">GtkFileChooserNative</span> *self</code></em>);</pre>
 <p>Retrieves the custom label text for the accept button.</p>
 <div class="refsect3">
 <a name="gtk-file-chooser-native-get-accept-label.parameters"></a><h4>Parameters</h4>
@@ -393,7 +393,7 @@ is owned by GTK+ and should not be modified or freed. </p>
 <a name="gtk-file-chooser-native-set-accept-label"></a><h3>gtk_file_chooser_native_set_accept_label ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_file_chooser_native_set_accept_label
-                               (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkFileChooserNative.html#GtkFileChooserNative-struct"><span class="type">GtkFileChooserNative</span></a> *self</code></em>,
+                               (<em class="parameter"><code><span class="type">GtkFileChooserNative</span> *self</code></em>,
                                 <em class="parameter"><code>const <span class="type">char</span> *accept_label</code></em>);</pre>
 <p>Sets the custom label text for the accept button.</p>
 <p>If characters in <em class="parameter"><code>label</code></em>
@@ -431,7 +431,7 @@ Pressing Alt and that key activates the button.</p>
 <a name="gtk-file-chooser-native-get-cancel-label"></a><h3>gtk_file_chooser_native_get_cancel_label ()</h3>
 <pre class="programlisting">const <span class="returnvalue">char</span> *
 gtk_file_chooser_native_get_cancel_label
-                               (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkFileChooserNative.html#GtkFileChooserNative-struct"><span class="type">GtkFileChooserNative</span></a> *self</code></em>);</pre>
+                               (<em class="parameter"><code><span class="type">GtkFileChooserNative</span> *self</code></em>);</pre>
 <p>Retrieves the custom label text for the cancel button.</p>
 <div class="refsect3">
 <a name="gtk-file-chooser-native-get-cancel-label.parameters"></a><h4>Parameters</h4>
@@ -461,7 +461,7 @@ is owned by GTK+ and should not be modified or freed. </p>
 <a name="gtk-file-chooser-native-set-cancel-label"></a><h3>gtk_file_chooser_native_set_cancel_label ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_file_chooser_native_set_cancel_label
-                               (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkFileChooserNative.html#GtkFileChooserNative-struct"><span class="type">GtkFileChooserNative</span></a> *self</code></em>,
+                               (<em class="parameter"><code><span class="type">GtkFileChooserNative</span> *self</code></em>,
                                 <em class="parameter"><code>const <span class="type">char</span> *cancel_label</code></em>);</pre>
 <p>Sets the custom label text for the cancel button.</p>
 <p>If characters in <em class="parameter"><code>label</code></em>
@@ -497,10 +497,10 @@ Pressing Alt and that key activates the button.</p>
 </div>
 <div class="refsect1">
 <a name="gtk3-GtkFileChooserNative.see-also"></a><h2>See Also</h2>
-<p><a class="link" href="GtkFileChooser.html" title="GtkFileChooser"><span class="type">GtkFileChooser</span></a>, <a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a>, <a class="link" href="GtkFileChooserDialog.html" title="GtkFileChooserDialog"><span class="type">GtkFileChooserDialog</span></a></p>
+<p><a class="link" href="GtkFileChooser.html" title="GtkFileChooser"><span class="type">GtkFileChooser</span></a>, <span class="type">GtkNativeDialog</span>, <a class="link" href="GtkFileChooserDialog.html" title="GtkFileChooserDialog"><span class="type">GtkFileChooserDialog</span></a></p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

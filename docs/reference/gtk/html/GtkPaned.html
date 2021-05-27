@@ -8,7 +8,7 @@
 <link rel="up" href="LayoutContainers.html" title="Layout Containers">
 <link rel="prev" href="GtkButtonBox.html" title="GtkButtonBox">
 <link rel="next" href="GtkLayout.html" title="GtkLayout">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -119,7 +119,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkWindow-struct"><span class="returnvalue">GdkWindow</span></a> *
+<span class="returnvalue">GdkWindow</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkPaned.html#gtk-paned-get-handle-window" title="gtk_paned_get_handle_window ()">gtk_paned_get_handle_window</a> <span class="c_punctuation">()</span>
@@ -380,13 +380,13 @@ regardless of text direction.</p>
 <span class="n">gtk_frame_set_shadow_type</span> <span class="p">(</span><span class="n">GTK_FRAME</span> <span class="p">(</span><span class="n">frame1</span><span class="p">),</span> <span class="n">GTK_SHADOW_IN</span><span class="p">);</span>
 <span class="n">gtk_frame_set_shadow_type</span> <span class="p">(</span><span class="n">GTK_FRAME</span> <span class="p">(</span><span class="n">frame2</span><span class="p">),</span> <span class="n">GTK_SHADOW_IN</span><span class="p">);</span>
 
-<span class="n">gtk_widget_set_size_request</span> <span class="p">(</span><span class="n">hpaned</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">gtk_widget_set_size_request</span> <span class="p">(</span><span class="n">hpaned</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">-1</span><span class="p">);</span>
 
 <span class="n">gtk_paned_pack1</span> <span class="p">(</span><span class="n">GTK_PANED</span> <span class="p">(</span><span class="n">hpaned</span><span class="p">),</span> <span class="n">frame1</span><span class="p">,</span> <span class="n">TRUE</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">);</span>
-<span class="n">gtk_widget_set_size_request</span> <span class="p">(</span><span class="n">frame1</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">gtk_widget_set_size_request</span> <span class="p">(</span><span class="n">frame1</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">-1</span><span class="p">);</span>
 
 <span class="n">gtk_paned_pack2</span> <span class="p">(</span><span class="n">GTK_PANED</span> <span class="p">(</span><span class="n">hpaned</span><span class="p">),</span> <span class="n">frame2</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">);</span>
-<span class="n">gtk_widget_set_size_request</span> <span class="p">(</span><span class="n">frame2</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span></pre></td>
+<span class="n">gtk_widget_set_size_request</span> <span class="p">(</span><span class="n">frame2</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">-1</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -596,7 +596,7 @@ gtk_paned_get_child1 (<em class="parameter"><code><a class="link" href="GtkPaned
 <div class="refsect3">
 <a name="gtk-paned-get-child1.returns"></a><h4>Returns</h4>
 <p>first child, or <code class="literal">NULL</code> if it is not set. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.4</p>
 </div>
@@ -624,7 +624,7 @@ gtk_paned_get_child2 (<em class="parameter"><code><a class="link" href="GtkPaned
 <div class="refsect3">
 <a name="gtk-paned-get-child2.returns"></a><h4>Returns</h4>
 <p>second child, or <code class="literal">NULL</code> if it is not set. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.4</p>
 </div>
@@ -688,9 +688,9 @@ gtk_paned_get_position (<em class="parameter"><code><a class="link" href="GtkPan
 <hr>
 <div class="refsect2">
 <a name="gtk-paned-get-handle-window"></a><h3>gtk_paned_get_handle_window ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkWindow-struct"><span class="returnvalue">GdkWindow</span></a> *
+<pre class="programlisting"><span class="returnvalue">GdkWindow</span> *
 gtk_paned_get_handle_window (<em class="parameter"><code><a class="link" href="GtkPaned.html" title="GtkPaned"><span class="type">GtkPaned</span></a> *paned</code></em>);</pre>
-<p>Returns the <a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a> of the handle. This function is
+<p>Returns the <span class="type">GdkWindow</span> of the handle. This function is
 useful when handling button or motion events because it
 enables the callback to distinguish between the window
 of the paned, a child and the handle.</p>
@@ -712,7 +712,7 @@ of the paned, a child and the handle.</p>
 <div class="refsect3">
 <a name="gtk-paned-get-handle-window.returns"></a><h4>Returns</h4>
 <p>the paned’s handle window. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.20</p>
 </div>
@@ -1125,6 +1125,6 @@ move focus to the next widget in the focus chain.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

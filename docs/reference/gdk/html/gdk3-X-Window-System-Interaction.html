@@ -8,7 +8,7 @@
 <link rel="up" href="reference.html" title="API Reference">
 <link rel="prev" href="gdk3-Cairo-Interaction.html" title="Cairo Interaction">
 <link rel="next" href="gdk3-Wayland-Interaction.html" title="Wayland Interaction">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -899,7 +899,7 @@ gdk_x11_lookup_xdisplay (<em class="parameter"><code><span class="type">Display<
 <div class="refsect3">
 <a name="gdk-x11-lookup-xdisplay.returns"></a><h4>Returns</h4>
 <p>the <a class="link" href="GdkDisplay.html" title="GdkDisplay"><span class="type">GdkDisplay</span></a>, if found, otherwise <code class="literal">NULL</code>. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> GdkX11Display]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>][<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> GdkX11Display]</span></p>
 </div>
 <p class="since">Since: 2.2</p>
 </div>
@@ -997,7 +997,7 @@ gdk_x11_device_manager_lookup (<em class="parameter"><code><a class="link" href=
 <a name="gdk-x11-device-manager-lookup.returns"></a><h4>Returns</h4>
 <p>The <a class="link" href="GdkDevice.html" title="GdkDevice"><span class="type">GdkDevice</span></a> wrapping the device ID,
 or <code class="literal">NULL</code> if the given ID doesn’t currently represent a device. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> GdkX11DeviceCore]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> GdkX11DeviceCore]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-2.html#api-index-3.2">3.2</a></p>
 </div>
@@ -1176,7 +1176,7 @@ gdk_x11_display_get_xdisplay (<em class="parameter"><code><a class="link" href="
 <div class="refsect3">
 <a name="gdk-x11-display-get-xdisplay.returns"></a><h4>Returns</h4>
 <p>an X display. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.2</p>
 </div>
@@ -1548,7 +1548,7 @@ gdk_x11_screen_get_xscreen (<em class="parameter"><code><a class="link" href="Gd
 <div class="refsect3">
 <a name="gdk-x11-screen-get-xscreen.returns"></a><h4>Returns</h4>
 <p>an Xlib Screen*. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.2</p>
 </div>
@@ -1654,7 +1654,7 @@ gdk_x11_screen_lookup_visual (<em class="parameter"><code><a class="link" href="
 <a name="gdk-x11-screen-lookup-visual.returns"></a><h4>Returns</h4>
 <p>the <a class="link" href="gdk3-Visuals.html#GdkVisual"><span class="type">GdkVisual</span></a> (owned by the screen
 object), or <code class="literal">NULL</code> if the visual ID wasn’t found. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> GdkX11Visual]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>][<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> GdkX11Visual]</span></p>
 </div>
 <p class="since">Since: 2.2</p>
 </div>
@@ -1806,7 +1806,7 @@ was already known to GDK, a new reference to the existing
 <p>a <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> wrapper for the native
 window, or <code class="literal">NULL</code> if the window has been destroyed. The wrapper
 will be newly created, if one doesn’t exist already. </p>
-<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.24</p>
 </div>
@@ -1844,7 +1844,7 @@ window handle. </p></td>
 <a name="gdk-x11-window-lookup-for-display.returns"></a><h4>Returns</h4>
 <p>the <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> wrapper for the native
 window, or <code class="literal">NULL</code> if there is none. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> GdkX11Window]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>][<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> GdkX11Window]</span></p>
 </div>
 <p class="since">Since: 2.24</p>
 </div>
@@ -2246,7 +2246,7 @@ gdk_x11_get_default_xdisplay (<em class="parameter"><code><span class="type">voi
 <p>the Xlib Display* for
 the display specified in the <code class="literal">--display</code> command
 line option or the <code class="literal">DISPLAY</code> environment variable. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -2330,7 +2330,7 @@ gdk_x11_cursor_get_xdisplay (<em class="parameter"><code><a class="link" href="g
 <div class="refsect3">
 <a name="gdk-x11-cursor-get-xdisplay.returns"></a><h4>Returns</h4>
 <p>an Xlib Display*. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -2434,7 +2434,7 @@ gdk_x11_visual_get_xvisual (<em class="parameter"><code><a class="link" href="gd
 <div class="refsect3">
 <a name="gdk-x11-visual-get-xvisual.returns"></a><h4>Returns</h4>
 <p>an Xlib Visual*. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -2528,7 +2528,7 @@ gdk_x11_xatom_to_atom (<em class="parameter"><code><span class="type">Atom</span
 <div class="refsect3">
 <a name="gdk-x11-xatom-to-atom.returns"></a><h4>Returns</h4>
 <p>the corresponding G<span class="type">dkAtom</span>. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -2564,7 +2564,7 @@ gdk_x11_xatom_to_atom_for_display (<em class="parameter"><code><a class="link" h
 <div class="refsect3">
 <a name="gdk-x11-xatom-to-atom-for-display.returns"></a><h4>Returns</h4>
 <p>the corresponding <a class="link" href="gdk3-Properties-and-Atoms.html#GdkAtom" title="GdkAtom"><span class="type">GdkAtom</span></a>. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.2</p>
 </div>
@@ -2865,7 +2865,7 @@ locale into a form suitable for storing in a window property.</p>
 <td class="parameter_name"><p>encoding</p></td>
 <td class="parameter_description"><p>location to store the encoding atom
 (to be used as the type for the property). </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>format</p></td>
@@ -2983,6 +2983,6 @@ from a call to
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

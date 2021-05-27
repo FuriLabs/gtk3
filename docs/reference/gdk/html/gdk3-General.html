@@ -8,7 +8,7 @@
 <link rel="up" href="reference.html" title="API Reference">
 <link rel="prev" href="reference.html" title="API Reference">
 <link rel="next" href="GdkDisplayManager.html" title="GdkDisplayManager">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -349,7 +349,7 @@ terminates with a call to <code class="literal">exit(1)</code>.</p>
  and <em class="parameter"><code>argv</code></em>
 
 are updated accordingly.</p>
-<p>GTK+ initializes GDK in <a href="https://developer.gnome.org/gtk4/gtk4-General.html#gtk-init"><code class="function">gtk_init()</code></a> and so this function is not usually
+<p>GTK+ initializes GDK in <code class="function">gtk_init()</code> and so this function is not usually
 needed by GTK+ applications.</p>
 <div class="refsect3">
 <a name="gdk-init.parameters"></a><h4>Parameters</h4>
@@ -386,7 +386,7 @@ returning <code class="literal">TRUE</code> on success.</p>
  and <em class="parameter"><code>argv</code></em>
 
 are updated accordingly.</p>
-<p>GTK+ initializes GDK in <a href="https://developer.gnome.org/gtk4/gtk4-General.html#gtk-init"><code class="function">gtk_init()</code></a> and so this function is not usually
+<p>GTK+ initializes GDK in <code class="function">gtk_init()</code> and so this function is not usually
 needed by GTK+ applications.</p>
 <div class="refsect3">
 <a name="gdk-init-check.parameters"></a><h4>Parameters</h4>
@@ -428,7 +428,7 @@ use by calls to <a class="link" href="GdkDisplay.html#gdk-display-open" title="g
  are
 updated accordingly.</p>
 <p>You shouldn’t call this function explicitly if you are using
-<a href="https://developer.gnome.org/gtk4/gtk4-General.html#gtk-init"><code class="function">gtk_init()</code></a>, <a href="https://developer.gnome.org/gtk4/gtk4-General.html#gtk-init-check"><code class="function">gtk_init_check()</code></a>, <a class="link" href="gdk3-General.html#gdk-init" title="gdk_init ()"><code class="function">gdk_init()</code></a>, or <a class="link" href="gdk3-General.html#gdk-init-check" title="gdk_init_check ()"><code class="function">gdk_init_check()</code></a>.</p>
+<code class="function">gtk_init()</code>, <code class="function">gtk_init_check()</code>, <a class="link" href="gdk3-General.html#gdk-init" title="gdk_init ()"><code class="function">gdk_init()</code></a>, or <a class="link" href="gdk3-General.html#gdk-init-check" title="gdk_init_check ()"><code class="function">gdk_init_check()</code></a>.</p>
 <div class="refsect3">
 <a name="gdk-parse-args.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -479,7 +479,7 @@ loading. If the applications opens windows, this function is
 normally called after opening the application’s initial set of
 windows.</p>
 <p>GTK+ will call this function automatically after opening the first
-<a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a> unless <a href="https://developer.gnome.org/gtk4/GtkWindow.html#gtk-window-set-auto-startup-notification"><code class="function">gtk_window_set_auto_startup_notification()</code></a> is called
+<span class="type">GtkWindow</span> unless <code class="function">gtk_window_set_auto_startup_notification()</code> is called
 to disable that feature.</p>
 <p class="since">Since: 2.2</p>
 </div>
@@ -490,9 +490,9 @@ to disable that feature.</p>
 gdk_notify_startup_complete_with_id (<em class="parameter"><code>const <span class="type">gchar</span> *startup_id</code></em>);</pre>
 <p>Indicates to the GUI environment that the application has
 finished loading, using a given identifier.</p>
-<p>GTK+ will call this function automatically for <a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a>
+<p>GTK+ will call this function automatically for <span class="type">GtkWindow</span>
 with custom startup-notification identifier unless
-<a href="https://developer.gnome.org/gtk4/GtkWindow.html#gtk-window-set-auto-startup-notification"><code class="function">gtk_window_set_auto_startup_notification()</code></a> is called to
+<code class="function">gtk_window_set_auto_startup_notification()</code> is called to
 disable that feature.</p>
 <div class="refsect3">
 <a name="gdk-notify-startup-complete-with-id.parameters"></a><h4>Parameters</h4>
@@ -545,7 +545,7 @@ that are specified by this function.</p>
 broadway, wayland. You can also include a * in the
 list to try all remaining backends.</p>
 <p>This call must happen prior to <a class="link" href="GdkDisplay.html#gdk-display-open" title="gdk_display_open ()"><code class="function">gdk_display_open()</code></a>,
-<a href="https://developer.gnome.org/gtk4/gtk4-General.html#gtk-init"><code class="function">gtk_init()</code></a>, <code class="function">gtk_init_with_args()</code> or <a href="https://developer.gnome.org/gtk4/gtk4-General.html#gtk-init-check"><code class="function">gtk_init_check()</code></a>
+<code class="function">gtk_init()</code>, <code class="function">gtk_init_with_args()</code> or <code class="function">gtk_init_check()</code>
 in order to take effect.</p>
 <div class="refsect3">
 <a name="gdk-set-allowed-backends.parameters"></a><h4>Parameters</h4>
@@ -1267,6 +1267,6 @@ of deprecated GDK and GTK+ APIs.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

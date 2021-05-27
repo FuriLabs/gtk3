@@ -8,7 +8,7 @@
 <link rel="up" href="Application.html" title="Application support">
 <link rel="prev" href="Application.html" title="Application support">
 <link rel="next" href="GtkApplicationWindow.html" title="GtkApplicationWindow">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -564,7 +564,7 @@ deletion.</p>
 <div class="refsect3">
 <a name="gtk-application-get-windows.returns"></a><h4>Returns</h4>
 <p>a <span class="type">GList</span> of <a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a>. </p>
-<p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GtkWindow][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GtkWindow][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
 </div>
@@ -604,7 +604,7 @@ gtk_application_get_window_by_id (<em class="parameter"><code><a class="link" hr
 <p>the window with ID <em class="parameter"><code>id</code></em>
 , or
 <code class="literal">NULL</code> if there is no window with this ID. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-6.html#api-index-3.6">3.6</a></p>
 </div>
@@ -637,7 +637,7 @@ recently-focused window within this application.</p>
 <a name="gtk-application-get-active-window.returns"></a><h4>Returns</h4>
 <p>the active window, or <code class="literal">NULL</code> if
 there isn't one. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-6.html#api-index-3.6">3.6</a></p>
 </div>
@@ -862,7 +862,7 @@ gtk_application_get_app_menu (<em class="parameter"><code><a class="link" href="
 <a name="gtk-application-get-app-menu.returns"></a><h4>Returns</h4>
 <p>the application menu of <em class="parameter"><code>application</code></em>
 or <code class="literal">NULL</code> if no application menu has been set. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-4.html#api-index-3.4">3.4</a></p>
 </div>
@@ -936,7 +936,7 @@ gtk_application_get_menubar (<em class="parameter"><code><a class="link" href="G
 <a name="gtk-application-get-menubar.returns"></a><h4>Returns</h4>
 <p>the menubar for windows of <em class="parameter"><code>application</code></em>
 . </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-4.html#api-index-3.4">3.4</a></p>
 </div>
@@ -1020,7 +1020,7 @@ for more information.</p>
 <a name="gtk-application-get-menu-by-id.returns"></a><h4>Returns</h4>
 <p>Gets the menu with the
 given id from the automatically loaded resources. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-14.html#api-index-3.14">3.14</a></p>
 </div>
@@ -1157,7 +1157,7 @@ See <a class="link" href="GtkApplication.html#gtk-application-set-accels-for-act
 <a name="gtk-application-list-action-descriptions.returns"></a><h4>Returns</h4>
 <p>a <code class="literal">NULL</code>-terminated array of strings,
 free with <code class="function">g_strfreev()</code> when done. </p>
-<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-12.html#api-index-3.12">3.12</a></p>
 </div>
@@ -1197,7 +1197,7 @@ and target to obtain accelerators for</p></td>
 <p>accelerators for <em class="parameter"><code>detailed_action_name</code></em>
 , as
 a <code class="literal">NULL</code>-terminated array. Free with <code class="function">g_strfreev()</code> when no longer needed. </p>
-<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-12.html#api-index-3.12">3.12</a></p>
 </div>
@@ -1294,7 +1294,7 @@ If you are unsure, check it with <a class="link" href="gtk3-Keyboard-Accelerator
 <a name="gtk-application-get-actions-for-accel.returns"></a><h4>Returns</h4>
 <p>a <code class="literal">NULL</code>-terminated array of actions for <em class="parameter"><code>accel</code></em>
 . </p>
-<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-14.html#api-index-3.14">3.14</a></p>
 </div>
@@ -1563,6 +1563,6 @@ through <a class="link" href="GtkApplication.html#gtk-application-remove-window"
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

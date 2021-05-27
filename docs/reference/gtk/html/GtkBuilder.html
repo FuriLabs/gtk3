@@ -8,7 +8,7 @@
 <link rel="up" href="Builder.html" title="Interface builder">
 <link rel="prev" href="Builder.html" title="Interface builder">
 <link rel="next" href="GtkBuildable.html" title="GtkBuildable">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -403,7 +403,7 @@ as <code class="literal">TRUE</code>, strings like “FALSE”, “f”, “no�
 as <code class="literal">FALSE</code>), enumerations (can be specified by their name, nick or
 integer value), flags (can be specified by their name, nick, integer
 value, optionally combined with “|”, e.g. “GTK_VISIBLE|GTK_REALIZED”)
-and colors (in a format understood by <a href="https://developer.gnome.org/gdk4/gdk4-RGBA-Colors.html#gdk-rgba-parse"><code class="function">gdk_rgba_parse()</code></a>).</p>
+and colors (in a format understood by <code class="function">gdk_rgba_parse()</code>).</p>
 <p>GVariants can be specified in the format understood by <code class="function">g_variant_parse()</code>,
 and pixbufs can be specified as a filename of an image file to load.</p>
 <p>Objects can be referred to by their name and by default refer to
@@ -1285,7 +1285,7 @@ increment the reference count of the returned object.</p>
 <p>the object named <em class="parameter"><code>name</code></em>
 or <code class="literal">NULL</code> if
 it could not be found in the object tree. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.12</p>
 </div>
@@ -1318,7 +1318,7 @@ objects.</p>
 <p>a newly-allocated <span class="type">GSList</span> containing all the objects
 constructed by the <a class="link" href="GtkBuilder.html" title="GtkBuilder"><span class="type">GtkBuilder</span></a> instance. It should be freed by
 <code class="function">g_slist_free()</code>. </p>
-<p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GObject][<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GObject][<acronym title="The caller owns the data container, but not the data inside it."><span class="acronym">transfer container</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.12</p>
 </div>
@@ -1577,7 +1577,7 @@ for constructing proxies, use <a class="link" href="GtkBuilder.html#gtk-builder-
 <a name="gtk-builder-get-application.returns"></a><h4>Returns</h4>
 <p>the application being used by the builder,
 or <code class="literal">NULL</code>. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-10.html#api-index-3.10">3.10</a></p>
 </div>
@@ -1634,7 +1634,7 @@ calls <code class="function">g_value_init()</code> on the <em class="parameter">
  argument, so it need not be
 initialised beforehand.</p>
 <p>This function can handle char, uchar, boolean, int, uint, long,
-ulong, enum, flags, float, double, string, <a href="https://developer.gnome.org/gdk3/gdk3-Colors.html#GdkColor"><span class="type">GdkColor</span></a>, <a href="https://developer.gnome.org/gdk3/gdk3-RGBA-Colors.html#GdkRGBA"><span class="type">GdkRGBA</span></a> and
+ulong, enum, flags, float, double, string, <span class="type">GdkColor</span>, <span class="type">GdkRGBA</span> and
 <a class="link" href="GtkAdjustment.html" title="GtkAdjustment"><span class="type">GtkAdjustment</span></a> type values. Support for <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> type values is
 still to come.</p>
 <p>Upon errors <code class="literal">FALSE</code> will be returned and <em class="parameter"><code>error</code></em>
@@ -1929,6 +1929,6 @@ otherwise <code class="function">g_dgettext()</code>.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

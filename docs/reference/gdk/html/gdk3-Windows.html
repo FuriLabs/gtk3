@@ -8,7 +8,7 @@
 <link rel="up" href="reference.html" title="API Reference">
 <link rel="prev" href="gdk3-Cursors.html" title="Cursors">
 <link rel="next" href="GdkFrameClock.html" title="Frame clock">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -1506,10 +1506,10 @@
 <a name="gdk3-Windows.description"></a><h2>Description</h2>
 <p>A <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> is a (usually) rectangular region on the screen.
 It’s a low-level object, used to implement high-level objects such as
-<a href="https://developer.gnome.org/gtk4/GtkWidget.html#GtkWidget-struct"><span class="type">GtkWidget</span></a> and <a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a> on the GTK+ level. A <a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a> is a toplevel
+<span class="type">GtkWidget</span> and <span class="type">GtkWindow</span> on the GTK+ level. A <span class="type">GtkWindow</span> is a toplevel
 window, the thing a user might think of as a “window” with a titlebar
-and so on; a <a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a> may contain many <a href="gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindows</span></a>. For example,
-each <a href="https://developer.gnome.org/gtk4/GtkButton.html#GtkButton-struct"><span class="type">GtkButton</span></a> has a <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> associated with it.</p>
+and so on; a <span class="type">GtkWindow</span> may contain many <a href="gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindows</span></a>. For example,
+each <span class="type">GtkButton</span> has a <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> associated with it.</p>
 <div class="refsect2">
 <a name="COMPOSITED-WINDOWS"></a><h3>Composited Windows</h3>
 <p>Normally, the windowing system takes care of rendering the contents
@@ -1585,7 +1585,7 @@ are valid. </p></td>
 <div class="refsect3">
 <a name="gdk-window-new.returns"></a><h4>Returns</h4>
 <p>the new <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a>. </p>
-<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -1668,7 +1668,7 @@ gdk_window_get_display (<em class="parameter"><code><a class="link" href="gdk3-W
 <a name="gdk-window-get-display.returns"></a><h4>Returns</h4>
 <p>the <a class="link" href="GdkDisplay.html" title="GdkDisplay"><span class="type">GdkDisplay</span></a> associated with <em class="parameter"><code>window</code></em>
 . </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.24</p>
 </div>
@@ -1697,7 +1697,7 @@ gdk_window_get_screen (<em class="parameter"><code><a class="link" href="gdk3-Wi
 <a name="gdk-window-get-screen.returns"></a><h4>Returns</h4>
 <p>the <a class="link" href="GdkScreen.html" title="GdkScreen"><span class="type">GdkScreen</span></a> associated with <em class="parameter"><code>window</code></em>
 . </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.24</p>
 </div>
@@ -1726,7 +1726,7 @@ gdk_window_get_visual (<em class="parameter"><code><a class="link" href="gdk3-Wi
 <div class="refsect3">
 <a name="gdk-window-get-visual.returns"></a><h4>Returns</h4>
 <p>a <a class="link" href="gdk3-Visuals.html#GdkVisual"><span class="type">GdkVisual</span></a>. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.24</p>
 </div>
@@ -1774,7 +1774,7 @@ for it with <code class="function">gdk_window_foreign_new()</code>)</p>
 <div class="refsect3">
 <a name="gdk-window-at-pointer.returns"></a><h4>Returns</h4>
 <p>window under the mouse pointer. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -1787,7 +1787,7 @@ top of the window stack (moves the window to the front of the
 Z-order).</p>
 <p>This function maps a window so it’s visible onscreen. Its opposite
 is <a class="link" href="gdk3-Windows.html#gdk-window-hide" title="gdk_window_hide ()"><code class="function">gdk_window_hide()</code></a>.</p>
-<p>When implementing a <a href="https://developer.gnome.org/gtk4/GtkWidget.html#GtkWidget-struct"><span class="type">GtkWidget</span></a>, you should call this function on the widget's
+<p>When implementing a <span class="type">GtkWidget</span>, you should call this function on the widget's
 <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> as part of the “map” method.</p>
 <div class="refsect3">
 <a name="gdk-window-show.parameters"></a><h4>Parameters</h4>
@@ -1840,7 +1840,7 @@ gdk_window_hide (<em class="parameter"><code><a class="link" href="gdk3-Windows.
 <p>For toplevel windows, withdraws them, so they will no longer be
 known to the window manager; for all windows, unmaps them, so
 they won’t be displayed. Normally done automatically as
-part of <a href="https://developer.gnome.org/gtk4/GtkWidget.html#gtk-widget-hide"><code class="function">gtk_widget_hide()</code></a>.</p>
+part of <code class="function">gtk_widget_hide()</code>.</p>
 <div class="refsect3">
 <a name="gdk-window-hide.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -2055,7 +2055,7 @@ gdk_window_iconify (<em class="parameter"><code><a class="link" href="gdk3-Windo
 <p>Asks to iconify (minimize) <em class="parameter"><code>window</code></em>
 . The window manager may choose
 to ignore the request, but normally will honor it. Using
-<code class="function">gtk_window_iconify()</code> is preferred, if you have a <a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a> widget.</p>
+<code class="function">gtk_window_iconify()</code> is preferred, if you have a <span class="type">GtkWindow</span> widget.</p>
 <p>This function only makes sense when <em class="parameter"><code>window</code></em>
  is a toplevel window.</p>
 <div class="refsect3">
@@ -2083,7 +2083,7 @@ gdk_window_deiconify (<em class="parameter"><code><a class="link" href="gdk3-Win
 . On X11 the window manager may
 choose to ignore the request to deiconify. When using GTK+,
 use <code class="function">gtk_window_deiconify()</code> instead of the <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> variant. Or better yet,
-you probably want to use <a href="https://developer.gnome.org/gtk4/GtkWindow.html#gtk-window-present-with-time"><code class="function">gtk_window_present_with_time()</code></a>, which raises the window, focuses it,
+you probably want to use <code class="function">gtk_window_present_with_time()</code>, which raises the window, focuses it,
 unminimizes it, and puts it on the current desktop.</p>
 <div class="refsect3">
 <a name="gdk-window-deiconify.parameters"></a><h4>Parameters</h4>
@@ -2108,7 +2108,7 @@ unminimizes it, and puts it on the current desktop.</p>
 gdk_window_stick (<em class="parameter"><code><a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> *window</code></em>);</pre>
 <p>“Pins” a window such that it’s on all workspaces and does not scroll
 with viewports, for window managers that have scrollable viewports.
-(When using <a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a>, <code class="function">gtk_window_stick()</code> may be more useful.)</p>
+(When using <span class="type">GtkWindow</span>, <code class="function">gtk_window_stick()</code> may be more useful.)</p>
 <p>On the X11 platform, this function depends on window manager
 support, so may have no effect with many window managers. However,
 GDK will do the best it can to convince the window manager to stick
@@ -2487,7 +2487,7 @@ X screens with a compositing manager running. On Wayland, there is no
 per-window opacity value that the compositor would apply. Instead, use
 <code class="literal">gdk_window_set_opaque_region (window, NULL)</code> to tell the compositor
 that the entire window is (potentially) non-opaque, and draw your content
-with alpha, or use <a href="https://developer.gnome.org/gtk4/GtkWidget.html#gtk-widget-set-opacity"><code class="function">gtk_widget_set_opacity()</code></a> to set an overall opacity
+with alpha, or use <code class="function">gtk_widget_set_opacity()</code> to set an overall opacity
 for your widgets.</p>
 <p>For child windows this function only works for non-native windows.</p>
 <p>For setting up per-pixel alpha topelevels, see <a class="link" href="GdkScreen.html#gdk-screen-get-rgba-visual" title="gdk_screen_get_rgba_visual ()"><code class="function">gdk_screen_get_rgba_visual()</code></a>,
@@ -2687,7 +2687,7 @@ gdk_window_move (<em class="parameter"><code><a class="link" href="gdk3-Windows.
                  <em class="parameter"><code><span class="type">gint</span> y</code></em>);</pre>
 <p>Repositions a window relative to its parent window.
 For toplevel windows, window managers may ignore or modify the move;
-you should probably use <code class="function">gtk_window_move()</code> on a <a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a> widget
+you should probably use <code class="function">gtk_window_move()</code> on a <span class="type">GtkWindow</span> widget
 anyway, instead of using GDK functions. For child windows,
 the move will reliably succeed.</p>
 <p>If you’re also planning to resize the window, use <a class="link" href="gdk3-Windows.html#gdk-window-move-resize" title="gdk_window_move_resize ()"><code class="function">gdk_window_move_resize()</code></a>
@@ -2730,7 +2730,7 @@ gdk_window_resize (<em class="parameter"><code><a class="link" href="gdk3-Window
 <p>Resizes <em class="parameter"><code>window</code></em>
 ; for toplevel windows, asks the window manager to resize
 the window. The window manager may not allow the resize. When using GTK+,
-use <a href="https://developer.gnome.org/gtk4/GtkWindow.html#gtk-window-resize"><code class="function">gtk_window_resize()</code></a> instead of this low-level GDK function.</p>
+use <code class="function">gtk_window_resize()</code> instead of this low-level GDK function.</p>
 <p>Windows may not be resized below 1x1.</p>
 <p>If you’re also planning to move the window, use <a class="link" href="gdk3-Windows.html#gdk-window-move-resize" title="gdk_window_move_resize ()"><code class="function">gdk_window_move_resize()</code></a>
 to both move and resize simultaneously, for a nicer visual effect.</p>
@@ -3260,8 +3260,8 @@ requests the restack, does not guarantee it.</p>
 gdk_window_focus (<em class="parameter"><code><a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> *window</code></em>,
                   <em class="parameter"><code><span class="type">guint32</span> timestamp</code></em>);</pre>
 <p>Sets keyboard focus to <em class="parameter"><code>window</code></em>
-. In most cases, <a href="https://developer.gnome.org/gtk4/GtkWindow.html#gtk-window-present-with-time"><code class="function">gtk_window_present_with_time()</code></a>
-should be used on a <a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a>, rather than calling this function.</p>
+. In most cases, <code class="function">gtk_window_present_with_time()</code>
+should be used on a <span class="type">GtkWindow</span>, rather than calling this function.</p>
 <div class="refsect3">
 <a name="gdk-window-focus.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -3378,7 +3378,7 @@ gdk_window_begin_resize_drag_for_device
                                 <em class="parameter"><code><span class="type">guint32</span> timestamp</code></em>);</pre>
 <p>Begins a window resize operation (for a toplevel window).
 You might use this function to implement a “window resize grip,” for
-example; in fact <a href="https://developer.gnome.org/gtk4/GtkStatusbar.html#GtkStatusbar-struct"><span class="type">GtkStatusbar</span></a> uses it. The function works best
+example; in fact <span class="type">GtkStatusbar</span> uses it. The function works best
 with window managers that support the
 <a class="ulink" href="http://www.freedesktop.org/Standards/wm-spec" target="_top">Extended Window Manager Hints</a>
 but has a fallback implementation for other window managers.</p>
@@ -3779,7 +3779,7 @@ call <a class="link" href="GdkGLContext.html#gdk-gl-context-make-current" title=
 <a name="gdk-window-create-gl-context.returns"></a><h4>Returns</h4>
 <p>the newly created <a class="link" href="GdkGLContext.html" title="GdkGLContext"><span class="type">GdkGLContext</span></a>, or
 <code class="literal">NULL</code> on error. </p>
-<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-16.html#api-index-3.16">3.16</a></p>
 </div>
@@ -4061,7 +4061,7 @@ explicitly.</p>
 <p>a <a class="link" href="GdkDrawingContext.html" title="GdkDrawingContext"><span class="type">GdkDrawingContext</span></a> context that should be
 used to draw the contents of the window; the returned context is owned
 by GDK. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-22.html#api-index-3.22">3.22</a></p>
 </div>
@@ -4656,7 +4656,7 @@ window.</p>
 <div class="refsect3">
 <a name="gdk-window-get-frame-clock.returns"></a><h4>Returns</h4>
 <p>the frame clock. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-8.html#api-index-3.8">3.8</a></p>
 </div>
@@ -4668,11 +4668,11 @@ gdk_window_set_user_data (<em class="parameter"><code><a class="link" href="gdk3
                           <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
 <p>For most purposes this function is deprecated in favor of
 <code class="function">g_object_set_data()</code>. However, for historical reasons GTK+ stores
-the <a href="https://developer.gnome.org/gtk4/GtkWidget.html#GtkWidget-struct"><span class="type">GtkWidget</span></a> that owns a <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> as user data on the
+the <span class="type">GtkWidget</span> that owns a <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> as user data on the
 <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a>. So, custom widget implementations should use
 this function for that. If GTK+ receives an event for a <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a>,
 and the user data for the window is non-<code class="literal">NULL</code>, GTK+ will assume the
-user data is a <a href="https://developer.gnome.org/gtk4/GtkWidget.html#GtkWidget-struct"><span class="type">GtkWidget</span></a>, and forward the event to that widget.</p>
+user data is a <span class="type">GtkWidget</span>, and forward the event to that widget.</p>
 <div class="refsect3">
 <a name="gdk-window-set-user-data.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -5465,7 +5465,7 @@ gdk_window_get_background_pattern (<em class="parameter"><code><a class="link" h
 <a name="gdk-window-get-background-pattern.returns"></a><h4>Returns</h4>
 <p>The pattern to use for the
 background or <code class="literal">NULL</code> if there is no background. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.22</p>
 </div>
@@ -5539,7 +5539,7 @@ using the cursor for its parent window.</p>
 returned object is owned by the <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> and should not be
 unreferenced directly. Use <a class="link" href="gdk3-Windows.html#gdk-window-set-cursor" title="gdk_window_set_cursor ()"><code class="function">gdk_window_set_cursor()</code></a> to unset the
 cursor of the window. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.18</p>
 </div>
@@ -5798,7 +5798,7 @@ icon by a small amount or not at all.</p>
 <tr>
 <td class="parameter_name"><p>pixbufs</p></td>
 <td class="parameter_description"><p>A list of pixbufs, of different sizes. </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GdkPixbuf]</span></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GdkPixbuf]</span></td>
 </tr>
 </tbody>
 </table></div>
@@ -6354,7 +6354,7 @@ modifier mask. </p></td>
 <p>the window containing the
 pointer (as with <a class="link" href="gdk3-Windows.html#gdk-window-at-pointer" title="gdk_window_at_pointer ()"><code class="function">gdk_window_at_pointer()</code></a>), or <code class="literal">NULL</code> if the window
 containing the pointer isn’t known to GDK. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -6415,7 +6415,7 @@ corner of <em class="parameter"><code>window</code></em>
 <p>The window underneath <em class="parameter"><code>device</code></em>
 (as with <a class="link" href="GdkDevice.html#gdk-device-get-window-at-position" title="gdk_device_get_window_at_position ()"><code class="function">gdk_device_get_window_at_position()</code></a>), or <code class="literal">NULL</code> if the
 window is not known to GDK. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
 </div>
@@ -6476,7 +6476,7 @@ corner of <em class="parameter"><code>window</code></em>
 <p>The window underneath <em class="parameter"><code>device</code></em>
 (as with <a class="link" href="GdkDevice.html#gdk-device-get-window-at-position" title="gdk_device_get_window_at_position ()"><code class="function">gdk_device_get_window_at_position()</code></a>), or <code class="literal">NULL</code> if the
 window is not known to GDK. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-10.html#api-index-3.10">3.10</a></p>
 </div>
@@ -6515,7 +6515,7 @@ there are offscreen windows in the hierarchy.</p>
 <a name="gdk-window-get-parent.returns"></a><h4>Returns</h4>
 <p>parent of <em class="parameter"><code>window</code></em>
 . </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -6551,7 +6551,7 @@ if there are offscreen windows in the hierarchy.</p>
 <a name="gdk-window-get-toplevel.returns"></a><h4>Returns</h4>
 <p>the toplevel window containing <em class="parameter"><code>window</code></em>
 . </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -6585,7 +6585,7 @@ list need not be.</p>
 <a name="gdk-window-get-children.returns"></a><h4>Returns</h4>
 <p>list of child windows inside <em class="parameter"><code>window</code></em>
 . </p>
-<p><span class="annotation">[<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GdkWindow]</span></p>
+<p><span class="annotation">[<acronym title="The caller owns the data container, but not the data inside it."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GdkWindow]</span></p>
 </div>
 </div>
 <hr>
@@ -6629,7 +6629,7 @@ lowest window is first.</p>
 <a name="gdk-window-get-children-with-user-data.returns"></a><h4>Returns</h4>
 <p>list of child windows inside <em class="parameter"><code>window</code></em>
 . </p>
-<p><span class="annotation">[<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GdkWindow]</span></p>
+<p><span class="annotation">[<acronym title="The caller owns the data container, but not the data inside it."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GdkWindow]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-10.html#api-index-3.10">3.10</a></p>
 </div>
@@ -6659,7 +6659,7 @@ children, so the list does not need to be freed.</p>
 <a name="gdk-window-peek-children.returns"></a><h4>Returns</h4>
 <p>a reference to the list of child windows in <em class="parameter"><code>window</code></em>
 . </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GdkWindow]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GdkWindow]</span></p>
 </div>
 </div>
 <hr>
@@ -6783,8 +6783,8 @@ window manager to do things like center <em class="parameter"><code>window</code
 keep <em class="parameter"><code>window</code></em>
  above <em class="parameter"><code>parent</code></em>
 .</p>
-<p>See <a href="https://developer.gnome.org/gtk4/GtkWindow.html#gtk-window-set-transient-for"><code class="function">gtk_window_set_transient_for()</code></a> if you’re using <a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a> or
-<a href="https://developer.gnome.org/gtk4/GtkDialog.html#GtkDialog-struct"><span class="type">GtkDialog</span></a>.</p>
+<p>See <code class="function">gtk_window_set_transient_for()</code> if you’re using <span class="type">GtkWindow</span> or
+<span class="type">GtkDialog</span>.</p>
 <div class="refsect3">
 <a name="gdk-window-set-transient-for.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -6854,7 +6854,7 @@ non-interchangeable kind of window.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdk_window_set_startup_id (<em class="parameter"><code><a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> *window</code></em>,
                            <em class="parameter"><code>const <span class="type">gchar</span> *startup_id</code></em>);</pre>
-<p>When using GTK+, typically you should use <a href="https://developer.gnome.org/gtk4/GtkWindow.html#gtk-window-set-startup-id"><code class="function">gtk_window_set_startup_id()</code></a>
+<p>When using GTK+, typically you should use <code class="function">gtk_window_set_startup_id()</code>
 instead of this low-level function.</p>
 <div class="refsect3">
 <a name="gdk-window-set-startup-id.parameters"></a><h4>Parameters</h4>
@@ -6945,7 +6945,7 @@ gdk_window_get_group (<em class="parameter"><code><a class="link" href="gdk3-Win
 <a name="gdk-window-get-group.returns"></a><h4>Returns</h4>
 <p>the group leader window for <em class="parameter"><code>window</code></em>
 . </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.4</p>
 </div>
@@ -6958,7 +6958,7 @@ gdk_window_set_decorations (<em class="parameter"><code><a class="link" href="gd
 <p>“Decorations” are the features the window manager adds to a toplevel <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a>.
 This function sets the traditional Motif window manager hints that tell the
 window manager which decorations you would like your window to have.
-Usually you should use <a href="https://developer.gnome.org/gtk4/GtkWindow.html#gtk-window-set-decorated"><code class="function">gtk_window_set_decorated()</code></a> on a <a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a> instead of
+Usually you should use <code class="function">gtk_window_set_decorated()</code> on a <span class="type">GtkWindow</span> instead of
 using the GDK function directly.</p>
 <p>The <em class="parameter"><code>decorations</code></em>
  argument is the logical OR of the fields in
@@ -7078,7 +7078,7 @@ for the default display and screen.</p>
 <div class="refsect3">
 <a name="gdk-get-default-root-window.returns"></a><h4>Returns</h4>
 <p>the default root window. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -7183,7 +7183,7 @@ using the cursor for its parent window.</p>
 returned object is owned by the <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> and should not be
 unreferenced directly. Use <a class="link" href="gdk3-Windows.html#gdk-window-set-cursor" title="gdk_window_set_cursor ()"><code class="function">gdk_window_set_cursor()</code></a> to unset the
 cursor of the window. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
 </div>
@@ -7483,7 +7483,7 @@ add a reference to it.</p>
 <a name="gdk-offscreen-window-get-surface.returns"></a><h4>Returns</h4>
 <p>The offscreen surface, or
 <code class="literal">NULL</code> if not offscreen. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -7553,7 +7553,7 @@ gdk_offscreen_window_get_embedder (<em class="parameter"><code><a class="link" h
 <p>the embedding <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a>, or
 <code class="literal">NULL</code> if <em class="parameter"><code>window</code></em>
 is not an mbedded offscreen window. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.18</p>
 </div>
@@ -7735,7 +7735,7 @@ window’s embedder for offscreen windows.</p>
 <a name="gdk-window-get-effective-parent.returns"></a><h4>Returns</h4>
 <p>effective parent of <em class="parameter"><code>window</code></em>
 . </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.22</p>
 </div>
@@ -7768,7 +7768,7 @@ embedder as its parent, using <a class="link" href="gdk3-Windows.html#gdk-window
 <a name="gdk-window-get-effective-toplevel.returns"></a><h4>Returns</h4>
 <p>the effective toplevel window containing <em class="parameter"><code>window</code></em>
 . </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.22</p>
 </div>
@@ -7803,14 +7803,14 @@ screen, and is created by the window system</p>
 <tr>
 <td class="enum_member_name"><p><a name="GDK-WINDOW-TOPLEVEL:CAPS"></a>GDK_WINDOW_TOPLEVEL</p></td>
 <td class="enum_member_description">
-<p>toplevel window (used to implement <a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a>)</p>
+<p>toplevel window (used to implement <span class="type">GtkWindow</span>)</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="GDK-WINDOW-CHILD:CAPS"></a>GDK_WINDOW_CHILD</p></td>
 <td class="enum_member_description">
-<p>child window (used to implement e.g. <a href="https://developer.gnome.org/gtk4/GtkEntry.html#GtkEntry-struct"><span class="type">GtkEntry</span></a>)</p>
+<p>child window (used to implement e.g. <span class="type">GtkEntry</span>)</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -7899,7 +7899,7 @@ attention to. Also, the presence/absence of <em class="parameter"><code>GDK_HINT
  is significant, though they don't
 directly refer to <a class="link" href="gdk3-Windows.html#GdkGeometry" title="struct GdkGeometry"><span class="type">GdkGeometry</span></a> fields. <em class="parameter"><code>GDK_HINT_USER_POS</code></em>
  will be set
-automatically by <a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a> if you call <code class="function">gtk_window_move()</code>.
+automatically by <span class="type">GtkWindow</span> if you call <code class="function">gtk_window_move()</code>.
 <em class="parameter"><code>GDK_HINT_USER_POS</code></em>
  and <em class="parameter"><code>GDK_HINT_USER_SIZE</code></em>
  should be set if the user
@@ -8002,27 +8002,27 @@ the user</p>
 </pre>
 <p>The <a class="link" href="gdk3-Windows.html#GdkGeometry" title="struct GdkGeometry"><span class="type">GdkGeometry</span></a> struct gives the window manager information about
 a window’s geometry constraints. Normally you would set these on
-the GTK+ level using <code class="function">gtk_window_set_geometry_hints()</code>. <a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a>
+the GTK+ level using <code class="function">gtk_window_set_geometry_hints()</code>. <span class="type">GtkWindow</span>
 then sets the hints on the <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> it creates.</p>
 <p>gdk_window_set_geometry_hints() expects the hints to be fully valid already
 and simply passes them to the window manager; in contrast,
 <code class="function">gtk_window_set_geometry_hints()</code> performs some interpretation. For example,
-<a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a> will apply the hints to the geometry widget instead of the
+<span class="type">GtkWindow</span> will apply the hints to the geometry widget instead of the
 toplevel window, if you set a geometry widget. Also, the
 <em class="parameter"><code>min_width</code></em>
 /<em class="parameter"><code>min_height</code></em>
 /<em class="parameter"><code>max_width</code></em>
 /<em class="parameter"><code>max_height</code></em>
  fields may be set to -1, and
-<a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a> will substitute the size request of the window or geometry widget.
-If the minimum size hint is not provided, <a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a> will use its requisition
+<span class="type">GtkWindow</span> will substitute the size request of the window or geometry widget.
+If the minimum size hint is not provided, <span class="type">GtkWindow</span> will use its requisition
 as the minimum size. If the minimum size is provided and a geometry widget is
-set, <a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a> will take the minimum size as the minimum size of the
+set, <span class="type">GtkWindow</span> will take the minimum size as the minimum size of the
 geometry widget rather than the entire window. The base size is treated
 similarly.</p>
 <p>The canonical use-case for <code class="function">gtk_window_set_geometry_hints()</code> is to get a
 terminal widget to resize properly. Here, the terminal text area should be
-the geometry widget; <a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a> will then automatically set the base size to
+the geometry widget; <span class="type">GtkWindow</span> will then automatically set the base size to
 the size of other widgets in the terminal window, such as the menubar and
 scrollbar. Then, the <em class="parameter"><code>width_inc</code></em>
  and <em class="parameter"><code>height_inc</code></em>
@@ -8095,25 +8095,25 @@ aspect ratio.</p>
 <tr>
 <td class="struct_member_name"><p><span class="type">gint</span> <em class="structfield"><code><a name="GdkGeometry.min-width"></a>min_width</code></em>;</p></td>
 <td class="struct_member_description"><p>minimum width of window (or -1 to use requisition, with
-<a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a> only)</p></td>
+<span class="type">GtkWindow</span> only)</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
 <tr>
 <td class="struct_member_name"><p><span class="type">gint</span> <em class="structfield"><code><a name="GdkGeometry.min-height"></a>min_height</code></em>;</p></td>
 <td class="struct_member_description"><p>minimum height of window (or -1 to use requisition, with
-<a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a> only)</p></td>
+<span class="type">GtkWindow</span> only)</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
 <tr>
 <td class="struct_member_name"><p><span class="type">gint</span> <em class="structfield"><code><a name="GdkGeometry.max-width"></a>max_width</code></em>;</p></td>
 <td class="struct_member_description"><p>maximum width of window (or -1 to use requisition, with
-<a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a> only)</p></td>
+<span class="type">GtkWindow</span> only)</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
 <tr>
 <td class="struct_member_name"><p><span class="type">gint</span> <em class="structfield"><code><a name="GdkGeometry.max-height"></a>max_height</code></em>;</p></td>
 <td class="struct_member_description"><p>maximum height of window (or -1 to use requisition, with
-<a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a> only)</p></td>
+<span class="type">GtkWindow</span> only)</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
 <tr>
@@ -8121,7 +8121,7 @@ aspect ratio.</p>
 <td class="struct_member_description"><p>allowed window widths are <em class="parameter"><code>base_width</code></em>
 + <em class="parameter"><code>width_inc</code></em>
 * N where N
-is any integer (-1 allowed with <a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a>)</p></td>
+is any integer (-1 allowed with <span class="type">GtkWindow</span>)</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
 <tr>
@@ -8129,7 +8129,7 @@ is any integer (-1 allowed with <a href="https://developer.gnome.org/gtk4/GtkWin
 <td class="struct_member_description"><p>allowed window widths are <em class="parameter"><code>base_height</code></em>
 + <em class="parameter"><code>height_inc</code></em>
 * N where
-N is any integer (-1 allowed with <a href="https://developer.gnome.org/gtk4/GtkWindow.html#GtkWindow-struct"><span class="type">GtkWindow</span></a>)</p></td>
+N is any integer (-1 allowed with <span class="type">GtkWindow</span>)</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
 <tr>
@@ -9567,7 +9567,7 @@ child at the given position.</p>
 embedded child at <em class="parameter"><code>x</code></em>
 , <em class="parameter"><code>y</code></em>
 , or <code class="literal">NULL</code>. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p>Flags: Run Last</p>
 <p class="since">Since: 2.18</p>
@@ -9635,6 +9635,6 @@ coordinate in the embedder window. </p></td>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

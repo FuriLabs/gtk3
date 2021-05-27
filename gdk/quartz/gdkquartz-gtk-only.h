@@ -38,13 +38,5 @@ NSString *gdk_quartz_atom_to_pasteboard_type_libgtk_only        (GdkAtom        
 /* Utilities */
 GDK_AVAILABLE_IN_ALL
 NSImage  *gdk_quartz_pixbuf_to_ns_image_libgtk_only (GdkPixbuf *pixbuf);
-GDK_AVAILABLE_IN_ALL
-NSEvent  *gdk_quartz_event_get_nsevent              (GdkEvent  *event);
-
-/* Window */
-GDK_AVAILABLE_IN_ALL
-NSWindow *gdk_quartz_window_get_nswindow            (GdkWindow *window);
-GDK_AVAILABLE_IN_ALL
-NSView   *gdk_quartz_window_get_nsview              (GdkWindow *window);
 
 #endif

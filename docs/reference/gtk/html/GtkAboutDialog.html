@@ -8,7 +8,7 @@
 <link rel="up" href="WindowWidgets.html" title="Windows">
 <link rel="prev" href="GtkMessageDialog.html" title="GtkMessageDialog">
 <link rel="next" href="GtkAssistant.html" title="GtkAssistant">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -250,7 +250,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="returnvalue">GdkPixbuf</span></a> *
+<span class="returnvalue">GdkPixbuf</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkAboutDialog.html#gtk-about-dialog-get-logo" title="gtk_about_dialog_get_logo ()">gtk_about_dialog_get_logo</a> <span class="c_punctuation">()</span>
@@ -347,7 +347,7 @@
 </tr>
 <tr>
 <td class="property_type">
-<a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a> *</td>
+<span class="type">GdkPixbuf</span> *</td>
 <td class="property_name"><a class="link" href="GtkAboutDialog.html#GtkAboutDialog--logo" title="The “logo” property">logo</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -1084,7 +1084,7 @@ of the secondary credits dialog.</p>
 <p>A
 <code class="literal">NULL</code>-terminated string array containing the authors. The array is
 owned by the about dialog and must not be modified. </p>
-<p><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> zero-terminated=1][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> zero-terminated=1][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.6</p>
 </div>
@@ -1147,7 +1147,7 @@ of the secondary credits dialog.</p>
 <p>A
 <code class="literal">NULL</code>-terminated string array containing the artists. The array is
 owned by the about dialog and must not be modified. </p>
-<p><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> zero-terminated=1][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> zero-terminated=1][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.6</p>
 </div>
@@ -1210,7 +1210,7 @@ tab of the secondary credits dialog.</p>
 <p>A
 <code class="literal">NULL</code>-terminated string array containing the documenters. The
 array is owned by the about dialog and must not be modified. </p>
-<p><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> zero-terminated=1][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> zero-terminated=1][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.6</p>
 </div>
@@ -1336,7 +1336,7 @@ and hide the tab.</p>
 <hr>
 <div class="refsect2">
 <a name="gtk-about-dialog-get-logo"></a><h3>gtk_about_dialog_get_logo ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="returnvalue">GdkPixbuf</span></a> *
+<pre class="programlisting"><span class="returnvalue">GdkPixbuf</span> *
 gtk_about_dialog_get_logo (<em class="parameter"><code><a class="link" href="GtkAboutDialog.html" title="GtkAboutDialog"><span class="type">GtkAboutDialog</span></a> *about</code></em>);</pre>
 <p>Returns the pixbuf displayed as logo in the about dialog.</p>
 <div class="refsect3">
@@ -1359,7 +1359,7 @@ gtk_about_dialog_get_logo (<em class="parameter"><code><a class="link" href="Gtk
 <p>the pixbuf displayed as logo. The
 pixbuf is owned by the about dialog. If you want to keep a
 reference to it, you have to call <code class="function">g_object_ref()</code> on it. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.6</p>
 </div>
@@ -1368,7 +1368,7 @@ reference to it, you have to call <code class="function">g_object_ref()</code> o
 <a name="gtk-about-dialog-set-logo"></a><h3>gtk_about_dialog_set_logo ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_about_dialog_set_logo (<em class="parameter"><code><a class="link" href="GtkAboutDialog.html" title="GtkAboutDialog"><span class="type">GtkAboutDialog</span></a> *about</code></em>,
-                           <em class="parameter"><code><a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a> *logo</code></em>);</pre>
+                           <em class="parameter"><code><span class="type">GdkPixbuf</span> *logo</code></em>);</pre>
 <p>Sets the pixbuf to be displayed as logo in the about dialog.
 If it is <code class="literal">NULL</code>, the default window icon set with
 <a class="link" href="GtkWindow.html#gtk-window-set-default-icon" title="gtk_window_set_default_icon ()"><code class="function">gtk_window_set_default_icon()</code></a> will be used.</p>
@@ -1388,7 +1388,7 @@ If it is <code class="literal">NULL</code>, the default window icon set with
 </tr>
 <tr>
 <td class="parameter_name"><p>logo</p></td>
-<td class="parameter_description"><p>a <a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a>, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <span class="type">GdkPixbuf</span>, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -1786,7 +1786,7 @@ a side effect.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkAboutDialog--logo"></a><h3>The <code class="literal">“logo”</code> property</h3>
-<pre class="programlisting">  “logo”                     <a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a> *</pre>
+<pre class="programlisting">  “logo”                     <span class="type">GdkPixbuf</span> *</pre>
 <p>A logo for the about box. If it is <code class="literal">NULL</code>, the default window icon
 set with <a class="link" href="GtkWindow.html#gtk-window-set-default-icon" title="gtk_window_set_default_icon ()"><code class="function">gtk_window_set_default_icon()</code></a> will be used.</p>
 <p>Owner: GtkAboutDialog</p>
@@ -1917,6 +1917,6 @@ which is to call <a class="link" href="gtk3-Filesystem-utilities.html#gtk-show-u
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

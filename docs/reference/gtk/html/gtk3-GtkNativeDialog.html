@@ -8,7 +8,7 @@
 <link rel="up" href="AbstractObjects.html" title="Abstract Base Classes">
 <link rel="prev" href="GtkIMContext.html" title="GtkIMContext">
 <link rel="next" href="PlugSocket.html" title="Cross-process Embedding">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -160,10 +160,10 @@
 platform, by looking the same as other native applications and
 supporting platform specific features.</p>
 <p>The <a class="link" href="GtkDialog.html" title="GtkDialog"><span class="type">GtkDialog</span></a> functions cannot be used on such objects, but we
-need a similar API in order to drive them. The <a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a>
+need a similar API in order to drive them. The <span class="type">GtkNativeDialog</span>
 object is an API that allows you to do this. It allows you to set
 various common properties on the dialog, as well as show and hide
-it and get a <a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-response"><span class="type">“response”</span></a> signal when the user finished
+it and get a <span class="type">“response”</span> signal when the user finished
 with the dialog.</p>
 <p>There is also a <a class="link" href="gtk3-GtkNativeDialog.html#gtk-native-dialog-run" title="gtk_native_dialog_run ()"><code class="function">gtk_native_dialog_run()</code></a> helper that makes it easy
 to run any native dialog in a modal way with a recursive mainloop,
@@ -174,10 +174,10 @@ similar to <a class="link" href="GtkDialog.html#gtk-dialog-run" title="gtk_dialo
 <div class="refsect2">
 <a name="gtk-native-dialog-show"></a><h3>gtk_native_dialog_show ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
-gtk_native_dialog_show (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a> *self</code></em>);</pre>
+gtk_native_dialog_show (<em class="parameter"><code><span class="type">GtkNativeDialog</span> *self</code></em>);</pre>
 <p>Shows the dialog on the display, allowing the user to interact with
 it. When the user accepts the state of the dialog the dialog will
-be automatically hidden and the <a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-response"><span class="type">“response”</span></a> signal
+be automatically hidden and the <span class="type">“response”</span> signal
 will be emitted.</p>
 <p>Multiple calls while the dialog is visible will be ignored.</p>
 <div class="refsect3">
@@ -190,7 +190,7 @@ will be emitted.</p>
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>self</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GtkNativeDialog</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr></tbody>
 </table></div>
@@ -201,9 +201,9 @@ will be emitted.</p>
 <div class="refsect2">
 <a name="gtk-native-dialog-hide"></a><h3>gtk_native_dialog_hide ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
-gtk_native_dialog_hide (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a> *self</code></em>);</pre>
+gtk_native_dialog_hide (<em class="parameter"><code><span class="type">GtkNativeDialog</span> *self</code></em>);</pre>
 <p>Hides the dialog if it is visilbe, aborting any interaction. Once this
-is called the  <a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-response"><span class="type">“response”</span></a> signal will not be emitted
+is called the  <span class="type">“response”</span> signal will not be emitted
 until after the next call to <a class="link" href="gtk3-GtkNativeDialog.html#gtk-native-dialog-show" title="gtk_native_dialog_show ()"><code class="function">gtk_native_dialog_show()</code></a>.</p>
 <p>If the dialog is not visible this does nothing.</p>
 <div class="refsect3">
@@ -216,7 +216,7 @@ until after the next call to <a class="link" href="gtk3-GtkNativeDialog.html#gtk
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>self</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GtkNativeDialog</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr></tbody>
 </table></div>
@@ -227,14 +227,14 @@ until after the next call to <a class="link" href="gtk3-GtkNativeDialog.html#gtk
 <div class="refsect2">
 <a name="gtk-native-dialog-destroy"></a><h3>gtk_native_dialog_destroy ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
-gtk_native_dialog_destroy (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a> *self</code></em>);</pre>
+gtk_native_dialog_destroy (<em class="parameter"><code><span class="type">GtkNativeDialog</span> *self</code></em>);</pre>
 <p>Destroys a dialog.</p>
 <p>When a dialog is destroyed, it will break any references it holds
 to other objects. If it is visible it will be hidden and any underlying
 window system resources will be destroyed.</p>
 <p>Note that this does not release any reference to the object (as opposed to
 destroying a GtkWindow) because there is no reference from the windowing
-system to the <a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a>.</p>
+system to the <span class="type">GtkNativeDialog</span>.</p>
 <div class="refsect3">
 <a name="gtk-native-dialog-destroy.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -245,7 +245,7 @@ system to the <a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#Gtk
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>self</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GtkNativeDialog</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr></tbody>
 </table></div>
@@ -256,7 +256,7 @@ system to the <a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#Gtk
 <div class="refsect2">
 <a name="gtk-native-dialog-get-visible"></a><h3>gtk_native_dialog_get_visible ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
-gtk_native_dialog_get_visible (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a> *self</code></em>);</pre>
+gtk_native_dialog_get_visible (<em class="parameter"><code><span class="type">GtkNativeDialog</span> *self</code></em>);</pre>
 <p>Determines whether the dialog is visible.</p>
 <div class="refsect3">
 <a name="gtk-native-dialog-get-visible.parameters"></a><h4>Parameters</h4>
@@ -268,7 +268,7 @@ gtk_native_dialog_get_visible (<em class="parameter"><code><a href="https://deve
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>self</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GtkNativeDialog</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr></tbody>
 </table></div>
@@ -283,7 +283,7 @@ gtk_native_dialog_get_visible (<em class="parameter"><code><a href="https://deve
 <div class="refsect2">
 <a name="gtk-native-dialog-set-modal"></a><h3>gtk_native_dialog_set_modal ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
-gtk_native_dialog_set_modal (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a> *self</code></em>,
+gtk_native_dialog_set_modal (<em class="parameter"><code><span class="type">GtkNativeDialog</span> *self</code></em>,
                              <em class="parameter"><code><span class="type">gboolean</span> modal</code></em>);</pre>
 <p>Sets a dialog modal or non-modal. Modal dialogs prevent interaction
 with other windows in the same application. To keep modal dialogs
@@ -302,7 +302,7 @@ will then disallow lowering the dialog below the parent.</p>
 <tbody>
 <tr>
 <td class="parameter_name"><p>self</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GtkNativeDialog</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -319,7 +319,7 @@ will then disallow lowering the dialog below the parent.</p>
 <div class="refsect2">
 <a name="gtk-native-dialog-get-modal"></a><h3>gtk_native_dialog_get_modal ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
-gtk_native_dialog_get_modal (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a> *self</code></em>);</pre>
+gtk_native_dialog_get_modal (<em class="parameter"><code><span class="type">GtkNativeDialog</span> *self</code></em>);</pre>
 <p>Returns whether the dialog is modal. See <a class="link" href="gtk3-GtkNativeDialog.html#gtk-native-dialog-set-modal" title="gtk_native_dialog_set_modal ()"><code class="function">gtk_native_dialog_set_modal()</code></a>.</p>
 <div class="refsect3">
 <a name="gtk-native-dialog-get-modal.parameters"></a><h4>Parameters</h4>
@@ -331,7 +331,7 @@ gtk_native_dialog_get_modal (<em class="parameter"><code><a href="https://develo
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>self</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GtkNativeDialog</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr></tbody>
 </table></div>
@@ -346,9 +346,9 @@ gtk_native_dialog_get_modal (<em class="parameter"><code><a href="https://develo
 <div class="refsect2">
 <a name="gtk-native-dialog-set-title"></a><h3>gtk_native_dialog_set_title ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
-gtk_native_dialog_set_title (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a> *self</code></em>,
+gtk_native_dialog_set_title (<em class="parameter"><code><span class="type">GtkNativeDialog</span> *self</code></em>,
                              <em class="parameter"><code>const <span class="type">char</span> *title</code></em>);</pre>
-<p>Sets the title of the <a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a>.</p>
+<p>Sets the title of the <span class="type">GtkNativeDialog</span>.</p>
 <div class="refsect3">
 <a name="gtk-native-dialog-set-title.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -360,7 +360,7 @@ gtk_native_dialog_set_title (<em class="parameter"><code><a href="https://develo
 <tbody>
 <tr>
 <td class="parameter_name"><p>self</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GtkNativeDialog</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -377,8 +377,8 @@ gtk_native_dialog_set_title (<em class="parameter"><code><a href="https://develo
 <div class="refsect2">
 <a name="gtk-native-dialog-get-title"></a><h3>gtk_native_dialog_get_title ()</h3>
 <pre class="programlisting">const <span class="returnvalue">char</span> *
-gtk_native_dialog_get_title (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a> *self</code></em>);</pre>
-<p>Gets the title of the <a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a>.</p>
+gtk_native_dialog_get_title (<em class="parameter"><code><span class="type">GtkNativeDialog</span> *self</code></em>);</pre>
+<p>Gets the title of the <span class="type">GtkNativeDialog</span>.</p>
 <div class="refsect3">
 <a name="gtk-native-dialog-get-title.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -389,7 +389,7 @@ gtk_native_dialog_get_title (<em class="parameter"><code><a href="https://develo
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>self</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GtkNativeDialog</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr></tbody>
 </table></div>
@@ -407,7 +407,7 @@ and must not be modified or freed. </p>
 <div class="refsect2">
 <a name="gtk-native-dialog-set-transient-for"></a><h3>gtk_native_dialog_set_transient_for ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
-gtk_native_dialog_set_transient_for (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a> *self</code></em>,
+gtk_native_dialog_set_transient_for (<em class="parameter"><code><span class="type">GtkNativeDialog</span> *self</code></em>,
                                      <em class="parameter"><code><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="type">GtkWindow</span></a> *parent</code></em>);</pre>
 <p>Dialog windows should be set transient for the main application
 window they were spawned from. This allows
@@ -427,7 +427,7 @@ main window.</p>
 <tbody>
 <tr>
 <td class="parameter_name"><p>self</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GtkNativeDialog</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -444,7 +444,7 @@ main window.</p>
 <div class="refsect2">
 <a name="gtk-native-dialog-get-transient-for"></a><h3>gtk_native_dialog_get_transient_for ()</h3>
 <pre class="programlisting"><a class="link" href="GtkWindow.html" title="GtkWindow"><span class="returnvalue">GtkWindow</span></a> *
-gtk_native_dialog_get_transient_for (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a> *self</code></em>);</pre>
+gtk_native_dialog_get_transient_for (<em class="parameter"><code><span class="type">GtkNativeDialog</span> *self</code></em>);</pre>
 <p>Fetches the transient parent for this window. See
 <a class="link" href="gtk3-GtkNativeDialog.html#gtk-native-dialog-set-transient-for" title="gtk_native_dialog_set_transient_for ()"><code class="function">gtk_native_dialog_set_transient_for()</code></a>.</p>
 <div class="refsect3">
@@ -457,7 +457,7 @@ gtk_native_dialog_get_transient_for (<em class="parameter"><code><a href="https:
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>self</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GtkNativeDialog</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr></tbody>
 </table></div>
@@ -466,7 +466,7 @@ gtk_native_dialog_get_transient_for (<em class="parameter"><code><a href="https:
 <a name="gtk-native-dialog-get-transient-for.returns"></a><h4>Returns</h4>
 <p>the transient parent for this window,
 or <code class="literal">NULL</code> if no transient parent has been set. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-20.html#api-index-3.20">3.20</a></p>
 </div>
@@ -474,10 +474,10 @@ or <code class="literal">NULL</code> if no transient parent has been set. </p>
 <div class="refsect2">
 <a name="gtk-native-dialog-run"></a><h3>gtk_native_dialog_run ()</h3>
 <pre class="programlisting"><span class="returnvalue">gint</span>
-gtk_native_dialog_run (<em class="parameter"><code><a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a> *self</code></em>);</pre>
+gtk_native_dialog_run (<em class="parameter"><code><span class="type">GtkNativeDialog</span> *self</code></em>);</pre>
 <p>Blocks in a recursive main loop until <em class="parameter"><code>self</code></em>
  emits the
-<a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-response"><span class="type">“response”</span></a> signal. It then returns the response ID
+<span class="type">“response”</span> signal. It then returns the response ID
 from the ::response signal emission.</p>
 <p>Before entering the recursive main loop, <a class="link" href="gtk3-GtkNativeDialog.html#gtk-native-dialog-run" title="gtk_native_dialog_run ()"><code class="function">gtk_native_dialog_run()</code></a>
 calls <a class="link" href="gtk3-GtkNativeDialog.html#gtk-native-dialog-show" title="gtk_native_dialog_show ()"><code class="function">gtk_native_dialog_show()</code></a> on the dialog for you.</p>
@@ -530,7 +530,7 @@ be triggered during a <a class="link" href="gtk3-GtkNativeDialog.html#gtk-native
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>self</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gtk4/GtkNativeDialog.html#GtkNativeDialog-struct"><span class="type">GtkNativeDialog</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GtkNativeDialog</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr></tbody>
 </table></div>
@@ -562,10 +562,10 @@ be triggered during a <a class="link" href="gtk3-GtkNativeDialog.html#gtk-native
 </div>
 <div class="refsect1">
 <a name="gtk3-GtkNativeDialog.see-also"></a><h2>See Also</h2>
-<p><a href="https://developer.gnome.org/gtk4/GtkFileChooserNative.html#GtkFileChooserNative-struct"><span class="type">GtkFileChooserNative</span></a>, <a class="link" href="GtkDialog.html" title="GtkDialog"><span class="type">GtkDialog</span></a></p>
+<p><span class="type">GtkFileChooserNative</span>, <a class="link" href="GtkDialog.html" title="GtkDialog"><span class="type">GtkDialog</span></a></p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

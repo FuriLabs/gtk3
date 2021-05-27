@@ -380,15 +380,11 @@ update_xft_settings (GdkScreen *screen)
     }
   else
     {
-      GSettingsSchemaSource *source;
-      GSettingsSchema *schema;
+      TranslationEntry *entry;
 
-      source = g_settings_schema_source_get_default ();
-      schema = g_settings_schema_source_lookup (source,
-                                                "org.gnome.desktop.interface",
-                                                FALSE);
+      entry = find_translation_entry_by_schema ("org.gnome.desktop.interface", "font-antialiasing");
 
-      if (schema && g_settings_schema_has_key (schema, "font-antialiasing"))
+      if (entry && entry->valid)
         {
           settings = g_hash_table_lookup (screen_wayland->settings,
                                           "org.gnome.desktop.interface");
@@ -546,13 +542,13 @@ static TranslationEntry translations[] = {
   { FALSE, "org.gnome.desktop.privacy", "remember-recent-files",    "gtk-recent-files-enabled", G_TYPE_BOOLEAN, { .b = TRUE } },
   { FALSE, WM_SETTINGS_SCHEMA, "button-layout",    "gtk-decoration-layout", G_TYPE_STRING, { .s = "menu:close" } },
   { FALSE, CLASSIC_WM_SETTINGS_SCHEMA, "button-layout",   "gtk-decoration-layout", G_TYPE_STRING, { .s = "menu:close" } },
-  { FALSE, "org.gnome.desktop.interface", "font-antialiasing", "gtk-xft-antialias", G_TYPE_NONE, { .i = 0 } },
-  { FALSE, "org.gnome.desktop.interface", "font-hinting", "gtk-xft-hinting", G_TYPE_NONE, { .i = 0 } },
-  { FALSE, "org.gnome.desktop.interface", "font-hinting", "gtk-xft-hintstyle", G_TYPE_NONE, { .i = 0 } },
+  { FALSE, "org.gnome.desktop.interface", "font-antialiasing", "gtk-xft-antialias", G_TYPE_NONE, { .i = 1 } },
+  { FALSE, "org.gnome.desktop.interface", "font-hinting", "gtk-xft-hinting", G_TYPE_NONE, { .i = 1 } },
+  { FALSE, "org.gnome.desktop.interface", "font-hinting", "gtk-xft-hintstyle", G_TYPE_NONE, { .i = 1 } },
   { FALSE, "org.gnome.desktop.interface", "font-rgba-order", "gtk-xft-rgba", G_TYPE_NONE, { .i = 0 } },
-  { FALSE, "org.gnome.settings-daemon.plugins.xsettings", "antialiasing", "gtk-xft-antialias", G_TYPE_NONE, { .i = 0 } },
-  { FALSE, "org.gnome.settings-daemon.plugins.xsettings", "hinting", "gtk-xft-hinting", G_TYPE_NONE, { .i = 0 } },
-  { FALSE, "org.gnome.settings-daemon.plugins.xsettings", "hinting", "gtk-xft-hintstyle", G_TYPE_NONE, { .i = 0 } },
+  { FALSE, "org.gnome.settings-daemon.plugins.xsettings", "antialiasing", "gtk-xft-antialias", G_TYPE_NONE, { .i = 1 } },
+  { FALSE, "org.gnome.settings-daemon.plugins.xsettings", "hinting", "gtk-xft-hinting", G_TYPE_NONE, { .i = 1 } },
+  { FALSE, "org.gnome.settings-daemon.plugins.xsettings", "hinting", "gtk-xft-hintstyle", G_TYPE_NONE, { .i = 1 } },
   { FALSE, "org.gnome.settings-daemon.plugins.xsettings", "rgba-order", "gtk-xft-rgba", G_TYPE_NONE, { .i = 0 } },
   { FALSE, "org.gnome.desktop.interface", "text-scaling-factor", "gtk-xft-dpi" , G_TYPE_NONE, { .i = 0 } },
   { FALSE, "org.gnome.desktop.wm.preferences", "action-double-click-titlebar", "gtk-titlebar-double-click", G_TYPE_STRING, { .s = "toggle-maximize" } },
@@ -745,6 +741,14 @@ init_settings (GdkScreen *screen)
           g_warning ("Failed to read portal settings: %s", error->message);
           g_error_free (error);
           g_clear_object (&screen_wayland->settings_portal);
+
+          goto fallback;
+        }
+
+      if (g_variant_n_children (ret) == 0)
+        {
+          g_debug ("Received no portal settings");
+          g_clear_pointer (&ret, g_variant_unref);
 
           goto fallback;
         }

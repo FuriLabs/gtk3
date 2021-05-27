@@ -8,7 +8,7 @@
 <link rel="up" href="DeprecatedObjects.html" title="Deprecated">
 <link rel="prev" href="gtk3-Stock-Items.html" title="Stock Items">
 <link rel="next" href="GtkNumerableIcon.html" title="GtkNumerableIcon">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -147,7 +147,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="returnvalue">GdkPixbuf</span></a> *
+<span class="returnvalue">GdkPixbuf</span> *
 </td>
 <td class="function_name">
 <a class="link" href="gtk3-Themeable-Stock-Images.html#gtk-icon-set-render-icon" title="gtk_icon_set_render_icon ()">gtk_icon_set_render_icon</a> <span class="c_punctuation">()</span>
@@ -155,7 +155,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="returnvalue">GdkPixbuf</span></a> *
+<span class="returnvalue">GdkPixbuf</span> *
 </td>
 <td class="function_name">
 <a class="link" href="gtk3-Themeable-Stock-Images.html#gtk-icon-set-render-icon-pixbuf" title="gtk_icon_set_render_icon_pixbuf ()">gtk_icon_set_render_icon_pixbuf</a> <span class="c_punctuation">()</span>
@@ -257,7 +257,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="returnvalue">GdkPixbuf</span></a> *
+<span class="returnvalue">GdkPixbuf</span> *
 </td>
 <td class="function_name">
 <a class="link" href="gtk3-Themeable-Stock-Images.html#gtk-icon-source-get-pixbuf" title="gtk_icon_source_get_pixbuf ()">gtk_icon_source_get_pixbuf</a> <span class="c_punctuation">()</span>
@@ -718,7 +718,7 @@ function directly, so that themes are taken into account.</p>
 <a name="gtk-icon-factory-lookup.returns"></a><h4>Returns</h4>
 <p>icon set of <em class="parameter"><code>stock_id</code></em>
 . </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -753,7 +753,7 @@ account.</p>
 <div class="refsect3">
 <a name="gtk-icon-factory-lookup-default.returns"></a><h4>Returns</h4>
 <p>a <a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSet"><span class="type">GtkIconSet</span></a>, or <code class="literal">NULL</code>. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -907,9 +907,9 @@ gtk_icon_set_new (<em class="parameter"><code><span class="type">void</span></co
 <p>Use <a class="link" href="GtkIconTheme.html" title="GtkIconTheme"><span class="type">GtkIconTheme</span></a> instead.</p>
 </div>
 <p>Creates a new <a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSet"><span class="type">GtkIconSet</span></a>. A <a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSet"><span class="type">GtkIconSet</span></a> represents a single icon
-in various sizes and widget states. It can provide a <a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a>
+in various sizes and widget states. It can provide a <span class="type">GdkPixbuf</span>
 for a given size and state on request, and automatically caches
-some of the rendered <a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a> objects.</p>
+some of the rendered <span class="type">GdkPixbuf</span> objects.</p>
 <p>Normally you would use <a class="link" href="GtkWidget.html#gtk-widget-render-icon-pixbuf" title="gtk_widget_render_icon_pixbuf ()"><code class="function">gtk_widget_render_icon_pixbuf()</code></a> instead of
 using <a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSet"><span class="type">GtkIconSet</span></a> directly. The one case where you’d use
 <a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSet"><span class="type">GtkIconSet</span></a> is to create application-specific icon sets to place in
@@ -923,7 +923,7 @@ a <a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconFactory"><span c
 <div class="refsect2">
 <a name="gtk-icon-set-new-from-pixbuf"></a><h3>gtk_icon_set_new_from_pixbuf ()</h3>
 <pre class="programlisting"><a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSet"><span class="returnvalue">GtkIconSet</span></a> *
-gtk_icon_set_new_from_pixbuf (<em class="parameter"><code><a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a> *pixbuf</code></em>);</pre>
+gtk_icon_set_new_from_pixbuf (<em class="parameter"><code><span class="type">GdkPixbuf</span> *pixbuf</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gtk_icon_set_new_from_pixbuf</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="GtkIconTheme.html" title="GtkIconTheme"><span class="type">GtkIconTheme</span></a> instead.</p>
@@ -945,7 +945,7 @@ or make the icon look insensitive/prelighted.</p>
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>pixbuf</p></td>
-<td class="parameter_description"><p>a <a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GdkPixbuf</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr></tbody>
 </table></div>
@@ -990,7 +990,7 @@ gtk_icon_set_ref (<em class="parameter"><code><a class="link" href="gtk3-Themeab
 <hr>
 <div class="refsect2">
 <a name="gtk-icon-set-render-icon"></a><h3>gtk_icon_set_render_icon ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="returnvalue">GdkPixbuf</span></a> *
+<pre class="programlisting"><span class="returnvalue">GdkPixbuf</span> *
 gtk_icon_set_render_icon (<em class="parameter"><code><a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSet"><span class="type">GtkIconSet</span></a> *icon_set</code></em>,
                           <em class="parameter"><code><a class="link" href="GtkStyle.html" title="GtkStyle"><span class="type">GtkStyle</span></a> *style</code></em>,
                           <em class="parameter"><code><a class="link" href="GtkWidget.html#GtkTextDirection" title="enum GtkTextDirection"><span class="type">GtkTextDirection</span></a> direction</code></em>,
@@ -1048,7 +1048,7 @@ means render at the size of the source and don’t scale. </p></td>
 <td class="parameter_name"><p>widget</p></td>
 <td class="parameter_description"><p>widget that will display the icon, or <code class="literal">NULL</code>.
 The only use that is typically made of this
-is to determine the appropriate <a href="https://developer.gnome.org/gdk3/GdkScreen.html#GdkScreen-struct"><span class="type">GdkScreen</span></a>. </p></td>
+is to determine the appropriate <span class="type">GdkScreen</span>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -1063,14 +1063,14 @@ will disable caching. </p></td>
 </div>
 <div class="refsect3">
 <a name="gtk-icon-set-render-icon.returns"></a><h4>Returns</h4>
-<p>a <a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a> to be displayed. </p>
-<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p>a <span class="type">GdkPixbuf</span> to be displayed. </p>
+<p><span class="annotation">[<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gtk-icon-set-render-icon-pixbuf"></a><h3>gtk_icon_set_render_icon_pixbuf ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="returnvalue">GdkPixbuf</span></a> *
+<pre class="programlisting"><span class="returnvalue">GdkPixbuf</span> *
 gtk_icon_set_render_icon_pixbuf (<em class="parameter"><code><a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSet"><span class="type">GtkIconSet</span></a> *icon_set</code></em>,
                                  <em class="parameter"><code><a class="link" href="GtkStyleContext.html" title="GtkStyleContext"><span class="type">GtkStyleContext</span></a> *context</code></em>,
                                  <em class="parameter"><code><a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSize" title="enum GtkIconSize"><span class="type">GtkIconSize</span></a> size</code></em>);</pre>
@@ -1114,8 +1114,8 @@ means render at the size of the source and don’t scale. </p></td>
 </div>
 <div class="refsect3">
 <a name="gtk-icon-set-render-icon-pixbuf.returns"></a><h4>Returns</h4>
-<p>a <a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a> to be displayed. </p>
-<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p>a <span class="type">GdkPixbuf</span> to be displayed. </p>
+<p><span class="annotation">[<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
 </div>
@@ -1127,7 +1127,7 @@ gtk_icon_set_render_icon_surface (<em class="parameter"><code><a class="link" hr
                                   <em class="parameter"><code><a class="link" href="GtkStyleContext.html" title="GtkStyleContext"><span class="type">GtkStyleContext</span></a> *context</code></em>,
                                   <em class="parameter"><code><a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSize" title="enum GtkIconSize"><span class="type">GtkIconSize</span></a> size</code></em>,
                                   <em class="parameter"><code><span class="type">int</span> scale</code></em>,
-                                  <em class="parameter"><code><a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a> *for_window</code></em>);</pre>
+                                  <em class="parameter"><code><span class="type">GdkWindow</span> *for_window</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gtk_icon_set_render_icon_surface</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="GtkIconTheme.html" title="GtkIconTheme"><span class="type">GtkIconTheme</span></a> instead.</p>
@@ -1169,7 +1169,7 @@ means render at the size of the source and don’t scale. </p></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>for_window</p></td>
-<td class="parameter_description"><p><a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a> to optimize drawing for, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p><span class="type">GdkWindow</span> to optimize drawing for, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -1178,7 +1178,7 @@ means render at the size of the source and don’t scale. </p></td>
 <div class="refsect3">
 <a name="gtk-icon-set-render-icon-surface.returns"></a><h4>Returns</h4>
 <p>a <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-surface-t.html#cairo-surface-t"><span class="type">cairo_surface_t</span></a> to be displayed. </p>
-<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-10.html#api-index-3.10">3.10</a></p>
 </div>
@@ -1614,7 +1614,7 @@ be modified or freed. </p>
 <hr>
 <div class="refsect2">
 <a name="gtk-icon-source-get-pixbuf"></a><h3>gtk_icon_source_get_pixbuf ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="returnvalue">GdkPixbuf</span></a> *
+<pre class="programlisting"><span class="returnvalue">GdkPixbuf</span> *
 gtk_icon_source_get_pixbuf (<em class="parameter"><code>const <a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSource" title="GtkIconSource"><span class="type">GtkIconSource</span></a> *source</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gtk_icon_source_get_pixbuf</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p>
@@ -1645,7 +1645,7 @@ not incremented.</p>
 <div class="refsect3">
 <a name="gtk-icon-source-get-pixbuf.returns"></a><h4>Returns</h4>
 <p>source pixbuf. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -1813,7 +1813,7 @@ gtk_icon_source_new (<em class="parameter"><code><span class="type">void</span><
 <p><code class="literal">gtk_icon_source_new</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="GtkIconTheme.html" title="GtkIconTheme"><span class="type">GtkIconTheme</span></a> instead.</p>
 </div>
-<p>Creates a new <a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSource" title="GtkIconSource"><span class="type">GtkIconSource</span></a>. A <a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSource" title="GtkIconSource"><span class="type">GtkIconSource</span></a> contains a <a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a> (or
+<p>Creates a new <a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSource" title="GtkIconSource"><span class="type">GtkIconSource</span></a>. A <a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSource" title="GtkIconSource"><span class="type">GtkIconSource</span></a> contains a <span class="type">GdkPixbuf</span> (or
 image filename) that serves as the base image for one or more of the
 icons in a <a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSet"><span class="type">GtkIconSet</span></a>, along with a specification for which icons in the
 icon set will be based on that pixbuf or image file. An icon set contains
@@ -1963,7 +1963,7 @@ icon variants for <a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIcon
 <a name="gtk-icon-source-set-pixbuf"></a><h3>gtk_icon_source_set_pixbuf ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_icon_source_set_pixbuf (<em class="parameter"><code><a class="link" href="gtk3-Themeable-Stock-Images.html#GtkIconSource" title="GtkIconSource"><span class="type">GtkIconSource</span></a> *source</code></em>,
-                            <em class="parameter"><code><a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a> *pixbuf</code></em>);</pre>
+                            <em class="parameter"><code><span class="type">GdkPixbuf</span> *pixbuf</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gtk_icon_source_set_pixbuf</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p>
 <p>Use <a class="link" href="GtkIconTheme.html" title="GtkIconTheme"><span class="type">GtkIconTheme</span></a> instead.</p>
@@ -2298,6 +2298,6 @@ that match exactly.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

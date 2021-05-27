@@ -1,3 +1,122 @@
+Overview of Changes in GTK+ 3.24.29
+===================================
+
+* Input:
+ - Look for a Compose file in the right place (~/.config/gtk-3.0)
+ - Revert some Compose sequence changes (mainly around dead
+   acute and apostrophe)
+ - Consume all key events during preedit, to avoid unexpected
+   interactions
+ - Ignore more modifiers during preedit, to allow using 3rd and
+   5th level choosers
+ - Fix handling of cursor positions in non-ASCII preedit text
+
+* GtkSpinButton:
+ - Interpret localized digits
+
+* GtkScale:
+ - Fix sporadic criticals
+
+* GtkScrolledWindow:
+ - Cancel overshoot on size changes
+ - Avoid criticals with non-overlay scrollbars
+
+* GtkFileChooser:
+ - Handle smb mounts better
+
+* GtkListBox:
+ - Fix extending multi-selections
+
+* Fix a possible crash in gtk_show_uri
+
+* Wayland:
+ - Improve font settings fallback
+
+* X11:
+ - Avoid log spam on exit
+ - Don't beep on untrusted displays
+
+* OS X:
+ - Fix building on OS X 10.11
+ - Add gdk-quartz-cocoa-access.h with api that provides
+   access to native objects
+
+* Translation updates:
+ Dutch
+ Nepali
+ Swedish
+
+
+Overview of Changes in GTK+ 3.24.28
+===================================
+
+* Input:
+ - Improve dead key handling
+
+* CSS:
+ - Fix rendering of scaled text shadows
+
+* Wayland:
+ - Fix matching of accelerators with multiple layouts
+
+* X11:
+ - Trap errors from the COW
+
+* Build:
+ - Make gtk3-update-icon-cache output reproducible
+
+* Translation updates:
+ Serbian
+
+
+Overview of Changes in GTK+ 3.24.27
+===================================
+
+* Input: Ensure preedit-start and preedit-end
+  are emitted properly
+
+* GtkScrolledWindow:
+ - Revert a change that broke touch scrolling
+
+* Theme:
+ - Fix a problem with size changes in SSD decorations
+   that caused mutter crashes
+ - Use transparent black for window border in the dark theme
+
+* Windows:
+ - Memory leak fixes
+ - Fix unresponsive windows after tablet input
+ - Add support for wheel and rotation axes
+
+* Translation updates:
+ Belarusian
+ German
+ Kazakh
+ Korean
+ Latvian
+ Turkish
+
+
+Overview of Changes in GTK+ 3.24.26
+===================================
+
+* Input:
+ - Fix a few oversights in Compose file parsing
+ - Fine-tune Compose preedit display
+
+* Theme:
+ - Fine-tune scrollbar size and transitions
+ - Reinstate invisible borders for tiled windows
+
+* Wayland:
+ - Fix a problem with font settings not being found
+
+* Translation updates
+ French
+ Hungarian
+ Turkish
+
+
 Overview of Changes in GTK+ 3.24.25
 ===================================
 

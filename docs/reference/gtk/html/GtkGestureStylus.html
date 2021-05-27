@@ -8,7 +8,7 @@
 <link rel="up" href="Gestures.html" title="Gestures and event handling">
 <link rel="prev" href="GtkGestureZoom.html" title="GtkGestureZoom">
 <link rel="next" href="GtkPadController.html" title="GtkPadController">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -67,7 +67,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="returnvalue">GdkDeviceTool</span></a> *
+<span class="returnvalue">GdkDeviceTool</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkGestureStylus.html#gtk-gesture-stylus-get-device-tool" title="gtk_gesture_stylus_get_device_tool ()">gtk_gesture_stylus_get_device_tool</a> <span class="c_punctuation">()</span>
@@ -173,7 +173,7 @@ gtk_gesture_stylus_new (<em class="parameter"><code><a class="link" href="GtkWid
 <a name="gtk-gesture-stylus-get-axis"></a><h3>gtk_gesture_stylus_get_axis ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_gesture_stylus_get_axis (<em class="parameter"><code><a class="link" href="GtkGestureStylus.html" title="GtkGestureStylus"><span class="type">GtkGestureStylus</span></a> *gesture</code></em>,
-                             <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkAxisUse"><span class="type">GdkAxisUse</span></a> axis</code></em>,
+                             <em class="parameter"><code><span class="type">GdkAxisUse</span> axis</code></em>,
                              <em class="parameter"><code><span class="type">gdouble</span> *value</code></em>);</pre>
 <p>Returns the current value for the requested <em class="parameter"><code>axis</code></em>
 . This function
@@ -218,7 +218,7 @@ signals.</p>
 <a name="gtk-gesture-stylus-get-axes"></a><h3>gtk_gesture_stylus_get_axes ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_gesture_stylus_get_axes (<em class="parameter"><code><a class="link" href="GtkGestureStylus.html" title="GtkGestureStylus"><span class="type">GtkGestureStylus</span></a> *gesture</code></em>,
-                             <em class="parameter"><code><a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkAxisUse"><span class="type">GdkAxisUse</span></a> axes[]</code></em>,
+                             <em class="parameter"><code><span class="type">GdkAxisUse</span> axes[]</code></em>,
                              <em class="parameter"><code><span class="type">gdouble</span> **values</code></em>);</pre>
 <p>Returns the current values for the requested <em class="parameter"><code>axes</code></em>
 . This function
@@ -241,7 +241,7 @@ signals.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>axes</p></td>
-<td class="parameter_description"><p>array of requested axes, terminated with <a href="https://developer.gnome.org/gdk4/GdkDevice.html#GDK-AXIS-IGNORE:CAPS"><span class="type">GDK_AXIS_IGNORE</span></a>. </p></td>
+<td class="parameter_description"><p>array of requested axes, terminated with <span class="type">GDK_AXIS_IGNORE</span>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -261,9 +261,9 @@ signals.</p>
 <hr>
 <div class="refsect2">
 <a name="gtk-gesture-stylus-get-device-tool"></a><h3>gtk_gesture_stylus_get_device_tool ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="returnvalue">GdkDeviceTool</span></a> *
+<pre class="programlisting"><span class="returnvalue">GdkDeviceTool</span> *
 gtk_gesture_stylus_get_device_tool (<em class="parameter"><code><a class="link" href="GtkGestureStylus.html" title="GtkGestureStylus"><span class="type">GtkGestureStylus</span></a> *gesture</code></em>);</pre>
-<p>Returns the <a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="type">GdkDeviceTool</span></a> currently driving input through this gesture.
+<p>Returns the <span class="type">GdkDeviceTool</span> currently driving input through this gesture.
 This function must be called from either the <a class="link" href="GtkGestureStylus.html#GtkGestureStylus-down" title="The “down” signal"><span class="type">“down”</span></a>,
 <a class="link" href="GtkGestureStylus.html#GtkGestureStylus-motion" title="The “motion” signal"><span class="type">“motion”</span></a>, <a class="link" href="GtkGestureStylus.html#GtkGestureStylus-up" title="The “up” signal"><span class="type">“up”</span></a> or <a class="link" href="GtkGestureStylus.html#GtkGestureStylus-proximity" title="The “proximity” signal"><span class="type">“proximity”</span></a>
 signal handlers.</p>
@@ -285,7 +285,7 @@ signal handlers.</p>
 <div class="refsect3">
 <a name="gtk-gesture-stylus-get-device-tool.returns"></a><h4>Returns</h4>
 <p>The current stylus tool. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-24.html#api-index-3.24">3.24</a></p>
 </div>
@@ -345,6 +345,6 @@ user_function (<a class="link" href="GtkGestureStylus.html" title="GtkGestureSty
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

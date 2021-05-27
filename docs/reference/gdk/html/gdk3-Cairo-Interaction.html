@@ -8,7 +8,7 @@
 <link rel="up" href="reference.html" title="API Reference">
 <link rel="prev" href="gdk3-Pango-Interaction.html" title="Pango Interaction">
 <link rel="next" href="gdk3-X-Window-System-Interaction.html" title="X Window System Interaction">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -167,7 +167,7 @@ can be used with GDK. GTK+ does all of its drawing using cairo.</p>
 <p>GDK does not wrap the cairo API, instead it allows to create cairo
 contexts which can be used to draw on <a href="gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindows</span></a>. Additional
 functions allow use <span class="type">GdkRectangles</span> with cairo and to use <a href="gdk3-Colors.html#GdkColor"><span class="type">GdkColors</span></a>,
-<a href="gdk3-RGBA-Colors.html#GdkRGBA"><span class="type">GdkRGBAs</span></a>, <a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbufs</span></a> and <a href="gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindows</span></a> as sources for drawing
+<a href="gdk3-RGBA-Colors.html#GdkRGBA"><span class="type">GdkRGBAs</span></a>, <span class="type">GdkPixbufs</span> and <a href="gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindows</span></a> as sources for drawing
 operations.</p>
 </div>
 <div class="refsect1">
@@ -312,8 +312,8 @@ surface's device scale is set to <em class="parameter"><code>scale</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>format</p></td>
-<td class="parameter_description"><p>the format for the new surface. </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> int]</span></td>
+<td class="parameter_description"><p>the format for the new surface</p></td>
+<td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>width</p></td>
@@ -452,7 +452,7 @@ context <em class="parameter"><code>cr</code></em>
 <div class="refsect3">
 <a name="gdk-cairo-get-drawing-context.returns"></a><h4>Returns</h4>
 <p>a <a class="link" href="GdkDrawingContext.html" title="GdkDrawingContext"><span class="type">GdkDrawingContext</span></a>, if any is set. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-22.html#api-index-3.22">3.22</a></p>
 </div>
@@ -529,7 +529,7 @@ gdk_cairo_set_source_rgba (<em class="parameter"><code><a href="/usr/share/gtk-d
 <a name="gdk-cairo-set-source-pixbuf"></a><h3>gdk_cairo_set_source_pixbuf ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gdk_cairo_set_source_pixbuf (<em class="parameter"><code><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-t"><span class="type">cairo_t</span></a> *cr</code></em>,
-                             <em class="parameter"><code>const <a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a> *pixbuf</code></em>,
+                             <em class="parameter"><code>const <span class="type">GdkPixbuf</span> *pixbuf</code></em>,
                              <em class="parameter"><code><span class="type">gdouble</span> pixbuf_x</code></em>,
                              <em class="parameter"><code><span class="type">gdouble</span> pixbuf_y</code></em>);</pre>
 <p>Sets the given pixbuf as the source pattern for <em class="parameter"><code>cr</code></em>
@@ -555,7 +555,7 @@ so that the origin of <em class="parameter"><code>pixbuf</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>pixbuf</p></td>
-<td class="parameter_description"><p>a <a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GdkPixbuf</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -729,7 +729,7 @@ set with <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-surface-t.html#cairo
 <div class="refsect2">
 <a name="gdk-cairo-surface-create-from-pixbuf"></a><h3>gdk_cairo_surface_create_from_pixbuf ()</h3>
 <pre class="programlisting"><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-surface-t.html#cairo-surface-t"><span class="returnvalue">cairo_surface_t</span></a> *
-gdk_cairo_surface_create_from_pixbuf (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a> *pixbuf</code></em>,
+gdk_cairo_surface_create_from_pixbuf (<em class="parameter"><code>const <span class="type">GdkPixbuf</span> *pixbuf</code></em>,
                                       <em class="parameter"><code><span class="type">int</span> scale</code></em>,
                                       <em class="parameter"><code><a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> *for_window</code></em>);</pre>
 <p>Creates an image surface with the same contents as
@@ -745,7 +745,7 @@ the pixbuf.</p>
 <tbody>
 <tr>
 <td class="parameter_name"><p>pixbuf</p></td>
-<td class="parameter_description"><p>a <a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GdkPixbuf</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -869,6 +869,6 @@ to start copying from in GL coordinates</p></td>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <link rel="up" href="reference.html" title="API Reference">
 <link rel="prev" href="GdkMonitor.html" title="GdkMonitor">
 <link rel="next" href="GdkDevicePad.html" title="GtkDevicePad">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -400,7 +400,7 @@
 </tr>
 <tr>
 <td class="property_type">
-<a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="type">GdkDeviceTool</span></a> *</td>
+<span class="type">GdkDeviceTool</span> *</td>
 <td class="property_name"><a class="link" href="GdkDevice.html#GdkDevice--tool" title="The “tool” property">tool</a></td>
 <td class="property_flags">Read</td>
 </tr>
@@ -572,7 +572,7 @@ compose <span class="type">GSettings</span> paths to store settings for this dev
 16
 17</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="n">GSettings</span> <span class="o">*</span>
-<span class="nf">get_device_settings</span> <span class="p">(</span><span class="n">GdkDevice</span> <span class="o">*</span><span class="n">device</span><span class="p">)</span>
+<span class="n">get_device_settings</span> <span class="p">(</span><span class="n">GdkDevice</span> <span class="o">*</span><span class="n">device</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="k">const</span> <span class="n">gchar</span> <span class="o">*</span><span class="n">vendor</span><span class="p">,</span> <span class="o">*</span><span class="n">product</span><span class="p">;</span>
   <span class="n">GSettings</span> <span class="o">*</span><span class="n">settings</span><span class="p">;</span>
@@ -942,7 +942,7 @@ returned, as there is no associated device.</p>
 <a name="gdk-device-get-associated-device.returns"></a><h4>Returns</h4>
 <p>The associated device, or
 <code class="literal">NULL</code>. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
 </div>
@@ -974,7 +974,7 @@ the list of slave devices attached to it, otherwise it will return
 <p>the list of slave devices, or <code class="literal">NULL</code>. The list must be
 freed with <code class="function">g_list_free()</code>, the contents of the list are
 owned by GTK+ and should not be freed. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GdkDevice]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The caller owns the data container, but not the data inside it."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GdkDevice]</span></p>
 </div>
 </div>
 <hr>
@@ -1032,7 +1032,7 @@ gdk_device_get_display (<em class="parameter"><code><a class="link" href="GdkDev
 <a name="gdk-device-get-display.returns"></a><h4>Returns</h4>
 <p>a <a class="link" href="GdkDisplay.html" title="GdkDisplay"><span class="type">GdkDisplay</span></a>. This memory is owned
 by GTK+, and must not be freed or unreffed. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
 </div>
@@ -1224,7 +1224,7 @@ gdk_device_get_seat (<em class="parameter"><code><a class="link" href="GdkDevice
 <a name="gdk-device-get-seat.returns"></a><h4>Returns</h4>
 <p>A <a class="link" href="GdkSeat.html" title="GdkSeat"><span class="type">GdkSeat</span></a>. This memory is owned by GTK+ and
 must not be freed. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-20.html#api-index-3.20">3.20</a></p>
 </div>
@@ -1454,7 +1454,7 @@ unless there is an ongoing grab on them, see <a class="link" href="GdkDevice.htm
 <td class="parameter_description"><p>location to store the <a class="link" href="GdkScreen.html" title="GdkScreen"><span class="type">GdkScreen</span></a>
 the <em class="parameter"><code>device</code></em>
 is on, or <code class="literal">NULL</code>. </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>x</p></td>
@@ -1505,7 +1505,7 @@ unless there is an ongoing grab on them. See <a class="link" href="GdkDevice.htm
 <td class="parameter_description"><p>location to store the <a class="link" href="GdkScreen.html" title="GdkScreen"><span class="type">GdkScreen</span></a>
 the <em class="parameter"><code>device</code></em>
 is on, or <code class="literal">NULL</code>. </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>x</p></td>
@@ -1573,7 +1573,7 @@ relative to the window origin, or <code class="literal">NULL</code>. </p></td>
 <a name="gdk-device-get-window-at-position.returns"></a><h4>Returns</h4>
 <p>the <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> under the
 device position, or <code class="literal">NULL</code>. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
 </div>
@@ -1628,7 +1628,7 @@ relative to the window origin, or <code class="literal">NULL</code>. </p></td>
 <a name="gdk-device-get-window-at-position-double.returns"></a><h4>Returns</h4>
 <p>the <a class="link" href="gdk3-Windows.html#GdkWindow"><span class="type">GdkWindow</span></a> under the
 device position, or <code class="literal">NULL</code>. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
 </div>
@@ -1685,7 +1685,7 @@ system.</p>
 <td class="parameter_name"><p>events</p></td>
 <td class="parameter_description"><p>location to store a newly-allocated array of <a class="link" href="GdkDevice.html#GdkTimeCoord" title="struct GdkTimeCoord"><span class="type">GdkTimeCoord</span></a>, or
 <code class="literal">NULL</code>. </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> length=n_events][<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>][<acronym title="NULL may be passed instead of a pointer to a location."><span class="acronym">optional</span></acronym>]</span></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> length=n_events][<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>][<acronym title="NULL may be passed instead of a pointer to a location."><span class="acronym">optional</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>n_events</p></td>
@@ -1808,7 +1808,7 @@ the axes that <em class="parameter"><code>device</code></em>
 <div class="refsect3">
 <a name="gdk-device-list-axes.returns"></a><h4>Returns</h4>
 <p>A <span class="type">GList</span> of <a href="gdk3-Properties-and-Atoms.html#GdkAtom"><span class="type">GdkAtoms</span></a>, free with <code class="function">g_list_free()</code>. </p>
-<p><span class="annotation">[<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GdkAtom]</span></p>
+<p><span class="annotation">[<acronym title="The caller owns the data container, but not the data inside it."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GdkAtom]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-0.html#api-index-3.0">3.0</a></p>
 </div>
@@ -1890,7 +1890,7 @@ application's windows.</p>
 <div class="refsect3">
 <a name="gdk-device-get-last-event-window.returns"></a><h4>Returns</h4>
 <p>the last window the device. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-12.html#api-index-3.12">3.12</a></p>
 </div>
@@ -1898,7 +1898,7 @@ application's windows.</p>
 <div class="refsect2">
 <a name="gdk-device-tool-get-serial"></a><h3>gdk_device_tool_get_serial ()</h3>
 <pre class="programlisting"><span class="returnvalue">guint64</span>
-gdk_device_tool_get_serial (<em class="parameter"><code><a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="type">GdkDeviceTool</span></a> *tool</code></em>);</pre>
+gdk_device_tool_get_serial (<em class="parameter"><code><span class="type">GdkDeviceTool</span> *tool</code></em>);</pre>
 <p>Gets the serial of this tool, this value can be used to identify a
 physical tool (eg. a tablet pen) across program executions.</p>
 <div class="refsect3">
@@ -1911,7 +1911,7 @@ physical tool (eg. a tablet pen) across program executions.</p>
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>tool</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="type">GdkDeviceTool</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GdkDeviceTool</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr></tbody>
 </table></div>
@@ -1926,7 +1926,7 @@ physical tool (eg. a tablet pen) across program executions.</p>
 <div class="refsect2">
 <a name="gdk-device-tool-get-tool-type"></a><h3>gdk_device_tool_get_tool_type ()</h3>
 <pre class="programlisting"><a class="link" href="GdkDevice.html#GdkDeviceToolType" title="enum GdkDeviceToolType"><span class="returnvalue">GdkDeviceToolType</span></a>
-gdk_device_tool_get_tool_type (<em class="parameter"><code><a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="type">GdkDeviceTool</span></a> *tool</code></em>);</pre>
+gdk_device_tool_get_tool_type (<em class="parameter"><code><span class="type">GdkDeviceTool</span> *tool</code></em>);</pre>
 <p>Gets the <a class="link" href="GdkDevice.html#GdkDeviceToolType" title="enum GdkDeviceToolType"><span class="type">GdkDeviceToolType</span></a> of the tool.</p>
 <div class="refsect3">
 <a name="gdk-device-tool-get-tool-type.parameters"></a><h4>Parameters</h4>
@@ -1938,7 +1938,7 @@ gdk_device_tool_get_tool_type (<em class="parameter"><code><a href="https://deve
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>tool</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="type">GdkDeviceTool</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">GdkDeviceTool</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr></tbody>
 </table></div>
@@ -2575,7 +2575,7 @@ of touches is unknown.</p>
 <hr>
 <div class="refsect2">
 <a name="GdkDevice--tool"></a><h3>The <code class="literal">“tool”</code> property</h3>
-<pre class="programlisting">  “tool”                     <a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="type">GdkDeviceTool</span></a> *</pre>
+<pre class="programlisting">  “tool”                     <span class="type">GdkDeviceTool</span> *</pre>
 <p>The tool that is currently used with this device.</p>
 <p>Owner: GdkDevice</p>
 <p>Flags: Read</p>
@@ -2644,7 +2644,7 @@ axes and keys.</p>
 <a name="GdkDevice-tool-changed"></a><h3>The <code class="literal">“tool-changed”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GdkDevice.html" title="GdkDevice"><span class="type">GdkDevice</span></a>     *device,
-               <a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="type">GdkDeviceTool</span></a> *tool,
+               <span class="type">GdkDeviceTool</span> *tool,
                <span class="type">gpointer</span>       user_data)</pre>
 <p>The ::tool-changed signal is emitted on pen/eraser
 <span class="type">GdkDevices</span> whenever tools enter or leave proximity.</p>
@@ -2685,6 +2685,6 @@ user_function (<a class="link" href="GdkDevice.html" title="GdkDevice"><span cla
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

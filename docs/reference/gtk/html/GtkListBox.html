@@ -8,7 +8,7 @@
 <link rel="up" href="LayoutContainers.html" title="Layout Containers">
 <link rel="prev" href="GtkRevealer.html" title="GtkRevealer">
 <link rel="next" href="GtkFlowBox.html" title="GtkFlowBox">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -534,7 +534,7 @@ GtkListBoxRow implements
 <div class="refsect1">
 <a name="GtkListBox.description"></a><h2>Description</h2>
 <p>A GtkListBox is a vertical container that contains GtkListBoxRow
-children. These rows can by dynamically sorted and filtered, and
+children. These rows can be dynamically sorted and filtered, and
 headers can be added dynamically depending on the row content.
 It also allows keyboard and mouse navigation and selection like
 a typical list.</p>
@@ -935,7 +935,7 @@ find all selected rows.</p>
 <div class="refsect3">
 <a name="gtk-list-box-get-selected-row.returns"></a><h4>Returns</h4>
 <p>the selected row. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-10.html#api-index-3.10">3.10</a></p>
 </div>
@@ -1041,7 +1041,7 @@ gtk_list_box_get_selected_rows (<em class="parameter"><code><a class="link" href
 <a name="gtk-list-box-get-selected-rows.returns"></a><h4>Returns</h4>
 <p>A <span class="type">GList</span> containing the <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> for each selected child.
 Free with <code class="function">g_list_free()</code> when done. </p>
-<p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GtkListBoxRow][<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GtkListBoxRow][<acronym title="The caller owns the data container, but not the data inside it."><span class="acronym">transfer container</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-14.html#api-index-3.14">3.14</a></p>
 </div>
@@ -1191,7 +1191,7 @@ for vertical scrolling.</p>
 <div class="refsect3">
 <a name="gtk-list-box-get-adjustment.returns"></a><h4>Returns</h4>
 <p>the adjustment. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-10.html#api-index-3.10">3.10</a></p>
 </div>
@@ -1300,7 +1300,7 @@ list, <code class="literal">NULL</code> is returned.</p>
 <div class="refsect3">
 <a name="gtk-list-box-get-row-at-index.returns"></a><h4>Returns</h4>
 <p>the child <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> or <code class="literal">NULL</code>. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-10.html#api-index-3.10">3.10</a></p>
 </div>
@@ -1338,7 +1338,7 @@ gtk_list_box_get_row_at_y (<em class="parameter"><code><a class="link" href="Gtk
 <a name="gtk-list-box-get-row-at-y.returns"></a><h4>Returns</h4>
 <p>the row or <code class="literal">NULL</code>
 in case no row exists for the given y coordinate. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-10.html#api-index-3.10">3.10</a></p>
 </div>
@@ -1690,7 +1690,7 @@ be updated to show the desired row widgets.</p>
 <a name="GtkListBoxCreateWidgetFunc.returns"></a><h4>Returns</h4>
 <p>a <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> that represents <em class="parameter"><code>item</code></em>
 . </p>
-<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-16.html#api-index-3.16">3.16</a></p>
 </div>
@@ -1874,7 +1874,7 @@ set already, and if so to update the state of it.</p>
 <div class="refsect3">
 <a name="gtk-list-box-row-get-header.returns"></a><h4>Returns</h4>
 <p>the current header, or <code class="literal">NULL</code> if none. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-10.html#api-index-3.10">3.10</a></p>
 </div>
@@ -2458,6 +2458,6 @@ use the <a class="link" href="GtkListBox.html#GtkListBox-row-activated" title="T
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

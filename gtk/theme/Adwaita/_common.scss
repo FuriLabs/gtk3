@@ -2324,7 +2324,7 @@ popover.background {
   }
 
   .csd & {
-    $_popover_border: if($variant=='light', transparentize(black, 0.77), transparentize($borders_color, 0.1));
+    $_popover_border: if($variant=='light', transparentize(black, 0.77), transparentize(black, 0.25));
 
     background-clip: padding-box;
     border-color: $_popover_border;
@@ -2640,6 +2640,9 @@ notebook {
  **************/
 scrollbar {
   $_slider_min_length: 40px;
+  $_slider_width: 8px;
+  $_scrollbar_transition: all 300ms $ease-out-quad;
+  $_fine-tune_slider_border: $_slider_width - 3; //3672
 
   // disable steppers
   @at-root * {
@@ -2648,7 +2651,7 @@ scrollbar {
   }
 
   background-color: $scrollbar_bg_color;
-  transition: 300ms $ease-out-quad;
+  transition: $_scrollbar_transition;
 
   // scrollbar border
   &.top { border-bottom: 1px solid $borders_color; }
@@ -2664,13 +2667,14 @@ scrollbar {
 
   // slider
   slider {
-    min-width: 10px;
-    min-height: 10px;
+    min-width: $_slider_width;
+    min-height: $_slider_width;
     margin: -1px;
     border: 4px solid transparent;
     border-radius: 10px;
     background-clip: padding-box;
     background-color: $scrollbar_slider_color;
+    transition: $_scrollbar_transition;
 
     &:hover { background-color: $scrollbar_slider_hover_color; }
 
@@ -2683,12 +2687,13 @@ scrollbar {
 
   &.fine-tune {
     slider {
-      min-width: 6px;
-      min-height: 6px;
+      transition: none;
+      min-width: $_fine-tune_slider_border+1;
+      min-height: $_fine-tune_slider_border+1;
     }
 
-    &.horizontal slider { border-width: 6px 4px; }
-    &.vertical slider { border-width: 4px 6px; }
+    &.horizontal slider { border-width: $_fine-tune_slider_border 4px; }
+    &.vertical slider { border-width: 4px $_fine-tune_slider_border; }
   }
 
   &.overlay-indicator {
@@ -4551,8 +4556,8 @@ decoration {
 
   // this needs to be transparent
   // see bug #722563
-  $_wm_border: if($variant=='light', transparentize(black, 0.77), transparentize($borders_color, 0.1));
-  $_wm_border_backdrop: if($variant=='light', transparentize(black, 0.82), transparentize($borders_color, 0.1));
+  $_wm_border: if($variant=='light', transparentize(black, 0.77), transparentize(black, 0.25));
+  $_wm_border_backdrop: if($variant=='light', transparentize(black, 0.82), transparentize(black, 0.25));
 
   box-shadow: 0 3px 9px 1px transparentize(black, 0.5),
               0 0 0 1px $_wm_border; //doing borders with box-shadow
@@ -4582,15 +4587,20 @@ decoration {
   .tiled-bottom &,
   .tiled-left & {
     border-radius: 0;
-    box-shadow: 0 0 0 1px $_wm_border_backdrop;
+    box-shadow: 0 0 0 1px $_wm_border_backdrop,
+                0 0 0 20px transparent; //transparent control workaround -- #3670
 
-    &:backdrop { box-shadow: 0 0 0 1px $_wm_border_backdrop; }
+    &:backdrop { box-shadow: 0 0 0 1px $_wm_border_backdrop,
+                             0 0 0 20px transparent; // #3670
+    }
    }
 
   .popup & { box-shadow: none; }
 
   // server-side decorations as used by mutter
-  .ssd & { box-shadow: 0 0 0 1px $_wm_border; } //just doing borders, wm draws actual shadows
+  // just doing borders, wm draws actual shadows
+  .ssd & { box-shadow: 0 0 0 1px $_wm_border; }
+  .ssd &:backdrop { box-shadow: 0 0 0 1px $_wm_border_backdrop; }
 
   .csd.popup & {
     border-radius: $menu_radius;

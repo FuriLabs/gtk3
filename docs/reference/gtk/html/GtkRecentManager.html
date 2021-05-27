@@ -8,7 +8,7 @@
 <link rel="up" href="RecentDocuments.html" title="Recently Used Documents">
 <link rel="prev" href="RecentDocuments.html" title="Recently Used Documents">
 <link rel="next" href="GtkRecentChooser.html" title="GtkRecentChooser">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -256,7 +256,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="returnvalue">GdkPixbuf</span></a> *
+<span class="returnvalue">GdkPixbuf</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkRecentManager.html#gtk-recent-info-get-icon" title="gtk_recent_info_get_icon ()">gtk_recent_info_get_icon</a> <span class="c_punctuation">()</span>
@@ -518,7 +518,7 @@ in your application without caring about memory management.</p>
 <a name="gtk-recent-manager-get-default.returns"></a><h4>Returns</h4>
 <p>A unique <a class="link" href="GtkRecentManager.html" title="GtkRecentManager"><span class="type">GtkRecentManager</span></a>. Do not ref or
 unref it. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.10</p>
 </div>
@@ -835,7 +835,7 @@ gtk_recent_manager_get_items (<em class="parameter"><code><a class="link" href="
 newly allocated <a class="link" href="GtkRecentManager.html#GtkRecentInfo" title="GtkRecentInfo"><span class="type">GtkRecentInfo</span></a> objects. Use
 <a class="link" href="GtkRecentManager.html#gtk-recent-info-unref" title="gtk_recent_info_unref ()"><code class="function">gtk_recent_info_unref()</code></a> on each item inside the list, and then
 free the list itself using <code class="function">g_list_free()</code>. </p>
-<p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GtkRecentInfo][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GtkRecentInfo][<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.10</p>
 </div>
@@ -1196,7 +1196,7 @@ storage specification, they will be expanded.</p>
 <td class="parameter_name"><p>app_exec</p></td>
 <td class="parameter_description"><p>return location for the string containing
 the command line. </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>][<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>count</p></td>
@@ -1256,7 +1256,7 @@ gtk_recent_info_get_applications (<em class="parameter"><code><a class="link" hr
 <a name="gtk-recent-info-get-applications.returns"></a><h4>Returns</h4>
 <p>a newly allocated <code class="literal">NULL</code>-terminated array of strings.
 Use <code class="function">g_strfreev()</code> to free it. </p>
-<p><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> length=length zero-terminated=1][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> length=length zero-terminated=1][<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.10</p>
 </div>
@@ -1370,7 +1370,7 @@ application for the MIME type is used. </p></td>
 In case of error, <em class="parameter"><code>error</code></em>
 will be set either with a
 <a class="link" href="GtkRecentManager.html#GTK-RECENT-MANAGER-ERROR:CAPS" title="GTK_RECENT_MANAGER_ERROR"><code class="literal">GTK_RECENT_MANAGER_ERROR</code></a> or a <code class="literal">G_IO_ERROR</code>. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -1409,7 +1409,7 @@ length might optionally be <code class="literal">NULL</code>.</p>
 <a name="gtk-recent-info-get-groups.returns"></a><h4>Returns</h4>
 <p>a newly allocated <code class="literal">NULL</code> terminated array of strings.
 Use <code class="function">g_strfreev()</code> to free it. </p>
-<p><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> length=length zero-terminated=1][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> length=length zero-terminated=1][<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.10</p>
 </div>
@@ -1454,7 +1454,7 @@ registered for the recently used item <em class="parameter"><code>info</code></e
 <hr>
 <div class="refsect2">
 <a name="gtk-recent-info-get-icon"></a><h3>gtk_recent_info_get_icon ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="returnvalue">GdkPixbuf</span></a> *
+<pre class="programlisting"><span class="returnvalue">GdkPixbuf</span> *
 gtk_recent_info_get_icon (<em class="parameter"><code><a class="link" href="GtkRecentManager.html#GtkRecentInfo" title="GtkRecentInfo"><span class="type">GtkRecentInfo</span></a> *info</code></em>,
                           <em class="parameter"><code><span class="type">gint</span> size</code></em>);</pre>
 <p>Retrieves the icon of size <em class="parameter"><code>size</code></em>
@@ -1483,9 +1483,9 @@ gtk_recent_info_get_icon (<em class="parameter"><code><a class="link" href="GtkR
 </div>
 <div class="refsect3">
 <a name="gtk-recent-info-get-icon.returns"></a><h4>Returns</h4>
-<p>a <a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a> containing the icon,
+<p>a <span class="type">GdkPixbuf</span> containing the icon,
 or <code class="literal">NULL</code>. Use <code class="function">g_object_unref()</code> when finished using the icon. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.10</p>
 </div>
@@ -1514,7 +1514,7 @@ gtk_recent_info_get_gicon (<em class="parameter"><code><a class="link" href="Gtk
 <a name="gtk-recent-info-get-gicon.returns"></a><h4>Returns</h4>
 <p>a <span class="type">GIcon</span> containing the icon, or <code class="literal">NULL</code>.
 Use <code class="function">g_object_unref()</code> when finished using the icon. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.22</p>
 </div>
@@ -1947,6 +1947,6 @@ by another application.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

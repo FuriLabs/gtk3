@@ -8,7 +8,7 @@
 <link rel="up" href="TreeWidgetObjects.html" title="Tree, List and Icon Grid Widgets">
 <link rel="prev" href="GtkTreeModelSort.html" title="GtkTreeModelSort">
 <link rel="next" href="GtkCellLayout.html" title="GtkCellLayout">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -401,7 +401,7 @@ and <em class="parameter"><code>root</code></em>
 <div class="refsect3">
 <a name="gtk-tree-model-filter-new.returns"></a><h4>Returns</h4>
 <p>A new <a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span class="type">GtkTreeModel</span></a>. </p>
-<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.4</p>
 </div>
@@ -448,7 +448,7 @@ rows, like in the example below.</p>
 15
 16</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="n">gboolean</span>
-<span class="nf">visible_func</span> <span class="p">(</span><span class="n">GtkTreeModel</span> <span class="o">*</span><span class="n">model</span><span class="p">,</span>
+<span class="n">visible_func</span> <span class="p">(</span><span class="n">GtkTreeModel</span> <span class="o">*</span><span class="n">model</span><span class="p">,</span>
               <span class="n">GtkTreeIter</span>  <span class="o">*</span><span class="n">iter</span><span class="p">,</span>
               <span class="n">gpointer</span>      <span class="n">data</span><span class="p">)</span>
 <span class="p">{</span>
@@ -456,7 +456,7 @@ rows, like in the example below.</p>
   <span class="n">gchar</span> <span class="o">*</span><span class="n">str</span><span class="p">;</span>
   <span class="n">gboolean</span> <span class="n">visible</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">;</span>
 
-  <span class="n">gtk_tree_model_get</span> <span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">iter</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">str</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+  <span class="n">gtk_tree_model_get</span> <span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">iter</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">str</span><span class="p">,</span> <span class="mi">-1</span><span class="p">);</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">str</span> <span class="o">&amp;&amp;</span> <span class="n">strcmp</span> <span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="s">&quot;HI&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">visible</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">;</span>
   <span class="n">g_free</span> <span class="p">(</span><span class="n">str</span><span class="p">);</span>
@@ -642,7 +642,7 @@ gtk_tree_model_filter_get_model (<em class="parameter"><code><a class="link" hre
 <div class="refsect3">
 <a name="gtk-tree-model-filter-get-model.returns"></a><h4>Returns</h4>
 <p>A pointer to a <a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span class="type">GtkTreeModel</span></a>. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.4</p>
 </div>
@@ -780,7 +780,7 @@ is returned.</p>
 <div class="refsect3">
 <a name="gtk-tree-model-filter-convert-child-path-to-path.returns"></a><h4>Returns</h4>
 <p>A newly allocated <a class="link" href="GtkTreeModel.html#GtkTreePath"><span class="type">GtkTreePath</span></a>, or <code class="literal">NULL</code>. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.4</p>
 </div>
@@ -825,7 +825,7 @@ does not point to a location in the child model, <code class="literal">NULL</cod
 <div class="refsect3">
 <a name="gtk-tree-model-filter-convert-path-to-child-path.returns"></a><h4>Returns</h4>
 <p>A newly allocated <a class="link" href="GtkTreeModel.html#GtkTreePath"><span class="type">GtkTreePath</span></a>, or <code class="literal">NULL</code>. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.4</p>
 </div>
@@ -914,6 +914,6 @@ all unreffed iters will be invalid.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

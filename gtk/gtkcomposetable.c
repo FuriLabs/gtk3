@@ -77,28 +77,32 @@ parse_compose_value (GtkComposeData *compose_data,
                      const char     *val,
                      const char     *line)
 {
-  char *word;
   const char *p;
-  gsize len;
   GString *value;
   gunichar ch;
   char *endp;
 
-  len = strlen (val);
-  if (val[0] != '"' || val[len - 1] != '"')
+  if (val[0] != '"')
     {
-      g_warning ("Need to double-quote the value: %s: %s", val, line);
+      g_warning ("Only strings supported after ':': %s: %s", val, line);
       goto fail;
     }
 
-  word = g_strndup (val + 1, len - 2);
-
   value = g_string_new ("");
 
-  p = word;
+  p = val + 1;
   while (*p)
     {
-      if (*p == '\\')
+      if (*p == '\0')
+        {
+          g_warning ("Missing closing '\"': %s: %s", val, line);
+          goto fail;
+        }
+      else if (*p == '\"')
+        {
+          break;
+        }
+      else if (*p == '\\')
         {
           if (p[1] == '"')
             {
@@ -147,8 +151,6 @@ parse_compose_value (GtkComposeData *compose_data,
     }
 
   compose_data->value = g_string_free (value, FALSE);
-
-  g_free (word);
 
   return TRUE;
 
@@ -239,10 +241,7 @@ parse_compose_line (GList       **compose_list,
     return;
 
   if (g_str_has_prefix (line, "include "))
-    {
-      g_warning ("include in Compose files not supported: %s", line);
-      return;
-    }
+    return;
 
   components = g_strsplit (line, ":", 2);
 
@@ -1191,6 +1190,12 @@ gtk_check_algorithmically (const guint16 *compose_buffer,
 
   for (i = 0; i < n_compose && IS_DEAD_KEY (compose_buffer[i]); i++)
     ;
+
+  /* Allow at most 2 dead keys */
+  if (i > 2)
+    return FALSE;
+
+  /* Can't combine if there's no base character */
   if (i == n_compose)
     return TRUE;
 

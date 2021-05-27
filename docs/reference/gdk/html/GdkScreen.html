@@ -8,7 +8,7 @@
 <link rel="up" href="reference.html" title="API Reference">
 <link rel="prev" href="GdkDisplay.html" title="GdkDisplay">
 <link rel="next" href="GdkSeat.html" title="GdkSeat">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -390,7 +390,7 @@ gdk_screen_get_default (<em class="parameter"><code><span class="type">void</spa
 <a name="gdk-screen-get-default.returns"></a><h4>Returns</h4>
 <p>a <a class="link" href="GdkScreen.html" title="GdkScreen"><span class="type">GdkScreen</span></a>, or <code class="literal">NULL</code> if
 there is no default display. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.2</p>
 </div>
@@ -421,7 +421,7 @@ The return value should not be freed.</p>
 <div class="refsect3">
 <a name="gdk-screen-get-system-visual.returns"></a><h4>Returns</h4>
 <p>the system visual. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.2</p>
 </div>
@@ -461,7 +461,7 @@ must be running to provide appropriate display.</p>
 <p>a visual to use for windows
 with an alpha channel or <code class="literal">NULL</code> if the capability is not
 available. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.8</p>
 </div>
@@ -523,7 +523,7 @@ gdk_screen_get_root_window (<em class="parameter"><code><a class="link" href="Gd
 <div class="refsect3">
 <a name="gdk-screen-get-root-window.returns"></a><h4>Returns</h4>
 <p>the root window. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.2</p>
 </div>
@@ -553,7 +553,7 @@ gdk_screen_get_display (<em class="parameter"><code><a class="link" href="GdkScr
 <a name="gdk-screen-get-display.returns"></a><h4>Returns</h4>
 <p>the display to which <em class="parameter"><code>screen</code></em>
 belongs. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.2</p>
 </div>
@@ -758,7 +758,7 @@ and might expect pixels to be in a certain format.</p>
 <div class="refsect3">
 <a name="gdk-screen-list-visuals.returns"></a><h4>Returns</h4>
 <p>a list of visuals; the list must be freed, but not its contents. </p>
-<p><span class="annotation">[<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GdkVisual]</span></p>
+<p><span class="annotation">[<acronym title="The caller owns the data container, but not the data inside it."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GdkVisual]</span></p>
 </div>
 <p class="since">Since: 2.2</p>
 </div>
@@ -791,7 +791,7 @@ its elements need not be freed.</p>
 <div class="refsect3">
 <a name="gdk-screen-get-toplevel-windows.returns"></a><h4>Returns</h4>
 <p>list of toplevel windows, free with <code class="function">g_list_free()</code>. </p>
-<p><span class="annotation">[<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GdkWindow]</span></p>
+<p><span class="annotation">[<acronym title="The caller owns the data container, but not the data inside it."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GdkWindow]</span></p>
 </div>
 <p class="since">Since: 2.2</p>
 </div>
@@ -1345,7 +1345,7 @@ default font options have been set. </p>
 gdk_screen_set_font_options (<em class="parameter"><code><a class="link" href="GdkScreen.html" title="GdkScreen"><span class="type">GdkScreen</span></a> *screen</code></em>,
                              <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-font-options-t.html#cairo-font-options-t"><span class="type">cairo_font_options_t</span></a> *options</code></em>);</pre>
 <p>Sets the default font options for the screen. These
-options will be set on any <a href="https://developer.gnome.org/pango/pango-Contexts.html#PangoContext-struct"><span class="type">PangoContext</span></a>’s newly created
+options will be set on any <span class="type">PangoContext</span>’s newly created
 with <a class="link" href="gdk3-Pango-Interaction.html#gdk-pango-context-get-for-screen" title="gdk_pango_context_get_for_screen ()"><code class="function">gdk_pango_context_get_for_screen()</code></a>. Changing the
 default set of font options does not affect contexts that
 have already been created.</p>
@@ -1410,7 +1410,7 @@ has been set.</p>
 gdk_screen_set_resolution (<em class="parameter"><code><a class="link" href="GdkScreen.html" title="GdkScreen"><span class="type">GdkScreen</span></a> *screen</code></em>,
                            <em class="parameter"><code><span class="type">gdouble</span> dpi</code></em>);</pre>
 <p>Sets the resolution for font handling on the screen. This is a
-scale factor between points specified in a <a href="https://developer.gnome.org/pango/pango-Fonts.html#PangoFontDescription-struct"><span class="type">PangoFontDescription</span></a>
+scale factor between points specified in a <span class="type">PangoFontDescription</span>
 and cairo units. The default value is 96, meaning that a 10 point
 font will be 13 units high. (10 * 96. / 72. = 13.3).</p>
 <div class="refsect3">
@@ -1474,7 +1474,7 @@ no longer needed.</p>
 <a name="gdk-screen-get-active-window.returns"></a><h4>Returns</h4>
 <p>the currently active window,
 or <code class="literal">NULL</code>. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.10</p>
 </div>
@@ -1514,7 +1514,7 @@ its windows unrefed using <code class="function">g_object_unref()</code> when no
 <a name="gdk-screen-get-window-stack.returns"></a><h4>Returns</h4>
 <p>a
 list of <a href="gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindows</span></a> for the current window stack, or <code class="literal">NULL</code>. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GdkWindow]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GdkWindow]</span></p>
 </div>
 <p class="since">Since: 2.10</p>
 </div>
@@ -1652,6 +1652,6 @@ height of a screen changes.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

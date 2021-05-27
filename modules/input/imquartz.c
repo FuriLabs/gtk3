@@ -30,14 +30,14 @@
 #define GTK_COMPILATION 1 // For gdkquartz-gtk-only.h
 
 #include "gdk/quartz/gdkinternal-quartz.h"
-#include "gdk/quartz/gdkquartz-gtk-only.h"
+#include "gdk/quartz/gdkquartz-cocoa-access.h"
 #include "gdk/quartz/GdkQuartzView.h"
 
 #define GTK_IM_CONTEXT_TYPE_QUARTZ (type_quartz)
 #define GTK_IM_CONTEXT_QUARTZ(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_IM_CONTEXT_TYPE_QUARTZ, GtkIMContextQuartz))
 #define GTK_IM_CONTEXT_QUARTZ_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS((obj), GTK_IM_CONTEXT_TYPE_QUARTZ, GtkIMContextQuartzClass))
 
-#if MAC_OS_X_VERSION_MIN_REQUIRED < 10120
+#if MAC_OS_X_VERSION_MIN_REQUIRED < 101200
 #define NS_EVENT_KEY_DOWN NSKeyDown
 #else
 #define NS_EVENT_KEY_DOWN NSEventTypeKeyDown

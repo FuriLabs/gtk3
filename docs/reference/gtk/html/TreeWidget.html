@@ -8,7 +8,7 @@
 <link rel="up" href="TreeWidgetObjects.html" title="Tree, List and Icon Grid Widgets">
 <link rel="prev" href="TreeWidgetObjects.html" title="Tree, List and Icon Grid Widgets">
 <link rel="next" href="GtkTreeModel.html" title="GtkTreeModel">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -153,7 +153,7 @@
                     <span class="n">TITLE_COLUMN</span><span class="p">,</span> <span class="s">&quot;The Principle of Reason&quot;</span><span class="p">,</span>
                     <span class="n">AUTHOR_COLUMN</span><span class="p">,</span> <span class="s">&quot;Martin Heidegger&quot;</span><span class="p">,</span>
                     <span class="n">CHECKED_COLUMN</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">,</span>
-                    <span class="o">-</span><span class="mi">1</span><span class="p">);</span></pre></td>
+                    <span class="mi">-1</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -207,22 +207,22 @@
                     <span class="n">TITLE_COLUMN</span><span class="p">,</span> <span class="s">&quot;The Art of Computer Programming&quot;</span><span class="p">,</span>
                     <span class="n">AUTHOR_COLUMN</span><span class="p">,</span> <span class="s">&quot;Donald E. Knuth&quot;</span><span class="p">,</span>
                     <span class="n">CHECKED_COLUMN</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">,</span>
-                    <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+                    <span class="mi">-1</span><span class="p">);</span>
 
 <span class="n">gtk_tree_store_append</span> <span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">iter2</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">iter1</span><span class="p">);</span>  <span class="cm">/* Acquire a child iterator */</span>
 <span class="n">gtk_tree_store_set</span> <span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">iter2</span><span class="p">,</span>
                     <span class="n">TITLE_COLUMN</span><span class="p">,</span> <span class="s">&quot;Volume 1: Fundamental Algorithms&quot;</span><span class="p">,</span>
-                    <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+                    <span class="mi">-1</span><span class="p">);</span>
 
 <span class="n">gtk_tree_store_append</span> <span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">iter2</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">iter1</span><span class="p">);</span>
 <span class="n">gtk_tree_store_set</span> <span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">iter2</span><span class="p">,</span>
                     <span class="n">TITLE_COLUMN</span><span class="p">,</span> <span class="s">&quot;Volume 2: Seminumerical Algorithms&quot;</span><span class="p">,</span>
-                    <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+                    <span class="mi">-1</span><span class="p">);</span>
 
 <span class="n">gtk_tree_store_append</span> <span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">iter2</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">iter1</span><span class="p">);</span>
 <span class="n">gtk_tree_store_set</span> <span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">iter2</span><span class="p">,</span>
                     <span class="n">TITLE_COLUMN</span><span class="p">,</span> <span class="s">&quot;Volume 3: Sorting and Searching&quot;</span><span class="p">,</span>
-                    <span class="o">-</span><span class="mi">1</span><span class="p">);</span></pre></td>
+                    <span class="mi">-1</span><span class="p">);</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -330,7 +330,7 @@
 10
 11</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="cm">/* Prototype for selection handler callback */</span>
-<span class="k">static</span> <span class="kt">void</span> <span class="nf">tree_selection_changed_cb</span> <span class="p">(</span><span class="n">GtkTreeSelection</span> <span class="o">*</span><span class="n">selection</span><span class="p">,</span> <span class="n">gpointer</span> <span class="n">data</span><span class="p">);</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="n">tree_selection_changed_cb</span> <span class="p">(</span><span class="n">GtkTreeSelection</span> <span class="o">*</span><span class="n">selection</span><span class="p">,</span> <span class="n">gpointer</span> <span class="n">data</span><span class="p">);</span>
 
 <span class="cm">/* Setup the selection handler */</span>
 <span class="n">GtkTreeSelection</span> <span class="o">*</span><span class="n">select</span><span class="p">;</span>
@@ -369,7 +369,7 @@
 15
 16</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="nf">tree_selection_changed_cb</span> <span class="p">(</span><span class="n">GtkTreeSelection</span> <span class="o">*</span><span class="n">selection</span><span class="p">,</span> <span class="n">gpointer</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">tree_selection_changed_cb</span> <span class="p">(</span><span class="n">GtkTreeSelection</span> <span class="o">*</span><span class="n">selection</span><span class="p">,</span> <span class="n">gpointer</span> <span class="n">data</span><span class="p">)</span>
 <span class="p">{</span>
         <span class="n">GtkTreeIter</span> <span class="n">iter</span><span class="p">;</span>
         <span class="n">GtkTreeModel</span> <span class="o">*</span><span class="n">model</span><span class="p">;</span>
@@ -377,7 +377,7 @@
 
         <span class="k">if</span> <span class="p">(</span><span class="n">gtk_tree_selection_get_selected</span> <span class="p">(</span><span class="n">selection</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">model</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">iter</span><span class="p">))</span>
         <span class="p">{</span>
-                <span class="n">gtk_tree_model_get</span> <span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">iter</span><span class="p">,</span> <span class="n">AUTHOR_COLUMN</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">author</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+                <span class="n">gtk_tree_model_get</span> <span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">iter</span><span class="p">,</span> <span class="n">AUTHOR_COLUMN</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">author</span><span class="p">,</span> <span class="mi">-1</span><span class="p">);</span>
 
                 <span class="n">g_print</span> <span class="p">(</span><span class="s">&quot;You selected a book by %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">author</span><span class="p">);</span>
 
@@ -550,6 +550,6 @@
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

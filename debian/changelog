@@ -1,3 +1,84 @@
+gtk+3.0 (3.24.29-1ubuntu1) UNRELEASED; urgency=medium
+
+  * Merge with Debian. Remaining changes:
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0.symbols
+    + debian/control.in and debian/tests/control (installed-tests):
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + debian/control.in: Build-Depend on dh-sequence-translations
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 27 May 2021 15:23:07 +0200
+
+gtk+3.0 (3.24.29-1) experimental; urgency=medium
+
+  * New upstream release
+    - Improve input handling to allow 3rd and 5th level choosers
+    - Correct cursor position in non-ASCII preedit text
+    - Handle smb mounts better
+    - Fix extending multi-selections in list boxes
+    - Don't beep on untrusted X11 displays, which can cause an X error
+    - Various fixes that were already included in 3.24.28-1
+  * Drop patches taken from upstream
+
+ -- Simon McVittie <smcv@debian.org>  Fri, 30 Apr 2021 10:17:56 +0100
+
+gtk+3.0 (3.24.28-1) experimental; urgency=medium
+
+  * New upstream release
+    - Fix size changes in server-side decorations that could cause mutter
+      crashes
+    - Use transparent black for window border in dark theme
+    - Reinstate invisible borders for tiled windows
+    - Wayland: Find font settings more reliably
+    - Improve Compose and dead key handling
+    - Fix rendering of scaled text shadows (LP: #1919404)
+    - Wayland: Fix matching of accelerators with multiple layouts
+    - Fix crashes in X11 drag & drop with certain configurations of the
+      NVIDIA proprietary driver (LP: #1911036)
+    - Translation updates
+  * d/patches: Add various fixes from upstream
+    - d/p/imcontext-Look-for-Compose-file-in-the-right-place.patch,
+      d/p/Revert-Compose-sequence-changes.patch,
+      d/p/imcontext-Eat-key-events-during-preedit.patch:
+      Fix input regressions
+    - d/p/label-Fix-reacting-to-screen-resolution-changes.patch:
+      Redraw labels when "large text" setting changes
+    - d/p/spinbutton-Interpret-localized-digits.patch:
+      Interpret non-ASCII digits in spinbutton
+    - d/p/gdk-wayland-Defer-processing-of-globals-closures.patch:
+      Improve compatibility with non-GNOME compositors
+    - d/p/wayland-Improve-font-setting-fallback.patch,
+      d/p/wayland-Improve-font-setting-fallback-more.patch:
+      Improve default font settings
+    - d/p/scale-Fix-sporadic-criticals.patch:
+      Fix a use-after-free
+    - d/p/scrolledwindow-Always-add-other-scrollbar-size.patch:
+      Make sure to allocate enough space for scrollbars
+    - d/p/scrolledwindow-Cancel-overshoot-on-dimension-changes.patch:
+      Cancel overshoot handling if size changes during kinetic scrolling
+    - d/p/Fix-a-possible-crash-in-gtk_show_uri.patch:
+      Fix a possible crash if showing a URI with no basename
+    - d/p/x11-Be-quiet-on-exit-by-default.patch:
+      Don't log lots of messages when X11 server terminates
+    - Translation updates
+  * d/p/updateiconcache-Sort-list-of-entries.patch: Drop, applied upstream
+
+ -- Simon McVittie <smcv@debian.org>  Wed, 21 Apr 2021 10:20:11 +0100
+
 gtk+3.0 (3.24.25-1ubuntu4) hirsute; urgency=medium
 
   * debian/patches/git_wayland_fonts.patch:

@@ -8,7 +8,7 @@
 <link rel="up" href="Printing.html" title="Printing">
 <link rel="prev" href="gtk3-High-level-Printing-API.html" title="GtkPrintOperation">
 <link rel="next" href="GtkPrintSettings.html" title="GtkPrintSettings">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -98,7 +98,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/pango/pango-Fonts.html#PangoFontMap-struct"><span class="returnvalue">PangoFontMap</span></a> *
+<span class="returnvalue">PangoFontMap</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkPrintContext.html#gtk-print-context-get-pango-fontmap" title="gtk_print_context_get_pango_fontmap ()">gtk_print_context_get_pango_fontmap</a> <span class="c_punctuation">()</span>
@@ -106,7 +106,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/pango/pango-Contexts.html#PangoContext-struct"><span class="returnvalue">PangoContext</span></a> *
+<span class="returnvalue">PangoContext</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkPrintContext.html#gtk-print-context-create-pango-context" title="gtk_print_context_create_pango_context ()">gtk_print_context_create_pango_context</a> <span class="c_punctuation">()</span>
@@ -114,7 +114,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoLayout-struct"><span class="returnvalue">PangoLayout</span></a> *
+<span class="returnvalue">PangoLayout</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkPrintContext.html#gtk-print-context-create-pango-layout" title="gtk_print_context_create_pango_layout ()">gtk_print_context_create_pango_layout</a> <span class="c_punctuation">()</span>
@@ -160,7 +160,7 @@
 <p>A GtkPrintContext encapsulates context information that is required when
 drawing pages for printing, such as the cairo context and important
 parameters like page size and resolution. It also lets you easily
-create <a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoLayout-struct"><span class="type">PangoLayout</span></a> and <a href="https://developer.gnome.org/pango/pango-Contexts.html#PangoContext-struct"><span class="type">PangoContext</span></a> objects that match the font metrics
+create <span class="type">PangoLayout</span> and <span class="type">PangoContext</span> objects that match the font metrics
 of the cairo surface.</p>
 <p>GtkPrintContext objects gets passed to the <a class="link" href="gtk3-High-level-Printing-API.html#GtkPrintOperation-begin-print" title="The “begin-print” signal"><span class="type">“begin-print”</span></a>,
 <a class="link" href="gtk3-High-level-Printing-API.html#GtkPrintOperation-end-print" title="The “end-print” signal"><span class="type">“end-print”</span></a>, <a class="link" href="gtk3-High-level-Printing-API.html#GtkPrintOperation-request-page-setup" title="The “request-page-setup” signal"><span class="type">“request-page-setup”</span></a> and
@@ -223,7 +223,7 @@ of the cairo surface.</p>
 50
 51</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="nf">draw_page</span> <span class="p">(</span><span class="n">GtkPrintOperation</span> <span class="o">*</span><span class="n">operation</span><span class="p">,</span>
+<span class="n">draw_page</span> <span class="p">(</span><span class="n">GtkPrintOperation</span> <span class="o">*</span><span class="n">operation</span><span class="p">,</span>
 	   <span class="n">GtkPrintContext</span>   <span class="o">*</span><span class="n">context</span><span class="p">,</span>
 	   <span class="kt">int</span>                <span class="n">page_nr</span><span class="p">)</span>
 <span class="p">{</span>
@@ -254,7 +254,7 @@ of the cairo surface.</p>
 
   <span class="c1">// Draw some text</span>
   <span class="n">layout</span> <span class="o">=</span> <span class="n">gtk_print_context_create_pango_layout</span> <span class="p">(</span><span class="n">context</span><span class="p">);</span>
-  <span class="n">pango_layout_set_text</span> <span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="s">&quot;Hello World! Printing is easy&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+  <span class="n">pango_layout_set_text</span> <span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="s">&quot;Hello World! Printing is easy&quot;</span><span class="p">,</span> <span class="mi">-1</span><span class="p">);</span>
   <span class="n">desc</span> <span class="o">=</span> <span class="n">pango_font_description_from_string</span> <span class="p">(</span><span class="s">&quot;sans 28&quot;</span><span class="p">);</span>
   <span class="n">pango_layout_set_font_description</span> <span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="n">desc</span><span class="p">);</span>
   <span class="n">pango_font_description_free</span> <span class="p">(</span><span class="n">desc</span><span class="p">);</span>
@@ -309,7 +309,7 @@ gtk_print_context_get_cairo_context (<em class="parameter"><code><a class="link"
 <a name="gtk-print-context-get-cairo-context.returns"></a><h4>Returns</h4>
 <p>the cairo context of <em class="parameter"><code>context</code></em>
 . </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.10</p>
 </div>
@@ -388,7 +388,7 @@ dimensions of the <a class="link" href="GtkPrintContext.html" title="GtkPrintCon
 <a name="gtk-print-context-get-page-setup.returns"></a><h4>Returns</h4>
 <p>the page setup of <em class="parameter"><code>context</code></em>
 . </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.10</p>
 </div>
@@ -509,9 +509,9 @@ in dots per inch.</p>
 <hr>
 <div class="refsect2">
 <a name="gtk-print-context-get-pango-fontmap"></a><h3>gtk_print_context_get_pango_fontmap ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/pango/pango-Fonts.html#PangoFontMap-struct"><span class="returnvalue">PangoFontMap</span></a> *
+<pre class="programlisting"><span class="returnvalue">PangoFontMap</span> *
 gtk_print_context_get_pango_fontmap (<em class="parameter"><code><a class="link" href="GtkPrintContext.html" title="GtkPrintContext"><span class="type">GtkPrintContext</span></a> *context</code></em>);</pre>
-<p>Returns a <a href="https://developer.gnome.org/pango/pango-Fonts.html#PangoFontMap-struct"><span class="type">PangoFontMap</span></a> that is suitable for use
+<p>Returns a <span class="type">PangoFontMap</span> that is suitable for use
 with the <a class="link" href="GtkPrintContext.html" title="GtkPrintContext"><span class="type">GtkPrintContext</span></a>.</p>
 <div class="refsect3">
 <a name="gtk-print-context-get-pango-fontmap.parameters"></a><h4>Parameters</h4>
@@ -532,17 +532,17 @@ with the <a class="link" href="GtkPrintContext.html" title="GtkPrintContext"><sp
 <a name="gtk-print-context-get-pango-fontmap.returns"></a><h4>Returns</h4>
 <p>the font map of <em class="parameter"><code>context</code></em>
 . </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.10</p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gtk-print-context-create-pango-context"></a><h3>gtk_print_context_create_pango_context ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/pango/pango-Contexts.html#PangoContext-struct"><span class="returnvalue">PangoContext</span></a> *
+<pre class="programlisting"><span class="returnvalue">PangoContext</span> *
 gtk_print_context_create_pango_context
                                (<em class="parameter"><code><a class="link" href="GtkPrintContext.html" title="GtkPrintContext"><span class="type">GtkPrintContext</span></a> *context</code></em>);</pre>
-<p>Creates a new <a href="https://developer.gnome.org/pango/pango-Contexts.html#PangoContext-struct"><span class="type">PangoContext</span></a> that can be used with the
+<p>Creates a new <span class="type">PangoContext</span> that can be used with the
 <a class="link" href="GtkPrintContext.html" title="GtkPrintContext"><span class="type">GtkPrintContext</span></a>.</p>
 <div class="refsect3">
 <a name="gtk-print-context-create-pango-context.parameters"></a><h4>Parameters</h4>
@@ -563,16 +563,16 @@ gtk_print_context_create_pango_context
 <a name="gtk-print-context-create-pango-context.returns"></a><h4>Returns</h4>
 <p>a new Pango context for <em class="parameter"><code>context</code></em>
 . </p>
-<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.10</p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gtk-print-context-create-pango-layout"></a><h3>gtk_print_context_create_pango_layout ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoLayout-struct"><span class="returnvalue">PangoLayout</span></a> *
+<pre class="programlisting"><span class="returnvalue">PangoLayout</span> *
 gtk_print_context_create_pango_layout (<em class="parameter"><code><a class="link" href="GtkPrintContext.html" title="GtkPrintContext"><span class="type">GtkPrintContext</span></a> *context</code></em>);</pre>
-<p>Creates a new <a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoLayout-struct"><span class="type">PangoLayout</span></a> that is suitable for use
+<p>Creates a new <span class="type">PangoLayout</span> that is suitable for use
 with the <a class="link" href="GtkPrintContext.html" title="GtkPrintContext"><span class="type">GtkPrintContext</span></a>.</p>
 <div class="refsect3">
 <a name="gtk-print-context-create-pango-layout.parameters"></a><h4>Parameters</h4>
@@ -593,7 +593,7 @@ with the <a class="link" href="GtkPrintContext.html" title="GtkPrintContext"><sp
 <a name="gtk-print-context-create-pango-layout.returns"></a><h4>Returns</h4>
 <p>a new Pango layout for <em class="parameter"><code>context</code></em>
 . </p>
-<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.10</p>
 </div>
@@ -660,6 +660,6 @@ gtk_print_context_get_hard_margins (<em class="parameter"><code><a class="link" 
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

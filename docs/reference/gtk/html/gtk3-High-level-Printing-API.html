@@ -8,7 +8,7 @@
 <link rel="up" href="Printing.html" title="Printing">
 <link rel="prev" href="Printing.html" title="Printing">
 <link rel="next" href="GtkPrintContext.html" title="GtkPrintContext">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -652,7 +652,7 @@ and render the page on the provided <a class="link" href="GtkPrintContext.html" 
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="n">GtkPrintSettings</span> <span class="o">*</span><span class="n">settings</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
 
 <span class="k">static</span> <span class="kt">void</span>
-<span class="nf">do_print</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="n">do_print</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="n">GtkPrintOperation</span> <span class="o">*</span><span class="n">print</span><span class="p">;</span>
   <span class="n">GtkPrintOperationResult</span> <span class="n">res</span><span class="p">;</span>
@@ -835,7 +835,7 @@ gtk_print_operation_get_default_page_setup
 <div class="refsect3">
 <a name="gtk-print-operation-get-default-page-setup.returns"></a><h4>Returns</h4>
 <p>the default page setup. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.10</p>
 </div>
@@ -903,7 +903,7 @@ gtk_print_operation_get_print_settings
 <a name="gtk-print-operation-get-print-settings.returns"></a><h4>Returns</h4>
 <p>the current print settings of <em class="parameter"><code>op</code></em>
 . </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.10</p>
 </div>
@@ -1811,7 +1811,7 @@ a problem.</p>
 <div class="refsect3">
 <a name="gtk-print-run-page-setup-dialog.returns"></a><h4>Returns</h4>
 <p>a new <a class="link" href="GtkPageSetup.html" title="GtkPageSetup"><span class="type">GtkPageSetup</span></a>. </p>
-<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.10</p>
 </div>
@@ -2736,7 +2736,7 @@ information you need from the widgets.</p>
 <a name="GtkPrintOperation-create-custom-widget.returns"></a><h4>Returns</h4>
 <p>A custom widget that gets embedded in
 the print dialog, or <code class="literal">NULL</code>. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p>Flags: Run Last</p>
 <p class="since">Since: 2.10</p>
@@ -2892,7 +2892,7 @@ from <em class="parameter"><code>context</code></em>
 37
 38</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="nf">draw_page</span> <span class="p">(</span><span class="n">GtkPrintOperation</span> <span class="o">*</span><span class="n">operation</span><span class="p">,</span>
+<span class="n">draw_page</span> <span class="p">(</span><span class="n">GtkPrintOperation</span> <span class="o">*</span><span class="n">operation</span><span class="p">,</span>
            <span class="n">GtkPrintContext</span>   <span class="o">*</span><span class="n">context</span><span class="p">,</span>
            <span class="n">gint</span>               <span class="n">page_nr</span><span class="p">,</span>
            <span class="n">gpointer</span>           <span class="n">user_data</span><span class="p">)</span>
@@ -2917,7 +2917,7 @@ from <em class="parameter"><code>context</code></em>
   <span class="n">pango_layout_set_font_description</span> <span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="n">desc</span><span class="p">);</span>
   <span class="n">pango_font_description_free</span> <span class="p">(</span><span class="n">desc</span><span class="p">);</span>
 
-  <span class="n">pango_layout_set_text</span> <span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="s">&quot;some text&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+  <span class="n">pango_layout_set_text</span> <span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="s">&quot;some text&quot;</span><span class="p">,</span> <span class="mi">-1</span><span class="p">);</span>
   <span class="n">pango_layout_set_width</span> <span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="n">width</span> <span class="o">*</span> <span class="n">PANGO_SCALE</span><span class="p">);</span>
   <span class="n">pango_layout_set_alignment</span> <span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="n">PANGO_ALIGN_CENTER</span><span class="p">);</span>
 
@@ -3376,6 +3376,6 @@ before the first page is rendered.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

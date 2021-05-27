@@ -8,7 +8,7 @@
 <link rel="up" href="DisplayWidgets.html" title="Display Widgets">
 <link rel="prev" href="DisplayWidgets.html" title="Display Widgets">
 <link rel="next" href="GtkImage.html" title="GtkImage">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -236,7 +236,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/pango/pango-Text-Attributes.html#PangoAttrList-struct"><span class="returnvalue">PangoAttrList</span></a> *
+<span class="returnvalue">PangoAttrList</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkLabel.html#gtk-label-get-attributes" title="gtk_label_get_attributes ()">gtk_label_get_attributes</a> <span class="c_punctuation">()</span>
@@ -268,7 +268,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoEllipsizeMode"><span class="returnvalue">PangoEllipsizeMode</span></a>
+<span class="returnvalue">PangoEllipsizeMode</span>
 </td>
 <td class="function_name">
 <a class="link" href="GtkLabel.html#gtk-label-get-ellipsize" title="gtk_label_get_ellipsize ()">gtk_label_get_ellipsize</a> <span class="c_punctuation">()</span>
@@ -299,7 +299,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoLayout-struct"><span class="returnvalue">PangoLayout</span></a> *
+<span class="returnvalue">PangoLayout</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkLabel.html#gtk-label-get-layout" title="gtk_label_get_layout ()">gtk_label_get_layout</a> <span class="c_punctuation">()</span>
@@ -315,7 +315,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoWrapMode"><span class="returnvalue">PangoWrapMode</span></a>
+<span class="returnvalue">PangoWrapMode</span>
 </td>
 <td class="function_name">
 <a class="link" href="GtkLabel.html#gtk-label-get-line-wrap-mode" title="gtk_label_get_line_wrap_mode ()">gtk_label_get_line_wrap_mode</a> <span class="c_punctuation">()</span>
@@ -459,7 +459,7 @@
 </tr>
 <tr>
 <td class="property_type">
-<a href="https://developer.gnome.org/pango/pango-Text-Attributes.html#PangoAttrList-struct"><span class="type">PangoAttrList</span></a> *</td>
+<span class="type">PangoAttrList</span> *</td>
 <td class="property_name"><a class="link" href="GtkLabel.html#GtkLabel--attributes" title="The “attributes” property">attributes</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -469,7 +469,7 @@
 <td class="property_flags">Read</td>
 </tr>
 <tr>
-<td class="property_type"><a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoEllipsizeMode"><span class="type">PangoEllipsizeMode</span></a></td>
+<td class="property_type"><span class="type">PangoEllipsizeMode</span></td>
 <td class="property_name"><a class="link" href="GtkLabel.html#GtkLabel--ellipsize" title="The “ellipsize” property">ellipsize</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -552,7 +552,7 @@
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
-<td class="property_type"><a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoWrapMode"><span class="type">PangoWrapMode</span></a></td>
+<td class="property_type"><span class="type">PangoWrapMode</span></td>
 <td class="property_name"><a class="link" href="GtkLabel.html#GtkLabel--wrap-mode" title="The “wrap-mode” property">wrap-mode</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -682,7 +682,7 @@ visited.</p>
 <p>The GtkLabel implementation of the GtkBuildable interface supports a
 custom &lt;attributes&gt; element, which supports any number of &lt;attribute&gt;
 elements. The &lt;attribute&gt; element has attributes named “name“, “value“,
-“start“ and “end“ and allows you to specify <a href="https://developer.gnome.org/pango/pango-Text-Attributes.html#PangoAttribute-struct"><span class="type">PangoAttribute</span></a> values for
+“start“ and “end“ and allows you to specify <span class="type">PangoAttribute</span> values for
 this label.</p>
 <p>An example of a UI definition fragment specifying Pango attributes:</p>
 <div class="informalexample">
@@ -811,13 +811,13 @@ literal &lt;, &gt; and &amp; characters must be escaped as &lt;, &gt;, and &amp;
 If you pass text obtained from the user, file, or a network to
 <a class="link" href="GtkLabel.html#gtk-label-set-markup" title="gtk_label_set_markup ()"><code class="function">gtk_label_set_markup()</code></a>, you’ll want to escape it with
 <code class="function">g_markup_escape_text()</code> or <code class="function">g_markup_printf_escaped()</code>.</p>
-<p>Markup strings are just a convenient way to set the <a href="https://developer.gnome.org/pango/pango-Text-Attributes.html#PangoAttrList-struct"><span class="type">PangoAttrList</span></a> on
+<p>Markup strings are just a convenient way to set the <span class="type">PangoAttrList</span> on
 a label; <a class="link" href="GtkLabel.html#gtk-label-set-attributes" title="gtk_label_set_attributes ()"><code class="function">gtk_label_set_attributes()</code></a> may be a simpler way to set
-attributes in some cases. Be careful though; <a href="https://developer.gnome.org/pango/pango-Text-Attributes.html#PangoAttrList-struct"><span class="type">PangoAttrList</span></a> tends to
+attributes in some cases. Be careful though; <span class="type">PangoAttrList</span> tends to
 cause internationalization problems, unless you’re applying attributes
 to the entire string (i.e. unless you set the range of each attribute
 to [0, <code class="literal">G_MAXINT</code>)). The reason is that specifying the start_index and
-end_index for a <a href="https://developer.gnome.org/pango/pango-Text-Attributes.html#PangoAttribute-struct"><span class="type">PangoAttribute</span></a> requires knowledge of the exact string
+end_index for a <span class="type">PangoAttribute</span> requires knowledge of the exact string
 being displayed, so translations will cause problems.</p>
 </div>
 <hr>
@@ -957,8 +957,8 @@ as a side effect.</p>
 <a name="gtk-label-set-attributes"></a><h3>gtk_label_set_attributes ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_label_set_attributes (<em class="parameter"><code><a class="link" href="GtkLabel.html" title="GtkLabel"><span class="type">GtkLabel</span></a> *label</code></em>,
-                          <em class="parameter"><code><a href="https://developer.gnome.org/pango/pango-Text-Attributes.html#PangoAttrList-struct"><span class="type">PangoAttrList</span></a> *attrs</code></em>);</pre>
-<p>Sets a <a href="https://developer.gnome.org/pango/pango-Text-Attributes.html#PangoAttrList-struct"><span class="type">PangoAttrList</span></a>; the attributes in the list are applied to the
+                          <em class="parameter"><code><span class="type">PangoAttrList</span> *attrs</code></em>);</pre>
+<p>Sets a <span class="type">PangoAttrList</span>; the attributes in the list are applied to the
 label text.</p>
 <p>The attributes set with this function will be applied
 and merged with any other attributes previously effected by way
@@ -982,7 +982,7 @@ to the label after the markup string is parsed.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>attrs</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/pango/pango-Text-Attributes.html#PangoAttrList-struct"><span class="type">PangoAttrList</span></a>, or <code class="literal">NULL</code>. </p></td>
+<td class="parameter_description"><p>a <span class="type">PangoAttrList</span>, or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -1233,7 +1233,7 @@ gtk_label_set_yalign (<em class="parameter"><code><a class="link" href="GtkLabel
 <a name="gtk-label-set-ellipsize"></a><h3>gtk_label_set_ellipsize ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_label_set_ellipsize (<em class="parameter"><code><a class="link" href="GtkLabel.html" title="GtkLabel"><span class="type">GtkLabel</span></a> *label</code></em>,
-                         <em class="parameter"><code><a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoEllipsizeMode"><span class="type">PangoEllipsizeMode</span></a> mode</code></em>);</pre>
+                         <em class="parameter"><code><span class="type">PangoEllipsizeMode</span> mode</code></em>);</pre>
 <p>Sets the mode used to ellipsize (add an ellipsis: "...") to the text 
 if there is not enough space to render the entire string.</p>
 <div class="refsect3">
@@ -1252,7 +1252,7 @@ if there is not enough space to render the entire string.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>mode</p></td>
-<td class="parameter_description"><p>a <a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoEllipsizeMode"><span class="type">PangoEllipsizeMode</span></a></p></td>
+<td class="parameter_description"><p>a <span class="type">PangoEllipsizeMode</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -1368,9 +1368,9 @@ set the label’s width using <a class="link" href="GtkWidget.html#gtk-widget-se
 <a name="gtk-label-set-line-wrap-mode"></a><h3>gtk_label_set_line_wrap_mode ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_label_set_line_wrap_mode (<em class="parameter"><code><a class="link" href="GtkLabel.html" title="GtkLabel"><span class="type">GtkLabel</span></a> *label</code></em>,
-                              <em class="parameter"><code><a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoWrapMode"><span class="type">PangoWrapMode</span></a> wrap_mode</code></em>);</pre>
+                              <em class="parameter"><code><span class="type">PangoWrapMode</span> wrap_mode</code></em>);</pre>
 <p>If line wrapping is on (see <a class="link" href="GtkLabel.html#gtk-label-set-line-wrap" title="gtk_label_set_line_wrap ()"><code class="function">gtk_label_set_line_wrap()</code></a>) this controls how
-the line wrapping is done. The default is <a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PANGO-WRAP-WORD:CAPS"><code class="literal">PANGO_WRAP_WORD</code></a> which means
+the line wrapping is done. The default is <code class="literal">PANGO_WRAP_WORD</code> which means
 wrap on word boundaries.</p>
 <div class="refsect3">
 <a name="gtk-label-set-line-wrap-mode.parameters"></a><h4>Parameters</h4>
@@ -1437,15 +1437,15 @@ number of lines.</p>
 gtk_label_get_layout_offsets (<em class="parameter"><code><a class="link" href="GtkLabel.html" title="GtkLabel"><span class="type">GtkLabel</span></a> *label</code></em>,
                               <em class="parameter"><code><span class="type">gint</span> *x</code></em>,
                               <em class="parameter"><code><span class="type">gint</span> *y</code></em>);</pre>
-<p>Obtains the coordinates where the label will draw the <a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoLayout-struct"><span class="type">PangoLayout</span></a>
+<p>Obtains the coordinates where the label will draw the <span class="type">PangoLayout</span>
 representing the text in the label; useful to convert mouse events
-into coordinates inside the <a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoLayout-struct"><span class="type">PangoLayout</span></a>, e.g. to take some action
+into coordinates inside the <span class="type">PangoLayout</span>, e.g. to take some action
 if some part of the label is clicked. Of course you will need to
 create a <a class="link" href="GtkEventBox.html" title="GtkEventBox"><span class="type">GtkEventBox</span></a> to receive the events, and pack the label
 inside it, since labels are windowless (they return <code class="literal">FALSE</code> from
 <a class="link" href="GtkWidget.html#gtk-widget-get-has-window" title="gtk_widget_get_has_window ()"><code class="function">gtk_widget_get_has_window()</code></a>). Remember
-when using the <a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoLayout-struct"><span class="type">PangoLayout</span></a> functions you need to convert to
-and from pixels using <a href="https://developer.gnome.org/pango/pango-Glyph-Storage.html#PANGO-PIXELS:CAPS"><code class="function">PANGO_PIXELS()</code></a> or <a href="https://developer.gnome.org/pango/pango-Glyph-Storage.html#PANGO-SCALE:CAPS"><span class="type">PANGO_SCALE</span></a>.</p>
+when using the <span class="type">PangoLayout</span> functions you need to convert to
+and from pixels using <code class="function">PANGO_PIXELS()</code> or <span class="type">PANGO_SCALE</span>.</p>
 <div class="refsect3">
 <a name="gtk-label-get-layout-offsets.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1750,7 +1750,7 @@ automatically, or explicitly using <a class="link" href="GtkLabel.html#gtk-label
 <hr>
 <div class="refsect2">
 <a name="gtk-label-get-attributes"></a><h3>gtk_label_get_attributes ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/pango/pango-Text-Attributes.html#PangoAttrList-struct"><span class="returnvalue">PangoAttrList</span></a> *
+<pre class="programlisting"><span class="returnvalue">PangoAttrList</span> *
 gtk_label_get_attributes (<em class="parameter"><code><a class="link" href="GtkLabel.html" title="GtkLabel"><span class="type">GtkLabel</span></a> *label</code></em>);</pre>
 <p>Gets the attribute list that was set on the label using
 <a class="link" href="GtkLabel.html#gtk-label-set-attributes" title="gtk_label_set_attributes ()"><code class="function">gtk_label_set_attributes()</code></a>, if any. This function does
@@ -1777,7 +1777,7 @@ pango_layout_get_attribute (gtk_label_get_layout (label)).</p>
 <a name="gtk-label-get-attributes.returns"></a><h4>Returns</h4>
 <p>the attribute list, or <code class="literal">NULL</code>
 if none was set. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -1865,7 +1865,7 @@ gtk_label_get_yalign (<em class="parameter"><code><a class="link" href="GtkLabel
 <hr>
 <div class="refsect2">
 <a name="gtk-label-get-ellipsize"></a><h3>gtk_label_get_ellipsize ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoEllipsizeMode"><span class="returnvalue">PangoEllipsizeMode</span></a>
+<pre class="programlisting"><span class="returnvalue">PangoEllipsizeMode</span>
 gtk_label_get_ellipsize (<em class="parameter"><code><a class="link" href="GtkLabel.html" title="GtkLabel"><span class="type">GtkLabel</span></a> *label</code></em>);</pre>
 <p>Returns the ellipsizing position of the label. See <a class="link" href="GtkLabel.html#gtk-label-set-ellipsize" title="gtk_label_set_ellipsize ()"><code class="function">gtk_label_set_ellipsize()</code></a>.</p>
 <div class="refsect3">
@@ -1885,7 +1885,7 @@ gtk_label_get_ellipsize (<em class="parameter"><code><a class="link" href="GtkLa
 </div>
 <div class="refsect3">
 <a name="gtk-label-get-ellipsize.returns"></a><h4>Returns</h4>
-<p> <a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoEllipsizeMode"><span class="type">PangoEllipsizeMode</span></a></p>
+<p> <span class="type">PangoEllipsizeMode</span></p>
 </div>
 <p class="since">Since: 2.6</p>
 </div>
@@ -1979,9 +1979,9 @@ owned by the widget and must not be modified or freed.</p>
 <hr>
 <div class="refsect2">
 <a name="gtk-label-get-layout"></a><h3>gtk_label_get_layout ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoLayout-struct"><span class="returnvalue">PangoLayout</span></a> *
+<pre class="programlisting"><span class="returnvalue">PangoLayout</span> *
 gtk_label_get_layout (<em class="parameter"><code><a class="link" href="GtkLabel.html" title="GtkLabel"><span class="type">GtkLabel</span></a> *label</code></em>);</pre>
-<p>Gets the <a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoLayout-struct"><span class="type">PangoLayout</span></a> used to display the label.
+<p>Gets the <span class="type">PangoLayout</span> used to display the label.
 The layout is useful to e.g. convert text positions to
 pixel positions, in combination with <a class="link" href="GtkLabel.html#gtk-label-get-layout-offsets" title="gtk_label_get_layout_offsets ()"><code class="function">gtk_label_get_layout_offsets()</code></a>.
 The returned layout is owned by the <em class="parameter"><code>label</code></em>
@@ -2006,8 +2006,8 @@ any time, so it should be considered read-only.</p>
 </div>
 <div class="refsect3">
 <a name="gtk-label-get-layout.returns"></a><h4>Returns</h4>
-<p>the <a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoLayout-struct"><span class="type">PangoLayout</span></a> for this label. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p>the <span class="type">PangoLayout</span> for this label. </p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -2040,7 +2040,7 @@ See <a class="link" href="GtkLabel.html#gtk-label-set-line-wrap" title="gtk_labe
 <hr>
 <div class="refsect2">
 <a name="gtk-label-get-line-wrap-mode"></a><h3>gtk_label_get_line_wrap_mode ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoWrapMode"><span class="returnvalue">PangoWrapMode</span></a>
+<pre class="programlisting"><span class="returnvalue">PangoWrapMode</span>
 gtk_label_get_line_wrap_mode (<em class="parameter"><code><a class="link" href="GtkLabel.html" title="GtkLabel"><span class="type">GtkLabel</span></a> *label</code></em>);</pre>
 <p>Returns line wrap mode used by the label. See <a class="link" href="GtkLabel.html#gtk-label-set-line-wrap-mode" title="gtk_label_set_line_wrap_mode ()"><code class="function">gtk_label_set_line_wrap_mode()</code></a>.</p>
 <div class="refsect3">
@@ -2118,7 +2118,7 @@ label. See <a class="link" href="GtkLabel.html#gtk-label-set-mnemonic-widget" ti
 <a name="gtk-label-get-mnemonic-widget.returns"></a><h4>Returns</h4>
 <p>the target of the label’s mnemonic,
 or <code class="literal">NULL</code> if none has been set and the default algorithm will be used. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -2554,7 +2554,7 @@ if the label is selectable.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkLabel--attributes"></a><h3>The <code class="literal">“attributes”</code> property</h3>
-<pre class="programlisting">  “attributes”               <a href="https://developer.gnome.org/pango/pango-Text-Attributes.html#PangoAttrList-struct"><span class="type">PangoAttrList</span></a> *</pre>
+<pre class="programlisting">  “attributes”               <span class="type">PangoAttrList</span> *</pre>
 <p>A list of style attributes to apply to the text of the label.</p>
 <p>Owner: GtkLabel</p>
 <p>Flags: Read / Write</p>
@@ -2572,12 +2572,12 @@ if the label is selectable.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkLabel--ellipsize"></a><h3>The <code class="literal">“ellipsize”</code> property</h3>
-<pre class="programlisting">  “ellipsize”                <a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoEllipsizeMode"><span class="type">PangoEllipsizeMode</span></a></pre>
+<pre class="programlisting">  “ellipsize”                <span class="type">PangoEllipsizeMode</span></pre>
 <p>The preferred place to ellipsize the string, if the label does
 not have enough room to display the entire string, specified as a
-<a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoEllipsizeMode"><span class="type">PangoEllipsizeMode</span></a>.</p>
+<span class="type">PangoEllipsizeMode</span>.</p>
 <p>Note that setting this property to a value other than
-<a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PANGO-ELLIPSIZE-NONE:CAPS"><code class="literal">PANGO_ELLIPSIZE_NONE</code></a> has the side-effect that the label requests
+<code class="literal">PANGO_ELLIPSIZE_NONE</code> has the side-effect that the label requests
 only enough space to display the ellipsis "...". In particular, this
 means that ellipsizing labels do not work well in notebook tabs, unless
 the <a class="link" href="GtkNotebook.html" title="GtkNotebook"><span class="type">GtkNotebook</span></a> tab-expand child property is set to <code class="literal">TRUE</code>. Other ways
@@ -2759,9 +2759,9 @@ determine the width of ellipsized and wrapped labels.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkLabel--wrap-mode"></a><h3>The <code class="literal">“wrap-mode”</code> property</h3>
-<pre class="programlisting">  “wrap-mode”                <a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PangoWrapMode"><span class="type">PangoWrapMode</span></a></pre>
+<pre class="programlisting">  “wrap-mode”                <span class="type">PangoWrapMode</span></pre>
 <p>If line wrapping is on (see the <a class="link" href="GtkLabel.html#GtkLabel--wrap" title="The “wrap” property"><span class="type">“wrap”</span></a> property) this controls
-how the line wrapping is done. The default is <a href="https://developer.gnome.org/pango/pango-Layout-Objects.html#PANGO-WRAP-WORD:CAPS"><code class="literal">PANGO_WRAP_WORD</code></a>, which
+how the line wrapping is done. The default is <code class="literal">PANGO_WRAP_WORD</code>, which
 means wrap on word boundaries.</p>
 <p>Owner: GtkLabel</p>
 <p>Flags: Read / Write</p>
@@ -3024,6 +3024,6 @@ to this signal and append your menuitems to the <em class="parameter"><code>menu
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <link rel="up" href="TextWidgetObjects.html" title="Multiline Text Editor">
 <link rel="prev" href="GtkTextTagTable.html" title="GtkTextTagTable">
 <link rel="next" href="TreeWidgetObjects.html" title="Tree, List and Icon Grid Widgets">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -206,7 +206,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkWindow-struct"><span class="returnvalue">GdkWindow</span></a> *
+<span class="returnvalue">GdkWindow</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkTextView.html#gtk-text-view-get-window" title="gtk_text_view_get_window ()">gtk_text_view_get_window</a> <span class="c_punctuation">()</span>
@@ -558,7 +558,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/pango/pango-Tab-Stops.html#PangoTabArray-struct"><span class="returnvalue">PangoTabArray</span></a> *
+<span class="returnvalue">PangoTabArray</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkTextView.html#gtk-text-view-get-tabs" title="gtk_text_view_get_tabs ()">gtk_text_view_get_tabs</a> <span class="c_punctuation">()</span>
@@ -758,7 +758,7 @@
 </tr>
 <tr>
 <td class="property_type">
-<a href="https://developer.gnome.org/pango/pango-Tab-Stops.html#PangoTabArray-struct"><span class="type">PangoTabArray</span></a> *</td>
+<span class="type">PangoTabArray</span> *</td>
 <td class="property_name"><a class="link" href="GtkTextView.html#GtkTextView--tabs" title="The “tabs” property">tabs</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
@@ -785,7 +785,7 @@
 </colgroup>
 <tbody><tr>
 <td class="property_type">
-<a href="https://developer.gnome.org/gdk3/gdk3-Colors.html#GdkColor"><span class="type">GdkColor</span></a> *</td>
+<span class="type">GdkColor</span> *</td>
 <td class="property_name"><a class="link" href="GtkTextView.html#GtkTextView--s-error-underline-color" title="The “error-underline-color” style property">error-underline-color</a></td>
 <td class="property_flags">Read</td>
 </tr></tbody>
@@ -1102,7 +1102,7 @@ of this function won’t own a new reference.</p>
 <div class="refsect3">
 <a name="gtk-text-view-get-buffer.returns"></a><h4>Returns</h4>
 <p>a <a class="link" href="GtkTextBuffer.html" title="GtkTextBuffer"><span class="type">GtkTextBuffer</span></a>. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -1133,7 +1133,7 @@ gtk_text_view_get_hadjustment (<em class="parameter"><code><a class="link" href=
 <div class="refsect3">
 <a name="gtk-text-view-get-hadjustment.returns"></a><h4>Returns</h4>
 <p>pointer to the horizontal <a class="link" href="GtkAdjustment.html" title="GtkAdjustment"><span class="type">GtkAdjustment</span></a>. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.22</p>
 </div>
@@ -1165,7 +1165,7 @@ gtk_text_view_get_vadjustment (<em class="parameter"><code><a class="link" href=
 <div class="refsect3">
 <a name="gtk-text-view-get-vadjustment.returns"></a><h4>Returns</h4>
 <p>pointer to the vertical <a class="link" href="GtkAdjustment.html" title="GtkAdjustment"><span class="type">GtkAdjustment</span></a>. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.22</p>
 </div>
@@ -1414,7 +1414,7 @@ buffer, it it isn’t there already.</p>
 <a name="gtk-text-view-get-visible-rect"></a><h3>gtk_text_view_get_visible_rect ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_text_view_get_visible_rect (<em class="parameter"><code><a class="link" href="GtkTextView.html" title="GtkTextView"><span class="type">GtkTextView</span></a> *text_view</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gdk3/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *visible_rect</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GdkRectangle</span> *visible_rect</code></em>);</pre>
 <p>Fills <em class="parameter"><code>visible_rect</code></em>
  with the currently-visible
 region of the buffer, in buffer coordinates. Convert to window coordinates
@@ -1448,7 +1448,7 @@ with <a class="link" href="GtkTextView.html#gtk-text-view-buffer-to-window-coord
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_text_view_get_iter_location (<em class="parameter"><code><a class="link" href="GtkTextView.html" title="GtkTextView"><span class="type">GtkTextView</span></a> *text_view</code></em>,
                                  <em class="parameter"><code>const <a class="link" href="GtkTextIter.html" title="GtkTextIter"><span class="type">GtkTextIter</span></a> *iter</code></em>,
-                                 <em class="parameter"><code><a href="https://developer.gnome.org/gdk3/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *location</code></em>);</pre>
+                                 <em class="parameter"><code><span class="type">GdkRectangle</span> *location</code></em>);</pre>
 <p>Gets a rectangle which roughly contains the character at <em class="parameter"><code>iter</code></em>
 .
 The rectangle position is in buffer coordinates; use
@@ -1489,8 +1489,8 @@ coordinates to coordinates for one of the windows in the text view.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_text_view_get_cursor_locations (<em class="parameter"><code><a class="link" href="GtkTextView.html" title="GtkTextView"><span class="type">GtkTextView</span></a> *text_view</code></em>,
                                     <em class="parameter"><code>const <a class="link" href="GtkTextIter.html" title="GtkTextIter"><span class="type">GtkTextIter</span></a> *iter</code></em>,
-                                    <em class="parameter"><code><a href="https://developer.gnome.org/gdk3/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *strong</code></em>,
-                                    <em class="parameter"><code><a href="https://developer.gnome.org/gdk3/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *weak</code></em>);</pre>
+                                    <em class="parameter"><code><span class="type">GdkRectangle</span> *strong</code></em>,
+                                    <em class="parameter"><code><span class="type">GdkRectangle</span> *weak</code></em>);</pre>
 <p>Given an <em class="parameter"><code>iter</code></em>
  within a text layout, determine the positions of the
 strong and weak cursors if the insertion point is at that
@@ -1883,10 +1883,10 @@ coordinates, storing the result in (<em class="parameter"><code>buffer_x</code><
 <hr>
 <div class="refsect2">
 <a name="gtk-text-view-get-window"></a><h3>gtk_text_view_get_window ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkWindow-struct"><span class="returnvalue">GdkWindow</span></a> *
+<pre class="programlisting"><span class="returnvalue">GdkWindow</span> *
 gtk_text_view_get_window (<em class="parameter"><code><a class="link" href="GtkTextView.html" title="GtkTextView"><span class="type">GtkTextView</span></a> *text_view</code></em>,
                           <em class="parameter"><code><a class="link" href="GtkTextView.html#GtkTextWindowType" title="enum GtkTextWindowType"><span class="type">GtkTextWindowType</span></a> win</code></em>);</pre>
-<p>Retrieves the <a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a> corresponding to an area of the text view;
+<p>Retrieves the <span class="type">GdkWindow</span> corresponding to an area of the text view;
 possible windows include the overall widget window, child windows
 on the left, right, top, bottom, and the window that displays the
 text buffer. Windows are <code class="literal">NULL</code> and nonexistent if their width or
@@ -1916,8 +1916,8 @@ realized.</p>
 </div>
 <div class="refsect3">
 <a name="gtk-text-view-get-window.returns"></a><h4>Returns</h4>
-<p>a <a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a>, or <code class="literal">NULL</code>. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p>a <span class="type">GdkWindow</span>, or <code class="literal">NULL</code>. </p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -1925,7 +1925,7 @@ realized.</p>
 <a name="gtk-text-view-get-window-type"></a><h3>gtk_text_view_get_window_type ()</h3>
 <pre class="programlisting"><a class="link" href="GtkTextView.html#GtkTextWindowType" title="enum GtkTextWindowType"><span class="returnvalue">GtkTextWindowType</span></a>
 gtk_text_view_get_window_type (<em class="parameter"><code><a class="link" href="GtkTextView.html" title="GtkTextView"><span class="type">GtkTextView</span></a> *text_view</code></em>,
-                               <em class="parameter"><code><a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a> *window</code></em>);</pre>
+                               <em class="parameter"><code><span class="type">GdkWindow</span> *window</code></em>);</pre>
 <p>Usually used to find out which window an event corresponds to.</p>
 <p>If you connect to an event signal on <em class="parameter"><code>text_view</code></em>
 , this function
@@ -2379,7 +2379,7 @@ The returned list should be freed with <code class="function">g_list_free()</cod
 <a name="gtk-text-child-anchor-get-widgets.returns"></a><h4>Returns</h4>
 <p>list of widgets anchored at <em class="parameter"><code>anchor</code></em>
 . </p>
-<p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GtkWidget][<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GtkWidget][<acronym title="The caller owns the data container, but not the data inside it."><span class="acronym">transfer container</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -3328,7 +3328,7 @@ The indentation may be negative.</p>
 <a name="gtk-text-view-set-tabs"></a><h3>gtk_text_view_set_tabs ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_text_view_set_tabs (<em class="parameter"><code><a class="link" href="GtkTextView.html" title="GtkTextView"><span class="type">GtkTextView</span></a> *text_view</code></em>,
-                        <em class="parameter"><code><a href="https://developer.gnome.org/pango/pango-Tab-Stops.html#PangoTabArray-struct"><span class="type">PangoTabArray</span></a> *tabs</code></em>);</pre>
+                        <em class="parameter"><code><span class="type">PangoTabArray</span> *tabs</code></em>);</pre>
 <p>Sets the default tab stops for paragraphs in <em class="parameter"><code>text_view</code></em>
 .
 Tags in the buffer may override the default.</p>
@@ -3348,7 +3348,7 @@ Tags in the buffer may override the default.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>tabs</p></td>
-<td class="parameter_description"><p>tabs as a <a href="https://developer.gnome.org/pango/pango-Tab-Stops.html#PangoTabArray-struct"><span class="type">PangoTabArray</span></a></p></td>
+<td class="parameter_description"><p>tabs as a <span class="type">PangoTabArray</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -3358,13 +3358,13 @@ Tags in the buffer may override the default.</p>
 <hr>
 <div class="refsect2">
 <a name="gtk-text-view-get-tabs"></a><h3>gtk_text_view_get_tabs ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/pango/pango-Tab-Stops.html#PangoTabArray-struct"><span class="returnvalue">PangoTabArray</span></a> *
+<pre class="programlisting"><span class="returnvalue">PangoTabArray</span> *
 gtk_text_view_get_tabs (<em class="parameter"><code><a class="link" href="GtkTextView.html" title="GtkTextView"><span class="type">GtkTextView</span></a> *text_view</code></em>);</pre>
 <p>Gets the default tabs for <em class="parameter"><code>text_view</code></em>
 . Tags in the buffer may
 override the defaults. The returned array will be <code class="literal">NULL</code> if
 “standard” (8-space) tabs are used. Free the return value
-with <a href="https://developer.gnome.org/pango/pango-Tab-Stops.html#pango-tab-array-free"><code class="function">pango_tab_array_free()</code></a>.</p>
+with <code class="function">pango_tab_array_free()</code>.</p>
 <div class="refsect3">
 <a name="gtk-text-view-get-tabs.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -3383,8 +3383,8 @@ with <a href="https://developer.gnome.org/pango/pango-Tab-Stops.html#pango-tab-a
 <div class="refsect3">
 <a name="gtk-text-view-get-tabs.returns"></a><h4>Returns</h4>
 <p>copy of default tab array, or <code class="literal">NULL</code> if
-“standard" tabs are used; must be freed with <a href="https://developer.gnome.org/pango/pango-Tab-Stops.html#pango-tab-array-free"><code class="function">pango_tab_array_free()</code></a>. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+“standard" tabs are used; must be freed with <code class="function">pango_tab_array_free()</code>. </p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -3492,7 +3492,7 @@ and should be freed with <a class="link" href="GtkTextTag.html#gtk-text-attribut
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_text_view_im_context_filter_keypress
                                (<em class="parameter"><code><a class="link" href="GtkTextView.html" title="GtkTextView"><span class="type">GtkTextView</span></a> *text_view</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gdk3/gdk3-Event-Structures.html#GdkEventKey"><span class="type">GdkEventKey</span></a> *event</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GdkEventKey</span> *event</code></em>);</pre>
 <p>Allow the <a class="link" href="GtkTextView.html" title="GtkTextView"><span class="type">GtkTextView</span></a> input method to internally handle key press
 and release events. If this function returns <code class="literal">TRUE</code>, then no further
 processing should be done for this key event. See
@@ -3524,7 +3524,7 @@ and the default key event handling of the <a class="link" href="GtkTextView.html
 17
 18</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="n">gboolean</span>
-<span class="nf">gtk_foo_bar_key_press_event</span> <span class="p">(</span><span class="n">GtkWidget</span>   <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
+<span class="n">gtk_foo_bar_key_press_event</span> <span class="p">(</span><span class="n">GtkWidget</span>   <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
                              <span class="n">GdkEventKey</span> <span class="o">*</span><span class="n">event</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="n">guint</span> <span class="n">keyval</span><span class="p">;</span>
@@ -4084,7 +4084,7 @@ a triple-click for example.</p>
 <td class="enum_member_description">
 <p>wrap text, breaking lines anywhere the cursor can
 appear (between characters, usually - if you want to be technical,
-between graphemes, see <a href="https://developer.gnome.org/pango/pango-Text-Processing.html#pango-get-log-attrs"><code class="function">pango_get_log_attrs()</code></a>)</p>
+between graphemes, see <code class="function">pango_get_log_attrs()</code>)</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -4323,7 +4323,7 @@ to the padding from the theme.</p>
 <hr>
 <div class="refsect2">
 <a name="GtkTextView--tabs"></a><h3>The <code class="literal">“tabs”</code> property</h3>
-<pre class="programlisting">  “tabs”                     <a href="https://developer.gnome.org/pango/pango-Tab-Stops.html#PangoTabArray-struct"><span class="type">PangoTabArray</span></a> *</pre>
+<pre class="programlisting">  “tabs”                     <span class="type">PangoTabArray</span> *</pre>
 <p>Custom tabs for this text.</p>
 <p>Owner: GtkTextView</p>
 <p>Flags: Read / Write</p>
@@ -4357,7 +4357,7 @@ to the padding from the theme.</p>
 <a name="GtkTextView.style-property-details"></a><h2>Style Property Details</h2>
 <div class="refsect2">
 <a name="GtkTextView--s-error-underline-color"></a><h3>The <code class="literal">“error-underline-color”</code> style property</h3>
-<pre class="programlisting">  “error-underline-color”    <a href="https://developer.gnome.org/gdk3/gdk3-Colors.html#GdkColor"><span class="type">GdkColor</span></a> *</pre>
+<pre class="programlisting">  “error-underline-color”    <span class="type">GdkColor</span> *</pre>
 <p>Color with which to draw error-indication underlines.</p>
 <p>Owner: GtkTextView</p>
 <p>Flags: Read</p>
@@ -4590,8 +4590,8 @@ extended at <em class="parameter"><code>location</code></em>
 </div>
 <div class="refsect3">
 <a name="GtkTextView-extend-selection.returns"></a><h4>Returns</h4>
-<p> <a href="https://developer.gnome.org/gdk4/gdk4-Events.html#GDK-EVENT-STOP:CAPS"><code class="literal">GDK_EVENT_STOP</code></a> to stop other handlers from being invoked for the
-event. <a href="https://developer.gnome.org/gdk4/gdk4-Events.html#GDK-EVENT-PROPAGATE:CAPS"><code class="literal">GDK_EVENT_PROPAGATE</code></a> to propagate the event further.</p>
+<p> <code class="literal">GDK_EVENT_STOP</code> to stop other handlers from being invoked for the
+event. <code class="literal">GDK_EVENT_PROPAGATE</code> to propagate the event further.</p>
 </div>
 <p>Flags: Run Last</p>
 <p class="since">Since: <a class="link" href="api-index-3-16.html#api-index-3.16">3.16</a></p>
@@ -5088,6 +5088,6 @@ which gets emitted to toggle the overwrite mode of the text view.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

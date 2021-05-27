@@ -8,7 +8,7 @@
 <link rel="up" href="reference.html" title="API Reference">
 <link rel="prev" href="GdkScreen.html" title="GdkScreen">
 <link rel="next" href="GdkMonitor.html" title="GdkMonitor">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -259,7 +259,7 @@ gdk_seat_get_display (<em class="parameter"><code><a class="link" href="GdkSeat.
 <a name="gdk-seat-get-display.returns"></a><h4>Returns</h4>
 <p>a <a class="link" href="GdkDisplay.html" title="GdkDisplay"><span class="type">GdkDisplay</span></a>. This object is owned by GTK+
 and must not be freed. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -448,7 +448,7 @@ gdk_seat_get_pointer (<em class="parameter"><code><a class="link" href="GdkSeat.
 <a name="gdk-seat-get-pointer.returns"></a><h4>Returns</h4>
 <p>a master <a class="link" href="GdkDevice.html" title="GdkDevice"><span class="type">GdkDevice</span></a> with pointer
 capabilities. This object is owned by GTK+ and must not be freed. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-20.html#api-index-3.20">3.20</a></p>
 </div>
@@ -477,7 +477,7 @@ gdk_seat_get_keyboard (<em class="parameter"><code><a class="link" href="GdkSeat
 <a name="gdk-seat-get-keyboard.returns"></a><h4>Returns</h4>
 <p>a master <a class="link" href="GdkDevice.html" title="GdkDevice"><span class="type">GdkDevice</span></a> with keyboard
 capabilities. This object is owned by GTK+ and must not be freed. </p>
-<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-20.html#api-index-3.20">3.20</a></p>
 </div>
@@ -515,7 +515,7 @@ gdk_seat_get_slaves (<em class="parameter"><code><a class="link" href="GdkSeat.h
 <p>A list of <span class="type">GdkDevices</span>.
 The list must be freed with <code class="function">g_list_free()</code>, the elements are owned
 by GDK and must not be freed. </p>
-<p><span class="annotation">[<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GdkDevice]</span></p>
+<p><span class="annotation">[<acronym title="The caller owns the data container, but not the data inside it."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GdkDevice]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-20.html#api-index-3.20">3.20</a></p>
 </div>
@@ -689,7 +689,7 @@ input device is removed (e.g. unplugged).</p>
 <a name="GdkSeat-tool-added"></a><h3>The <code class="literal">“tool-added”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GdkSeat.html" title="GdkSeat"><span class="type">GdkSeat</span></a>       *seat,
-               <a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="type">GdkDeviceTool</span></a> *tool,
+               <span class="type">GdkDeviceTool</span> *tool,
                <span class="type">gpointer</span>       user_data)</pre>
 <p>The ::tool-added signal is emitted whenever a new tool
 is made known to the seat. The tool may later be assigned
@@ -712,7 +712,7 @@ will emit the <a class="link" href="GdkDevice.html#GdkDevice-tool-changed" title
 </tr>
 <tr>
 <td class="parameter_name"><p>tool</p></td>
-<td class="parameter_description"><p>the new <a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="type">GdkDeviceTool</span></a> known to the seat</p></td>
+<td class="parameter_description"><p>the new <span class="type">GdkDeviceTool</span> known to the seat</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -731,7 +731,7 @@ will emit the <a class="link" href="GdkDevice.html#GdkDevice-tool-changed" title
 <a name="GdkSeat-tool-removed"></a><h3>The <code class="literal">“tool-removed”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="GdkSeat.html" title="GdkSeat"><span class="type">GdkSeat</span></a>       *seat,
-               <a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="type">GdkDeviceTool</span></a> *tool,
+               <span class="type">GdkDeviceTool</span> *tool,
                <span class="type">gpointer</span>       user_data)</pre>
 <p>This signal is emitted whenever a tool is no longer known
 to this <em class="parameter"><code>seat</code></em>
@@ -752,7 +752,7 @@ to this <em class="parameter"><code>seat</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>tool</p></td>
-<td class="parameter_description"><p>the just removed <a href="https://developer.gnome.org/gdk4/GdkDevice.html#GdkDeviceTool-struct"><span class="type">GdkDeviceTool</span></a></p></td>
+<td class="parameter_description"><p>the just removed <span class="type">GdkDeviceTool</span></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -773,6 +773,6 @@ to this <em class="parameter"><code>seat</code></em>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

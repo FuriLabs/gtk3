@@ -8,7 +8,7 @@
 <link rel="up" href="AbstractObjects.html" title="Abstract Base Classes">
 <link rel="prev" href="GtkWidget.html" title="GtkWidget">
 <link rel="next" href="GtkBin.html" title="GtkBin">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -569,7 +569,7 @@ simply calling the reverse apis implemented for itself as follows:</p>
 26
 27</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="nf">foo_container_get_preferred_height</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
+<span class="n">foo_container_get_preferred_height</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
                                     <span class="n">gint</span> <span class="o">*</span><span class="n">min_height</span><span class="p">,</span>
                                     <span class="n">gint</span> <span class="o">*</span><span class="n">nat_height</span><span class="p">)</span>
 <span class="p">{</span>
@@ -627,7 +627,7 @@ that is height-for-width, it then only needs to return the base minimum width li
 18
 19</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="nf">foo_container_get_preferred_width_for_height</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
+<span class="n">foo_container_get_preferred_width_for_height</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
                                               <span class="n">gint</span> <span class="n">for_height</span><span class="p">,</span>
                                               <span class="n">gint</span> <span class="o">*</span><span class="n">min_width</span><span class="p">,</span>
                                               <span class="n">gint</span> <span class="o">*</span><span class="n">nat_width</span><span class="p">)</span>
@@ -1082,7 +1082,7 @@ gtk_container_get_children (<em class="parameter"><code><a class="link" href="Gt
 <div class="refsect3">
 <a name="gtk-container-get-children.returns"></a><h4>Returns</h4>
 <p>a newly-allocated list of the container’s non-internal children. </p>
-<p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GtkWidget][<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GtkWidget][<acronym title="The caller owns the data container, but not the data inside it."><span class="acronym">transfer container</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -1191,7 +1191,7 @@ focus inside <em class="parameter"><code>container</code></em>
 when the <em class="parameter"><code>container</code></em>
 is focused,
 or <code class="literal">NULL</code> if none is set. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.14</p>
 </div>
@@ -1259,7 +1259,7 @@ gtk_container_get_focus_vadjustment (<em class="parameter"><code><a class="link"
 <a name="gtk-container-get-focus-vadjustment.returns"></a><h4>Returns</h4>
 <p>the vertical focus adjustment, or
 <code class="literal">NULL</code> if none has been set. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -1327,7 +1327,7 @@ gtk_container_get_focus_hadjustment (<em class="parameter"><code><a class="link"
 <a name="gtk-container-get-focus-hadjustment.returns"></a><h4>Returns</h4>
 <p>the horizontal focus adjustment, or <code class="literal">NULL</code> if
 none has been set. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -1902,7 +1902,7 @@ gtk_container_propagate_draw (<em class="parameter"><code><a class="link" href="
                               <em class="parameter"><code><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-t"><span class="type">cairo_t</span></a> *cr</code></em>);</pre>
 <p>When a container receives a call to the draw function, it must send
 synthetic <a class="link" href="GtkWidget.html#GtkWidget-draw" title="The “draw” signal"><span class="type">“draw”</span></a> calls to all children that don’t have their
-own <a href="https://developer.gnome.org/gdk3/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindows</span></a>. This function provides a convenient way of doing this.
+own <span class="type">GdkWindows</span>. This function provides a convenient way of doing this.
 A container, when it receives a call to its <a class="link" href="GtkWidget.html#GtkWidget-draw" title="The “draw” signal"><span class="type">“draw”</span></a> function,
 calls <a class="link" href="GtkContainer.html#gtk-container-propagate-draw" title="gtk_container_propagate_draw ()"><code class="function">gtk_container_propagate_draw()</code></a> once for each child, passing in
 the <em class="parameter"><code>cr</code></em>
@@ -1985,7 +1985,7 @@ container, or <code class="literal">NULL</code>. You should free this list
 using <code class="function">g_list_free()</code> when you are done with it, however
 no additional reference count is added to the
 individual widgets in the focus chain. </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GtkWidget][<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>]</span></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GtkWidget][<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="The caller owns the data container, but not the data inside it."><span class="acronym">transfer container</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
@@ -2030,7 +2030,7 @@ when the focus chain is actually traversed.</p>
 <tr>
 <td class="parameter_name"><p>focusable_widgets</p></td>
 <td class="parameter_description"><p>the new focus chain. </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GtkWidget]</span></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GtkWidget]</span></td>
 </tr>
 </tbody>
 </table></div>
@@ -2099,7 +2099,7 @@ gtk_container_class_find_child_property
 property or <code class="literal">NULL</code> if <em class="parameter"><code>class</code></em>
 has no child property with that
 name. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -2212,7 +2212,7 @@ gtk_container_class_list_child_properties
 <a name="gtk-container-class-list-child-properties.returns"></a><h4>Returns</h4>
 <p>a newly allocated <code class="literal">NULL</code>-terminated array of <span class="type">GParamSpec</span>*.
 The array must be freed with <code class="function">g_free()</code>. </p>
-<p><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> length=n_properties][<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="Parameter points to an array of items."><span class="acronym">array</span></acronym> length=n_properties][<acronym title="The caller owns the data container, but not the data inside it."><span class="acronym">transfer container</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
@@ -2460,6 +2460,6 @@ user_function (<a class="link" href="GtkContainer.html" title="GtkContainer"><sp
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

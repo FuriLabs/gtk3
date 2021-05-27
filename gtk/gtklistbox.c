@@ -43,7 +43,7 @@
  * @See_also: #GtkScrolledWindow
  *
  * A GtkListBox is a vertical container that contains GtkListBoxRow
- * children. These rows can by dynamically sorted and filtered, and
+ * children. These rows can be dynamically sorted and filtered, and
  * headers can be added dynamically depending on the row content.
  * It also allows keyboard and mouse navigation and selection like
  * a typical list.
@@ -1765,7 +1765,10 @@ gtk_list_box_update_selection_full (GtkListBox    *box,
               g_signal_emit (box, signals[ROW_SELECTED], 0, row);
             }
           else
-            gtk_list_box_select_all_between (box, selected_row, row, FALSE);
+            {
+              priv->selected_row = selected_row;
+              gtk_list_box_select_all_between (box, selected_row, row, FALSE);
+            }
         }
       else
         {

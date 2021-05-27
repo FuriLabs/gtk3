@@ -8,7 +8,7 @@
 <link rel="up" href="SelectorWidgets.html" title="Selector Widgets and Dialogs">
 <link rel="prev" href="GtkFontChooserDialog.html" title="GtkFontChooserDialog">
 <link rel="next" href="Ornaments.html" title="Ornaments">
-<meta name="generator" content="GTK-Doc V1.33.0 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -618,7 +618,7 @@ for your menu items.</p>
 <a name="gtk-places-sidebar-get-location.returns"></a><h4>Returns</h4>
 <p>a <span class="type">GFile</span> with the selected location, or
 <code class="literal">NULL</code> if nothing is visually selected. </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-10.html#api-index-3.10">3.10</a></p>
 </div>
@@ -858,7 +858,7 @@ To free this list, you can use</p>
 </div>
 
 <p>. </p>
-<p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GFile][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GFile][<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-10.html#api-index-3.10">3.10</a></p>
 </div>
@@ -899,7 +899,7 @@ the “Alt-1”, “Alt-2”, etc. shortcuts, which activate the cooresponding b
 , or
 <code class="literal">NULL</code> if no such index exist.  Note that the indices start at 0, even though
 the file chooser starts them with the keyboard shortcut "Alt-1". </p>
-<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-3-10.html#api-index-3.10">3.10</a></p>
 </div>
@@ -1234,7 +1234,7 @@ see and interact with drives and network servers directly.</p>
 gtk_places_sidebar_set_drop_targets_visible
                                (<em class="parameter"><code><a class="link" href="GtkPlacesSidebar.html" title="GtkPlacesSidebar"><span class="type">GtkPlacesSidebar</span></a> *sidebar</code></em>,
                                 <em class="parameter"><code><span class="type">gboolean</span> visible</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/gdk3/gdk3-Drag-and-Drop.html#GdkDragContext-struct"><span class="type">GdkDragContext</span></a> *context</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GdkDragContext</span> *context</code></em>);</pre>
 <p>Make the GtkPlacesSidebar show drop targets, so it can show the available
 drop targets and a "new bookmark" row. This improves the Drag-and-Drop
 experience of the user and allows applications to show all available
@@ -1489,7 +1489,7 @@ of the drag-and-drop operation.</p>
 <a name="GtkPlacesSidebar-drag-action-requested"></a><h3>The <code class="literal">“drag-action-requested”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">int</span>
 user_function (<a class="link" href="GtkPlacesSidebar.html" title="GtkPlacesSidebar"><span class="type">GtkPlacesSidebar</span></a> *sidebar,
-               <a href="https://developer.gnome.org/gdk3/gdk3-Drag-and-Drop.html#GdkDragContext-struct"><span class="type">GdkDragContext</span></a>   *context,
+               <span class="type">GdkDragContext</span>   *context,
                <span class="type">GObject</span>          *dest_file,
                <span class="type">gpointer</span>          source_file_list,
                <span class="type">gpointer</span>          user_data)</pre>
@@ -1519,7 +1519,7 @@ possible actions for the destination <em class="parameter"><code>dest_file</code
 </tr>
 <tr>
 <td class="parameter_name"><p>context</p></td>
-<td class="parameter_description"><p><a href="https://developer.gnome.org/gdk3/gdk3-Drag-and-Drop.html#GdkDragContext-struct"><span class="type">GdkDragContext</span></a> with information about the drag operation. </p></td>
+<td class="parameter_description"><p><span class="type">GdkDragContext</span> with information about the drag operation. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> Gdk.DragContext]</span></td>
 </tr>
 <tr>
@@ -1530,7 +1530,7 @@ possible actions for the destination <em class="parameter"><code>dest_file</code
 <tr>
 <td class="parameter_name"><p>source_file_list</p></td>
 <td class="parameter_description"><p>List of <span class="type">GFile</span> that are being dragged. </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> GLib.List][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GFile][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> GLib.List][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GFile][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>user_data</p></td>
@@ -1542,8 +1542,8 @@ possible actions for the destination <em class="parameter"><code>dest_file</code
 </div>
 <div class="refsect3">
 <a name="GtkPlacesSidebar-drag-action-requested.returns"></a><h4>Returns</h4>
-<p> The drag action to use, for example, <a href="https://developer.gnome.org/gdk4/gdk4-Drag-and-Drop.html#GDK-ACTION-COPY:CAPS"><span class="type">GDK_ACTION_COPY</span></a>
-or <a href="https://developer.gnome.org/gdk4/gdk4-Drag-and-Drop.html#GDK-ACTION-MOVE:CAPS"><span class="type">GDK_ACTION_MOVE</span></a>, or 0 if no action is allowed here (i.e. drops
+<p> The drag action to use, for example, <span class="type">GDK_ACTION_COPY</span>
+or <span class="type">GDK_ACTION_MOVE</span>, or 0 if no action is allowed here (i.e. drops
 are not allowed in the specified <em class="parameter"><code>dest_file</code></em>
 ).</p>
 </div>
@@ -1589,7 +1589,7 @@ which should be copied/moved/etc. based on the specified <em class="parameter"><
 <tr>
 <td class="parameter_name"><p>source_file_list</p></td>
 <td class="parameter_description"><p><span class="type">GList</span> of <span class="type">GFile</span> that got dropped. </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> GLib.List][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GFile][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> GLib.List][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GFile][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>action</p></td>
@@ -2072,6 +2072,6 @@ progress of the operation and, for example, show a notification.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.33.0</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>
