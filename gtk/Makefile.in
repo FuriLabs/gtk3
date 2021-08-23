@@ -287,18 +287,20 @@ am__libgtk_3_la_SOURCES_DIST = a11y/gtkaccessibility.c \
 	a11y/gtkcolorswatchaccessible.c a11y/gtkcomboboxaccessible.c \
 	a11y/gtkcontaineraccessible.c \
 	a11y/gtkcontainercellaccessible.c a11y/gtkentryaccessible.c \
-	a11y/gtkexpanderaccessible.c a11y/gtkflowboxaccessible.c \
-	a11y/gtkflowboxchildaccessible.c a11y/gtkframeaccessible.c \
-	a11y/gtkheaderbaraccessible.c a11y/gtkiconviewaccessible.c \
-	a11y/gtkimageaccessible.c a11y/gtkimagecellaccessible.c \
-	a11y/gtklabelaccessible.c a11y/gtklevelbaraccessible.c \
-	a11y/gtklinkbuttonaccessible.c a11y/gtklistboxaccessible.c \
-	a11y/gtklistboxrowaccessible.c a11y/gtklockbuttonaccessible.c \
-	a11y/gtkmenuaccessible.c a11y/gtkmenubuttonaccessible.c \
-	a11y/gtkmenushellaccessible.c a11y/gtkmenuitemaccessible.c \
-	a11y/gtknotebookaccessible.c a11y/gtknotebookpageaccessible.c \
-	a11y/gtkpanedaccessible.c a11y/gtkplugaccessible.c \
-	a11y/gtkpopoveraccessible.c a11y/gtkprogressbaraccessible.c \
+	a11y/gtkexpanderaccessible.c \
+	a11y/gtkfilechooserwidgetaccessible.c \
+	a11y/gtkflowboxaccessible.c a11y/gtkflowboxchildaccessible.c \
+	a11y/gtkframeaccessible.c a11y/gtkheaderbaraccessible.c \
+	a11y/gtkiconviewaccessible.c a11y/gtkimageaccessible.c \
+	a11y/gtkimagecellaccessible.c a11y/gtklabelaccessible.c \
+	a11y/gtklevelbaraccessible.c a11y/gtklinkbuttonaccessible.c \
+	a11y/gtklistboxaccessible.c a11y/gtklistboxrowaccessible.c \
+	a11y/gtklockbuttonaccessible.c a11y/gtkmenuaccessible.c \
+	a11y/gtkmenubuttonaccessible.c a11y/gtkmenushellaccessible.c \
+	a11y/gtkmenuitemaccessible.c a11y/gtknotebookaccessible.c \
+	a11y/gtknotebookpageaccessible.c a11y/gtkpanedaccessible.c \
+	a11y/gtkplugaccessible.c a11y/gtkpopoveraccessible.c \
+	a11y/gtkprogressbaraccessible.c \
 	a11y/gtkradiobuttonaccessible.c \
 	a11y/gtkradiomenuitemaccessible.c a11y/gtkrangeaccessible.c \
 	a11y/gtkrenderercellaccessible.c a11y/gtkscaleaccessible.c \
@@ -497,6 +499,7 @@ am__objects_1 = a11y/libgtk_3_la-gtkaccessibility.lo \
 	a11y/libgtk_3_la-gtkcontainercellaccessible.lo \
 	a11y/libgtk_3_la-gtkentryaccessible.lo \
 	a11y/libgtk_3_la-gtkexpanderaccessible.lo \
+	a11y/libgtk_3_la-gtkfilechooserwidgetaccessible.lo \
 	a11y/libgtk_3_la-gtkflowboxaccessible.lo \
 	a11y/libgtk_3_la-gtkflowboxchildaccessible.lo \
 	a11y/libgtk_3_la-gtkframeaccessible.lo \
@@ -1395,6 +1398,7 @@ am__depfiles_remade = ./$(DEPDIR)/encodesymbolic.Po \
 	a11y/$(DEPDIR)/libgtk_3_la-gtkcontainercellaccessible.Plo \
 	a11y/$(DEPDIR)/libgtk_3_la-gtkentryaccessible.Plo \
 	a11y/$(DEPDIR)/libgtk_3_la-gtkexpanderaccessible.Plo \
+	a11y/$(DEPDIR)/libgtk_3_la-gtkfilechooserwidgetaccessible.Plo \
 	a11y/$(DEPDIR)/libgtk_3_la-gtkflowboxaccessible.Plo \
 	a11y/$(DEPDIR)/libgtk_3_la-gtkflowboxchildaccessible.Plo \
 	a11y/$(DEPDIR)/libgtk_3_la-gtkframeaccessible.Plo \
@@ -1715,8 +1719,6 @@ INTROSPECTION_REQUIRED_VERSION = @INTROSPECTION_REQUIRED_VERSION@
 INTROSPECTION_SCANNER = @INTROSPECTION_SCANNER@
 INTROSPECTION_TYPELIBDIR = @INTROSPECTION_TYPELIBDIR@
 ISO_CODES_PREFIX = @ISO_CODES_PREFIX@
-JSON_GLIB_CFLAGS = @JSON_GLIB_CFLAGS@
-JSON_GLIB_LIBS = @JSON_GLIB_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LDFLAGS_FOR_BUILD = @LDFLAGS_FOR_BUILD@
@@ -1765,8 +1767,6 @@ PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
 PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
 POSUB = @POSUB@
 RANLIB = @RANLIB@
-REST_CFLAGS = @REST_CFLAGS@
-REST_LIBS = @REST_LIBS@
 SASSC = @SASSC@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
@@ -1860,9 +1860,10 @@ EXTRA_DIST = $(gtk_all_private_h_sources) $(gtk_extra_sources) \
 	$(gtk_built_sources) gtkbuilder.rnc gtkbuilder.rng $(its_DATA) \
 	$(resource_files) $(gesture_sources) $(theme_sources) \
 	$(gsettings_SCHEMAS) compose/compose-parse.py \
-	emoji/convert-emoji.c emoji/emoji.json emoji/emoji1.json \
-	a11y/Makefile.inc deprecated/Makefile.inc glade/README.glade \
-	glade/gtk-private-widgets.xml \
+	emoji/convert-emoji.c emoji/gresource.xml.in emoji/README.md \
+	emoji/de.data emoji/en.data emoji/es.data emoji/fr.data \
+	emoji/zh.data a11y/Makefile.inc deprecated/Makefile.inc \
+	glade/README.glade glade/gtk-private-widgets.xml \
 	compose/gtk-compose-lookaside.txt inspector/Makefile.inc \
 	libgtk3.manifest.in gtk-win32.rc.body.in gtk-win32.rc.body \
 	gtkwin32embed.h gtkwin32embedwidget.h gtkwin32embedwidget.c \
@@ -1971,6 +1972,7 @@ a11y_h_sources = \
 	a11y/gtkcontainercellaccessible.h	\
 	a11y/gtkentryaccessible.h		\
 	a11y/gtkexpanderaccessible.h		\
+	a11y/gtkfilechooserwidgetaccessible.h	\
 	a11y/gtkflowboxaccessible.h		\
 	a11y/gtkflowboxchildaccessible.h	\
 	a11y/gtkframeaccessible.h		\
@@ -2048,6 +2050,7 @@ a11y_c_sources = \
 	a11y/gtkcontainercellaccessible.c	\
 	a11y/gtkentryaccessible.c		\
 	a11y/gtkexpanderaccessible.c		\
+	a11y/gtkfilechooserwidgetaccessible.c	\
 	a11y/gtkflowboxaccessible.c		\
 	a11y/gtkflowboxchildaccessible.c	\
 	a11y/gtkframeaccessible.c		\
@@ -3337,6 +3340,8 @@ a11y/libgtk_3_la-gtkentryaccessible.lo: a11y/$(am__dirstamp) \
 	a11y/$(DEPDIR)/$(am__dirstamp)
 a11y/libgtk_3_la-gtkexpanderaccessible.lo: a11y/$(am__dirstamp) \
 	a11y/$(DEPDIR)/$(am__dirstamp)
+a11y/libgtk_3_la-gtkfilechooserwidgetaccessible.lo:  \
+	a11y/$(am__dirstamp) a11y/$(DEPDIR)/$(am__dirstamp)
 a11y/libgtk_3_la-gtkflowboxaccessible.lo: a11y/$(am__dirstamp) \
 	a11y/$(DEPDIR)/$(am__dirstamp)
 a11y/libgtk_3_la-gtkflowboxchildaccessible.lo: a11y/$(am__dirstamp) \
@@ -4054,6 +4059,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkcontainercellaccessible.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkentryaccessible.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkexpanderaccessible.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkfilechooserwidgetaccessible.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkflowboxaccessible.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkflowboxchildaccessible.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@a11y/$(DEPDIR)/libgtk_3_la-gtkframeaccessible.Plo@am__quote@ # am--include-marker
@@ -4302,6 +4308,13 @@ a11y/libgtk_3_la-gtkexpanderaccessible.lo: a11y/gtkexpanderaccessible.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='a11y/gtkexpanderaccessible.c' object='a11y/libgtk_3_la-gtkexpanderaccessible.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o a11y/libgtk_3_la-gtkexpanderaccessible.lo `test -f 'a11y/gtkexpanderaccessible.c' || echo '$(srcdir)/'`a11y/gtkexpanderaccessible.c
+
+a11y/libgtk_3_la-gtkfilechooserwidgetaccessible.lo: a11y/gtkfilechooserwidgetaccessible.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT a11y/libgtk_3_la-gtkfilechooserwidgetaccessible.lo -MD -MP -MF a11y/$(DEPDIR)/libgtk_3_la-gtkfilechooserwidgetaccessible.Tpo -c -o a11y/libgtk_3_la-gtkfilechooserwidgetaccessible.lo `test -f 'a11y/gtkfilechooserwidgetaccessible.c' || echo '$(srcdir)/'`a11y/gtkfilechooserwidgetaccessible.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) a11y/$(DEPDIR)/libgtk_3_la-gtkfilechooserwidgetaccessible.Tpo a11y/$(DEPDIR)/libgtk_3_la-gtkfilechooserwidgetaccessible.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='a11y/gtkfilechooserwidgetaccessible.c' object='a11y/libgtk_3_la-gtkfilechooserwidgetaccessible.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -c -o a11y/libgtk_3_la-gtkfilechooserwidgetaccessible.lo `test -f 'a11y/gtkfilechooserwidgetaccessible.c' || echo '$(srcdir)/'`a11y/gtkfilechooserwidgetaccessible.c
 
 a11y/libgtk_3_la-gtkflowboxaccessible.lo: a11y/gtkflowboxaccessible.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgtk_3_la_CFLAGS) $(CFLAGS) -MT a11y/libgtk_3_la-gtkflowboxaccessible.lo -MD -MP -MF a11y/$(DEPDIR)/libgtk_3_la-gtkflowboxaccessible.Tpo -c -o a11y/libgtk_3_la-gtkflowboxaccessible.lo `test -f 'a11y/gtkflowboxaccessible.c' || echo '$(srcdir)/'`a11y/gtkflowboxaccessible.c
@@ -8719,6 +8732,7 @@ distclean: distclean-am
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkcontainercellaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkentryaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkexpanderaccessible.Plo
+	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkfilechooserwidgetaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkflowboxaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkflowboxchildaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkframeaccessible.Plo
@@ -9313,6 +9327,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkcontainercellaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkentryaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkexpanderaccessible.Plo
+	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkfilechooserwidgetaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkflowboxaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkflowboxchildaccessible.Plo
 	-rm -f a11y/$(DEPDIR)/libgtk_3_la-gtkframeaccessible.Plo
@@ -9688,7 +9703,10 @@ gtk.gresource.xml: Makefile.am inspector/Makefile.inc
 	  echo "    <file compressed='true' preprocess='xml-stripblanks'>inspector/$$n</file>" >> $@; \
 	done; \
 	echo "    <file>inspector/logo.png</file>" >> $@; \
-	echo "    <file>emoji/emoji.data</file>" >> $@; \
+	for f in $(srcdir)/emoji/*.data; do \
+	  n=`basename $$f`; \
+	  echo "    <file>emoji/$$n</file>" >> $@; \
+	done; \
 	echo "  </gresource>" >> $@; \
 	echo "</gresources>" >> $@;
 

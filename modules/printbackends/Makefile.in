@@ -89,10 +89,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@HAVE_CLOUDPRINT_TRUE@am__append_1 = cloudprint
-@HAVE_CUPS_TRUE@am__append_2 = cups
-@TEST_PRINT_BACKEND_TRUE@am__append_3 = test
-@HAVE_PAPI_TRUE@am__append_4 = papi
+@HAVE_CUPS_TRUE@am__append_1 = cups
+@TEST_PRINT_BACKEND_TRUE@am__append_2 = test
+@HAVE_PAPI_TRUE@am__append_3 = papi
 subdir = modules/printbackends
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_prog_cc_for_build.m4 \
@@ -333,8 +332,6 @@ INTROSPECTION_REQUIRED_VERSION = @INTROSPECTION_REQUIRED_VERSION@
 INTROSPECTION_SCANNER = @INTROSPECTION_SCANNER@
 INTROSPECTION_TYPELIBDIR = @INTROSPECTION_TYPELIBDIR@
 ISO_CODES_PREFIX = @ISO_CODES_PREFIX@
-JSON_GLIB_CFLAGS = @JSON_GLIB_CFLAGS@
-JSON_GLIB_LIBS = @JSON_GLIB_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LDFLAGS_FOR_BUILD = @LDFLAGS_FOR_BUILD@
@@ -383,8 +380,6 @@ PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
 PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
 POSUB = @POSUB@
 RANLIB = @RANLIB@
-REST_CFLAGS = @REST_CFLAGS@
-REST_LIBS = @REST_LIBS@
 SASSC = @SASSC@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
@@ -502,9 +497,8 @@ XVFB_START = \
 	|| { echo "Gtk+Tests:ERROR: Failed to start Xvfb environment for X11 target tests."; exit 1; } \
 	&& DISPLAY=:$$XID && export DISPLAY
 
-SUBDIRS = file lpr $(am__append_1) $(am__append_2) $(am__append_3) \
-	$(am__append_4)
-DIST_SUBDIRS = cloudprint cups file lpr test papi
+SUBDIRS = file lpr $(am__append_1) $(am__append_2) $(am__append_3)
+DIST_SUBDIRS = cups file lpr test papi
 all: all-recursive
 
 .SUFFIXES:

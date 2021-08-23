@@ -146,13 +146,13 @@ LTLIBRARIES = $(noinst_LTLIBRARIES)
 libgdk_win32_la_LIBADD =
 am_libgdk_win32_la_OBJECTS = gdkcursor-win32.lo \
 	gdkdevicemanager-win32.lo gdkdevice-virtual.lo \
-	gdkdevice-win32.lo gdkdevice-wintab.lo gdkdisplay-win32.lo \
-	gdkdisplaymanager-win32.lo gdkdnd-win32.lo gdkevents-win32.lo \
-	gdkgeometry-win32.lo gdkglcontext-win32.lo gdkglobals-win32.lo \
-	gdkkeys-win32.lo gdkmain-win32.lo gdkmonitor-win32.lo \
-	gdkproperty-win32.lo gdkscreen-win32.lo gdkselection-win32.lo \
-	gdktestutils-win32.lo gdkwin32langnotification.lo \
-	gdkwin32id.lo gdkwindow-win32.lo
+	gdkdevice-win32.lo gdkdevice-winpointer.lo gdkdevice-wintab.lo \
+	gdkdisplay-win32.lo gdkdisplaymanager-win32.lo gdkdnd-win32.lo \
+	gdkevents-win32.lo gdkgeometry-win32.lo gdkglcontext-win32.lo \
+	gdkglobals-win32.lo gdkkeys-win32.lo gdkmain-win32.lo \
+	gdkmonitor-win32.lo gdkproperty-win32.lo gdkscreen-win32.lo \
+	gdkselection-win32.lo gdktestutils-win32.lo \
+	gdkwin32langnotification.lo gdkwin32id.lo gdkwindow-win32.lo
 libgdk_win32_la_OBJECTS = $(am_libgdk_win32_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -176,6 +176,7 @@ am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/gdkcursor-win32.Plo \
 	./$(DEPDIR)/gdkdevice-virtual.Plo \
 	./$(DEPDIR)/gdkdevice-win32.Plo \
+	./$(DEPDIR)/gdkdevice-winpointer.Plo \
 	./$(DEPDIR)/gdkdevice-wintab.Plo \
 	./$(DEPDIR)/gdkdevicemanager-win32.Plo \
 	./$(DEPDIR)/gdkdisplay-win32.Plo \
@@ -451,8 +452,6 @@ INTROSPECTION_REQUIRED_VERSION = @INTROSPECTION_REQUIRED_VERSION@
 INTROSPECTION_SCANNER = @INTROSPECTION_SCANNER@
 INTROSPECTION_TYPELIBDIR = @INTROSPECTION_TYPELIBDIR@
 ISO_CODES_PREFIX = @ISO_CODES_PREFIX@
-JSON_GLIB_CFLAGS = @JSON_GLIB_CFLAGS@
-JSON_GLIB_LIBS = @JSON_GLIB_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LDFLAGS_FOR_BUILD = @LDFLAGS_FOR_BUILD@
@@ -501,8 +500,6 @@ PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
 PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
 POSUB = @POSUB@
 RANLIB = @RANLIB@
-REST_CFLAGS = @REST_CFLAGS@
-REST_LIBS = @REST_LIBS@
 SASSC = @SASSC@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
@@ -627,7 +624,10 @@ AM_CPPFLAGS = -DG_LOG_DOMAIN=\"Gdk\" -DG_LOG_USE_STRUCTURED=1 \
 	-I$(top_builddir)/gdk $(GDK_HIDDEN_VISIBILITY_CFLAGS) \
 	$(GTK_DEBUG_FLAGS) $(GDK_DEP_CFLAGS) $(GDK_WIN32_EXTRA_CFLAGS) \
 	-DGDK_COMPILATION $(am__append_1)
-LDADDS = $(GDK_DEP_LIBS)
+libgdk_win32_DEP_LIBS = \
+	hid.lib
+
+LDADDS = $(libgdk_win32_DEP_LIBS) $(GDK_DEP_LIBS)
 noinst_LTLIBRARIES = libgdk-win32.la
 SUBDIRS = rc
 libgdk_win32_la_SOURCES = \
@@ -638,6 +638,8 @@ libgdk_win32_la_SOURCES = \
 	gdkdevice-virtual.h \
 	gdkdevice-win32.c \
 	gdkdevice-win32.h \
+	gdkdevice-winpointer.c \
+	gdkdevice-winpointer.h \
 	gdkdevice-wintab.c \
 	gdkdevice-wintab.h \
 	gdkdisplay-win32.c \
@@ -773,6 +775,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkcursor-win32.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkdevice-virtual.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkdevice-win32.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkdevice-winpointer.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkdevice-wintab.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkdevicemanager-win32.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkdisplay-win32.Plo@am__quote@ # am--include-marker
@@ -1079,6 +1082,7 @@ distclean: distclean-recursive
 		-rm -f ./$(DEPDIR)/gdkcursor-win32.Plo
 	-rm -f ./$(DEPDIR)/gdkdevice-virtual.Plo
 	-rm -f ./$(DEPDIR)/gdkdevice-win32.Plo
+	-rm -f ./$(DEPDIR)/gdkdevice-winpointer.Plo
 	-rm -f ./$(DEPDIR)/gdkdevice-wintab.Plo
 	-rm -f ./$(DEPDIR)/gdkdevicemanager-win32.Plo
 	-rm -f ./$(DEPDIR)/gdkdisplay-win32.Plo
@@ -1147,6 +1151,7 @@ maintainer-clean: maintainer-clean-recursive
 		-rm -f ./$(DEPDIR)/gdkcursor-win32.Plo
 	-rm -f ./$(DEPDIR)/gdkdevice-virtual.Plo
 	-rm -f ./$(DEPDIR)/gdkdevice-win32.Plo
+	-rm -f ./$(DEPDIR)/gdkdevice-winpointer.Plo
 	-rm -f ./$(DEPDIR)/gdkdevice-wintab.Plo
 	-rm -f ./$(DEPDIR)/gdkdevicemanager-win32.Plo
 	-rm -f ./$(DEPDIR)/gdkdisplay-win32.Plo

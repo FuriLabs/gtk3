@@ -47,7 +47,7 @@ AT_PLAT=i686
 !endif
 
 # Please do not change anything beneath this line unless maintaining the NMake Makefiles
-GTK_VERSION = 3.24.29
+GTK_VERSION = 3.24.30
 
 GDK_PREPROCESSOR_FLAGS =	\
 	/DG_LOG_USE_STRUCTURED=1	\

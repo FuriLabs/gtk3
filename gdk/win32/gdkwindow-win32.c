@@ -555,7 +555,6 @@ RegisterGdkClass (GdkWindowType wtype, GdkWindowTypeHint wtype_hint)
   static ATOM klassTOPLEVEL   = 0;
   static ATOM klassCHILD      = 0;
   static ATOM klassTEMP       = 0;
-  static ATOM klassTEMPSHADOW = 0;
   static HICON hAppIcon = NULL;
   static HICON hAppIconSm = NULL;
   static WNDCLASSEXW wcl;
@@ -652,34 +651,16 @@ RegisterGdkClass (GdkWindowType wtype, GdkWindowTypeHint wtype_hint)
       break;
 
     case GDK_WINDOW_TEMP:
-      if ((wtype_hint == GDK_WINDOW_TYPE_HINT_MENU) ||
-          (wtype_hint == GDK_WINDOW_TYPE_HINT_DROPDOWN_MENU) ||
-          (wtype_hint == GDK_WINDOW_TYPE_HINT_POPUP_MENU))
+      if (klassTEMP == 0)
         {
-          if (klassTEMPSHADOW == 0)
-            {
-              wcl.lpszClassName = L"gdkWindowTempShadow";
-              wcl.style |= CS_SAVEBITS;
-              wcl.style |= 0x00020000; /* CS_DROPSHADOW */
-
-              ONCE_PER_CLASS ();
-              klassTEMPSHADOW = RegisterClassExW (&wcl);
-            }
-
-          klass = klassTEMPSHADOW;
+          wcl.lpszClassName = L"gdkWindowTemp";
+          wcl.style |= CS_SAVEBITS;
+          ONCE_PER_CLASS ();
+          klassTEMP = RegisterClassExW (&wcl);
         }
-       else
-        {
-          if (klassTEMP == 0)
-            {
-              wcl.lpszClassName = L"gdkWindowTemp";
-              wcl.style |= CS_SAVEBITS;
-              ONCE_PER_CLASS ();
-              klassTEMP = RegisterClassExW (&wcl);
-            }
 
-          klass = klassTEMP;
-        }
+      klass = klassTEMP;
+
       break;
 
     default:
@@ -993,6 +974,9 @@ _gdk_win32_display_create_window_impl (GdkDisplay    *display,
 
   if (attributes_mask & GDK_WA_CURSOR)
     gdk_window_set_cursor (window, attributes->cursor);
+
+  if (_gdk_win32_tablet_input_api == GDK_WIN32_TABLET_INPUT_API_WINPOINTER)
+    gdk_winpointer_initialize_window (window);
 
   _gdk_win32_window_enable_transparency (window);
 }

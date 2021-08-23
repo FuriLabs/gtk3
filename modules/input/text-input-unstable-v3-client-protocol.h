@@ -316,6 +316,9 @@ struct zwp_text_input_v3_listener {
 	 * Notification that this seat's text-input focus is on a certain
 	 * surface.
 	 *
+	 * If client has created multiple text input objects, compositor
+	 * must send this event to all of them.
+	 *
 	 * When the seat has the keyboard capability the text-input focus
 	 * follows the keyboard focus. This event sets the current surface
 	 * for the text-input object.
@@ -331,7 +334,9 @@ struct zwp_text_input_v3_listener {
 	 * previously set.
 	 *
 	 * The leave notification clears the current surface. It is sent
-	 * before the enter notification for the new focus.
+	 * before the enter notification for the new focus. After leave
+	 * event, compositor must ignore requests from any text input
+	 * instances until next enter event.
 	 *
 	 * When the seat has the keyboard capability the text-input focus
 	 * follows the keyboard focus.
@@ -564,6 +569,12 @@ zwp_text_input_v3_destroy(struct zwp_text_input_v3 *zwp_text_input_v3)
  * to a new one, including within the current surface. Use
  * zwp_text_input_v3.disable when there is no longer any input focus on
  * the current surface.
+ *
+ * Clients must not enable more than one text input on the single seat
+ * and should disable the current text input before enabling the new one.
+ * At most one instance of text input may be in enabled state per instance,
+ * Requests to enable the another text input when some text input is active
+ * must be ignored by compositor.
  *
  * This request resets all state associated with previous enable, disable,
  * set_surrounding_text, set_text_change_cause, set_content_type, and

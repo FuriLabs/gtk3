@@ -1,4 +1,4 @@
-gtk+3.0 (3.24.29-1ubuntu1) impish; urgency=medium
+gtk+3.0 (3.24.30-1ubuntu1) UNRELEASED; urgency=medium
 
   * Merge with Debian. Remaining changes:
     + Install a settings.ini file to set our themes
@@ -21,7 +21,24 @@ gtk+3.0 (3.24.29-1ubuntu1) impish; urgency=medium
       - unity-border-radius.patch
       - unity-headerbar-maximized-mode.patch
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 27 May 2021 16:11:20 +0200
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 23 Aug 2021 10:31:39 +0200
+
+gtk+3.0 (3.24.30-1) unstable; urgency=medium
+
+  * New upstream release
+  * Drop build-dependencies used for the Google Cloud Print backend.
+    The service required by this backend was shut down, so the printing
+    backend is no longer useful and was removed by upstream.
+  * d/missing-sources: Add emojibase data in JSON format.
+    The GVariant data blobs in gtk/emoji/*.data are mechanically converted
+    from these.
+    - Do the conversion in d/rules, as an easy way to check that we have
+      the correct source files.
+  * Update symbols file
+  * Switch branch to debian/master for upload to unstable
+  * Mention #982925 in changelog entry for 3.24.25-1
+
+ -- Simon McVittie <smcv@debian.org>  Mon, 16 Aug 2021 11:03:25 +0100
 
 gtk+3.0 (3.24.29-1) experimental; urgency=medium
 
@@ -141,7 +158,7 @@ gtk+3.0 (3.24.25-1) experimental; urgency=medium
     - Make the Inspector available in non-debug builds
     - Make scrollbars larger
     - Disable shadows on maximized, fullscreen and tiled windows
-    - Support Avahi-discovered printers better
+    - Support Avahi-discovered printers better (Closes: #982925)
     - Show preedit for compose sequences
     - Support long compose sequences
     - Support compose sequences producing multiple characters
@@ -150,6 +167,55 @@ gtk+3.0 (3.24.25-1) experimental; urgency=medium
     for bullseye
 
  -- Simon McVittie <smcv@debian.org>  Thu, 18 Feb 2021 16:34:08 +0000
+
+gtk+3.0 (3.24.24-4) unstable; urgency=medium
+
+  * Add various patches from upstream 3.24.25 to 3.24.29, mostly
+    crash fixes:
+    - d/p/gdkpixbuf-drawable-Free-the-pixbuf-on-Cairo-error.patch:
+      Fix a memory leak when a Cairo error occurs
+    - d/p/Wayland-ignore-touch-tablet-events-on-destroyed-surfaces.patch:
+      Fix crashes if input events are received on a recently-closed window
+      or menu
+    - d/p/label-Skip-updating-link-state-if-we-have-no-layout.patch:
+      Fix crash if a GtkLabel's activate-link handler changes the
+      label's markup
+    - d/p/x11-dnd-Ignore-XErrors-from-the-COW.patch:
+      Adds a missing error trap to prevent crashes in X11 drag & drop.
+      The X11 functions called here cannot normally fail, but it seems
+      they can fail in certain configurations of the NVIDIA proprietary
+      driver. (LP: #1911036)
+    - d/p/cssshadowvalue-Apply-device-scale-to-the-offset-when-blur.patch:
+      Apply scale factor to blurred shadows.
+      In particular this makes the desktop-icons-ng GNOME Shell extension,
+      as used in Ubuntu 21.04, display correctly on HiDPI displays.
+      (LP: #1919404)
+    - d/p/scale-Fix-sporadic-criticals.patch:
+      Fix a possible crash due to use-after-free
+    - d/p/fontchooser-Fix-some-since-annotations.patch:
+      Correct documentation
+    - d/p/x11-Be-quiet-on-exit-by-default.patch:
+      Don't spam the system log when disconnected from the X11 display
+    - d/p/Fix-a-possible-crash-in-gtk_show_uri.patch:
+      Don't crash if asked to display a URI that doesn't have a useful
+      basename
+    - d/p/x11-Don-t-beep-on-untrusted-displays.patch:
+      Don't beep if connected to an X11 display that distrusts the
+      application (ssh -X -oForwardX11Trusted=no), which can result in a
+      fatal error
+    - d/p/placesview-Open-location-even-if-mount-was-not-found.patch:
+      Fix inability to display SMB server's list of shares
+      (e.g. smb://192.168.1.1/) in Nautilus
+  * d/p/updateiconcache-Sort-list-of-entries.patch:
+    Mark as applied upstream to GTK 3 as well as to GTK 4
+
+ -- Simon McVittie <smcv@debian.org>  Sun, 02 May 2021 12:34:12 +0100
+
+gtk+3.0 (3.24.24-3) unstable; urgency=medium
+
+  * d/patches: Backport font settings bug fixes recommended by upstream
+
+ -- Simon McVittie <smcv@debian.org>  Mon, 22 Feb 2021 17:51:13 +0000
 
 gtk+3.0 (3.24.24-2) unstable; urgency=medium
 

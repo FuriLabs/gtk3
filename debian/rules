@@ -99,7 +99,6 @@ configure_flags_deb = \
 	--enable-man \
 	--enable-shared \
 	--enable-introspection \
-	--enable-cloudprint \
 	--disable-static \
 	--enable-installed-tests
 
@@ -124,7 +123,6 @@ configure_flags_udeb = \
 	--disable-wayland-backend \
 	--enable-x11-backend \
 	--disable-introspection \
-	--disable-cloudprint \
 	--disable-colord \
 	--disable-xcomposite \
 	--disable-xdamage \
@@ -167,6 +165,15 @@ override_dh_clean: debian/control
 
 # Add dependencies to generate files from the debian/*.in ones
 override_dh_auto_build: $(call dh_subst_files,$(all_binaries))
+
+override_dh_auto_build: rebuild-emoji
+rebuild-emoji:
+	gcc -o debian/convert-emoji gtk/emoji/convert-emoji.c `pkg-config --cflags --libs json-glib-1.0`
+	set -eu; for input in debian/missing-sources/emojibase/packages/data/*/data.raw.json; do \
+		lang=$$(echo $$input | sed -ne 's,^.*/\([a-z][a-z]\)/data.raw.json$$,\1,p'); \
+		output=gtk/emoji/$$lang.data; \
+		debian/convert-emoji $$input $$output; \
+	done
 
 override_dh_autoreconf:
 	NOCONFIGURE=true dh_autoreconf ./autogen.sh
