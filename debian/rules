@@ -203,6 +203,9 @@ ifneq ($(filter %-udeb,$(built_binaries)),)
 endif
 
 override_dh_auto_test:
+# The tests require librsvg2-common which is only available on architectures
+# where rust has been ported to, disable the tests on the other ones
+ifneq (,$(filter $(DEB_HOST_ARCH), amd64 arm64 armel armhf i386 mips64el mipsel ppc64el s390x powerpc ppc64 riscv64 sparc64))
 ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
 	# Mark reftests with known failures as non-fatal
 	# (See also somehow_broken in testsuite/reftests/meson.build)
@@ -222,7 +225,12 @@ ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
 	cp gtk/org.gtk.* debian/build/glib-2.0/schemas/
 	glib-compile-schemas debian/build/glib-2.0/schemas/
 	# Remove LD_PRELOAD so we don't run with fakeroot, which makes dbus-related tests fail
-	env -u LD_PRELOAD xvfb-run -a dh_auto_test --builddirectory=debian/build/deb -- -k check -j1
+	env -u LD_PRELOAD GIO_USE_VFS=local GIO_USE_VOLUME_MONITOR=unix \
+	dbus-run-session -- \
+	xvfb-run -a \
+	dh_auto_test --builddirectory=debian/build/deb -- \
+	-k check -j1
+endif
 endif
 
 override_dh_auto_install:
@@ -238,6 +246,15 @@ override_dh_install:
 	cp debian/settings.ini debian/$(SHARED_PKG)/$(CONFDIR)
 	dh_install -p$(UDEB_PKG) --sourcedir=debian/install/udeb
 	dh_install --remaining-packages --sourcedir=debian/install/deb
+
+# debhelper >= 13.4 makes all of /usr/libexec executable, which is not
+# quite right for installed-tests
+override_dh_fixperms:
+	dh_fixperms -Xusr/libexec/installed-tests
+ifneq ($(filter $(EXAMPLES_PKG),$(built_binaries)),)
+	chmod --changes u=rw,og=r debian/$(EXAMPLES_PKG)/usr/libexec/installed-tests/*/*/*.so
+	chmod --recursive --changes a+rX,u+w,og-w debian/$(EXAMPLES_PKG)/usr/libexec/installed-tests
+endif
 
 override_dh_missing:
 ifneq ($(filter %-udeb,$(built_binaries)),)

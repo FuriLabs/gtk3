@@ -1,3 +1,52 @@
+gtk+3.0 (3.24.30-3ubuntu1) UNRELEASED; urgency=medium
+
+  * Resynchronize with Debian, remaining changes
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0.symbols
+    + debian/control.in and debian/tests/control (installed-tests):
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + debian/control.in: Build-Depend on dh-sequence-translations
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 22 Nov 2021 09:07:25 +0100
+
+gtk+3.0 (3.24.30-3) unstable; urgency=medium
+
+  * Move org.gtk.Settings.Debug schema from -dev to -common.
+    gnome-terminal 3.40 wants this. (Closes: #993469)
+
+ -- Simon McVittie <smcv@debian.org>  Wed, 01 Sep 2021 19:35:33 +0100
+
+gtk+3.0 (3.24.30-2) unstable; urgency=medium
+
+  * d/control.in: Drop unnecessary Build-Depends on gcc:native.
+    Consensus on #debian-devel is that build-essential implies this,
+    even when cross-compiling.
+  * Normalize permissions in installed-tests.
+    debhelper 13.4 makes everything below /usr/libexec executable, but
+    that's not what we want.
+  * Disable gvfs for unit tests.
+    It won't be installed on buildds, but can trigger (fatal) warnings
+    when building on a developer system.
+  * Wrap unit tests with dbus-run-session
+  * d/tests: Disable AT-SPI for tests that do not guarantee to install it.
+    This squashes another warning.
+
+ -- Simon McVittie <smcv@debian.org>  Fri, 20 Aug 2021 15:25:28 +0100
+
 gtk+3.0 (3.24.30-1ubuntu1) impish; urgency=medium
 
   * Merge with Debian. Remaining changes:
