@@ -1,0 +1,43 @@
+From: Pierre Ossman <ossman@cendio.se>
+Date: Mon, 4 Oct 2021 09:23:39 +0200
+Subject: searchenginemodel: finalize search results
+
+It is necessary to signal the search engine that we are finished and
+that we found something for it to reliably show the results. It would
+sometimes work anyway since it is sufficient if any backend signals
+completion. However if GtkSearchEngineModel was the only backend
+returning results then things would break.
+
+Origin: upstream, 3.24.31, commit:aca83684ed4c62210958b3dd2596a0f35404d215
+Bug-Debian: https://bugs.debian.org/976334
+---
+ gtk/gtksearchenginemodel.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/gtk/gtksearchenginemodel.c b/gtk/gtksearchenginemodel.c
+index dae99f2..8f2ca0c 100644
+--- a/gtk/gtksearchenginemodel.c
++++ b/gtk/gtksearchenginemodel.c
+@@ -84,6 +84,7 @@ do_search (gpointer data)
+   GtkSearchEngineModel *model = data;
+   GtkTreeIter iter;
+   GList *hits = NULL;
++  gboolean got_results = FALSE;
+ 
+   if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (model->model), &iter))
+     {
+@@ -110,11 +111,14 @@ do_search (gpointer data)
+         {
+           _gtk_search_engine_hits_added (GTK_SEARCH_ENGINE (model), hits);
+           g_list_free_full (hits, (GDestroyNotify)_gtk_search_hit_free);
++          got_results = TRUE;
+         }
+     }
+ 
+   model->idle = 0;
+ 
++  _gtk_search_engine_finished (GTK_SEARCH_ENGINE (model), got_results);
++
+   return G_SOURCE_REMOVE;
+ }
+ 
