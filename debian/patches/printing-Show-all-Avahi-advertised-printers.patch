@@ -1,7 +1,6 @@
-From de3e97309f91fc631a1a4b5ab48cd69dd1421ed5 Mon Sep 17 00:00:00 2001
 From: Marek Kasik <mkasik@redhat.com>
 Date: Fri, 5 Feb 2021 18:00:02 +0100
-Subject: [PATCH] printing: Show all Avahi advertised printers
+Subject: printing: Show all Avahi advertised printers
 
 This commit unsubscribes CUPS backend from a DBus
 signal in idle when listening for new items on Avahi.
@@ -18,12 +17,14 @@ We need those signals since this happens when switching
 from a general subscription which listens to signals
 for all Avahi services to a specific one which listens
 to just _ipp._tcp and _ipps._tcp (chicken and egg problem).
+
+Origin: upstream, 3.24.25, commit:de3e97309f91fc631a1a4b5ab48cd69dd1421ed5
 ---
- .../printbackends/cups/gtkprintbackendcups.c  | 27 ++++++++++++++++---
+ modules/printbackends/cups/gtkprintbackendcups.c | 27 +++++++++++++++++++++---
  1 file changed, 24 insertions(+), 3 deletions(-)
 
 diff --git a/modules/printbackends/cups/gtkprintbackendcups.c b/modules/printbackends/cups/gtkprintbackendcups.c
-index b1ee0584d0..6b8c9e02ad 100644
+index b1ee058..6b8c9e0 100644
 --- a/modules/printbackends/cups/gtkprintbackendcups.c
 +++ b/modules/printbackends/cups/gtkprintbackendcups.c
 @@ -150,6 +150,7 @@ struct _GtkPrintBackendCups
@@ -81,6 +82,3 @@ index b1ee0584d0..6b8c9e02ad 100644
          }
  
        g_variant_unref (output);
--- 
-GitLab
-

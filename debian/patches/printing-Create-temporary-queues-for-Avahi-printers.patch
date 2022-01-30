@@ -1,7 +1,6 @@
-From d07bfbec1d2b9d196eb661e7b2a6dc24fba9ad47 Mon Sep 17 00:00:00 2001
 From: Marek Kasik <mkasik@redhat.com>
 Date: Fri, 5 Feb 2021 17:53:08 +0100
-Subject: [PATCH] printing: Create temporary queues for Avahi printers
+Subject: printing: Create temporary queues for Avahi printers
 
 This change extends set of Avahi advertised printers which
 works with Gtk's CUPS print backend.
@@ -16,13 +15,15 @@ also gives users more options to change in the print dialog.
 This also changes naming of printers to be in accordance with CUPS.
 It uses '_' instead of '-' and has hostname appended for CUPS remote
 printers.
+
+Origin: upstream, 3.24.25, commit:d07bfbec1d2b9d196eb661e7b2a6dc24fba9ad47
 ---
- .../printbackends/cups/gtkprintbackendcups.c  | 296 ++++++++++++++----
- modules/printbackends/cups/gtkprintercups.h   |   4 +-
+ modules/printbackends/cups/gtkprintbackendcups.c | 296 ++++++++++++++++++-----
+ modules/printbackends/cups/gtkprintercups.h      |   4 +-
  2 files changed, 243 insertions(+), 57 deletions(-)
 
 diff --git a/modules/printbackends/cups/gtkprintbackendcups.c b/modules/printbackends/cups/gtkprintbackendcups.c
-index d95d632e0b..b1ee0584d0 100644
+index d95d632..b1ee058 100644
 --- a/modules/printbackends/cups/gtkprintbackendcups.c
 +++ b/modules/printbackends/cups/gtkprintbackendcups.c
 @@ -154,6 +154,9 @@ struct _GtkPrintBackendCups
@@ -536,7 +537,7 @@ index d95d632e0b..b1ee0584d0 100644
        if (cups_printer->remote && !cups_printer->avahi_browsed)
          {
 diff --git a/modules/printbackends/cups/gtkprintercups.h b/modules/printbackends/cups/gtkprintercups.h
-index bdc30ca4f3..c8ad83fcb9 100644
+index bdc30ca..c8ad83f 100644
 --- a/modules/printbackends/cups/gtkprintercups.h
 +++ b/modules/printbackends/cups/gtkprintercups.h
 @@ -56,7 +56,9 @@ struct _GtkPrinterCups
@@ -550,6 +551,3 @@ index bdc30ca4f3..c8ad83fcb9 100644
  
    ipp_pstate_t state;
    gboolean reading_ppd;
--- 
-GitLab
-

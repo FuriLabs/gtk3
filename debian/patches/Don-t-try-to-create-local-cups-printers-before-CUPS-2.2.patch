@@ -1,15 +1,16 @@
-From 3d53204c75c75ba195f9489f862c01f7ff956322 Mon Sep 17 00:00:00 2001
 From: John Ralls <jralls@ceridwen.us>
 Date: Fri, 16 Apr 2021 12:15:45 -0700
-Subject: [PATCH] Don't try to create local cups printers before CUPS 2.2
+Subject: Don't try to create local cups printers before CUPS 2.2
 
 Not supported on earlier versions.
+
+Origin: upstream, 3.24.29, commit:3d53204c75c75ba195f9489f862c01f7ff956322
 ---
  modules/printbackends/cups/gtkprintbackendcups.c | 13 ++++++++++++-
  1 file changed, 12 insertions(+), 1 deletion(-)
 
 diff --git a/modules/printbackends/cups/gtkprintbackendcups.c b/modules/printbackends/cups/gtkprintbackendcups.c
-index 6b8c9e02ad..d5c00f94f9 100644
+index 6b8c9e0..d5c00f9 100644
 --- a/modules/printbackends/cups/gtkprintbackendcups.c
 +++ b/modules/printbackends/cups/gtkprintbackendcups.c
 @@ -61,6 +61,10 @@
@@ -79,6 +80,3 @@ index 6b8c9e02ad..d5c00f94f9 100644
      }
    else if (!cups_printer->reading_ppd &&
             gtk_printer_cups_get_ppd (cups_printer) == NULL)
--- 
-GitLab
-
