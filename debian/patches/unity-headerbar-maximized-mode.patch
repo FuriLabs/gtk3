@@ -9,10 +9,10 @@ Bug-Ubuntu: https://launchpad.net/bugs/1515810
  gtk/gtkheaderbar.c | 68 ++++++++++++++++++++++++++++++++++++++++++++++++++++--
  1 file changed, 66 insertions(+), 2 deletions(-)
 
-Index: gtk3/gtk/gtkheaderbar.c
-===================================================================
---- gtk3.orig/gtk/gtkheaderbar.c
-+++ gtk3/gtk/gtkheaderbar.c
+diff --git a/gtk/gtkheaderbar.c b/gtk/gtkheaderbar.c
+index 0ef94e3..39fc609 100644
+--- a/gtk/gtkheaderbar.c
++++ b/gtk/gtkheaderbar.c
 @@ -34,6 +34,10 @@
  
  #include <string.h>
@@ -32,7 +32,7 @@ Index: gtk3/gtk/gtkheaderbar.c
  
    GList *children;
  
-@@ -267,6 +272,35 @@ _gtk_header_bar_update_separator_visibil
+@@ -267,6 +272,35 @@ _gtk_header_bar_update_separator_visibility (GtkHeaderBar *bar)
      gtk_widget_set_visible (priv->titlebar_end_separator, have_visible_at_end);
  }
  
@@ -68,7 +68,7 @@ Index: gtk3/gtk/gtkheaderbar.c
  void
  _gtk_header_bar_update_window_buttons (GtkHeaderBar *bar)
  {
-@@ -299,6 +333,20 @@ _gtk_header_bar_update_window_buttons (G
+@@ -299,6 +333,20 @@ _gtk_header_bar_update_window_buttons (GtkHeaderBar *bar)
      }
  
    priv->titlebar_icon = NULL;
@@ -89,7 +89,7 @@ Index: gtk3/gtk/gtkheaderbar.c
  
    if (!priv->shows_wm_decorations)
      return;
-@@ -316,8 +364,6 @@ _gtk_header_bar_update_window_buttons (G
+@@ -316,8 +364,6 @@ _gtk_header_bar_update_window_buttons (GtkHeaderBar *bar)
        layout_desc = g_strdup (priv->decoration_layout);
      }
  
@@ -107,7 +107,7 @@ Index: gtk3/gtk/gtkheaderbar.c
  }
  
  static gint
-@@ -1908,6 +1956,22 @@ gtk_header_bar_realize (GtkWidget *widge
+@@ -1908,6 +1956,22 @@ gtk_header_bar_realize (GtkWidget *widget)
  
    GTK_WIDGET_CLASS (gtk_header_bar_parent_class)->realize (widget);
  

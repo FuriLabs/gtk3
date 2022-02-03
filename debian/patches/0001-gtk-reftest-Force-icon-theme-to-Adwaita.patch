@@ -9,10 +9,10 @@ other icon themes.
  1 file changed, 7 insertions(+)
 
 diff --git a/testsuite/reftests/gtk-reftest.c b/testsuite/reftests/gtk-reftest.c
-index 497c979..b0bdb55 100644
+index fb5d243..a9396dc 100644
 --- a/testsuite/reftests/gtk-reftest.c
 +++ b/testsuite/reftests/gtk-reftest.c
-@@ -392,6 +392,7 @@ int
+@@ -426,6 +426,7 @@ int
  main (int argc, char **argv)
  {
    const char *basedir;
@@ -20,9 +20,9 @@ index 497c979..b0bdb55 100644
    
    /* I don't want to fight fuzzy scaling algorithms in GPUs,
     * so unless you explicitly set it to something else, we
-@@ -402,6 +403,12 @@ main (int argc, char **argv)
-   if (!parse_command_line (&argc, &argv))
-     return 1;
+@@ -438,6 +439,12 @@ main (int argc, char **argv)
+ 
+   enforce_default_settings ();
  
 +  settings = gtk_settings_get_default ();
 +

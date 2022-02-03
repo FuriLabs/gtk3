@@ -11,10 +11,10 @@ Bug-Ubuntu: https://launchpad.net/bugs/514879
  1 file changed, 23 insertions(+), 1 deletion(-)
 
 diff --git a/gtk/gtktreeview.c b/gtk/gtktreeview.c
-index 20f09ef..ce8beb7 100644
+index 172b2b9..84aaac6 100644
 --- a/gtk/gtktreeview.c
 +++ b/gtk/gtktreeview.c
-@@ -467,6 +467,7 @@ struct _GtkTreeViewPrivate
+@@ -468,6 +468,7 @@ struct _GtkTreeViewPrivate
  
    guint fixed_height_mode : 1;
    guint fixed_height_check : 1;
@@ -22,7 +22,7 @@ index 20f09ef..ce8beb7 100644
  
    guint activate_on_single_click : 1;
    guint reorderable : 1;
-@@ -554,6 +555,7 @@ enum {
+@@ -555,6 +556,7 @@ enum {
    PROP_ENABLE_SEARCH,
    PROP_SEARCH_COLUMN,
    PROP_FIXED_HEIGHT_MODE,
@@ -30,7 +30,7 @@ index 20f09ef..ce8beb7 100644
    PROP_HOVER_SELECTION,
    PROP_HOVER_EXPAND,
    PROP_SHOW_EXPANDERS,
-@@ -1109,6 +1111,14 @@ gtk_tree_view_class_init (GtkTreeViewClass *class)
+@@ -1110,6 +1112,14 @@ gtk_tree_view_class_init (GtkTreeViewClass *class)
                              FALSE,
                              GTK_PARAM_READWRITE|G_PARAM_EXPLICIT_NOTIFY);
  
@@ -45,7 +45,7 @@ index 20f09ef..ce8beb7 100644
    /**
     * GtkTreeView:hover-selection:
     * 
-@@ -1847,6 +1857,7 @@ gtk_tree_view_init (GtkTreeView *tree_view)
+@@ -1848,6 +1858,7 @@ gtk_tree_view_init (GtkTreeView *tree_view)
    priv->fixed_height = -1;
    priv->fixed_height_mode = FALSE;
    priv->fixed_height_check = 0;
@@ -53,7 +53,7 @@ index 20f09ef..ce8beb7 100644
    priv->selection = _gtk_tree_selection_new_with_tree_view (tree_view);
    priv->enable_search = TRUE;
    priv->search_column = -1;
-@@ -1987,6 +1998,9 @@ G_GNUC_END_IGNORE_DEPRECATIONS
+@@ -1988,6 +1999,9 @@ G_GNUC_END_IGNORE_DEPRECATIONS
      case PROP_FIXED_HEIGHT_MODE:
        gtk_tree_view_set_fixed_height_mode (tree_view, g_value_get_boolean (value));
        break;
@@ -63,7 +63,7 @@ index 20f09ef..ce8beb7 100644
      case PROP_HOVER_SELECTION:
        if (tree_view->priv->hover_selection != g_value_get_boolean (value))
          {
-@@ -9030,7 +9044,15 @@ gtk_tree_view_row_changed (GtkTreeModel *model,
+@@ -9031,7 +9045,15 @@ gtk_tree_view_row_changed (GtkTreeModel *model,
  
    _gtk_tree_view_accessible_changed (tree_view, tree, node);
  
