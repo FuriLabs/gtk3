@@ -120,8 +120,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@BUILD_FONT_DEMO_TRUE@am__append_1 = font_features.c
-@OS_UNIX_TRUE@am__append_2 = pagesetup.c
+@BUILD_FONT_DEMO_TRUE@am__append_1 = $(font_features_demo)
+@OS_UNIX_TRUE@am__append_2 = $(page_setup_demo)
 bin_PROGRAMS = gtk3-demo$(EXEEXT) gtk3-demo-application$(EXEEXT)
 subdir = demos/gtk-demo
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -196,11 +196,13 @@ am__objects_1 = application_demo.$(OBJEXT) assistant.$(OBJEXT) \
 	textscroll.$(OBJEXT) theming_style_classes.$(OBJEXT) \
 	toolpalette.$(OBJEXT) transparent.$(OBJEXT) \
 	tree_store.$(OBJEXT)
-@BUILD_FONT_DEMO_TRUE@am__objects_2 = font_features.$(OBJEXT)
-@OS_UNIX_TRUE@am__objects_3 = pagesetup.$(OBJEXT)
-am__objects_4 = $(am__objects_2) $(am__objects_3)
-am__objects_5 = $(am__objects_1) $(am__objects_4)
-am_gtk3_demo_OBJECTS = $(am__objects_5) gtkfishbowl.$(OBJEXT) \
+am__objects_2 = font_features.$(OBJEXT)
+@BUILD_FONT_DEMO_TRUE@am__objects_3 = $(am__objects_2)
+am__objects_4 = pagesetup.$(OBJEXT)
+@OS_UNIX_TRUE@am__objects_5 = $(am__objects_4)
+am__objects_6 = $(am__objects_3) $(am__objects_5)
+am__objects_7 = $(am__objects_1) $(am__objects_6)
+am_gtk3_demo_OBJECTS = $(am__objects_7) gtkfishbowl.$(OBJEXT) \
 	demo_resources.$(OBJEXT) main.$(OBJEXT)
 nodist_gtk3_demo_OBJECTS =
 gtk3_demo_OBJECTS = $(am_gtk3_demo_OBJECTS) \
@@ -351,8 +353,9 @@ am__define_uniq_tagged_files = \
   done | $(am__uniquify_input)`
 ETAGS = etags
 CTAGS = ctags
-am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/geninclude.pl.in \
-	$(top_srcdir)/Makefile.decl $(top_srcdir)/build-aux/depcomp \
+am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/demos-sources.mak \
+	$(srcdir)/geninclude.pl.in $(top_srcdir)/Makefile.decl \
+	$(top_srcdir)/build-aux/depcomp \
 	$(top_srcdir)/win32/Makefile.msvcproj
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -463,6 +466,8 @@ GTK_DEP_LIBS = @GTK_DEP_LIBS@
 GTK_EXTRA_CFLAGS = @GTK_EXTRA_CFLAGS@
 GTK_EXTRA_LIBS = @GTK_EXTRA_LIBS@
 GTK_FONT_CHOOSER_WIDGET_CFLAGS = @GTK_FONT_CHOOSER_WIDGET_CFLAGS@
+GTK_FONT_CHOOSER_WIDGET_FT_CFLAGS = @GTK_FONT_CHOOSER_WIDGET_FT_CFLAGS@
+GTK_FONT_CHOOSER_WIDGET_FT_LIBS = @GTK_FONT_CHOOSER_WIDGET_FT_LIBS@
 GTK_FONT_CHOOSER_WIDGET_LIBS = @GTK_FONT_CHOOSER_WIDGET_LIBS@
 GTK_INTERFACE_AGE = @GTK_INTERFACE_AGE@
 GTK_LINK_FLAGS = @GTK_LINK_FLAGS@
@@ -733,6 +738,8 @@ demos_base = \
 	transparent.c				\
 	tree_store.c
 
+font_features_demo = font_features.c
+page_setup_demo = pagesetup.c
 demos_opt = $(am__append_1) $(am__append_2)
 demos = $(demos_base) $(demos_opt)
 AM_CPPFLAGS = \
@@ -817,7 +824,7 @@ all: $(BUILT_SOURCES)
 
 .SUFFIXES:
 .SUFFIXES: .c .lo .o .obj
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.decl $(top_srcdir)/win32/Makefile.msvcproj $(am__configure_deps)
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.decl $(srcdir)/demos-sources.mak $(top_srcdir)/win32/Makefile.msvcproj $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -837,7 +844,7 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	    echo ' cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__maybe_remake_depfiles)'; \
 	    cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__maybe_remake_depfiles);; \
 	esac;
-$(top_srcdir)/Makefile.decl $(top_srcdir)/win32/Makefile.msvcproj $(am__empty):
+$(top_srcdir)/Makefile.decl $(srcdir)/demos-sources.mak $(top_srcdir)/win32/Makefile.msvcproj $(am__empty):
 
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh

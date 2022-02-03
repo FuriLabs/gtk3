@@ -431,18 +431,18 @@ in the dialog.</p>
  and <em class="parameter"><code>action_area</code></em>
  as internal children with the names “vbox” and
 “action_area”.</p>
-<p>GtkDialog supports a custom &lt;action-widgets&gt; element, which can contain
-multiple &lt;action-widget&gt; elements. The “response” attribute specifies a
+<p>GtkDialog supports a custom <code class="literal">&lt;action-widgets&gt;</code> element, which can contain
+multiple <code class="literal">&lt;action-widget&gt;</code> elements. The “response” attribute specifies a
 numeric response, and the content of the element is the id of widget
 (which should be a child of the dialogs <em class="parameter"><code>action_area</code></em>
 ). To mark a response
-as default, set the “default“ attribute of the &lt;action-widget&gt; element
+as default, set the “default“ attribute of the <code class="literal">&lt;action-widget&gt;</code> element
 to true.</p>
 <p>GtkDialog supports adding action widgets by specifying “action“ as
-the “type“ attribute of a &lt;child&gt; element. The widget will be added
+the “type“ attribute of a <code class="literal">&lt;child&gt;</code> element. The widget will be added
 either to the action area or the headerbar of the dialog, depending
 on the “use-header-bar“ property. The response id has to be associated
-with the action widget using the &lt;action-widgets&gt; element.</p>
+with the action widget using the <code class="literal">&lt;action-widgets&gt;</code> element.</p>
 <p>An example of a <a class="link" href="GtkDialog.html" title="GtkDialog"><span class="type">GtkDialog</span></a> UI definition fragment:</p>
 <div class="informalexample">
   <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">

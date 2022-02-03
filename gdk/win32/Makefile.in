@@ -143,13 +143,16 @@ CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 LTLIBRARIES = $(noinst_LTLIBRARIES)
-libgdk_win32_la_LIBADD =
+am__DEPENDENCIES_1 =
+am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
+libgdk_win32_la_DEPENDENCIES = $(am__DEPENDENCIES_2)
 am_libgdk_win32_la_OBJECTS = gdkcursor-win32.lo \
 	gdkdevicemanager-win32.lo gdkdevice-virtual.lo \
 	gdkdevice-win32.lo gdkdevice-winpointer.lo gdkdevice-wintab.lo \
 	gdkdisplay-win32.lo gdkdisplaymanager-win32.lo gdkdnd-win32.lo \
 	gdkevents-win32.lo gdkgeometry-win32.lo gdkglcontext-win32.lo \
-	gdkglobals-win32.lo gdkkeys-win32.lo gdkmain-win32.lo \
+	gdkglobals-win32.lo gdkkeys-win32.lo gdkkeys-win32-impl.lo \
+	gdkkeys-win32-impl-wow64.lo gdkmain-win32.lo \
 	gdkmonitor-win32.lo gdkproperty-win32.lo gdkscreen-win32.lo \
 	gdkselection-win32.lo gdktestutils-win32.lo \
 	gdkwin32langnotification.lo gdkwin32id.lo gdkwindow-win32.lo
@@ -184,8 +187,11 @@ am__depfiles_remade = ./$(DEPDIR)/gdkcursor-win32.Plo \
 	./$(DEPDIR)/gdkdnd-win32.Plo ./$(DEPDIR)/gdkevents-win32.Plo \
 	./$(DEPDIR)/gdkgeometry-win32.Plo \
 	./$(DEPDIR)/gdkglcontext-win32.Plo \
-	./$(DEPDIR)/gdkglobals-win32.Plo ./$(DEPDIR)/gdkkeys-win32.Plo \
-	./$(DEPDIR)/gdkmain-win32.Plo ./$(DEPDIR)/gdkmonitor-win32.Plo \
+	./$(DEPDIR)/gdkglobals-win32.Plo \
+	./$(DEPDIR)/gdkkeys-win32-impl-wow64.Plo \
+	./$(DEPDIR)/gdkkeys-win32-impl.Plo \
+	./$(DEPDIR)/gdkkeys-win32.Plo ./$(DEPDIR)/gdkmain-win32.Plo \
+	./$(DEPDIR)/gdkmonitor-win32.Plo \
 	./$(DEPDIR)/gdkproperty-win32.Plo \
 	./$(DEPDIR)/gdkscreen-win32.Plo \
 	./$(DEPDIR)/gdkselection-win32.Plo \
@@ -421,6 +427,8 @@ GTK_DEP_LIBS = @GTK_DEP_LIBS@
 GTK_EXTRA_CFLAGS = @GTK_EXTRA_CFLAGS@
 GTK_EXTRA_LIBS = @GTK_EXTRA_LIBS@
 GTK_FONT_CHOOSER_WIDGET_CFLAGS = @GTK_FONT_CHOOSER_WIDGET_CFLAGS@
+GTK_FONT_CHOOSER_WIDGET_FT_CFLAGS = @GTK_FONT_CHOOSER_WIDGET_FT_CFLAGS@
+GTK_FONT_CHOOSER_WIDGET_FT_LIBS = @GTK_FONT_CHOOSER_WIDGET_FT_LIBS@
 GTK_FONT_CHOOSER_WIDGET_LIBS = @GTK_FONT_CHOOSER_WIDGET_LIBS@
 GTK_INTERFACE_AGE = @GTK_INTERFACE_AGE@
 GTK_LINK_FLAGS = @GTK_LINK_FLAGS@
@@ -625,7 +633,7 @@ AM_CPPFLAGS = -DG_LOG_DOMAIN=\"Gdk\" -DG_LOG_USE_STRUCTURED=1 \
 	$(GTK_DEBUG_FLAGS) $(GDK_DEP_CFLAGS) $(GDK_WIN32_EXTRA_CFLAGS) \
 	-DGDK_COMPILATION $(am__append_1)
 libgdk_win32_DEP_LIBS = \
-	hid.lib
+	-lhid
 
 LDADDS = $(libgdk_win32_DEP_LIBS) $(GDK_DEP_LIBS)
 noinst_LTLIBRARIES = libgdk-win32.la
@@ -652,6 +660,8 @@ libgdk_win32_la_SOURCES = \
 	gdkglcontext-win32.h \
 	gdkglobals-win32.c \
 	gdkkeys-win32.c \
+	gdkkeys-win32-impl.c \
+	gdkkeys-win32-impl-wow64.c \
 	gdkmain-win32.c \
 	gdkmonitor-win32.c \
 	gdkmonitor-win32.h \
@@ -678,8 +688,13 @@ libgdk_win32_la_SOURCES = \
 	gdkwindow-win32.c \
 	gdkwindow-win32.h \
 	pktdef.h \
+	winpointer.h \
 	wintab.h \
 	xcursors.h
+
+libgdk_win32_la_LIBADD = \
+	$(LDADDS) \
+	$(NULL)
 
 libgdkinclude_HEADERS = \
 	gdkwin32.h
@@ -785,6 +800,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkgeometry-win32.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkglcontext-win32.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkglobals-win32.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkkeys-win32-impl-wow64.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkkeys-win32-impl.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkkeys-win32.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkmain-win32.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkmonitor-win32.Plo@am__quote@ # am--include-marker
@@ -1092,6 +1109,8 @@ distclean: distclean-recursive
 	-rm -f ./$(DEPDIR)/gdkgeometry-win32.Plo
 	-rm -f ./$(DEPDIR)/gdkglcontext-win32.Plo
 	-rm -f ./$(DEPDIR)/gdkglobals-win32.Plo
+	-rm -f ./$(DEPDIR)/gdkkeys-win32-impl-wow64.Plo
+	-rm -f ./$(DEPDIR)/gdkkeys-win32-impl.Plo
 	-rm -f ./$(DEPDIR)/gdkkeys-win32.Plo
 	-rm -f ./$(DEPDIR)/gdkmain-win32.Plo
 	-rm -f ./$(DEPDIR)/gdkmonitor-win32.Plo
@@ -1161,6 +1180,8 @@ maintainer-clean: maintainer-clean-recursive
 	-rm -f ./$(DEPDIR)/gdkgeometry-win32.Plo
 	-rm -f ./$(DEPDIR)/gdkglcontext-win32.Plo
 	-rm -f ./$(DEPDIR)/gdkglobals-win32.Plo
+	-rm -f ./$(DEPDIR)/gdkkeys-win32-impl-wow64.Plo
+	-rm -f ./$(DEPDIR)/gdkkeys-win32-impl.Plo
 	-rm -f ./$(DEPDIR)/gdkkeys-win32.Plo
 	-rm -f ./$(DEPDIR)/gdkmain-win32.Plo
 	-rm -f ./$(DEPDIR)/gdkmonitor-win32.Plo

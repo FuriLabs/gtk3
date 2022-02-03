@@ -1304,10 +1304,10 @@ of the windowing system and allow the user to manipulate the window
 <div class="refsect2">
 <a name="id-1.3.6.2.11.3"></a><h3>GtkWindow as GtkBuildable</h3>
 <p>The GtkWindow implementation of the <a class="link" href="GtkBuildable.html" title="GtkBuildable"><span class="type">GtkBuildable</span></a> interface supports a
-custom &lt;accel-groups&gt; element, which supports any number of &lt;group&gt;
+custom <code class="literal">&lt;accel-groups&gt;</code> element, which supports any number of <code class="literal">&lt;group&gt;</code>
 elements representing the <a class="link" href="gtk3-Keyboard-Accelerators.html#GtkAccelGroup"><span class="type">GtkAccelGroup</span></a> objects you want to add to
 your window (synonymous with <a class="link" href="GtkWindow.html#gtk-window-add-accel-group" title="gtk_window_add_accel_group ()"><code class="function">gtk_window_add_accel_group()</code></a>.</p>
-<p>It also supports the &lt;initial-focus&gt; element, whose name property names
+<p>It also supports the <code class="literal">&lt;initial-focus&gt;</code> element, whose name property names
 the widget to receive the focus when the window is mapped.</p>
 <p>An example of a UI definition fragment with accel groups:</p>
 <div class="informalexample">
@@ -1342,7 +1342,7 @@ the widget to receive the focus when the window is mapped.</p>
 <p></p>
 <p>The GtkWindow implementation of the <a class="link" href="GtkBuildable.html" title="GtkBuildable"><span class="type">GtkBuildable</span></a> interface supports
 setting a child as the titlebar by specifying “titlebar” as the “type”
-attribute of a &lt;child&gt; element.</p>
+attribute of a <code class="literal">&lt;child&gt;</code> element.</p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2842,7 +2842,7 @@ one of the user’s desktops. Note that you shouldn’t assume the
 window is definitely unstuck afterward, because other entities
 (e.g. the user or <a class="link" href="gtk-x11.html#gtk-X11-arch" title="Understanding the X11 architecture">window manager</a>) could
 stick it again. But normally the window will
-end up stuck. Just don’t write code that crashes if not.</p>
+end up unstuck. Just don’t write code that crashes if not.</p>
 <p>You can track stickiness via the “window-state-event” signal
 on <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a>.</p>
 <div class="refsect3">
@@ -4118,7 +4118,7 @@ inside a handler for the <a class="link" href="GtkWidget.html#GtkWidget-configur
 8
 9</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="n">on_size_allocate</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span> <span class="n">GtkAllocation</span> <span class="o">*</span><span class="n">allocation</span><span class="p">)</span>
+<span class="nf">on_size_allocate</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span> <span class="n">GtkAllocation</span> <span class="o">*</span><span class="n">allocation</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="kt">int</span> <span class="n">new_width</span><span class="p">,</span> <span class="n">new_height</span><span class="p">;</span>
 
@@ -4672,13 +4672,13 @@ on the window.</p>
         <td class="listing_code"><pre class="programlisting"><span class="cp">#include</span> <span class="cpf">&lt;gtk/gtk.h&gt;</span><span class="cp"></span>
 
 <span class="k">static</span> <span class="kt">void</span>
-<span class="n">fill_with_content</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">vbox</span><span class="p">)</span>
+<span class="nf">fill_with_content</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">vbox</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="c1">// fill with content...</span>
 <span class="p">}</span>
 
 <span class="kt">int</span>
-<span class="n">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
   <span class="n">GtkWidget</span> <span class="o">*</span><span class="n">window</span><span class="p">,</span> <span class="o">*</span><span class="n">vbox</span><span class="p">;</span>
   <span class="n">GdkGeometry</span> <span class="n">size_hints</span> <span class="o">=</span> <span class="p">{</span>

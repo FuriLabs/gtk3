@@ -414,10 +414,10 @@ the action pointer and boolean flag on your instance, and calling
 <span class="p">...</span>
 
 <span class="k">static</span> <span class="kt">void</span> <span class="n">foo_bar_activatable_interface_init</span>         <span class="p">(</span><span class="n">GtkActivatableIface</span>  <span class="o">*</span><span class="n">iface</span><span class="p">);</span>
-<span class="k">static</span> <span class="kt">void</span> <span class="n">foo_bar_activatable_update</span>                 <span class="p">(</span><span class="n">GtkActivatable</span>       <span class="o">*</span><span class="n">activatable</span><span class="p">,</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">foo_bar_activatable_update</span>                 <span class="p">(</span><span class="n">GtkActivatable</span>       <span class="o">*</span><span class="n">activatable</span><span class="p">,</span>
 						           <span class="n">GtkAction</span>            <span class="o">*</span><span class="n">action</span><span class="p">,</span>
 						           <span class="k">const</span> <span class="n">gchar</span>          <span class="o">*</span><span class="n">property_name</span><span class="p">);</span>
-<span class="k">static</span> <span class="kt">void</span> <span class="n">foo_bar_activatable_sync_action_properties</span> <span class="p">(</span><span class="n">GtkActivatable</span>       <span class="o">*</span><span class="n">activatable</span><span class="p">,</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">foo_bar_activatable_sync_action_properties</span> <span class="p">(</span><span class="n">GtkActivatable</span>       <span class="o">*</span><span class="n">activatable</span><span class="p">,</span>
 						           <span class="n">GtkAction</span>            <span class="o">*</span><span class="n">action</span><span class="p">);</span>
 <span class="p">...</span>
 
@@ -559,7 +559,7 @@ the action pointer and boolean flag on your instance, and calling
   <span class="k">if</span> <span class="p">(</span><span class="n">gtk_action_is_visible</span> <span class="p">(</span><span class="n">action</span><span class="p">))</span>
     <span class="n">gtk_widget_show</span> <span class="p">(</span><span class="n">GTK_WIDGET</span> <span class="p">(</span><span class="n">activatable</span><span class="p">));</span>
   <span class="k">else</span>
-    <span class="nf">gtk_widget_hide</span> <span class="p">(</span><span class="n">GTK_WIDGET</span> <span class="p">(</span><span class="n">activatable</span><span class="p">));</span>
+    <span class="n">gtk_widget_hide</span> <span class="p">(</span><span class="n">GTK_WIDGET</span> <span class="p">(</span><span class="n">activatable</span><span class="p">));</span>
   
   <span class="n">gtk_widget_set_sensitive</span> <span class="p">(</span><span class="n">GTK_WIDGET</span> <span class="p">(</span><span class="n">activatable</span><span class="p">),</span> <span class="n">gtk_action_is_sensitive</span> <span class="p">(</span><span class="n">action</span><span class="p">));</span>
 
@@ -569,7 +569,7 @@ the action pointer and boolean flag on your instance, and calling
     <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">gtk_action_get_stock_id</span> <span class="p">(</span><span class="n">action</span><span class="p">))</span>
 	<span class="n">foo_bar_set_stock</span> <span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="n">gtk_action_get_stock_id</span> <span class="p">(</span><span class="n">action</span><span class="p">));</span>
-      <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">gtk_action_get_label</span> <span class="p">(</span><span class="n">action</span><span class="p">))</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">gtk_action_get_label</span> <span class="p">(</span><span class="n">action</span><span class="p">))</span>
 	<span class="n">foo_bar_set_label</span> <span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="n">gtk_action_get_label</span> <span class="p">(</span><span class="n">action</span><span class="p">));</span>
 
       <span class="p">...</span>
@@ -589,7 +589,7 @@ the action pointer and boolean flag on your instance, and calling
       <span class="k">if</span> <span class="p">(</span><span class="n">gtk_action_is_visible</span> <span class="p">(</span><span class="n">action</span><span class="p">))</span>
 	<span class="n">gtk_widget_show</span> <span class="p">(</span><span class="n">GTK_WIDGET</span> <span class="p">(</span><span class="n">activatable</span><span class="p">));</span>
       <span class="k">else</span>
-	<span class="nf">gtk_widget_hide</span> <span class="p">(</span><span class="n">GTK_WIDGET</span> <span class="p">(</span><span class="n">activatable</span><span class="p">));</span>
+	<span class="n">gtk_widget_hide</span> <span class="p">(</span><span class="n">GTK_WIDGET</span> <span class="p">(</span><span class="n">activatable</span><span class="p">));</span>
     <span class="p">}</span>
   <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span> <span class="p">(</span><span class="n">property_name</span><span class="p">,</span> <span class="s">&quot;sensitive&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">gtk_widget_set_sensitive</span> <span class="p">(</span><span class="n">GTK_WIDGET</span> <span class="p">(</span><span class="n">activatable</span><span class="p">),</span> <span class="n">gtk_action_is_sensitive</span> <span class="p">(</span><span class="n">action</span><span class="p">));</span>
@@ -601,7 +601,7 @@ the action pointer and boolean flag on your instance, and calling
 
   <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span> <span class="p">(</span><span class="n">property_name</span><span class="p">,</span> <span class="s">&quot;stock-id&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">foo_bar_set_stock</span> <span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="n">gtk_action_get_stock_id</span> <span class="p">(</span><span class="n">action</span><span class="p">));</span>
-  <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">strcmp</span> <span class="p">(</span><span class="n">property_name</span><span class="p">,</span> <span class="s">&quot;label&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span> <span class="p">(</span><span class="n">property_name</span><span class="p">,</span> <span class="s">&quot;label&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">foo_bar_set_label</span> <span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="n">gtk_action_get_label</span> <span class="p">(</span><span class="n">action</span><span class="p">));</span>
 
   <span class="p">...</span>

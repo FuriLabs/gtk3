@@ -1199,6 +1199,7 @@ gdk_wayland_window_maybe_configure (GdkWindow *window,
   GdkWindowImplWayland *impl = GDK_WINDOW_IMPL_WAYLAND (window->impl);
   gboolean is_xdg_popup;
   gboolean is_visible;
+  gboolean size_changed;
 
   impl->unconfigured_width = calculate_width_without_margin (window, width);
   impl->unconfigured_height = calculate_height_without_margin (window, height);
@@ -1206,9 +1207,8 @@ gdk_wayland_window_maybe_configure (GdkWindow *window,
   if (should_inhibit_resize (window))
     return;
 
-  if (window->width == width &&
-      window->height == height &&
-      impl->scale == scale)
+  size_changed = (window->width != width || window->height != height);
+  if (!size_changed && impl->scale == scale)
     return;
 
   /* For xdg_popup using an xdg_positioner, there is a race condition if
@@ -1222,6 +1222,7 @@ gdk_wayland_window_maybe_configure (GdkWindow *window,
 
   if (is_xdg_popup &&
       is_visible &&
+      size_changed &&
       !impl->initial_configure_received &&
       !impl->configuring_popup)
     gdk_window_hide (window);
@@ -1230,6 +1231,7 @@ gdk_wayland_window_maybe_configure (GdkWindow *window,
 
   if (is_xdg_popup &&
       is_visible &&
+      size_changed &&
       !impl->initial_configure_received &&
       !impl->configuring_popup)
     gdk_window_show (window);
@@ -1520,6 +1522,14 @@ surface_enter (void              *data,
 {
   GdkWindow *window = GDK_WINDOW (data);
   GdkWindowImplWayland *impl = GDK_WINDOW_IMPL_WAYLAND (window->impl);
+  GdkWaylandDisplay *display_wayland =
+    GDK_WAYLAND_DISPLAY (gdk_window_get_display (window));
+  gboolean output_is_unmanaged;
+
+  output_is_unmanaged =
+    _gdk_wayland_screen_get_output_scale (display_wayland->screen, output) == 0;
+  if (output_is_unmanaged)
+    return;
 
   GDK_NOTE (EVENTS,
             g_message ("surface enter, window %p output %p", window, output));
@@ -3330,6 +3340,12 @@ gdk_wayland_window_hide_surface (GdkWindow *window)
           impl->display_server.xdg_popup = NULL;
           display_wayland->current_popups =
             g_list_remove (display_wayland->current_popups, window);
+
+          if (impl->position_method == POSITION_METHOD_MOVE_TO_RECT)
+            {
+              window->x = 0;
+              window->y = 0;
+            }
         }
       if (impl->display_server.xdg_surface)
         {
@@ -3352,6 +3368,12 @@ gdk_wayland_window_hide_surface (GdkWindow *window)
           impl->display_server.zxdg_popup_v6 = NULL;
           display_wayland->current_popups =
             g_list_remove (display_wayland->current_popups, window);
+
+          if (impl->position_method == POSITION_METHOD_MOVE_TO_RECT)
+            {
+              window->x = 0;
+              window->y = 0;
+            }
         }
       if (impl->display_server.zxdg_surface_v6)
         {

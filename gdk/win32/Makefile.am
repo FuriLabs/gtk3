@@ -22,7 +22,7 @@ AM_CPPFLAGS += "-DGDK_WIN32_ENABLE_EGL=1"
 endif #WIN32_GLES
 
 libgdk_win32_DEP_LIBS = \
-	hid.lib
+	-lhid
 
 LDADDS = $(libgdk_win32_DEP_LIBS) $(GDK_DEP_LIBS)
 
@@ -57,6 +57,8 @@ libgdk_win32_la_SOURCES = \
 	gdkglcontext-win32.h \
 	gdkglobals-win32.c \
 	gdkkeys-win32.c \
+	gdkkeys-win32-impl.c \
+	gdkkeys-win32-impl-wow64.c \
 	gdkmain-win32.c \
 	gdkmonitor-win32.c \
 	gdkmonitor-win32.h \
@@ -83,8 +85,13 @@ libgdk_win32_la_SOURCES = \
 	gdkwindow-win32.c \
 	gdkwindow-win32.h \
 	pktdef.h \
+	winpointer.h \
 	wintab.h \
 	xcursors.h
+
+libgdk_win32_la_LIBADD = \
+	$(LDADDS) \
+	$(NULL)
 
 libgdkinclude_HEADERS =		\
 	gdkwin32.h

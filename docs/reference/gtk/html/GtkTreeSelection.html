@@ -605,16 +605,17 @@ gtk_tree_selection_get_selected (<em class="parameter"><code><a class="link" hre
                                  <em class="parameter"><code><a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span class="type">GtkTreeModel</span></a> **model</code></em>,
                                  <em class="parameter"><code><a class="link" href="GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);</pre>
 <p>Sets <em class="parameter"><code>iter</code></em>
- to the currently selected node if <em class="parameter"><code>selection</code></em>
+ to the currently selected node, if <em class="parameter"><code>selection</code></em>
  is set to
-<a class="link" href="gtk3-Standard-Enumerations.html#GTK-SELECTION-SINGLE:CAPS"><span class="type">GTK_SELECTION_SINGLE</span></a> or <a class="link" href="gtk3-Standard-Enumerations.html#GTK-SELECTION-BROWSE:CAPS"><span class="type">GTK_SELECTION_BROWSE</span></a>.  <em class="parameter"><code>iter</code></em>
- may be NULL if you
-just want to test if <em class="parameter"><code>selection</code></em>
- has any selected nodes.  <em class="parameter"><code>model</code></em>
- is filled
-with the current model as a convenience.  This function will not work if you
-use <em class="parameter"><code>selection</code></em>
- is <a class="link" href="gtk3-Standard-Enumerations.html#GTK-SELECTION-MULTIPLE:CAPS"><span class="type">GTK_SELECTION_MULTIPLE</span></a>.</p>
+<a class="link" href="gtk3-Standard-Enumerations.html#GTK-SELECTION-SINGLE:CAPS"><code class="literal">GTK_SELECTION_SINGLE</code></a> or <a class="link" href="gtk3-Standard-Enumerations.html#GTK-SELECTION-BROWSE:CAPS"><code class="literal">GTK_SELECTION_BROWSE</code></a>.</p>
+<p>The <em class="parameter"><code>iter</code></em>
+ argument may be <code class="literal">NULL</code> if you just want to test if <em class="parameter"><code>selection</code></em>
+
+has any selected nodes.</p>
+<p>The <em class="parameter"><code>model</code></em>
+ argument is filled with the current model as a convenience.</p>
+<p>This function will not work with <a class="link" href="gtk3-Standard-Enumerations.html#GTK-SELECTION-MULTIPLE:CAPS"><code class="literal">GTK_SELECTION_MULTIPLE</code></a>. See
+<a class="link" href="GtkTreeSelection.html#gtk-tree-selection-get-selected-rows" title="gtk_tree_selection_get_selected_rows ()"><code class="function">gtk_tree_selection_get_selected_rows()</code></a> instead.</p>
 <div class="refsect3">
 <a name="gtk-tree-selection-get-selected.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -631,20 +632,20 @@ use <em class="parameter"><code>selection</code></em>
 </tr>
 <tr>
 <td class="parameter_name"><p>model</p></td>
-<td class="parameter_description"><p>A pointer to set to the <a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span class="type">GtkTreeModel</span></a>, or NULL. </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></td>
+<td class="parameter_description"><p>the model. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="NULL may be passed instead of a pointer to a location."><span class="acronym">optional</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>iter</p></td>
-<td class="parameter_description"><p>The <a class="link" href="GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a>, or NULL. </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+<td class="parameter_description"><p>the iterator for the selected row. </p></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="NULL may be passed instead of a pointer to a location."><span class="acronym">optional</span></acronym>]</span></td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
 <a name="gtk-tree-selection-get-selected.returns"></a><h4>Returns</h4>
-<p> TRUE, if there is a selected node.</p>
+<p> <code class="literal">TRUE</code>, if there is a selected node.</p>
 </div>
 </div>
 <hr>
@@ -691,10 +692,11 @@ the tree or selection from within this function. As a result,
 <pre class="programlisting"><span class="returnvalue">GList</span> *
 gtk_tree_selection_get_selected_rows (<em class="parameter"><code><a class="link" href="GtkTreeSelection.html" title="GtkTreeSelection"><span class="type">GtkTreeSelection</span></a> *selection</code></em>,
                                       <em class="parameter"><code><a class="link" href="GtkTreeModel.html" title="GtkTreeModel"><span class="type">GtkTreeModel</span></a> **model</code></em>);</pre>
-<p>Creates a list of path of all selected rows. Additionally, if you are
-planning on modifying the model after calling this function, you may
-want to convert the returned list into a list of <span class="type">GtkTreeRowReferences</span>.
-To do this, you can use <a class="link" href="GtkTreeModel.html#gtk-tree-row-reference-new" title="gtk_tree_row_reference_new ()"><code class="function">gtk_tree_row_reference_new()</code></a>.</p>
+<p>Creates a list of path of all selected rows.</p>
+<p>Additionally, if you are planning on modifying the model after calling
+this function, you may want to convert the returned list into a list
+of <span class="type">GtkTreeRowReferences</span>.</p>
+<p>To do this, you can use <a class="link" href="GtkTreeModel.html#gtk-tree-row-reference-new" title="gtk_tree_row_reference_new ()"><code class="function">gtk_tree_row_reference_new()</code></a>.</p>
 <p>To free the return value, use:</p>
 <div class="informalexample">
   <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
@@ -732,7 +734,7 @@ To do this, you can use <a class="link" href="GtkTreeModel.html#gtk-tree-row-ref
 </div>
 <div class="refsect3">
 <a name="gtk-tree-selection-get-selected-rows.returns"></a><h4>Returns</h4>
-<p>A <span class="type">GList</span> containing a <a class="link" href="GtkTreeModel.html#GtkTreePath"><span class="type">GtkTreePath</span></a> for each selected row. </p>
+<p>the selected paths. </p>
 <p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> GtkTreePath][<acronym title="The caller owns the data, and is responsible for free it."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.2</p>

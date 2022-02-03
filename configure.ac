@@ -10,8 +10,8 @@
 
 m4_define([gtk_major_version], [3])
 m4_define([gtk_minor_version], [24])
-m4_define([gtk_micro_version], [30])
-m4_define([gtk_interface_age], [26])
+m4_define([gtk_micro_version], [31])
+m4_define([gtk_interface_age], [27])
 m4_define([gtk_binary_age],
           [m4_eval(100 * gtk_minor_version + gtk_micro_version)])
 m4_define([gtk_version],
@@ -439,7 +439,8 @@ fi
 
 PKG_PROG_PKG_CONFIG
 
-WAYLAND_DEPENDENCIES="wayland-client >= wayland_required_version wayland-protocols >= wayland_protocols_required_version xkbcommon >= 0.2.0 wayland-cursor >= wayland_required_version wayland-egl"
+WAYLAND_RUNTIME_DEPENDENCIES="wayland-client >= wayland_required_version xkbcommon >= 0.2.0 wayland-cursor >= wayland_required_version wayland-egl"
+WAYLAND_DEPENDENCIES="wayland-protocols >= wayland_protocols_required_version $WAYLAND_RUNTIME_DEPENDENCIES"
 if test "$enable_wayland_backend" = "maybe" ; then
   AC_PATH_PROG([WAYLAND_SCANNER],[wayland-scanner],[no])
   PKG_CHECK_EXISTS($WAYLAND_DEPENDENCIES, [have_wayland_deps=yes], [have_wayland_deps=no])
@@ -460,7 +461,7 @@ if test "$enable_wayland_backend" = "yes"; then
   GDK_WINDOWING="$GDK_WINDOWING
 #define GDK_WINDOWING_WAYLAND"
   backend_immodules="$backend_immodules,wayland"
-  WAYLAND_PACKAGES="$WAYLAND_DEPENDENCIES"
+  WAYLAND_PACKAGES="$WAYLAND_RUNTIME_DEPENDENCIES"
   AC_PATH_PROG([WAYLAND_SCANNER],[wayland-scanner],[no])
   AS_IF([test "x$WAYLAND_SCANNER" = "xno"],
     [AC_MSG_ERROR([Could not find wayland-scanner in your PATH, required for parsing wayland extension protocols])])
@@ -1166,13 +1167,23 @@ if test "x$enable_x11_backend" = xyes; then
                        AC_DEFINE(XINPUT_2_2, 1, [Define to 1 if XInput 2.2 is available]),
                        have_xinput2_2=no,
                        [[#include <X11/extensions/XInput2.h>]])])
-    LIBS="$gtk_save_LIBS"
 
     if test "x$have_xinput2_2" = "xyes"; then
       X_EXTENSIONS="$X_EXTENSIONS XI2.2"
     else
       X_EXTENSIONS="$X_EXTENSIONS XI2"
     fi
+
+    AC_CHECK_MEMBER([XIGesturePinchEvent.type],
+                    have_xinput2_4=yes
+                    AC_DEFINE(XINPUT_2_4, 1, [Define to 1 if XInput 2.4 is available]),
+                    have_xinput2_4=no,
+                    [[#include <X11/extensions/XInput2.h>]])
+
+    if test "x$have_xinput2_4" = "xyes"; then
+      X_EXTENSIONS="$X_EXTENSIONS XI2.4"
+    fi
+    LIBS="$gtk_save_LIBS"
   fi
 
   AS_IF([test "x$have_xinput2" != "xyes"],
@@ -1394,17 +1405,35 @@ fi
 ##################################################
 # Check for harfbuzz and pangoft2
 ##################################################
-
 PKG_CHECK_MODULES(GTK_FONT_CHOOSER_WIDGET,
-                  harfbuzz >= 0.9 pangoft2,
+                  harfbuzz >= 2.2.0 pango >= 1.44.0,
                   build_font_demo=yes,
                   build_font_demo=no)
+
+PKG_CHECK_MODULES(GTK_FONT_CHOOSER_WIDGET_FT,
+                  harfbuzz >= 0.9 pangoft2,
+                  build_font_demo_ft=yes,
+                  build_font_demo_ft=no)
+
+if test "x$build_font_demo" = xno; then
+  if test "x$build_font_demo_ft" = xyes; then
+    build_font_demo=yes
+  else
+    build_font_demo=no
+  fi
+fi
+
 AM_CONDITIONAL(BUILD_FONT_DEMO, [ test "x$build_font_demo" = xyes ])
 if test "x$build_font_demo" = xyes; then
   AC_DEFINE([HAVE_HARFBUZZ], 1, [defines whether we have HarfBuzz])
-  AC_DEFINE([HAVE_PANGOFT], 1, [defines whether we have pangoft2])
-  GTK_DEP_CFLAGS="$GTK_DEP_CFLAGS $GTK_FONT_CHOOSER_WIDGET_CFLAGS"
-  GTK_DEP_LIBS="$GTK_DEP_LIBS $GTK_FONT_CHOOSER_WIDGET_LIBS"
+  if test "x$build_font_demo_ft" = xyes; then
+    AC_DEFINE([HAVE_PANGOFT], 1, [defines whether we have pangoft2])
+    GTK_DEP_CFLAGS="$GTK_DEP_CFLAGS $GTK_FONT_CHOOSER_WIDGET_FT_CFLAGS"
+    GTK_DEP_LIBS="$GTK_DEP_LIBS $GTK_FONT_CHOOSER_WIDGET_FT_LIBS"
+  else
+    GTK_DEP_CFLAGS="$GTK_DEP_CFLAGS $GTK_FONT_CHOOSER_WIDGET_CFLAGS"
+    GTK_DEP_LIBS="$GTK_DEP_LIBS $GTK_FONT_CHOOSER_WIDGET_LIBS"
+  fi
 fi
 
 if $PKG_CONFIG --exists x11; then
@@ -1940,6 +1969,7 @@ win32/vs12/Makefile
 win32/vs14/Makefile
 win32/vs15/Makefile
 win32/vs16/Makefile
+win32/vs17/Makefile
 gdk/Makefile
 gdk/broadway/Makefile
 gdk/x11/Makefile

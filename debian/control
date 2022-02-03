@@ -7,7 +7,7 @@ Uploaders: Simon McVittie <smcv@debian.org>, Debian GNOME Maintainers <pkg-gnome
 Build-Depends: adwaita-icon-theme-full <!nocheck>,
                at-spi2-core <!nocheck>,
                dbus <!nocheck>,
-               debhelper-compat (= 12),
+               debhelper-compat (= 13),
                dh-sequence-gir,
                dh-sequence-translations,
                fonts-cantarell <!nocheck>,
@@ -28,9 +28,9 @@ Build-Depends: adwaita-icon-theme-full <!nocheck>,
                libgdk-pixbuf-2.0-dev (>= 2.40.0) | libgdk-pixbuf2.0-dev (>= 2.40.0),
                libgirepository1.0-dev (>= 1.39.0),
                libglib2.0-dev (>= 2.57.2),
-               libharfbuzz-dev (>= 0.9),
+               libharfbuzz-dev (>= 2.2.0),
                libjson-glib-dev:native,
-               libpango1.0-dev (>= 1.41.0),
+               libpango1.0-dev (>= 1.44.0),
                librsvg2-common [amd64 arm64 armel armhf i386 mips64el mipsel ppc64el s390x powerpc ppc64 riscv64 sparc64] <!nocheck>,
                libwayland-dev (>= 1.14.91) [linux-any],
                libx11-dev,
@@ -58,7 +58,7 @@ Build-Depends-Indep: docbook-xml,
                      libpango1.0-doc,
                      xsltproc
 Rules-Requires-Root: no
-Standards-Version: 4.5.1
+Standards-Version: 4.6.0
 XS-Debian-Vcs-Git: https://salsa.debian.org/gnome-team/gtk3.git
 XS-Debian-Vcs-Browser: https://salsa.debian.org/gnome-team/gtk3
 Vcs-Git: https://salsa.debian.org/gnome-team/gtk3.git -b ubuntu/master
@@ -155,7 +155,7 @@ Depends: gir1.2-gtk-3.0 (= ${binary:Version}),
          libfribidi-dev (>= 0.19.7),
          libgdk-pixbuf-2.0-dev (>= 2.40.0) | libgdk-pixbuf2.0-dev (>= 2.40.0),
          libglib2.0-dev (>= 2.57.2),
-         libpango1.0-dev (>= 1.41),
+         libpango1.0-dev (>= 1.44.0),
          libwayland-dev (>= 1.9.91) [linux-any],
          libx11-dev,
          libxcomposite-dev,

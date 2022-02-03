@@ -569,7 +569,7 @@ simply calling the reverse apis implemented for itself as follows:</p>
 26
 27</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="n">foo_container_get_preferred_height</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
+<span class="nf">foo_container_get_preferred_height</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
                                     <span class="n">gint</span> <span class="o">*</span><span class="n">min_height</span><span class="p">,</span>
                                     <span class="n">gint</span> <span class="o">*</span><span class="n">nat_height</span><span class="p">)</span>
 <span class="p">{</span>
@@ -627,7 +627,7 @@ that is height-for-width, it then only needs to return the base minimum width li
 18
 19</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="n">foo_container_get_preferred_width_for_height</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
+<span class="nf">foo_container_get_preferred_width_for_height</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
                                               <span class="n">gint</span> <span class="n">for_height</span><span class="p">,</span>
                                               <span class="n">gint</span> <span class="o">*</span><span class="n">min_width</span><span class="p">,</span>
                                               <span class="n">gint</span> <span class="o">*</span><span class="n">nat_width</span><span class="p">)</span>
@@ -702,13 +702,13 @@ changes, use <a class="link" href="GtkWidget.html#gtk-widget-child-notify" title
 <div class="refsect2">
 <a name="id-1.3.20.3.10.9"></a><h3>GtkContainer as GtkBuildable</h3>
 <p>The GtkContainer implementation of the GtkBuildable interface supports
-a &lt;packing&gt; element for children, which can contain multiple &lt;property&gt;
+a <code class="literal">&lt;packing&gt;</code> element for children, which can contain multiple <code class="literal">&lt;property&gt;</code>
 elements that specify child properties for the child.</p>
 <p>Since 2.16, child properties can also be marked as translatable using
 the same “translatable”, “comments” and “context” attributes that are used
 for regular properties.</p>
-<p>Since 3.16, containers can have a &lt;focus-chain&gt; element containing multiple
-&lt;widget&gt; elements, one for each child that should be added to the focus
+<p>Since 3.16, containers can have a <code class="literal">&lt;focus-chain&gt;</code> element containing multiple
+<code class="literal">&lt;widget&gt;</code> elements, one for each child that should be added to the focus
 chain. The ”name” attribute gives the id of the widget.</p>
 <p>An example of these properties in UI definitions:</p>
 <div class="informalexample">

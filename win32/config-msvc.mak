@@ -46,8 +46,13 @@ AT_PLAT=aarch64
 AT_PLAT=i686
 !endif
 
+demo_sources = $(demos_base)
+!ifdef FONT_FEATURES_DEMO
+demo_sources = $(demo_sources) $(font_features_demo)
+!endif
+
 # Please do not change anything beneath this line unless maintaining the NMake Makefiles
-GTK_VERSION = 3.24.30
+GTK_VERSION = 3.24.31
 
 GDK_PREPROCESSOR_FLAGS =	\
 	/DG_LOG_USE_STRUCTURED=1	\

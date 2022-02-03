@@ -392,7 +392,7 @@ gtk_buildable_custom_tag_start (<em class="parameter"><code><a class="link" href
                                 <em class="parameter"><code>const <span class="type">gchar</span> *tagname</code></em>,
                                 <em class="parameter"><code><span class="type">GMarkupParser</span> *parser</code></em>,
                                 <em class="parameter"><code><span class="type">gpointer</span> *data</code></em>);</pre>
-<p>This is called for each unknown element under &lt;child&gt;.</p>
+<p>This is called for each unknown element under <code class="literal">&lt;child&gt;</code>.</p>
 <div class="refsect3">
 <a name="gtk-buildable-custom-tag-start.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -727,7 +727,7 @@ is created.</p></td>
 <td class="struct_member_name"><p><em class="structfield"><code><a name="GtkBuildableIface.construct-child"></a>construct_child</code></em> ()</p></td>
 <td class="struct_member_description"><p>Constructs a child of a buildable that has been
 specified as “constructor” in the UI definition. <a class="link" href="GtkUIManager.html" title="GtkUIManager"><span class="type">GtkUIManager</span></a> implements
-this to reference to a widget created in a &lt;ui&gt; tag which is outside
+this to reference to a widget created in a <code class="literal">&lt;ui&gt;</code> tag which is outside
 of the normal GtkBuilder UI definition hierarchy.  A reference to the
 constructed object is returned and becomes owned by the caller.</p></td>
 <td class="struct_member_annotations"> </td>
@@ -735,13 +735,13 @@ constructed object is returned and becomes owned by the caller.</p></td>
 <tr>
 <td class="struct_member_name"><p><em class="structfield"><code><a name="GtkBuildableIface.custom-tag-start"></a>custom_tag_start</code></em> ()</p></td>
 <td class="struct_member_description"><p>Implement this if the buildable needs to parse
-content below &lt;child&gt;. To handle an element, the implementation
+content below <code class="literal">&lt;child&gt;</code>. To handle an element, the implementation
 must fill in the <em class="parameter"><code>parser</code></em>
 and <em class="parameter"><code>user_data</code></em>
 and return <code class="literal">TRUE</code>.
 <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> implements this to parse keyboard accelerators specified
-in &lt;accelerator&gt; elements. <a class="link" href="GtkContainer.html" title="GtkContainer"><span class="type">GtkContainer</span></a> implements it to map
-properties defined via &lt;packing&gt; elements to child properties.
+in <code class="literal">&lt;accelerator&gt;</code> elements. <a class="link" href="GtkContainer.html" title="GtkContainer"><span class="type">GtkContainer</span></a> implements it to map
+properties defined via <code class="literal">&lt;packing&gt;</code> elements to child properties.
 Note that <em class="parameter"><code>user_data</code></em>
 must be freed in <em class="parameter"><code>custom_tag_end</code></em>
 or <em class="parameter"><code>custom_finished</code></em>

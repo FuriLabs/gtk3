@@ -19,7 +19,7 @@
  */
 
 /*
- * Modified by the GTK+ Team and others 1997-2000.  See the AUTHORS
+ * Modified by the GTK+ Team and others 1997-2020.  See the AUTHORS
  * file for a list of people on the GTK+ Team.  See the ChangeLog
  * files for a list of changes.  These files are distributed with
  * GTK+ at ftp://ftp.gtk.org/pub/gtk/.
@@ -655,11 +655,9 @@ build_key_event_state (GdkEvent *event,
 		       BYTE     *key_state)
 {
   GdkWin32Keymap *keymap;
+  keymap = GDK_WIN32_KEYMAP (_gdk_win32_display_get_keymap (_gdk_display));
 
-  event->key.state = 0;
-
-  if (key_state[VK_SHIFT] & 0x80)
-    event->key.state |= GDK_SHIFT_MASK;
+  event->key.state = _gdk_win32_keymap_get_mod_mask (keymap);
 
   if (key_state[VK_CAPITAL] & 0x01)
     event->key.state |= GDK_LOCK_MASK;
@@ -675,26 +673,7 @@ build_key_event_state (GdkEvent *event,
   if (key_state[VK_XBUTTON2] & 0x80)
     event->key.state |= GDK_BUTTON5_MASK;
 
-  keymap = GDK_WIN32_KEYMAP (_gdk_win32_display_get_keymap (_gdk_display));
   event->key.group = _gdk_win32_keymap_get_active_group (keymap);
-
-  if (_gdk_win32_keymap_has_altgr (keymap) &&
-      (key_state[VK_LCONTROL] & 0x80) &&
-      (key_state[VK_RMENU] & 0x80))
-    {
-      event->key.state |= GDK_MOD2_MASK;
-      if (key_state[VK_RCONTROL] & 0x80)
-	event->key.state |= GDK_CONTROL_MASK;
-      if (key_state[VK_LMENU] & 0x80)
-	event->key.state |= GDK_MOD1_MASK;
-    }
-  else
-    {
-      if (key_state[VK_CONTROL] & 0x80)
-	event->key.state |= GDK_CONTROL_MASK;
-      if (key_state[VK_MENU] & 0x80)
-	event->key.state |= GDK_MOD1_MASK;
-    }
 }
 
 static gint
@@ -1628,8 +1607,8 @@ _gdk_win32_get_window_rect (GdkWindow *window,
   if (gdk_window_get_parent (window) == gdk_get_default_root_window ())
     {
       ClientToScreen (hwnd, &point);
-      point.x += _gdk_offset_x * window_impl->window_scale;
-      point.y += _gdk_offset_y * window_impl->window_scale;
+      point.x += _gdk_offset_x;
+      point.y += _gdk_offset_y;
     }
 
   rect->left = point.x;
@@ -3348,7 +3327,7 @@ gdk_event_translate (MSG  *msg,
 	  do_show_window (window, msg->wParam == SC_MINIMIZE ? TRUE : FALSE);
 
     if (msg->wParam == SC_RESTORE)
-      _gdk_win32_window_invalidate_egl_framebuffer (window);
+      gdk_win32_window_invalidate_egl_framebuffer (window);
 	  break;
         case SC_MAXIMIZE:
           impl = GDK_WINDOW_IMPL_WIN32 (window->impl);
@@ -3436,7 +3415,7 @@ gdk_event_translate (MSG  *msg,
             {
               MINMAXINFO our_mmi;
 
-              _gdk_win32_window_invalidate_egl_framebuffer (window);
+              gdk_win32_window_invalidate_egl_framebuffer (window);
 
               if (_gdk_win32_window_fill_min_max_info (window, &our_mmi))
                 {

@@ -64,7 +64,7 @@
 10
 11</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="n">my_widget_class_init</span> <span class="p">(</span><span class="n">MyWidgetClass</span> <span class="o">*</span><span class="n">class</span><span class="p">)</span>
+<span class="nf">my_widget_class_init</span> <span class="p">(</span><span class="n">MyWidgetClass</span> <span class="o">*</span><span class="n">class</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="n">GtkWidgetClass</span> <span class="o">*</span><span class="n">widget_class</span> <span class="o">=</span> <span class="n">GTK_WIDGET_CLASS</span> <span class="p">(</span><span class="n">class</span><span class="p">);</span>
 
@@ -130,7 +130,7 @@
 38
 39</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="n">my_widget_get_preferred_width</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
+<span class="nf">my_widget_get_preferred_width</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
                                <span class="n">gint</span>      <span class="o">*</span><span class="n">minimal_width</span><span class="p">,</span>
                                <span class="n">gint</span>      <span class="o">*</span><span class="n">natural_width</span><span class="p">)</span>
 <span class="p">{</span>
@@ -142,7 +142,7 @@
 <span class="p">}</span>
 
 <span class="k">static</span> <span class="kt">void</span>
-<span class="n">my_widget_get_preferred_height</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
+<span class="nf">my_widget_get_preferred_height</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
                                 <span class="n">gint</span>      <span class="o">*</span><span class="n">minimal_height</span><span class="p">,</span>
                                 <span class="n">gint</span>      <span class="o">*</span><span class="n">natural_height</span><span class="p">)</span>
 <span class="p">{</span>
@@ -156,7 +156,7 @@
  <span class="cm">/* ... */</span>
 
 <span class="k">static</span> <span class="kt">void</span>
-<span class="n">my_widget_class_init</span> <span class="p">(</span><span class="n">MyWidgetClass</span> <span class="o">*</span><span class="n">class</span><span class="p">)</span>
+<span class="nf">my_widget_class_init</span> <span class="p">(</span><span class="n">MyWidgetClass</span> <span class="o">*</span><span class="n">class</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="n">GtkWidgetClass</span> <span class="o">*</span><span class="n">widget_class</span> <span class="o">=</span> <span class="n">GTK_WIDGET_CLASS</span> <span class="p">(</span><span class="n">class</span><span class="p">);</span>
 
@@ -233,7 +233,7 @@
 45
 46</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="n">my_widget_get_preferred_size</span> <span class="p">(</span><span class="n">GtkWidget</span>      <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
+<span class="nf">my_widget_get_preferred_size</span> <span class="p">(</span><span class="n">GtkWidget</span>      <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
                               <span class="n">GtkOrientation</span>  <span class="n">orientation</span><span class="p">,</span>
                                <span class="n">gint</span>          <span class="o">*</span><span class="n">minimal_size</span><span class="p">,</span>
                                <span class="n">gint</span>          <span class="o">*</span><span class="n">natural_size</span><span class="p">)</span>
@@ -256,7 +256,7 @@
 <span class="p">}</span>
 
 <span class="k">static</span> <span class="kt">void</span>
-<span class="n">my_widget_get_preferred_width</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
+<span class="nf">my_widget_get_preferred_width</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
                                <span class="n">gint</span>      <span class="o">*</span><span class="n">minimal_width</span><span class="p">,</span>
                                <span class="n">gint</span>      <span class="o">*</span><span class="n">natural_width</span><span class="p">)</span>
 <span class="p">{</span>
@@ -267,7 +267,7 @@
 <span class="p">}</span>
 
 <span class="k">static</span> <span class="kt">void</span>
-<span class="n">my_widget_get_preferred_height</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
+<span class="nf">my_widget_get_preferred_height</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
                                 <span class="n">gint</span>      <span class="o">*</span><span class="n">minimal_height</span><span class="p">,</span>
                                 <span class="n">gint</span>      <span class="o">*</span><span class="n">natural_height</span><span class="p">)</span>
 <span class="p">{</span>
@@ -334,7 +334,7 @@
 26
 27</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="n">gtk_fixed_get_preferred_height</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
+<span class="nf">gtk_fixed_get_preferred_height</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
                                 <span class="n">gint</span>      <span class="o">*</span><span class="n">minimum</span><span class="p">,</span>
                                 <span class="n">gint</span>      <span class="o">*</span><span class="n">natural</span><span class="p">)</span>
 <span class="p">{</span>
@@ -658,7 +658,7 @@
 12
 13</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="n">on_alpha_screen_changed</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
+<span class="nf">on_alpha_screen_changed</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
                          <span class="n">GdkScreen</span> <span class="o">*</span><span class="n">old_screen</span><span class="p">,</span>
                          <span class="n">GtkWidget</span> <span class="o">*</span><span class="n">label</span><span class="p">)</span>
 <span class="p">{</span>
@@ -696,7 +696,7 @@
 12
 13</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="n">on_alpha_screen_changed</span> <span class="p">(</span><span class="n">GtkWindow</span> <span class="o">*</span><span class="n">window</span><span class="p">,</span>
+<span class="nf">on_alpha_screen_changed</span> <span class="p">(</span><span class="n">GtkWindow</span> <span class="o">*</span><span class="n">window</span><span class="p">,</span>
                          <span class="n">GdkScreen</span> <span class="o">*</span><span class="n">old_screen</span><span class="p">,</span>
                          <span class="n">GtkWidget</span> <span class="o">*</span><span class="n">label</span><span class="p">)</span>
 <span class="p">{</span>
@@ -800,7 +800,7 @@
 11
 12</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="n">GdkFilterReturn</span>
-<span class="n">message_filter</span> <span class="p">(</span><span class="n">GdkXEvent</span> <span class="o">*</span><span class="n">xevent</span><span class="p">,</span> <span class="n">GdkEvent</span> <span class="o">*</span><span class="n">event</span><span class="p">,</span> <span class="n">gpointer</span> <span class="n">data</span><span class="p">)</span>
+<span class="nf">message_filter</span> <span class="p">(</span><span class="n">GdkXEvent</span> <span class="o">*</span><span class="n">xevent</span><span class="p">,</span> <span class="n">GdkEvent</span> <span class="o">*</span><span class="n">event</span><span class="p">,</span> <span class="n">gpointer</span> <span class="n">data</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="n">XClientMessageEvent</span> <span class="o">*</span><span class="n">evt</span> <span class="o">=</span> <span class="p">(</span><span class="n">XClientMessageEvent</span> <span class="o">*</span><span class="p">)</span><span class="n">xevent</span><span class="p">;</span>
 
@@ -845,7 +845,7 @@
 20
 21</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="n">GdkFilterReturn</span>
-<span class="n">event_filter</span> <span class="p">(</span><span class="n">GdkXEvent</span> <span class="o">*</span><span class="n">xevent</span><span class="p">,</span> <span class="n">GdkEvent</span> <span class="o">*</span><span class="n">event</span><span class="p">,</span> <span class="n">gpointer</span> <span class="n">data</span><span class="p">)</span>
+<span class="nf">event_filter</span> <span class="p">(</span><span class="n">GdkXEvent</span> <span class="o">*</span><span class="n">xevent</span><span class="p">,</span> <span class="n">GdkEvent</span> <span class="o">*</span><span class="n">event</span><span class="p">,</span> <span class="n">gpointer</span> <span class="n">data</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="n">XClientMessageEvent</span> <span class="o">*</span><span class="n">evt</span><span class="p">;</span>
   <span class="n">GdkAtom</span> <span class="n">message_type</span><span class="p">;</span>

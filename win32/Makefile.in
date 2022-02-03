@@ -300,6 +300,8 @@ GTK_DEP_LIBS = @GTK_DEP_LIBS@
 GTK_EXTRA_CFLAGS = @GTK_EXTRA_CFLAGS@
 GTK_EXTRA_LIBS = @GTK_EXTRA_LIBS@
 GTK_FONT_CHOOSER_WIDGET_CFLAGS = @GTK_FONT_CHOOSER_WIDGET_CFLAGS@
+GTK_FONT_CHOOSER_WIDGET_FT_CFLAGS = @GTK_FONT_CHOOSER_WIDGET_FT_CFLAGS@
+GTK_FONT_CHOOSER_WIDGET_FT_LIBS = @GTK_FONT_CHOOSER_WIDGET_FT_LIBS@
 GTK_FONT_CHOOSER_WIDGET_LIBS = @GTK_FONT_CHOOSER_WIDGET_LIBS@
 GTK_INTERFACE_AGE = @GTK_INTERFACE_AGE@
 GTK_LINK_FLAGS = @GTK_LINK_FLAGS@
@@ -471,7 +473,8 @@ EXTRA_DIST = config-msvc.mak config-msvc.mak.in create-lists.bat \
 	create-lists-msvc.mak detectenv-msvc.mak \
 	gen-gdkversionmacros-h.py generate-msvc.mak \
 	gtk-introspection-msvc.mak introspection-msvc.mak replace.py \
-	pc_base.py gtkpc.py README_EGL_MSVC.txt $(GENERATED_ITEMS)
+	pc_base.py gtkpc.py README_FEATURES_MSVC.txt \
+	$(GENERATED_ITEMS)
 TEST_PROGS = 
 
 ### testing rules
@@ -517,7 +520,8 @@ SUBDIRS = \
 	vs12	\
 	vs14	\
 	vs15	\
-	vs16
+	vs16	\
+	vs17
 
 all: all-recursive
 

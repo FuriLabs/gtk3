@@ -1,3 +1,87 @@
+gtk+3.0 (3.24.31-1ubuntu1) UNRELEASED; urgency=medium
+
+  * Resynchronize with Debian, remaining changes
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0.symbols
+    + debian/control.in and debian/tests/control (installed-tests):
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + debian/control.in: Build-Depend on dh-sequence-translations
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+
+ -- Jeremy Bicha <jeremy.bicha@canonical.com>  Thu, 03 Feb 2022 15:21:38 -0500
+
+gtk+3.0 (3.24.31-1) unstable; urgency=medium
+
+  * New upstream release
+    - Support touchpad gestures with XI 2.4
+    - Avoid clipboard-related lockups on Wayland
+    - textview: Add CSS letter spacing
+    - Translation updates: is, oc
+    - Various Windows- and macOS-specific changes that are not directly
+      relevant in Debian
+    - Various other changes that were already in 3.24.30-4
+  * Drop patches that came from upstream
+  * d/copyright: Update
+  * d/control.in: Update build-dependencies
+
+ -- Simon McVittie <smcv@debian.org>  Sun, 26 Dec 2021 19:50:22 +0000
+
+gtk+3.0 (3.24.30-4) unstable; urgency=medium
+
+  [ Simon McVittie ]
+  * Update to upstream commit 3.24.30-129-g6c4cc93121, excluding CI
+    changes and Windows- and macOS-specific code changes
+    - Signal that a search has finished when required, fixing typeahead
+      search when using NFS (Closes: #976334)
+    - Update name and icon on file chooser button for remote files
+    - Don't unset the URI for the recent files filter
+    - Fix an infinite loop with certain popup behaviours in Wayland
+    - Don't change surface scales for wl_output globals not bound by GTK
+    - Don't print a message on stderr if Broadway (HTML) backend is
+      unavailable
+    - Don't require wayland-protocols when building GTK-dependent
+      components
+    - Avoid a double-free with large or slow clipboard contents
+    - Avoid false-positive warnings with gcc 11
+    - Invalidate compose table cache if target of a symlink changes
+    - Avoid a crash when parsing some radial gradients
+    - Use correct serial number for Wayland drag-and-drop
+    - Fix a crash involving GtkScale
+    - Make Wayland popups avoid triggering X11 heuristics
+    - Trap errors when getting X11 CRTC information, avoiding a crash if
+      monitor configuration changes rapidly
+    - Make reftests more reliable by always using default settings
+    - Documentation improvements
+    - Translation updates: cs, da, de, es, eu, fa, fi, fr, fur, gl, hr,
+      hu, is, it, kk, ko, lv, nl, oc, pt_BR, ru, sr, sv, zh_CN, zh_TW
+  * Standards-Version: 4.6.0 (no changes required)
+  * Avoid explicitly specifying -Wl,--as-needed linker flag.
+    This is the default in newer toolchains.
+  * Use debhelper compat level 13
+  * Adjust a Lintian override to match with newer Lintian
+  * Add Build-Depends-Package to both libraries in .symbols file.
+    Previously, it took effect for libgtk but not for libgtk.
+
+  [ Laurent Bigonville ]
+  * Disable the tests on architectures where librsvg2-common is not built.
+    librsvg is only built on architectures that rust has been ported to,
+    so disable them on the other architectures.
+
+ -- Simon McVittie <smcv@debian.org>  Tue, 30 Nov 2021 14:50:13 +0000
+
 gtk+3.0 (3.24.30-3ubuntu2) jammy; urgency=medium
 
   * debian/patches/git_wayland_clipboard.patch:

@@ -205,12 +205,12 @@
 7
 8</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="n">on_toggled</span> <span class="p">(</span><span class="n">GtkToggleButton</span> <span class="o">*</span><span class="n">button</span><span class="p">)</span>
+<span class="nf">on_toggled</span> <span class="p">(</span><span class="n">GtkToggleButton</span> <span class="o">*</span><span class="n">button</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">button</span><span class="o">-&gt;</span><span class="n">active</span><span class="p">)</span>
     <span class="n">frob_active</span> <span class="p">();</span>
   <span class="k">else</span>
-    <span class="nf">frob_inactive</span> <span class="p">();</span>
+    <span class="n">frob_inactive</span> <span class="p">();</span>
 <span class="p">}</span></pre></td>
       </tr>
     </tbody>
@@ -238,12 +238,12 @@
 7
 8</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="n">on_toggled</span> <span class="p">(</span><span class="n">GtkToggleButton</span> <span class="o">*</span><span class="n">button</span><span class="p">)</span>
+<span class="nf">on_toggled</span> <span class="p">(</span><span class="n">GtkToggleButton</span> <span class="o">*</span><span class="n">button</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">gtk_toggle_button_get_active</span> <span class="p">(</span><span class="n">button</span><span class="p">))</span>
     <span class="n">frob_active</span> <span class="p">();</span>
   <span class="k">else</span>
-    <span class="nf">frob_inactive</span> <span class="p">();</span>
+    <span class="n">frob_inactive</span> <span class="p">();</span>
 <span class="p">}</span></pre></td>
       </tr>
     </tbody>
@@ -637,7 +637,7 @@ Another alternative is to use pixbufs instead of surfaces with
 19
 20</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="n">cairo_pattern_t</span> <span class="o">*</span>
-<span class="n">gtk_color_button_get_checkered</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="nf">gtk_color_button_get_checkered</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="cm">/* need to respect pixman&#39;s stride being a multiple of 4 */</span>
     <span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">data</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span>

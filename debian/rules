@@ -12,7 +12,7 @@ export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 # Ensure the build aborts when there are still references to undefined symbols
 # currently fails at least in the im-multipress im module
 #LDFLAGS += -Wl,-z,defs
-export DEB_LDFLAGS_MAINT_APPEND = -Wl,-O1 -Wl,--as-needed
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,-O1
 
 APIVER := 3
 SONAME := 0

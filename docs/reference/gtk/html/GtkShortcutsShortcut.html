@@ -260,19 +260,19 @@ if <a class="link" href="GtkShortcutsShortcut.html#GtkShortcutsShortcut--shortcu
 <p>The syntax of this property is (an extension of) the syntax understood by
 <a class="link" href="gtk3-Keyboard-Accelerators.html#gtk-accelerator-parse" title="gtk_accelerator_parse ()"><code class="function">gtk_accelerator_parse()</code></a>. Multiple accelerators can be specified by separating
 them with a space, but keep in mind that the available width is limited.
-It is also possible to specify ranges of shortcuts, using ... between the keys.
-Sequences of keys can be specified using a + or &amp; between the keys.</p>
+It is also possible to specify ranges of shortcuts, using <code class="literal">...</code> between the keys.
+Sequences of keys can be specified using a <code class="literal">+</code> or <code class="literal">&amp;amp;</code> between the keys.</p>
 <p>Examples:</p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
-<li class="listitem"><p>A single shortcut: &lt;ctl&gt;&lt;alt&gt;delete</p></li>
-<li class="listitem"><p>Two alternative shortcuts: &lt;shift&gt;a Home</p></li>
-<li class="listitem"><p>A range of shortcuts: &lt;alt&gt;1...&lt;alt&gt;9</p></li>
-<li class="listitem"><p>Several keys pressed together: Control_L&amp;Control_R</p></li>
-<li class="listitem"><p>A sequence of shortcuts or keys: &lt;ctl&gt;c+&lt;ctl&gt;x</p></li>
+<li class="listitem"><p>A single shortcut: <code class="literal">&lt;ctl&gt;&amp;lt;alt&gt;delete</code></p></li>
+<li class="listitem"><p>Two alternative shortcuts: <code class="literal">&lt;shift&gt;a Home</code></p></li>
+<li class="listitem"><p>A range of shortcuts: <code class="literal">&lt;alt&gt;1...&amp;lt;alt&gt;9</code></p></li>
+<li class="listitem"><p>Several keys pressed together: <code class="literal">Control_L&amp;amp;Control_R</code></p></li>
+<li class="listitem"><p>A sequence of shortcuts or keys: <code class="literal">&lt;ctl&gt;c+&amp;lt;ctl&gt;x</code></p></li>
 </ul></div>
 <p>Use + instead of &amp; when the keys may (or have to be) pressed sequentially (e.g
 use t+t for 'press the t key twice').</p>
-<p>Note that &lt;, &gt; and &amp; need to be escaped as &lt;, &gt; and &amp; when used
+<p>Note that <code class="literal">&lt;</code>, <code class="literal">&amp;gt;</code> and <code class="literal">&amp;amp;</code> need to be escaped as &lt;, &gt; and &amp; when used
 in .ui files.</p>
 <p>Owner: GtkShortcutsShortcut</p>
 <p>Flags: Read / Write</p>

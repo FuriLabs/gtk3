@@ -3020,7 +3020,7 @@ it will do:</p>
 24
 25</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="n">foo_widget_get_preferred_height</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
+<span class="nf">foo_widget_get_preferred_height</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
                                  <span class="n">gint</span> <span class="o">*</span><span class="n">min_height</span><span class="p">,</span>
                                  <span class="n">gint</span> <span class="o">*</span><span class="n">nat_height</span><span class="p">)</span>
 <span class="p">{</span>
@@ -3076,7 +3076,7 @@ the minimum and natural width:</p>
 18
 19</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="n">foo_widget_get_preferred_width_for_height</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
+<span class="nf">foo_widget_get_preferred_width_for_height</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
                                            <span class="n">gint</span> <span class="n">for_height</span><span class="p">,</span>
                                            <span class="n">gint</span> <span class="o">*</span><span class="n">min_width</span><span class="p">,</span>
                                            <span class="n">gint</span> <span class="o">*</span><span class="n">nat_width</span><span class="p">)</span>
@@ -3171,7 +3171,7 @@ style properties and <a class="link" href="GtkWidget.html#gtk-widget-style-get-p
 <div class="refsect2">
 <a name="id-1.3.20.2.13.5"></a><h3>GtkWidget as GtkBuildable</h3>
 <p>The GtkWidget implementation of the GtkBuildable interface supports a
-custom &lt;accelerator&gt; element, which has attributes named ”key”, ”modifiers”
+custom <code class="literal">&lt;accelerator&gt;</code> element, which has attributes named ”key”, ”modifiers”
 and ”signal” and allows to specify accelerators.</p>
 <p>An example of a UI definition fragment specifying an accelerator:</p>
 <div class="informalexample">
@@ -3190,7 +3190,7 @@ and ”signal” and allows to specify accelerators.</p>
 </div>
 
 <p></p>
-<p>In addition to accelerators, GtkWidget also support a custom &lt;accessible&gt;
+<p>In addition to accelerators, GtkWidget also support a custom <code class="literal">&lt;accessible&gt;</code>
 element, which supports actions and relations. Properties on the accessible
 implementation of an object can be set by accessing the internal child
 “accessible” of a <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a>.</p>
@@ -3234,7 +3234,7 @@ implementation of an object can be set by accessing the internal child
 
 <p></p>
 <p>Finally, GtkWidget allows style information such as style classes to
-be associated with widgets, using the custom &lt;style&gt; element:</p>
+be associated with widgets, using the custom <code class="literal">&lt;style&gt;</code> element:</p>
 <div class="informalexample">
   <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
     <tbody>
@@ -3270,25 +3270,23 @@ time using <a class="link" href="GtkWidget.html#gtk-widget-class-set-template" t
 <p>The interface description semantics expected in composite template descriptions
 is slightly different from regular <a class="link" href="GtkBuilder.html" title="GtkBuilder"><span class="type">GtkBuilder</span></a> XML.</p>
 <p>Unlike regular interface descriptions, <a class="link" href="GtkWidget.html#gtk-widget-class-set-template" title="gtk_widget_class_set_template ()"><code class="function">gtk_widget_class_set_template()</code></a> will
-expect a &lt;template&gt; tag as a direct child of the toplevel &lt;interface&gt;
-tag. The &lt;template&gt; tag must specify the “class” attribute which must be
+expect a <code class="literal">&lt;template&gt;</code> tag as a direct child of the toplevel <code class="literal">&lt;interface&gt;</code>
+tag. The <code class="literal">&lt;template&gt;</code> tag must specify the “class” attribute which must be
 the type name of the widget. Optionally, the “parent” attribute may be
 specified to specify the direct parent type of the widget type, this is
 ignored by the GtkBuilder but required for Glade to introspect what kind
 of properties and internal children exist for a given type when the actual
 type does not exist.</p>
-<p>The XML which is contained inside the &lt;template&gt; tag behaves as if it were
-added to the &lt;object&gt; tag defining <em class="parameter"><code>widget</code></em>
- itself. You may set properties
+<p>The XML which is contained inside the <code class="literal">&lt;template&gt;</code> tag behaves as if it were
+added to the <code class="literal">&lt;object&gt;</code> tag defining "widget" itself. You may set properties
 on <em class="parameter"><code>widget</code></em>
- by inserting &lt;property&gt; tags into the &lt;template&gt; tag, and also
-add &lt;child&gt; tags to add children and extend <em class="parameter"><code>widget</code></em>
- in the normal way you
-would with &lt;object&gt; tags.</p>
-<p>Additionally, &lt;object&gt; tags can also be added before and after the initial
-&lt;template&gt; tag in the normal way, allowing one to define auxiliary objects
+ by inserting <code class="literal">&lt;property&gt;</code> tags into the <code class="literal">&lt;template&gt;</code> tag, and also
+add <code class="literal">&lt;child&gt;</code> tags to add children and extend "widget" in the normal way you
+would with <code class="literal">&lt;object&gt;</code> tags.</p>
+<p>Additionally, <code class="literal">&lt;object&gt;</code> tags can also be added before and after the initial
+<code class="literal">&lt;template&gt;</code> tag in the normal way, allowing one to define auxiliary objects
 which might be referenced by other widgets declared as children of the
-&lt;template&gt; tag.</p>
+<code class="literal">&lt;template&gt;</code> tag.</p>
 <p>An example of a GtkBuilder Template Definition:</p>
 <div class="informalexample">
   <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
@@ -3351,7 +3349,7 @@ from the class initialization of your <a class="link" href="GtkWidget.html" titl
 7
 8</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="n">foo_widget_class_init</span> <span class="p">(</span><span class="n">FooWidgetClass</span> <span class="o">*</span><span class="n">klass</span><span class="p">)</span>
+<span class="nf">foo_widget_class_init</span> <span class="p">(</span><span class="n">FooWidgetClass</span> <span class="o">*</span><span class="n">klass</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="c1">// ...</span>
 
@@ -3377,7 +3375,7 @@ initialization function:</p>
 5
 6</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="n">foo_widget_init</span> <span class="p">(</span><span class="n">FooWidget</span> <span class="o">*</span><span class="n">self</span><span class="p">)</span>
+<span class="nf">foo_widget_init</span> <span class="p">(</span><span class="n">FooWidget</span> <span class="o">*</span><span class="n">self</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="c1">// ...</span>
   <span class="n">gtk_widget_init_template</span> <span class="p">(</span><span class="n">GTK_WIDGET</span> <span class="p">(</span><span class="n">self</span><span class="p">));</span>
@@ -3478,14 +3476,14 @@ class, e.g.</p>
         <td class="listing_code"><pre class="programlisting"><span class="c1">// the signal handler has the instance and user data swapped</span>
 <span class="c1">// because of the swapped=&quot;yes&quot; attribute in the template XML</span>
 <span class="k">static</span> <span class="kt">void</span>
-<span class="n">hello_button_clicked</span> <span class="p">(</span><span class="n">FooWidget</span> <span class="o">*</span><span class="n">self</span><span class="p">,</span>
+<span class="nf">hello_button_clicked</span> <span class="p">(</span><span class="n">FooWidget</span> <span class="o">*</span><span class="n">self</span><span class="p">,</span>
                       <span class="n">GtkButton</span> <span class="o">*</span><span class="n">button</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="n">g_print</span> <span class="p">(</span><span class="s">&quot;Hello, world!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="k">static</span> <span class="kt">void</span>
-<span class="n">foo_widget_class_init</span> <span class="p">(</span><span class="n">FooWidgetClass</span> <span class="o">*</span><span class="n">klass</span><span class="p">)</span>
+<span class="nf">foo_widget_class_init</span> <span class="p">(</span><span class="n">FooWidgetClass</span> <span class="o">*</span><span class="n">klass</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="c1">// ...</span>
   <span class="n">gtk_widget_class_set_template_from_resource</span> <span class="p">(</span><span class="n">GTK_WIDGET_CLASS</span> <span class="p">(</span><span class="n">klass</span><span class="p">),</span>
@@ -5587,12 +5585,12 @@ window, one might use:</p>
 10
 11</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span>
-<span class="n">get_widget_toplevel_title</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">)</span>
+<span class="nf">get_widget_toplevel_title</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="n">GtkWidget</span> <span class="o">*</span><span class="n">toplevel</span> <span class="o">=</span> <span class="n">gtk_widget_get_toplevel</span> <span class="p">(</span><span class="n">widget</span><span class="p">);</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">GTK_IS_WINDOW</span> <span class="p">(</span><span class="n">toplevel</span><span class="p">))</span>
     <span class="p">{</span>
-      <span class="k">return</span> <span class="nf">gtk_window_get_title</span> <span class="p">(</span><span class="n">GTK_WINDOW</span> <span class="p">(</span><span class="n">toplevel</span><span class="p">));</span>
+      <span class="k">return</span> <span class="n">gtk_window_get_title</span> <span class="p">(</span><span class="n">GTK_WINDOW</span> <span class="p">(</span><span class="n">toplevel</span><span class="p">));</span>
     <span class="p">}</span>
 
   <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
@@ -16424,7 +16422,7 @@ the drop site with <a class="link" href="gtk3-Drag-and-Drop.html#gtk-drag-highli
 62
 63</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="n">drag_motion</span> <span class="p">(</span><span class="n">GtkWidget</span>      <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
+<span class="nf">drag_motion</span> <span class="p">(</span><span class="n">GtkWidget</span>      <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
              <span class="n">GdkDragContext</span> <span class="o">*</span><span class="n">context</span><span class="p">,</span>
              <span class="n">gint</span>            <span class="n">x</span><span class="p">,</span>
              <span class="n">gint</span>            <span class="n">y</span><span class="p">,</span>
@@ -16454,7 +16452,7 @@ the drop site with <a class="link" href="gtk3-Drag-and-Drop.html#gtk-drag-highli
 <span class="p">}</span>
 
 <span class="k">static</span> <span class="kt">void</span>
-<span class="n">drag_data_received</span> <span class="p">(</span><span class="n">GtkWidget</span>        <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
+<span class="nf">drag_data_received</span> <span class="p">(</span><span class="n">GtkWidget</span>        <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
                     <span class="n">GdkDragContext</span>   <span class="o">*</span><span class="n">context</span><span class="p">,</span>
                     <span class="n">gint</span>              <span class="n">x</span><span class="p">,</span>
                     <span class="n">gint</span>              <span class="n">y</span><span class="p">,</span>
@@ -16477,7 +16475,7 @@ the drop site with <a class="link" href="gtk3-Drag-and-Drop.html#gtk-drag-highli
      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">data_is_acceptable</span> <span class="p">(</span><span class="n">str</span><span class="p">))</span>
        <span class="n">gdk_drag_status</span> <span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">time</span><span class="p">);</span>
      <span class="k">else</span>
-       <span class="nf">gdk_drag_status</span> <span class="p">(</span><span class="n">context</span><span class="p">,</span>
+       <span class="n">gdk_drag_status</span> <span class="p">(</span><span class="n">context</span><span class="p">,</span>
                         <span class="n">private_data</span><span class="o">-&gt;</span><span class="n">suggested_action</span><span class="p">,</span>
                         <span class="n">time</span><span class="p">);</span>
    <span class="p">}</span>

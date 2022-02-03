@@ -187,24 +187,24 @@ GResource *test_css_style_get_resource (void)
 #ifdef G_HAS_CONSTRUCTORS
 
 #ifdef G_DEFINE_CONSTRUCTOR_NEEDS_PRAGMA
-#pragma G_DEFINE_CONSTRUCTOR_PRAGMA_ARGS(resource_constructor)
+#pragma G_DEFINE_CONSTRUCTOR_PRAGMA_ARGS(test_css_styleresource_constructor)
 #endif
-G_DEFINE_CONSTRUCTOR(resource_constructor)
+G_DEFINE_CONSTRUCTOR(test_css_styleresource_constructor)
 #ifdef G_DEFINE_DESTRUCTOR_NEEDS_PRAGMA
-#pragma G_DEFINE_DESTRUCTOR_PRAGMA_ARGS(resource_destructor)
+#pragma G_DEFINE_DESTRUCTOR_PRAGMA_ARGS(test_css_styleresource_destructor)
 #endif
-G_DEFINE_DESTRUCTOR(resource_destructor)
+G_DEFINE_DESTRUCTOR(test_css_styleresource_destructor)
 
 #else
 #warning "Constructor not supported on this compiler, linking in resources will not work"
 #endif
 
-static void resource_constructor (void)
+static void test_css_styleresource_constructor (void)
 {
   g_static_resource_init (&static_resource);
 }
 
-static void resource_destructor (void)
+static void test_css_styleresource_destructor (void)
 {
   g_static_resource_fini (&static_resource);
 }

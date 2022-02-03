@@ -1,5 +1,5 @@
 project('gtk+-3.0', 'c',
-        version: '3.24.30',
+        version: '3.24.31',
         default_options: [
           'buildtype=debugoptimized',
           'warning_level=1'
@@ -52,7 +52,7 @@ gtk_version       = meson.project_version()
 gtk_major_version = gtk_version.split('.')[0].to_int()
 gtk_minor_version = gtk_version.split('.')[1].to_int()
 gtk_micro_version = gtk_version.split('.')[2].to_int()
-gtk_interface_age = 26
+gtk_interface_age = 27
 add_project_arguments('-DGTK_VERSION="@0@"'.format(meson.project_version()), language: 'c')
 
 add_project_arguments('-D_GNU_SOURCE', language: 'c')
@@ -557,7 +557,6 @@ if wayland_enabled
 
   wayland_pkgs = [
     'wayland-client', wayland_req,
-    'wayland-protocols', wayland_proto_req,
     'xkbcommon', xkbcommon_req,
     'wayland-cursor', wayland_req,
     'wayland-egl',
@@ -629,6 +628,14 @@ if x11_enabled
       cdata.set('XINPUT_2_2', 1)
     endif
   endif
+
+  has_gesture_pinch_event = cc.has_member('XIGesturePinchEvent', 'type', dependencies: xi_dep,
+                                          prefix: '''#include <X11/Xlib.h>
+                                                     #include <X11/extensions/XInput2.h>''')
+  if has_gesture_pinch_event
+    cdata.set('XINPUT_2_4', 1)
+  endif
+
 
   enable_xinerama = get_option('xinerama')
   if enable_xinerama != 'no'

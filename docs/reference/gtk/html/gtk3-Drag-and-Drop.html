@@ -433,7 +433,7 @@ the action to use depending on whether the control key is pressed or not:</p>
 15
 16</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="n">drag_motion</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
+<span class="nf">drag_motion</span> <span class="p">(</span><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
              <span class="n">GdkDragContext</span> <span class="o">*</span><span class="n">context</span><span class="p">,</span>
              <span class="n">gint</span> <span class="n">x</span><span class="p">,</span>
              <span class="n">gint</span> <span class="n">y</span><span class="p">,</span>
@@ -446,7 +446,7 @@ the action to use depending on whether the control key is pressed or not:</p>
   <span class="k">if</span> <span class="p">(</span><span class="n">mask</span> <span class="o">&amp;</span> <span class="n">GDK_CONTROL_MASK</span><span class="p">)</span>
     <span class="n">gdk_drag_status</span> <span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">GDK_ACTION_COPY</span><span class="p">,</span> <span class="n">time</span><span class="p">);</span>
   <span class="k">else</span>
-    <span class="nf">gdk_drag_status</span> <span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">GDK_ACTION_MOVE</span><span class="p">,</span> <span class="n">time</span><span class="p">);</span>
+    <span class="n">gdk_drag_status</span> <span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">GDK_ACTION_MOVE</span><span class="p">,</span> <span class="n">time</span><span class="p">);</span>
 <span class="p">}</span></pre></td>
       </tr>
     </tbody>

@@ -397,13 +397,13 @@ function must be prepared for that.</p>
 <div class="refsect2">
 <a name="id-1.3.12.27.8.9"></a><h3>GtkListStore as GtkBuildable</h3>
 <p>The GtkListStore implementation of the GtkBuildable interface allows
-to specify the model columns with a &lt;columns&gt; element that may contain
-multiple &lt;column&gt; elements, each specifying one model column. The “type”
+to specify the model columns with a <code class="literal">&lt;columns&gt;</code> element that may contain
+multiple <code class="literal">&lt;column&gt;</code> elements, each specifying one model column. The “type”
 attribute specifies the data type for the column.</p>
 <p>Additionally, it is possible to specify content for the list store
-in the UI definition, with the &lt;data&gt; element. It can contain multiple
-&lt;row&gt; elements, each specifying to content for one row of the list model.
-Inside a &lt;row&gt;, the &lt;col&gt; elements specify the content for individual cells.</p>
+in the UI definition, with the <code class="literal">&lt;data&gt;</code> element. It can contain multiple
+<code class="literal">&lt;row&gt;</code> elements, each specifying to content for one row of the list model.
+Inside a <code class="literal">&lt;row&gt;</code>, the <code class="literal">&lt;col&gt;</code> elements specify the content for individual cells.</p>
 <p>Note that it is probably more common to define your models in the code,
 and one might consider it a layering violation to specify the content of
 a list store in a UI definition, data, not presentation, and common wisdom
@@ -959,7 +959,7 @@ has the same effect as calling</p>
 10
 11</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="n">insert_value</span> <span class="p">(</span><span class="n">GtkListStore</span> <span class="o">*</span><span class="n">list_store</span><span class="p">,</span>
+<span class="nf">insert_value</span> <span class="p">(</span><span class="n">GtkListStore</span> <span class="o">*</span><span class="n">list_store</span><span class="p">,</span>
               <span class="n">GtkTreeIter</span>  <span class="o">*</span><span class="n">iter</span><span class="p">,</span>
               <span class="kt">int</span>           <span class="n">position</span><span class="p">)</span>
 <span class="p">{</span>

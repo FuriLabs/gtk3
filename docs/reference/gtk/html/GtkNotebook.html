@@ -670,13 +670,13 @@ will be a popup menu allowing the users to switch pages.
 <a name="id-1.3.7.16.12.4"></a><h3>GtkNotebook as GtkBuildable</h3>
 <p>The GtkNotebook implementation of the <a class="link" href="GtkBuildable.html" title="GtkBuildable"><span class="type">GtkBuildable</span></a> interface
 supports placing children into tabs by specifying “tab” as the
-“type” attribute of a &lt;child&gt; element. Note that the content
+“type” attribute of a <code class="literal">&lt;child&gt;</code> element. Note that the content
 of the tab must be created before the tab can be filled.
-A tab child can be specified without specifying a &lt;child&gt;
+A tab child can be specified without specifying a <code class="literal">&lt;child&gt;</code>
 type attribute.</p>
 <p>To add a child widget in the notebooks action area, specify
 "action-start" or “action-end” as the “type” attribute of the
-&lt;child&gt; element.</p>
+<code class="literal">&lt;child&gt;</code> element.</p>
 <p>An example of a UI definition fragment with GtkNotebook:</p>
 <div class="informalexample">
   <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
@@ -1878,7 +1878,7 @@ will initiate a drag cancel animation.</p>
 19
 20</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="n">on_drag_data_received</span> <span class="p">(</span><span class="n">GtkWidget</span>        <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
+<span class="nf">on_drag_data_received</span> <span class="p">(</span><span class="n">GtkWidget</span>        <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
                        <span class="n">GdkDragContext</span>   <span class="o">*</span><span class="n">context</span><span class="p">,</span>
                        <span class="n">gint</span>              <span class="n">x</span><span class="p">,</span>
                        <span class="n">gint</span>              <span class="n">y</span><span class="p">,</span>

@@ -293,14 +293,14 @@ GtkUIManager implements
 </div>
 <div class="refsect1">
 <a name="GtkUIManager.description"></a><h2>Description</h2>
+<p>A <a class="link" href="GtkUIManager.html" title="GtkUIManager"><span class="type">GtkUIManager</span></a> constructs a user interface (menus and toolbars) from
+one or more UI definitions, which reference actions from one or more
+action groups.</p>
 <div class="blockquote"><blockquote class="blockquote"><p>GtkUIManager is deprecated since GTK+ 3.10. To construct user interfaces
 from XML definitions, you should use <a class="link" href="GtkBuilder.html" title="GtkBuilder"><span class="type">GtkBuilder</span></a>, <span class="type">GMenuModel</span>, et al. To
 work with actions, use <span class="type">GAction</span>, <a class="link" href="GtkActionable.html" title="GtkActionable"><span class="type">GtkActionable</span></a> et al. These newer classes
 support richer functionality and integration with various desktop shells.
 It should be possible to migrate most/all functionality from GtkUIManager.</p></blockquote></div>
-<p>A <a class="link" href="GtkUIManager.html" title="GtkUIManager"><span class="type">GtkUIManager</span></a> constructs a user interface (menus and toolbars) from
-one or more UI definitions, which reference actions from one or more
-action groups.</p>
 <div class="refsect2">
 <a name="XML-UI"></a><h3>UI Definitions</h3>
 <p>The UI definitions are specified in an XML format which can be
@@ -520,7 +520,7 @@ toolitem with the same name has path
 <a name="id-1.3.25.25.10.7"></a><h3>Accelerators</h3>
 <p>Every action has an accelerator path. Accelerators are installed together
 with menuitem proxies, but they can also be explicitly added with
-&lt;accelerator&gt; elements in the UI definition. This makes it possible to
+<code class="literal">&lt;accelerator&gt;</code> elements in the UI definition. This makes it possible to
 have accelerators for actions even if they have no visible proxies.</p>
 </div>
 <hr>
@@ -554,9 +554,9 @@ to which the submenu is associated.</p>
 <div class="refsect2">
 <a name="GtkUIManager-BUILDER-UI"></a><h3>GtkUIManager as GtkBuildable</h3>
 <p>The GtkUIManager implementation of the GtkBuildable interface accepts
-GtkActionGroup objects as &lt;child&gt; elements in UI definitions.</p>
+GtkActionGroup objects as <code class="literal">&lt;child&gt;</code> elements in UI definitions.</p>
 <p>A GtkUIManager UI definition as described above can be embedded in
-an GtkUIManager &lt;object&gt; element in a GtkBuilder UI definition.</p>
+an GtkUIManager <code class="literal">&lt;object&gt;</code> element in a GtkBuilder UI definition.</p>
 <p>The widgets that are constructed by a GtkUIManager can be embedded in
 other parts of the constructed user interface with the help of the
 “constructor” attribute. See the example below.</p>
@@ -858,9 +858,9 @@ gtk_ui_manager_get_widget (<em class="parameter"><code><a class="link" href="Gtk
 <p>Looks up a widget by following a path. 
 The path consists of the names specified in the XML description of the UI. 
 separated by “/”. Elements which don’t have a name or action attribute in 
-the XML (e.g. &lt;popup&gt;) can be addressed by their XML element name 
+the XML (e.g. <code class="literal">&lt;popup&gt;</code>) can be addressed by their XML element name 
 (e.g. "popup"). The root element ("/ui") can be omitted in the path.</p>
-<p>Note that the widget found by following a path that ends in a &lt;menu&gt;;
+<p>Note that the widget found by following a path that ends in a <code class="literal">&lt;menu&gt;</code>;
 element is the menuitem to which the menu is attached, not the menu it
 manages.</p>
 <p>Also note that the widgets constructed by a ui manager are not tied to 
@@ -1033,7 +1033,7 @@ gtk_ui_manager_add_ui_from_string (<em class="parameter"><code><a class="link" h
 <div class="warning"><p><code class="literal">gtk_ui_manager_add_ui_from_string</code> has been deprecated since version 3.10 and should not be used in newly-written code.</p></div>
 <p>Parses a string containing a <a class="link" href="GtkUIManager.html#XML-UI" title="UI Definitions">UI definition</a> and merges it with
 the current contents of <em class="parameter"><code>manager</code></em>
-. An enclosing &lt;ui&gt; element is added if
+. An enclosing <code class="literal">&lt;ui&gt;</code> element is added if
 it is missing.</p>
 <div class="refsect3">
 <a name="gtk-ui-manager-add-ui-from-string.parameters"></a><h4>Parameters</h4>

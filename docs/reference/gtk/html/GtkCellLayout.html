@@ -194,9 +194,9 @@ value of the attribute for each cell that is rendered.</p>
 <p>Implementations of GtkCellLayout which also implement the GtkBuildable
 interface (<a class="link" href="GtkCellView.html" title="GtkCellView"><span class="type">GtkCellView</span></a>, <a class="link" href="GtkIconView.html" title="GtkIconView"><span class="type">GtkIconView</span></a>, <a class="link" href="GtkComboBox.html" title="GtkComboBox"><span class="type">GtkComboBox</span></a>,
 <a class="link" href="GtkEntryCompletion.html" title="GtkEntryCompletion"><span class="type">GtkEntryCompletion</span></a>, <a class="link" href="GtkTreeViewColumn.html" title="GtkTreeViewColumn"><span class="type">GtkTreeViewColumn</span></a>) accept GtkCellRenderer objects
-as &lt;child&gt; elements in UI definitions. They support a custom &lt;attributes&gt;
-element for their children, which can contain multiple &lt;attribute&gt;
-elements. Each &lt;attribute&gt; element has a name attribute which specifies
+as <code class="literal">&lt;child&gt;</code> elements in UI definitions. They support a custom <code class="literal">&lt;attributes&gt;</code>
+element for their children, which can contain multiple <code class="literal">&lt;attribute&gt;</code>
+elements. Each <code class="literal">&lt;attribute&gt;</code> element has a name attribute which specifies
 a property of the cell renderer; the content of the element is the
 attribute value.</p>
 <p>This is an example of a UI definition fragment specifying attributes:</p>
@@ -218,7 +218,7 @@ attribute value.</p>
     <span class="o">&lt;</span><span class="n">attributes</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;text&quot;</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">&lt;/</span><span class="n">attribute</span><span class="o">&gt;</span>
     <span class="o">&lt;/</span><span class="n">attributes</span><span class="o">&gt;</span>
-  <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span><span class="s">&quot;</span>
+  <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span>
 <span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span></pre></td>
       </tr>
     </tbody>
@@ -229,8 +229,8 @@ attribute value.</p>
 <p>Furthermore for implementations of GtkCellLayout that use a <a class="link" href="GtkCellArea.html" title="GtkCellArea"><span class="type">GtkCellArea</span></a>
 to lay out cells (all GtkCellLayouts in GTK+ use a GtkCellArea)
 cell properties can also be defined in the format by
-specifying the custom &lt;cell-packing&gt; attribute which can contain multiple
-&lt;property&gt; elements defined in the normal way.</p>
+specifying the custom <code class="literal">&lt;cell-packing&gt;</code> attribute which can contain multiple
+<code class="literal">&lt;property&gt;</code> elements defined in the normal way.</p>
 <p>Here is a UI definition fragment specifying cell properties:</p>
 <div class="informalexample">
   <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
@@ -252,7 +252,7 @@ specifying the custom &lt;cell-packing&gt; attribute which can contain multiple
       <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;align&quot;</span><span class="o">&gt;</span><span class="n">True</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;expand&quot;</span><span class="o">&gt;</span><span class="n">False</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
     <span class="o">&lt;/</span><span class="n">cell</span><span class="o">-</span><span class="n">packing</span><span class="o">&gt;</span>
-  <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span><span class="s">&quot;</span>
+  <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span>
 <span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span></pre></td>
       </tr>
     </tbody>
@@ -311,7 +311,7 @@ you to the problem).</p>
 17
 18</pre></td>
         <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="n">my_combo_box_init</span> <span class="p">(</span><span class="n">MyComboBox</span> <span class="o">*</span><span class="n">b</span><span class="p">)</span>
+<span class="nf">my_combo_box_init</span> <span class="p">(</span><span class="n">MyComboBox</span> <span class="o">*</span><span class="n">b</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="n">GtkCellRenderer</span> <span class="o">*</span><span class="n">cell</span><span class="p">;</span>
 
@@ -323,10 +323,10 @@ you to the problem).</p>
 <span class="p">}</span>
 
 <span class="n">GtkWidget</span> <span class="o">*</span>
-<span class="n">my_combo_box_new</span> <span class="p">(</span><span class="n">GtkCellArea</span> <span class="o">*</span><span class="n">area</span><span class="p">)</span>
+<span class="nf">my_combo_box_new</span> <span class="p">(</span><span class="n">GtkCellArea</span> <span class="o">*</span><span class="n">area</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="c1">// This call is going to cause a warning about area being ignored</span>
-  <span class="k">return</span> <span class="nf">g_object_new</span> <span class="p">(</span><span class="n">MY_TYPE_COMBO_BOX</span><span class="p">,</span> <span class="s">&quot;cell-area&quot;</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">g_object_new</span> <span class="p">(</span><span class="n">MY_TYPE_COMBO_BOX</span><span class="p">,</span> <span class="s">&quot;cell-area&quot;</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
 <span class="p">}</span></pre></td>
       </tr>
     </tbody>
