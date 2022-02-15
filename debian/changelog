@@ -1,3 +1,13 @@
+gtk+3.0 (3.24.20-0ubuntu1.1) focal; urgency=medium
+
+  * debian/patches/git_rendering_issues.patch:
+    - cherry pick an upstream fix for opengl display issues when using
+      software rendering (lp: #1960947)
+  * debian/patches/git_newglib_symbols.patch:
+    - backport patch to fix the build with the current libglib version
+
+ -- Sebastien Bacher <seb128@debian.org>  Tue, 15 Feb 2022 18:50:52 +0100
+
 gtk+3.0 (3.24.20-0ubuntu1) focal; urgency=medium
 
   * New stable version (lp: #1877590)

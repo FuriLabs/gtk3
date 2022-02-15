@@ -1,0 +1,41 @@
+From 69334021a22a79f5fddb30f0872fcf3fc6bc1cf0 Mon Sep 17 00:00:00 2001
+From: Rene Hopf <renehopf@mac.com>
+Date: Sun, 10 May 2020 21:21:08 +0200
+Subject: [PATCH] force redraw in glareawhen buffer_age is 0
+
+Reading form the back buffer is not allowed on software renderers,
+and this is reported by the buffer age, so reading from GL_BACK
+should not be done when the age is 0
+
+Closes #64
+---
+ gdk/x11/gdkglcontext-x11.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/gdk/x11/gdkglcontext-x11.c b/gdk/x11/gdkglcontext-x11.c
+index 821ef965d0..0d0422efa0 100644
+--- a/gdk/x11/gdkglcontext-x11.c
++++ b/gdk/x11/gdkglcontext-x11.c
+@@ -149,7 +149,7 @@ gdk_x11_window_invalidate_for_new_frame (GdkWindow      *window,
+ 
+ 
+   invalidate_all = FALSE;
+-  if (buffer_age == 0 || buffer_age >= 4)
++  if (buffer_age >= 4)
+     {
+       cairo_rectangle_int_t whole_window = { 0, 0, gdk_window_get_width (window), gdk_window_get_height (window) };
+ 
+@@ -163,6 +163,10 @@ gdk_x11_window_invalidate_for_new_frame (GdkWindow      *window,
+     }
+   else
+     {
++      if (buffer_age == 0)
++        {
++          invalidate_all = TRUE;
++        }
+       if (buffer_age >= 2)
+         {
+           if (window->old_updated_area[0])
+-- 
+GitLab
+
