@@ -16,6 +16,11 @@
 
 # GTK+ - The GIMP Toolkit
 
+# List of headers to be passed into glib-mkenums
+
+# GTK+ header files for public installation (non-generated, or generated
+# by configure)
+
 # Author: Fan, Chun-wei
 # Common Autotools file used to generate Visual Studio 2008+
 # Projects from their templates
@@ -1572,6 +1577,7 @@ ETAGS = etags
 CTAGS = ctags
 am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/a11y/Makefile.inc \
 	$(srcdir)/deprecated/Makefile.inc \
+	$(srcdir)/gtk-mkenums-headers.mak \
 	$(srcdir)/gtk-win32.rc.body.in $(srcdir)/gtkversion.h.in \
 	$(srcdir)/inspector/Makefile.inc $(srcdir)/libgtk3.manifest.in \
 	$(srcdir)/makefile.msc.in $(top_srcdir)/Makefile.decl \
@@ -2097,7 +2103,7 @@ a11y_c_sources = \
 	a11y/gtkwidgetaccessible.c		\
 	a11y/gtkwindowaccessible.c
 
-deprecated_h_sources = \
+gtk_deprecated_h_sources = \
 	deprecated/gtkactivatable.h	\
 	deprecated/gtkaction.h		\
 	deprecated/gtkactiongroup.h	\
@@ -2268,14 +2274,7 @@ inspector_templates = \
 	inspector/visual.ui		\
 	inspector/window.ui
 
-
-#
-# setup source file variables
-#
-
-# GTK+ header files for public installation (non-generated, or generated
-# by configure)
-gtk_public_h_sources = \
+GTK_PUB_HDRS = \
 	gtk.h			\
 	gtk-autocleanups.h	\
 	gtkx.h			\
@@ -2502,6 +2501,18 @@ gtk_public_h_sources = \
 	gtkwindow.h		\
 	gtkwindowgroup.h
 
+GTK_PRIVATE_TYPE_HDRS = \
+	gtkcsstypesprivate.h	\
+	gtktexthandleprivate.h
+
+
+#
+# setup source file variables
+#
+
+# GTK+ header files for public installation (non-generated, or generated
+# by configure)
+gtk_public_h_sources = $(GTK_PUB_HDRS)
 @OS_UNIX_TRUE@gtk_unix_print_public_h_sources = \
 @OS_UNIX_TRUE@	gtkpagesetupunixdialog.h	\
 @OS_UNIX_TRUE@	gtkprintunixdialog.h		\
@@ -2516,10 +2527,7 @@ gtk_public_h_sources = \
 gtk_semi_private_h_sources = \
 	gtktextlayout.h
 
-gtk_private_type_h_sources = \
-	gtkcsstypesprivate.h	\
-	gtktexthandleprivate.h
-
+gtk_private_type_h_sources = $(GTK_PRIVATE_TYPE_HDRS)
 
 # GTK+ header files that don't get installed
 gtk_private_h_sources = $(inspector_h_sources) \
@@ -2987,7 +2995,7 @@ gtkinclude_HEADERS = $(gtk_public_h_sources) $(gtk_semi_private_h_sources) $(gtk
 a11yincludedir = $(includedir)/gtk-3.0/gtk/a11y
 a11yinclude_HEADERS = $(a11y_h_sources)
 deprecatedincludedir = $(includedir)/gtk-3.0/gtk/deprecated
-deprecatedinclude_HEADERS = $(deprecated_h_sources)
+deprecatedinclude_HEADERS = $(gtk_deprecated_h_sources)
 gtkunixprintincludedir = $(includedir)/gtk-3.0/unix-print/gtk
 gtkunixprintinclude_HEADERS = $(gtk_unix_print_public_h_sources)
 nodist_libgtk_3_la_SOURCES = $(nodist_gtk_c_sources)
@@ -3003,18 +3011,16 @@ MSVCPROJS = gtk-3
 gtk_3_FILES = \
 	$(gtk_base_c_sources)		\
 	$(gtk_os_win32_c_sources)	\
-	$(gtk_use_win32_c_sources)	\
-	$(gtk_dbus_built_sources)	\
-	$(gtk_built_sources)
+	$(gtk_use_win32_c_sources)
 
 gtk_3_EXCLUDES = dummy
 gtk_3_HEADERS_DIR = $(gtkincludedir)
 gtk_3_HEADERS_INST = \
-	$(gtkinclude_HEADERS)	\
+	$(filter-out gtkversion.h, $(gtkinclude_HEADERS))	\
 	$(a11y_h_sources)	\
-	$(deprecated_h_sources)
+	$(gtk_deprecated_h_sources)
 
-gtk_3_HEADERS_EXCLUDES = dummy
+gtk_3_HEADERS_EXCLUDES = gtktypebuiltins.h
 _proj_name = $(subst /,_,$(subst -,_,$(subst .,_,$(1))))
 _proj_path_raw := $(subst $(abs_top_srcdir),,$(abs_srcdir))
 _proj_path = $(subst /,\\,$(_proj_path_raw))
@@ -3051,7 +3057,10 @@ _headers_destdir = $(subst /,\\,$(_headers_dest_posix))
 @HAVE_INTROSPECTION_TRUE@	-DINCLUDE_IM_ti_et			\
 @HAVE_INTROSPECTION_TRUE@	-DINCLUDE_IM_viqr			\
 @HAVE_INTROSPECTION_TRUE@	-DGTK_TEXT_USE_INTERNAL_UNSUPPORTED_API	\
-@HAVE_INTROSPECTION_TRUE@	-I.. -I../gtk -I../gdk
+@HAVE_INTROSPECTION_TRUE@	-I'./vs$$$$(VSVER)/$$$$(CFG)/$$$$(PLAT)/obj/gtk-3'	\
+@HAVE_INTROSPECTION_TRUE@	-I'./vs$$$$(VSVER)/$$$$(CFG)/$$$$(PLAT)/obj/gdk-3' -I..	\
+@HAVE_INTROSPECTION_TRUE@	-I'./vs$$$$(VSVER)/$$$$(CFG)/$$$$(PLAT)/obj/gtk-3/gtk' -I../gtk	\
+@HAVE_INTROSPECTION_TRUE@	-I'./vs$$$$(VSVER)/$$$$(CFG)/$$$$(PLAT)/obj/gdk-3/gdk' -I../gdk
 
 @HAVE_INTROSPECTION_FALSE@INTROSPECTION_INTERMEDIATE_ITEMS = 
 @HAVE_INTROSPECTION_TRUE@INTROSPECTION_INTERMEDIATE_ITEMS = \
@@ -3059,11 +3068,9 @@ _headers_destdir = $(subst /,\\,$(_headers_dest_posix))
 @HAVE_INTROSPECTION_TRUE@	$(top_builddir)/win32/Gtk_3_0_gir_list
 
 @HAVE_INTROSPECTION_TRUE@Gtk_3_0_gir_MSVC_FILES = \
-@HAVE_INTROSPECTION_TRUE@	$(introspected_pub_headers)	\
+@HAVE_INTROSPECTION_TRUE@	$(filter-out gtktypebuiltins.h gtkversion.h, $(introspected_pub_headers)) \
 @HAVE_INTROSPECTION_TRUE@	$(gtk_base_c_sources)		\
-@HAVE_INTROSPECTION_TRUE@	$(gtk_os_win32_c_sources)	\
-@HAVE_INTROSPECTION_TRUE@	gtktypebuiltins.h		\
-@HAVE_INTROSPECTION_TRUE@	gtktypebuiltins.c
+@HAVE_INTROSPECTION_TRUE@	$(gtk_os_win32_c_sources)
 
 @HAVE_INTROSPECTION_TRUE@Gtk_3_0_gir_MSVC_EXPORT_PACKAGES = $(Gtk_3_0_gir_EXPORT_PACKAGES)
 @HAVE_INTROSPECTION_TRUE@Gtk_3_0_gir_MSVC_INCLUDE_GIRS = Atk-1.0
@@ -3184,7 +3191,7 @@ all: $(BUILT_SOURCES)
 
 .SUFFIXES:
 .SUFFIXES: .c .lo .o .obj
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.decl $(srcdir)/a11y/Makefile.inc $(srcdir)/deprecated/Makefile.inc $(srcdir)/inspector/Makefile.inc $(top_srcdir)/win32/Makefile.msvcproj $(top_srcdir)/win32/Makefile.msvc-introspection $(am__configure_deps)
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.decl $(srcdir)/a11y/Makefile.inc $(srcdir)/deprecated/Makefile.inc $(srcdir)/inspector/Makefile.inc $(srcdir)/gtk-mkenums-headers.mak $(top_srcdir)/win32/Makefile.msvcproj $(top_srcdir)/win32/Makefile.msvc-introspection $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -3204,7 +3211,7 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	    echo ' cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__maybe_remake_depfiles)'; \
 	    cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__maybe_remake_depfiles);; \
 	esac;
-$(top_srcdir)/Makefile.decl $(srcdir)/a11y/Makefile.inc $(srcdir)/deprecated/Makefile.inc $(srcdir)/inspector/Makefile.inc $(top_srcdir)/win32/Makefile.msvcproj $(top_srcdir)/win32/Makefile.msvc-introspection $(am__empty):
+$(top_srcdir)/Makefile.decl $(srcdir)/a11y/Makefile.inc $(srcdir)/deprecated/Makefile.inc $(srcdir)/inspector/Makefile.inc $(srcdir)/gtk-mkenums-headers.mak $(top_srcdir)/win32/Makefile.msvcproj $(top_srcdir)/win32/Makefile.msvc-introspection $(am__empty):
 
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
@@ -9627,15 +9634,15 @@ gtkmarshalers.c: gtkmarshalers.list
 
 gtktypebuiltins.h: stamp-gtktypebuiltins.h
 	@true
-stamp-gtktypebuiltins.h: $(gtk_public_h_sources) $(a11y_h_sources) $(deprecated_h_sources) gtktypebuiltins.h.template
+stamp-gtktypebuiltins.h: $(gtk_public_h_sources) $(a11y_h_sources) $(gtk_deprecated_h_sources) gtktypebuiltins.h.template
 	$(AM_V_GEN) ( cd $(srcdir) && $(GLIB_MKENUMS) --template gtktypebuiltins.h.template \
-		$(gtk_public_h_sources) $(a11y_h_sources) $(deprecated_h_sources) ) > xgen-gtbh \
+		$(gtk_public_h_sources) $(a11y_h_sources) $(gtk_deprecated_h_sources) ) > xgen-gtbh \
 	&& (cmp -s xgen-gtbh gtktypebuiltins.h || cp xgen-gtbh gtktypebuiltins.h ) \
 	&& rm -f xgen-gtbh \
 	&& echo timestamp > $(@F)
-gtktypebuiltins.c: $(gtk_public_h_sources) $(a11y_h_sources) $(deprecated_h_sources) gtktypebuiltins.c.template
+gtktypebuiltins.c: $(gtk_public_h_sources) $(a11y_h_sources) $(gtk_deprecated_h_sources) gtktypebuiltins.c.template
 	$(AM_V_GEN) ( cd $(srcdir) && $(GLIB_MKENUMS) --template gtktypebuiltins.c.template \
-		$(gtk_public_h_sources) $(a11y_h_sources) $(deprecated_h_sources) ) > xgen-gtbc \
+		$(gtk_public_h_sources) $(a11y_h_sources) $(gtk_deprecated_h_sources) ) > xgen-gtbc \
 	&& cp xgen-gtbc gtktypebuiltins.c  \
 	&& rm -f xgen-gtbc
 
@@ -9863,7 +9870,7 @@ $(foreach proj,$(MSVCPROJS),$(eval $(call msvcproj-builder,$(proj))))
 @HAVE_INTROSPECTION_TRUE@	-$(RM) $(top_builddir)/win32/$(1).msvc.introspect
 
 # Assemble the Command to Run g-ir-scanner
-@HAVE_INTROSPECTION_TRUE@	echo 'vs$$$$(VSVER)\$$$$(CFG)\$$$$(PLAT)\bin\'$(1)': '$(_gir_name)'_list '$($(_gir_name)_MSVC_GIR_DEPS)>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo 'vs$$$$(VSVER)\$$$$(CFG)\$$$$(PLAT)\bin\'$(1)': '$(_gir_name)'_list_final '$($(_gir_name)_MSVC_GIR_DEPS)>>$(top_builddir)/win32/$(1).msvc.introspect
 @HAVE_INTROSPECTION_TRUE@	echo '	@-echo Generating $$$$@...'>>$(top_builddir)/win32/$(1).msvc.introspect
 @HAVE_INTROSPECTION_TRUE@	echo '	$$$$(PYTHON) $$$$(G_IR_SCANNER)	\'>>$(top_builddir)/win32/$(1).msvc.introspect
 @HAVE_INTROSPECTION_TRUE@	echo '	--verbose -no-libtool	\'>>$(top_builddir)/win32/$(1).msvc.introspect
@@ -9880,7 +9887,7 @@ $(foreach proj,$(MSVCPROJS),$(eval $(call msvcproj-builder,$(proj))))
 @HAVE_INTROSPECTION_TRUE@	echo '	'$($(_gir_name)_MSVC_CFLAGS)'	\'>>$(top_builddir)/win32/$(1).msvc.introspect
 @HAVE_INTROSPECTION_TRUE@	echo '	--cflags-end	\'>>$(top_builddir)/win32/$(1).msvc.introspect
 @HAVE_INTROSPECTION_TRUE@	echo '	'$($(_gir_name)_MSVC_SCANNERFLAGS)'	\'>>$(top_builddir)/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	--filelist='$(_gir_name)'_list	\'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	--filelist='$(_gir_name)'_list_final	\'>>$(top_builddir)/win32/$(1).msvc.introspect
 @HAVE_INTROSPECTION_TRUE@	echo '	-L.\vs$$$$(VSVER)\$$$$(CFG)\$$$$(PLAT)\bin	\'>>$(top_builddir)/win32/$(1).msvc.introspect
 @HAVE_INTROSPECTION_TRUE@	echo '	-o $$$$@'>>$(top_builddir)/win32/$(1).msvc.introspect
 @HAVE_INTROSPECTION_TRUE@	echo '' >>$(top_builddir)/win32/$(1).msvc.introspect

@@ -753,12 +753,23 @@ window_update_scale (GdkWindow *window)
       return;
     }
 
-  scale = 1;
-  for (l = impl->display_server.outputs; l != NULL; l = l->next)
+  if (!impl->display_server.outputs)
     {
-      guint32 output_scale =
-        _gdk_wayland_screen_get_output_scale (display_wayland->screen, l->data);
-      scale = MAX (scale, output_scale);
+      scale = impl->scale;
+    }
+  else
+    {
+      scale = 1;
+      for (l = impl->display_server.outputs; l != NULL; l = l->next)
+        {
+          struct wl_output *output = l->data;
+          uint32_t output_scale;
+
+          output_scale =
+            _gdk_wayland_screen_get_output_scale (display_wayland->screen,
+                                                  output);
+          scale = MAX (scale, output_scale);
+        }
     }
 
   /* Notify app that scale changed */
@@ -1995,6 +2006,13 @@ create_zxdg_toplevel_v6_resources (GdkWindow *window)
                                  window);
 }
 
+/**
+ * gdk_wayland_window_set_application_id:
+ * @window:
+ * @application_id:
+ *
+ * Since: 3.24.22
+ */
 void
 gdk_wayland_window_set_application_id (GdkWindow *window, const char* application_id)
 {

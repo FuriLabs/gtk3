@@ -10,8 +10,8 @@
 
 m4_define([gtk_major_version], [3])
 m4_define([gtk_minor_version], [24])
-m4_define([gtk_micro_version], [31])
-m4_define([gtk_interface_age], [27])
+m4_define([gtk_micro_version], [32])
+m4_define([gtk_interface_age], [28])
 m4_define([gtk_binary_age],
           [m4_eval(100 * gtk_minor_version + gtk_micro_version)])
 m4_define([gtk_version],
@@ -395,7 +395,7 @@ if test "$enable_win32_backend" = "yes"; then
   backend_immodules="$backend_immodules,ime"
   GDK_WINDOWING="$GDK_WINDOWING
 #define GDK_WINDOWING_WIN32"
-  GDK_EXTRA_LIBS="$GDK_EXTRA_LIBS -lgdi32 -limm32 -lshell32 -lole32 -Wl,-luuid -lwinmm -ldwmapi -lsetupapi -lcfgmgr32"
+  GDK_EXTRA_LIBS="$GDK_EXTRA_LIBS -lgdi32 -limm32 -lshell32 -lole32 -Wl,-luuid -lwinmm -ldwmapi -lsetupapi -lcfgmgr32 -lwinspool -lcomctl32 -lcomdlg32"
   AM_CONDITIONAL(USE_WIN32, true)
   PANGO_PACKAGES="pangowin32 pangocairo"
 else

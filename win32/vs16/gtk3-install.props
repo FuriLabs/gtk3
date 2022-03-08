@@ -113,7 +113,28 @@ copy ..\gail-3.0.pc $(CopyDir)\lib\pkgconfig
 echo off
 mkdir $(CopyDir)\include\gtk-$(ApiVersion)\gdk\win32
 mkdir $(CopyDir)\include\gtk-$(ApiVersion)\gdk\deprecated
+mkdir $(CopyDir)\include\gtk-$(ApiVersion)\gtk\a11y
+mkdir $(CopyDir)\include\gtk-$(ApiVersion)\gtk\deprecated
 copy ..\..\gdk\win32\gdkwin32.h $(CopyDir)\include\gtk-$(ApiVersion)\gdk
+if "$(Configuration)" == "Release" goto COPY_RELEASE_BUILT_HEADERS
+if "$(Configuration)" == "Release_Broadway" goto COPY_RELEASE_BUILT_HEADERS
+if "$(Configuration)" == "Debug" goto COPY_DEBUG_BUILT_HEADERS
+if "$(Configuration)" == "Debug_Broadway" goto COPY_DEBUG_BUILT_HEADERS
+:COPY_DEBUG_BUILT_HEADERS
+copy .\Debug\$(Platform)\obj\gdk-3\gdk\gdkconfig.h $(CopyDir)\include\gtk-$(ApiVersion)\gdk
+copy .\Debug\$(Platform)\obj\gdk-3\gdk\gdkenumtypes.h $(CopyDir)\include\gtk-$(ApiVersion)\gdk
+copy .\Debug\$(Platform)\obj\gdk-3\gdk\gdkversionmacros.h $(CopyDir)\include\gtk-$(ApiVersion)\gdk
+copy .\Debug\$(Platform)\obj\gtk-3\gtk\gtktypebuiltins.h $(CopyDir)\include\gtk-$(ApiVersion)\gtk
+copy .\Debug\$(Platform)\obj\gtk-3\gtk\gtkversion.h $(CopyDir)\include\gtk-$(ApiVersion)\gtk
+goto CONTINUE_HEADERS
+:COPY_RELEASE_BUILT_HEADERS
+copy .\Release\$(Platform)\obj\gdk-3\gdk\gdkconfig.h $(CopyDir)\include\gtk-$(ApiVersion)\gdk
+copy .\Release\$(Platform)\obj\gdk-3\gdk\gdkenumtypes.h $(CopyDir)\include\gtk-$(ApiVersion)\gdk
+copy .\Release\$(Platform)\obj\gdk-3\gdk\gdkversionmacros.h $(CopyDir)\include\gtk-$(ApiVersion)\gdk
+copy .\Release\$(Platform)\obj\gtk-3\gtk\gtktypebuiltins.h $(CopyDir)\include\gtk-$(ApiVersion)\gtk
+copy .\Release\$(Platform)\obj\gtk-3\gtk\gtkversion.h $(CopyDir)\include\gtk-$(ApiVersion)\gtk
+goto CONTINUE_HEADERS
+:CONTINUE_HEADERS
 copy ..\..\gdk\gdk.h $(CopyDir)\include\gtk-3.0\gdk\gdk.h
 copy ..\..\gdk\gdk-autocleanup.h $(CopyDir)\include\gtk-3.0\gdk\gdk-autocleanup.h
 copy ..\..\gdk\gdkapplaunchcontext.h $(CopyDir)\include\gtk-3.0\gdk\gdkapplaunchcontext.h
@@ -151,9 +172,6 @@ copy ..\..\gdk\gdktypes.h $(CopyDir)\include\gtk-3.0\gdk\gdktypes.h
 copy ..\..\gdk\gdkvisual.h $(CopyDir)\include\gtk-3.0\gdk\gdkvisual.h
 copy ..\..\gdk\gdkwindow.h $(CopyDir)\include\gtk-3.0\gdk\gdkwindow.h
 copy ..\..\gdk\deprecated\gdkcolor.h $(CopyDir)\include\gtk-3.0\gdk\deprecated\gdkcolor.h
-copy ..\..\gdk\gdkconfig.h $(CopyDir)\include\gtk-3.0\gdk\gdkconfig.h
-copy ..\..\gdk\gdkenumtypes.h $(CopyDir)\include\gtk-3.0\gdk\gdkenumtypes.h
-copy ..\..\gdk\gdkversionmacros.h $(CopyDir)\include\gtk-3.0\gdk\gdkversionmacros.h
 copy ..\..\gdk\win32\gdkwin32cursor.h $(CopyDir)\include\gtk-3.0\gdk\win32\gdkwin32cursor.h
 copy ..\..\gdk\win32\gdkwin32display.h $(CopyDir)\include\gtk-3.0\gdk\win32\gdkwin32display.h
 copy ..\..\gdk\win32\gdkwin32displaymanager.h $(CopyDir)\include\gtk-3.0\gdk\win32\gdkwin32displaymanager.h
@@ -164,8 +182,6 @@ copy ..\..\gdk\win32\gdkwin32misc.h $(CopyDir)\include\gtk-3.0\gdk\win32\gdkwin3
 copy ..\..\gdk\win32\gdkwin32monitor.h $(CopyDir)\include\gtk-3.0\gdk\win32\gdkwin32monitor.h
 copy ..\..\gdk\win32\gdkwin32screen.h $(CopyDir)\include\gtk-3.0\gdk\win32\gdkwin32screen.h
 copy ..\..\gdk\win32\gdkwin32window.h $(CopyDir)\include\gtk-3.0\gdk\win32\gdkwin32window.h
-mkdir $(CopyDir)\include\gtk-$(ApiVersion)\gtk\a11y
-mkdir $(CopyDir)\include\gtk-$(ApiVersion)\gtk\deprecated
 copy ..\..\gtk\gtk.h $(CopyDir)\include\gtk-3.0\gtk\gtk.h
 copy ..\..\gtk\gtk-autocleanups.h $(CopyDir)\include\gtk-3.0\gtk\gtk-autocleanups.h
 copy ..\..\gtk\gtkx.h $(CopyDir)\include\gtk-3.0\gtk\gtkx.h
@@ -392,8 +408,6 @@ copy ..\..\gtk\gtkwidgetpath.h $(CopyDir)\include\gtk-3.0\gtk\gtkwidgetpath.h
 copy ..\..\gtk\gtkwindow.h $(CopyDir)\include\gtk-3.0\gtk\gtkwindow.h
 copy ..\..\gtk\gtkwindowgroup.h $(CopyDir)\include\gtk-3.0\gtk\gtkwindowgroup.h
 copy ..\..\gtk\gtktextlayout.h $(CopyDir)\include\gtk-3.0\gtk\gtktextlayout.h
-copy ..\..\gtk\gtktypebuiltins.h $(CopyDir)\include\gtk-3.0\gtk\gtktypebuiltins.h
-copy ..\..\gtk\gtkversion.h $(CopyDir)\include\gtk-3.0\gtk\gtkversion.h
 copy ..\..\gtk\a11y\gtk-a11y-autocleanups.h $(CopyDir)\include\gtk-3.0\gtk\a11y\gtk-a11y-autocleanups.h
 copy ..\..\gtk\a11y\gtkarrowaccessible.h $(CopyDir)\include\gtk-3.0\gtk\a11y\gtkarrowaccessible.h
 copy ..\..\gtk\a11y\gtkbooleancellaccessible.h $(CopyDir)\include\gtk-3.0\gtk\a11y\gtkbooleancellaccessible.h

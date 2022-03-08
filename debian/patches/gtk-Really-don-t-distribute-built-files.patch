@@ -12,10 +12,10 @@ Bug: https://gitlab.gnome.org/GNOME/gtk/issues/357
  1 file changed, 7 insertions(+), 8 deletions(-)
 
 diff --git a/gtk/Makefile.am b/gtk/Makefile.am
-index 057c21d..9d37860 100644
+index 8fde3a0..d2deb2d 100644
 --- a/gtk/Makefile.am
 +++ b/gtk/Makefile.am
-@@ -552,7 +552,6 @@ gtk_private_h_sources =		\
+@@ -325,7 +325,6 @@ gtk_private_h_sources =		\
  	gtkrenderborderprivate.h \
  	gtkrendericonprivate.h	\
  	gtkrenderprivate.h	\
@@ -23,7 +23,7 @@ index 057c21d..9d37860 100644
  	gtkroundedboxprivate.h	\
  	gtksearchengine.h	\
  	gtksearchenginesimple.h	\
-@@ -1177,20 +1176,18 @@ gtk_extra_sources =				\
+@@ -950,20 +949,18 @@ gtk_extra_sources =				\
  #
  # setup GTK+ sources and their dependencies
  #
@@ -47,7 +47,7 @@ index 057c21d..9d37860 100644
  
  
  pkgdatadir = $(datadir)/gtk-$(GTK_API_VERSION)
-@@ -1464,7 +1461,8 @@ $(srcdir)/gtktestutils.c: gtktypefuncs.inc
+@@ -1237,7 +1234,8 @@ $(srcdir)/gtktestutils.c: gtktypefuncs.inc
  lib_LTLIBRARIES = libgtk-3.la
  
  gtkincludedir = $(includedir)/gtk-3.0/gtk
@@ -57,15 +57,15 @@ index 057c21d..9d37860 100644
  
  a11yincludedir = $(includedir)/gtk-3.0/gtk/a11y
  a11yinclude_HEADERS= $(a11y_h_sources)
-@@ -1523,6 +1521,7 @@ gtk_3_HEADERS_DIR = $(gtkincludedir)
+@@ -1294,6 +1292,7 @@ gtk_3_HEADERS_DIR = $(gtkincludedir)
  
  gtk_3_HEADERS_INST = \
- 	$(gtkinclude_HEADERS)	\
+ 	$(filter-out gtkversion.h, $(gtkinclude_HEADERS))	\
 +	$(nodist_gtkinclude_HEADERS)	\
  	$(a11y_h_sources)	\
- 	$(deprecated_h_sources)
+ 	$(gtk_deprecated_h_sources)
  
-@@ -1604,7 +1603,7 @@ distclean-local:
+@@ -1376,7 +1375,7 @@ distclean-local:
  	fi
  
  if HAVE_INTROSPECTION

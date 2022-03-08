@@ -17,12 +17,12 @@ Bug: https://gitlab.gnome.org/GNOME/gtk/issues/357
  1 file changed, 6 insertions(+), 23 deletions(-)
 
 diff --git a/gdk/Makefile.am b/gdk/Makefile.am
-index 710a548..fbdd193 100644
+index 860973b..53ec8d3 100644
 --- a/gdk/Makefile.am
 +++ b/gdk/Makefile.am
-@@ -203,16 +203,8 @@ nodist_gdkinclude_HEADERS = gdkconfig.h gdkenumtypes.h gdkversionmacros.h
+@@ -161,16 +161,8 @@ nodist_gdkinclude_HEADERS = gdkconfig.h gdkenumtypes.h gdkversionmacros.h
  deprecatedincludedir = $(includedir)/gtk-3.0/gdk/deprecated
- deprecatedinclude_HEADERS = $(deprecated_h_sources)
+ deprecatedinclude_HEADERS = $(gdk_deprecated_h_sources)
  
 -common_sources = 		\
 -	$(gdk_private_headers)	\
@@ -39,7 +39,7 @@ index 710a548..fbdd193 100644
  libgdk_3_la_CFLAGS = $(AM_CFLAGS) $(GDK_HIDDEN_VISIBILITY_CFLAGS)
  libgdk_3_la_LIBADD = $(GDK_DEP_LIBS) $(SHM_LIBS)
  libgdk_3_la_LDFLAGS = $(LDADD)
-@@ -412,10 +404,8 @@ endif
+@@ -370,10 +362,8 @@ endif
  
  lib_LTLIBRARIES = libgdk-3.la
  
@@ -52,16 +52,16 @@ index 710a548..fbdd193 100644
  
  install-exec-hook:
  if DISABLE_EXPLICIT_DEPS
-@@ -499,7 +489,7 @@ gdkresources.c: gdk.gresource.xml $(resource_files)
+@@ -457,7 +447,7 @@ gdkresources.c: gdk.gresource.xml $(resource_files)
  # ------------------- MSVC Build Items ----------------
  MSVCPROJS = gdk-3
  
--gdk_3_FILES = $(libgdk_3_la_SOURCES)
-+gdk_3_FILES = $(libgdk_3_la_SOURCES) $(nodist_libgdk_3_la_SOURCES)
+-gdk_3_FILES = $(gdk_c_sources)
++gdk_3_FILES = $(gdk_c_sources) $(gdk_built_sources)
  gdk_3_EXCLUDES = dummy
  gdk_3_HEADERS_DIR = $(gdkincludedir)
  
-@@ -553,20 +543,13 @@ dist-hook: \
+@@ -513,20 +503,13 @@ dist-hook: \
  	$(top_builddir)/win32/vs9/gdk-3.headers	\
  	$(INTROSPECTION_INTERMEDIATE_ITEMS)
  

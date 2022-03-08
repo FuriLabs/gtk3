@@ -53,12 +53,13 @@
 #include "gtkcombobox.h"
 #include "gtkgesturemultipress.h"
 
-#if (PANGO_VERSION_CHECK(1,44,0) && HB_VERSION_ATLEAST(2,2,0)) || \
-    (defined(HAVE_HARFBUZZ) && defined(HAVE_PANGOFT))
-#define HAVE_FONT_FEATURES 1
-#if !(PANGO_VERSION_CHECK(1,44,0) && HB_VERSION_ATLEAST(2,2,0))
-#define FONT_FEATURES_USE_PANGOFT2 1
-#endif
+#if !PANGO_VERSION_CHECK(1,44,0)
+# if (defined(HAVE_HARFBUZZ) && defined(HAVE_PANGOFT))
+#  define HAVE_FONT_FEATURES 1
+#  define FONT_FEATURES_USE_PANGOFT2 1
+# endif
+#elif HB_VERSION_ATLEAST(2,2,0)
+# define HAVE_FONT_FEATURES 1
 #endif
 
 #ifdef FONT_FEATURES_USE_PANGOFT2
@@ -1621,12 +1622,13 @@ static struct {
  * We actually don't bother about the FT_Face here, but we use this so that we can have a single
  * version of add_axis() taylored to PangoFT2 or Pango with HarfBuzz integrated
  */
-static void *
+static void
 get_font_name (FT_Face      face,
                FT_Var_Axis *ax,
-               const char  *result)
+               char        *buffer,
+               guint        buffer_len)
 {
-  result = ax->name;
+  g_strlcpy (buffer, ax->name, buffer_len);
 }
 
 static const float
@@ -1661,13 +1663,10 @@ get_axis_float_default (FT_Var_Axis *ax)
 static void
 get_font_name (hb_face_t             *face,
                hb_ot_var_axis_info_t *ax,
-               const char            *name)
+               char                  *buffer,
+               unsigned int           buffer_len)
 {
-  char buffer[20];
-  unsigned int buffer_len = 20;
-
   hb_ot_name_get_utf8 (face, ax->name_id, HB_LANGUAGE_INVALID, &buffer_len, buffer);
-  name = buffer;
 }
 
 #define get_float_value(x) x
@@ -1712,7 +1711,8 @@ add_axis (GtkFontChooserWidget *fontchooser,
 {
   GtkFontChooserWidgetPrivate *priv = fontchooser->priv;
   Axis *axis;
-  const char *name;
+  char buffer[20];
+  char *name;
   int i;
 
   axis = g_new (Axis, 1);
@@ -1720,7 +1720,8 @@ add_axis (GtkFontChooserWidget *fontchooser,
   axis->fontchooser = GTK_WIDGET (fontchooser);
   axis->default_value = get_axis_float_default (ax);
 
-  get_font_name (face, ax, name);
+  get_font_name (face, ax, buffer, 20);
+  name = buffer;
 
   for (i = 0; i < G_N_ELEMENTS (axis_names); i++)
     {
@@ -2392,7 +2393,7 @@ gtk_font_chooser_widget_update_font_features (GtkFontChooserWidget *fontchooser)
   pango_font = pango_context_load_font (gtk_widget_get_pango_context (GTK_WIDGET (fontchooser)),
                                         priv->font_desc);
 
-#ifdef FONT_FEATURE_USE_PANGOFT2
+#ifdef FONT_FEATURES_USE_PANGOFT2
   if (PANGO_IS_FC_FONT (pango_font))
     {
       ft_face = pango_fc_font_lock_face (PANGO_FC_FONT (pango_font)),
@@ -2470,7 +2471,7 @@ gtk_font_chooser_widget_update_font_features (GtkFontChooserWidget *fontchooser)
         hb_face_destroy (hb_face);
     }
 
-#if FONT_FEATURE_USE_PANGOFT2
+#if FONT_FEATURES_USE_PANGOFT2
   if (PANGO_IS_FC_FONT (pango_font))
     pango_fc_font_unlock_face (PANGO_FC_FONT (pango_font));
 #endif

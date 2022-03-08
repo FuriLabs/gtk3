@@ -1,5 +1,5 @@
 project('gtk+-3.0', 'c',
-        version: '3.24.31',
+        version: '3.24.32',
         default_options: [
           'buildtype=debugoptimized',
           'warning_level=1'
@@ -52,7 +52,7 @@ gtk_version       = meson.project_version()
 gtk_major_version = gtk_version.split('.')[0].to_int()
 gtk_minor_version = gtk_version.split('.')[1].to_int()
 gtk_micro_version = gtk_version.split('.')[2].to_int()
-gtk_interface_age = 27
+gtk_interface_age = 28
 add_project_arguments('-DGTK_VERSION="@0@"'.format(meson.project_version()), language: 'c')
 
 add_project_arguments('-D_GNU_SOURCE', language: 'c')
@@ -94,14 +94,17 @@ if cc.get_id() == 'msvc'
     # Visual Studio 2015 and later (19.xx.xxxxx or later): look at the minor version.
     # If minor version < 10: Visual Studio 2015,
     #    10 < minor version < 20: Visual Studio 2017,
-    #    20 < minor version: Visual Studio 2019
+    #    20 < minor version < 30: Visual Studio 2019,
+    #    30 < minor version: Visual Studio 2022
     mscsubver = cc.version().split('.')[1].to_int()
     if mscsubver < 10
       vsver = 14
     elif mscsubver < 20
       vsver = 15
-    else
+    elif mscsubver < 30
       vsver = 16
+    else
+      vsver = 17
     endif
   endif
 
@@ -499,6 +502,8 @@ else
   cdata.set_quoted('ISO_CODES_PREFIX', get_option('prefix'))
 endif
 
+backend_immodules = []
+
 pc_gdk_extra_libs = []
 
 cairo_found_type = cairo_dep.type_name()
@@ -554,6 +559,7 @@ if wayland_enabled
   wlprotocolsdep = dependency('wayland-protocols', version: wayland_proto_req)
   wlcursordep    = dependency('wayland-cursor', version: wayland_req)
   wlegldep       = dependency('wayland-egl')
+  backend_immodules += ['wayland']
 
   wayland_pkgs = [
     'wayland-client', wayland_req,
@@ -577,6 +583,8 @@ if x11_enabled
   xcomposite_dep = dependency('xcomposite', required: false)
   fontconfig_dep = dependency('fontconfig', fallback: ['fontconfig', 'fontconfig_dep'])
   atkbridge_dep  = dependency('atk-bridge-2.0', version: at_spi2_atk_req)
+
+  backend_immodules += ['xim']
 
   x11_pkgs = ['fontconfig', 'x11', 'xext', 'xi', 'xrandr']
 
@@ -656,10 +664,12 @@ endif
 
 if broadway_enabled
   pc_gdk_extra_libs += ['-lz']
+  backend_immodules += ['broadway']
 endif
 
 if quartz_enabled
   pc_gdk_extra_libs += ['-Wl,-framework,Cocoa', '-Wl,-framework,Carbon', '-Wl,-framework,CoreGraphics']
+  backend_immodules += ['quartz']
 endif
 
 extra_demo_ldflags = []
@@ -673,7 +683,8 @@ if win32_enabled
   else
     pc_gdk_extra_libs += ['-Wl,-luuid']
   endif
-  pc_gdk_extra_libs += ['-lwinmm', '-ldwmapi', '-lsetupapi', '-lcfgmgr32']
+  pc_gdk_extra_libs += ['-lwinmm', '-ldwmapi', '-lsetupapi', '-lcfgmgr32', '-lhid', '-lwinspool', '-lcomctl32', '-lcomdlg32']
+  backend_immodules += ['ime']
 
   # Check whether libepoxy is built with EGL support on Windows
   win32_has_egl = epoxy_dep.get_variable(
@@ -684,20 +695,30 @@ endif
 
 # IMModules stuff-unfortunately we need to put items here
 # as they can be built as modules or built directly into GTK
+builtin_all_immodules = false
+
 builtin_modules_opt = get_option('builtin_immodules')
-if builtin_modules_opt == 'auto'
+builtin_immodules = []
+
+if builtin_modules_opt == ''
   if os_win32
     # Current MSVC projects build all immodules directly into GTK by default,
     # as does the mingw autotools build
     message('IMModules are built into GTK for MSVC builds by default')
-    builtin_immodules = true
+    builtin_immodules = ['all']
   else
-    builtin_immodules = false
+    builtin_immodules = ['none']
   endif
-elif builtin_modules_opt == 'yes'
-  builtin_immodules = true
 else
-  builtin_immodules = false
+  builtin_immodules = builtin_modules_opt.split(',')
+endif
+
+if builtin_immodules.contains('none')
+  builtin_immodules = []
+elif builtin_immodules.contains('all')
+  builtin_all_immodules = true
+elif builtin_immodules.contains('backend')
+  builtin_immodules += backend_immodules
 endif
 
 proto_sources = [
@@ -987,13 +1008,25 @@ subdir('docs/reference')
 
 install_data('m4macros/gtk-3.0.m4', install_dir: join_paths(get_option('datadir'), 'aclocal'))
 
-# Keep this in sync with post-install.py expected arguments
-meson.add_install_script('build-aux/meson/post-install.py',
-                         gtk_api_version,
-                         gtk_binary_version,
-                         join_paths(gtk_prefix, get_option('bindir')),
-                         gtk_libdir,
-                         gtk_datadir)
+if not meson.is_cross_build()
+  if meson.version().version_compare('>=0.57.0')
+    gnome.post_install(
+      glib_compile_schemas: true,
+      gio_querymodules: gio_module_dirs,
+      gtk_update_icon_cache: get_option('demos'),
+    )
+  else
+    # Keep this in sync with post-install.py expected arguments
+    meson.add_install_script('build-aux/meson/post-install.py',
+                             gtk_api_version,
+                             gtk_binary_version,
+                             join_paths(gtk_prefix, get_option('bindir')),
+                             gtk_libdir,
+                             gtk_datadir)
+  endif
+else
+  message('Not executing post-install steps automatically when cross compiling')
+endif
 
 if host_machine.system() != 'windows'
   # Install Valgrind suppression files (except on Windows,

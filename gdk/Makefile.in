@@ -378,7 +378,7 @@ am__define_uniq_tagged_files = \
   done | $(am__uniquify_input)`
 ETAGS = etags
 CTAGS = ctags
-am__DIST_COMMON = $(srcdir)/Makefile.in \
+am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/gdk-pub-headers.mak \
 	$(srcdir)/gdkversionmacros.h.in $(top_srcdir)/Makefile.decl \
 	$(top_srcdir)/build-aux/depcomp \
 	$(top_srcdir)/win32/Makefile.msvc-introspection \
@@ -722,6 +722,52 @@ XVFB_START = \
 	|| { echo "Gtk+Tests:ERROR: Failed to start Xvfb environment for X11 target tests."; exit 1; } \
 	&& DISPLAY=:$$XID && export DISPLAY
 
+
+#
+# GDK header files for public installation (non-generated)
+#
+#
+gdk_public_h_sources = \
+	gdk.h					\
+	gdk-autocleanup.h			\
+	gdkapplaunchcontext.h			\
+	gdkcairo.h				\
+	gdkcursor.h				\
+	gdkdevice.h				\
+	gdkdevicepad.h				\
+	gdkdevicetool.h				\
+	gdkdevicemanager.h			\
+	gdkdisplay.h				\
+	gdkdisplaymanager.h			\
+	gdkdnd.h				\
+	gdkdrawingcontext.h			\
+	gdkevents.h				\
+	gdkframetimings.h			\
+	gdkglcontext.h				\
+	gdkkeys.h				\
+	gdkkeysyms.h				\
+	gdkkeysyms-compat.h			\
+	gdkmain.h				\
+	gdkmonitor.h				\
+	gdkpango.h				\
+	gdkframeclock.h				\
+	gdkpixbuf.h				\
+	gdkprivate.h				\
+	gdkproperty.h				\
+	gdkrectangle.h				\
+	gdkrgba.h				\
+	gdkscreen.h				\
+	gdkseat.h				\
+	gdkselection.h				\
+	gdktestutils.h				\
+	gdkthreads.h				\
+	gdktypes.h				\
+	gdkvisual.h				\
+	gdkwindow.h
+
+gdk_deprecated_h_sources = \
+	deprecated/gdkcolor.h
+
 INTROSPECTION_GIRS = $(am__append_7) $(am__append_9) $(am__append_10)
 INTROSPECTION_SCANNER_ENV = \
    CC="$(CC)"
@@ -765,54 +811,9 @@ LDADD = \
 #
 # setup source file variables
 #
-#
-# GDK header files for public installation (non-generated)
-#
-#
-gdk_public_h_sources = \
-	gdk.h					\
-	gdk-autocleanup.h			\
-	gdkapplaunchcontext.h			\
-	gdkcairo.h				\
-	gdkcursor.h				\
-	gdkdevice.h				\
-	gdkdevicepad.h				\
-	gdkdevicetool.h				\
-	gdkdevicemanager.h			\
-	gdkdisplay.h				\
-	gdkdisplaymanager.h			\
-	gdkdnd.h				\
-	gdkdrawingcontext.h			\
-	gdkevents.h				\
-	gdkframetimings.h			\
-	gdkglcontext.h				\
-	gdkkeys.h				\
-	gdkkeysyms.h				\
-	gdkkeysyms-compat.h			\
-	gdkmain.h				\
-	gdkmonitor.h				\
-	gdkpango.h				\
-	gdkframeclock.h				\
-	gdkpixbuf.h				\
-	gdkprivate.h				\
-	gdkproperty.h				\
-	gdkrectangle.h				\
-	gdkrgba.h				\
-	gdkscreen.h				\
-	gdkseat.h				\
-	gdkselection.h				\
-	gdktestutils.h				\
-	gdkthreads.h				\
-	gdktypes.h				\
-	gdkvisual.h				\
-	gdkwindow.h
-
-deprecated_h_sources = \
-	deprecated/gdkcolor.h
-
 gdk_h_sources = \
 	$(gdk_public_h_sources)			\
-	$(deprecated_h_sources)
+	$(gdk_deprecated_h_sources)
 
 gdk_private_headers = \
 	gdk-private.h				\
@@ -902,7 +903,7 @@ gdkincludedir = $(includedir)/gtk-3.0/gdk
 gdkinclude_HEADERS = $(gdk_public_h_sources)
 nodist_gdkinclude_HEADERS = gdkconfig.h gdkenumtypes.h gdkversionmacros.h
 deprecatedincludedir = $(includedir)/gtk-3.0/gdk/deprecated
-deprecatedinclude_HEADERS = $(deprecated_h_sources)
+deprecatedinclude_HEADERS = $(gdk_deprecated_h_sources)
 common_sources = \
 	$(gdk_private_headers)	\
 	$(gdk_c_sources)	\
@@ -1053,13 +1054,12 @@ resource_files = $(shell $(GLIB_COMPILE_RESOURCES) --sourcedir=$(srcdir) --gener
 
 # ------------------- MSVC Build Items ----------------
 MSVCPROJS = gdk-3
-gdk_3_FILES = $(libgdk_3_la_SOURCES)
+gdk_3_FILES = $(gdk_c_sources)
 gdk_3_EXCLUDES = dummy
 gdk_3_HEADERS_DIR = $(gdkincludedir)
 gdk_3_HEADERS_INST = \
 	$(gdkinclude_HEADERS)		\
-	$(deprecatedinclude_HEADERS)	\
-	$(nodist_gdkinclude_HEADERS)
+	$(deprecatedinclude_HEADERS)
 
 gdk_3_HEADERS_EXCLUDES = dummy
 _proj_name = $(subst /,_,$(subst -,_,$(subst .,_,$(1))))
@@ -1080,7 +1080,9 @@ _headers_destdir = $(subst /,\\,$(_headers_dest_posix))
 @HAVE_INTROSPECTION_TRUE@MSVC_INTROSPECT_GIRS = Gdk-3.0.gir GdkWin32-3.0.gir
 @HAVE_INTROSPECTION_TRUE@BASE_MSVC_GIR_CFLAGS = \
 @HAVE_INTROSPECTION_TRUE@	$(GDK_CFLAGS_DEFINES)		\
-@HAVE_INTROSPECTION_TRUE@	-I.. -I../gdk -I../gdk/win32
+@HAVE_INTROSPECTION_TRUE@	-I'./vs$$$$(VSVER)/$$$$(CFG)/$$$$(PLAT)/obj/gdk-3' -I..	\
+@HAVE_INTROSPECTION_TRUE@	-I'./vs$$$$(VSVER)/$$$$(CFG)/$$$$(PLAT)/obj/gdk-3/gdk' -I../gdk	\
+@HAVE_INTROSPECTION_TRUE@	-I../gdk/win32
 
 @HAVE_INTROSPECTION_FALSE@INTROSPECTION_INTERMEDIATE_ITEMS = 
 @HAVE_INTROSPECTION_TRUE@INTROSPECTION_INTERMEDIATE_ITEMS = \
@@ -1089,8 +1091,10 @@ _headers_destdir = $(subst /,\\,$(_headers_dest_posix))
 @HAVE_INTROSPECTION_TRUE@	$(top_builddir)/win32/GdkWin32-3.0.gir.msvc.introspect	\
 @HAVE_INTROSPECTION_TRUE@	$(top_builddir)/win32/GdkWin32_3_0_gir_list
 
-@HAVE_INTROSPECTION_TRUE@Gdk_3_0_gir_MSVC_FILES = $(introspection_files)
+@HAVE_INTROSPECTION_TRUE@Gdk_3_0_gir_MSVC_FILES = $(filter-out gdkkeysyms-compat.h, $(gdk_h_sources))	\
+@HAVE_INTROSPECTION_TRUE@	$(gdk_c_sources)	\
 @HAVE_INTROSPECTION_TRUE@Gdk_3_0_gir_MSVC_EXPORT_PACKAGES = $(Gdk_3_0_gir_EXPORT_PACKAGES)
+
 @HAVE_INTROSPECTION_TRUE@Gdk_3_0_gir_MSVC_INCLUDE_GIRS = $(Gdk_3_0_gir_INCLUDES)
 @HAVE_INTROSPECTION_TRUE@Gdk_3_0_gir_MSVC_LIBS = gdk-3.0
 @HAVE_INTROSPECTION_TRUE@Gdk_3_0_gir_MSVC_CFLAGS = $(BASE_MSVC_GIR_CFLAGS)
@@ -1138,7 +1142,7 @@ all: $(BUILT_SOURCES)
 
 .SUFFIXES:
 .SUFFIXES: .c .lo .o .obj
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.decl $(top_srcdir)/win32/Makefile.msvcproj $(top_srcdir)/win32/Makefile.msvc-introspection $(am__configure_deps)
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.decl $(srcdir)/gdk-pub-headers.mak $(top_srcdir)/win32/Makefile.msvcproj $(top_srcdir)/win32/Makefile.msvc-introspection $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -1158,7 +1162,7 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	    echo ' cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__maybe_remake_depfiles)'; \
 	    cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__maybe_remake_depfiles);; \
 	esac;
-$(top_srcdir)/Makefile.decl $(top_srcdir)/win32/Makefile.msvcproj $(top_srcdir)/win32/Makefile.msvc-introspection $(am__empty):
+$(top_srcdir)/Makefile.decl $(srcdir)/gdk-pub-headers.mak $(top_srcdir)/win32/Makefile.msvcproj $(top_srcdir)/win32/Makefile.msvc-introspection $(am__empty):
 
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
@@ -2154,6 +2158,7 @@ test-report perf-report full-report:	${TEST_PROGS}
 .PHONY: test test-cwd test-recurse test-report perf-report full-report
 # run make test-cwd as part of make check
 check-local: test-cwd
+
 -include $(INTROSPECTION_MAKEFILE)
 
 @HAVE_INTROSPECTION_TRUE@Gdk-3.0.gir: libgdk-3.la Makefile
@@ -2345,7 +2350,7 @@ $(foreach proj,$(MSVCPROJS),$(eval $(call msvcproj-builder,$(proj))))
 @HAVE_INTROSPECTION_TRUE@	-$(RM) $(top_builddir)/win32/$(1).msvc.introspect
 
 # Assemble the Command to Run g-ir-scanner
-@HAVE_INTROSPECTION_TRUE@	echo 'vs$$$$(VSVER)\$$$$(CFG)\$$$$(PLAT)\bin\'$(1)': '$(_gir_name)'_list '$($(_gir_name)_MSVC_GIR_DEPS)>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo 'vs$$$$(VSVER)\$$$$(CFG)\$$$$(PLAT)\bin\'$(1)': '$(_gir_name)'_list_final '$($(_gir_name)_MSVC_GIR_DEPS)>>$(top_builddir)/win32/$(1).msvc.introspect
 @HAVE_INTROSPECTION_TRUE@	echo '	@-echo Generating $$$$@...'>>$(top_builddir)/win32/$(1).msvc.introspect
 @HAVE_INTROSPECTION_TRUE@	echo '	$$$$(PYTHON) $$$$(G_IR_SCANNER)	\'>>$(top_builddir)/win32/$(1).msvc.introspect
 @HAVE_INTROSPECTION_TRUE@	echo '	--verbose -no-libtool	\'>>$(top_builddir)/win32/$(1).msvc.introspect
@@ -2362,7 +2367,7 @@ $(foreach proj,$(MSVCPROJS),$(eval $(call msvcproj-builder,$(proj))))
 @HAVE_INTROSPECTION_TRUE@	echo '	'$($(_gir_name)_MSVC_CFLAGS)'	\'>>$(top_builddir)/win32/$(1).msvc.introspect
 @HAVE_INTROSPECTION_TRUE@	echo '	--cflags-end	\'>>$(top_builddir)/win32/$(1).msvc.introspect
 @HAVE_INTROSPECTION_TRUE@	echo '	'$($(_gir_name)_MSVC_SCANNERFLAGS)'	\'>>$(top_builddir)/win32/$(1).msvc.introspect
-@HAVE_INTROSPECTION_TRUE@	echo '	--filelist='$(_gir_name)'_list	\'>>$(top_builddir)/win32/$(1).msvc.introspect
+@HAVE_INTROSPECTION_TRUE@	echo '	--filelist='$(_gir_name)'_list_final	\'>>$(top_builddir)/win32/$(1).msvc.introspect
 @HAVE_INTROSPECTION_TRUE@	echo '	-L.\vs$$$$(VSVER)\$$$$(CFG)\$$$$(PLAT)\bin	\'>>$(top_builddir)/win32/$(1).msvc.introspect
 @HAVE_INTROSPECTION_TRUE@	echo '	-o $$$$@'>>$(top_builddir)/win32/$(1).msvc.introspect
 @HAVE_INTROSPECTION_TRUE@	echo '' >>$(top_builddir)/win32/$(1).msvc.introspect

@@ -52,7 +52,8 @@ demo_sources = $(demo_sources) $(font_features_demo)
 !endif
 
 # Please do not change anything beneath this line unless maintaining the NMake Makefiles
-GTK_VERSION = 3.24.31
+GTK_INTERFACE_AGE = 28
+GTK_VERSION = 3.24.32
 
 GDK_PREPROCESSOR_FLAGS =	\
 	/DG_LOG_USE_STRUCTURED=1	\
@@ -62,9 +63,13 @@ GDK_PREPROCESSOR_FLAGS =	\
 	/I..\gdk\win32
 
 GTK_PREPROCESSOR_FLAGS =	\
+	 /I.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk	\
 	 /I..\gtk	\
+	 /I.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gdk-3\gdk	\
 	 /I..\gdk	\
 	 /I..\gdk\win32	\
+	 /I.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3	\
+	 /I.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gdk-3	\
 	 /I..	\
 	 /I$(PREFIX)\include\gdk-pixbuf-2.0	\
 	 /I$(PREFIX)\include\pango-1.0	\
@@ -107,3 +112,10 @@ GTK_PREPROCESSOR_FLAGS =	\
 	 /DGTK_BINARY_VERSION=\"3.0.0\"	\
 	 /DGDK_DISABLE_DEPRECATED	\
 	 /DISOLATION_AWARE_ENABLED
+
+DEMO_VS9_PROJ = gtk3-demo.vcproj
+DEMO_VS10_PROJ = gtk3-demo.vcxproj
+DEMO_VS10_PROJ_FILTERS = gtk3-demo.vcxproj.filters
+DEMO_DEP_LIBS_NEW_PANGO=harfbuzz.lib
+DEMO_DEP_LIBS_PANGOFT2_VS1X=pangoft2-1.0.lib;harfbuzz.lib;freetype.lib
+DEMO_DEP_LIBS_PANGOFT2_VS9=$(DEMO_DEP_LIBS_PANGOFT2_VS1X:;= )
