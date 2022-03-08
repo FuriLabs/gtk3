@@ -7,24 +7,37 @@ items in a GMenuModel that have an 'x-canonical-type' attribute.
 
 It is needed by unity and should not be considered public API.
 ---
- gtk/Makefile.am             |  3 ++
+ gtk/Makefile.am             |  1 +
+ gtk/gtk-mkenums-headers.mak |  2 ++
  gtk/gtkmenushell.c          | 69 ++++++++++++++++++++++++++++++++++++++++++++
  gtk/gtkmenutrackeritem.c    | 16 +++++++++++
  gtk/gtkmenutrackeritem.h    |  4 +++
  gtk/ubuntu-private.h        | 32 +++++++++++++++++++++
  gtk/ubuntumenuitemfactory.c | 70 +++++++++++++++++++++++++++++++++++++++++++++
  gtk/ubuntumenuitemfactory.h | 61 +++++++++++++++++++++++++++++++++++++++
- 7 files changed, 255 insertions(+)
+ 8 files changed, 255 insertions(+)
  create mode 100644 gtk/ubuntu-private.h
  create mode 100644 gtk/ubuntumenuitemfactory.c
  create mode 100644 gtk/ubuntumenuitemfactory.h
 
 diff --git a/gtk/Makefile.am b/gtk/Makefile.am
-index 9d37860..9845456 100644
+index d2deb2d..2e953c5 100644
 --- a/gtk/Makefile.am
 +++ b/gtk/Makefile.am
-@@ -121,6 +121,8 @@ include $(srcdir)/inspector/Makefile.inc
- gtk_public_h_sources = 		\
+@@ -381,6 +381,7 @@ gtk_base_c_sources = 		\
+ 	$(a11y_c_sources)	\
+ 	$(deprecated_c_sources)	\
+ 	$(inspector_c_sources)	\
++	ubuntumenuitemfactory.c	\
+ 	gtkactionmuxer.c	\
+ 	gtkactionobserver.c	\
+ 	gtkactionobservable.c	\
+diff --git a/gtk/gtk-mkenums-headers.mak b/gtk/gtk-mkenums-headers.mak
+index 86c38f9..78f7816 100644
+--- a/gtk/gtk-mkenums-headers.mak
++++ b/gtk/gtk-mkenums-headers.mak
+@@ -7,6 +7,8 @@
+ GTK_PUB_HDRS = 		\
  	gtk.h			\
  	gtk-autocleanups.h	\
 +	ubuntu-private.h	\
@@ -32,14 +45,6 @@ index 9d37860..9845456 100644
  	gtkx.h			\
  	gtkx-autocleanups.h	\
  	gtk-a11y.h		\
-@@ -608,6 +610,7 @@ gtk_base_c_sources = 		\
- 	$(a11y_c_sources)	\
- 	$(deprecated_c_sources)	\
- 	$(inspector_c_sources)	\
-+	ubuntumenuitemfactory.c \
- 	gtkactionmuxer.c	\
- 	gtkactionobserver.c	\
- 	gtkactionobservable.c	\
 diff --git a/gtk/gtkmenushell.c b/gtk/gtkmenushell.c
 index 515492c..ded731a 100644
 --- a/gtk/gtkmenushell.c
