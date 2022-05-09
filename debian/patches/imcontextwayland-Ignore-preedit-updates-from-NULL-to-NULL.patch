@@ -1,0 +1,28 @@
+From: Carlos Garnacho <carlosg@gnome.org>
+Date: Tue, 26 Apr 2022 12:23:09 +0200
+Subject: imcontextwayland: Ignore preedit updates from NULL to NULL
+
+If we get consecutive preedit string updates that announce a NULL
+string, we still do end up issuing ::preedit-changed with those.
+Ignore changes from NULL to NULL, it is the other combinations which
+must issue this signal.
+
+(cherry picked from commit 5321fa25a52f9d91ed0c2f5ec59afbd8fd2f770a)
+---
+ modules/input/imwayland.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/modules/input/imwayland.c b/modules/input/imwayland.c
+index 9b73820..1e93123 100644
+--- a/modules/input/imwayland.c
++++ b/modules/input/imwayland.c
+@@ -171,6 +171,9 @@ text_input_preedit_apply (GtkIMContextWaylandGlobal *global)
+     return;
+ 
+   context = GTK_IM_CONTEXT_WAYLAND (global->current);
++  if (context->pending_preedit.text == NULL &&
++      context->current_preedit.text == NULL)
++    return;
+ 
+   state_change = ((context->pending_preedit.text == NULL)
+                  != (context->current_preedit.text == NULL));

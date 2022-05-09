@@ -1,0 +1,115 @@
+From: Carlos Garnacho <carlosg@gnome.org>
+Date: Tue, 18 Jan 2022 23:31:09 +0100
+Subject: gtk/imwayland: Use serial to control outbound messages
+
+Following the text-input protocol changes at
+https://gitlab.freedesktop.org/wayland/wayland-protocols/-/merge_requests/115,
+use the serial number to have the client push changes to the
+zwp_text_input_v3 object only after compositor/client states match.
+
+This specifically is more lenient to compositors pushing multiple
+.done events ahead of the client replying to them.
+
+(cherry-picked from commit f108f053d4c84dcdedce005a3491cbd503092185)
+
+Fixes: https://gitlab.gnome.org/GNOME/gtk/-/issues/4853
+(cherry picked from commit 802a748e5bd4688cd6b6a251fb6f331bd74cf6a5)
+---
+ modules/input/imwayland.c | 28 +++++++++++++++++-----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
+
+diff --git a/modules/input/imwayland.c b/modules/input/imwayland.c
+index 9a12b21..91d27ca 100644
+--- a/modules/input/imwayland.c
++++ b/modules/input/imwayland.c
+@@ -47,6 +47,7 @@ struct _GtkIMContextWaylandGlobal
+   gboolean focused;
+ 
+   guint serial;
++  guint done_serial;
+ };
+ 
+ struct _GtkIMContextWaylandClass
+@@ -205,11 +206,11 @@ text_input_commit (void                     *data,
+ }
+ 
+ static void
+-text_input_commit_apply (GtkIMContextWaylandGlobal *global, gboolean valid)
++text_input_commit_apply (GtkIMContextWaylandGlobal *global)
+ {
+   GtkIMContextWayland *context;
+   context = GTK_IM_CONTEXT_WAYLAND (global->current);
+-  if (context->pending_commit && valid)
++  if (context->pending_commit)
+     g_signal_emit_by_name (global->current, "commit", context->pending_commit);
+   g_free (context->pending_commit);
+   context->pending_commit = NULL;
+@@ -234,8 +235,7 @@ text_input_delete_surrounding_text (void                     *data,
+ }
+ 
+ static void
+-text_input_delete_surrounding_text_apply (GtkIMContextWaylandGlobal *global,
+-  gboolean valid)
++text_input_delete_surrounding_text_apply (GtkIMContextWaylandGlobal *global)
+ {
+   GtkIMContextWayland *context;
+   gboolean retval;
+@@ -246,7 +246,7 @@ text_input_delete_surrounding_text_apply (GtkIMContextWaylandGlobal *global,
+ 
+   len = context->pending_surrounding_delete.after_length
+       + context->pending_surrounding_delete.before_length;
+-  if (len > 0 && valid)
++  if (len > 0)
+     g_signal_emit_by_name (global->current, "delete-surrounding",
+                            -context->pending_surrounding_delete.before_length,
+                            len, &retval);
+@@ -260,16 +260,16 @@ text_input_done (void                     *data,
+ {
+   GtkIMContextWaylandGlobal *global = data;
+   gboolean result;
+-  gboolean valid;
+-  
++
++  global->done_serial = serial;
++
+   if (!global->current)
+     return;
+ 
+-  valid = serial == global->serial;
+-  text_input_delete_surrounding_text_apply(global, valid);
+-  text_input_commit_apply(global, valid);
++  text_input_delete_surrounding_text_apply (global);
++  text_input_commit_apply (global);
+   g_signal_emit_by_name (global->current, "retrieve-surrounding", &result);
+-  text_input_preedit_apply(global);
++  text_input_preedit_apply (global);
+ }
+ 
+ static void
+@@ -286,6 +286,8 @@ notify_surrounding_text (GtkIMContextWayland *context)
+     return;
+   if (!context->enabled || !context->surrounding.text)
+     return;
++  if (global->done_serial != global->serial)
++    return;
+ 
+   len = strlen (context->surrounding.text);
+   cursor = context->surrounding.cursor_idx;
+@@ -361,6 +363,8 @@ notify_cursor_location (GtkIMContextWayland *context)
+     return;
+   if (!context->enabled || !context->window)
+     return;
++  if (global->done_serial != global->serial)
++    return;
+ 
+   rect = context->cursor_rect;
+   gdk_window_get_root_coords (context->window, rect.x, rect.y,
+@@ -443,6 +447,8 @@ notify_content_type (GtkIMContextWayland *context)
+ 
+   if (!context->enabled)
+     return;
++  if (global->done_serial != global->serial)
++    return;
+ 
+   g_object_get (context,
+                 "input-hints", &hints,
