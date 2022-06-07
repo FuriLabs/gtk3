@@ -772,18 +772,18 @@ This is equivalent to calling <a class="link" href="GtkTreeViewColumn.html#gtk-t
 10
 11
 12</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="k">enum</span> <span class="p">{</span> <span class="n">TEXT_COLUMN</span><span class="p">,</span> <span class="n">COLOR_COLUMN</span><span class="p">,</span> <span class="n">N_COLUMNS</span> <span class="p">};</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">enum</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">TEXT_COLUMN</span><span class="p">,</span><span class="w"> </span><span class="n">COLOR_COLUMN</span><span class="p">,</span><span class="w"> </span><span class="n">N_COLUMNS</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
 <span class="c1">// ...</span>
-<span class="p">{</span>
-  <span class="n">GtkTreeViewColumn</span> <span class="o">*</span><span class="n">column</span><span class="p">;</span>
-  <span class="n">GtkCellRenderer</span>   <span class="o">*</span><span class="n">renderer</span> <span class="o">=</span> <span class="n">gtk_cell_renderer_text_new</span> <span class="p">();</span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">GtkTreeViewColumn</span><span class="w"> </span><span class="o">*</span><span class="n">column</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">GtkCellRenderer</span><span class="w">   </span><span class="o">*</span><span class="n">renderer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gtk_cell_renderer_text_new</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
 
-  <span class="n">column</span> <span class="o">=</span> <span class="n">gtk_tree_view_column_new_with_attributes</span> <span class="p">(</span><span class="s">&quot;Title&quot;</span><span class="p">,</span>
-                                                     <span class="n">renderer</span><span class="p">,</span>
-                                                     <span class="s">&quot;text&quot;</span><span class="p">,</span> <span class="n">TEXT_COLUMN</span><span class="p">,</span>
-                                                     <span class="s">&quot;foreground&quot;</span><span class="p">,</span> <span class="n">COLOR_COLUMN</span><span class="p">,</span>
-                                                     <span class="nb">NULL</span><span class="p">);</span>
-<span class="p">}</span></pre></td>
+<span class="w">  </span><span class="n">column</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gtk_tree_view_column_new_with_attributes</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Title&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                     </span><span class="n">renderer</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                     </span><span class="s">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT_COLUMN</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                     </span><span class="s">&quot;foreground&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">COLOR_COLUMN</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                     </span><span class="nb">NULL</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -2247,7 +2247,7 @@ renderer.  This is used primarily by the <a class="link" href="GtkTreeView.html"
 <a name="gtk-tree-view-column-cell-get-size"></a><h3>gtk_tree_view_column_cell_get_size ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_tree_view_column_cell_get_size (<em class="parameter"><code><a class="link" href="GtkTreeViewColumn.html" title="GtkTreeViewColumn"><span class="type">GtkTreeViewColumn</span></a> *tree_column</code></em>,
-                                    <em class="parameter"><code>const <span class="type">GdkRectangle</span> *cell_area</code></em>,
+                                    <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *cell_area</code></em>,
                                     <em class="parameter"><code><span class="type">gint</span> *x_offset</code></em>,
                                     <em class="parameter"><code><span class="type">gint</span> *y_offset</code></em>,
                                     <em class="parameter"><code><span class="type">gint</span> *width</code></em>,

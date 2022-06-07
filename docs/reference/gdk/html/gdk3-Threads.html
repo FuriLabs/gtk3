@@ -173,25 +173,25 @@ by using <a class="link" href="gdk3-Threads.html#gdk-threads-add-idle" title="gd
 17
 18
 19</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="nf">worker_thread</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">ExpensiveData</span> <span class="o">*</span><span class="n">expensive_data</span> <span class="o">=</span> <span class="n">do_expensive_computation</span> <span class="p">();</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">worker_thread</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">ExpensiveData</span><span class="w"> </span><span class="o">*</span><span class="n">expensive_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">do_expensive_computation</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
 
-  <span class="n">gdk_threads_add_idle</span> <span class="p">(</span><span class="n">got_value</span><span class="p">,</span> <span class="n">expensive_data</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">gdk_threads_add_idle</span><span class="w"> </span><span class="p">(</span><span class="n">got_value</span><span class="p">,</span><span class="w"> </span><span class="n">expensive_data</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="k">static</span> <span class="n">gboolean</span>
-<span class="nf">got_value</span> <span class="p">(</span><span class="n">gpointer</span> <span class="n">user_data</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">ExpensiveData</span> <span class="o">*</span><span class="n">expensive_data</span> <span class="o">=</span> <span class="n">user_data</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="n">gboolean</span><span class="w"></span>
+<span class="nf">got_value</span><span class="w"> </span><span class="p">(</span><span class="n">gpointer</span><span class="w"> </span><span class="n">user_data</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">ExpensiveData</span><span class="w"> </span><span class="o">*</span><span class="n">expensive_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">user_data</span><span class="p">;</span><span class="w"></span>
 
-  <span class="n">my_app</span><span class="o">-&gt;</span><span class="n">expensive_data</span> <span class="o">=</span> <span class="n">expensive_data</span><span class="p">;</span>
-  <span class="n">gtk_button_set_sensitive</span> <span class="p">(</span><span class="n">my_app</span><span class="o">-&gt;</span><span class="n">button</span><span class="p">,</span> <span class="n">TRUE</span><span class="p">);</span>
-  <span class="n">gtk_button_set_label</span> <span class="p">(</span><span class="n">my_app</span><span class="o">-&gt;</span><span class="n">button</span><span class="p">,</span> <span class="n">expensive_data</span><span class="o">-&gt;</span><span class="n">result_label</span><span class="p">);</span>
+<span class="w">  </span><span class="n">my_app</span><span class="o">-&gt;</span><span class="n">expensive_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">expensive_data</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">gtk_button_set_sensitive</span><span class="w"> </span><span class="p">(</span><span class="n">my_app</span><span class="o">-&gt;</span><span class="n">button</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">gtk_button_set_label</span><span class="w"> </span><span class="p">(</span><span class="n">my_app</span><span class="o">-&gt;</span><span class="n">button</span><span class="p">,</span><span class="w"> </span><span class="n">expensive_data</span><span class="o">-&gt;</span><span class="n">result_label</span><span class="p">);</span><span class="w"></span>
 
-  <span class="k">return</span> <span class="n">G_SOURCE_REMOVE</span><span class="p">;</span>
-<span class="p">}</span></pre></td>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">G_SOURCE_REMOVE</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -426,35 +426,35 @@ in thread B:</p>
 27
 28
 29</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="n">gboolean</span>
-<span class="nf">idle_callback</span> <span class="p">(</span><span class="n">gpointer</span> <span class="n">data</span><span class="p">)</span>
-<span class="p">{</span>
-   <span class="c1">// gdk_threads_enter(); would be needed for g_idle_add()</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span><span class="w"> </span><span class="n">gboolean</span><span class="w"></span>
+<span class="nf">idle_callback</span><span class="w"> </span><span class="p">(</span><span class="n">gpointer</span><span class="w"> </span><span class="n">data</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="c1">// gdk_threads_enter(); would be needed for g_idle_add()</span>
 
-   <span class="n">SomeWidget</span> <span class="o">*</span><span class="n">self</span> <span class="o">=</span> <span class="n">data</span><span class="p">;</span>
-   <span class="c1">// do stuff with self</span>
+<span class="w">   </span><span class="n">SomeWidget</span><span class="w"> </span><span class="o">*</span><span class="n">self</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="c1">// do stuff with self</span>
 
-   <span class="n">self</span><span class="o">-&gt;</span><span class="n">idle_id</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="w">   </span><span class="n">self</span><span class="o">-&gt;</span><span class="n">idle_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 
-   <span class="c1">// gdk_threads_leave(); would be needed for g_idle_add()</span>
-   <span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">   </span><span class="c1">// gdk_threads_leave(); would be needed for g_idle_add()</span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="n">FALSE</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="k">static</span> <span class="kt">void</span>
-<span class="nf">some_widget_do_stuff_later</span> <span class="p">(</span><span class="n">SomeWidget</span> <span class="o">*</span><span class="n">self</span><span class="p">)</span>
-<span class="p">{</span>
-   <span class="n">self</span><span class="o">-&gt;</span><span class="n">idle_id</span> <span class="o">=</span> <span class="n">gdk_threads_add_idle</span> <span class="p">(</span><span class="n">idle_callback</span><span class="p">,</span> <span class="n">self</span><span class="p">)</span>
-   <span class="c1">// using g_idle_add() here would require thread protection in the callback</span>
-<span class="p">}</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">some_widget_do_stuff_later</span><span class="w"> </span><span class="p">(</span><span class="n">SomeWidget</span><span class="w"> </span><span class="o">*</span><span class="n">self</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="n">self</span><span class="o">-&gt;</span><span class="n">idle_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gdk_threads_add_idle</span><span class="w"> </span><span class="p">(</span><span class="n">idle_callback</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="c1">// using g_idle_add() here would require thread protection in the callback</span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="k">static</span> <span class="kt">void</span>
-<span class="nf">some_widget_finalize</span> <span class="p">(</span><span class="n">GObject</span> <span class="o">*</span><span class="n">object</span><span class="p">)</span>
-<span class="p">{</span>
-   <span class="n">SomeWidget</span> <span class="o">*</span><span class="n">self</span> <span class="o">=</span> <span class="n">SOME_WIDGET</span> <span class="p">(</span><span class="n">object</span><span class="p">);</span>
-   <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">idle_id</span><span class="p">)</span>
-     <span class="n">g_source_remove</span> <span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">idle_id</span><span class="p">);</span>
-   <span class="n">G_OBJECT_CLASS</span> <span class="p">(</span><span class="n">parent_class</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">finalize</span> <span class="p">(</span><span class="n">object</span><span class="p">);</span>
-<span class="p">}</span></pre></td>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">some_widget_finalize</span><span class="w"> </span><span class="p">(</span><span class="n">GObject</span><span class="w"> </span><span class="o">*</span><span class="n">object</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="n">SomeWidget</span><span class="w"> </span><span class="o">*</span><span class="n">self</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SOME_WIDGET</span><span class="w"> </span><span class="p">(</span><span class="n">object</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">idle_id</span><span class="p">)</span><span class="w"></span>
+<span class="w">     </span><span class="n">g_source_remove</span><span class="w"> </span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">idle_id</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="n">G_OBJECT_CLASS</span><span class="w"> </span><span class="p">(</span><span class="n">parent_class</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">finalize</span><span class="w"> </span><span class="p">(</span><span class="n">object</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -601,31 +601,31 @@ for GTK+ widgets for the following use case:</p>
 23
 24
 25</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="n">gboolean</span> <span class="nf">timeout_callback</span> <span class="p">(</span><span class="n">gpointer</span> <span class="n">data</span><span class="p">)</span>
-<span class="p">{</span>
-   <span class="n">SomeWidget</span> <span class="o">*</span><span class="n">self</span> <span class="o">=</span> <span class="n">data</span><span class="p">;</span>
-   
-   <span class="c1">// do stuff with self</span>
-   
-   <span class="n">self</span><span class="o">-&gt;</span><span class="n">timeout_id</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-   
-   <span class="k">return</span> <span class="n">G_SOURCE_REMOVE</span><span class="p">;</span>
-<span class="p">}</span>
- 
-<span class="k">static</span> <span class="kt">void</span> <span class="nf">some_widget_do_stuff_later</span> <span class="p">(</span><span class="n">SomeWidget</span> <span class="o">*</span><span class="n">self</span><span class="p">)</span>
-<span class="p">{</span>
-   <span class="n">self</span><span class="o">-&gt;</span><span class="n">timeout_id</span> <span class="o">=</span> <span class="n">g_timeout_add</span> <span class="p">(</span><span class="n">timeout_callback</span><span class="p">,</span> <span class="n">self</span><span class="p">)</span>
-<span class="p">}</span>
- 
-<span class="k">static</span> <span class="kt">void</span> <span class="nf">some_widget_finalize</span> <span class="p">(</span><span class="n">GObject</span> <span class="o">*</span><span class="n">object</span><span class="p">)</span>
-<span class="p">{</span>
-   <span class="n">SomeWidget</span> <span class="o">*</span><span class="n">self</span> <span class="o">=</span> <span class="n">SOME_WIDGET</span> <span class="p">(</span><span class="n">object</span><span class="p">);</span>
-   
-   <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">timeout_id</span><span class="p">)</span>
-     <span class="n">g_source_remove</span> <span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">timeout_id</span><span class="p">);</span>
-   
-   <span class="n">G_OBJECT_CLASS</span> <span class="p">(</span><span class="n">parent_class</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">finalize</span> <span class="p">(</span><span class="n">object</span><span class="p">);</span>
-<span class="p">}</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span><span class="w"> </span><span class="n">gboolean</span><span class="w"> </span><span class="nf">timeout_callback</span><span class="w"> </span><span class="p">(</span><span class="n">gpointer</span><span class="w"> </span><span class="n">data</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="n">SomeWidget</span><span class="w"> </span><span class="o">*</span><span class="n">self</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span>
+<span class="w">   </span><span class="c1">// do stuff with self</span>
+<span class="w">   </span>
+<span class="w">   </span><span class="n">self</span><span class="o">-&gt;</span><span class="n">timeout_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="n">G_SOURCE_REMOVE</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="w"> </span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">some_widget_do_stuff_later</span><span class="w"> </span><span class="p">(</span><span class="n">SomeWidget</span><span class="w"> </span><span class="o">*</span><span class="n">self</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="n">self</span><span class="o">-&gt;</span><span class="n">timeout_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_timeout_add</span><span class="w"> </span><span class="p">(</span><span class="n">timeout_callback</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="w"> </span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">some_widget_finalize</span><span class="w"> </span><span class="p">(</span><span class="n">GObject</span><span class="w"> </span><span class="o">*</span><span class="n">object</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="n">SomeWidget</span><span class="w"> </span><span class="o">*</span><span class="n">self</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SOME_WIDGET</span><span class="w"> </span><span class="p">(</span><span class="n">object</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">timeout_id</span><span class="p">)</span><span class="w"></span>
+<span class="w">     </span><span class="n">g_source_remove</span><span class="w"> </span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">timeout_id</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span>
+<span class="w">   </span><span class="n">G_OBJECT_CLASS</span><span class="w"> </span><span class="p">(</span><span class="n">parent_class</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">finalize</span><span class="w"> </span><span class="p">(</span><span class="n">object</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>

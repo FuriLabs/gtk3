@@ -393,11 +393,11 @@ For more advanced label settings, you can fetch the child widget from the GtkBin
 3
 4
 5</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">menu_item</span> <span class="o">=</span> <span class="n">gtk_menu_item_new_with_label</span> <span class="p">(</span><span class="s">&quot;Example Menu Item&quot;</span><span class="p">);</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkWidget</span><span class="w"> </span><span class="o">*</span><span class="n">menu_item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gtk_menu_item_new_with_label</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Example Menu Item&quot;</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">GtkWidget</span> <span class="o">*</span><span class="n">child</span> <span class="o">=</span> <span class="n">gtk_bin_get_child</span> <span class="p">(</span><span class="n">GTK_BIN</span> <span class="p">(</span><span class="n">menu_item</span><span class="p">));</span>
-<span class="n">gtk_label_set_markup</span> <span class="p">(</span><span class="n">GTK_LABEL</span> <span class="p">(</span><span class="n">child</span><span class="p">),</span> <span class="s">&quot;&lt;i&gt;new label&lt;/i&gt; with &lt;b&gt;markup&lt;/b&gt;&quot;</span><span class="p">);</span>
-<span class="n">gtk_accel_label_set_accel</span> <span class="p">(</span><span class="n">GTK_ACCEL_LABEL</span> <span class="p">(</span><span class="n">child</span><span class="p">),</span> <span class="n">GDK_KEY_1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span></pre></td>
+<span class="n">GtkWidget</span><span class="w"> </span><span class="o">*</span><span class="n">child</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gtk_bin_get_child</span><span class="w"> </span><span class="p">(</span><span class="n">GTK_BIN</span><span class="w"> </span><span class="p">(</span><span class="n">menu_item</span><span class="p">));</span><span class="w"></span>
+<span class="n">gtk_label_set_markup</span><span class="w"> </span><span class="p">(</span><span class="n">GTK_LABEL</span><span class="w"> </span><span class="p">(</span><span class="n">child</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;&lt;i&gt;new label&lt;/i&gt; with &lt;b&gt;markup&lt;/b&gt;&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">gtk_accel_label_set_accel</span><span class="w"> </span><span class="p">(</span><span class="n">GTK_ACCEL_LABEL</span><span class="w"> </span><span class="p">(</span><span class="n">child</span><span class="p">),</span><span class="w"> </span><span class="n">GDK_KEY_1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -419,11 +419,11 @@ a <code class="literal">&lt;child&gt;</code> element.</p>
 3
 4
 5</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkMenuItem&quot;</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="n">child</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;submenu&quot;</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkMenu&quot;</span><span class="o">/&gt;</span>
-  <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;</span><span class="n">object</span><span class="w"> </span><span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkMenuItem&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;</span><span class="n">child</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s">&quot;submenu&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">object</span><span class="w"> </span><span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkMenu&quot;</span><span class="o">/&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -441,9 +441,9 @@ a <code class="literal">&lt;child&gt;</code> element.</p>
         <td class="listing_lines" align="right"><pre>1
 2
 3</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">menuitem</span>
-<span class="err">├──</span> <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span>
-<span class="err">╰──</span> <span class="p">[</span><span class="n">arrow</span><span class="p">.</span><span class="n">right</span><span class="p">]</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">menuitem</span><span class="w"></span>
+<span class="err">├──</span><span class="w"> </span><span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span><span class="w"></span>
+<span class="err">╰──</span><span class="w"> </span><span class="p">[</span><span class="n">arrow</span><span class="p">.</span><span class="n">right</span><span class="p">]</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>

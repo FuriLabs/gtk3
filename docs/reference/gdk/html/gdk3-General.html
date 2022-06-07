@@ -527,7 +527,7 @@ work with certain GDK backends.</p>
     <tbody>
       <tr>
         <td class="listing_lines" align="right"><pre>1</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">gdk_set_allowed_backends</span> <span class="p">(</span><span class="s">&quot;wayland,quartz,*&quot;</span><span class="p">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">gdk_set_allowed_backends</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;wayland,quartz,*&quot;</span><span class="p">);</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1002,15 +1002,15 @@ on only a single display.</p>
 7
 8
 9</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">gdk_error_trap_push</span> <span class="p">();</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">gdk_error_trap_push</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
 
- <span class="c1">// ... Call the X function which may cause an error here ...</span>
+<span class="w"> </span><span class="c1">// ... Call the X function which may cause an error here ...</span>
 
 
-<span class="k">if</span> <span class="p">(</span><span class="n">gdk_error_trap_pop</span> <span class="p">())</span>
- <span class="p">{</span>
-   <span class="c1">// ... Handle the error here ...</span>
- <span class="p">}</span></pre></td>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">gdk_error_trap_pop</span><span class="w"> </span><span class="p">())</span><span class="w"></span>
+<span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="c1">// ... Handle the error here ...</span>
+<span class="w"> </span><span class="p">}</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>

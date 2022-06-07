@@ -571,23 +571,23 @@ compose <span class="type">GSettings</span> paths to store settings for this dev
 15
 16
 17</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="n">GSettings</span> <span class="o">*</span>
-<span class="nf">get_device_settings</span> <span class="p">(</span><span class="n">GdkDevice</span> <span class="o">*</span><span class="n">device</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="k">const</span> <span class="n">gchar</span> <span class="o">*</span><span class="n">vendor</span><span class="p">,</span> <span class="o">*</span><span class="n">product</span><span class="p">;</span>
-  <span class="n">GSettings</span> <span class="o">*</span><span class="n">settings</span><span class="p">;</span>
-  <span class="n">GdkDevice</span> <span class="o">*</span><span class="n">device</span><span class="p">;</span>
-  <span class="n">gchar</span> <span class="o">*</span><span class="n">path</span><span class="p">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span><span class="w"> </span><span class="n">GSettings</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">get_device_settings</span><span class="w"> </span><span class="p">(</span><span class="n">GdkDevice</span><span class="w"> </span><span class="o">*</span><span class="n">device</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">gchar</span><span class="w"> </span><span class="o">*</span><span class="n">vendor</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">product</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">GSettings</span><span class="w"> </span><span class="o">*</span><span class="n">settings</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">GdkDevice</span><span class="w"> </span><span class="o">*</span><span class="n">device</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">gchar</span><span class="w"> </span><span class="o">*</span><span class="n">path</span><span class="p">;</span><span class="w"></span>
 
-  <span class="n">vendor</span> <span class="o">=</span> <span class="n">gdk_device_get_vendor_id</span> <span class="p">(</span><span class="n">device</span><span class="p">);</span>
-  <span class="n">product</span> <span class="o">=</span> <span class="n">gdk_device_get_product_id</span> <span class="p">(</span><span class="n">device</span><span class="p">);</span>
+<span class="w">  </span><span class="n">vendor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gdk_device_get_vendor_id</span><span class="w"> </span><span class="p">(</span><span class="n">device</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">product</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gdk_device_get_product_id</span><span class="w"> </span><span class="p">(</span><span class="n">device</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">path</span> <span class="o">=</span> <span class="n">g_strdup_printf</span> <span class="p">(</span><span class="s">&quot;/org/example/app/devices/%s:%s/&quot;</span><span class="p">,</span> <span class="n">vendor</span><span class="p">,</span> <span class="n">product</span><span class="p">);</span>
-  <span class="n">settings</span> <span class="o">=</span> <span class="n">g_settings_new_with_path</span> <span class="p">(</span><span class="n">DEVICE_SCHEMA</span><span class="p">,</span> <span class="n">path</span><span class="p">);</span>
-  <span class="n">g_free</span> <span class="p">(</span><span class="n">path</span><span class="p">);</span>
+<span class="w">  </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_strdup_printf</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;/org/example/app/devices/%s:%s/&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">vendor</span><span class="p">,</span><span class="w"> </span><span class="n">product</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_settings_new_with_path</span><span class="w"> </span><span class="p">(</span><span class="n">DEVICE_SCHEMA</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">g_free</span><span class="w"> </span><span class="p">(</span><span class="n">path</span><span class="p">);</span><span class="w"></span>
 
-  <span class="k">return</span> <span class="n">settings</span><span class="p">;</span>
-<span class="p">}</span></pre></td>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">settings</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>

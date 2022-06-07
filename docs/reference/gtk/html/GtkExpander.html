@@ -370,34 +370,34 @@ connection as follows:</p>
 26
 27
 28</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="nf">expander_callback</span> <span class="p">(</span><span class="n">GObject</span>    <span class="o">*</span><span class="n">object</span><span class="p">,</span>
-                   <span class="n">GParamSpec</span> <span class="o">*</span><span class="n">param_spec</span><span class="p">,</span>
-                   <span class="n">gpointer</span>    <span class="n">user_data</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">GtkExpander</span> <span class="o">*</span><span class="n">expander</span><span class="p">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">expander_callback</span><span class="w"> </span><span class="p">(</span><span class="n">GObject</span><span class="w">    </span><span class="o">*</span><span class="n">object</span><span class="p">,</span><span class="w"></span>
+<span class="w">                   </span><span class="n">GParamSpec</span><span class="w"> </span><span class="o">*</span><span class="n">param_spec</span><span class="p">,</span><span class="w"></span>
+<span class="w">                   </span><span class="n">gpointer</span><span class="w">    </span><span class="n">user_data</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">GtkExpander</span><span class="w"> </span><span class="o">*</span><span class="n">expander</span><span class="p">;</span><span class="w"></span>
 
-  <span class="n">expander</span> <span class="o">=</span> <span class="n">GTK_EXPANDER</span> <span class="p">(</span><span class="n">object</span><span class="p">);</span>
+<span class="w">  </span><span class="n">expander</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GTK_EXPANDER</span><span class="w"> </span><span class="p">(</span><span class="n">object</span><span class="p">);</span><span class="w"></span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="n">gtk_expander_get_expanded</span> <span class="p">(</span><span class="n">expander</span><span class="p">))</span>
-    <span class="p">{</span>
-      <span class="c1">// Show or create widgets</span>
-    <span class="p">}</span>
-  <span class="k">else</span>
-    <span class="p">{</span>
-      <span class="c1">// Hide or destroy widgets</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">gtk_expander_get_expanded</span><span class="w"> </span><span class="p">(</span><span class="n">expander</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// Show or create widgets</span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// Hide or destroy widgets</span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="k">static</span> <span class="kt">void</span>
-<span class="nf">create_expander</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">GtkWidget</span> <span class="o">*</span><span class="n">expander</span> <span class="o">=</span> <span class="n">gtk_expander_new_with_mnemonic</span> <span class="p">(</span><span class="s">&quot;_More Options&quot;</span><span class="p">);</span>
-  <span class="n">g_signal_connect</span> <span class="p">(</span><span class="n">expander</span><span class="p">,</span> <span class="s">&quot;notify::expanded&quot;</span><span class="p">,</span>
-                    <span class="n">G_CALLBACK</span> <span class="p">(</span><span class="n">expander_callback</span><span class="p">),</span> <span class="nb">NULL</span><span class="p">);</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">create_expander</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">GtkWidget</span><span class="w"> </span><span class="o">*</span><span class="n">expander</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gtk_expander_new_with_mnemonic</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;_More Options&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">g_signal_connect</span><span class="w"> </span><span class="p">(</span><span class="n">expander</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;notify::expanded&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="n">G_CALLBACK</span><span class="w"> </span><span class="p">(</span><span class="n">expander_callback</span><span class="p">),</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span><span class="w"></span>
 
-  <span class="c1">// ...</span>
-<span class="p">}</span></pre></td>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -425,14 +425,14 @@ specified without specifying a <code class="literal">&lt;child&gt;</code> type a
 6
 7
 8</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkExpander&quot;</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="n">child</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;label&quot;</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkLabel&quot;</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;expander-label&quot;</span><span class="o">/&gt;</span>
-  <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkEntry&quot;</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;expander-content&quot;</span><span class="o">/&gt;</span>
-  <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;</span><span class="n">object</span><span class="w"> </span><span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkExpander&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;</span><span class="n">child</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s">&quot;label&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">object</span><span class="w"> </span><span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkLabel&quot;</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">&quot;expander-label&quot;</span><span class="o">/&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">object</span><span class="w"> </span><span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkEntry&quot;</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">&quot;expander-content&quot;</span><span class="o">/&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -452,11 +452,11 @@ specified without specifying a <code class="literal">&lt;child&gt;</code> type a
 3
 4
 5</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">expander</span>
-<span class="err">├──</span> <span class="n">title</span>
-<span class="err">│</span>   <span class="err">├──</span> <span class="n">arrow</span>
-<span class="err">│</span>   <span class="err">╰──</span> <span class="o">&lt;</span><span class="n">label</span> <span class="n">widget</span><span class="o">&gt;</span>
-<span class="err">╰──</span> <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">expander</span><span class="w"></span>
+<span class="err">├──</span><span class="w"> </span><span class="n">title</span><span class="w"></span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">arrow</span><span class="w"></span>
+<span class="err">│</span><span class="w">   </span><span class="err">╰──</span><span class="w"> </span><span class="o">&lt;</span><span class="n">label</span><span class="w"> </span><span class="n">widget</span><span class="o">&gt;</span><span class="w"></span>
+<span class="err">╰──</span><span class="w"> </span><span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>

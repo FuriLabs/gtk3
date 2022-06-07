@@ -616,13 +616,13 @@ an entry.</p>
 5
 6
 7</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">combobox</span>
-<span class="err">├──</span> <span class="n">box</span><span class="p">.</span><span class="n">linked</span>
-<span class="err">│</span>   <span class="err">╰──</span> <span class="n">button</span><span class="p">.</span><span class="n">combo</span>
-<span class="err">│</span>       <span class="err">╰──</span> <span class="n">box</span>
-<span class="err">│</span>           <span class="err">├──</span> <span class="n">cellview</span>
-<span class="err">│</span>           <span class="err">╰──</span> <span class="n">arrow</span>
-<span class="err">╰──</span> <span class="n">window</span><span class="p">.</span><span class="n">popup</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">combobox</span><span class="w"></span>
+<span class="err">├──</span><span class="w"> </span><span class="n">box</span><span class="p">.</span><span class="n">linked</span><span class="w"></span>
+<span class="err">│</span><span class="w">   </span><span class="err">╰──</span><span class="w"> </span><span class="n">button</span><span class="p">.</span><span class="n">combo</span><span class="w"></span>
+<span class="err">│</span><span class="w">       </span><span class="err">╰──</span><span class="w"> </span><span class="n">box</span><span class="w"></span>
+<span class="err">│</span><span class="w">           </span><span class="err">├──</span><span class="w"> </span><span class="n">cellview</span><span class="w"></span>
+<span class="err">│</span><span class="w">           </span><span class="err">╰──</span><span class="w"> </span><span class="n">arrow</span><span class="w"></span>
+<span class="err">╰──</span><span class="w"> </span><span class="n">window</span><span class="p">.</span><span class="n">popup</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -643,13 +643,13 @@ an arrow.</p>
 5
 6
 7</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">combobox</span>
-<span class="err">├──</span> <span class="n">box</span><span class="p">.</span><span class="n">linked</span>
-<span class="err">│</span>   <span class="err">├──</span> <span class="n">entry</span><span class="p">.</span><span class="n">combo</span>
-<span class="err">│</span>   <span class="err">╰──</span> <span class="n">button</span><span class="p">.</span><span class="n">combo</span>
-<span class="err">│</span>       <span class="err">╰──</span> <span class="n">box</span>
-<span class="err">│</span>           <span class="err">╰──</span> <span class="n">arrow</span>
-<span class="err">╰──</span> <span class="n">window</span><span class="p">.</span><span class="n">popup</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">combobox</span><span class="w"></span>
+<span class="err">├──</span><span class="w"> </span><span class="n">box</span><span class="p">.</span><span class="n">linked</span><span class="w"></span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">entry</span><span class="p">.</span><span class="n">combo</span><span class="w"></span>
+<span class="err">│</span><span class="w">   </span><span class="err">╰──</span><span class="w"> </span><span class="n">button</span><span class="p">.</span><span class="n">combo</span><span class="w"></span>
+<span class="err">│</span><span class="w">       </span><span class="err">╰──</span><span class="w"> </span><span class="n">box</span><span class="w"></span>
+<span class="err">│</span><span class="w">           </span><span class="err">╰──</span><span class="w"> </span><span class="n">arrow</span><span class="w"></span>
+<span class="err">╰──</span><span class="w"> </span><span class="n">window</span><span class="p">.</span><span class="n">popup</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1353,7 +1353,7 @@ cell renderers for the new model.</p>
 <a name="gtk-combo-box-popup-for-device"></a><h3>gtk_combo_box_popup_for_device ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_combo_box_popup_for_device (<em class="parameter"><code><a class="link" href="GtkComboBox.html" title="GtkComboBox"><span class="type">GtkComboBox</span></a> *combo_box</code></em>,
-                                <em class="parameter"><code><span class="type">GdkDevice</span> *device</code></em>);</pre>
+                                <em class="parameter"><code><a href="../html/GdkDevice.html#GdkDevice-struct"><span class="type">GdkDevice</span></a> *device</code></em>);</pre>
 <p>Pops up the menu or dropdown list of <em class="parameter"><code>combo_box</code></em>
 , the popup window
 will be grabbed so only <em class="parameter"><code>device</code></em>
@@ -1375,7 +1375,7 @@ are the only <span class="type">GdkDevices</span> able to send events to it.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>device</p></td>
-<td class="parameter_description"><p>a <span class="type">GdkDevice</span></p></td>
+<td class="parameter_description"><p>a <a href="../html/GdkDevice.html#GdkDevice-struct"><span class="type">GdkDevice</span></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -2337,24 +2337,24 @@ displays it in the entry.</p>
 16
 17
 18</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="n">gchar</span><span class="o">*</span>
-<span class="nf">format_entry_text_callback</span> <span class="p">(</span><span class="n">GtkComboBox</span> <span class="o">*</span><span class="n">combo</span><span class="p">,</span>
-                            <span class="k">const</span> <span class="n">gchar</span> <span class="o">*</span><span class="n">path</span><span class="p">,</span>
-                            <span class="n">gpointer</span>     <span class="n">user_data</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">GtkTreeIter</span> <span class="n">iter</span><span class="p">;</span>
-  <span class="n">GtkTreeModel</span> <span class="n">model</span><span class="p">;</span>
-  <span class="n">gdouble</span>      <span class="n">value</span><span class="p">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span><span class="w"> </span><span class="n">gchar</span><span class="o">*</span><span class="w"></span>
+<span class="nf">format_entry_text_callback</span><span class="w"> </span><span class="p">(</span><span class="n">GtkComboBox</span><span class="w"> </span><span class="o">*</span><span class="n">combo</span><span class="p">,</span><span class="w"></span>
+<span class="w">                            </span><span class="k">const</span><span class="w"> </span><span class="n">gchar</span><span class="w"> </span><span class="o">*</span><span class="n">path</span><span class="p">,</span><span class="w"></span>
+<span class="w">                            </span><span class="n">gpointer</span><span class="w">     </span><span class="n">user_data</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">GtkTreeIter</span><span class="w"> </span><span class="n">iter</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">GtkTreeModel</span><span class="w"> </span><span class="n">model</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">gdouble</span><span class="w">      </span><span class="n">value</span><span class="p">;</span><span class="w"></span>
 
-  <span class="n">model</span> <span class="o">=</span> <span class="n">gtk_combo_box_get_model</span> <span class="p">(</span><span class="n">combo</span><span class="p">);</span>
+<span class="w">  </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gtk_combo_box_get_model</span><span class="w"> </span><span class="p">(</span><span class="n">combo</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">gtk_tree_model_get_iter_from_string</span> <span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">iter</span><span class="p">,</span> <span class="n">path</span><span class="p">);</span>
-  <span class="n">gtk_tree_model_get</span> <span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">iter</span><span class="p">,</span>
-                      <span class="n">THE_DOUBLE_VALUE_COLUMN</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">value</span><span class="p">,</span>
-                      <span class="mi">-1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">gtk_tree_model_get_iter_from_string</span><span class="w"> </span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">iter</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">gtk_tree_model_get</span><span class="w"> </span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">iter</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="n">THE_DOUBLE_VALUE_COLUMN</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">value</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="mi">-1</span><span class="p">);</span><span class="w"></span>
 
-  <span class="k">return</span> <span class="n">g_strdup_printf</span> <span class="p">(</span><span class="s">&quot;%g&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
-<span class="p">}</span></pre></td>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">g_strdup_printf</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;%g&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>

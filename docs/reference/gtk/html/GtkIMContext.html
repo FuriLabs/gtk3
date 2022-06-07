@@ -266,7 +266,7 @@ these four functions:</p>
     <tbody>
       <tr>
         <td class="listing_lines" align="right"><pre>1</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="kt">void</span> <span class="nf">im_module_init</span><span class="p">(</span><span class="n">GTypeModule</span> <span class="o">*</span><span class="n">module</span><span class="p">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="kt">void</span><span class="w"> </span><span class="nf">im_module_init</span><span class="p">(</span><span class="n">GTypeModule</span><span class="w"> </span><span class="o">*</span><span class="n">module</span><span class="p">);</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -282,7 +282,7 @@ registered dynamically.</p>
     <tbody>
       <tr>
         <td class="listing_lines" align="right"><pre>1</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="kt">void</span> <span class="nf">im_module_exit</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="kt">void</span><span class="w"> </span><span class="nf">im_module_exit</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -299,11 +299,11 @@ Here goes any cleanup code your input method might require on module unload.</p>
 3
 4
 5</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="kt">void</span> <span class="nf">im_module_list</span><span class="p">(</span><span class="k">const</span> <span class="n">GtkIMContextInfo</span> <span class="o">***</span><span class="n">contexts</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">n_contexts</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="o">*</span><span class="n">contexts</span> <span class="o">=</span> <span class="n">info_list</span><span class="p">;</span>
-  <span class="o">*</span><span class="n">n_contexts</span> <span class="o">=</span> <span class="n">G_N_ELEMENTS</span> <span class="p">(</span><span class="n">info_list</span><span class="p">);</span>
-<span class="p">}</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="kt">void</span><span class="w"> </span><span class="nf">im_module_list</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">GtkIMContextInfo</span><span class="w"> </span><span class="o">***</span><span class="n">contexts</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">n_contexts</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="o">*</span><span class="n">contexts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">info_list</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="o">*</span><span class="n">n_contexts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">G_N_ELEMENTS</span><span class="w"> </span><span class="p">(</span><span class="n">info_list</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -319,7 +319,7 @@ provided input method.</p>
     <tbody>
       <tr>
         <td class="listing_lines" align="right"><pre>1</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">GtkIMContext</span> <span class="o">*</span> <span class="nf">im_module_create</span><span class="p">(</span><span class="k">const</span> <span class="n">gchar</span> <span class="o">*</span><span class="n">context_id</span><span class="p">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkIMContext</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">im_module_create</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">gchar</span><span class="w"> </span><span class="o">*</span><span class="n">context_id</span><span class="p">);</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -341,9 +341,9 @@ in order for the new input method to become available to GTK+ applications.</p>
 <a name="gtk-im-context-set-client-window"></a><h3>gtk_im_context_set_client_window ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_im_context_set_client_window (<em class="parameter"><code><a class="link" href="GtkIMContext.html" title="GtkIMContext"><span class="type">GtkIMContext</span></a> *context</code></em>,
-                                  <em class="parameter"><code><span class="type">GdkWindow</span> *window</code></em>);</pre>
+                                  <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a> *window</code></em>);</pre>
 <p>Set the client window for the input context; this is the
-<span class="type">GdkWindow</span> in which the input appears. This window is
+<a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a> in which the input appears. This window is
 used in order to correctly position status windows, and may
 also be used for purposes internal to the input method.</p>
 <div class="refsect3">
@@ -424,7 +424,7 @@ within the preedit string. </p></td>
 <a name="gtk-im-context-filter-keypress"></a><h3>gtk_im_context_filter_keypress ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_im_context_filter_keypress (<em class="parameter"><code><a class="link" href="GtkIMContext.html" title="GtkIMContext"><span class="type">GtkIMContext</span></a> *context</code></em>,
-                                <em class="parameter"><code><span class="type">GdkEventKey</span> *event</code></em>);</pre>
+                                <em class="parameter"><code><a href="../html/gdk3-Event-Structures.html#GdkEventKey"><span class="type">GdkEventKey</span></a> *event</code></em>);</pre>
 <p>Allow an input method to internally handle key press and release 
 events. If this function returns <code class="literal">TRUE</code>, then no further processing
 should be done for this key event.</p>
@@ -534,7 +534,7 @@ method to clear the preedit state.</p>
 <a name="gtk-im-context-set-cursor-location"></a><h3>gtk_im_context_set_cursor_location ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_im_context_set_cursor_location (<em class="parameter"><code><a class="link" href="GtkIMContext.html" title="GtkIMContext"><span class="type">GtkIMContext</span></a> *context</code></em>,
-                                    <em class="parameter"><code>const <span class="type">GdkRectangle</span> *area</code></em>);</pre>
+                                    <em class="parameter"><code>const <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *area</code></em>);</pre>
 <p>Notify the input method that a change in cursor 
 position has been made. The location is relative to the client
 window.</p>

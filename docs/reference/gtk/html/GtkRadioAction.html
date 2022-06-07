@@ -259,16 +259,16 @@ to the group. </p>
 8
 9
 10</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">GSList</span> <span class="o">*</span><span class="n">group</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-<span class="n">GtkRadioAction</span> <span class="o">*</span><span class="n">action</span><span class="p">;</span>
- 
-<span class="k">while</span> <span class="p">(</span> <span class="p">...</span><span class="n">more</span> <span class="n">actions</span> <span class="n">to</span> <span class="n">add</span><span class="p">...</span> <span class="o">/</span><span class="p">)</span>
-  <span class="p">{</span>
-     <span class="n">action</span> <span class="o">=</span> <span class="n">gtk_radio_action_new</span> <span class="p">(...);</span>
-     
-     <span class="n">gtk_radio_action_set_group</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">group</span><span class="p">);</span>
-     <span class="n">group</span> <span class="o">=</span> <span class="n">gtk_radio_action_get_group</span> <span class="p">(</span><span class="n">action</span><span class="p">);</span>
-  <span class="p">}</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GSList</span><span class="w"> </span><span class="o">*</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w"></span>
+<span class="n">GtkRadioAction</span><span class="w"> </span><span class="o">*</span><span class="n">action</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="p">...</span><span class="n">more</span><span class="w"> </span><span class="n">actions</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">add</span><span class="p">...</span><span class="w"> </span><span class="o">/</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="n">action</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gtk_radio_action_new</span><span class="w"> </span><span class="p">(...);</span><span class="w"></span>
+<span class="w">     </span>
+<span class="w">     </span><span class="n">gtk_radio_action_set_group</span><span class="w"> </span><span class="p">(</span><span class="n">action</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="p">);</span><span class="w"></span>
+<span class="w">     </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gtk_radio_action_get_group</span><span class="w"> </span><span class="p">(</span><span class="n">action</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -354,16 +354,16 @@ and <a class="link" href="GtkRadioAction.html#gtk-radio-action-set-group" title=
 8
 9
 10</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">GtkRadioAction</span> <span class="o">*</span><span class="n">action</span><span class="p">;</span>
-<span class="n">GtkRadioAction</span> <span class="o">*</span><span class="n">last_action</span><span class="p">;</span>
- 
-<span class="k">while</span> <span class="p">(</span> <span class="p">...</span><span class="n">more</span> <span class="n">actions</span> <span class="n">to</span> <span class="n">add</span><span class="p">...</span> <span class="o">/</span><span class="p">)</span>
-  <span class="p">{</span>
-     <span class="n">action</span> <span class="o">=</span> <span class="n">gtk_radio_action_new</span> <span class="p">(...);</span>
-     
-     <span class="n">gtk_radio_action_join_group</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">last_action</span><span class="p">);</span>
-     <span class="n">last_action</span> <span class="o">=</span> <span class="n">action</span><span class="p">;</span>
-  <span class="p">}</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkRadioAction</span><span class="w"> </span><span class="o">*</span><span class="n">action</span><span class="p">;</span><span class="w"></span>
+<span class="n">GtkRadioAction</span><span class="w"> </span><span class="o">*</span><span class="n">last_action</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="p">...</span><span class="n">more</span><span class="w"> </span><span class="n">actions</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">add</span><span class="p">...</span><span class="w"> </span><span class="o">/</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="n">action</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gtk_radio_action_new</span><span class="w"> </span><span class="p">(...);</span><span class="w"></span>
+<span class="w">     </span>
+<span class="w">     </span><span class="n">gtk_radio_action_join_group</span><span class="w"> </span><span class="p">(</span><span class="n">action</span><span class="p">,</span><span class="w"> </span><span class="n">last_action</span><span class="p">);</span><span class="w"></span>
+<span class="w">     </span><span class="n">last_action</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">action</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>

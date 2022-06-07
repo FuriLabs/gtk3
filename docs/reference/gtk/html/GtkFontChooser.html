@@ -782,16 +782,16 @@ fonts instead of or in addition to the normal system fonts.</p>
 8
 9
 10</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">FcConfig</span> <span class="o">*</span><span class="n">config</span><span class="p">;</span>
-<span class="n">PangoFontMap</span> <span class="o">*</span><span class="n">fontmap</span><span class="p">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">FcConfig</span><span class="w"> </span><span class="o">*</span><span class="n">config</span><span class="p">;</span><span class="w"></span>
+<span class="n">PangoFontMap</span><span class="w"> </span><span class="o">*</span><span class="n">fontmap</span><span class="p">;</span><span class="w"></span>
 
-<span class="n">config</span> <span class="o">=</span> <span class="n">FcInitLoadConfigAndFonts</span> <span class="p">();</span>
-<span class="n">FcConfigAppFontAddFile</span> <span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">my_app_font_file</span><span class="p">);</span>
+<span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FcInitLoadConfigAndFonts</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="n">FcConfigAppFontAddFile</span><span class="w"> </span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">my_app_font_file</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">fontmap</span> <span class="o">=</span> <span class="n">pango_cairo_font_map_new_for_font_type</span> <span class="p">(</span><span class="n">CAIRO_FONT_TYPE_FT</span><span class="p">);</span>
-<span class="n">pango_fc_font_map_set_config</span> <span class="p">(</span><span class="n">PANGO_FC_FONT_MAP</span> <span class="p">(</span><span class="n">fontmap</span><span class="p">),</span> <span class="n">config</span><span class="p">);</span>
+<span class="n">fontmap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pango_cairo_font_map_new_for_font_type</span><span class="w"> </span><span class="p">(</span><span class="n">CAIRO_FONT_TYPE_FT</span><span class="p">);</span><span class="w"></span>
+<span class="n">pango_fc_font_map_set_config</span><span class="w"> </span><span class="p">(</span><span class="n">PANGO_FC_FONT_MAP</span><span class="w"> </span><span class="p">(</span><span class="n">fontmap</span><span class="p">),</span><span class="w"> </span><span class="n">config</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">gtk_font_chooser_set_font_map</span> <span class="p">(</span><span class="n">font_chooser</span><span class="p">,</span> <span class="n">fontmap</span><span class="p">);</span></pre></td>
+<span class="n">gtk_font_chooser_set_font_map</span><span class="w"> </span><span class="p">(</span><span class="n">font_chooser</span><span class="p">,</span><span class="w"> </span><span class="n">fontmap</span><span class="p">);</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -806,8 +806,8 @@ font if it is present in the font map they use:</p>
       <tr>
         <td class="listing_lines" align="right"><pre>1
 2</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">context</span> <span class="o">=</span> <span class="n">gtk_widget_get_pango_context</span> <span class="p">(</span><span class="n">label</span><span class="p">);</span>
-<span class="n">pango_context_set_font_map</span> <span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">fontmap</span><span class="p">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gtk_widget_get_pango_context</span><span class="w"> </span><span class="p">(</span><span class="n">label</span><span class="p">);</span><span class="w"></span>
+<span class="n">pango_context_set_font_map</span><span class="w"> </span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">fontmap</span><span class="p">);</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>

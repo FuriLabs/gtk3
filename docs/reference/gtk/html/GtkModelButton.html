@@ -212,35 +212,35 @@ property to place the submenu indicator at the opposite side.</p>
 27
 28
 29</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkPopoverMenu&quot;</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkBox&quot;</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;visible&quot;</span><span class="o">&gt;</span><span class="n">True</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;margin&quot;</span><span class="o">&gt;</span><span class="mi">10</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span>
-        <span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkModelButton&quot;</span><span class="o">&gt;</span>
-          <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;visible&quot;</span><span class="o">&gt;</span><span class="n">True</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
-          <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;action-name&quot;</span><span class="o">&gt;</span><span class="n">view</span><span class="p">.</span><span class="n">cut</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
-          <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="n">translatable</span><span class="o">=</span><span class="s">&quot;yes&quot;</span><span class="o">&gt;</span><span class="n">Cut</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
-        <span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span>
-      <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span>
-        <span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkModelButton&quot;</span><span class="o">&gt;</span>
-          <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;visible&quot;</span><span class="o">&gt;</span><span class="n">True</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
-          <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;action-name&quot;</span><span class="o">&gt;</span><span class="n">view</span><span class="p">.</span><span class="n">copy</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
-          <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="n">translatable</span><span class="o">=</span><span class="s">&quot;yes&quot;</span><span class="o">&gt;</span><span class="n">Copy</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
-        <span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span>
-      <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span>
-        <span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkModelButton&quot;</span><span class="o">&gt;</span>
-          <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;visible&quot;</span><span class="o">&gt;</span><span class="n">True</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
-          <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;action-name&quot;</span><span class="o">&gt;</span><span class="n">view</span><span class="p">.</span><span class="n">paste</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
-          <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="n">translatable</span><span class="o">=</span><span class="s">&quot;yes&quot;</span><span class="o">&gt;</span><span class="n">Paste</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
-        <span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span>
-      <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span>
-    <span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span>
-  <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;</span><span class="n">object</span><span class="w"> </span><span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkPopoverMenu&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">object</span><span class="w"> </span><span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkBox&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="o">&lt;</span><span class="n">property</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;visible&quot;</span><span class="o">&gt;</span><span class="n">True</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="o">&lt;</span><span class="n">property</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;margin&quot;</span><span class="o">&gt;</span><span class="mi">10</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;</span><span class="n">object</span><span class="w"> </span><span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkModelButton&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">          </span><span class="o">&lt;</span><span class="n">property</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;visible&quot;</span><span class="o">&gt;</span><span class="n">True</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">          </span><span class="o">&lt;</span><span class="n">property</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;action-name&quot;</span><span class="o">&gt;</span><span class="n">view</span><span class="p">.</span><span class="n">cut</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">          </span><span class="o">&lt;</span><span class="n">property</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;text&quot;</span><span class="w"> </span><span class="n">translatable</span><span class="o">=</span><span class="s">&quot;yes&quot;</span><span class="o">&gt;</span><span class="n">Cut</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;</span><span class="n">object</span><span class="w"> </span><span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkModelButton&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">          </span><span class="o">&lt;</span><span class="n">property</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;visible&quot;</span><span class="o">&gt;</span><span class="n">True</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">          </span><span class="o">&lt;</span><span class="n">property</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;action-name&quot;</span><span class="o">&gt;</span><span class="n">view</span><span class="p">.</span><span class="n">copy</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">          </span><span class="o">&lt;</span><span class="n">property</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;text&quot;</span><span class="w"> </span><span class="n">translatable</span><span class="o">=</span><span class="s">&quot;yes&quot;</span><span class="o">&gt;</span><span class="n">Copy</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;</span><span class="n">object</span><span class="w"> </span><span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkModelButton&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">          </span><span class="o">&lt;</span><span class="n">property</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;visible&quot;</span><span class="o">&gt;</span><span class="n">True</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">          </span><span class="o">&lt;</span><span class="n">property</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;action-name&quot;</span><span class="o">&gt;</span><span class="n">view</span><span class="p">.</span><span class="n">paste</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">          </span><span class="o">&lt;</span><span class="n">property</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;text&quot;</span><span class="w"> </span><span class="n">translatable</span><span class="o">=</span><span class="s">&quot;yes&quot;</span><span class="o">&gt;</span><span class="n">Paste</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -258,9 +258,9 @@ property to place the submenu indicator at the opposite side.</p>
         <td class="listing_lines" align="right"><pre>1
 2
 3</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">modelbutton</span>
-<span class="err">├──</span> <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span>
-<span class="err">╰──</span> <span class="n">check</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">modelbutton</span><span class="w"></span>
+<span class="err">├──</span><span class="w"> </span><span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span><span class="w"></span>
+<span class="err">╰──</span><span class="w"> </span><span class="n">check</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -274,9 +274,9 @@ property to place the submenu indicator at the opposite side.</p>
         <td class="listing_lines" align="right"><pre>1
 2
 3</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">modelbutton</span>
-<span class="err">├──</span> <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span>
-<span class="err">╰──</span> <span class="n">radio</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">modelbutton</span><span class="w"></span>
+<span class="err">├──</span><span class="w"> </span><span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span><span class="w"></span>
+<span class="err">╰──</span><span class="w"> </span><span class="n">radio</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -290,9 +290,9 @@ property to place the submenu indicator at the opposite side.</p>
         <td class="listing_lines" align="right"><pre>1
 2
 3</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">modelbutton</span>
-<span class="err">├──</span> <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span>
-<span class="err">╰──</span> <span class="n">arrow</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">modelbutton</span><span class="w"></span>
+<span class="err">├──</span><span class="w"> </span><span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span><span class="w"></span>
+<span class="err">╰──</span><span class="w"> </span><span class="n">arrow</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -311,9 +311,9 @@ of the button and whether it has a menu name set.</p>
         <td class="listing_lines" align="right"><pre>1
 2
 3</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">button</span><span class="p">.</span><span class="n">model</span>
-<span class="err">├──</span> <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span>
-<span class="err">╰──</span> <span class="n">check</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">button</span><span class="p">.</span><span class="n">model</span><span class="w"></span>
+<span class="err">├──</span><span class="w"> </span><span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span><span class="w"></span>
+<span class="err">╰──</span><span class="w"> </span><span class="n">check</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>

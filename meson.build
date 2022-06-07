@@ -1,5 +1,5 @@
 project('gtk+-3.0', 'c',
-        version: '3.24.33',
+        version: '3.24.34',
         default_options: [
           'buildtype=debugoptimized',
           'warning_level=1'
@@ -52,7 +52,7 @@ gtk_version       = meson.project_version()
 gtk_major_version = gtk_version.split('.')[0].to_int()
 gtk_minor_version = gtk_version.split('.')[1].to_int()
 gtk_micro_version = gtk_version.split('.')[2].to_int()
-gtk_interface_age = 29
+gtk_interface_age = 30
 add_project_arguments('-DGTK_VERSION="@0@"'.format(meson.project_version()), language: 'c')
 
 add_project_arguments('-D_GNU_SOURCE', language: 'c')
@@ -670,6 +670,7 @@ endif
 if quartz_enabled
   pc_gdk_extra_libs += ['-Wl,-framework,Cocoa', '-Wl,-framework,Carbon', '-Wl,-framework,CoreGraphics']
   backend_immodules += ['quartz']
+  cdata.set('QUARTZ_RELOCATION', 1)
 endif
 
 extra_demo_ldflags = []

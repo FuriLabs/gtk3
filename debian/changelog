@@ -1,3 +1,36 @@
+gtk+3.0 (3.24.34-1ubuntu1) UNRELEASED; urgency=medium
+
+  * Resynchronize with Debian, remaining changes
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0.symbols
+    + debian/control.in and debian/tests/control (installed-tests):
+      - Build-depend on adwaita-icon-theme-full for icon name check test
+    + debian/control.in: Build-Depend on dh-sequence-translations
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Mon, 09 May 2022 16:12:01 -0400
+
+gtk+3.0 (3.24.34-1) unstable; urgency=medium
+
+  * New upstream release
+  * d/copyright: Update
+  * Drop patches that were cherry-picked from upstream
+
+ -- Simon McVittie <smcv@debian.org>  Wed, 01 Jun 2022 17:12:17 +0100
+
 gtk+3.0 (3.24.33-2ubuntu1) kinetic; urgency=medium
 
   * Resynchronize with Debian, remaining changes

@@ -6,30 +6,6 @@
 # define SECTION
 #endif
 
-#ifdef _MSC_VER
-static const SECTION union { const guint8 data[317]; const double alignment; void * const ptr;}  test_css_style_resource_data = { {
-  0107, 0126, 0141, 0162, 0151, 0141, 0156, 0164, 0000, 0000, 0000, 0000, 0000, 0000, 0000, 0000, 
-  0030, 0000, 0000, 0000, 0344, 0000, 0000, 0000, 0000, 0000, 0000, 0050, 0007, 0000, 0000, 0000, 
-  0000, 0000, 0000, 0000, 0002, 0000, 0000, 0000, 0004, 0000, 0000, 0000, 0006, 0000, 0000, 0000, 
-  0006, 0000, 0000, 0000, 0007, 0000, 0000, 0000, 0007, 0000, 0000, 0000, 0214, 0317, 0341, 0030, 
-  0003, 0000, 0000, 0000, 0344, 0000, 0000, 0000, 0007, 0000, 0114, 0000, 0354, 0000, 0000, 0000, 
-  0360, 0000, 0000, 0000, 0016, 0345, 0303, 0003, 0000, 0000, 0000, 0000, 0360, 0000, 0000, 0000, 
-  0006, 0000, 0114, 0000, 0370, 0000, 0000, 0000, 0374, 0000, 0000, 0000, 0113, 0120, 0220, 0013, 
-  0005, 0000, 0000, 0000, 0374, 0000, 0000, 0000, 0004, 0000, 0114, 0000, 0000, 0001, 0000, 0000, 
-  0004, 0001, 0000, 0000, 0100, 0364, 0277, 0000, 0002, 0000, 0000, 0000, 0004, 0001, 0000, 0000, 
-  0004, 0000, 0114, 0000, 0010, 0001, 0000, 0000, 0014, 0001, 0000, 0000, 0151, 0022, 0040, 0141, 
-  0006, 0000, 0000, 0000, 0014, 0001, 0000, 0000, 0007, 0000, 0166, 0000, 0030, 0001, 0000, 0000, 
-  0050, 0001, 0000, 0000, 0324, 0265, 0002, 0000, 0377, 0377, 0377, 0377, 0050, 0001, 0000, 0000, 
-  0001, 0000, 0114, 0000, 0054, 0001, 0000, 0000, 0060, 0001, 0000, 0000, 0214, 0301, 0362, 0100, 
-  0001, 0000, 0000, 0000, 0060, 0001, 0000, 0000, 0006, 0000, 0114, 0000, 0070, 0001, 0000, 0000, 
-  0074, 0001, 0000, 0000, 0154, 0151, 0142, 0147, 0164, 0153, 0057, 0000, 0001, 0000, 0000, 0000, 
-  0164, 0150, 0145, 0155, 0145, 0057, 0000, 0000, 0006, 0000, 0000, 0000, 0157, 0162, 0147, 0057, 
-  0003, 0000, 0000, 0000, 0147, 0164, 0153, 0057, 0000, 0000, 0000, 0000, 0147, 0164, 0153, 0056, 
-  0143, 0163, 0163, 0000, 0000, 0000, 0000, 0000, 0000, 0000, 0000, 0000, 0000, 0000, 0000, 0000, 
-  0000, 0000, 0050, 0165, 0165, 0141, 0171, 0051, 0057, 0000, 0000, 0000, 0002, 0000, 0000, 0000, 
-  0105, 0155, 0160, 0164, 0171, 0057, 0000, 0000, 0004, 0000, 0000, 0000
-} };
-#else /* _MSC_VER */
 static const SECTION union { const guint8 data[317]; const double alignment; void * const ptr;}  test_css_style_resource_data = {
   "\107\126\141\162\151\141\156\164\000\000\000\000\000\000\000\000"
   "\030\000\000\000\344\000\000\000\000\000\000\050\007\000\000\000"
@@ -51,7 +27,6 @@ static const SECTION union { const guint8 data[317]; const double alignment; voi
   "\143\163\163\000\000\000\000\000\000\000\000\000\000\000\000\000"
   "\000\000\050\165\165\141\171\051\057\000\000\000\002\000\000\000"
   "\105\155\160\164\171\057\000\000\004\000\000\000" };
-#endif /* !_MSC_VER */
 
 static GStaticResource static_resource = { test_css_style_resource_data.data, sizeof (test_css_style_resource_data.data) - 1 /* nul terminator */, NULL, NULL, NULL };
 
@@ -61,6 +36,35 @@ GResource *test_css_style_get_resource (void)
 {
   return g_static_resource_get_resource (&static_resource);
 }
+/* GLIB - Library of useful routines for C programming
+ * Copyright (C) 1995-1997  Peter Mattis, Spencer Kimball and Josh MacDonald
+ *
+ * SPDX-License-Identifier: LGPL-2.1-or-later
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	 See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, see <http://www.gnu.org/licenses/>.
+ */
+
+/*
+ * Modified by the GLib Team and others 1997-2000.  See the AUTHORS
+ * file for a list of people on the GLib Team.  See the ChangeLog
+ * files for a list of changes.  These files are distributed with
+ * GLib at ftp://ftp.gtk.org/pub/gtk/.
+ */
+
+#ifndef __G_CONSTRUCTOR_H__
+#define __G_CONSTRUCTOR_H__
+
 /*
   If G_HAS_CONSTRUCTORS is true then the compiler support *both* constructors and
   destructors, in a usable way, including e.g. on library unload. If not you're on
@@ -90,6 +94,15 @@ GResource *test_css_style_get_resource (void)
 
 #elif defined (_MSC_VER) && (_MSC_VER >= 1500)
 /* Visual studio 2008 and later has _Pragma */
+
+/*
+ * Only try to include gslist.h if not already included via glib.h,
+ * so that items using gconstructor.h outside of GLib (such as
+ * GResources) continue to build properly.
+ */
+#ifndef __G_LIB_H__
+#include "gslist.h"
+#endif
 
 #include <stdlib.h>
 
@@ -183,6 +196,7 @@ GResource *test_css_style_get_resource (void)
 #endif
 
 #endif /* __GTK_DOC_IGNORE__ */
+#endif /* __G_CONSTRUCTOR_H__ */
 
 #ifdef G_HAS_CONSTRUCTORS
 

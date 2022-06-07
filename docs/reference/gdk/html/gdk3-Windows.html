@@ -8052,21 +8052,21 @@ a terminal area widget called “terminal” and a toplevel window “toplevel�
 13
 14
 15</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">GdkGeometry</span> <span class="n">hints</span><span class="p">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GdkGeometry</span><span class="w"> </span><span class="n">hints</span><span class="p">;</span><span class="w"></span>
 
-<span class="n">hints</span><span class="p">.</span><span class="n">base_width</span> <span class="o">=</span> <span class="n">terminal</span><span class="o">-&gt;</span><span class="n">char_width</span><span class="p">;</span>
-        <span class="n">hints</span><span class="p">.</span><span class="n">base_height</span> <span class="o">=</span> <span class="n">terminal</span><span class="o">-&gt;</span><span class="n">char_height</span><span class="p">;</span>
-        <span class="n">hints</span><span class="p">.</span><span class="n">min_width</span> <span class="o">=</span> <span class="n">terminal</span><span class="o">-&gt;</span><span class="n">char_width</span><span class="p">;</span>
-        <span class="n">hints</span><span class="p">.</span><span class="n">min_height</span> <span class="o">=</span> <span class="n">terminal</span><span class="o">-&gt;</span><span class="n">char_height</span><span class="p">;</span>
-        <span class="n">hints</span><span class="p">.</span><span class="n">width_inc</span> <span class="o">=</span> <span class="n">terminal</span><span class="o">-&gt;</span><span class="n">char_width</span><span class="p">;</span>
-        <span class="n">hints</span><span class="p">.</span><span class="n">height_inc</span> <span class="o">=</span> <span class="n">terminal</span><span class="o">-&gt;</span><span class="n">char_height</span><span class="p">;</span>
+<span class="n">hints</span><span class="p">.</span><span class="n">base_width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">terminal</span><span class="o">-&gt;</span><span class="n">char_width</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">hints</span><span class="p">.</span><span class="n">base_height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">terminal</span><span class="o">-&gt;</span><span class="n">char_height</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">hints</span><span class="p">.</span><span class="n">min_width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">terminal</span><span class="o">-&gt;</span><span class="n">char_width</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">hints</span><span class="p">.</span><span class="n">min_height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">terminal</span><span class="o">-&gt;</span><span class="n">char_height</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">hints</span><span class="p">.</span><span class="n">width_inc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">terminal</span><span class="o">-&gt;</span><span class="n">char_width</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">hints</span><span class="p">.</span><span class="n">height_inc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">terminal</span><span class="o">-&gt;</span><span class="n">char_height</span><span class="p">;</span><span class="w"></span>
 
- <span class="n">gtk_window_set_geometry_hints</span> <span class="p">(</span><span class="n">GTK_WINDOW</span> <span class="p">(</span><span class="n">toplevel</span><span class="p">),</span>
-                                <span class="n">GTK_WIDGET</span> <span class="p">(</span><span class="n">terminal</span><span class="p">),</span>
-                                <span class="o">&amp;</span><span class="n">hints</span><span class="p">,</span>
-                                <span class="n">GDK_HINT_RESIZE_INC</span> <span class="o">|</span>
-                                <span class="n">GDK_HINT_MIN_SIZE</span> <span class="o">|</span>
-                                <span class="n">GDK_HINT_BASE_SIZE</span><span class="p">);</span></pre></td>
+<span class="w"> </span><span class="n">gtk_window_set_geometry_hints</span><span class="w"> </span><span class="p">(</span><span class="n">GTK_WINDOW</span><span class="w"> </span><span class="p">(</span><span class="n">toplevel</span><span class="p">),</span><span class="w"></span>
+<span class="w">                                </span><span class="n">GTK_WIDGET</span><span class="w"> </span><span class="p">(</span><span class="n">terminal</span><span class="p">),</span><span class="w"></span>
+<span class="w">                                </span><span class="o">&amp;</span><span class="n">hints</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                </span><span class="n">GDK_HINT_RESIZE_INC</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="w">                                </span><span class="n">GDK_HINT_MIN_SIZE</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="w">                                </span><span class="n">GDK_HINT_BASE_SIZE</span><span class="p">);</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>

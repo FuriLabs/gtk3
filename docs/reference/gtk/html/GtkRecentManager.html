@@ -424,10 +424,10 @@ it is more efficient to use the default manager created by GTK+.</p>
 2
 3
 4</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">GtkRecentManager</span> <span class="o">*</span><span class="n">manager</span><span class="p">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkRecentManager</span><span class="w"> </span><span class="o">*</span><span class="n">manager</span><span class="p">;</span><span class="w"></span>
 
-<span class="n">manager</span> <span class="o">=</span> <span class="n">gtk_recent_manager_get_default</span> <span class="p">();</span>
-<span class="n">gtk_recent_manager_add_item</span> <span class="p">(</span><span class="n">manager</span><span class="p">,</span> <span class="n">file_uri</span><span class="p">);</span></pre></td>
+<span class="n">manager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gtk_recent_manager_get_default</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="n">gtk_recent_manager_add_item</span><span class="w"> </span><span class="p">(</span><span class="n">manager</span><span class="p">,</span><span class="w"> </span><span class="n">file_uri</span><span class="p">);</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -458,22 +458,22 @@ given its URI requires calling <a class="link" href="GtkRecentManager.html#gtk-r
 14
 15
 16</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">GtkRecentManager</span> <span class="o">*</span><span class="n">manager</span><span class="p">;</span>
-<span class="n">GtkRecentInfo</span> <span class="o">*</span><span class="n">info</span><span class="p">;</span>
-<span class="n">GError</span> <span class="o">*</span><span class="n">error</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkRecentManager</span><span class="w"> </span><span class="o">*</span><span class="n">manager</span><span class="p">;</span><span class="w"></span>
+<span class="n">GtkRecentInfo</span><span class="w"> </span><span class="o">*</span><span class="n">info</span><span class="p">;</span><span class="w"></span>
+<span class="n">GError</span><span class="w"> </span><span class="o">*</span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w"></span>
 
-<span class="n">manager</span> <span class="o">=</span> <span class="n">gtk_recent_manager_get_default</span> <span class="p">();</span>
-<span class="n">info</span> <span class="o">=</span> <span class="n">gtk_recent_manager_lookup_item</span> <span class="p">(</span><span class="n">manager</span><span class="p">,</span> <span class="n">file_uri</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">error</span><span class="p">);</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">error</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">g_warning</span> <span class="p">(</span><span class="s">&quot;Could not find the file: %s&quot;</span><span class="p">,</span> <span class="n">error</span><span class="o">-&gt;</span><span class="n">message</span><span class="p">);</span>
-    <span class="n">g_error_free</span> <span class="p">(</span><span class="n">error</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="k">else</span>
- <span class="p">{</span>
-   <span class="c1">// Use the info object</span>
-   <span class="n">gtk_recent_info_unref</span> <span class="p">(</span><span class="n">info</span><span class="p">);</span>
- <span class="p">}</span></pre></td>
+<span class="n">manager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gtk_recent_manager_get_default</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="n">info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gtk_recent_manager_lookup_item</span><span class="w"> </span><span class="p">(</span><span class="n">manager</span><span class="p">,</span><span class="w"> </span><span class="n">file_uri</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">error</span><span class="p">);</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">g_warning</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Could not find the file: %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">error</span><span class="o">-&gt;</span><span class="n">message</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">g_error_free</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="k">else</span><span class="w"></span>
+<span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="c1">// Use the info object</span>
+<span class="w">   </span><span class="n">gtk_recent_info_unref</span><span class="w"> </span><span class="p">(</span><span class="n">info</span><span class="p">);</span><span class="w"></span>
+<span class="w"> </span><span class="p">}</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>

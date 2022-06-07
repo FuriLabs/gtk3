@@ -694,18 +694,18 @@ type attribute.</p>
 10
 11
 12</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkNotebook&quot;</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkLabel&quot;</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;notebook-content&quot;</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;label&quot;</span><span class="o">&gt;</span><span class="n">Content</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
-    <span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span>
-  <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="n">child</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;tab&quot;</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">object</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkLabel&quot;</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;notebook-tab&quot;</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="n">property</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;label&quot;</span><span class="o">&gt;</span><span class="n">Tab</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
-    <span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span>
-  <span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;</span><span class="n">object</span><span class="w"> </span><span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkNotebook&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">object</span><span class="w"> </span><span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkLabel&quot;</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">&quot;notebook-content&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="o">&lt;</span><span class="n">property</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;label&quot;</span><span class="o">&gt;</span><span class="n">Content</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;</span><span class="n">child</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s">&quot;tab&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">object</span><span class="w"> </span><span class="n">class</span><span class="o">=</span><span class="s">&quot;GtkLabel&quot;</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">&quot;notebook-tab&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="o">&lt;</span><span class="n">property</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;label&quot;</span><span class="o">&gt;</span><span class="n">Tab</span><span class="o">&lt;/</span><span class="n">property</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;/</span><span class="n">child</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;/</span><span class="n">object</span><span class="o">&gt;</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -737,23 +737,23 @@ type attribute.</p>
 15
 16
 17</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">notebook</span>
-<span class="err">├──</span> <span class="n">header</span><span class="p">.</span><span class="n">top</span>
-<span class="err">│</span>   <span class="err">├──</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">action</span> <span class="n">widget</span><span class="o">&gt;</span><span class="p">]</span>
-<span class="err">│</span>   <span class="err">├──</span> <span class="n">tabs</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="p">[</span><span class="n">arrow</span><span class="p">]</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="n">tab</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">╰──</span> <span class="o">&lt;</span><span class="n">tab</span> <span class="n">label</span><span class="o">&gt;</span>
-<span class="err">┊</span>   <span class="err">┊</span>   <span class="err">┊</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="n">tab</span><span class="p">[.</span><span class="n">reorderable</span><span class="o">-</span><span class="n">page</span><span class="p">]</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">╰──</span> <span class="o">&lt;</span><span class="n">tab</span> <span class="n">label</span><span class="o">&gt;</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">╰──</span> <span class="p">[</span><span class="n">arrow</span><span class="p">]</span>
-<span class="err">│</span>   <span class="err">╰──</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">action</span> <span class="n">widget</span><span class="o">&gt;</span><span class="p">]</span>
-<span class="err">│</span>
-<span class="err">╰──</span> <span class="n">stack</span>
-    <span class="err">├──</span> <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span>
-    <span class="err">┊</span>
-    <span class="err">╰──</span> <span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">notebook</span><span class="w"></span>
+<span class="err">├──</span><span class="w"> </span><span class="n">header</span><span class="p">.</span><span class="n">top</span><span class="w"></span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="p">[</span><span class="o">&lt;</span><span class="n">action</span><span class="w"> </span><span class="n">widget</span><span class="o">&gt;</span><span class="p">]</span><span class="w"></span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">tabs</span><span class="w"></span>
+<span class="err">│</span><span class="w">   </span><span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="p">[</span><span class="n">arrow</span><span class="p">]</span><span class="w"></span>
+<span class="err">│</span><span class="w">   </span><span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">tab</span><span class="w"></span>
+<span class="err">│</span><span class="w">   </span><span class="err">│</span><span class="w">   </span><span class="err">│</span><span class="w">   </span><span class="err">╰──</span><span class="w"> </span><span class="o">&lt;</span><span class="n">tab</span><span class="w"> </span><span class="n">label</span><span class="o">&gt;</span><span class="w"></span>
+<span class="err">┊</span><span class="w">   </span><span class="err">┊</span><span class="w">   </span><span class="err">┊</span><span class="w"></span>
+<span class="err">│</span><span class="w">   </span><span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">tab</span><span class="p">[.</span><span class="n">reorderable</span><span class="o">-</span><span class="n">page</span><span class="p">]</span><span class="w"></span>
+<span class="err">│</span><span class="w">   </span><span class="err">│</span><span class="w">   </span><span class="err">│</span><span class="w">   </span><span class="err">╰──</span><span class="w"> </span><span class="o">&lt;</span><span class="n">tab</span><span class="w"> </span><span class="n">label</span><span class="o">&gt;</span><span class="w"></span>
+<span class="err">│</span><span class="w">   </span><span class="err">│</span><span class="w">   </span><span class="err">╰──</span><span class="w"> </span><span class="p">[</span><span class="n">arrow</span><span class="p">]</span><span class="w"></span>
+<span class="err">│</span><span class="w">   </span><span class="err">╰──</span><span class="w"> </span><span class="p">[</span><span class="o">&lt;</span><span class="n">action</span><span class="w"> </span><span class="n">widget</span><span class="o">&gt;</span><span class="p">]</span><span class="w"></span>
+<span class="err">│</span><span class="w"></span>
+<span class="err">╰──</span><span class="w"> </span><span class="n">stack</span><span class="w"></span>
+<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="err">┊</span><span class="w"></span>
+<span class="w">    </span><span class="err">╰──</span><span class="w"> </span><span class="o">&lt;</span><span class="n">child</span><span class="o">&gt;</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -1877,26 +1877,26 @@ will initiate a drag cancel animation.</p>
 18
 19
 20</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="k">static</span> <span class="kt">void</span>
-<span class="nf">on_drag_data_received</span> <span class="p">(</span><span class="n">GtkWidget</span>        <span class="o">*</span><span class="n">widget</span><span class="p">,</span>
-                       <span class="n">GdkDragContext</span>   <span class="o">*</span><span class="n">context</span><span class="p">,</span>
-                       <span class="n">gint</span>              <span class="n">x</span><span class="p">,</span>
-                       <span class="n">gint</span>              <span class="n">y</span><span class="p">,</span>
-                       <span class="n">GtkSelectionData</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span>
-                       <span class="n">guint</span>             <span class="n">info</span><span class="p">,</span>
-                       <span class="n">guint</span>             <span class="n">time</span><span class="p">,</span>
-                       <span class="n">gpointer</span>          <span class="n">user_data</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">GtkWidget</span> <span class="o">*</span><span class="n">notebook</span><span class="p">;</span>
-  <span class="n">GtkWidget</span> <span class="o">**</span><span class="n">child</span><span class="p">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="nf">on_drag_data_received</span><span class="w"> </span><span class="p">(</span><span class="n">GtkWidget</span><span class="w">        </span><span class="o">*</span><span class="n">widget</span><span class="p">,</span><span class="w"></span>
+<span class="w">                       </span><span class="n">GdkDragContext</span><span class="w">   </span><span class="o">*</span><span class="n">context</span><span class="p">,</span><span class="w"></span>
+<span class="w">                       </span><span class="n">gint</span><span class="w">              </span><span class="n">x</span><span class="p">,</span><span class="w"></span>
+<span class="w">                       </span><span class="n">gint</span><span class="w">              </span><span class="n">y</span><span class="p">,</span><span class="w"></span>
+<span class="w">                       </span><span class="n">GtkSelectionData</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="p">,</span><span class="w"></span>
+<span class="w">                       </span><span class="n">guint</span><span class="w">             </span><span class="n">info</span><span class="p">,</span><span class="w"></span>
+<span class="w">                       </span><span class="n">guint</span><span class="w">             </span><span class="n">time</span><span class="p">,</span><span class="w"></span>
+<span class="w">                       </span><span class="n">gpointer</span><span class="w">          </span><span class="n">user_data</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">GtkWidget</span><span class="w"> </span><span class="o">*</span><span class="n">notebook</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">GtkWidget</span><span class="w"> </span><span class="o">**</span><span class="n">child</span><span class="p">;</span><span class="w"></span>
 
-  <span class="n">notebook</span> <span class="o">=</span> <span class="n">gtk_drag_get_source_widget</span> <span class="p">(</span><span class="n">context</span><span class="p">);</span>
-  <span class="n">child</span> <span class="o">=</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="n">gtk_selection_data_get_data</span> <span class="p">(</span><span class="n">data</span><span class="p">);</span>
+<span class="w">  </span><span class="n">notebook</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gtk_drag_get_source_widget</span><span class="w"> </span><span class="p">(</span><span class="n">context</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">child</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">gtk_selection_data_get_data</span><span class="w"> </span><span class="p">(</span><span class="n">data</span><span class="p">);</span><span class="w"></span>
 
-  <span class="c1">// process_widget (*child);</span>
+<span class="w">  </span><span class="c1">// process_widget (*child);</span>
 
-  <span class="n">gtk_notebook_detach_tab</span> <span class="p">(</span><span class="n">GTK_NOTEBOOK</span> <span class="p">(</span><span class="n">notebook</span><span class="p">),</span> <span class="o">*</span><span class="n">child</span><span class="p">);</span>
-<span class="p">}</span></pre></td>
+<span class="w">  </span><span class="n">gtk_notebook_detach_tab</span><span class="w"> </span><span class="p">(</span><span class="n">GTK_NOTEBOOK</span><span class="w"> </span><span class="p">(</span><span class="n">notebook</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">child</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>

@@ -133,30 +133,30 @@ otherwise.</p>
 22
 23
 24</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">dialog</span><span class="p">;</span>
-<span class="n">GtkFileChooserAction</span> <span class="n">action</span> <span class="o">=</span> <span class="n">GTK_FILE_CHOOSER_ACTION_OPEN</span><span class="p">;</span>
-<span class="n">gint</span> <span class="n">res</span><span class="p">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkWidget</span><span class="w"> </span><span class="o">*</span><span class="n">dialog</span><span class="p">;</span><span class="w"></span>
+<span class="n">GtkFileChooserAction</span><span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GTK_FILE_CHOOSER_ACTION_OPEN</span><span class="p">;</span><span class="w"></span>
+<span class="n">gint</span><span class="w"> </span><span class="n">res</span><span class="p">;</span><span class="w"></span>
 
-<span class="n">dialog</span> <span class="o">=</span> <span class="n">gtk_file_chooser_dialog_new</span> <span class="p">(</span><span class="s">&quot;Open File&quot;</span><span class="p">,</span>
-                                      <span class="n">parent_window</span><span class="p">,</span>
-                                      <span class="n">action</span><span class="p">,</span>
-                                      <span class="n">_</span><span class="p">(</span><span class="s">&quot;_Cancel&quot;</span><span class="p">),</span>
-                                      <span class="n">GTK_RESPONSE_CANCEL</span><span class="p">,</span>
-                                      <span class="n">_</span><span class="p">(</span><span class="s">&quot;_Open&quot;</span><span class="p">),</span>
-                                      <span class="n">GTK_RESPONSE_ACCEPT</span><span class="p">,</span>
-                                      <span class="nb">NULL</span><span class="p">);</span>
+<span class="n">dialog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gtk_file_chooser_dialog_new</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Open File&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="n">parent_window</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="n">action</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="n">_</span><span class="p">(</span><span class="s">&quot;_Cancel&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">                                      </span><span class="n">GTK_RESPONSE_CANCEL</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="n">_</span><span class="p">(</span><span class="s">&quot;_Open&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">                                      </span><span class="n">GTK_RESPONSE_ACCEPT</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="nb">NULL</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">res</span> <span class="o">=</span> <span class="n">gtk_dialog_run</span> <span class="p">(</span><span class="n">GTK_DIALOG</span> <span class="p">(</span><span class="n">dialog</span><span class="p">));</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">==</span> <span class="n">GTK_RESPONSE_ACCEPT</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="kt">char</span> <span class="o">*</span><span class="n">filename</span><span class="p">;</span>
-    <span class="n">GtkFileChooser</span> <span class="o">*</span><span class="n">chooser</span> <span class="o">=</span> <span class="n">GTK_FILE_CHOOSER</span> <span class="p">(</span><span class="n">dialog</span><span class="p">);</span>
-    <span class="n">filename</span> <span class="o">=</span> <span class="n">gtk_file_chooser_get_filename</span> <span class="p">(</span><span class="n">chooser</span><span class="p">);</span>
-    <span class="n">open_file</span> <span class="p">(</span><span class="n">filename</span><span class="p">);</span>
-    <span class="n">g_free</span> <span class="p">(</span><span class="n">filename</span><span class="p">);</span>
-  <span class="p">}</span>
+<span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gtk_dialog_run</span><span class="w"> </span><span class="p">(</span><span class="n">GTK_DIALOG</span><span class="w"> </span><span class="p">(</span><span class="n">dialog</span><span class="p">));</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">res</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">GTK_RESPONSE_ACCEPT</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">filename</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">GtkFileChooser</span><span class="w"> </span><span class="o">*</span><span class="n">chooser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GTK_FILE_CHOOSER</span><span class="w"> </span><span class="p">(</span><span class="n">dialog</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gtk_file_chooser_get_filename</span><span class="w"> </span><span class="p">(</span><span class="n">chooser</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">open_file</span><span class="w"> </span><span class="p">(</span><span class="n">filename</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">g_free</span><span class="w"> </span><span class="p">(</span><span class="n">filename</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-<span class="n">gtk_widget_destroy</span> <span class="p">(</span><span class="n">dialog</span><span class="p">);</span></pre></td>
+<span class="n">gtk_widget_destroy</span><span class="w"> </span><span class="p">(</span><span class="n">dialog</span><span class="p">);</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -203,41 +203,41 @@ otherwise.</p>
 33
 34
 35</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">dialog</span><span class="p">;</span>
-<span class="n">GtkFileChooser</span> <span class="o">*</span><span class="n">chooser</span><span class="p">;</span>
-<span class="n">GtkFileChooserAction</span> <span class="n">action</span> <span class="o">=</span> <span class="n">GTK_FILE_CHOOSER_ACTION_SAVE</span><span class="p">;</span>
-<span class="n">gint</span> <span class="n">res</span><span class="p">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkWidget</span><span class="w"> </span><span class="o">*</span><span class="n">dialog</span><span class="p">;</span><span class="w"></span>
+<span class="n">GtkFileChooser</span><span class="w"> </span><span class="o">*</span><span class="n">chooser</span><span class="p">;</span><span class="w"></span>
+<span class="n">GtkFileChooserAction</span><span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GTK_FILE_CHOOSER_ACTION_SAVE</span><span class="p">;</span><span class="w"></span>
+<span class="n">gint</span><span class="w"> </span><span class="n">res</span><span class="p">;</span><span class="w"></span>
 
-<span class="n">dialog</span> <span class="o">=</span> <span class="n">gtk_file_chooser_dialog_new</span> <span class="p">(</span><span class="s">&quot;Save File&quot;</span><span class="p">,</span>
-                                      <span class="n">parent_window</span><span class="p">,</span>
-                                      <span class="n">action</span><span class="p">,</span>
-                                      <span class="n">_</span><span class="p">(</span><span class="s">&quot;_Cancel&quot;</span><span class="p">),</span>
-                                      <span class="n">GTK_RESPONSE_CANCEL</span><span class="p">,</span>
-                                      <span class="n">_</span><span class="p">(</span><span class="s">&quot;_Save&quot;</span><span class="p">),</span>
-                                      <span class="n">GTK_RESPONSE_ACCEPT</span><span class="p">,</span>
-                                      <span class="nb">NULL</span><span class="p">);</span>
-<span class="n">chooser</span> <span class="o">=</span> <span class="n">GTK_FILE_CHOOSER</span> <span class="p">(</span><span class="n">dialog</span><span class="p">);</span>
+<span class="n">dialog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gtk_file_chooser_dialog_new</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Save File&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="n">parent_window</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="n">action</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="n">_</span><span class="p">(</span><span class="s">&quot;_Cancel&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">                                      </span><span class="n">GTK_RESPONSE_CANCEL</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="n">_</span><span class="p">(</span><span class="s">&quot;_Save&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">                                      </span><span class="n">GTK_RESPONSE_ACCEPT</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="nb">NULL</span><span class="p">);</span><span class="w"></span>
+<span class="n">chooser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GTK_FILE_CHOOSER</span><span class="w"> </span><span class="p">(</span><span class="n">dialog</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">gtk_file_chooser_set_do_overwrite_confirmation</span> <span class="p">(</span><span class="n">chooser</span><span class="p">,</span> <span class="n">TRUE</span><span class="p">);</span>
+<span class="n">gtk_file_chooser_set_do_overwrite_confirmation</span><span class="w"> </span><span class="p">(</span><span class="n">chooser</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">);</span><span class="w"></span>
 
-<span class="k">if</span> <span class="p">(</span><span class="n">user_edited_a_new_document</span><span class="p">)</span>
-  <span class="n">gtk_file_chooser_set_current_name</span> <span class="p">(</span><span class="n">chooser</span><span class="p">,</span>
-                                     <span class="n">_</span><span class="p">(</span><span class="s">&quot;Untitled document&quot;</span><span class="p">));</span>
-<span class="k">else</span>
-  <span class="n">gtk_file_chooser_set_filename</span> <span class="p">(</span><span class="n">chooser</span><span class="p">,</span>
-                                 <span class="n">existing_filename</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">user_edited_a_new_document</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">gtk_file_chooser_set_current_name</span><span class="w"> </span><span class="p">(</span><span class="n">chooser</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                     </span><span class="n">_</span><span class="p">(</span><span class="s">&quot;Untitled document&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="k">else</span><span class="w"></span>
+<span class="w">  </span><span class="n">gtk_file_chooser_set_filename</span><span class="w"> </span><span class="p">(</span><span class="n">chooser</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                 </span><span class="n">existing_filename</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">res</span> <span class="o">=</span> <span class="n">gtk_dialog_run</span> <span class="p">(</span><span class="n">GTK_DIALOG</span> <span class="p">(</span><span class="n">dialog</span><span class="p">));</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">==</span> <span class="n">GTK_RESPONSE_ACCEPT</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="kt">char</span> <span class="o">*</span><span class="n">filename</span><span class="p">;</span>
+<span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gtk_dialog_run</span><span class="w"> </span><span class="p">(</span><span class="n">GTK_DIALOG</span><span class="w"> </span><span class="p">(</span><span class="n">dialog</span><span class="p">));</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">res</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">GTK_RESPONSE_ACCEPT</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">filename</span><span class="p">;</span><span class="w"></span>
 
-    <span class="n">filename</span> <span class="o">=</span> <span class="n">gtk_file_chooser_get_filename</span> <span class="p">(</span><span class="n">chooser</span><span class="p">);</span>
-    <span class="n">save_to_file</span> <span class="p">(</span><span class="n">filename</span><span class="p">);</span>
-    <span class="n">g_free</span> <span class="p">(</span><span class="n">filename</span><span class="p">);</span>
-  <span class="p">}</span>
+<span class="w">    </span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gtk_file_chooser_get_filename</span><span class="w"> </span><span class="p">(</span><span class="n">chooser</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">save_to_file</span><span class="w"> </span><span class="p">(</span><span class="n">filename</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">g_free</span><span class="w"> </span><span class="p">(</span><span class="n">filename</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-<span class="n">gtk_widget_destroy</span> <span class="p">(</span><span class="n">dialog</span><span class="p">);</span></pre></td>
+<span class="n">gtk_widget_destroy</span><span class="w"> </span><span class="p">(</span><span class="n">dialog</span><span class="p">);</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -288,17 +288,17 @@ could call <a class="link" href="GtkFileChooserDialog.html#gtk-file-chooser-dial
 9
 10
 11</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">GtkWidget</span> <span class="o">*</span><span class="n">dialog</span><span class="p">;</span>
-<span class="n">GtkFileChooserAction</span> <span class="n">action</span> <span class="o">=</span> <span class="n">GTK_FILE_CHOOSER_ACTION_OPEN</span><span class="p">;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkWidget</span><span class="w"> </span><span class="o">*</span><span class="n">dialog</span><span class="p">;</span><span class="w"></span>
+<span class="n">GtkFileChooserAction</span><span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GTK_FILE_CHOOSER_ACTION_OPEN</span><span class="p">;</span><span class="w"></span>
 
-<span class="n">dialog</span> <span class="o">=</span> <span class="n">gtk_file_chooser_dialog_new</span> <span class="p">(</span><span class="s">&quot;Open File&quot;</span><span class="p">,</span>
-                                      <span class="n">parent_window</span><span class="p">,</span>
-                                      <span class="n">action</span><span class="p">,</span>
-                                      <span class="n">_</span><span class="p">(</span><span class="s">&quot;_Cancel&quot;</span><span class="p">),</span>
-                                      <span class="n">GTK_RESPONSE_CANCEL</span><span class="p">,</span>
-                                      <span class="n">_</span><span class="p">(</span><span class="s">&quot;_Open&quot;</span><span class="p">),</span>
-                                      <span class="n">GTK_RESPONSE_ACCEPT</span><span class="p">,</span>
-                                      <span class="nb">NULL</span><span class="p">);</span></pre></td>
+<span class="n">dialog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gtk_file_chooser_dialog_new</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Open File&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="n">parent_window</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="n">action</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="n">_</span><span class="p">(</span><span class="s">&quot;_Cancel&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">                                      </span><span class="n">GTK_RESPONSE_CANCEL</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="n">_</span><span class="p">(</span><span class="s">&quot;_Open&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">                                      </span><span class="n">GTK_RESPONSE_ACCEPT</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                      </span><span class="nb">NULL</span><span class="p">);</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>

@@ -191,10 +191,10 @@ Selectors
 in the <a class="link" href="GtkCssProvider.html" title="GtkCssProvider"><span class="type">GtkCssProvider</span></a> documentation. Inside the binding set
 definition, key combinations are bound to one or more specific
 signal emissions on the target widget. Key combinations are strings
-consisting of an optional <span class="type">GdkModifierType</span> name and
+consisting of an optional <a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> name and
 key names
 such as those defined in <code class="literal">gdk/gdkkeysyms.h</code>
-or returned from <code class="function">gdk_keyval_name()</code>, they have to be parsable by
+or returned from <a href="../html/gdk3-Keyboard-Handling.html#gdk-keyval-name"><code class="function">gdk_keyval_name()</code></a>, they have to be parsable by
 <a class="link" href="gtk3-Keyboard-Accelerators.html#gtk-accelerator-parse" title="gtk_accelerator_parse ()"><code class="function">gtk_accelerator_parse()</code></a>. Specifications of signal emissions consist
 of a string identifying the signal name, and a list of signal specific
 arguments in parenthesis.</p>
@@ -216,16 +216,16 @@ used:</p>
 8
 9
 10</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="err">@</span><span class="n">binding</span><span class="o">-</span><span class="n">set</span> <span class="n">MoveCursor3</span>
-<span class="p">{</span>
-  <span class="n">bind</span> <span class="s">&quot;&lt;Control&gt;Right&quot;</span> <span class="p">{</span> <span class="s">&quot;move-cursor&quot;</span> <span class="p">(</span><span class="n">visual</span><span class="o">-</span><span class="n">positions</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="p">};</span>
-  <span class="n">bind</span> <span class="s">&quot;&lt;Control&gt;Left&quot;</span> <span class="p">{</span> <span class="s">&quot;move-cursor&quot;</span> <span class="p">(</span><span class="n">visual</span><span class="o">-</span><span class="n">positions</span><span class="p">,</span> <span class="mi">-3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="p">};</span>
-<span class="p">}</span>
+        <td class="listing_code"><pre class="programlisting"><span class="err">@</span><span class="n">binding</span><span class="o">-</span><span class="n">set</span><span class="w"> </span><span class="n">MoveCursor3</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">bind</span><span class="w"> </span><span class="s">&quot;&lt;Control&gt;Right&quot;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;move-cursor&quot;</span><span class="w"> </span><span class="p">(</span><span class="n">visual</span><span class="o">-</span><span class="n">positions</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+<span class="w">  </span><span class="n">bind</span><span class="w"> </span><span class="s">&quot;&lt;Control&gt;Left&quot;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;move-cursor&quot;</span><span class="w"> </span><span class="p">(</span><span class="n">visual</span><span class="o">-</span><span class="n">positions</span><span class="p">,</span><span class="w"> </span><span class="mi">-3</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="n">entry</span>
-<span class="p">{</span>
-  <span class="o">-</span><span class="n">gtk</span><span class="o">-</span><span class="n">key</span><span class="o">-</span><span class="nl">bindings</span><span class="p">:</span> <span class="n">MoveCursor3</span><span class="p">;</span>
-<span class="p">}</span></pre></td>
+<span class="n">entry</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="o">-</span><span class="n">gtk</span><span class="o">-</span><span class="n">key</span><span class="o">-</span><span class="n">bindings</span><span class="o">:</span><span class="w"> </span><span class="n">MoveCursor3</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -257,16 +257,16 @@ existing bindings, however.</p>
 8
 9
 10</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="err">@</span><span class="n">binding</span><span class="o">-</span><span class="n">set</span> <span class="n">MoveCursor3</span>
-<span class="p">{</span>
-  <span class="n">bind</span> <span class="s">&quot;&lt;Control&gt;Right&quot;</span> <span class="p">{</span>  <span class="p">};</span>
-  <span class="n">bind</span> <span class="s">&quot;&lt;Control&gt;Left&quot;</span> <span class="p">{</span>  <span class="p">};</span>
-<span class="p">}</span>
+        <td class="listing_code"><pre class="programlisting"><span class="err">@</span><span class="n">binding</span><span class="o">-</span><span class="n">set</span><span class="w"> </span><span class="n">MoveCursor3</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">bind</span><span class="w"> </span><span class="s">&quot;&lt;Control&gt;Right&quot;</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="p">};</span><span class="w"></span>
+<span class="w">  </span><span class="n">bind</span><span class="w"> </span><span class="s">&quot;&lt;Control&gt;Left&quot;</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="p">};</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="n">entry</span>
-<span class="p">{</span>
-  <span class="o">-</span><span class="n">gtk</span><span class="o">-</span><span class="n">key</span><span class="o">-</span><span class="nl">bindings</span><span class="p">:</span> <span class="n">MoveCursor3</span><span class="p">;</span>
-<span class="p">}</span></pre></td>
+<span class="n">entry</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="o">-</span><span class="n">gtk</span><span class="o">-</span><span class="n">key</span><span class="o">-</span><span class="n">bindings</span><span class="o">:</span><span class="w"> </span><span class="n">MoveCursor3</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -297,16 +297,16 @@ like this:</p>
 8
 9
 10</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="err">@</span><span class="n">binding</span><span class="o">-</span><span class="n">set</span> <span class="n">MoveCursor3</span>
-<span class="p">{</span>
-  <span class="n">unbind</span> <span class="s">&quot;&lt;Control&gt;Right&quot;</span><span class="p">;</span>
-  <span class="n">unbind</span> <span class="s">&quot;&lt;Control&gt;Left&quot;</span><span class="p">;</span>
-<span class="p">}</span>
+        <td class="listing_code"><pre class="programlisting"><span class="err">@</span><span class="n">binding</span><span class="o">-</span><span class="n">set</span><span class="w"> </span><span class="n">MoveCursor3</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">unbind</span><span class="w"> </span><span class="s">&quot;&lt;Control&gt;Right&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">unbind</span><span class="w"> </span><span class="s">&quot;&lt;Control&gt;Left&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="n">entry</span>
-<span class="p">{</span>
-  <span class="o">-</span><span class="n">gtk</span><span class="o">-</span><span class="n">key</span><span class="o">-</span><span class="nl">bindings</span><span class="p">:</span> <span class="n">MoveCursor3</span><span class="p">;</span>
-<span class="p">}</span></pre></td>
+<span class="n">entry</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="o">-</span><span class="n">gtk</span><span class="o">-</span><span class="n">key</span><span class="o">-</span><span class="n">bindings</span><span class="o">:</span><span class="w"> </span><span class="n">MoveCursor3</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -327,7 +327,7 @@ of the key presses, e.g. by an entry’s parent widget, is now possible.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_binding_entry_add_signall (<em class="parameter"><code><a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="type">GtkBindingSet</span></a> *binding_set</code></em>,
                                <em class="parameter"><code><span class="type">guint</span> keyval</code></em>,
-                               <em class="parameter"><code><span class="type">GdkModifierType</span> modifiers</code></em>,
+                               <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> modifiers</code></em>,
                                <em class="parameter"><code>const <span class="type">gchar</span> *signal_name</code></em>,
                                <em class="parameter"><code><span class="type">GSList</span> *binding_args</code></em>);</pre>
 <p>Override or install a new key binding for <em class="parameter"><code>keyval</code></em>
@@ -470,7 +470,7 @@ or the type name of a class used in <a class="link" href="gtk3-Bindings.html#gtk
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_bindings_activate (<em class="parameter"><code><span class="type">GObject</span> *object</code></em>,
                        <em class="parameter"><code><span class="type">guint</span> keyval</code></em>,
-                       <em class="parameter"><code><span class="type">GdkModifierType</span> modifiers</code></em>);</pre>
+                       <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> modifiers</code></em>);</pre>
 <p>Find a key binding matching <em class="parameter"><code>keyval</code></em>
  and <em class="parameter"><code>modifiers</code></em>
  and activate the
@@ -513,7 +513,7 @@ binding on <em class="parameter"><code>object</code></em>
 <a name="gtk-bindings-activate-event"></a><h3>gtk_bindings_activate_event ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_bindings_activate_event (<em class="parameter"><code><span class="type">GObject</span> *object</code></em>,
-                             <em class="parameter"><code><span class="type">GdkEventKey</span> *event</code></em>);</pre>
+                             <em class="parameter"><code><a href="../html/gdk3-Event-Structures.html#GdkEventKey"><span class="type">GdkEventKey</span></a> *event</code></em>);</pre>
 <p>Looks up key bindings for <em class="parameter"><code>object</code></em>
  to find one matching
 <em class="parameter"><code>event</code></em>
@@ -534,7 +534,7 @@ gtk_bindings_activate_event (<em class="parameter"><code><span class="type">GObj
 </tr>
 <tr>
 <td class="parameter_name"><p>event</p></td>
-<td class="parameter_description"><p>a <span class="type">GdkEventKey</span></p></td>
+<td class="parameter_description"><p>a <a href="../html/gdk3-Event-Structures.html#GdkEventKey"><span class="type">GdkEventKey</span></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
@@ -552,7 +552,7 @@ gtk_bindings_activate_event (<em class="parameter"><code><span class="type">GObj
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_binding_set_activate (<em class="parameter"><code><a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="type">GtkBindingSet</span></a> *binding_set</code></em>,
                           <em class="parameter"><code><span class="type">guint</span> keyval</code></em>,
-                          <em class="parameter"><code><span class="type">GdkModifierType</span> modifiers</code></em>,
+                          <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> modifiers</code></em>,
                           <em class="parameter"><code><span class="type">GObject</span> *object</code></em>);</pre>
 <p>Find a key binding matching <em class="parameter"><code>keyval</code></em>
  and <em class="parameter"><code>modifiers</code></em>
@@ -603,7 +603,7 @@ gtk_binding_set_activate (<em class="parameter"><code><a class="link" href="gtk3
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_binding_entry_add_signal (<em class="parameter"><code><a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="type">GtkBindingSet</span></a> *binding_set</code></em>,
                               <em class="parameter"><code><span class="type">guint</span> keyval</code></em>,
-                              <em class="parameter"><code><span class="type">GdkModifierType</span> modifiers</code></em>,
+                              <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> modifiers</code></em>,
                               <em class="parameter"><code>const <span class="type">gchar</span> *signal_name</code></em>,
                               <em class="parameter"><code><span class="type">guint</span> n_args</code></em>,
                               <em class="parameter"><code>...</code></em>);</pre>
@@ -637,16 +637,16 @@ be of the given type). There must be <em class="parameter"><code>n_args</code></
 8
 9
 10</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">GtkBindingSet</span> <span class="o">*</span><span class="n">binding_set</span><span class="p">;</span>
-<span class="n">GdkModifierType</span> <span class="n">modmask</span> <span class="o">=</span> <span class="n">GDK_CONTROL_MASK</span><span class="p">;</span>
-<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="n">gtk_binding_entry_add_signal</span> <span class="p">(</span><span class="n">binding_set</span><span class="p">,</span>
-                              <span class="n">GDK_KEY_space</span><span class="p">,</span>
-                              <span class="n">modmask</span><span class="p">,</span>
-                              <span class="s">&quot;move-cursor&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span>
-                              <span class="n">GTK_TYPE_MOVEMENT_STEP</span><span class="p">,</span> <span class="n">GTK_MOVEMENT_PAGES</span><span class="p">,</span>
-                              <span class="n">G_TYPE_INT</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span>
-                              <span class="n">G_TYPE_BOOLEAN</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">);</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">GtkBindingSet</span><span class="w"> </span><span class="o">*</span><span class="n">binding_set</span><span class="p">;</span><span class="w"></span>
+<span class="n">GdkModifierType</span><span class="w"> </span><span class="n">modmask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GDK_CONTROL_MASK</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="n">gtk_binding_entry_add_signal</span><span class="w"> </span><span class="p">(</span><span class="n">binding_set</span><span class="p">,</span><span class="w"></span>
+<span class="w">                              </span><span class="n">GDK_KEY_space</span><span class="p">,</span><span class="w"></span>
+<span class="w">                              </span><span class="n">modmask</span><span class="p">,</span><span class="w"></span>
+<span class="w">                              </span><span class="s">&quot;move-cursor&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+<span class="w">                              </span><span class="n">GTK_TYPE_MOVEMENT_STEP</span><span class="p">,</span><span class="w"> </span><span class="n">GTK_MOVEMENT_PAGES</span><span class="p">,</span><span class="w"></span>
+<span class="w">                              </span><span class="n">G_TYPE_INT</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">,</span><span class="w"></span>
+<span class="w">                              </span><span class="n">G_TYPE_BOOLEAN</span><span class="p">,</span><span class="w"> </span><span class="n">FALSE</span><span class="p">);</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -720,10 +720,10 @@ one or more signals:</p>
 2
 3
 4</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">bind</span> <span class="s">&quot;key&quot;</span> <span class="p">{</span>
-  <span class="s">&quot;signalname&quot;</span> <span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="p">...)</span>
-  <span class="p">...</span>
-<span class="p">}</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">bind</span><span class="w"> </span><span class="s">&quot;key&quot;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="s">&quot;signalname&quot;</span><span class="w"> </span><span class="p">(</span><span class="n">param</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w"></span>
+<span class="w">  </span><span class="p">...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -736,7 +736,7 @@ one or more signals:</p>
     <tbody>
       <tr>
         <td class="listing_lines" align="right"><pre>1</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="n">unbind</span> <span class="s">&quot;key&quot;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">unbind</span><span class="w"> </span><span class="s">&quot;key&quot;</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -780,7 +780,7 @@ the expected token otherwise</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_binding_entry_skip (<em class="parameter"><code><a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="type">GtkBindingSet</span></a> *binding_set</code></em>,
                         <em class="parameter"><code><span class="type">guint</span> keyval</code></em>,
-                        <em class="parameter"><code><span class="type">GdkModifierType</span> modifiers</code></em>);</pre>
+                        <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> modifiers</code></em>);</pre>
 <p>Install a binding on <em class="parameter"><code>binding_set</code></em>
  which causes key lookups
 to be aborted, to prevent bindings from lower priority sets
@@ -820,7 +820,7 @@ to be activated.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_binding_entry_remove (<em class="parameter"><code><a class="link" href="gtk3-Bindings.html#GtkBindingSet" title="struct GtkBindingSet"><span class="type">GtkBindingSet</span></a> *binding_set</code></em>,
                           <em class="parameter"><code><span class="type">guint</span> keyval</code></em>,
-                          <em class="parameter"><code><span class="type">GdkModifierType</span> modifiers</code></em>);</pre>
+                          <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> modifiers</code></em>);</pre>
 <p>Remove a binding previously installed via
 <a class="link" href="gtk3-Bindings.html#gtk-binding-entry-add-signal" title="gtk_binding_entry_add_signal ()"><code class="function">gtk_binding_entry_add_signal()</code></a> on <em class="parameter"><code>binding_set</code></em>
 .</p>
@@ -1006,7 +1006,7 @@ represented by a GtkBindingEntry.</p>
 <td class="struct_member_annotations"> </td>
 </tr>
 <tr>
-<td class="struct_member_name"><p><span class="type">GdkModifierType</span> <em class="structfield"><code><a name="GtkBindingEntry.modifiers"></a>modifiers</code></em>;</p></td>
+<td class="struct_member_name"><p><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> <em class="structfield"><code><a name="GtkBindingEntry.modifiers"></a>modifiers</code></em>;</p></td>
 <td class="struct_member_description"><p>key modifiers to match</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
