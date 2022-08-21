@@ -132,11 +132,36 @@ configure_flags_udeb = \
 %:
 	dh $@ --buildsystem=autoconf
 
+fuzzy_reftests = \
+	$(NULL)
+
+# See testsuite/reftests/meson.build
+ignore_reftests = \
+	button-wrapping \
+	cellrenderer-pixbuf-stock-rtl \
+	label-sizing \
+	label-wrap-justify \
+	quit-mnemonic \
+	symbolic-icon-translucent-color \
+	window-height-for-width \
+	$(NULL)
+
+# Debian-specific
+ignore_reftests += \
+	flipping-icons \
+	$(NULL)
+
+ifneq (,$(filter $(DEB_HOST_ARCH_CPU),i386))
+ignore_reftests += linear-gradient
+endif
+
+xfail_reftests = \
+	$(NULL)
+
 override_dh_clean: debian/control
 	# gross kludge to force control generation with the %.in target
 	touch debian/control.in
 	rm -f $(call dh_subst_files,$(all_binaries))
-	rm -f testsuite/reftests/*.ui.known_fail
 	rm -rf debian/build debian/install
 	# The build system does not automatically update the GResource files
 	# when resources change. Force an update in case we ship a patch which
@@ -224,12 +249,12 @@ ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
 	mkdir -p debian/build/glib-2.0/schemas/
 	cp gtk/org.gtk.* debian/build/glib-2.0/schemas/
 	glib-compile-schemas debian/build/glib-2.0/schemas/
-	# Remove LD_PRELOAD so we don't run with fakeroot, which makes dbus-related tests fail
-	env -u LD_PRELOAD GIO_USE_VFS=local GIO_USE_VOLUME_MONITOR=unix \
-	dbus-run-session -- \
-	xvfb-run -a \
-	dh_auto_test --builddirectory=debian/build/deb -- \
-	-k check -j1
+	env \
+		BUILDDIR=$(CURDIR)/debian/build/deb \
+		FUZZY_REFTESTS="$(fuzzy_reftests)" \
+		IGNORE_REFTESTS="$(ignore_reftests)" \
+		XFAIL_REFTESTS="$(xfail_reftests)" \
+	debian/run-tests.sh
 endif
 endif
 

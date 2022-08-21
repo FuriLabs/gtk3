@@ -1,0 +1,30 @@
+From: Simon McVittie <smcv@debian.org>
+Date: Sun, 21 Aug 2022 10:45:03 +0100
+Subject: testsuite: Allow reftest output directory to be forced via
+ environment
+
+On a buildd, we don't want this going into /tmp where we won't find it.
+Building with Meson wouldn't need this, but we're currently building
+with Autotools and I don't want to change more parameters at once than
+I have to.
+
+Forwarded: not-needed, the Meson build doesn't need this
+---
+ testsuite/reftests/gtk-reftest.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/testsuite/reftests/gtk-reftest.c b/testsuite/reftests/gtk-reftest.c
+index e526bc8..1645d8b 100644
+--- a/testsuite/reftests/gtk-reftest.c
++++ b/testsuite/reftests/gtk-reftest.c
+@@ -109,6 +109,10 @@ get_output_dir (void)
+       output_dir = g_file_get_path (file);
+       g_object_unref (file);
+     }
++  else if (g_getenv ("REFTEST_OUTPUT_DIR") != NULL)
++    {
++      output_dir = g_getenv ("REFTEST_OUTPUT_DIR");
++    }
+   else
+     {
+       output_dir = g_get_tmp_dir ();
