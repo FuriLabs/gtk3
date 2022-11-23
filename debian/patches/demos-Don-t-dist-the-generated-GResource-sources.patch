@@ -1,0 +1,85 @@
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Tue, 17 May 2022 18:44:58 +0800
+Subject: demos: Don't dist the generated GResource sources
+
+The Visual Studio projects have support for generating these, especially
+that the encoded string that result from them may become too big for the
+Visual Studio compiler to handle (such as for gtk3-demo) and we are normally
+supposed to generate the GResources sources for all builds, as the
+generated code depends on the compiler being used).
+
+Origin: upstream, 3.24.35, commit:472c40fd3febf545d593c36ed57b703082793530
+---
+ demos/gtk-demo/Makefile.am       | 9 ++++-----
+ demos/icon-browser/Makefile.am   | 5 +++--
+ demos/widget-factory/Makefile.am | 6 +++---
+ 3 files changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/demos/gtk-demo/Makefile.am b/demos/gtk-demo/Makefile.am
+index 9aa1062..b0ecbcc 100644
+--- a/demos/gtk-demo/Makefile.am
++++ b/demos/gtk-demo/Makefile.am
+@@ -61,22 +61,21 @@ demos.h: $(demos) geninclude.pl
+ demos.h.win32: $(demos_base) geninclude.pl
+ 	 $(AM_V_GEN) (here=`pwd` ; cd $(srcdir) && $(PERL) $$here/geninclude.pl $(demos_base)) > demos.h.win32
+ 
+-nodist_gtk3_demo_SOURCES = demos.h
++nodist_gtk3_demo_SOURCES = demos.h demo_resources.c
+ 
+ gtk3_demo_SOURCES = 		\
+ 	$(demos)		\
+ 	gtkfishbowl.c		\
+ 	gtkfishbowl.h		\
+-	demo_resources.c	\
+ 	main.c
+ 
+ gtk3_demo_DEPENDENCIES = $(DEPS)
+ gtk3_demo_LDADD = $(LDADDS)
+ gtk3_demo_LDFLAGS = -export-dynamic
+ 
+-gtk3_demo_application_SOURCES = \
+-	application.c 		\
+-	demo_resources.c
++nodist_gtk3_demo_application_SOURCES = demo_resources.c
++
++gtk3_demo_application_SOURCES = application.c
+ 
+ gtk3_demo_application_LDADD = $(LDADDS)
+ 
+diff --git a/demos/icon-browser/Makefile.am b/demos/icon-browser/Makefile.am
+index bf8425c..4ba64ee 100644
+--- a/demos/icon-browser/Makefile.am
++++ b/demos/icon-browser/Makefile.am
+@@ -16,12 +16,13 @@ bin_PROGRAMS = gtk3-icon-browser
+ desktopdir = $(datadir)/applications
+ dist_desktop_DATA = gtk3-icon-browser.desktop
+ 
++nodist_gtk3_icon_browser_SOURCES = resources.c
++
+ gtk3_icon_browser_SOURCES = \
+ 	main.c \
+ 	iconbrowserapp.c iconbrowserapp.h \
+ 	iconbrowserwin.c iconbrowserwin.h \
+-	iconstore.c iconstore.h \
+-	resources.c
++	iconstore.c iconstore.h
+ 
+ BUILT_SOURCES = \
+ 	resources.c
+diff --git a/demos/widget-factory/Makefile.am b/demos/widget-factory/Makefile.am
+index c33a6d0..1afbb50 100644
+--- a/demos/widget-factory/Makefile.am
++++ b/demos/widget-factory/Makefile.am
+@@ -5,9 +5,9 @@ bin_PROGRAMS = gtk3-widget-factory
+ desktopdir = $(datadir)/applications
+ dist_desktop_DATA = gtk3-widget-factory.desktop
+ 
+-gtk3_widget_factory_SOURCES = 		\
+-	widget-factory.c		\
+-	widget_factory_resources.c
++nodist_gtk3_widget_factory_SOURCES = widget_factory_resources.c
++
++gtk3_widget_factory_SOURCES = widget-factory.c
+ 
+ BUILT_SOURCES = 			\
+ 	widget_factory_resources.c

@@ -1,0 +1,25 @@
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Tue, 17 May 2022 18:43:36 +0800
+Subject: gtk/: Don't distribute the generated sources
+
+We already generate some of the sources for all builds, so extend this
+to the other generated sources as well, since the Visual Studio projects
+added support for generating these sources too.
+
+Origin: upstream, 3.24.35, commit:39940e08920be540a0a090ce1016482813c8e3a9
+---
+ gtk/Makefile.am | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/gtk/Makefile.am b/gtk/Makefile.am
+index 8fde3a0..8775ced 100644
+--- a/gtk/Makefile.am
++++ b/gtk/Makefile.am
+@@ -963,7 +963,6 @@ DISTCLEANFILES += gtk-win32.rc
+ endif
+ 
+ EXTRA_DIST += $(gtk_all_private_h_sources) $(gtk_extra_sources)
+-EXTRA_DIST += $(gtk_built_sources)
+ 
+ 
+ pkgdatadir = $(datadir)/gtk-$(GTK_API_VERSION)

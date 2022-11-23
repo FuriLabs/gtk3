@@ -1,0 +1,57 @@
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Mon, 16 May 2022 12:06:00 +0800
+Subject: libgail-util: Split out sources listings
+
+We want to share the listings with other non-autotools build systems.
+
+Origin: upstream, 3.24.35, commit:ea3b599d7fe1135ad9c9b32d11b73a6c73b3b848
+---
+ libgail-util/Makefile.am              | 10 +---------
+ libgail-util/libgail-util-sources.inc | 10 ++++++++++
+ 2 files changed, 11 insertions(+), 9 deletions(-)
+ create mode 100644 libgail-util/libgail-util-sources.inc
+
+diff --git a/libgail-util/Makefile.am b/libgail-util/Makefile.am
+index cfeb366..aa2f93a 100644
+--- a/libgail-util/Makefile.am
++++ b/libgail-util/Makefile.am
+@@ -1,4 +1,5 @@
+ include $(top_srcdir)/Makefile.decl
++include libgail-util-sources.inc
+ 
+ EXTRA_DIST += \
+ 	gailutil.def \
+@@ -35,17 +36,8 @@ endif
+ 
+ lib_LTLIBRARIES = libgailutil-3.la
+ 
+-util_c_sources =		\
+-	gailmisc.c		\
+-	gailtextutil.c
+-
+ libgailutilincludedir=$(includedir)/gail-3.0/libgail-util
+ 
+-util_public_h_sources =		\
+-	gailmisc.h		\
+-	gailtextutil.h		\
+-	gail-util.h
+-
+ libgailutil_3_la_SOURCES = 	\
+ 	$(util_c_sources)
+ 
+diff --git a/libgail-util/libgail-util-sources.inc b/libgail-util/libgail-util-sources.inc
+new file mode 100644
+index 0000000..4f71e1a
+--- /dev/null
++++ b/libgail-util/libgail-util-sources.inc
+@@ -0,0 +1,10 @@
++# Source listings for libgail-util
++
++util_c_sources =		\
++	gailmisc.c		\
++	gailtextutil.c
++
++util_public_h_sources =		\
++	gailmisc.h		\
++	gailtextutil.h		\
++	gail-util.h

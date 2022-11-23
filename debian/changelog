@@ -1,3 +1,49 @@
+gtk+3.0 (3.24.34-5) unstable; urgency=medium
+
+  * d/p/build-Define-USE_XDG_ACTIVATION-conditional-when-Wayland-.patch:
+    Mark patch as applied upstream
+  * Skip border-image-excess-size reftest on big-endian machines.
+    Mitigates: #1024392
+
+ -- Simon McVittie <smcv@debian.org>  Fri, 18 Nov 2022 23:56:42 +0000
+
+gtk+3.0 (3.24.34-4) unstable; urgency=medium
+
+  * d/patches: Update to upstream gtk-3-24 branch commit
+    3.24.34-209-gf8d26e2acc (Windows- and macOS-specific changes excluded)
+    - Don't crash on HiDPI systems if the cursor theme has cursors of
+      the wrong size
+    - When using server-side window decorations, don't draw a shadow around
+      maximized windows
+    - Fix popup coordinates on HiDPI
+    - Don't force HighContrast icon theme, which is deprecated in favour of
+      symbolic icons from the ordinary theme (already high-contrast)
+    - Fix a memory leak when applying symbolic colours
+    - Avoid pointer motion hint mask on Wayland
+    - Fix runtime warnings in popover
+    - Fix runtime warnings in font chooser for some fonts
+    - Improve tablet stylus detection on X11
+    - Fix drag-and-drop in Firefox on Plasma Wayland
+    - Documentation/introspection fixes
+    - Improve handling of titlebar clicks in mutter-based compositors
+    - Fix copy/paste interop between GTK and Eclipse
+    - Always send motion events even if event compression is disabled
+    - Improve support for input methods
+    - Fix cursor hotspot scaling under HiDPI
+    - Fix tooltip positioning under HiDPI
+    - Add non-GNOME-specific support for transferring focus when one
+      application launches another
+    - Distinguish between ordinary number keys and their equivalents on
+      the numeric keypad
+    - Don't try to initialize "desktop" OpenGL if GDK_GL=gles is set
+    - Translation updates
+  * (Build-)Depend on libfontconfig-dev, not transitional libfontconfig1-dev
+  * Build-/test-depend on dbus-daemon for dbus-run-session, instead of dbus
+  * d/p/build-Define-USE_XDG_ACTIVATION-conditional-when-Wayland-.patch:
+    Add patch to fix FTBFS for the udeb and non-Linux architectures
+
+ -- Simon McVittie <smcv@debian.org>  Fri, 18 Nov 2022 11:53:03 +0000
+
 gtk+3.0 (3.24.34-3ubuntu2) kinetic; urgency=medium
 
   * Re-enable and adapt reftest-known-fail.patch (lp: #1987304)

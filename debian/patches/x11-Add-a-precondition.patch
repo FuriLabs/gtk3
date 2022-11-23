@@ -1,0 +1,24 @@
+From: Matthias Clasen <mclasen@redhat.com>
+Date: Fri, 9 Sep 2022 14:50:08 -0400
+Subject: x11: Add a precondition
+
+Trying to be helpful.
+
+Origin: upstream, 3.24.35, commit:9baae419f6eb6089dc4d03edbb26b814d937543d
+---
+ gdk/x11/gdkwindow-x11.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/gdk/x11/gdkwindow-x11.c b/gdk/x11/gdkwindow-x11.c
+index eb822e0..194bc82 100644
+--- a/gdk/x11/gdkwindow-x11.c
++++ b/gdk/x11/gdkwindow-x11.c
+@@ -5641,6 +5641,8 @@ gdk_x11_get_server_time (GdkWindow *window)
+ XID
+ gdk_x11_window_get_xid (GdkWindow *window)
+ {
++  g_return_val_if_fail (GDK_IS_X11_WINDOW (window), None);
++
+   /* Try to ensure the window has a native window */
+   if (!_gdk_window_has_impl (window))
+     {

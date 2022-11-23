@@ -1,0 +1,58 @@
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Wed, 18 May 2022 17:54:39 +0800
+Subject: gtk-sources.inc: Split base sources in two parts
+
+Otherwise, NMake will choke when creating a filelist from it.  This
+U1095 error is nasty! :|
+
+Origin: upstream, 3.24.35, commit:574bd57f726cbd6a024fe13fe95283f7ba1b10ba
+---
+ gtk/gtk-sources.inc | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
+
+diff --git a/gtk/gtk-sources.inc b/gtk/gtk-sources.inc
+index 91e511b..a073ada 100644
+--- a/gtk/gtk-sources.inc
++++ b/gtk/gtk-sources.inc
+@@ -485,8 +485,10 @@ gtk_base_private_h_sources =	\
+ 	language-names.h	\
+ 	script-names.h
+ 
+-# GTK base sources
+-gtk_base_c_sources_base =	\
++# GTK base sources (had to split those in 2 parts to avoid U1095 error :|, order unchanged from before)
++# gtk_base_c_sources_base_gtka_gtkh: sources from gtka* to gtkh*, mostly
++# gtk_base_c_sources_base_gtki_gtkw: sources from gtki* to gtkw*, mostly
++gtk_base_c_sources_base_gtka_gtkh =	\
+ 	gtkactionmuxer.c	\
+ 	gtkactionobserver.c	\
+ 	gtkactionobservable.c	\
+@@ -684,7 +686,9 @@ gtk_base_c_sources_base =	\
+ 	gtkglarea.c		\
+ 	gtkgrid.c		\
+ 	gtkheaderbar.c		\
+-	gtkhsla.c		\
++	gtkhsla.c
++
++gtk_base_c_sources_base_gtki_gtkw =	\
+ 	gtkicon.c		\
+ 	gtkiconcache.c		\
+ 	gtkiconcachevalidator.c	\
+@@ -698,7 +702,7 @@ gtk_base_c_sources_base =	\
+ 	gtkimmodule.c		\
+ 	gtkimmulticontext.c	\
+ 	gtkinfobar.c		\
+-	gtkinvisible.c		\
++	gtkinvisible.c	\
+ 	gtkkeyhash.c		\
+ 	gtkkineticscrolling.c	\
+ 	gtklabel.c		\
+@@ -856,6 +860,8 @@ gtk_base_c_sources_base =	\
+ 	language-names.c	\
+ 	script-names.c
+ 
++gtk_base_c_sources_base = $(gtk_base_c_sources_base_gtka_gtkh) $(gtk_base_c_sources_base_gtki_gtkw)
++
+ # Clipboard/dnd platform-specific sources
+ gtk_clipboard_dnd_c_sources_quartz =	\
+ 	gtkclipboard-quartz.c	\

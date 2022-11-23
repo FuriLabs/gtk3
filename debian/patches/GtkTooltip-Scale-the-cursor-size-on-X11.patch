@@ -1,0 +1,52 @@
+From: Luca Bacci <luca.bacci982@gmail.com>
+Date: Wed, 26 Oct 2022 15:16:41 +0200
+Subject: GtkTooltip: Scale the cursor size on X11
+
+GtkSettings/X11 takes the values as provided by
+XSettings. Unlike other backends, the values of
+XSettings are in physical size (that's because
+X11 doesn't support mixed-DPI setups anyway).
+
+Take that in account when retrieving the cursor
+size in gtk_tooltip_position ().
+
+Note that this discrepancy between the X11 and
+other backends has been fixed in GTK4.
+
+Bug: https://gitlab.gnome.org/GNOME/gtk/-/issues/5223
+Origin: upstream, 3.24.35, commit:bbce00f3a38caa2c1399e3e80fba1ee3861dbc8e
+---
+ gtk/gtktooltip.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/gtk/gtktooltip.c b/gtk/gtktooltip.c
+index 9917d93..ca149fc 100644
+--- a/gtk/gtktooltip.c
++++ b/gtk/gtktooltip.c
+@@ -42,6 +42,9 @@
+ #ifdef GDK_WINDOWING_WAYLAND
+ #include "wayland/gdkwayland.h"
+ #endif
++#ifdef GDK_WINDOWING_X11
++#include "x11/gdkx.h"
++#endif
+ 
+ 
+ /**
+@@ -898,6 +901,16 @@ gtk_tooltip_position (GtkTooltip *tooltip,
+   if (cursor_size == 0)
+     cursor_size = gdk_display_get_default_cursor_size (display);
+ 
++#ifdef GDK_WINDOWING_X11
++  if (GDK_IS_X11_SCREEN (screen))
++    {
++      /* Cursor size on X11 comes directly from XSettings which
++       * report physical sizes, unlike on other backends. So in
++       * that case we have to scale the retrieved cursor_size */
++       cursor_size /= gtk_widget_get_scale_factor (new_tooltip_widget);
++    }
++#endif
++
+   if (device)
+     anchor_rect_padding = MAX (4, cursor_size - 32);
+   else

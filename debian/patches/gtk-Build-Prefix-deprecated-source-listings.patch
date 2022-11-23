@@ -1,0 +1,56 @@
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Thu, 19 May 2022 10:23:59 +0800
+Subject: gtk: Build: Prefix deprecated source listings
+
+...with gtk_, so that they are distinguished from other names and is
+more clear to people.
+
+Origin: upstream, 3.24.35, commit:c05d21c9af23a73954ea027eb0408e15eafe89fd
+---
+ gtk/Makefile.am             | 4 ++--
+ gtk/deprecated/Makefile.inc | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/gtk/Makefile.am b/gtk/Makefile.am
+index e96afd3..a8af5b8 100644
+--- a/gtk/Makefile.am
++++ b/gtk/Makefile.am
+@@ -136,7 +136,7 @@ gtk_private_h_sources =		\
+ # GTK+ C sources to build the library from
+ gtk_base_c_sources = 		\
+ 	$(a11y_c_sources)	\
+-	$(deprecated_c_sources)	\
++	$(gtk_deprecated_c_sources)	\
+ 	$(inspector_c_sources)	\
+ 	$(gtk_base_c_sources_base)
+ 
+@@ -207,7 +207,7 @@ endif
+ 
+ gtk_all_private_h_sources = \
+ 	$(a11y_private_h_sources) \
+-	$(deprecated_private_h_sources) \
++	$(gtk_deprecated_private_h_sources) \
+ 	$(gtk_private_h_sources) \
+ 	$(gtk_use_x11_private_h_sources) \
+ 	$(gtk_use_win32_private_h_sources) \
+diff --git a/gtk/deprecated/Makefile.inc b/gtk/deprecated/Makefile.inc
+index a4d5811..d1cdc5c 100644
+--- a/gtk/deprecated/Makefile.inc
++++ b/gtk/deprecated/Makefile.inc
+@@ -40,14 +40,14 @@ gtk_deprecated_h_sources = 		\
+ 	deprecated/gtkvseparator.h	\
+ 	deprecated/gtkvpaned.h
+ 
+-deprecated_private_h_sources =			\
++gtk_deprecated_private_h_sources =		\
+ 	deprecated/gtkgradientprivate.h		\
+ 	deprecated/gtkiconfactoryprivate.h	\
+ 	deprecated/gtknumerableiconprivate.h	\
+ 	deprecated/gtkstylepropertiesprivate.h	\
+ 	deprecated/gtksymboliccolorprivate.h
+ 
+-deprecated_c_sources = 			\
++gtk_deprecated_c_sources = 			\
+ 	deprecated/gtkactivatable.c	\
+ 	deprecated/gtkaction.c		\
+ 	deprecated/gtkactiongroup.c	\

@@ -1,0 +1,80 @@
+From: Dominique Martinet <dominique.martinet@atmark-techno.com>
+Date: Wed, 28 Sep 2022 14:18:31 +0900
+Subject: gdk_wayland_display_init_gl: use GLES API if required
+
+gdk_wayland_gl_context_realize properly checks for GLES and uses
+eglBindAPI with the proper API, but before that init is always called
+with regular GL interface which is not implemented for many embedded
+devices.
+
+This was fixed in GTK 4 with commit 482845b02705 ("wayland: Remove
+initial GL API bind"), but that commit cannot easily be applied because
+the current version queries some GL properties during init so we would
+need to backport more for it to be applicable.
+
+This patch takes the minimal approach of initializing GLES context,
+allowing the gtk3 demo OpenGL test (and real applications) to work
+when GDK_GL=gles is set.
+
+Bug: https://gitlab.gnome.org/GNOME/gtk/-/issues/3028
+Origin: upstream, 3.24.35, commit:0e5fe45ea20cce074a128911949dbedf4f8265bf
+---
+ gdk/wayland/gdkglcontext-wayland.c | 12 ++++++++----
+ gdk/wayland/gdkglcontext-wayland.h |  3 ++-
+ 2 files changed, 10 insertions(+), 5 deletions(-)
+
+diff --git a/gdk/wayland/gdkglcontext-wayland.c b/gdk/wayland/gdkglcontext-wayland.c
+index a221025..296e5e0 100644
+--- a/gdk/wayland/gdkglcontext-wayland.c
++++ b/gdk/wayland/gdkglcontext-wayland.c
+@@ -309,11 +309,13 @@ gdk_wayland_get_display (GdkWaylandDisplay *display_wayland)
+ }
+ 
+ gboolean
+-gdk_wayland_display_init_gl (GdkDisplay *display)
++gdk_wayland_display_init_gl (GdkDisplay *display,
++                             GdkGLContext *share)
+ {
+   GdkWaylandDisplay *display_wayland = GDK_WAYLAND_DISPLAY (display);
+   EGLint major, minor;
+   EGLDisplay dpy;
++  gboolean use_es;
+ 
+   if (display_wayland->have_egl)
+     return TRUE;
+@@ -326,8 +328,10 @@ gdk_wayland_display_init_gl (GdkDisplay *display)
+   if (!eglInitialize (dpy, &major, &minor))
+     return FALSE;
+ 
+-  if (!eglBindAPI (EGL_OPENGL_API))
+-    return FALSE;
++  use_es = (_gdk_gl_flags & GDK_GL_GLES) != 0 ||
++           (share != NULL && gdk_gl_context_get_use_es (share));
++  if (!eglBindAPI (use_es ? EGL_OPENGL_ES_API : EGL_OPENGL_API))
++      return FALSE;
+ 
+   display_wayland->egl_display = dpy;
+   display_wayland->egl_major_version = major;
+@@ -461,7 +465,7 @@ gdk_wayland_window_create_gl_context (GdkWindow     *window,
+   GdkWaylandGLContext *context;
+   EGLConfig config;
+ 
+-  if (!gdk_wayland_display_init_gl (display))
++  if (!gdk_wayland_display_init_gl (display, share))
+     {
+       g_set_error_literal (error, GDK_GL_ERROR,
+                            GDK_GL_ERROR_NOT_AVAILABLE,
+diff --git a/gdk/wayland/gdkglcontext-wayland.h b/gdk/wayland/gdkglcontext-wayland.h
+index bd2bb88..88a319e 100644
+--- a/gdk/wayland/gdkglcontext-wayland.h
++++ b/gdk/wayland/gdkglcontext-wayland.h
+@@ -47,7 +47,8 @@ struct _GdkWaylandGLContextClass
+   GdkGLContextClass parent_class;
+ };
+ 
+-gboolean        gdk_wayland_display_init_gl                         (GdkDisplay        *display);
++gboolean        gdk_wayland_display_init_gl                         (GdkDisplay        *display,
++                                                                     GdkGLContext      *share);
+ GdkGLContext *  gdk_wayland_window_create_gl_context                (GdkWindow         *window,
+ 								     gboolean           attach,
+                                                                      GdkGLContext      *share,

@@ -1,0 +1,1783 @@
+From: Luca Bacci <luca.bacci982@gmail.com>
+Date: Thu, 3 Nov 2022 17:31:32 +0100
+Subject: Make wayland load cursors on demand
+
+Add and use a modified libwayland-cursor in-tree,
+just as done in the main branch for GTK4
+
+Origin: upstream, 3.24.35, commit:66a199806ceb3daa5e2c7d3a5b45a86007cec46a
+---
+ configure.ac                          |   2 +-
+ gdk/wayland/Makefile.am               |   9 +
+ gdk/wayland/cursor/meson.build        |  12 +
+ gdk/wayland/cursor/os-compatibility.c | 172 ++++++++++
+ gdk/wayland/cursor/os-compatibility.h |  34 ++
+ gdk/wayland/cursor/wayland-cursor.c   | 423 +++++++++++++++++++++++
+ gdk/wayland/cursor/wayland-cursor.h   |  72 ++++
+ gdk/wayland/cursor/xcursor.c          | 612 ++++++++++++++++++++++++++++++++++
+ gdk/wayland/cursor/xcursor.h          |  61 ++++
+ gdk/wayland/gdkcursor-wayland.c       |  17 +-
+ gdk/wayland/gdkdisplay-wayland.c      |  77 ++---
+ gdk/wayland/gdkdisplay-wayland.h      |   7 +-
+ gdk/wayland/gdkprivate-wayland.h      |   3 +-
+ gdk/wayland/meson.build               |   4 +-
+ meson.build                           |   2 -
+ 15 files changed, 1446 insertions(+), 61 deletions(-)
+ create mode 100644 gdk/wayland/cursor/meson.build
+ create mode 100644 gdk/wayland/cursor/os-compatibility.c
+ create mode 100644 gdk/wayland/cursor/os-compatibility.h
+ create mode 100644 gdk/wayland/cursor/wayland-cursor.c
+ create mode 100644 gdk/wayland/cursor/wayland-cursor.h
+ create mode 100644 gdk/wayland/cursor/xcursor.c
+ create mode 100644 gdk/wayland/cursor/xcursor.h
+
+diff --git a/configure.ac b/configure.ac
+index 94e5c4a..b17c5cc 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -439,7 +439,7 @@ fi
+ 
+ PKG_PROG_PKG_CONFIG
+ 
+-WAYLAND_RUNTIME_DEPENDENCIES="wayland-client >= wayland_required_version xkbcommon >= 0.2.0 wayland-cursor >= wayland_required_version wayland-egl"
++WAYLAND_RUNTIME_DEPENDENCIES="wayland-client >= wayland_required_version xkbcommon >= 0.2.0 wayland-egl"
+ WAYLAND_DEPENDENCIES="wayland-protocols >= wayland_protocols_required_version $WAYLAND_RUNTIME_DEPENDENCIES"
+ if test "$enable_wayland_backend" = "maybe" ; then
+   AC_PATH_PROG([WAYLAND_SCANNER],[wayland-scanner],[no])
+diff --git a/gdk/wayland/Makefile.am b/gdk/wayland/Makefile.am
+index 08ed75c..0ad465f 100644
+--- a/gdk/wayland/Makefile.am
++++ b/gdk/wayland/Makefile.am
+@@ -10,6 +10,7 @@ AM_CPPFLAGS =					\
+ 	-DGDK_COMPILATION			\
+ 	-I$(top_srcdir)				\
+ 	-I$(top_srcdir)/gdk			\
++	-I$(top_srcdir)/gdk/wayland/cursor	\
+ 	-I$(top_builddir)/gdk			\
+ 	$(GDK_HIDDEN_VISIBILITY_CFLAGS)		\
+ 	$(GTK_DEBUG_FLAGS)			\
+@@ -77,6 +78,14 @@ libgdk_wayland_la_SOURCES =			\
+ 	wm-button-layout-translation.c		\
+ 	wm-button-layout-translation.h
+ 
++libgdk_wayland_la_SOURCES +=			\
++	cursor/os-compatibility.c		\
++	cursor/os-compatibility.h		\
++	cursor/wayland-cursor.c			\
++	cursor/wayland-cursor.h			\
++	cursor/xcursor.c			\
++	cursor/xcursor.h
++
+ libgdkinclude_HEADERS =				\
+ 	gdkwayland.h
+ 
+diff --git a/gdk/wayland/cursor/meson.build b/gdk/wayland/cursor/meson.build
+new file mode 100644
+index 0000000..02d5f2b
+--- /dev/null
++++ b/gdk/wayland/cursor/meson.build
+@@ -0,0 +1,12 @@
++wayland_cursor_sources = files([
++  'wayland-cursor.c',
++  'xcursor.c',
++  'os-compatibility.c'
++])
++
++libwayland_cursor = static_library('wayland+cursor',
++  sources: wayland_cursor_sources,
++  include_directories: [ confinc, ],
++  dependencies: [ glib_dep, wlclientdep, ],
++  c_args: common_cflags,
++)
+diff --git a/gdk/wayland/cursor/os-compatibility.c b/gdk/wayland/cursor/os-compatibility.c
+new file mode 100644
+index 0000000..3818a61
+--- /dev/null
++++ b/gdk/wayland/cursor/os-compatibility.c
+@@ -0,0 +1,172 @@
++/*
++ * Copyright © 2012 Collabora, Ltd.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining
++ * a copy of this software and associated documentation files (the
++ * "Software"), to deal in the Software without restriction, including
++ * without limitation the rights to use, copy, modify, merge, publish,
++ * distribute, sublicense, and/or sell copies of the Software, and to
++ * permit persons to whom the Software is furnished to do so, subject to
++ * the following conditions:
++ *
++ * The above copyright notice and this permission notice (including the
++ * next paragraph) shall be included in all copies or substantial
++ * portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
++ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
++ * NONINFRINGEMENT.  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
++ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
++ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
++ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
++ * SOFTWARE.
++ */
++
++#include "config.h"
++
++#include <sys/types.h>
++#include <unistd.h>
++#include <fcntl.h>
++#include <errno.h>
++#include <string.h>
++#include <stdlib.h>
++
++#ifdef HAVE_MEMFD_CREATE
++#include <sys/mman.h>
++#endif
++
++#include "os-compatibility.h"
++
++#ifndef HAVE_MKOSTEMP
++static int
++set_cloexec_or_close(int fd)
++{
++	long flags;
++
++	if (fd == -1)
++		return -1;
++
++	flags = fcntl(fd, F_GETFD);
++	if (flags == -1)
++		goto err;
++
++	if (fcntl(fd, F_SETFD, flags | FD_CLOEXEC) == -1)
++		goto err;
++
++	return fd;
++
++err:
++	close(fd);
++	return -1;
++}
++#endif
++
++static int
++create_tmpfile_cloexec(char *tmpname)
++{
++	int fd;
++
++#ifdef HAVE_MKOSTEMP
++	fd = mkostemp(tmpname, O_CLOEXEC);
++	if (fd >= 0)
++		unlink(tmpname);
++#else
++	fd = mkstemp(tmpname);
++	if (fd >= 0) {
++		fd = set_cloexec_or_close(fd);
++		unlink(tmpname);
++	}
++#endif
++
++	return fd;
++}
++
++/*
++ * Create a new, unique, anonymous file of the given size, and
++ * return the file descriptor for it. The file descriptor is set
++ * CLOEXEC. The file is immediately suitable for mmap()'ing
++ * the given size at offset zero.
++ *
++ * The file should not have a permanent backing store like a disk,
++ * but may have if XDG_RUNTIME_DIR is not properly implemented in OS.
++ *
++ * The file name is deleted from the file system.
++ *
++ * The file is suitable for buffer sharing between processes by
++ * transmitting the file descriptor over Unix sockets using the
++ * SCM_RIGHTS methods.
++ *
++ * If the C library implements posix_fallocate(), it is used to
++ * guarantee that disk space is available for the file at the
++ * given size. If disk space is insufficient, errno is set to ENOSPC.
++ * If posix_fallocate() is not supported, program may receive
++ * SIGBUS on accessing mmap()'ed file contents instead.
++ *
++ * If the C library implements memfd_create(), it is used to create the
++ * file purely in memory, without any backing file name on the file
++ * system, and then sealing off the possibility of shrinking it.  This
++ * can then be checked before accessing mmap()'ed file contents, to
++ * make sure SIGBUS can't happen.  It also avoids requiring
++ * XDG_RUNTIME_DIR.
++ */
++int
++os_create_anonymous_file(off_t size)
++{
++	static const char template[] = "/wayland-cursor-shared-XXXXXX";
++	const char *path;
++	char *name;
++	int fd;
++	int ret;
++
++#ifdef HAVE_MEMFD_CREATE
++	fd = memfd_create("wayland-cursor", MFD_CLOEXEC | MFD_ALLOW_SEALING);
++	if (fd >= 0) {
++		/* We can add this seal before calling posix_fallocate(), as
++		 * the file is currently zero-sized anyway.
++		 *
++		 * There is also no need to check for the return value, we
++		 * couldn't do anything with it anyway.
++		 */
++		fcntl(fd, F_ADD_SEALS, F_SEAL_SHRINK | F_SEAL_SEAL);
++	} else
++#endif
++	{
++		path = getenv("XDG_RUNTIME_DIR");
++		if (!path) {
++			errno = ENOENT;
++			return -1;
++		}
++
++		name = malloc(strlen(path) + sizeof(template));
++		if (!name)
++			return -1;
++
++		strcpy(name, path);
++		strcat(name, template);
++
++		fd = create_tmpfile_cloexec(name);
++
++		free(name);
++
++		if (fd < 0)
++			return -1;
++	}
++
++#ifdef HAVE_POSIX_FALLOCATE
++	ret = posix_fallocate(fd, 0, size);
++	if (ret != 0) {
++		close(fd);
++		errno = ret;
++		return -1;
++	}
++#else
++	ret = ftruncate(fd, size);
++	if (ret < 0) {
++		close(fd);
++		return -1;
++	}
++#endif
++
++	return fd;
++}
+diff --git a/gdk/wayland/cursor/os-compatibility.h b/gdk/wayland/cursor/os-compatibility.h
+new file mode 100644
+index 0000000..d0e69ac
+--- /dev/null
++++ b/gdk/wayland/cursor/os-compatibility.h
+@@ -0,0 +1,34 @@
++/*
++ * Copyright © 2012 Collabora, Ltd.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining
++ * a copy of this software and associated documentation files (the
++ * "Software"), to deal in the Software without restriction, including
++ * without limitation the rights to use, copy, modify, merge, publish,
++ * distribute, sublicense, and/or sell copies of the Software, and to
++ * permit persons to whom the Software is furnished to do so, subject to
++ * the following conditions:
++ *
++ * The above copyright notice and this permission notice (including the
++ * next paragraph) shall be included in all copies or substantial
++ * portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
++ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
++ * NONINFRINGEMENT.  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
++ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
++ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
++ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
++ * SOFTWARE.
++ */
++
++#ifndef OS_COMPATIBILITY_H
++#define OS_COMPATIBILITY_H
++
++#include <sys/types.h>
++
++int
++os_create_anonymous_file(off_t size);
++
++#endif /* OS_COMPATIBILITY_H */
+diff --git a/gdk/wayland/cursor/wayland-cursor.c b/gdk/wayland/cursor/wayland-cursor.c
+new file mode 100644
+index 0000000..4be8f9a
+--- /dev/null
++++ b/gdk/wayland/cursor/wayland-cursor.c
+@@ -0,0 +1,423 @@
++/*
++ * Copyright © 2012 Intel Corporation
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining
++ * a copy of this software and associated documentation files (the
++ * "Software"), to deal in the Software without restriction, including
++ * without limitation the rights to use, copy, modify, merge, publish,
++ * distribute, sublicense, and/or sell copies of the Software, and to
++ * permit persons to whom the Software is furnished to do so, subject to
++ * the following conditions:
++ *
++ * The above copyright notice and this permission notice (including the
++ * next paragraph) shall be included in all copies or substantial
++ * portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
++ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
++ * NONINFRINGEMENT.  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
++ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
++ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
++ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
++ * SOFTWARE.
++ */
++
++#include "config.h"
++#include "xcursor.h"
++#include "wayland-cursor.h"
++#include "wayland-client.h"
++#include <stdio.h>
++#include <stdlib.h>
++#include <stdint.h>
++#include <string.h>
++#include <unistd.h>
++#include <sys/mman.h>
++#include <fcntl.h>
++#include <errno.h>
++#include <os-compatibility.h>
++#include <glib.h>
++
++#define ARRAY_LENGTH(a) (sizeof (a) / sizeof (a)[0])
++
++struct shm_pool {
++	struct wl_shm_pool *pool;
++	int fd;
++	unsigned int size;
++	unsigned int used;
++	char *data;
++};
++
++static struct shm_pool *
++shm_pool_create(struct wl_shm *shm, int size)
++{
++	struct shm_pool *pool;
++
++	pool = malloc(sizeof *pool);
++	if (!pool)
++		return NULL;
++
++	pool->fd = os_create_anonymous_file (size);
++	if (pool->fd < 0)
++		goto err_free;
++
++	pool->data = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED,
++			  pool->fd, 0);
++
++	if (pool->data == MAP_FAILED)
++		goto err_close;
++
++	pool->pool = wl_shm_create_pool(shm, pool->fd, size);
++	pool->size = size;
++	pool->used = 0;
++
++	return pool;
++
++err_close:
++	close(pool->fd);
++err_free:
++	free(pool);
++	return NULL;
++}
++
++static int
++shm_pool_resize(struct shm_pool *pool, int size)
++{
++	if (ftruncate(pool->fd, size) < 0)
++		return 0;
++
++#ifdef HAVE_POSIX_FALLOCATE
++	errno = posix_fallocate(pool->fd, 0, size);
++	if (errno != 0)
++		return 0;
++#endif
++
++	wl_shm_pool_resize(pool->pool, size);
++
++	munmap(pool->data, pool->size);
++
++	pool->data = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED,
++			  pool->fd, 0);
++	if (pool->data == (void *)-1)
++		return 0;
++	pool->size = size;
++
++	return 1;
++}
++
++static int
++shm_pool_allocate(struct shm_pool *pool, int size)
++{
++	int offset;
++
++	if (pool->used + size > pool->size)
++		if (!shm_pool_resize(pool, 2 * pool->size + size))
++			return -1;
++
++	offset = pool->used;
++	pool->used += size;
++
++	return offset;
++}
++
++static void
++shm_pool_destroy(struct shm_pool *pool)
++{
++	munmap(pool->data, pool->size);
++	wl_shm_pool_destroy(pool->pool);
++	close(pool->fd);
++	free(pool);
++}
++
++
++struct wl_cursor_theme {
++	unsigned int cursor_count;
++	struct wl_cursor **cursors;
++	struct wl_shm *shm;
++	struct shm_pool *pool;
++	int size;
++        char *path;
++};
++
++struct cursor_image {
++	struct wl_cursor_image image;
++	struct wl_cursor_theme *theme;
++	struct wl_buffer *buffer;
++	int offset; /* data offset of this image in the shm pool */
++};
++
++struct cursor {
++	struct wl_cursor cursor;
++	uint32_t total_delay; /* length of the animation in ms */
++};
++
++/** Get an shm buffer for a cursor image
++ *
++ * \param image The cursor image
++ * \return An shm buffer for the cursor image. The user should not destroy
++ * the returned buffer.
++ */
++struct wl_buffer *
++wl_cursor_image_get_buffer(struct wl_cursor_image *_img)
++{
++	struct cursor_image *image = (struct cursor_image *) _img;
++	struct wl_cursor_theme *theme = image->theme;
++
++	if (!image->buffer) {
++		image->buffer =
++			wl_shm_pool_create_buffer(theme->pool->pool,
++						  image->offset,
++						  _img->width, _img->height,
++						  _img->width * 4,
++						  WL_SHM_FORMAT_ARGB8888);
++	};
++
++	return image->buffer;
++}
++
++static void
++wl_cursor_image_destroy(struct wl_cursor_image *_img)
++{
++	struct cursor_image *image = (struct cursor_image *) _img;
++
++	if (image->buffer)
++		wl_buffer_destroy(image->buffer);
++
++	free(image);
++}
++
++static void
++wl_cursor_destroy(struct wl_cursor *cursor)
++{
++	unsigned int i;
++
++	for (i = 0; i < cursor->image_count; i++)
++		wl_cursor_image_destroy(cursor->images[i]);
++
++	free(cursor->images);
++	free(cursor->name);
++	free(cursor);
++}
++
++static struct wl_cursor *
++wl_cursor_create_from_xcursor_images(struct wl_cursor_theme *theme,
++                                     const char *name,
++                                     unsigned int size,
++                                     unsigned int scale)
++{
++        char *path;
++        XcursorImages *images;
++	struct cursor *cursor;
++	struct cursor_image *image;
++	int i, nbytes;
++        unsigned int load_size;
++        int load_scale = 1;
++
++        load_size = size * scale;
++
++        path = g_strconcat (theme->path, "/", name, NULL);
++        images = xcursor_load_images (path, load_size);
++
++        if (!images)
++          {
++            g_free (path);
++            return NULL;
++          }
++
++        if (images->images[0]->width != load_size ||
++            images->images[0]->height != load_size)
++          {
++	        xcursor_images_destroy (images);
++                images = xcursor_load_images (path, size);
++                load_scale = scale;
++          }
++
++        g_free (path);
++
++	cursor = malloc(sizeof *cursor);
++	if (!cursor) {
++	        xcursor_images_destroy (images);
++		return NULL;
++        }
++
++	cursor->cursor.images =
++		malloc(images->nimage * sizeof cursor->cursor.images[0]);
++	if (!cursor->cursor.images) {
++		free(cursor);
++	        xcursor_images_destroy (images);
++		return NULL;
++	}
++
++	cursor->cursor.name = strdup(name);
++        cursor->cursor.size = load_size;
++	cursor->total_delay = 0;
++
++	for (i = 0; i < images->nimage; i++) {
++		image = malloc(sizeof *image);
++		if (image == NULL)
++			break;
++
++		image->theme = theme;
++		image->buffer = NULL;
++
++		image->image.width = images->images[i]->width * load_scale;
++		image->image.height = images->images[i]->height * load_scale;
++		image->image.hotspot_x = images->images[i]->xhot * load_scale;
++		image->image.hotspot_y = images->images[i]->yhot * load_scale;
++		image->image.delay = images->images[i]->delay;
++
++		nbytes = image->image.width * image->image.height * 4;
++		image->offset = shm_pool_allocate(theme->pool, nbytes);
++		if (image->offset < 0) {
++			free(image);
++			break;
++		}
++
++                if (load_scale == 1) {
++		    /* copy pixels to shm pool */
++                    memcpy(theme->pool->data + image->offset,
++                           images->images[i]->pixels, nbytes);
++                }
++                else {
++                    /* scale image up while copying it */
++                    for (int y = 0; y < image->image.height; y++) {
++                        char *p = theme->pool->data + image->offset + y * image->image.width * 4;
++                        char *q = ((char *)images->images[i]->pixels) + (y / load_scale) * images->images[i]->width * 4;
++                        for (int x = 0; x < image->image.width; x++) {
++                            p[4 * x] = q[4 * (x/load_scale)];
++                            p[4 * x + 1] = q[4 * (x/load_scale) + 1];
++                            p[4 * x + 2] = q[4 * (x/load_scale) + 2];
++                            p[4 * x + 3] = q[4 * (x/load_scale) + 3];
++                        }
++                    }
++                }
++		cursor->total_delay += image->image.delay;
++		cursor->cursor.images[i] = (struct wl_cursor_image *) image;
++	}
++	cursor->cursor.image_count = i;
++
++	if (cursor->cursor.image_count == 0) {
++		free(cursor->cursor.name);
++		free(cursor->cursor.images);
++		free(cursor);
++	        xcursor_images_destroy (images);
++		return NULL;
++	}
++
++	xcursor_images_destroy (images);
++
++	return &cursor->cursor;
++}
++
++static void
++load_cursor(struct wl_cursor_theme *theme,
++            const char             *name,
++            unsigned int            size,
++            unsigned int            scale)
++{
++	struct wl_cursor *cursor;
++
++        cursor = wl_cursor_create_from_xcursor_images(theme, name, size, scale);
++
++	if (cursor) {
++		theme->cursor_count++;
++		theme->cursors =
++			realloc(theme->cursors,
++				theme->cursor_count * sizeof theme->cursors[0]);
++
++		if (theme->cursors == NULL) {
++			theme->cursor_count--;
++			free(cursor);
++		} else {
++			theme->cursors[theme->cursor_count - 1] = cursor;
++		}
++	}
++}
++
++/** Load a cursor theme to memory shared with the compositor
++ *
++ * \param name The name of the cursor theme to load. If %NULL, the default
++ * theme will be loaded.
++ * \param size Desired size of the cursor images.
++ * \param shm The compositor's shm interface.
++ *
++ * \return An object representing the theme that should be destroyed with
++ * wl_cursor_theme_destroy() or %NULL on error. If no theme with the given
++ * name exists, a default theme will be loaded.
++ */
++struct wl_cursor_theme *
++wl_cursor_theme_create(const char *path, int size, struct wl_shm *shm)
++{
++	struct wl_cursor_theme *theme;
++
++	theme = malloc(sizeof *theme);
++	if (!theme)
++		return NULL;
++
++	theme->path = strdup (path);
++	theme->size = size;
++	theme->cursor_count = 0;
++	theme->cursors = NULL;
++
++	theme->pool = shm_pool_create(shm, size * size * 4);
++	if (!theme->pool) {
++                free (theme->path);
++                free (theme);
++		return NULL;
++        }
++
++	return theme;
++}
++
++/** Destroys a cursor theme object
++ *
++ * \param theme The cursor theme to be destroyed
++ */
++void
++wl_cursor_theme_destroy(struct wl_cursor_theme *theme)
++{
++	unsigned int i;
++
++	for (i = 0; i < theme->cursor_count; i++)
++		wl_cursor_destroy(theme->cursors[i]);
++
++	shm_pool_destroy(theme->pool);
++
++	free(theme->cursors);
++        free(theme->path);
++	free(theme);
++}
++
++/** Get the cursor for a given name from a cursor theme
++ *
++ * \param theme The cursor theme
++ * \param name Name of the desired cursor
++ * \return The theme's cursor of the given name or %NULL if there is no
++ * such cursor
++ */
++struct wl_cursor *
++wl_cursor_theme_get_cursor(struct wl_cursor_theme *theme,
++			   const char *name,
++                           unsigned int scale)
++{
++	unsigned int i;
++        unsigned int size;
++
++        size = theme->size * scale;
++
++	for (i = 0; i < theme->cursor_count; i++) {
++                if (size == theme->cursors[i]->size &&
++		    strcmp(name, theme->cursors[i]->name) == 0)
++		        return theme->cursors[i];
++        }
++
++        load_cursor (theme, name, theme->size, scale);
++
++        if (i < theme->cursor_count) {
++                if (size == theme->cursors[i]->size &&
++                    strcmp (name, theme->cursors[theme->cursor_count - 1]->name) == 0)
++                        return theme->cursors[theme->cursor_count - 1];
++        }
++
++	return NULL;
++}
+diff --git a/gdk/wayland/cursor/wayland-cursor.h b/gdk/wayland/cursor/wayland-cursor.h
+new file mode 100644
+index 0000000..6a26fa7
+--- /dev/null
++++ b/gdk/wayland/cursor/wayland-cursor.h
+@@ -0,0 +1,72 @@
++/*
++ * Copyright © 2012 Intel Corporation
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining
++ * a copy of this software and associated documentation files (the
++ * "Software"), to deal in the Software without restriction, including
++ * without limitation the rights to use, copy, modify, merge, publish,
++ * distribute, sublicense, and/or sell copies of the Software, and to
++ * permit persons to whom the Software is furnished to do so, subject to
++ * the following conditions:
++ *
++ * The above copyright notice and this permission notice (including the
++ * next paragraph) shall be included in all copies or substantial
++ * portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
++ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
++ * NONINFRINGEMENT.  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
++ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
++ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
++ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
++ * SOFTWARE.
++ */
++
++#ifndef WAYLAND_CURSOR_H
++#define WAYLAND_CURSOR_H
++
++#include <stdint.h>
++
++#ifdef  __cplusplus
++extern "C" {
++#endif
++
++struct wl_cursor_theme;
++struct wl_buffer;
++struct wl_shm;
++
++struct wl_cursor_image {
++	uint32_t width;		/* actual width */
++	uint32_t height;	/* actual height */
++	uint32_t hotspot_x;	/* hot spot x (must be inside image) */
++	uint32_t hotspot_y;	/* hot spot y (must be inside image) */
++	uint32_t delay;		/* animation delay to next frame (ms) */
++};
++
++struct wl_cursor {
++	unsigned int image_count;
++	struct wl_cursor_image **images;
++	char *name;
++        unsigned int size;
++};
++
++struct wl_cursor_theme *
++wl_cursor_theme_create(const char *name, int size, struct wl_shm *shm);
++
++void
++wl_cursor_theme_destroy(struct wl_cursor_theme *theme);
++
++struct wl_cursor *
++wl_cursor_theme_get_cursor(struct wl_cursor_theme *theme,
++			   const char *name,
++                           unsigned int scale);
++
++struct wl_buffer *
++wl_cursor_image_get_buffer(struct wl_cursor_image *image);
++
++#ifdef  __cplusplus
++}
++#endif
++
++#endif
+diff --git a/gdk/wayland/cursor/xcursor.c b/gdk/wayland/cursor/xcursor.c
+new file mode 100644
+index 0000000..eef0133
+--- /dev/null
++++ b/gdk/wayland/cursor/xcursor.c
+@@ -0,0 +1,612 @@
++/*
++ * Copyright © 2002 Keith Packard
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining
++ * a copy of this software and associated documentation files (the
++ * "Software"), to deal in the Software without restriction, including
++ * without limitation the rights to use, copy, modify, merge, publish,
++ * distribute, sublicense, and/or sell copies of the Software, and to
++ * permit persons to whom the Software is furnished to do so, subject to
++ * the following conditions:
++ *
++ * The above copyright notice and this permission notice (including the
++ * next paragraph) shall be included in all copies or substantial
++ * portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
++ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
++ * NONINFRINGEMENT.  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
++ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
++ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
++ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
++ * SOFTWARE.
++ */
++
++#include "xcursor.h"
++#include <stdio.h>
++#include <stdlib.h>
++#include <string.h>
++#include <dirent.h>
++
++/*
++ * From libXcursor/include/X11/extensions/Xcursor.h
++ */
++
++#define XcursorTrue	1
++#define XcursorFalse	0
++
++/*
++ * Cursor files start with a header.  The header
++ * contains a magic number, a version number and a
++ * table of contents which has type and offset information
++ * for the remaining tables in the file.
++ *
++ * File minor versions increment for compatible changes
++ * File major versions increment for incompatible changes (never, we hope)
++ *
++ * Chunks of the same type are always upward compatible.  Incompatible
++ * changes are made with new chunk types; the old data can remain under
++ * the old type.  Upward compatible changes can add header data as the
++ * header lengths are specified in the file.
++ *
++ *  File:
++ *	FileHeader
++ *	LISTofChunk
++ *
++ *  FileHeader:
++ *	CARD32		magic	    magic number
++ *	CARD32		header	    bytes in file header
++ *	CARD32		version	    file version
++ *	CARD32		ntoc	    number of toc entries
++ *	LISTofFileToc   toc	    table of contents
++ *
++ *  FileToc:
++ *	CARD32		type	    entry type
++ *	CARD32		subtype	    entry subtype (size for images)
++ *	CARD32		position    absolute file position
++ */
++
++#define XCURSOR_MAGIC	0x72756358  /* "Xcur" LSBFirst */
++
++/*
++ * Current Xcursor version number.  Will be substituted by configure
++ * from the version in the libXcursor configure.ac file.
++ */
++
++#define XCURSOR_LIB_MAJOR 1
++#define XCURSOR_LIB_MINOR 1
++#define XCURSOR_LIB_REVISION 13
++#define XCURSOR_LIB_VERSION	((XCURSOR_LIB_MAJOR * 10000) + \
++				 (XCURSOR_LIB_MINOR * 100) + \
++				 (XCURSOR_LIB_REVISION))
++
++/*
++ * This version number is stored in cursor files; changes to the
++ * file format require updating this version number
++ */
++#define XCURSOR_FILE_MAJOR	1
++#define XCURSOR_FILE_MINOR	0
++#define XCURSOR_FILE_VERSION	((XCURSOR_FILE_MAJOR << 16) | (XCURSOR_FILE_MINOR))
++#define XCURSOR_FILE_HEADER_LEN	(4 * 4)
++#define XCURSOR_FILE_TOC_LEN	(3 * 4)
++
++typedef struct _XcursorFileToc {
++    XcursorUInt	    type;	/* chunk type */
++    XcursorUInt	    subtype;	/* subtype (size for images) */
++    XcursorUInt	    position;	/* absolute position in file */
++} XcursorFileToc;
++
++typedef struct _XcursorFileHeader {
++    XcursorUInt	    magic;	/* magic number */
++    XcursorUInt	    header;	/* byte length of header */
++    XcursorUInt	    version;	/* file version number */
++    XcursorUInt	    ntoc;	/* number of toc entries */
++    XcursorFileToc  *tocs;	/* table of contents */
++} XcursorFileHeader;
++
++/*
++ * The rest of the file is a list of chunks, each tagged by type
++ * and version.
++ *
++ *  Chunk:
++ *	ChunkHeader
++ *	<extra type-specific header fields>
++ *	<type-specific data>
++ *
++ *  ChunkHeader:
++ *	CARD32	    header	bytes in chunk header + type header
++ *	CARD32	    type	chunk type
++ *	CARD32	    subtype	chunk subtype
++ *	CARD32	    version	chunk type version
++ */
++
++#define XCURSOR_CHUNK_HEADER_LEN    (4 * 4)
++
++typedef struct _XcursorChunkHeader {
++    XcursorUInt	    header;	/* bytes in chunk header */
++    XcursorUInt	    type;	/* chunk type */
++    XcursorUInt	    subtype;	/* chunk subtype (size for images) */
++    XcursorUInt	    version;	/* version of this type */
++} XcursorChunkHeader;
++
++/*
++ * Here's a list of the known chunk types
++ */
++
++/*
++ * Comments consist of a 4-byte length field followed by
++ * UTF-8 encoded text
++ *
++ *  Comment:
++ *	ChunkHeader header	chunk header
++ *	CARD32	    length	bytes in text
++ *	LISTofCARD8 text	UTF-8 encoded text
++ */
++
++#define XCURSOR_COMMENT_TYPE	    0xfffe0001
++#define XCURSOR_COMMENT_VERSION	    1
++#define XCURSOR_COMMENT_HEADER_LEN  (XCURSOR_CHUNK_HEADER_LEN + (1 *4))
++#define XCURSOR_COMMENT_COPYRIGHT   1
++#define XCURSOR_COMMENT_LICENSE	    2
++#define XCURSOR_COMMENT_OTHER	    3
++#define XCURSOR_COMMENT_MAX_LEN	    0x100000
++
++typedef struct _XcursorComment {
++    XcursorUInt	    version;
++    XcursorUInt	    comment_type;
++    char	    *comment;
++} XcursorComment;
++
++/*
++ * Each cursor image occupies a separate image chunk.
++ * The length of the image header follows the chunk header
++ * so that future versions can extend the header without
++ * breaking older applications
++ *
++ *  Image:
++ *	ChunkHeader	header	chunk header
++ *	CARD32		width	actual width
++ *	CARD32		height	actual height
++ *	CARD32		xhot	hot spot x
++ *	CARD32		yhot	hot spot y
++ *	CARD32		delay	animation delay
++ *	LISTofCARD32	pixels	ARGB pixels
++ */
++
++#define XCURSOR_IMAGE_TYPE    	    0xfffd0002
++#define XCURSOR_IMAGE_VERSION	    1
++#define XCURSOR_IMAGE_HEADER_LEN    (XCURSOR_CHUNK_HEADER_LEN + (5*4))
++#define XCURSOR_IMAGE_MAX_SIZE	    0x7fff	/* 32767x32767 max cursor size */
++
++typedef struct _XcursorFile XcursorFile;
++
++struct _XcursorFile {
++    void    *closure;
++    int	    (*read)  (XcursorFile *file, unsigned char *buf, int len);
++    int	    (*write) (XcursorFile *file, unsigned char *buf, int len);
++    int	    (*seek)  (XcursorFile *file, long offset, int whence);
++};
++
++typedef struct _XcursorComments {
++    int		    ncomment;	/* number of comments */
++    XcursorComment  **comments;	/* array of XcursorComment pointers */
++} XcursorComments;
++
++/*
++ * From libXcursor/src/file.c
++ */
++
++static XcursorImage *
++XcursorImageCreate (int width, int height)
++{
++    XcursorImage    *image;
++
++    if (width < 0 || height < 0)
++       return NULL;
++    if (width > XCURSOR_IMAGE_MAX_SIZE || height > XCURSOR_IMAGE_MAX_SIZE)
++       return NULL;
++
++    image = malloc (sizeof (XcursorImage) +
++		    width * height * sizeof (XcursorPixel));
++    if (!image)
++	return NULL;
++    image->version = XCURSOR_IMAGE_VERSION;
++    image->pixels = (XcursorPixel *) (image + 1);
++    image->size = width > height ? width : height;
++    image->width = width;
++    image->height = height;
++    image->delay = 0;
++    return image;
++}
++
++static void
++XcursorImageDestroy (XcursorImage *image)
++{
++    free (image);
++}
++
++static XcursorImages *
++XcursorImagesCreate (int size)
++{
++    XcursorImages   *images;
++
++    images = malloc (sizeof (XcursorImages) +
++		     size * sizeof (XcursorImage *));
++    if (!images)
++	return NULL;
++    images->nimage = 0;
++    images->images = (XcursorImage **) (images + 1);
++    images->name = NULL;
++    return images;
++}
++
++static void
++XcursorImagesDestroy (XcursorImages *images)
++{
++    int	n;
++
++    if (!images)
++        return;
++
++    for (n = 0; n < images->nimage; n++)
++	XcursorImageDestroy (images->images[n]);
++    if (images->name)
++	free (images->name);
++    free (images);
++}
++
++static XcursorBool
++_XcursorReadUInt (XcursorFile *file, XcursorUInt *u)
++{
++    unsigned char   bytes[4];
++
++    if (!file || !u)
++        return XcursorFalse;
++
++    if ((*file->read) (file, bytes, 4) != 4)
++	return XcursorFalse;
++    *u = ((bytes[0] << 0) |
++	  (bytes[1] << 8) |
++	  (bytes[2] << 16) |
++	  (bytes[3] << 24));
++    return XcursorTrue;
++}
++
++static void
++_XcursorFileHeaderDestroy (XcursorFileHeader *fileHeader)
++{
++    free (fileHeader);
++}
++
++static XcursorFileHeader *
++_XcursorFileHeaderCreate (int ntoc)
++{
++    XcursorFileHeader	*fileHeader;
++
++    if (ntoc > 0x10000)
++	return NULL;
++    fileHeader = malloc (sizeof (XcursorFileHeader) +
++			 ntoc * sizeof (XcursorFileToc));
++    if (!fileHeader)
++	return NULL;
++    fileHeader->magic = XCURSOR_MAGIC;
++    fileHeader->header = XCURSOR_FILE_HEADER_LEN;
++    fileHeader->version = XCURSOR_FILE_VERSION;
++    fileHeader->ntoc = ntoc;
++    fileHeader->tocs = (XcursorFileToc *) (fileHeader + 1);
++    return fileHeader;
++}
++
++static XcursorFileHeader *
++_XcursorReadFileHeader (XcursorFile *file)
++{
++    XcursorFileHeader	head, *fileHeader;
++    XcursorUInt		skip;
++    unsigned int	n;
++
++    if (!file)
++        return NULL;
++
++    if (!_XcursorReadUInt (file, &head.magic))
++	return NULL;
++    if (head.magic != XCURSOR_MAGIC)
++	return NULL;
++    if (!_XcursorReadUInt (file, &head.header))
++	return NULL;
++    if (!_XcursorReadUInt (file, &head.version))
++	return NULL;
++    if (!_XcursorReadUInt (file, &head.ntoc))
++	return NULL;
++    skip = head.header - XCURSOR_FILE_HEADER_LEN;
++    if (skip)
++	if ((*file->seek) (file, skip, SEEK_CUR) == EOF)
++	    return NULL;
++    fileHeader = _XcursorFileHeaderCreate (head.ntoc);
++    if (!fileHeader)
++	return NULL;
++    fileHeader->magic = head.magic;
++    fileHeader->header = head.header;
++    fileHeader->version = head.version;
++    fileHeader->ntoc = head.ntoc;
++    for (n = 0; n < fileHeader->ntoc; n++)
++    {
++	if (!_XcursorReadUInt (file, &fileHeader->tocs[n].type))
++	    break;
++	if (!_XcursorReadUInt (file, &fileHeader->tocs[n].subtype))
++	    break;
++	if (!_XcursorReadUInt (file, &fileHeader->tocs[n].position))
++	    break;
++    }
++    if (n != fileHeader->ntoc)
++    {
++	_XcursorFileHeaderDestroy (fileHeader);
++	return NULL;
++    }
++    return fileHeader;
++}
++
++static XcursorBool
++_XcursorSeekToToc (XcursorFile		*file,
++		   XcursorFileHeader	*fileHeader,
++		   int			toc)
++{
++    if (!file || !fileHeader || \
++        (*file->seek) (file, fileHeader->tocs[toc].position, SEEK_SET) == EOF)
++	return XcursorFalse;
++    return XcursorTrue;
++}
++
++static XcursorBool
++_XcursorFileReadChunkHeader (XcursorFile	*file,
++			     XcursorFileHeader	*fileHeader,
++			     int		toc,
++			     XcursorChunkHeader	*chunkHeader)
++{
++    if (!file || !fileHeader || !chunkHeader)
++        return XcursorFalse;
++    if (!_XcursorSeekToToc (file, fileHeader, toc))
++	return XcursorFalse;
++    if (!_XcursorReadUInt (file, &chunkHeader->header))
++	return XcursorFalse;
++    if (!_XcursorReadUInt (file, &chunkHeader->type))
++	return XcursorFalse;
++    if (!_XcursorReadUInt (file, &chunkHeader->subtype))
++	return XcursorFalse;
++    if (!_XcursorReadUInt (file, &chunkHeader->version))
++	return XcursorFalse;
++    /* sanity check */
++    if (chunkHeader->type != fileHeader->tocs[toc].type ||
++	chunkHeader->subtype != fileHeader->tocs[toc].subtype)
++	return XcursorFalse;
++    return XcursorTrue;
++}
++
++#define dist(a,b)   ((a) > (b) ? (a) - (b) : (b) - (a))
++
++static XcursorDim
++_XcursorFindBestSize (XcursorFileHeader *fileHeader,
++		      XcursorDim	size,
++		      int		*nsizesp)
++{
++    unsigned int n;
++    int		nsizes = 0;
++    XcursorDim	bestSize = 0;
++    XcursorDim	thisSize;
++
++    if (!fileHeader || !nsizesp)
++        return 0;
++
++    for (n = 0; n < fileHeader->ntoc; n++)
++    {
++	if (fileHeader->tocs[n].type != XCURSOR_IMAGE_TYPE)
++	    continue;
++	thisSize = fileHeader->tocs[n].subtype;
++	if (!bestSize || dist (thisSize, size) < dist (bestSize, size))
++	{
++	    bestSize = thisSize;
++	    nsizes = 1;
++	}
++	else if (thisSize == bestSize)
++	    nsizes++;
++    }
++    *nsizesp = nsizes;
++    return bestSize;
++}
++
++static int
++_XcursorFindImageToc (XcursorFileHeader	*fileHeader,
++		      XcursorDim	size,
++		      int		count)
++{
++    unsigned int	toc;
++    XcursorDim		thisSize;
++
++    if (!fileHeader)
++        return 0;
++
++    for (toc = 0; toc < fileHeader->ntoc; toc++)
++    {
++	if (fileHeader->tocs[toc].type != XCURSOR_IMAGE_TYPE)
++	    continue;
++	thisSize = fileHeader->tocs[toc].subtype;
++	if (thisSize != size)
++	    continue;
++	if (!count)
++	    break;
++	count--;
++    }
++    if (toc == fileHeader->ntoc)
++	return -1;
++    return toc;
++}
++
++static XcursorImage *
++_XcursorReadImage (XcursorFile		*file,
++		   XcursorFileHeader	*fileHeader,
++		   int			toc)
++{
++    XcursorChunkHeader	chunkHeader;
++    XcursorImage	head;
++    XcursorImage	*image;
++    int			n;
++    XcursorPixel	*p;
++
++    if (!file || !fileHeader)
++        return NULL;
++
++    if (!_XcursorFileReadChunkHeader (file, fileHeader, toc, &chunkHeader))
++	return NULL;
++    if (!_XcursorReadUInt (file, &head.width))
++	return NULL;
++    if (!_XcursorReadUInt (file, &head.height))
++	return NULL;
++    if (!_XcursorReadUInt (file, &head.xhot))
++	return NULL;
++    if (!_XcursorReadUInt (file, &head.yhot))
++	return NULL;
++    if (!_XcursorReadUInt (file, &head.delay))
++	return NULL;
++    /* sanity check data */
++    if (head.width > XCURSOR_IMAGE_MAX_SIZE  ||
++	head.height > XCURSOR_IMAGE_MAX_SIZE)
++	return NULL;
++    if (head.width == 0 || head.height == 0)
++	return NULL;
++    if (head.xhot > head.width || head.yhot > head.height)
++	return NULL;
++
++    /* Create the image and initialize it */
++    image = XcursorImageCreate (head.width, head.height);
++    if (image == NULL)
++	    return NULL;
++    if (chunkHeader.version < image->version)
++	image->version = chunkHeader.version;
++    image->size = chunkHeader.subtype;
++    image->xhot = head.xhot;
++    image->yhot = head.yhot;
++    image->delay = head.delay;
++    n = image->width * image->height;
++    p = image->pixels;
++    while (n--)
++    {
++	if (!_XcursorReadUInt (file, p))
++	{
++	    XcursorImageDestroy (image);
++	    return NULL;
++	}
++	p++;
++    }
++    return image;
++}
++
++static XcursorImages *
++XcursorXcFileLoadImages (XcursorFile *file, int size)
++{
++    XcursorFileHeader	*fileHeader;
++    XcursorDim		bestSize;
++    int			nsize;
++    XcursorImages	*images;
++    int			n;
++    int			toc;
++
++    if (!file || size < 0)
++	return NULL;
++    fileHeader = _XcursorReadFileHeader (file);
++    if (!fileHeader)
++	return NULL;
++    bestSize = _XcursorFindBestSize (fileHeader, (XcursorDim) size, &nsize);
++    if (!bestSize)
++    {
++        _XcursorFileHeaderDestroy (fileHeader);
++	return NULL;
++    }
++    images = XcursorImagesCreate (nsize);
++    if (!images)
++    {
++        _XcursorFileHeaderDestroy (fileHeader);
++	return NULL;
++    }
++    for (n = 0; n < nsize; n++)
++    {
++	toc = _XcursorFindImageToc (fileHeader, bestSize, n);
++	if (toc < 0)
++	    break;
++	images->images[images->nimage] = _XcursorReadImage (file, fileHeader,
++							    toc);
++	if (!images->images[images->nimage])
++	    break;
++	images->nimage++;
++    }
++    _XcursorFileHeaderDestroy (fileHeader);
++    if (images->nimage != nsize)
++    {
++	XcursorImagesDestroy (images);
++	images = NULL;
++    }
++    return images;
++}
++
++static int
++_XcursorStdioFileRead (XcursorFile *file, unsigned char *buf, int len)
++{
++    FILE    *f = file->closure;
++    return fread (buf, 1, len, f);
++}
++
++static int
++_XcursorStdioFileWrite (XcursorFile *file, unsigned char *buf, int len)
++{
++    FILE    *f = file->closure;
++    return fwrite (buf, 1, len, f);
++}
++
++static int
++_XcursorStdioFileSeek (XcursorFile *file, long offset, int whence)
++{
++    FILE    *f = file->closure;
++    return fseek (f, offset, whence);
++}
++
++static void
++_XcursorStdioFileInitialize (FILE *stdfile, XcursorFile *file)
++{
++    file->closure = stdfile;
++    file->read = _XcursorStdioFileRead;
++    file->write = _XcursorStdioFileWrite;
++    file->seek = _XcursorStdioFileSeek;
++}
++
++static XcursorImages *
++XcursorFileLoadImages (FILE *file, int size)
++{
++    XcursorFile	f;
++
++    if (!file)
++        return NULL;
++
++    _XcursorStdioFileInitialize (file, &f);
++    return XcursorXcFileLoadImages (&f, size);
++}
++
++XcursorImages *
++xcursor_load_images (const char *path, int size)
++{
++  FILE    *f;
++  XcursorImages *images;
++
++  f = fopen (path, "r");
++  if (!f)
++    return NULL;
++
++  images = XcursorFileLoadImages (f, size);
++  fclose (f);
++
++  return images;
++}
++
++void
++xcursor_images_destroy (XcursorImages *images)
++{
++  XcursorImagesDestroy (images);
++}
+diff --git a/gdk/wayland/cursor/xcursor.h b/gdk/wayland/cursor/xcursor.h
+new file mode 100644
+index 0000000..34feb0c
+--- /dev/null
++++ b/gdk/wayland/cursor/xcursor.h
+@@ -0,0 +1,61 @@
++/*
++ * Copyright © 2002 Keith Packard
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining
++ * a copy of this software and associated documentation files (the
++ * "Software"), to deal in the Software without restriction, including
++ * without limitation the rights to use, copy, modify, merge, publish,
++ * distribute, sublicense, and/or sell copies of the Software, and to
++ * permit persons to whom the Software is furnished to do so, subject to
++ * the following conditions:
++ *
++ * The above copyright notice and this permission notice (including the
++ * next paragraph) shall be included in all copies or substantial
++ * portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
++ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
++ * NONINFRINGEMENT.  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
++ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
++ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
++ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
++ * SOFTWARE.
++ */
++
++#ifndef XCURSOR_H
++#define XCURSOR_H
++
++typedef int		XcursorBool;
++typedef unsigned int	XcursorUInt;
++
++typedef XcursorUInt	XcursorDim;
++typedef XcursorUInt	XcursorPixel;
++
++typedef struct _XcursorImage {
++    XcursorUInt	    version;	/* version of the image data */
++    XcursorDim	    size;	/* nominal size for matching */
++    XcursorDim	    width;	/* actual width */
++    XcursorDim	    height;	/* actual height */
++    XcursorDim	    xhot;	/* hot spot x (must be inside image) */
++    XcursorDim	    yhot;	/* hot spot y (must be inside image) */
++    XcursorUInt	    delay;	/* animation delay to next frame (ms) */
++    XcursorPixel    *pixels;	/* pointer to pixels */
++} XcursorImage;
++
++/*
++ * Other data structures exposed by the library API
++ */
++typedef struct _XcursorImages {
++    int		    nimage;	/* number of images */
++    XcursorImage    **images;	/* array of XcursorImage pointers */
++    char	    *name;	/* name used to load images */
++} XcursorImages;
++
++void
++xcursor_images_destroy (XcursorImages *images);
++
++XcursorImages *
++xcursor_load_images (const char *path, int size);
++
++#endif
+diff --git a/gdk/wayland/gdkcursor-wayland.c b/gdk/wayland/gdkcursor-wayland.c
+index 1df5a02..908f762 100644
+--- a/gdk/wayland/gdkcursor-wayland.c
++++ b/gdk/wayland/gdkcursor-wayland.c
+@@ -34,7 +34,7 @@
+ #include "gdkwayland.h"
+ #include <gdk-pixbuf/gdk-pixbuf.h>
+ 
+-#include <wayland-cursor.h>
++#include <cursor/wayland-cursor.h>
+ 
+ #define GDK_TYPE_WAYLAND_CURSOR              (_gdk_wayland_cursor_get_type ())
+ #define GDK_WAYLAND_CURSOR(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), GDK_TYPE_WAYLAND_CURSOR, GdkWaylandCursor))
+@@ -149,9 +149,8 @@ _gdk_wayland_cursor_update (GdkWaylandDisplay *display_wayland,
+   if (cursor->name == NULL)
+     return FALSE;
+ 
+-  theme = _gdk_wayland_display_get_scaled_cursor_theme (display_wayland,
+-                                                        cursor->scale);
+-  c = wl_cursor_theme_get_cursor (theme, cursor->name);
++  theme = _gdk_wayland_display_get_cursor_theme (display_wayland);
++  c = wl_cursor_theme_get_cursor (theme, cursor->name, cursor->scale);
+   if (!c)
+     {
+       const char *fallback;
+@@ -159,9 +158,9 @@ _gdk_wayland_cursor_update (GdkWaylandDisplay *display_wayland,
+       fallback = name_fallback (cursor->name);
+       if (fallback)
+         {
+-          c = wl_cursor_theme_get_cursor (theme, name_fallback (cursor->name));
++          c = wl_cursor_theme_get_cursor (theme, fallback, cursor->scale);
+           if (!c)
+-            c = wl_cursor_theme_get_cursor (theme, "left_ptr");
++            c = wl_cursor_theme_get_cursor (theme, "left_ptr", cursor->scale);
+         }
+     }
+ 
+@@ -305,12 +304,6 @@ _gdk_wayland_cursor_set_scale (GdkCursor *cursor,
+     GDK_WAYLAND_DISPLAY (gdk_cursor_get_display (cursor));
+   GdkWaylandCursor *wayland_cursor = GDK_WAYLAND_CURSOR (cursor);
+ 
+-  if (scale > GDK_WAYLAND_MAX_THEME_SCALE)
+-    {
+-      g_warning (G_STRLOC ": cursor theme size %u too large", scale);
+-      scale = GDK_WAYLAND_MAX_THEME_SCALE;
+-    }
+-
+   if (wayland_cursor->scale == scale)
+     return;
+ 
+diff --git a/gdk/wayland/gdkdisplay-wayland.c b/gdk/wayland/gdkdisplay-wayland.c
+index 55c0388..f60f75a 100644
+--- a/gdk/wayland/gdkdisplay-wayland.c
++++ b/gdk/wayland/gdkdisplay-wayland.c
+@@ -720,7 +720,6 @@ static void
+ gdk_wayland_display_finalize (GObject *object)
+ {
+   GdkWaylandDisplay *display_wayland = GDK_WAYLAND_DISPLAY (object);
+-  guint i;
+ 
+   _gdk_wayland_display_finalize_cursors (display_wayland);
+ 
+@@ -730,13 +729,10 @@ gdk_wayland_display_finalize (GObject *object)
+   g_free (display_wayland->cursor_theme_name);
+   xkb_context_unref (display_wayland->xkb_context);
+ 
+-  for (i = 0; i < GDK_WAYLAND_THEME_SCALES_COUNT; i++)
++  if (display_wayland->cursor_theme)
+     {
+-      if (display_wayland->scaled_cursor_themes[i])
+-        {
+-          wl_cursor_theme_destroy (display_wayland->scaled_cursor_themes[i]);
+-          display_wayland->scaled_cursor_themes[i] = NULL;
+-        }
++      wl_cursor_theme_destroy (display_wayland->cursor_theme);
++      display_wayland->cursor_theme = NULL;
+     }
+ 
+   g_ptr_array_free (display_wayland->monitors, TRUE);
+@@ -1116,6 +1112,33 @@ gdk_wayland_display_init (GdkWaylandDisplay *display)
+   display->monitors = g_ptr_array_new_with_free_func (g_object_unref);
+ }
+ 
++static struct wl_cursor_theme *
++get_cursor_theme (GdkWaylandDisplay *display_wayland,
++                  const char *name,
++                  int size)
++{
++  const char * const *xdg_data_dirs;
++  struct wl_cursor_theme *theme = NULL;
++  int i;
++
++  xdg_data_dirs = g_get_system_data_dirs ();
++  for (i = 0; xdg_data_dirs[i]; i++)
++    {
++      char *path = g_build_filename (xdg_data_dirs[i], "icons", name, "cursors", NULL);
++
++      if (g_file_test (path, G_FILE_TEST_IS_DIR))
++        theme = wl_cursor_theme_create (path, size, display_wayland->shm);
++
++      g_free (path);
++
++      if (theme)
++        return theme;
++    }
++
++  /* This may fall back to builtin cursors */
++  return wl_cursor_theme_create ("/usr/share/icons/default/cursors", size, display_wayland->shm);
++}
++
+ void
+ gdk_wayland_display_set_cursor_theme (GdkDisplay  *display,
+                                       const gchar *name,
+@@ -1123,7 +1146,6 @@ gdk_wayland_display_set_cursor_theme (GdkDisplay  *display,
+ {
+   GdkWaylandDisplay *display_wayland = GDK_WAYLAND_DISPLAY(display);
+   struct wl_cursor_theme *theme;
+-  int i;
+ 
+   g_assert (display_wayland);
+   g_assert (display_wayland->shm);
+@@ -1132,22 +1154,21 @@ gdk_wayland_display_set_cursor_theme (GdkDisplay  *display,
+       display_wayland->cursor_theme_size == size)
+     return;
+ 
+-  theme = wl_cursor_theme_load (name, size, display_wayland->shm);
++  theme = get_cursor_theme (display_wayland, name, size);
+   if (theme == NULL)
+     {
+       g_warning ("Failed to load cursor theme %s", name);
+       return;
+     }
+ 
+-  for (i = 0; i < GDK_WAYLAND_THEME_SCALES_COUNT; i++)
++  if (display_wayland->cursor_theme)
+     {
+-      if (display_wayland->scaled_cursor_themes[i])
+-        {
+-          wl_cursor_theme_destroy (display_wayland->scaled_cursor_themes[i]);
+-          display_wayland->scaled_cursor_themes[i] = NULL;
+-        }
++      wl_cursor_theme_destroy (display_wayland->cursor_theme);
++      display_wayland->cursor_theme = NULL;
+     }
+-  display_wayland->scaled_cursor_themes[0] = theme;
++
++  display_wayland->cursor_theme = theme;
++
+   if (display_wayland->cursor_theme_name != NULL)
+     g_free (display_wayland->cursor_theme_name);
+   display_wayland->cursor_theme_name = g_strdup (name);
+@@ -1157,31 +1178,11 @@ gdk_wayland_display_set_cursor_theme (GdkDisplay  *display,
+ }
+ 
+ struct wl_cursor_theme *
+-_gdk_wayland_display_get_scaled_cursor_theme (GdkWaylandDisplay *display_wayland,
+-                                              guint              scale)
++_gdk_wayland_display_get_cursor_theme (GdkWaylandDisplay *display_wayland)
+ {
+-  struct wl_cursor_theme *theme;
+-
+   g_assert (display_wayland->cursor_theme_name);
+-  g_assert (scale <= GDK_WAYLAND_MAX_THEME_SCALE);
+-  g_assert (scale >= 1);
+-
+-  theme = display_wayland->scaled_cursor_themes[scale - 1];
+-  if (!theme)
+-    {
+-      theme = wl_cursor_theme_load (display_wayland->cursor_theme_name,
+-                                    display_wayland->cursor_theme_size * scale,
+-                                    display_wayland->shm);
+-      if (theme == NULL)
+-        {
+-          g_warning ("Failed to load cursor theme %s with scale %u",
+-                     display_wayland->cursor_theme_name, scale);
+-          return NULL;
+-        }
+-      display_wayland->scaled_cursor_themes[scale - 1] = theme;
+-    }
+ 
+-  return theme;
++  return display_wayland->cursor_theme;
+ }
+ 
+ static void
+diff --git a/gdk/wayland/gdkdisplay-wayland.h b/gdk/wayland/gdkdisplay-wayland.h
+index 925476a..5ac80ee 100644
+--- a/gdk/wayland/gdkdisplay-wayland.h
++++ b/gdk/wayland/gdkdisplay-wayland.h
+@@ -25,7 +25,6 @@
+ #include <config.h>
+ #include <stdint.h>
+ #include <wayland-client.h>
+-#include <wayland-cursor.h>
+ #include <wayland-egl.h>
+ #include <gdk/wayland/tablet-unstable-v2-client-protocol.h>
+ #include <gdk/wayland/gtk-shell-client-protocol.h>
+@@ -39,6 +38,7 @@
+ #ifdef HAVE_XDG_ACTIVATION
+ #include <gdk/wayland/xdg-activation-v1-client-protocol.h>
+ #endif
++#include <gdk/wayland/cursor/wayland-cursor.h>
+ 
+ #include <glib.h>
+ #include <gdk/gdkkeys.h>
+@@ -52,9 +52,6 @@
+ 
+ G_BEGIN_DECLS
+ 
+-#define GDK_WAYLAND_MAX_THEME_SCALE 4
+-#define GDK_WAYLAND_THEME_SCALES_COUNT GDK_WAYLAND_MAX_THEME_SCALE
+-
+ #define GDK_ZWP_POINTER_GESTURES_V1_VERSION 1
+ 
+ typedef struct _GdkWaylandSelection GdkWaylandSelection;
+@@ -119,7 +116,7 @@ struct _GdkWaylandDisplay
+ 
+   GList *current_popups;
+ 
+-  struct wl_cursor_theme *scaled_cursor_themes[GDK_WAYLAND_THEME_SCALES_COUNT];
++  struct wl_cursor_theme *cursor_theme;
+   gchar *cursor_theme_name;
+   int cursor_theme_size;
+   GHashTable *cursor_cache;
+diff --git a/gdk/wayland/gdkprivate-wayland.h b/gdk/wayland/gdkprivate-wayland.h
+index 5173873..102c945 100644
+--- a/gdk/wayland/gdkprivate-wayland.h
++++ b/gdk/wayland/gdkprivate-wayland.h
+@@ -60,8 +60,7 @@ void       _gdk_wayland_display_init_cursors (GdkWaylandDisplay *display);
+ void       _gdk_wayland_display_finalize_cursors (GdkWaylandDisplay *display);
+ void       _gdk_wayland_display_update_cursors (GdkWaylandDisplay *display);
+ 
+-struct wl_cursor_theme * _gdk_wayland_display_get_scaled_cursor_theme (GdkWaylandDisplay *display_wayland,
+-                                                                       guint              scale);
++struct wl_cursor_theme * _gdk_wayland_display_get_cursor_theme (GdkWaylandDisplay *display_wayland);
+ 
+ GdkCursor *_gdk_wayland_display_get_cursor_for_type (GdkDisplay    *display,
+ 						     GdkCursorType  cursor_type);
+diff --git a/gdk/wayland/meson.build b/gdk/wayland/meson.build
+index 1a90060..1f0801f 100644
+--- a/gdk/wayland/meson.build
++++ b/gdk/wayland/meson.build
+@@ -1,3 +1,5 @@
++subdir('cursor')
++
+ gdk_wayland_sources = files(
+   'gdkapplaunchcontext-wayland.c',
+   'gdkcursor-wayland.c',
+@@ -31,7 +33,6 @@ gdk_wayland_deps = [
+   xkbdep,
+   wlclientdep,
+   wlprotocolsdep,
+-  wlcursordep,
+   wlegldep,
+ ]
+ 
+@@ -112,4 +113,5 @@ libgdk_wayland = static_library('gdk-wayland',
+                                   '-DG_LOG_DOMAIN="Gdk"',
+                                 ] + common_cflags,
+                                 link_args: common_ldflags,
++                                link_with: [libwayland_cursor, ],
+                                 dependencies: [ gdk_deps, gdk_wayland_deps, ])
+diff --git a/meson.build b/meson.build
+index 8aaeb71..ab43615 100644
+--- a/meson.build
++++ b/meson.build
+@@ -557,7 +557,6 @@ wayland_pkgs = []
+ if wayland_enabled
+   wlclientdep    = dependency('wayland-client', version:  wayland_req)
+   wlprotocolsdep = dependency('wayland-protocols', version: wayland_proto_req)
+-  wlcursordep    = dependency('wayland-cursor', version: wayland_req)
+   wlegldep       = dependency('wayland-egl')
+   backend_immodules += ['wayland']
+ 
+@@ -566,7 +565,6 @@ if wayland_enabled
+   wayland_pkgs = [
+     'wayland-client', wayland_req,
+     'xkbcommon', xkbcommon_req,
+-    'wayland-cursor', wayland_req,
+     'wayland-egl',
+   ]
+ endif

@@ -1,0 +1,26 @@
+From: =?utf-8?q?Florian_M=C3=BCllner?= <fmuellner@gnome.org>
+Date: Tue, 7 Jun 2022 19:37:31 +0200
+Subject: wayland/screen: Don't force HighContrast icon theme
+
+The theme is considered deprecated in favor of symbolic icons from
+the regular theme.
+
+Origin: upstream, 3.24.35, commit:b19269c9c1b6dad0b1924f4ec57684ce849305bb
+---
+ gdk/wayland/gdkscreen-wayland.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/gdk/wayland/gdkscreen-wayland.c b/gdk/wayland/gdkscreen-wayland.c
+index 90c12d8..43ab210 100644
+--- a/gdk/wayland/gdkscreen-wayland.c
++++ b/gdk/wayland/gdkscreen-wayland.c
+@@ -1068,8 +1068,7 @@ gdk_wayland_screen_get_setting (GdkScreen   *screen,
+     {
+       if (strcmp (name, "gtk-decoration-layout") == 0)
+         set_decoration_layout_from_entry (screen, entry, value);
+-      else if (strcmp (name, "gtk-theme-name") == 0 ||
+-               strcmp (name, "gtk-icon-theme-name") == 0)
++      else if (strcmp (name, "gtk-theme-name") == 0)
+         set_theme_from_entry (screen, entry, value);
+       else
+         set_value_from_entry (screen, entry, value);

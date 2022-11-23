@@ -155,6 +155,11 @@ ifneq (,$(filter $(DEB_HOST_ARCH_CPU),i386))
 ignore_reftests += linear-gradient
 endif
 
+# https://bugs.debian.org/1024392
+ifeq (big,$(DEB_HOST_ARCH_ENDIAN))
+	ignore_reftests += border-image-excess-size
+endif
+
 xfail_reftests = \
 	$(NULL)
 

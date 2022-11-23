@@ -1,0 +1,132 @@
+From: Carlos Garnacho <carlosg@gnome.org>
+Date: Sat, 24 Sep 2022 11:45:18 +0200
+Subject: gtkimcontextwayland: Shuffle full resets after IM changes
+
+Doing reset() on the text widgets after commit and delete_surrounding
+is still too eager for some IMs (e.g. those that expect being able
+to commit text while keeping a preedit buffer shown).
+
+However, reset() is more of a "synchronize state" action on Wayland,
+and it is still desirable to do that after changes that do come from
+the IM (e.g. requesting the new surrounding text and cursor/anchor
+positions). Notably here, the text_input protocol may still come up
+with a preedit string after this state synchronization happens.
+
+Shuffle the code so that the text widgets do not reset() the IM
+context after text is deleted or committed, but the Wayland IM does
+apply its practical effects after these actions happen. This keeps
+the Wayland IM fully up-to-date wrt text widget state, while not
+altering the ::commit and ::delete-surrounding-text behavior for
+other IM context implementations.
+
+Origin: upstream, 3.24.35, commit:92813e52cde864139f3b740992e8c267a7a6bd1d
+---
+ gtk/gtkentry.c            | 14 ++++----------
+ gtk/gtktextview.c         |  6 ++----
+ modules/input/imwayland.c | 23 ++++++++++++++++++++---
+ 3 files changed, 26 insertions(+), 17 deletions(-)
+
+diff --git a/gtk/gtkentry.c b/gtk/gtkentry.c
+index 7da9f80..4078855 100644
+--- a/gtk/gtkentry.c
++++ b/gtk/gtkentry.c
+@@ -6082,10 +6082,7 @@ gtk_entry_commit_cb (GtkIMContext *context,
+   GtkEntryPrivate *priv = entry->priv;
+ 
+   if (priv->editable)
+-    {
+-      gtk_entry_enter_text (entry, str);
+-      gtk_im_context_reset (context);
+-    }
++    gtk_entry_enter_text (entry, str);
+ }
+ 
+ static void 
+@@ -6137,12 +6134,9 @@ gtk_entry_delete_surrounding_cb (GtkIMContext *slave,
+   GtkEntryPrivate *priv = entry->priv;
+ 
+   if (priv->editable)
+-    {
+-      gtk_editable_delete_text (GTK_EDITABLE (entry),
+-                                priv->current_pos + offset,
+-                                priv->current_pos + offset + n_chars);
+-      gtk_im_context_reset (slave);
+-    }
++    gtk_editable_delete_text (GTK_EDITABLE (entry),
++                              priv->current_pos + offset,
++                              priv->current_pos + offset + n_chars);
+ 
+   return TRUE;
+ }
+diff --git a/gtk/gtktextview.c b/gtk/gtktextview.c
+index e6b4d0a..8a1241e 100644
+--- a/gtk/gtktextview.c
++++ b/gtk/gtktextview.c
+@@ -9101,7 +9101,6 @@ gtk_text_view_commit_handler (GtkIMContext  *context,
+                               GtkTextView   *text_view)
+ {
+   gtk_text_view_commit_text (text_view, str);
+-  gtk_im_context_reset (context);
+ }
+ 
+ static void
+@@ -9240,9 +9239,8 @@ gtk_text_view_delete_surrounding_handler (GtkIMContext  *context,
+   gtk_text_iter_forward_chars (&start, offset);
+   gtk_text_iter_forward_chars (&end, offset + n_chars);
+ 
+-  if (gtk_text_buffer_delete_interactive (priv->buffer, &start, &end,
+-				          priv->editable))
+-    gtk_im_context_reset (context);
++  gtk_text_buffer_delete_interactive (priv->buffer, &start, &end,
++                                      priv->editable);
+ 
+   return TRUE;
+ }
+diff --git a/modules/input/imwayland.c b/modules/input/imwayland.c
+index facb9f2..fb3e1e3 100644
+--- a/modules/input/imwayland.c
++++ b/modules/input/imwayland.c
+@@ -260,9 +260,14 @@ text_input_delete_surrounding_text_apply (GtkIMContextWaylandGlobal *global)
+   len = context->pending_surrounding_delete.after_length
+       + context->pending_surrounding_delete.before_length;
+   if (len > 0)
+-    g_signal_emit_by_name (global->current, "delete-surrounding",
+-                           -context->pending_surrounding_delete.before_length,
+-                           len, &retval);
++    {
++      g_signal_emit_by_name (global->current, "delete-surrounding",
++                             -context->pending_surrounding_delete.before_length,
++                             len, &retval);
++      notify_im_change (GTK_IM_CONTEXT_WAYLAND (context),
++                        ZWP_TEXT_INPUT_V3_CHANGE_CAUSE_INPUT_METHOD);
++    }
++
+   context->pending_surrounding_delete = defaults;
+ }
+ 
+@@ -926,6 +931,17 @@ gtk_im_context_wayland_get_surrounding (GtkIMContext  *context,
+   return TRUE;
+ }
+ 
++static void
++gtk_im_context_wayland_commit (GtkIMContext *context,
++                               const gchar  *str)
++{
++  if (GTK_IM_CONTEXT_CLASS (parent_class)->commit)
++    GTK_IM_CONTEXT_CLASS (parent_class)->commit (context, str);
++
++  notify_im_change (GTK_IM_CONTEXT_WAYLAND (context),
++                    ZWP_TEXT_INPUT_V3_CHANGE_CAUSE_INPUT_METHOD);
++}
++
+ static void
+ gtk_im_context_wayland_class_init (GtkIMContextWaylandClass *klass)
+ {
+@@ -944,6 +960,7 @@ gtk_im_context_wayland_class_init (GtkIMContextWaylandClass *klass)
+   im_context_class->set_use_preedit = gtk_im_context_wayland_set_use_preedit;
+   im_context_class->set_surrounding = gtk_im_context_wayland_set_surrounding;
+   im_context_class->get_surrounding = gtk_im_context_wayland_get_surrounding;
++  im_context_class->commit = gtk_im_context_wayland_commit;
+ 
+   parent_class = g_type_class_peek_parent (klass);
+ }

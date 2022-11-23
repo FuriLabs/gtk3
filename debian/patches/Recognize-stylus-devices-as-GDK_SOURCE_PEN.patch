@@ -1,0 +1,29 @@
+From: Nate Eldredge <nate@thatsmathematics.com>
+Date: Sat, 17 Sep 2022 15:06:27 +0200
+Subject: Recognize "stylus" devices as GDK_SOURCE_PEN
+
+Add "stylus" to the list of substrings in a device name that cause it to be recognized
+as a GDK_SOURCE_PEN device (previously "wacom", "pen" and "eraser").  Some devices
+just use "stylus" in their name, and are otherwise recognized as
+GDK_SOURCE_TOUCHSCREEN instead.
+
+Bug: #4394
+Origin: upstream, 3.24.35, commit:8984b13d84249c17d37750d14c9e9832cf0b3b8c
+---
+ gdk/x11/gdkdevicemanager-xi2.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/gdk/x11/gdkdevicemanager-xi2.c b/gdk/x11/gdkdevicemanager-xi2.c
+index 193dd47..a65116a3 100644
+--- a/gdk/x11/gdkdevicemanager-xi2.c
++++ b/gdk/x11/gdkdevicemanager-xi2.c
+@@ -453,7 +453,8 @@ create_device (GdkDeviceManager *device_manager,
+       else if (strstr (tmp_name, " pad"))
+         input_source = GDK_SOURCE_TABLET_PAD;
+       else if (strstr (tmp_name, "wacom") ||
+-               strstr (tmp_name, "pen"))
++               strstr (tmp_name, "pen") ||
++               strstr (tmp_name, "stylus"))
+         input_source = GDK_SOURCE_PEN;
+       else if (!strstr (tmp_name, "mouse") &&
+                !strstr (tmp_name, "pointer") &&

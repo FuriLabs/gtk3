@@ -1,0 +1,52 @@
+From: Carlos Garnacho <carlosg@gnome.org>
+Date: Tue, 6 Sep 2022 21:38:35 +0200
+Subject: gtkentry: Avoid early IM reset on updates
+
+Resetting the IM on IM updates is too eager and indeed the simple
+IM context doesn't like that this happens in the middle of dead
+key handling.
+
+We however want to reset the IM after actual text buffer changes
+(say, a committed string) moved the cursor position, altered the
+surrounding text, etc. So that the IM implementation does know to
+update its state.
+
+Origin: upstream, 3.24.35, commit:7b1f9a3b083e170849bc94d4a5da01367ee27d0d
+---
+ gtk/gtkentry.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/gtk/gtkentry.c b/gtk/gtkentry.c
+index 12974d6..d26f4de 100644
+--- a/gtk/gtkentry.c
++++ b/gtk/gtkentry.c
+@@ -4897,7 +4897,7 @@ gtk_entry_key_press (GtkWidget   *widget,
+     {
+       if (gtk_im_context_filter_keypress (priv->im_context, event))
+ 	{
+-	  gtk_im_context_reset (priv->im_context);
++	  priv->need_im_reset = TRUE;
+ 	  retval = TRUE;
+           goto out;
+ 	}
+@@ -4939,7 +4939,7 @@ gtk_entry_key_release (GtkWidget   *widget,
+     {
+       if (gtk_im_context_filter_keypress (priv->im_context, event))
+ 	{
+-	  gtk_im_context_reset (priv->im_context);
++	  priv->need_im_reset = TRUE;
+ 	  retval = TRUE;
+           goto out;
+ 	}
+@@ -6082,7 +6082,10 @@ gtk_entry_commit_cb (GtkIMContext *context,
+   GtkEntryPrivate *priv = entry->priv;
+ 
+   if (priv->editable)
+-    gtk_entry_enter_text (entry, str);
++    {
++      gtk_entry_enter_text (entry, str);
++      gtk_im_context_reset (context);
++    }
+ }
+ 
+ static void 

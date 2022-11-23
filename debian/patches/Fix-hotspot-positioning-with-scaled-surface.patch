@@ -1,0 +1,24 @@
+From: =?utf-8?q?Emilio_Cobos_=C3=81lvarez?= <emilio@crisal.io>
+Date: Fri, 21 Oct 2022 14:22:51 +0200
+Subject: Fix hotspot positioning with scaled surface.
+
+Fixes !5278 to behave the same way as X11.
+
+Origin: upstream, 3.24.35, commit:686864a118e857a2a532cce8b33e78ca76857b98
+---
+ gdk/wayland/gdkcursor-wayland.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/gdk/wayland/gdkcursor-wayland.c b/gdk/wayland/gdkcursor-wayland.c
+index f5aa468..c3e9728 100644
+--- a/gdk/wayland/gdkcursor-wayland.c
++++ b/gdk/wayland/gdkcursor-wayland.c
+@@ -476,6 +476,8 @@ _gdk_wayland_display_get_cursor_for_surface (GdkDisplay *display,
+       cursor->surface.scale = (int)sx;
+       cursor->surface.width = cairo_image_surface_get_width (surface);
+       cursor->surface.height = cairo_image_surface_get_height (surface);
++      cursor->surface.hotspot_x *= sx;
++      cursor->surface.hotspot_y *= sx;
+     }
+   else
+     {

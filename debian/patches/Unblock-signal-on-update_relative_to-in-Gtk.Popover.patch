@@ -1,0 +1,74 @@
+From: Sergio Costas <rastersoft@gmail.com>
+Date: Mon, 21 Mar 2022 16:46:51 +0100
+Subject: Unblock signal on update_relative_to in Gtk.Popover
+
+When a Gtk.Popover loses the focus, it blocks the grab_notify
+signal from the associated widget, and it unblocks it when it
+regains the focus. To know whether the signal is or not blocked,
+it uses the priv->grab_notify_blocked flag.
+
+On the other hand, when the method update_relative_to() is
+called, all the signals connected to the old associated widget
+are disconnected, and connected to the new widget.
+
+Unfortunately, the priv->grab_notify_blocked flag isn't updated,
+which means that if update_relative_to() is called while the
+Gtk.Popover doesn't have the focus (for example, because the
+user switched into another application), when the focus is
+regained, the code in window_focus_in() will see that
+priv->grab_notify_blocked is TRUE and will unblock the handler;
+but that handler wasn't blocked because the one that was blocked
+was disconnected when update_relative_to() was called. This
+shows a WARNING in the console:
+
+GLib-GObject-WARNING **: ../../../gobject/gsignal.c:2692: handler '5146' of instance '0x556912f84f40' is not blocked
+
+This patch fixes this.
+
+Bug: https://gitlab.gnome.org/GNOME/gtk/-/issues/4777
+Origin: upstream, 3.24.35, commit:c9a3b4273470308197a4a96c622d86dc42851597
+---
+ gtk/gtkpopover.c | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
+
+diff --git a/gtk/gtkpopover.c b/gtk/gtkpopover.c
+index 19ba0fa..312d933 100644
+--- a/gtk/gtkpopover.c
++++ b/gtk/gtkpopover.c
+@@ -2097,6 +2097,7 @@ gtk_popover_update_relative_to (GtkPopover *popover,
+ {
+   GtkPopoverPrivate *priv = popover->priv;
+   GtkStateFlags old_state = 0;
++  gboolean had_grab_notify_blocked = FALSE;
+ 
+   if (priv->widget == relative_to)
+     return;
+@@ -2123,7 +2124,15 @@ gtk_popover_update_relative_to (GtkPopover *popover,
+       if (g_signal_handler_is_connected (priv->widget, priv->state_changed_id))
+         g_signal_handler_disconnect (priv->widget, priv->state_changed_id);
+       if (g_signal_handler_is_connected (priv->widget, priv->grab_notify_id))
+-        g_signal_handler_disconnect (priv->widget, priv->grab_notify_id);
++        {
++          if (priv->grab_notify_blocked)
++            {
++              g_signal_handler_unblock (priv->widget, priv->grab_notify_id);
++              priv->grab_notify_blocked = FALSE;
++              had_grab_notify_blocked = TRUE;
++            }
++          g_signal_handler_disconnect (priv->widget, priv->grab_notify_id);
++        }
+ 
+       widget_unmanage_popover (priv->widget, popover);
+     }
+@@ -2159,6 +2168,11 @@ gtk_popover_update_relative_to (GtkPopover *popover,
+         g_signal_connect (priv->widget, "grab-notify",
+                           G_CALLBACK (_gtk_popover_parent_grab_notify),
+                           popover);
++      if (had_grab_notify_blocked)
++        {
++          g_signal_handler_block (priv->widget, priv->grab_notify_id);
++          priv->grab_notify_blocked = TRUE;
++        }
+ 
+       /* Give ownership of the popover to widget */
+       widget_manage_popover (priv->widget, popover);
