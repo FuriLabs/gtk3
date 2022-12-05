@@ -17,6 +17,7 @@
  */
 
 #import <AppKit/AppKit.h>
+#import <CoreVideo/CoreVideo.h>
 #include "gdk/gdk.h"
 
 /* Text Input Client */
@@ -33,18 +34,26 @@
 #define GIC_FILTER_PASSTHRU	0
 #define GIC_FILTER_FILTERED	1
 
+#if MAC_OS_X_VERSION_MIN_REQUIRED < 101400
 @interface GdkQuartzView : NSView <NSTextInputClient>
+#else
+@interface GdkQuartzView : NSView <NSTextInputClient, NSViewLayerContentScaleDelegate>
+#endif
 {
   GdkWindow *gdk_window;
   NSTrackingRectTag trackingRect;
   BOOL needsInvalidateShadow;
   NSRange markedRange;
   NSRange selectedRange;
+  CVPixelBufferRef pixels;
+  NSDictionary *pb_props;
+  CFDictionaryRef cfpb_props;
 }
 
 - (void)setGdkWindow: (GdkWindow *)window;
 - (GdkWindow *)gdkWindow;
 - (NSTrackingRectTag)trackingRect;
 - (void)setNeedsInvalidateShadow: (BOOL)invalidate;
+- (void)createBackingStoreWithWidth: (CGFloat) width andHeight: (CGFloat) height;
 
 @end

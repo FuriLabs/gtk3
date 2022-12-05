@@ -1234,7 +1234,7 @@ see and interact with drives and network servers directly.</p>
 gtk_places_sidebar_set_drop_targets_visible
                                (<em class="parameter"><code><a class="link" href="GtkPlacesSidebar.html" title="GtkPlacesSidebar"><span class="type">GtkPlacesSidebar</span></a> *sidebar</code></em>,
                                 <em class="parameter"><code><span class="type">gboolean</span> visible</code></em>,
-                                <em class="parameter"><code><a href="../html/gdk3-Drag-and-Drop.html#GdkDragContext-struct"><span class="type">GdkDragContext</span></a> *context</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GdkDragContext</span> *context</code></em>);</pre>
 <p>Make the GtkPlacesSidebar show drop targets, so it can show the available
 drop targets and a "new bookmark" row. This improves the Drag-and-Drop
 experience of the user and allows applications to show all available
@@ -1489,7 +1489,7 @@ of the drag-and-drop operation.</p>
 <a name="GtkPlacesSidebar-drag-action-requested"></a><h3>The <code class="literal">“drag-action-requested”</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">int</span>
 user_function (<a class="link" href="GtkPlacesSidebar.html" title="GtkPlacesSidebar"><span class="type">GtkPlacesSidebar</span></a> *sidebar,
-               <a href="../html/gdk3-Drag-and-Drop.html#GdkDragContext-struct"><span class="type">GdkDragContext</span></a>   *context,
+               <span class="type">GdkDragContext</span>   *context,
                <span class="type">GObject</span>          *dest_file,
                <span class="type">gpointer</span>          source_file_list,
                <span class="type">gpointer</span>          user_data)</pre>
@@ -1519,7 +1519,7 @@ possible actions for the destination <em class="parameter"><code>dest_file</code
 </tr>
 <tr>
 <td class="parameter_name"><p>context</p></td>
-<td class="parameter_description"><p><a href="../html/gdk3-Drag-and-Drop.html#GdkDragContext-struct"><span class="type">GdkDragContext</span></a> with information about the drag operation. </p></td>
+<td class="parameter_description"><p><span class="type">GdkDragContext</span> with information about the drag operation. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> Gdk.DragContext]</span></td>
 </tr>
 <tr>
@@ -1542,8 +1542,8 @@ possible actions for the destination <em class="parameter"><code>dest_file</code
 </div>
 <div class="refsect3">
 <a name="GtkPlacesSidebar-drag-action-requested.returns"></a><h4>Returns</h4>
-<p> The drag action to use, for example, <a href="../html/gdk3-Drag-and-Drop.html#GDK-ACTION-COPY:CAPS"><span class="type">GDK_ACTION_COPY</span></a>
-or <a href="../html/gdk3-Drag-and-Drop.html#GDK-ACTION-MOVE:CAPS"><span class="type">GDK_ACTION_MOVE</span></a>, or 0 if no action is allowed here (i.e. drops
+<p> The drag action to use, for example, <span class="type">GDK_ACTION_COPY</span>
+or <span class="type">GDK_ACTION_MOVE</span>, or 0 if no action is allowed here (i.e. drops
 are not allowed in the specified <em class="parameter"><code>dest_file</code></em>
 ).</p>
 </div>

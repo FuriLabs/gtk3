@@ -10,6 +10,7 @@ AM_CPPFLAGS =					\
 	-DGDK_COMPILATION			\
 	-I$(top_srcdir)				\
 	-I$(top_srcdir)/gdk			\
+	-I$(top_srcdir)/gdk/wayland/cursor	\
 	-I$(top_builddir)/gdk			\
 	$(GDK_HIDDEN_VISIBILITY_CFLAGS)		\
 	$(GTK_DEBUG_FLAGS)			\
@@ -43,6 +44,11 @@ BUILT_SOURCES = 				\
 	gtk-shell-protocol.c			\
 	primary-selection-unstable-v1-client-protocol.h		\
 	primary-selection-unstable-v1-protocol.c
+if USE_XDG_ACTIVATION
+BUILT_SOURCES += 				\
+	xdg-activation-v1-client-protocol.h	\
+	xdg-activation-v1-protocol.c
+endif
 
 nodist_libgdk_wayland_la_SOURCES =		\
 	$(BUILT_SOURCES)
@@ -72,6 +78,14 @@ libgdk_wayland_la_SOURCES =			\
 	wm-button-layout-translation.c		\
 	wm-button-layout-translation.h
 
+libgdk_wayland_la_SOURCES +=			\
+	cursor/os-compatibility.c		\
+	cursor/os-compatibility.h		\
+	cursor/wayland-cursor.c			\
+	cursor/wayland-cursor.h			\
+	cursor/xcursor.c			\
+	cursor/xcursor.h
+
 libgdkinclude_HEADERS =				\
 	gdkwayland.h
 
@@ -96,6 +110,11 @@ endef
 %-protocol.c : $(WAYLAND_PROTOCOLS_DATADIR)/$$(call protostability,$$*)/$$(call protoname,$$*)/$$*.xml
 	$(AM_V_GEN)$(WAYLAND_SCANNER) private-code < $< > $@
 %-client-protocol.h : $(WAYLAND_PROTOCOLS_DATADIR)/$$(call protostability,$$*)/$$(call protoname,$$*)/$$*.xml
+	$(AM_V_GEN)$(WAYLAND_SCANNER) client-header < $< > $@
+
+xdg-activation-v1-protocol.c : $(WAYLAND_PROTOCOLS_DATADIR)/staging/xdg-activation/xdg-activation-v1.xml
+	$(AM_V_GEN)$(WAYLAND_SCANNER) private-code < $< > $@
+xdg-activation-v1-client-protocol.h : $(WAYLAND_PROTOCOLS_DATADIR)/staging/xdg-activation/xdg-activation-v1.xml
 	$(AM_V_GEN)$(WAYLAND_SCANNER) client-header < $< > $@
 
 %-protocol.c : $(srcdir)/protocol/%.xml

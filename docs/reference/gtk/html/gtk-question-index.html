@@ -756,10 +756,10 @@ How do I create a transparent toplevel window ?
 <p>
 To make a window transparent, it needs to use a visual which supports that.
 This is done by getting the RGBA visual of the screen with
-<a href="../html/GdkScreen.html#gdk-screen-get-rgba-visual"><code class="function">gdk_screen_get_rgba_visual()</code></a> and setting it on the window. Note that
-<a href="../html/GdkScreen.html#gdk-screen-get-rgba-visual"><code class="function">gdk_screen_get_rgba_visual()</code></a> will return <code class="literal">NULL</code> if transparent windows
+<code class="function">gdk_screen_get_rgba_visual()</code> and setting it on the window. Note that
+<code class="function">gdk_screen_get_rgba_visual()</code> will return <code class="literal">NULL</code> if transparent windows
 are not supported on the screen, you should fall back to
-<a href="../html/GdkScreen.html#gdk-screen-get-system-visual"><code class="function">gdk_screen_get_system_visual()</code></a> in that case. Additionally, note that this
+<code class="function">gdk_screen_get_system_visual()</code> in that case. Additionally, note that this
 will change from screen to screen, so it needs to be repeated whenever the
 window is moved to a different screen.
 </p>

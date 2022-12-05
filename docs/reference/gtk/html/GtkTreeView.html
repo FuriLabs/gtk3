@@ -510,7 +510,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="returnvalue">GdkWindow</span></a> *
+<span class="returnvalue">GdkWindow</span> *
 </td>
 <td class="function_name">
 <a class="link" href="GtkTreeView.html#gtk-tree-view-get-bin-window" title="gtk_tree_view_get_bin_window ()">gtk_tree_view_get_bin_window</a> <span class="c_punctuation">()</span>
@@ -1023,7 +1023,7 @@
 </tr>
 <tr>
 <td class="property_type">
-<a href="../html/gdk3-Colors.html#GdkColor"><span class="type">GdkColor</span></a> *</td>
+<span class="type">GdkColor</span> *</td>
 <td class="property_name"><a class="link" href="GtkTreeView.html#GtkTreeView--s-even-row-color" title="The “even-row-color” style property">even-row-color</a></td>
 <td class="property_flags">Read</td>
 </tr>
@@ -1055,7 +1055,7 @@
 </tr>
 <tr>
 <td class="property_type">
-<a href="../html/gdk3-Colors.html#GdkColor"><span class="type">GdkColor</span></a> *</td>
+<span class="type">GdkColor</span> *</td>
 <td class="property_name"><a class="link" href="GtkTreeView.html#GtkTreeView--s-odd-row-color" title="The “odd-row-color” style property">odd-row-color</a></td>
 <td class="property_flags">Read</td>
 </tr>
@@ -3515,7 +3515,7 @@ cell can be placed, or <code class="literal">NULL</code>. </p></td>
 gtk_tree_view_get_cell_area (<em class="parameter"><code><a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class="type">GtkTreeView</span></a> *tree_view</code></em>,
                              <em class="parameter"><code><a class="link" href="GtkTreeModel.html#GtkTreePath"><span class="type">GtkTreePath</span></a> *path</code></em>,
                              <em class="parameter"><code><a class="link" href="GtkTreeViewColumn.html" title="GtkTreeViewColumn"><span class="type">GtkTreeViewColumn</span></a> *column</code></em>,
-                             <em class="parameter"><code><a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *rect</code></em>);</pre>
+                             <em class="parameter"><code><span class="type">GdkRectangle</span> *rect</code></em>);</pre>
 <p>Fills the bounding rectangle in bin_window coordinates for the cell at the
 row specified by <em class="parameter"><code>path</code></em>
  and the column specified by <em class="parameter"><code>column</code></em>
@@ -3575,7 +3575,7 @@ realized.</p>
 gtk_tree_view_get_background_area (<em class="parameter"><code><a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class="type">GtkTreeView</span></a> *tree_view</code></em>,
                                    <em class="parameter"><code><a class="link" href="GtkTreeModel.html#GtkTreePath"><span class="type">GtkTreePath</span></a> *path</code></em>,
                                    <em class="parameter"><code><a class="link" href="GtkTreeViewColumn.html" title="GtkTreeViewColumn"><span class="type">GtkTreeViewColumn</span></a> *column</code></em>,
-                                   <em class="parameter"><code><a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *rect</code></em>);</pre>
+                                   <em class="parameter"><code><span class="type">GdkRectangle</span> *rect</code></em>);</pre>
 <p>Fills the bounding rectangle in bin_window coordinates for the cell at the
 row specified by <em class="parameter"><code>path</code></em>
  and the column specified by <em class="parameter"><code>column</code></em>
@@ -3633,7 +3633,7 @@ itself, excluding surrounding borders and the tree expander area.</p>
 <a name="gtk-tree-view-get-visible-rect"></a><h3>gtk_tree_view_get_visible_rect ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_tree_view_get_visible_rect (<em class="parameter"><code><a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class="type">GtkTreeView</span></a> *tree_view</code></em>,
-                                <em class="parameter"><code><a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *visible_rect</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GdkRectangle</span> *visible_rect</code></em>);</pre>
 <p>Fills <em class="parameter"><code>visible_rect</code></em>
  with the currently-visible region of the
 buffer, in tree coordinates. Convert to bin_window coordinates with
@@ -3714,7 +3714,7 @@ and <em class="parameter"><code>end_path</code></em>
 <hr>
 <div class="refsect2">
 <a name="gtk-tree-view-get-bin-window"></a><h3>gtk_tree_view_get_bin_window ()</h3>
-<pre class="programlisting"><a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="returnvalue">GdkWindow</span></a> *
+<pre class="programlisting"><span class="returnvalue">GdkWindow</span> *
 gtk_tree_view_get_bin_window (<em class="parameter"><code><a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class="type">GtkTreeView</span></a> *tree_view</code></em>);</pre>
 <p>Returns the window that <em class="parameter"><code>tree_view</code></em>
  renders to.
@@ -3738,7 +3738,7 @@ to confirm that the event on <em class="parameter"><code>tree_view</code></em>
 </div>
 <div class="refsect3">
 <a name="gtk-tree-view-get-bin-window.returns"></a><h4>Returns</h4>
-<p>A <a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a>, or <code class="literal">NULL</code> when <em class="parameter"><code>tree_view</code></em>
+<p>A <span class="type">GdkWindow</span>, or <code class="literal">NULL</code> when <em class="parameter"><code>tree_view</code></em>
 hasn’t been realized yet. </p>
 <p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="The data is owned by the callee, which is responsible of freeing it."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -4056,7 +4056,7 @@ tree (the full scrollable area of the tree).</p>
 gtk_tree_view_enable_model_drag_dest (<em class="parameter"><code><a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class="type">GtkTreeView</span></a> *tree_view</code></em>,
                                       <em class="parameter"><code>const <a class="link" href="gtk3-Selections.html#GtkTargetEntry" title="struct GtkTargetEntry"><span class="type">GtkTargetEntry</span></a> *targets</code></em>,
                                       <em class="parameter"><code><span class="type">gint</span> n_targets</code></em>,
-                                      <em class="parameter"><code><a href="../html/gdk3-Drag-and-Drop.html#GdkDragAction"><span class="type">GdkDragAction</span></a> actions</code></em>);</pre>
+                                      <em class="parameter"><code><span class="type">GdkDragAction</span> actions</code></em>);</pre>
 <p>Turns <em class="parameter"><code>tree_view</code></em>
  into a drop destination for automatic DND. Calling
 this method sets <a class="link" href="GtkTreeView.html#GtkTreeView--reorderable" title="The “reorderable” property"><span class="type">“reorderable”</span></a> to <code class="literal">FALSE</code>.</p>
@@ -4102,10 +4102,10 @@ widget</p></td>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_tree_view_enable_model_drag_source
                                (<em class="parameter"><code><a class="link" href="GtkTreeView.html" title="GtkTreeView"><span class="type">GtkTreeView</span></a> *tree_view</code></em>,
-                                <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> start_button_mask</code></em>,
+                                <em class="parameter"><code><span class="type">GdkModifierType</span> start_button_mask</code></em>,
                                 <em class="parameter"><code>const <a class="link" href="gtk3-Selections.html#GtkTargetEntry" title="struct GtkTargetEntry"><span class="type">GtkTargetEntry</span></a> *targets</code></em>,
                                 <em class="parameter"><code><span class="type">gint</span> n_targets</code></em>,
-                                <em class="parameter"><code><a href="../html/gdk3-Drag-and-Drop.html#GdkDragAction"><span class="type">GdkDragAction</span></a> actions</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GdkDragAction</span> actions</code></em>);</pre>
 <p>Turns <em class="parameter"><code>tree_view</code></em>
  into a drag source for automatic DND. Calling this
 method sets <a class="link" href="GtkTreeView.html#GtkTreeView--reorderable" title="The “reorderable” property"><span class="type">“reorderable”</span></a> to <code class="literal">FALSE</code>.</p>
@@ -5895,7 +5895,7 @@ in <a class="link" href="GtkComboBox.html" title="GtkComboBox"><span class="type
 <hr>
 <div class="refsect2">
 <a name="GtkTreeView--s-even-row-color"></a><h3>The <code class="literal">“even-row-color”</code> style property</h3>
-<pre class="programlisting">  “even-row-color”           <a href="../html/gdk3-Colors.html#GdkColor"><span class="type">GdkColor</span></a> *</pre>
+<pre class="programlisting">  “even-row-color”           <span class="type">GdkColor</span> *</pre>
 <p>Color to use for even rows.</p>
 <p>Owner: GtkTreeView</p>
 <p>Flags: Read</p>
@@ -5951,7 +5951,7 @@ in <a class="link" href="GtkComboBox.html" title="GtkComboBox"><span class="type
 <hr>
 <div class="refsect2">
 <a name="GtkTreeView--s-odd-row-color"></a><h3>The <code class="literal">“odd-row-color”</code> style property</h3>
-<pre class="programlisting">  “odd-row-color”            <a href="../html/gdk3-Colors.html#GdkColor"><span class="type">GdkColor</span></a> *</pre>
+<pre class="programlisting">  “odd-row-color”            <span class="type">GdkColor</span> *</pre>
 <p>Color to use for odd rows.</p>
 <p>Owner: GtkTreeView</p>
 <p>Flags: Read</p>

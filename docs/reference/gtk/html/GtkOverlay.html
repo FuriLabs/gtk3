@@ -425,7 +425,7 @@ See <a class="link" href="GtkOverlay.html#gtk-overlay-reorder-overlay" title="gt
 <pre class="programlisting">  “pass-through”             <span class="type">gboolean</span></pre>
 <p>Whether to pass input through the overlay child to the main child.
 (Of course, this has no effect when set on the main child itself.)</p>
-<p>Note that this is implemented by calling <a href="../html/gdk3-Windows.html#gdk-window-set-pass-through"><code class="function">gdk_window_set_pass_through()</code></a>
+<p>Note that this is implemented by calling <code class="function">gdk_window_set_pass_through()</code>
 on the window that the overlay child is placed in. If the descendents
 of the overlay child have their own windows, you need to manually call
 that function on them to achieve the desired effect.</p>
@@ -442,7 +442,7 @@ that function on them to achieve the desired effect.</p>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 user_function (<a class="link" href="GtkOverlay.html" title="GtkOverlay"><span class="type">GtkOverlay</span></a>   *overlay,
                <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a>    *widget,
-               <a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a> *allocation,
+               <span class="type">GdkRectangle</span> *allocation,
                <span class="type">gpointer</span>      user_data)</pre>
 <p>The ::get-child-position signal is emitted to determine
 the position and size of any overlay child widgets. A

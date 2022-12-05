@@ -35,13 +35,9 @@
 #   MSVCPROJS = YourProject (can be multiple projects in a single srcdir)
 #   YourProject_FILES = $(libyourlib_1_0_SOURCES)
 #   YourProject_EXCLUDES = ... # list of sources to exclude, separated by '|', wildcards allowed; use random unsed value if none
-#   YourProject_HEADERS_DIR = $(libyourlibincludedir)
-#   YourProject_HEADERS_INST = $(libyourlib_1_0_HEADERS)
-#   YourProject_HEADERS_EXCLUDES = ... # <list of headers to exclude from installation, separated by '|', wildcards allowed; use random unsed value if none>
 #
 #   dist-hook: \ # (or add to it if it is already there, note the vs9 items will also call the vs10 items in the process)
-#   	$(top_builddir)/win32/vs9/YourProject.vcproj	\
-#   	$(top_builddir)/win32/vs9/YourProject.headers
+#   	$(top_builddir)/win32/vs9/YourProject.vcproj
 
 # Private functions
 
@@ -168,7 +164,7 @@ am__gtk3_demo_SOURCES_DIST = application_demo.c assistant.c builder.c \
 	spinner.c stack.c tabs.c textmask.c textview.c textscroll.c \
 	theming_style_classes.c toolpalette.c transparent.c \
 	tree_store.c font_features.c pagesetup.c gtkfishbowl.c \
-	gtkfishbowl.h demo_resources.c main.c
+	gtkfishbowl.h main.c
 am__objects_1 = application_demo.$(OBJEXT) assistant.$(OBJEXT) \
 	builder.$(OBJEXT) button_box.$(OBJEXT) changedisplay.$(OBJEXT) \
 	clipboard.$(OBJEXT) colorsel.$(OBJEXT) combobox.$(OBJEXT) \
@@ -203,8 +199,8 @@ am__objects_4 = pagesetup.$(OBJEXT)
 am__objects_6 = $(am__objects_3) $(am__objects_5)
 am__objects_7 = $(am__objects_1) $(am__objects_6)
 am_gtk3_demo_OBJECTS = $(am__objects_7) gtkfishbowl.$(OBJEXT) \
-	demo_resources.$(OBJEXT) main.$(OBJEXT)
-nodist_gtk3_demo_OBJECTS =
+	main.$(OBJEXT)
+nodist_gtk3_demo_OBJECTS = demo_resources.$(OBJEXT)
 gtk3_demo_OBJECTS = $(am_gtk3_demo_OBJECTS) \
 	$(nodist_gtk3_demo_OBJECTS)
 am__DEPENDENCIES_1 =
@@ -218,9 +214,10 @@ am__v_lt_1 =
 gtk3_demo_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(gtk3_demo_LDFLAGS) $(LDFLAGS) -o $@
-am_gtk3_demo_application_OBJECTS = application.$(OBJEXT) \
-	demo_resources.$(OBJEXT)
-gtk3_demo_application_OBJECTS = $(am_gtk3_demo_application_OBJECTS)
+am_gtk3_demo_application_OBJECTS = application.$(OBJEXT)
+nodist_gtk3_demo_application_OBJECTS = demo_resources.$(OBJEXT)
+gtk3_demo_application_OBJECTS = $(am_gtk3_demo_application_OBJECTS) \
+	$(nodist_gtk3_demo_application_OBJECTS)
 gtk3_demo_application_DEPENDENCIES = $(am__DEPENDENCIES_2)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
@@ -295,7 +292,8 @@ am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
 SOURCES = $(gtk3_demo_SOURCES) $(nodist_gtk3_demo_SOURCES) \
-	$(gtk3_demo_application_SOURCES)
+	$(gtk3_demo_application_SOURCES) \
+	$(nodist_gtk3_demo_application_SOURCES)
 DIST_SOURCES = $(am__gtk3_demo_SOURCES_DIST) \
 	$(gtk3_demo_application_SOURCES)
 am__can_run_installinfo = \
@@ -421,6 +419,7 @@ ETAGS = @ETAGS@
 EXEEXT = @EXEEXT@
 EXE_MANIFEST_ARCHITECTURE = @EXE_MANIFEST_ARCHITECTURE@
 FGREP = @FGREP@
+FILECMD = @FILECMD@
 GAIL_LT_CURRENT_MINUS_AGE = @GAIL_LT_CURRENT_MINUS_AGE@
 GAIL_LT_VERSION_INFO = @GAIL_LT_VERSION_INFO@
 GDK_BACKENDS = @GDK_BACKENDS@
@@ -767,21 +766,18 @@ BUILT_SOURCES = demos.h demo_resources.c
 gsettings_SCHEMAS = \
 	org.gtk.Demo.gschema.xml
 
-nodist_gtk3_demo_SOURCES = demos.h
+nodist_gtk3_demo_SOURCES = demos.h demo_resources.c
 gtk3_demo_SOURCES = \
 	$(demos)		\
 	gtkfishbowl.c		\
 	gtkfishbowl.h		\
-	demo_resources.c	\
 	main.c
 
 gtk3_demo_DEPENDENCIES = $(DEPS)
 gtk3_demo_LDADD = $(LDADDS)
 gtk3_demo_LDFLAGS = -export-dynamic
-gtk3_demo_application_SOURCES = \
-	application.c 		\
-	demo_resources.c
-
+nodist_gtk3_demo_application_SOURCES = demo_resources.c
+gtk3_demo_application_SOURCES = application.c
 gtk3_demo_application_LDADD = $(LDADDS)
 resource_files = $(shell $(GLIB_COMPILE_RESOURCES) --sourcedir=$(srcdir) --generate-dependencies $(srcdir)/demo.gresource.xml)
 iconthemedir = $(datadir)/icons/hicolor
@@ -801,11 +797,9 @@ dist_appsicon256_DATA = data/256x256/gtk3-demo.png data/256x256/gtk3-demo-symbol
 update_icon_cache = $(top_builddir)/gtk/gtk-update-icon-cache$(EXEEXT) --ignore-theme-index --force
 
 # ------------------- MSVC Build Items ----------------
-MSVCPROJS = gtk3-demo gtk3-demo-application
+MSVCPROJS = gtk3-demo
 gtk3_demo_FILES = $(gtk3_demo_SOURCES)
 gtk3_demo_EXCLUDES = font_features.c|pagesetup.c
-gtk3_demo_application_FILES = $(gtk3_demo_application_SOURCES)
-gtk3_demo_application_EXCLUDES = dummy
 _proj_name = $(subst /,_,$(subst -,_,$(subst .,_,$(1))))
 _proj_path_raw := $(subst $(abs_top_srcdir),,$(abs_srcdir))
 _proj_path = $(subst /,\\,$(_proj_path_raw))
@@ -814,12 +808,7 @@ _proj_subdir = $(subst \\.\\,\\,$(_proj_subdir_int))
 _proj_files_raw = $(subst /,\\,$($(_proj_name)_FILES))
 _proj_files = $(subst $(srcdir)\\,,$(subst $(builddir)\\,,$(subst $(top_builddir)\\$(_proj_path)\\,\\,$(_proj_files_raw))))
 _proj_filters = $($(_proj_name)_EXCLUDES)
-_proj_headers_raw = $(subst /,\\,$($(_proj_name)_HEADERS_INST))
-_proj_headers = $(subst $(srcdir)\\,,$(subst $(builddir)\\,,$(subst $(top_builddir)\\$(_proj_path)\\,\\,$(_proj_headers_raw))))
-_proj_headers_excludes = $($(_proj_name)_HEADERS_EXCLUDES)
-_headers_dest_posix = $(subst $(includedir),,$($(_proj_name)_HEADERS_DIR))
-_headers_destdir = $(subst /,\\,$(_headers_dest_posix))
-DISTCLEANFILES = demos.h demos.h.win32
+DISTCLEANFILES = demos.h demos.h.win32 demo_resources.c
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -1691,30 +1680,12 @@ $(top_builddir)/win32/vs9/$(1).vcproj: Makefile
 	$(RM) $(1).vs10.sourcefiles
 	$(RM) $(1).vs10.sourcefiles.filters
 
-$(top_builddir)/win32/vs10/$(1).vs10.headers: $(top_builddir)/win32/vs9/$(1).headers
-
-$(top_builddir)/win32/vs9/$(1).headers: Makefile
-	-$(RM) $(top_builddir)/win32/vs9/$(1).headers
-	-$(RM) $(top_builddir)/win32/vs10/$(1).vs10.headers
-
-	for F in $(_proj_headers); do \
-		case $$$$F in \
-		$(_proj_headers_excludes)) \
-			;; \
-		*.h|*.hpp|*.hh|*.hxx) \
-			echo 'copy ..\..'$(_proj_subdir)$$$$F' $$$$(CopyDir)\include'$(_headers_destdir)'\'$$$$F'&#x0D;&#x0A;' >>$(top_builddir)/win32/vs9/$(1).headers && \
-			echo 'copy ..\..'$(_proj_subdir)$$$$F' $$$$(CopyDir)\include'$(_headers_destdir)'\'$$$$F >>$(top_builddir)/win32/vs10/$(1).vs10.headers \
-			;; \
-		esac;	\
-	done
-
 endef
 
 $(foreach proj,$(MSVCPROJS),$(eval $(call msvcproj-builder,$(proj))))
 
 dist-hook: \
-	$(top_builddir)/win32/vs9/gtk3-demo.vcproj	\
-	$(top_builddir)/win32/vs9/gtk3-demo-application.vcproj
+	$(top_builddir)/win32/vs9/gtk3-demo.vcproj
 
 -include $(top_srcdir)/git.mk
 

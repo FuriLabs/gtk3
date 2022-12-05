@@ -122,9 +122,11 @@ am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(appsicon16dir)" \
 	"$(DESTDIR)$(appsicon48dir)" "$(DESTDIR)$(desktopdir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_gtk3_widget_factory_OBJECTS =  \
-	gtk3_widget_factory-widget-factory.$(OBJEXT) \
+	gtk3_widget_factory-widget-factory.$(OBJEXT)
+nodist_gtk3_widget_factory_OBJECTS =  \
 	gtk3_widget_factory-widget_factory_resources.$(OBJEXT)
-gtk3_widget_factory_OBJECTS = $(am_gtk3_widget_factory_OBJECTS)
+gtk3_widget_factory_OBJECTS = $(am_gtk3_widget_factory_OBJECTS) \
+	$(nodist_gtk3_widget_factory_OBJECTS)
 am__DEPENDENCIES_1 =
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -167,7 +169,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(gtk3_widget_factory_SOURCES)
+SOURCES = $(gtk3_widget_factory_SOURCES) \
+	$(nodist_gtk3_widget_factory_SOURCES)
 DIST_SOURCES = $(gtk3_widget_factory_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
@@ -290,6 +293,7 @@ ETAGS = @ETAGS@
 EXEEXT = @EXEEXT@
 EXE_MANIFEST_ARCHITECTURE = @EXE_MANIFEST_ARCHITECTURE@
 FGREP = @FGREP@
+FILECMD = @FILECMD@
 GAIL_LT_CURRENT_MINUS_AGE = @GAIL_LT_CURRENT_MINUS_AGE@
 GAIL_LT_VERSION_INFO = @GAIL_LT_VERSION_INFO@
 GDK_BACKENDS = @GDK_BACKENDS@
@@ -538,10 +542,8 @@ XVFB_START = \
 
 desktopdir = $(datadir)/applications
 dist_desktop_DATA = gtk3-widget-factory.desktop
-gtk3_widget_factory_SOURCES = \
-	widget-factory.c		\
-	widget_factory_resources.c
-
+nodist_gtk3_widget_factory_SOURCES = widget_factory_resources.c
+gtk3_widget_factory_SOURCES = widget-factory.c
 BUILT_SOURCES = \
 	widget_factory_resources.c
 
@@ -574,6 +576,7 @@ dist_appsicon32_DATA = data/32x32/gtk3-widget-factory.png data/32x32/gtk3-widget
 dist_appsicon48_DATA = data/48x48/gtk3-widget-factory.png data/48x48/gtk3-widget-factory-symbolic.symbolic.png
 dist_appsicon256_DATA = data/256x256/gtk3-widget-factory.png data/256x256/gtk3-widget-factory-symbolic.symbolic.png
 update_icon_cache = $(top_builddir)/gtk/gtk-update-icon-cache$(EXEEXT) --ignore-theme-index --force
+DISTCLEANFILES = widget_factory_resources.c
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -1004,6 +1007,7 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"

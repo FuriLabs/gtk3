@@ -11,6 +11,9 @@ export GIO_USE_VOLUME_MONITOR=unix
 
 export XDG_RUNTIME_DIR="$AUTOPKGTEST_TMP"
 
+# Workaround for #1025312
+export LIBGL_ALWAYS_SOFTWARE=1
+
 tests=$(gnome-desktop-testing-runner -l gtk+ |
     cut -f1 -d' ' |
     grep -v '^gtk./a11ystate.test$' |

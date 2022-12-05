@@ -10,6 +10,9 @@ set -x
 
 export NO_AT_BRIDGE=1
 
+# Workaround for #1025312
+export LIBGL_ALWAYS_SOFTWARE=1
+
 WORKDIR=$(mktemp -d)
 cleanup () {
     rm -fr "$WORKDIR"

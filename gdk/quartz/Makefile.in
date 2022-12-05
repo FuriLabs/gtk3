@@ -117,8 +117,8 @@ libgdk_quartz_la_LIBADD =
 am_libgdk_quartz_la_OBJECTS = GdkQuartzView.lo GdkQuartzNSWindow.lo \
 	gdkcursor-quartz.lo gdkdevice-core-quartz.lo \
 	gdkdevicemanager-core-quartz.lo gdkdisplay-quartz.lo \
-	gdkdisplaymanager-quartz.lo gdkdnd-quartz.lo \
-	gdkevents-quartz.lo gdkeventloop-quartz.lo \
+	gdkdisplaylinksource.lo gdkdisplaymanager-quartz.lo \
+	gdkdnd-quartz.lo gdkevents-quartz.lo gdkeventloop-quartz.lo \
 	gdkglcontext-quartz.lo gdkglobals-quartz.lo gdkkeys-quartz.lo \
 	gdkmonitor-quartz.lo gdkproperty-quartz.lo gdkscreen-quartz.lo \
 	gdkselection-quartz.lo gdktestutils-quartz.lo \
@@ -148,6 +148,7 @@ am__depfiles_remade = ./$(DEPDIR)/GdkQuartzNSWindow.Plo \
 	./$(DEPDIR)/gdkdevice-core-quartz.Plo \
 	./$(DEPDIR)/gdkdevicemanager-core-quartz.Plo \
 	./$(DEPDIR)/gdkdisplay-quartz.Plo \
+	./$(DEPDIR)/gdkdisplaylinksource.Plo \
 	./$(DEPDIR)/gdkdisplaymanager-quartz.Plo \
 	./$(DEPDIR)/gdkdnd-quartz.Plo \
 	./$(DEPDIR)/gdkeventloop-quartz.Plo \
@@ -304,6 +305,7 @@ ETAGS = @ETAGS@
 EXEEXT = @EXEEXT@
 EXE_MANIFEST_ARCHITECTURE = @EXE_MANIFEST_ARCHITECTURE@
 FGREP = @FGREP@
+FILECMD = @FILECMD@
 GAIL_LT_CURRENT_MINUS_AGE = @GAIL_LT_CURRENT_MINUS_AGE@
 GAIL_LT_VERSION_INFO = @GAIL_LT_VERSION_INFO@
 GDK_BACKENDS = @GDK_BACKENDS@
@@ -575,6 +577,8 @@ libgdk_quartz_la_SOURCES = \
 	gdkdevicemanager-core-quartz.h	\
 	gdkdisplay-quartz.c	\
 	gdkdisplay-quartz.h	\
+	gdkdisplaylinksource.c	\
+	gdkdisplaylinksource.h	\
 	gdkdisplaymanager-quartz.c	\
 	gdkdnd-quartz.c		\
 	gdkdnd-quartz.h		\
@@ -682,6 +686,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkdevice-core-quartz.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkdevicemanager-core-quartz.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkdisplay-quartz.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkdisplaylinksource.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkdisplaymanager-quartz.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkdnd-quartz.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gdkeventloop-quartz.Plo@am__quote@ # am--include-marker
@@ -910,6 +915,7 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/gdkdevice-core-quartz.Plo
 	-rm -f ./$(DEPDIR)/gdkdevicemanager-core-quartz.Plo
 	-rm -f ./$(DEPDIR)/gdkdisplay-quartz.Plo
+	-rm -f ./$(DEPDIR)/gdkdisplaylinksource.Plo
 	-rm -f ./$(DEPDIR)/gdkdisplaymanager-quartz.Plo
 	-rm -f ./$(DEPDIR)/gdkdnd-quartz.Plo
 	-rm -f ./$(DEPDIR)/gdkeventloop-quartz.Plo
@@ -977,6 +983,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/gdkdevice-core-quartz.Plo
 	-rm -f ./$(DEPDIR)/gdkdevicemanager-core-quartz.Plo
 	-rm -f ./$(DEPDIR)/gdkdisplay-quartz.Plo
+	-rm -f ./$(DEPDIR)/gdkdisplaylinksource.Plo
 	-rm -f ./$(DEPDIR)/gdkdisplaymanager-quartz.Plo
 	-rm -f ./$(DEPDIR)/gdkdnd-quartz.Plo
 	-rm -f ./$(DEPDIR)/gdkeventloop-quartz.Plo

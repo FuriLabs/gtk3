@@ -418,15 +418,15 @@
 <td><a href="/usr/share/gtk-doc/html/cairo/cairo-Regions.html#cairo-region-t"><span class="type">cairo_region_t</span></a></td>
 </tr>
 <tr>
-<td><a href="../html/gdk3-Points-Rectangles-and-Regions.html#GdkRectangle"><span class="type">GdkRectangle</span></a></td>
+<td><span class="type">GdkRectangle</span></td>
 <td><a href="/usr/share/gtk-doc/html/cairo/cairo-Types.html#cairo-rectangle-int-t"><span class="type">cairo_rectangle_int_t</span></a></td>
 </tr>
 <tr>
-<td><a href="../html/gdk3-Points-Rectangles-and-Regions.html#gdk-rectangle-intersect"><code class="function">gdk_rectangle_intersect()</code></a></td>
+<td><code class="function">gdk_rectangle_intersect()</code></td>
 <td>this function is still there</td>
 </tr>
 <tr>
-<td><a href="../html/gdk3-Points-Rectangles-and-Regions.html#gdk-rectangle-union"><code class="function">gdk_rectangle_union()</code></a></td>
+<td><code class="function">gdk_rectangle_union()</code></td>
 <td>this function is still there</td>
 </tr>
 <tr>
@@ -628,7 +628,7 @@
 <a name="id-1.6.3.4.6"></a>Replace GdkColormap by GdkVisual</h3></div></div></div>
 <p>
       For drawing with cairo, it is not necessary to allocate colors, and
-      a <a href="../html/gdk3-Visuals.html#GdkVisual-struct"><span class="type">GdkVisual</span></a> provides enough information for cairo to handle colors
+      a <span class="type">GdkVisual</span> provides enough information for cairo to handle colors
       in 'native' surfaces. Therefore, <span class="type">GdkColormap</span> and related functions
       have been removed in GTK+ 3, and visuals are used instead. The
       colormap-handling functions of <a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> (<code class="function">gtk_widget_set_colormap()</code>,
@@ -722,7 +722,7 @@
 <a name="id-1.6.3.4.7"></a>GdkDrawable is gone</h3></div></div></div>
 <p>
       <span class="type">GdkDrawable</span> has been removed in GTK+ 3, together with <span class="type">GdkPixmap</span>
-      and <span class="type">GdkImage</span>. The only remaining drawable class is <a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a>.
+      and <span class="type">GdkImage</span>. The only remaining drawable class is <span class="type">GdkWindow</span>.
       For dealing with image data, you should use a <a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-surface-t.html#cairo-surface-t"><span class="type">cairo_surface_t</span></a> or
       a <span class="type">GdkPixbuf</span>.
     </p>
@@ -744,26 +744,26 @@
 <tbody>
 <tr>
 <td><code class="function">gdk_drawable_get_visual()</code></td>
-<td><a href="../html/gdk3-Windows.html#gdk-window-get-visual"><code class="function">gdk_window_get_visual()</code></a></td>
+<td><code class="function">gdk_window_get_visual()</code></td>
 </tr>
 <tr>
 <td><code class="function">gdk_drawable_get_size()</code></td>
 <td>
-<a href="../html/gdk3-Windows.html#gdk-window-get-width"><code class="function">gdk_window_get_width()</code></a>
-                                                              <a href="../html/gdk3-Windows.html#gdk-window-get-height"><code class="function">gdk_window_get_height()</code></a>
+<code class="function">gdk_window_get_width()</code>
+                                                              <code class="function">gdk_window_get_height()</code>
 </td>
 </tr>
 <tr>
 <td><code class="function">gdk_pixbuf_get_from_drawable()</code></td>
-<td><a href="../html/gdk3-Pixbufs.html#gdk-pixbuf-get-from-window"><code class="function">gdk_pixbuf_get_from_window()</code></a></td>
+<td><code class="function">gdk_pixbuf_get_from_window()</code></td>
 </tr>
 <tr>
 <td><code class="function">gdk_drawable_get_clip_region()</code></td>
-<td><a href="../html/gdk3-Windows.html#gdk-window-get-clip-region"><code class="function">gdk_window_get_clip_region()</code></a></td>
+<td><code class="function">gdk_window_get_clip_region()</code></td>
 </tr>
 <tr>
 <td><code class="function">gdk_drawable_get_visible_region()</code></td>
-<td><a href="../html/gdk3-Windows.html#gdk-window-get-visible-region"><code class="function">gdk_window_get_visible_region()</code></a></td>
+<td><code class="function">gdk_window_get_visible_region()</code></td>
 </tr>
 </tbody>
 </table></div>
@@ -781,7 +781,7 @@
 <p>
       The special-purpose GdkEventClient events and the <code class="function">gdk_add_client_message_filter()</code> and <code class="function">gdk_display_add_client_message_filter()</code> functions have been
       removed. Receiving X11 ClientMessage events is still possible, using
-      the general <a href="../html/gdk3-Windows.html#gdk-window-add-filter"><code class="function">gdk_window_add_filter()</code></a> API. A client message filter like
+      the general <code class="function">gdk_window_add_filter()</code> API. A client message filter like
 </p>
 <div class="informalexample">
   <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
@@ -873,7 +873,7 @@
 <p>
       One advantage of using an event filter is that you can actually
       remove the filter when you don't need it anymore, using
-      <a href="../html/gdk3-Windows.html#gdk-window-remove-filter"><code class="function">gdk_window_remove_filter()</code></a>.
+      <code class="function">gdk_window_remove_filter()</code>.
     </p>
 <p>
       The other difference to be aware of when working with event filters
@@ -881,7 +881,7 @@
       means that your application does not receive core X11 key or button
       events. Instead, all input events are delivered as XIDeviceEvents.
       As a short-term workaround for this, you can force your application
-      to not use XI2, with <a href="../html/GdkDeviceManager.html#gdk-disable-multidevice"><code class="function">gdk_disable_multidevice()</code></a>. In the long term,
+      to not use XI2, with <code class="function">gdk_disable_multidevice()</code>. In the long term,
       you probably want to rewrite your event filter to deal with
       XIDeviceEvents.
     </p>
@@ -891,7 +891,7 @@
 <a name="id-1.6.3.4.9"></a>Backend-specific code</h3></div></div></div>
 <p>
       In GTK+ 2.x, GDK could only be compiled for one backend at a time,
-      and the <a href="../html/gdk3-General.html#GDK-WINDOWING-X11:CAPS"><code class="literal">GDK_WINDOWING_X11</code></a> or <a href="../html/gdk3-General.html#GDK-WINDOWING-WIN32:CAPS"><code class="literal">GDK_WINDOWING_WIN32</code></a> macros could
+      and the <code class="literal">GDK_WINDOWING_X11</code> or <code class="literal">GDK_WINDOWING_WIN32</code> macros could
       be used to find out which one you are dealing with:
       </p>
 <div class="informalexample">
@@ -920,7 +920,7 @@
 <p>
       In GTK+ 3, GDK can be built with multiple backends, and currently
       used backend has to be determined at runtime, typically using
-      type-check macros on a <a href="../html/GdkDisplay.html#GdkDisplay-struct"><span class="type">GdkDisplay</span></a> or <a href="../html/gdk3-Windows.html#GdkWindow-struct"><span class="type">GdkWindow</span></a>. You still need
+      type-check macros on a <span class="type">GdkDisplay</span> or <span class="type">GdkWindow</span>. You still need
       to use the GDK_WINDOWING macros to only compile code referring
       to supported backends:
       </p>

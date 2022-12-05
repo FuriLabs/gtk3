@@ -1,3 +1,61 @@
+gtk+3.0 (3.24.35-2) unstable; urgency=medium
+
+  * d/rules: Return to the print backends we previously enabled.
+    lpr and test were enabled during the move to Meson, but we didn't enable
+    them in the past and they don't seem to be desirable. (Closes: #1025271)
+  * d/rules: Remove redundant gtk_doc option.
+    In both cases (documentation enabled or disabled) we override this later.
+  * d/patches: Update to upstream commit 3.24.35-15-g9c60b8d4d4
+    - Load icon themes from ~/.local/share/icons and ~/.icons under Wayland
+    - Fix links in documentation to point to correct git branch for GTK 3
+    - Translation update: pt_BR
+  * Remove dpkg trigger on old immodules search path.
+    GTK 3 hasn't searched this path since 2015, so it was no longer useful
+    to have a trigger on it.
+  * d/rules: Remove redundant --libdir override.
+    We get the correct library directory from dh_auto_configure.
+  * Install emoji data for non-English languages.
+    With Autotools this was incorporated into the shared library, but with
+    Meson it's loaded on-demand.
+  * d/control.in: Disable API documentation under nodoc build profile
+  * d/control.in, d/rules: Disable man pages under nodoc build-profile
+  * d/control.in: Don't depend on gtk-doc-tools under nodoc build-profile.
+    This was needed at autoreconf time when we built with Autotools, but not
+    with Meson.
+  * Force software rendering during tests.
+    Workaround for Mesa regression #1025312. We expect only software
+    rendering to be available in a buildd or autopkgtest environment anyway.
+
+ -- Simon McVittie <smcv@debian.org>  Fri, 02 Dec 2022 16:25:44 +0000
+
+gtk+3.0 (3.24.35-1) unstable; urgency=medium
+
+  [ Simon McVittie ]
+  * New upstream release
+    - Drop most patches, included in upstream release
+  * d/rules, d/run-tests.sh: Build using Meson
+  * d/p/dist/Reinstate-gdk-wayland-cursor-meson.build.patch:
+    Add a missing build file from upstream git
+  * d/p/Flush-drawable-surface-when-getting-a-pixbuf.patch:
+    Add post-release fix from upstream to avoid an assertion failure in
+    gnome-screenshot and epiphany
+  * d/p/Disable-accessibility-dump-aka-a11ytests-test.patch,
+    d/p/testsuite-Allow-reftest-output-directory-to-be-forced-via.patch:
+    Drop patches that are not needed when building with Meson
+  * d/p/testsuite-Avoid-using-should_fail.patch,
+    d/p/testsuite-Try-enabling-a11y-tests-other-than-those-known-.patch,
+    d/p/testsuite-Don-t-create-.test-files-for-flaky-or-failing-t.patch:
+    Add patches from upstream to improve handling of flaky tests.
+    With these changes, the flaky/known-failing tests are no longer installed
+    as installed-tests at all, so remove them from the autopkgtest metadata.
+
+  [ Jeremy Bicha ]
+  * debian/control.in, debian/tests/control: Depend on
+    adwaita-icon-theme-full for tests. In Debian this is a virtual package
+    provided by adwaita-icon-theme, and in Ubuntu it's a separate package.
+
+ -- Simon McVittie <smcv@debian.org>  Thu, 24 Nov 2022 13:52:17 +0000
+
 gtk+3.0 (3.24.34-5ubuntu1) lunar; urgency=medium
 
   * Resynchronize with Debian, remaining changes

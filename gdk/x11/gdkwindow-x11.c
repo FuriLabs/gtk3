@@ -3240,13 +3240,18 @@ gdk_x11_window_get_frame_extents (GdkWindow    *window,
   impl = GDK_WINDOW_IMPL_X11 (window->impl);
 
   /* Refine our fallback answer a bit using local information */
-  rect->x = window->x * impl->window_scale;
-  rect->y = window->y * impl->window_scale;
-  rect->width = window->width * impl->window_scale;
-  rect->height = window->height * impl->window_scale;
+  rect->x = window->x;
+  rect->y = window->y;
+  rect->width = window->width;
+  rect->height = window->height;
 
   if (GDK_WINDOW_DESTROYED (window) || impl->override_redirect)
     return;
+
+  rect->x *= impl->window_scale;
+  rect->y *= impl->window_scale;
+  rect->width *= impl->window_scale;
+  rect->height *= impl->window_scale;
 
   nvroots = 0;
   vroots = NULL;
@@ -5636,6 +5641,8 @@ gdk_x11_get_server_time (GdkWindow *window)
 XID
 gdk_x11_window_get_xid (GdkWindow *window)
 {
+  g_return_val_if_fail (GDK_IS_X11_WINDOW (window), None);
+
   /* Try to ensure the window has a native window */
   if (!_gdk_window_has_impl (window))
     {

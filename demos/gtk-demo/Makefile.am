@@ -61,22 +61,21 @@ demos.h: $(demos) geninclude.pl
 demos.h.win32: $(demos_base) geninclude.pl
 	 $(AM_V_GEN) (here=`pwd` ; cd $(srcdir) && $(PERL) $$here/geninclude.pl $(demos_base)) > demos.h.win32
 
-nodist_gtk3_demo_SOURCES = demos.h
+nodist_gtk3_demo_SOURCES = demos.h demo_resources.c
 
 gtk3_demo_SOURCES = 		\
 	$(demos)		\
 	gtkfishbowl.c		\
 	gtkfishbowl.h		\
-	demo_resources.c	\
 	main.c
 
 gtk3_demo_DEPENDENCIES = $(DEPS)
 gtk3_demo_LDADD = $(LDADDS)
 gtk3_demo_LDFLAGS = -export-dynamic
 
-gtk3_demo_application_SOURCES = \
-	application.c 		\
-	demo_resources.c
+nodist_gtk3_demo_application_SOURCES = demo_resources.c
+
+gtk3_demo_application_SOURCES = application.c
 
 gtk3_demo_application_LDADD = $(LDADDS)
 
@@ -116,20 +115,16 @@ uninstall-update-icon-cache:
 	test -n "$(DESTDIR)" || $(update_icon_cache) "$(iconthemedir)"
 
 # ------------------- MSVC Build Items ----------------
-MSVCPROJS = gtk3-demo gtk3-demo-application
+MSVCPROJS = gtk3-demo
 
 gtk3_demo_FILES = $(gtk3_demo_SOURCES)
 gtk3_demo_EXCLUDES = font_features.c|pagesetup.c
 
-gtk3_demo_application_FILES = $(gtk3_demo_application_SOURCES)
-gtk3_demo_application_EXCLUDES = dummy
-
 include $(top_srcdir)/win32/Makefile.msvcproj
 
 dist-hook: \
-	$(top_builddir)/win32/vs9/gtk3-demo.vcproj	\
-	$(top_builddir)/win32/vs9/gtk3-demo-application.vcproj
+	$(top_builddir)/win32/vs9/gtk3-demo.vcproj
 
-DISTCLEANFILES = demos.h demos.h.win32
+DISTCLEANFILES = demos.h demos.h.win32 demo_resources.c
 
 -include $(top_srcdir)/git.mk

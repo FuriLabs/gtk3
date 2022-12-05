@@ -30,7 +30,6 @@ CONFDIR := etc/gtk-3.0
 
 # relative base directory for all types of modules
 MODULES_BASE_PATH := $(LIBDIR)/gtk-3.0/$(GTK_BINARY_VERSION)
-OLD_MODULES_BASE_PATH := usr/lib/gtk-3.0/$(GTK_BINARY_VERSION)
 
 # package names
 SHARED_PKG := libgtk-$(APIVER)-$(SONAME)
@@ -57,8 +56,6 @@ unexport XDG_CACHE_HOME
 unexport XDG_CONFIG_DIRS
 unexport XDG_CONFIG_HOME
 unexport XDG_DATA_HOME
-# Get failing tests' stdout/err so we have some information when a build fails
-export VERBOSE=1
 
 # macro computing the list of 'debian/<pkg>.*" files which have a
 # corresponding ".in" file; pass the list of packages in $(1)
@@ -83,67 +80,60 @@ debian/%: debian/%.in
 		-e "s#@LIBDIR@#$(LIBDIR)#g" \
 		-e 's#@CONFDIR@#$(CONFDIR)#g' \
 		-e "s#@MODULES_BASE_PATH@#$(MODULES_BASE_PATH)#g" \
-		-e "s#@OLD_MODULES_BASE_PATH@#$(OLD_MODULES_BASE_PATH)#g" \
 		-e "s#@NEWS@#$(NEWS)#g" \
 		-e "s#@README@#$(README)#g" \
 		$@.in > $@
 
 configure_flags_common = \
-	--libdir=/$(LIBDIR) \
-	--enable-test-print-backend
+	-Dx11_backend=true \
+	$(NULL)
 
 configure_flags_deb = \
-	--enable-broadway-backend \
-	--enable-x11-backend \
-	--enable-gtk-doc \
-	--enable-man \
-	--enable-shared \
-	--enable-introspection \
-	--disable-static \
-	--enable-installed-tests
+	--default-library=shared \
+	-Dbroadway_backend=true \
+	-Dinstalled_tests=true \
+	-Dintrospection=true \
+	-Dprint_backends=cups,file \
+	$(NULL)
 
 ifeq (,$(filter stage1,$(DEB_BUILD_PROFILES)))
-configure_flags_deb += --enable-colord
+configure_flags_deb += -Dcolord=yes
 else
-configure_flags_deb += --disable-colord
+configure_flags_deb += -Dcolord=no
 endif
 
 ifeq (linux,$(DEB_HOST_ARCH_OS))
-configure_flags_deb += --enable-wayland-backend
+configure_flags_deb += -Dwayland_backend=true
 else
-configure_flags_deb += --disable-wayland-backend
+configure_flags_deb += -Dwayland_backend=false
+endif
+
+ifeq ($(filter nodoc,$(DEB_BUILD_PROFILES)),)
+configure_flags_deb += -Dman=true
+else
+configure_flags_deb += -Dman=false
 endif
 
 ifeq ($(filter %-doc,$(built_binaries)),)
-configure_flags_deb += --disable-gtk-doc --disable-man
+configure_flags_deb += -Dgtk_doc=false
+else
+configure_flags_deb += -Dgtk_doc=true
 endif
 
 configure_flags_udeb = \
-	--disable-broadway-backend \
-	--disable-wayland-backend \
-	--enable-x11-backend \
-	--disable-introspection \
-	--disable-colord \
-	--disable-xcomposite \
-	--disable-xdamage \
-	--disable-xfixes \
-	--disable-xrandr
-
-%:
-	dh $@ --buildsystem=autoconf
-
-fuzzy_reftests = \
+	-Dbroadway_backend=false \
+	-Dcolord=no \
+	-Dgtk_doc=false \
+	-Dintrospection=false \
+	-Dman=false \
+	-Dprint_backends=file \
+	-Dwayland_backend=false \
 	$(NULL)
 
-# See testsuite/reftests/meson.build
-ignore_reftests = \
-	button-wrapping \
-	cellrenderer-pixbuf-stock-rtl \
-	label-sizing \
-	label-wrap-justify \
-	quit-mnemonic \
-	symbolic-icon-translucent-color \
-	window-height-for-width \
+%:
+	dh $@ --buildsystem=meson
+
+fuzzy_reftests = \
 	$(NULL)
 
 # Debian-specific
@@ -206,7 +196,7 @@ rebuild-emoji:
 	done
 
 override_dh_autoreconf:
-	NOCONFIGURE=true dh_autoreconf ./autogen.sh
+	: # Do nothing, we're using Meson
 
 override_dh_auto_configure: debian/control
 	dh_auto_configure \
@@ -258,14 +248,14 @@ ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
 		BUILDDIR=$(CURDIR)/debian/build/deb \
 		FUZZY_REFTESTS="$(fuzzy_reftests)" \
 		IGNORE_REFTESTS="$(ignore_reftests)" \
+		LIBGL_ALWAYS_SOFTWARE=1 \
 		XFAIL_REFTESTS="$(xfail_reftests)" \
-	debian/run-tests.sh
+	debian/run-tests.sh --timeout-multiplier 4
 endif
 endif
 
 override_dh_auto_install:
 	dh_auto_install --builddirectory=debian/build/deb --destdir=debian/install/deb
-	rm -v -f debian/install/deb/usr/libexec/installed-tests/gtk+/reftests/libreftest.la
 ifneq ($(filter %-udeb,$(built_binaries)),)
 	dh_auto_install --builddirectory=debian/build/udeb --destdir=debian/install/udeb
 endif
@@ -282,7 +272,6 @@ override_dh_install:
 override_dh_fixperms:
 	dh_fixperms -Xusr/libexec/installed-tests
 ifneq ($(filter $(EXAMPLES_PKG),$(built_binaries)),)
-	chmod --changes u=rw,og=r debian/$(EXAMPLES_PKG)/usr/libexec/installed-tests/*/*/*.so
 	chmod --recursive --changes a+rX,u+w,og-w debian/$(EXAMPLES_PKG)/usr/libexec/installed-tests
 endif
 
@@ -301,6 +290,9 @@ override_dh_installdocs:
 	# debhelper 11's defaults, otherwise it would have file conflicts
 	dh_installdocs -p$(DOC_PKG) --doc-main-package=$(DOC_PKG) AUTHORS -X.in
 	dh_installdocs --remaining-packages -A AUTHORS
+
+override_dh_installman:
+	dh_installman --sourcedir=debian/install/deb
 
 override_dh_makeshlibs:
 	dh_makeshlibs -p$(SHARED_PKG) --add-udeb=$(UDEB_PKG) -X$(MODULES_BASE_PATH) -- -c4

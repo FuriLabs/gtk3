@@ -198,6 +198,7 @@ ETAGS = @ETAGS@
 EXEEXT = @EXEEXT@
 EXE_MANIFEST_ARCHITECTURE = @EXE_MANIFEST_ARCHITECTURE@
 FGREP = @FGREP@
+FILECMD = @FILECMD@
 GAIL_LT_CURRENT_MINUS_AGE = @GAIL_LT_CURRENT_MINUS_AGE@
 GAIL_LT_VERSION_INFO = @GAIL_LT_VERSION_INFO@
 GDK_BACKENDS = @GDK_BACKENDS@
@@ -417,12 +418,12 @@ EXTRA_DIST = README.txt gtk+.sln gtk3-prebuild.vcproj \
 	gdk3-win32.vcprojin gdk-3.vcprojin gtk-3.vcprojin \
 	gtk-builder-tool.vcproj gtk-encode-symbolic-svg.vcproj \
 	gtk-query-settings.vcproj gtk-update-icon-cache.vcproj \
-	gtk3-demo.vcprojin gtk3-demo-application.vcprojin \
-	gtk3-icon-browser.vcprojin gailutil-3.vcprojin \
-	gtk3-install.vcproj gtk3-introspect.vcproj broadwayd.vcprojin \
-	gdk3-broadway.vcprojin gtk3-build-defines.vsprops \
-	gtk3-copy-gdk-broadway.vsprops gtk3-ignore-broadway.vsprops \
-	gtk3-install.vspropsin gtk3-version-paths.vsprops.in \
+	gtk3-demo.vcprojin gtk3-demo-application.vcproj \
+	gtk3-icon-browser.vcproj gtk3-widget-factory.vcproj \
+	gailutil-3.vcprojin gtk3-install.vcproj gtk3-introspect.vcproj \
+	broadwayd.vcprojin gdk3-broadway.vcprojin \
+	gtk3-build-defines.vsprops gtk3-copy-gdk-broadway.vsprops \
+	gtk3-ignore-broadway.vsprops gtk3-version-paths.vsprops.in \
 	$(GENERATED_ITEMS)
 TEST_PROGS = 
 
@@ -452,13 +453,6 @@ XVFB_START = \
 	|| { echo "Gtk+Tests:ERROR: Failed to start Xvfb environment for X11 target tests."; exit 1; } \
 	&& DISPLAY=:$$XID && export DISPLAY
 
-MSVC_HEADERS_LISTS = \
-	gdk3-win32.headers	\
-	gdk3-broadway.headers	\
-	gdk-3.headers		\
-	gtk-3.headers		\
-	gailutil-3.headers
-
 GENERATED_ITEMS = \
 	gdk3-win32.vcproj		\
 	gdk3-broadway.vcproj		\
@@ -466,10 +460,7 @@ GENERATED_ITEMS = \
 	gdk-3.vcproj			\
 	gtk-3.vcproj			\
 	gtk3-demo.vcproj		\
-	gtk3-demo-application.vcproj	\
-	gtk3-icon-browser.vcproj	\
 	gailutil-3.vcproj		\
-	gtk3-install.vsprops		\
 	gtk3-version-paths.vsprops
 
 DISTCLEANFILES = $(GENERATED_ITEMS)
@@ -729,10 +720,6 @@ test-report perf-report full-report:	${TEST_PROGS}
 .PHONY: test test-cwd test-recurse test-report perf-report full-report
 # run make test-cwd as part of make check
 check-local: test-cwd
-
-gtk3-install.vsprops: $(top_srcdir)/win32/vs9/gtk3-install.vspropsin $(MSVC_HEADERS_LISTS)
-	$(CPP) -P - <$(top_srcdir)/win32/vs9/gtk3-install.vspropsin >$@
-	rm $(MSVC_HEADERS_LISTS)
 
 -include $(top_srcdir)/git.mk
 

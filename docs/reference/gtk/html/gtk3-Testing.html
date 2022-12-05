@@ -773,7 +773,7 @@ GtkEditable (entry and text widgets) or GtkTextView.</p>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_test_widget_click (<em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
                        <em class="parameter"><code><span class="type">guint</span> button</code></em>,
-                       <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> modifiers</code></em>);</pre>
+                       <em class="parameter"><code><span class="type">GdkModifierType</span> modifiers</code></em>);</pre>
 <div class="warning">
 <p><code class="literal">gtk_test_widget_click</code> has been deprecated since version 3.20 and should not be used in newly-written code.</p>
 <p>This testing infrastructure is phased out in favor of reftests.</p>
@@ -788,7 +788,7 @@ For windowless widgets like <a class="link" href="GtkButton.html" title="GtkButt
 input-only event window. For other widgets, this is usually widget-&gt;window.
 Certain caveats should be considered when using this function, in
 particular because the mouse pointer is warped to the button click
-location, see <a href="../html/gdk3-Testing.html#gdk-test-simulate-button"><code class="function">gdk_test_simulate_button()</code></a> for details.</p>
+location, see <code class="function">gdk_test_simulate_button()</code> for details.</p>
 <div class="refsect3">
 <a name="gtk-test-widget-click.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -828,7 +828,7 @@ location, see <a href="../html/gdk3-Testing.html#gdk-test-simulate-button"><code
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_test_widget_send_key (<em class="parameter"><code><a class="link" href="GtkWidget.html" title="GtkWidget"><span class="type">GtkWidget</span></a> *widget</code></em>,
                           <em class="parameter"><code><span class="type">guint</span> keyval</code></em>,
-                          <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> modifiers</code></em>);</pre>
+                          <em class="parameter"><code><span class="type">GdkModifierType</span> modifiers</code></em>);</pre>
 <p>This function will generate keyboard press and release events in
 the middle of the first GdkWindow found that belongs to <em class="parameter"><code>widget</code></em>
 .
@@ -837,7 +837,7 @@ For windowless widgets like <a class="link" href="GtkButton.html" title="GtkButt
 input-only event window. For other widgets, this is usually widget-&gt;window.
 Certain caveats should be considered when using this function, in
 particular because the mouse pointer is warped to the key press
-location, see <a href="../html/gdk3-Testing.html#gdk-test-simulate-key"><code class="function">gdk_test_simulate_key()</code></a> for details.</p>
+location, see <code class="function">gdk_test_simulate_key()</code> for details.</p>
 <div class="refsect3">
 <a name="gtk-test-widget-send-key.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">

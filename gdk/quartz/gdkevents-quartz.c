@@ -35,6 +35,7 @@
 #include "gdkquartzdisplay.h"
 #include "gdkprivate-quartz.h"
 #include "gdkinternal-quartz.h"
+#include "gdkquartz-cocoa-access.h"
 #include "gdkquartzdevicemanager-core.h"
 #include "gdkquartzkeys.h"
 #include "gdkkeys-quartz.h"
@@ -387,7 +388,7 @@ get_window_point_from_screen_point (GdkWindow *window,
   NSPoint point;
   GdkQuartzNSWindow *nswindow;
 
-  nswindow = (GdkQuartzNSWindow*)(((GdkWindowImplQuartz *)window->impl)->toplevel);
+  nswindow = gdk_quartz_window_get_nswindow (window);
   point = [nswindow convertPointFromScreen:screen_point];
   *x = point.x;
   *y = window->height - point.y;
@@ -396,7 +397,7 @@ get_window_point_from_screen_point (GdkWindow *window,
 static gboolean
 is_mouse_button_press_event (NSEventType type)
 {
-  switch (type)
+  switch ((int)type)
     {
       case GDK_QUARTZ_LEFT_MOUSE_DOWN:
       case GDK_QUARTZ_RIGHT_MOUSE_DOWN:
@@ -658,18 +659,21 @@ find_toplevel_under_pointer (GdkDisplay *display,
 
     }
 
-  if (toplevel)
-    {
-      get_window_point_from_screen_point (toplevel, screen_point, x, y);
-      /* If the coordinates are out of window bounds, this toplevel is not
-       * under the pointer and we thus return NULL. This can occur when
-       * toplevel under pointer has not yet been updated due to a very recent
-       * window resize. Alternatively, we should no longer be relying on
-       * the toplevel_under_pointer value which is maintained in gdkwindow.c.
-       */
-      if (*x < 0 || *y < 0 || *x >= toplevel->width || *y >= toplevel->height)
-        return NULL;
-    }
+  /* If the stored toplevel is NULL or _gdk_root it's not useful,
+   * return NULL to regenerate.
+   */
+  if (toplevel == NULL || toplevel == _gdk_root )
+    return NULL;
+
+  get_window_point_from_screen_point (toplevel, screen_point, x, y);
+  /* If the coordinates are out of window bounds, this toplevel is not
+    * under the pointer and we thus return NULL. This can occur when
+    * toplevel under pointer has not yet been updated due to a very recent
+    * window resize. Alternatively, we should no longer be relying on
+    * the toplevel_under_pointer value which is maintained in gdkwindow.c.
+    */
+  if (*x < 0 || *y < 0 || *x >= toplevel->width || *y >= toplevel->height)
+    return NULL;
 
   return toplevel;
 }
@@ -793,7 +797,7 @@ find_toplevel_for_mouse_event (NSEvent    *nsevent,
 
           toplevel = toplevel_under_pointer;
 
-          toplevel_impl = (GdkWindowImplQuartz *)toplevel->impl;
+          toplevel_impl = GDK_WINDOW_IMPL_QUARTZ (toplevel->impl);
 
           *x = x_tmp;
           *y = y_tmp;
@@ -1029,7 +1033,7 @@ fill_button_event (GdkWindow *window,
   state = get_keyboard_modifiers_from_ns_event (nsevent) |
          _gdk_quartz_events_get_current_mouse_modifiers ();
 
-  switch ([nsevent type])
+  switch ((int)[nsevent type])
     {
     case GDK_QUARTZ_LEFT_MOUSE_DOWN:
     case GDK_QUARTZ_RIGHT_MOUSE_DOWN:
@@ -1405,7 +1409,7 @@ test_resize (NSEvent *event, GdkWindow *toplevel, gint x, gint y)
   /* Resizing from the resize indicator only begins if an GDK_QUARTZ_LEFT_MOUSE_BUTTON
    * event is received in the resizing area.
    */
-  toplevel_impl = (GdkWindowImplQuartz *)toplevel->impl;
+  toplevel_impl = GDK_WINDOW_IMPL_QUARTZ (toplevel->impl);
   if ([toplevel_impl->toplevel showsResizeIndicator])
   if ([event type] == GDK_QUARTZ_LEFT_MOUSE_DOWN &&
       [toplevel_impl->toplevel showsResizeIndicator])

@@ -10,8 +10,8 @@
 
 m4_define([gtk_major_version], [3])
 m4_define([gtk_minor_version], [24])
-m4_define([gtk_micro_version], [34])
-m4_define([gtk_interface_age], [30])
+m4_define([gtk_micro_version], [35])
+m4_define([gtk_interface_age], [31])
 m4_define([gtk_binary_age],
           [m4_eval(100 * gtk_minor_version + gtk_micro_version)])
 m4_define([gtk_version],
@@ -439,7 +439,7 @@ fi
 
 PKG_PROG_PKG_CONFIG
 
-WAYLAND_RUNTIME_DEPENDENCIES="wayland-client >= wayland_required_version xkbcommon >= 0.2.0 wayland-cursor >= wayland_required_version wayland-egl"
+WAYLAND_RUNTIME_DEPENDENCIES="wayland-client >= wayland_required_version xkbcommon >= 0.2.0 wayland-egl"
 WAYLAND_DEPENDENCIES="wayland-protocols >= wayland_protocols_required_version $WAYLAND_RUNTIME_DEPENDENCIES"
 if test "$enable_wayland_backend" = "maybe" ; then
   AC_PATH_PROG([WAYLAND_SCANNER],[wayland-scanner],[no])
@@ -467,9 +467,20 @@ if test "$enable_wayland_backend" = "yes"; then
     [AC_MSG_ERROR([Could not find wayland-scanner in your PATH, required for parsing wayland extension protocols])])
   AC_SUBST([WAYLAND_SCANNER])
 
+  # For xdg-activation support
+  XDG_ACTIVATION_DEPENDENCIES="wayland-protocols >= 1.21"
+  PKG_CHECK_EXISTS($XDG_ACTIVATION_DEPENDENCIES, [have_xdg_activation_deps=yes], [have_xdg_activation_deps=no])
+  AC_MSG_CHECKING([for XDG_ACTIVATION_DEPENDENCIES])
+  AM_CONDITIONAL(USE_XDG_ACTIVATION, test "$have_xdg_activation_deps" = "yes")
+  if test "$have_xdg_activation_deps" = "yes" ; then
+    AC_DEFINE([HAVE_XDG_ACTIVATION], [1],
+      [Define if xdg_activation's wl-protocols definition is available])
+  fi
+
   AM_CONDITIONAL(USE_WAYLAND, true)
 else
   AM_CONDITIONAL(USE_WAYLAND, false)
+  AM_CONDITIONAL(USE_XDG_ACTIVATION, false)
 fi
 
 # strip leading space
@@ -1963,13 +1974,14 @@ win32/config-msvc.mak
 win32/vs9/Makefile
 win32/vs9/gtk3-version-paths.vsprops
 win32/vs10/Makefile
-win32/vs10/gtk3-version-paths.props
 win32/vs11/Makefile
 win32/vs12/Makefile
 win32/vs14/Makefile
 win32/vs15/Makefile
 win32/vs16/Makefile
 win32/vs17/Makefile
+win32/vs1x-props/Makefile
+win32/vs1x-props/gtk3-version-paths.props
 gdk/Makefile
 gdk/broadway/Makefile
 gdk/x11/Makefile

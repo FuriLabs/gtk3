@@ -60,8 +60,7 @@ void       _gdk_wayland_display_init_cursors (GdkWaylandDisplay *display);
 void       _gdk_wayland_display_finalize_cursors (GdkWaylandDisplay *display);
 void       _gdk_wayland_display_update_cursors (GdkWaylandDisplay *display);
 
-struct wl_cursor_theme * _gdk_wayland_display_get_scaled_cursor_theme (GdkWaylandDisplay *display_wayland,
-                                                                       guint              scale);
+struct wl_cursor_theme * _gdk_wayland_display_get_cursor_theme (GdkWaylandDisplay *display_wayland);
 
 GdkCursor *_gdk_wayland_display_get_cursor_for_type (GdkDisplay    *display,
 						     GdkCursorType  cursor_type);
@@ -187,6 +186,7 @@ uint32_t _gdk_wayland_device_get_implicit_grab_serial(GdkWaylandDevice *device,
                                                       const GdkEvent   *event);
 uint32_t _gdk_wayland_seat_get_last_implicit_grab_serial (GdkSeat           *seat,
                                                           GdkEventSequence **seqence);
+GdkWindow * gdk_wayland_device_get_focus (GdkDevice *device);
 struct wl_data_device * gdk_wayland_device_get_data_device (GdkDevice *gdk_device);
 void gdk_wayland_seat_set_selection (GdkSeat               *seat,
                                      struct wl_data_source *source);

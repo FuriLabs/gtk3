@@ -56,6 +56,14 @@
 		Value=".\Release\$(PlatformName)\obj\gtk-3\gtk;..\..\gtk;$(GdkBaseIncludesRelease)"
 	/>
 	<UserMacro
+		Name="Gtk3DemoIncludesDebug"
+		Value=".\Debug\$(PlatformName)\obj\gtk3-demo;$(GtkBaseIncludesDebug)"
+	/>
+	<UserMacro
+		Name="Gtk3DemoIncludesRelease"
+		Value=".\Release\$(PlatformName)\obj\gtk3-demo;$(GtkBaseIncludesRelease)"
+	/>
+	<UserMacro
 		Name="GdkDefines"
 		Value="GDK_COMPILATION;G_LOG_DOMAIN=\&quot;Gdk\&quot;"
 	/>
@@ -98,5 +106,9 @@
 	<UserMacro
 		Name="GenerateRequiredSourcesBase"
 		Value="cd ..&#x0D;&#x0A;set VCInstallDir=$(VCInstallDir)&#x0D;&#x0A;nmake -f generate-msvc.mak PREFIX=$(GlibEtcInstallRoot)"
+	/>
+	<UserMacro
+		Name="InstallBuildsBase"
+		Value="cd ..&#x0D;&#x0A;set VCInstallDir=$(VCInstallDir)&#x0D;&#x0A;nmake -f install-msvc.mak PREFIX=$(GlibEtcInstallRoot)"
 	/>
 </VisualStudioPropertySheet>

@@ -362,7 +362,16 @@ quartz_set_cursor_location (GtkIMContext *context, GdkRectangle *area)
     return;
 
   nsview = gdk_quartz_window_get_nsview (qc->client_window);
-  win = (GdkWindow *)[ (GdkQuartzView*)nsview gdkWindow];
+  if (nsview == NULL)
+    return;
+
+  win = (GdkWindow *)[(GdkQuartzView*)nsview gdkWindow];
+  if (win == NULL)
+    {
+      g_warning ("quartz_set_cursor_location received NULL gdkWindow");
+      return;
+    }
+
   g_object_set_data (G_OBJECT (win), GIC_CURSOR_RECT, qc->cursor_rect);
 }
 

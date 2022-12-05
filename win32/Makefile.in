@@ -255,6 +255,7 @@ ETAGS = @ETAGS@
 EXEEXT = @EXEEXT@
 EXE_MANIFEST_ARCHITECTURE = @EXE_MANIFEST_ARCHITECTURE@
 FGREP = @FGREP@
+FILECMD = @FILECMD@
 GAIL_LT_CURRENT_MINUS_AGE = @GAIL_LT_CURRENT_MINUS_AGE@
 GAIL_LT_VERSION_INFO = @GAIL_LT_VERSION_INFO@
 GDK_BACKENDS = @GDK_BACKENDS@
@@ -472,9 +473,10 @@ GTESTER_REPORT = gtester-report		# in $PATH for non-GLIB packages
 # initialize variables for unconditional += appending
 EXTRA_DIST = config-msvc.mak config-msvc.mak.in create-lists.bat \
 	create-lists-msvc.mak detectenv-msvc.mak gen-version-items.py \
-	generate-msvc.mak gtk-introspection-msvc.mak \
-	introspection-msvc.mak replace.py pc_base.py gtkpc.py \
-	README_FEATURES_MSVC.txt $(GENERATED_ITEMS)
+	generate-msvc.mak generate-msvcprojs.mak \
+	gtk-introspection-msvc.mak introspection-msvc.mak \
+	install-msvc.mak replace.py pc_base.py gtkpc.py \
+	README_FEATURES_MSVC.md
 TEST_PROGS = 
 
 ### testing rules
@@ -503,16 +505,6 @@ XVFB_START = \
 	|| { echo "Gtk+Tests:ERROR: Failed to start Xvfb environment for X11 target tests."; exit 1; } \
 	&& DISPLAY=:$$XID && export DISPLAY
 
-@HAVE_INTROSPECTION_FALSE@GENERATED_ITEMS = 
-@HAVE_INTROSPECTION_TRUE@GENERATED_ITEMS = \
-@HAVE_INTROSPECTION_TRUE@	introspection.body.mak	\
-@HAVE_INTROSPECTION_TRUE@	Gdk_3_0_gir_list		\
-@HAVE_INTROSPECTION_TRUE@	GdkWin32_3_0_gir_list	\
-@HAVE_INTROSPECTION_TRUE@	Gtk_3_0_gir_list
-
-@HAVE_INTROSPECTION_TRUE@MSVC_INTROSPECTION_INTERMEDIATE_FILES = Gdk-3.0.gir.msvc.introspect GdkWin32-3.0.gir.msvc.introspect Gtk-3.0.gir.msvc.introspect
-@HAVE_INTROSPECTION_FALSE@DISTCLEANFILES = 
-@HAVE_INTROSPECTION_TRUE@DISTCLEANFILES = $(GENERATED_ITEMS)
 SUBDIRS = \
 	vs9 	\
 	vs10	\
@@ -521,7 +513,8 @@ SUBDIRS = \
 	vs14	\
 	vs15	\
 	vs16	\
-	vs17
+	vs17	\
+	vs1x-props
 
 all: all-recursive
 
@@ -753,7 +746,6 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
-	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -899,16 +891,6 @@ test-report perf-report full-report:	${TEST_PROGS}
 .PHONY: test test-cwd test-recurse test-report perf-report full-report
 # run make test-cwd as part of make check
 check-local: test-cwd
-
-@HAVE_INTROSPECTION_TRUE@introspection.body.mak: $(MSVC_INTROSPECTION_INTERMEDIATE_FILES)
-@HAVE_INTROSPECTION_TRUE@	-$(RM) introspection.body.mak
-@HAVE_INTROSPECTION_TRUE@	for F in `ls *.msvc.introspect`; do \
-@HAVE_INTROSPECTION_TRUE@		case $$F in \
-@HAVE_INTROSPECTION_TRUE@			*)	cat $(top_builddir)/win32/$$F >>introspection.body.mak \
-@HAVE_INTROSPECTION_TRUE@			;; \
-@HAVE_INTROSPECTION_TRUE@		esac; \
-@HAVE_INTROSPECTION_TRUE@	done
-@HAVE_INTROSPECTION_TRUE@	$(RM) $(MSVC_INTROSPECTION_INTERMEDIATE_FILES)
 
 -include $(top_srcdir)/git.mk
 

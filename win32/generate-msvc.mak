@@ -3,9 +3,10 @@
 # Items in here should not need to be edited unless
 # one is maintaining the NMake build files.
 
-!include ../demos/gtk-demo/demos-sources.mak
 !include config-msvc.mak
+!include ../demos/gtk-demo/demos-sources.mak
 !include create-lists-msvc.mak
+!include generate-msvcprojs.mak
 
 # Copy the pre-defined gdkconfig.h.[win32|win32_broadway]
 !if "$(CFG)" == "release" || "$(CFG)" == "Release"
@@ -39,6 +40,8 @@ GDK_GENERATED_SOURCES =	\
 	.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gdk-3\gdk\gdkresources.c	\
 	.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gdk-3\gdk\gdkversionmacros.h
 
+GTK_VERSION_H = .\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk\gtkversion.h
+
 GTK_TYPEBUILTIN_SOURCES =	\
 	.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk\gtktypebuiltins.h	\
 	.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk\gtktypebuiltins.c
@@ -54,7 +57,15 @@ GTK_GENERATED_SOURCES =	\
 	.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk\gtkmarshalers.c	\
 	.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk\gtkresources.h	\
 	.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk\gtkresources.c	\
-	.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk\gtkversion.h
+	$(GTK_VERSION_H)
+
+EMOJI_GRESOURCE_XML =	\
+	.\vs$(VSVER)\$(CFG)\$(PLAT)\bin\de.gresource.xml	\
+	.\vs$(VSVER)\$(CFG)\$(PLAT)\bin\es.gresource.xml	\
+	.\vs$(VSVER)\$(CFG)\$(PLAT)\bin\fr.gresource.xml	\
+	.\vs$(VSVER)\$(CFG)\$(PLAT)\bin\zh.gresource.xml
+
+EMOJI_GRESOURCE = $(EMOJI_GRESOURCE_XML:.gresource.xml=.gresource)
 
 generate-base-sources:	\
 	.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gdk-3\config.h	\
@@ -64,13 +75,15 @@ generate-base-sources:	\
 	.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk\gtk-win32.rc	\
 	.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk\libgtk3.manifest	\
 	.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk\gtk.gresource.xml	\
-	..\demos\gtk-demo\demos.h	\
-	..\demos\gtk-demo\demo_resources.c	\
-	..\demos\icon-browser\resources.c
+	.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk3-demo\demos.h	\
+	.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk3-demo\demo_resources.c	\
+	.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk3-icon-browser\resources.c	\
+	.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk3-widget-factory\widget_factory_resources.c	\
+	$(EMOJI_GRESOURCE)
 
 # Copy the pre-defined config.h.win32 and demos.h.win32
 .\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gdk-3\config.h: ..\config.h.win32
-..\demos\gtk-demo\demos.h: ..\demos\gtk-demo\demos.h.win32
+.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk3-demo\demos.h: ..\demos\gtk-demo\demos.h.win32
 
 # Generate the versioned headers and resource scripts (*.rc)
 .\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gdk-3\gdk\gdkversionmacros.h: ..\gdk\gdkversionmacros.h.in
@@ -88,7 +101,7 @@ generate-base-sources:	\
 
 .\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gdk-3\config.h	\
 .\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gdk-3\gdk\gdkconfig.h	\
-..\demos\gtk-demo\demos.h:
+.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk3-demo\demos.h:
 	@echo Copying $@...
 	@if not exist $(@D)\ md $(@D)
 	@copy $** $@
@@ -107,6 +120,19 @@ generate-base-sources:	\
 	@cd ..\gdk
 	@$(PYTHON) $(GLIB_MKENUMS) --template $(@F).template $(gdk_public_h_sources) $(gdk_deprecated_h_sources) > ..\win32\$@
 	@cd ..\win32
+
+# Generate the private headers needed for broadway-server.c
+generate-broadway-items: ..\gdk\broadway\clienthtml.h ..\gdk\broadway\broadwayjs.h
+
+..\gdk\broadway\clienthtml.h: ..\gdk\broadway\client.html
+	@echo Generating $@...
+	@$(PERL) ..\gdk\broadway\toarray.pl client_html $**>$@
+
+..\gdk\broadway\broadwayjs.h:	\
+..\gdk\broadway\broadway.js	\
+..\gdk\broadway\rawinflate.min.js
+	@echo Generating $@...
+	@$(PERL) ..\gdk\broadway\toarray.pl broadway_js $**>$@
 
 .\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk\gtktypebuiltins.h	\
 .\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk\gtktypebuiltins.c:
@@ -187,15 +213,16 @@ generate-base-sources:	\
 
 .\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk\gtkdbusgenerated.c: .\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk\gtkdbusgenerated.h
 
-.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk\gtktypefuncs.inc: ..\gtk\gentypefuncs.py
+.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk\gtktypefuncs.inc:	\
+..\gtk\gentypefuncs.py	\
+.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk\gtkversion.h	\
+.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk\gtktypebuiltins.h
 	@echo Generating $@...
 	@if not exist $(@D)\ md $(@D)
-	@if not exist $(@D)\gtktypebuiltins.h $(MAKE) /f generate-msvc.mak CFG=$(CFG) $(@D)\gtktypebuiltins.h
-	@if not exist $(@D)\gtkversion.h $(MAKE) /f generate-msvc.mak CFG=$(CFG) $(@D)\gtkversion.h
 	@echo #undef GTK_COMPILATION > $(@R).preproc.c
 	@echo #include "gtkx.h" >> $(@R).preproc.c
 	@cl /EP $(GTK_PREPROCESSOR_FLAGS) $(@R).preproc.c > $(@R).combined.c
-	@$(PYTHON) $** $@ $(@R).combined.c
+	@$(PYTHON) ..\gtk\gentypefuncs.py $@ $(@R).combined.c
 	@del $(@R).preproc.c $(@R).combined.c
 
 .\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk\gtk.gresource.xml: $(GTK_RESOURCES)
@@ -253,69 +280,80 @@ generate-base-sources:	\
 	@$(PYTHON) $(GLIB_GENMARSHAL) $(GTK_MARSHALERS_FLAGS) --body $** >> $@.tmp
 	@move $@.tmp $@
 
-..\demos\gtk-demo\demo_resources.c: ..\demos\gtk-demo\demo.gresource.xml $(GTK_DEMO_RESOURCES)
+.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk3-demo\demo_resources.c: ..\demos\gtk-demo\demo.gresource.xml $(GTK_DEMO_RESOURCES)
 	@echo Generating $@...
-	@$(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(@D) --generate-source $(@D)\demo.gresource.xml
+	@if not exist $(@D)\ md $(@D)
+	@$(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=..\demos\gtk-demo	\
+	--generate-source ..\demos\gtk-demo\demo.gresource.xml
 
-..\demos\icon-browser\resources.c: ..\demos\icon-browser\iconbrowser.gresource.xml $(ICON_BROWSER_RESOURCES)
+.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk3-icon-browser\resources.c: ..\demos\icon-browser\iconbrowser.gresource.xml $(ICON_BROWSER_RESOURCES)
 	@echo Generating $@...
-	@$(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(@D) --generate-source $(@D)\iconbrowser.gresource.xml
+	@if not exist $(@D)\ md $(@D)
+	@$(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=..\demos\icon-browser	\
+	--generate-source ..\demos\icon-browser\iconbrowser.gresource.xml
 
-regenerate-demos-h-win32: ..\demos\gtk-demo\geninclude.py $(demo_actual_sources)
-	@echo Regenerating demos.h.win32...
+.\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk3-widget-factory\widget_factory_resources.c:	\
+..\demos\icon-browser\iconbrowser.gresource.xml $(WIDGET_FACTORY_RESOURCES)
+	@echo Generating $@...
+	@if not exist $(@D)\ md $(@D)
+	@$(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=..\demos\widget-factory	\
+	--generate-source ..\demos\widget-factory\widget-factory.gresource.xml
+
+.\vs$(VSVER)\$(CFG)\$(PLAT)\bin\de.gresource.xml: ..\gtk\emoji\gresource.xml.in
+.\vs$(VSVER)\$(CFG)\$(PLAT)\bin\es.gresource.xml: ..\gtk\emoji\gresource.xml.in
+.\vs$(VSVER)\$(CFG)\$(PLAT)\bin\fr.gresource.xml: ..\gtk\emoji\gresource.xml.in
+.\vs$(VSVER)\$(CFG)\$(PLAT)\bin\zh.gresource.xml: ..\gtk\emoji\gresource.xml.in
+
+.\vs$(VSVER)\$(CFG)\$(PLAT)\bin\de.gresource: .\vs$(VSVER)\$(CFG)\$(PLAT)\bin\de.gresource.xml ..\gtk\emoji\de.data
+.\vs$(VSVER)\$(CFG)\$(PLAT)\bin\es.gresource: .\vs$(VSVER)\$(CFG)\$(PLAT)\bin\es.gresource.xml ..\gtk\emoji\es.data
+.\vs$(VSVER)\$(CFG)\$(PLAT)\bin\fr.gresource: .\vs$(VSVER)\$(CFG)\$(PLAT)\bin\fr.gresource.xml ..\gtk\emoji\fr.data
+.\vs$(VSVER)\$(CFG)\$(PLAT)\bin\zh.gresource: .\vs$(VSVER)\$(CFG)\$(PLAT)\bin\zh.gresource.xml ..\gtk\emoji\zh.data
+
+$(EMOJI_GRESOURCE_XML):
+	@echo Generating $@...
+	@if not exist $(@D)\ mkdir $(@D)
+	@$(PYTHON) replace.py -i=$** -o=$@ --action=replace-var --var=lang --outstring=$(@B:.gresource=)
+
+$(EMOJI_GRESOURCE):
+	@echo Generating $@...
+	@$(GLIB_COMPILE_RESOURCES) --sourcedir=..\gtk\emoji $@.xml --target=$@
+
+regenerate-demos-h-win32: ..\demos\gtk-demo\geninclude.py $(demo_actual_sources) regenerate-demos-h-win32-msg $(GTK3_DEMO_VCPROJS)
 	@-del ..\demos\gtk-demo\demos.h.win32
 	@cd ..\demos\gtk-demo
 	@$(PYTHON) geninclude.py demos.h.win32 $(demo_sources)
 	@cd ..\..\win32
-	@echo Regenerating gtk3-demo VS project files...
-	@-del vs9\$(DEMO_VS9_PROJ) vs10\$(DEMO_VS10_PROJ) vs10\$(DEMO_VS10_PROJ_FILTERS)
-	@for %%s in ($(demo_sources) gtkfishbowl.c demo_resources.c main.c) do	\
-	@echo.   ^<File RelativePath^="..\..\demos\gtk-demo\%%s" /^>>>gtk3-demo.sourcefiles & \
-	@echo.   ^<ClCompile Include^="..\..\demos\gtk-demo\%%s" /^>>>gtk3-demo.vs10.sourcefiles & \
-	@echo.   ^<ClCompile Include^="..\..\demos\gtk-demo\%%s"^>^<Filter^>Source Files^</Filter^>^</ClCompile^>>>gtk3-demo.vs10.sourcefiles.filters
-	@$(CPP) /nologo /EP /I. vs9\$(DEMO_VS9_PROJ)in>$(DEMO_VS9_PROJ).tmp
-	@for /f "usebackq tokens=* delims=" %%l in ($(DEMO_VS9_PROJ).tmp) do @echo %%l>>$(DEMO_VS9_PROJ).tmp1
-	@$(CPP) /nologo /EP /I. vs10\$(DEMO_VS10_PROJ)in>$(DEMO_VS10_PROJ).tmp
-	@for /f "usebackq tokens=* delims=" %%l in ($(DEMO_VS10_PROJ).tmp) do @echo %%l>>$(DEMO_VS10_PROJ).tmp1
-	@$(CPP) /nologo /EP /I. vs10\$(DEMO_VS10_PROJ_FILTERS)in> $(DEMO_VS10_PROJ_FILTERS).tmp
-	@for /f "usebackq tokens=* delims=" %%l in ($(DEMO_VS10_PROJ_FILTERS).tmp) do @ echo %%l>>vs10\$(DEMO_VS10_PROJ_FILTERS)
-	@if not "$(FONT_FEATURES_DEMO)" == ""	\
-	 if not "$(FONT_FEATURES_USE_PANGOFT2)" == ""	\
-	 ($(PYTHON) replace.py -a=replace-str -i=$(DEMO_VS9_PROJ).tmp1 -o=vs9\$(DEMO_VS9_PROJ) --instring="AdditionalDependencies=\"\"" --outstring="AdditionalDependencies=\"$(DEMO_DEP_LIBS_PANGOFT2_VS9)\"") & \
-	 ($(PYTHON) replace.py -a=replace-str -i=$(DEMO_VS10_PROJ).tmp1 -o=vs10\$(DEMO_VS10_PROJ) --instring=">%(AdditionalDependencies)<" --outstring=">$(DEMO_DEP_LIBS_PANGOFT2_VS1X);%(AdditionalDependencies)<")
-	@if not "$(FONT_FEATURES_DEMO)" == ""	\
-	 if "$(FONT_FEATURES_USE_PANGOFT2)" == ""	\
-	 ($(PYTHON) replace.py -a=replace-str -i=$(DEMO_VS9_PROJ).tmp1 -o=vs9\$(DEMO_VS9_PROJ) --instring="AdditionalDependencies=\"\"" --outstring="AdditionalDependencies=\"$(DEMO_DEP_LIBS_NEW_PANGO)\"") & \
-	 ($(PYTHON) replace.py -a=replace-str -i=$(DEMO_VS10_PROJ).tmp1 -o=vs10\$(DEMO_VS10_PROJ) --instring=">%(AdditionalDependencies)<" --outstring=">$(DEMO_DEP_LIBS_NEW_PANGO);%(AdditionalDependencies)<")
-	@if "$(FONT_FEATURES_DEMO)" == "" copy $(DEMO_VS9_PROJ).tmp1 vs9\$(DEMO_VS9_PROJ) & copy $(DEMO_VS10_PROJ).tmp1 vs10\$(DEMO_VS10_PROJ)
-	@del *vc*proj*.tmp* gtk3-demo.*sourcefiles*
-	@for %%v in (11 12 14 15 16 17) do @(copy /y vs10\$(DEMO_VS10_PROJ_FILTERS) vs%v\ & del vs%v\gtk3-demo.vcxproj)
-	@$(PYTHON) replace.py -a=replace-str -i=vs10\$(DEMO_VS10_PROJ) -o=vs11\$(DEMO_VS10_PROJ) --instring=">v100<" --outstring=">v110<"
-	@$(PYTHON) replace.py -a=replace-str -i=vs10\$(DEMO_VS10_PROJ) -o=vs12\$(DEMO_VS10_PROJ) --instring=">v100<" --outstring=">v120<"
-	@$(PYTHON) replace.py -a=replace-str -i=vs10\$(DEMO_VS10_PROJ) -o=vs14\$(DEMO_VS10_PROJ) --instring=">v100<" --outstring=">v140<"
-	@$(PYTHON) replace.py -a=replace-str -i=vs10\$(DEMO_VS10_PROJ) -o=vs15\$(DEMO_VS10_PROJ) --instring=">v100<" --outstring=">v141<"
-	@$(PYTHON) replace.py -a=replace-str -i=vs10\$(DEMO_VS10_PROJ) -o=vs16\$(DEMO_VS10_PROJ) --instring=">v100<" --outstring=">v142<"
-	@$(PYTHON) replace.py -a=replace-str -i=vs10\$(DEMO_VS10_PROJ) -o=vs17\$(DEMO_VS10_PROJ) --instring=">v100<" --outstring=">v143<"
 
-Gdk_3_0_gir_list_final: Gdk_3_0_gir_list $(GDK_GENERATED_SOURCES)
-	@echo Generating $@...
-	@type Gdk_3_0_gir_list>$@
-	@for %%s in ($(GDK_GENERATED_SOURCES)) do echo %%s>>$@
+..\po\gtk30.pot: ..\gtk\gtkbuilder.its
+	$(XGETTEXT) --default-domain="$(@B)"	\
+	--copyright-holder="GTK+ Team and others. See AUTHORS"	\
+	--package-name="gtk+"	\
+	--package-version="$(GTK_VERSION)"	\
+	--msgid-bugs-address="https://gitlab.gnome.org/GNOME/gtk/-/issues/"	\
+	--directory=".." \
+	--add-comments=TRANSLATORS: --from-code=UTF-8 --keyword=_ --keyword=N_	\
+	--keyword=C_:1c,2 --keyword=NC_:1c,2 --keyword=g_dngettext:2,3 --add-comments	\
+	--files-from="$(@D:\=/)/POTFILES.in" --output=$(@F)
+	@move $(@F) $@
 
-Gtk_3_0_gir_list_final: Gtk_3_0_gir_list $(GTK_TYPEBUILTIN_SOURCES)
-	@echo Generating $@...
-	@type Gtk_3_0_gir_list>$@
-	@for %%s in ($(GTK_TYPEBUILTIN_SOURCES) .\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk\gtkversion.h) do echo %%s>>$@
-
-GdkWin32_3_0_gir_list_final: GdkWin32_3_0_gir_list
-	@echo Copying $@...
-	@copy $** $@
+..\po-properties\gtk30-properties.pot:
+	$(XGETTEXT) --default-domain="$(@B)"	\
+	--copyright-holder="GTK+ Team and others. See AUTHORS"	\
+	--package-name="gtk+"	\
+	--package-version="$(GTK_VERSION)"	\
+	--msgid-bugs-address="https://gitlab.gnome.org/GNOME/gtk/-/issues/"	\
+	--directory=".." \
+	--from-code=UTF-8 --keyword --keyword=P_ --add-comments	\
+	--files-from="$(@D:\=/)/POTFILES.in"
+	@move $(@B).po $@
 
 # Remove the generated files
 clean:
-	@-del /f /q ..\demos\icon-browser\resources.c
-	@-del /f /q ..\demos\gtk-demo\demo_resources.c
-	@-del /f /q ..\demos\gtk-demo\demos.h
+	@-del /f /q .\vs$(VSVER)\$(CFG)\$(PLAT)\bin\*.gresource
+	@-del /f /q .\vs$(VSVER)\$(CFG)\$(PLAT)\bin\*.gresource.xml
+	@-del /f /q .\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk3-icon-browser\resources.c
+	@-del /f /q .\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk3-demo\demo_resources.c
+	@-del /f /q .\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk3-demo\demos.h
 	@-del /f /q .\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk\gtktypebuiltins.c
 	@-del /f /q .\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk\gtktypebuiltins.h
 	@-del /f /q .\vs$(VSVER)\$(CFG)\$(PLAT)\obj\gtk-3\gtk\gtkprivatetypebuiltins.c

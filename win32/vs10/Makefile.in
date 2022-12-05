@@ -107,7 +107,7 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 DIST_COMMON = $(srcdir)/Makefile.am $(am__DIST_COMMON)
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
-CONFIG_CLEAN_FILES = gtk3-version-paths.props
+CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
@@ -129,9 +129,7 @@ am__can_run_installinfo = \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
-am__DIST_COMMON = $(srcdir)/Makefile.in \
-	$(srcdir)/gtk3-version-paths.props.in \
-	$(top_srcdir)/Makefile.decl
+am__DIST_COMMON = $(srcdir)/Makefile.in $(top_srcdir)/Makefile.decl
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -198,6 +196,7 @@ ETAGS = @ETAGS@
 EXEEXT = @EXEEXT@
 EXE_MANIFEST_ARCHITECTURE = @EXE_MANIFEST_ARCHITECTURE@
 FGREP = @FGREP@
+FILECMD = @FILECMD@
 GAIL_LT_CURRENT_MINUS_AGE = @GAIL_LT_CURRENT_MINUS_AGE@
 GAIL_LT_VERSION_INFO = @GAIL_LT_VERSION_INFO@
 GDK_BACKENDS = @GDK_BACKENDS@
@@ -425,15 +424,13 @@ EXTRA_DIST = README.txt gtk+.sln gtk3-prebuild.vcxproj \
 	gtk-query-settings.vcxproj gtk-query-settings.vcxproj.filters \
 	gtk-update-icon-cache.vcxproj \
 	gtk-update-icon-cache.vcxproj.filters gtk3-demo.vcxprojin \
-	gtk3-demo.vcxproj.filtersin gtk3-demo-application.vcxprojin \
-	gtk3-demo-application.vcxproj.filtersin \
-	gtk3-icon-browser.vcxprojin \
-	gtk3-icon-browser.vcxproj.filtersin gailutil-3.vcxprojin \
+	gtk3-demo.vcxproj.filtersin gtk3-demo-application.vcxproj \
+	gtk3-demo-application.vcxproj.filters \
+	gtk3-icon-browser.vcxproj gtk3-icon-browser.vcxproj.filters \
+	gtk3-widget-factory.vcxproj \
+	gtk3-widget-factory.vcxproj.filters gailutil-3.vcxprojin \
 	gailutil-3.vcxproj.filtersin gtk3-install.vcxproj \
-	gtk3-install.vcxproj.filters gtk3-introspect.vcxproj \
-	gtk3-build-defines.props gtk3-copy-gdk-broadway.props \
-	gtk3-ignore-broadway.props gtk3-install.propsin \
-	gtk3-version-paths.props.in $(GENERATED_ITEMS)
+	gtk3-introspect.vcxproj $(GENERATED_ITEMS)
 TEST_PROGS = 
 
 ### testing rules
@@ -475,21 +472,8 @@ GENERATED_ITEMS = \
 	gtk-3.vcxproj.filters			\
 	gtk3-demo.vcxproj			\
 	gtk3-demo.vcxproj.filters		\
-	gtk3-demo-application.vcxproj		\
-	gtk3-demo-application.vcxproj.filters	\
-	gtk3-icon-browser.vcxproj		\
-	gtk3-icon-browser.vcxproj.filters	\
 	gailutil-3.vcxproj			\
-	gailutil-3.vcxproj.filters		\
-	gtk3-install.props			\
-	gtk3-version-paths.props
-
-MSVC10_HEADERS_LISTS = \
-	gdk3-win32.vs10.headers		\
-	gdk3-broadway.vs10.headers	\
-	gdk-3.vs10.headers		\
-	gtk-3.vs10.headers		\
-	gailutil-3.vs10.headers
+	gailutil-3.vcxproj.filters
 
 DISTCLEANFILES = \
 	$(GENERATED_ITEMS)
@@ -527,8 +511,6 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
-gtk3-version-paths.props: $(top_builddir)/config.status $(srcdir)/gtk3-version-paths.props.in
-	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -750,15 +732,6 @@ test-report perf-report full-report:	${TEST_PROGS}
 .PHONY: test test-cwd test-recurse test-report perf-report full-report
 # run make test-cwd as part of make check
 check-local: test-cwd
-
-gtk3-install.props: $(top_srcdir)/win32/vs10/gtk3-install.propsin $(MSVC10_HEADERS_LISTS)
-	-$(RM) $(top_builddir)/win32/vs11/gtk3-install.props
-	-$(RM) $(top_builddir)/win32/vs12/gtk3-install.props
-	-$(RM) $(top_builddir)/win32/vs14/gtk3-install.props
-	-$(RM) $(top_builddir)/win32/vs15/gtk3-install.props
-	-$(RM) $(top_builddir)/win32/vs16/gtk3-install.props
-	$(CPP) -P - <$(top_srcdir)/win32/vs10/gtk3-install.propsin >$@
-	rm $(MSVC10_HEADERS_LISTS)
 
 -include $(top_srcdir)/git.mk
 

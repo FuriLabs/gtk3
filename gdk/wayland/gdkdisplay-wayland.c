@@ -84,7 +84,10 @@
 
 #define MIN_SYSTEM_BELL_DELAY_MS 20
 
-#define GTK_SHELL1_VERSION       4
+#define GTK_SHELL1_VERSION       5
+#ifdef HAVE_XDG_ACTIVATION
+#define XDG_ACTIVATION_VERSION   1
+#endif
 
 static void _gdk_wayland_display_load_cursor_theme (GdkWaylandDisplay *display_wayland);
 
@@ -519,6 +522,17 @@ gdk_registry_handle_global (void               *data,
       _gdk_wayland_screen_init_xdg_output (display_wayland->screen);
       _gdk_wayland_display_async_roundtrip (display_wayland);
     }
+#ifdef HAVE_XDG_ACTIVATION
+  else if (strcmp (interface, "xdg_activation_v1") == 0)
+    {
+      display_wayland->xdg_activation_version =
+        MIN (version, XDG_ACTIVATION_VERSION);
+      display_wayland->xdg_activation =
+        wl_registry_bind (display_wayland->wl_registry, id,
+                          &xdg_activation_v1_interface,
+                          display_wayland->xdg_activation_version);
+    }
+#endif
 
   g_hash_table_insert (display_wayland->known_globals,
                        GUINT_TO_POINTER (id), g_strdup (interface));
@@ -706,7 +720,6 @@ static void
 gdk_wayland_display_finalize (GObject *object)
 {
   GdkWaylandDisplay *display_wayland = GDK_WAYLAND_DISPLAY (object);
-  guint i;
 
   _gdk_wayland_display_finalize_cursors (display_wayland);
 
@@ -716,13 +729,10 @@ gdk_wayland_display_finalize (GObject *object)
   g_free (display_wayland->cursor_theme_name);
   xkb_context_unref (display_wayland->xkb_context);
 
-  for (i = 0; i < GDK_WAYLAND_THEME_SCALES_COUNT; i++)
+  if (display_wayland->cursor_theme)
     {
-      if (display_wayland->scaled_cursor_themes[i])
-        {
-          wl_cursor_theme_destroy (display_wayland->scaled_cursor_themes[i]);
-          display_wayland->scaled_cursor_themes[i] = NULL;
-        }
+      wl_cursor_theme_destroy (display_wayland->cursor_theme);
+      display_wayland->cursor_theme = NULL;
     }
 
   g_ptr_array_free (display_wayland->monitors, TRUE);
@@ -935,6 +945,12 @@ gdk_wayland_display_notify_startup_complete (GdkDisplay  *display,
 {
   GdkWaylandDisplay *display_wayland = GDK_WAYLAND_DISPLAY (display);
 
+#ifdef HAVE_XDG_ACTIVATION
+  /* Will be signaled with focus activation */
+  if (display_wayland->xdg_activation)
+    return;
+#endif
+
   if (startup_id == NULL)
     {
       startup_id = display_wayland->startup_notification_id;
@@ -943,6 +959,10 @@ gdk_wayland_display_notify_startup_complete (GdkDisplay  *display,
         return;
     }
 
+#ifdef HAVE_XDG_ACTIVATION
+  if (display_wayland->xdg_activation) /* FIXME: Isn't this redundant? */
+    return;
+#endif
   if (display_wayland->gtk_shell)
     gtk_shell1_set_startup_id (display_wayland->gtk_shell, startup_id);
 }
@@ -1092,6 +1112,33 @@ gdk_wayland_display_init (GdkWaylandDisplay *display)
   display->monitors = g_ptr_array_new_with_free_func (g_object_unref);
 }
 
+static struct wl_cursor_theme *
+get_cursor_theme (GdkWaylandDisplay *display_wayland,
+                  const char *name,
+                  int size)
+{
+  const char * const *xdg_data_dirs;
+  struct wl_cursor_theme *theme = NULL;
+  int i;
+
+  xdg_data_dirs = g_get_system_data_dirs ();
+  for (i = 0; xdg_data_dirs[i]; i++)
+    {
+      char *path = g_build_filename (xdg_data_dirs[i], "icons", name, "cursors", NULL);
+
+      if (g_file_test (path, G_FILE_TEST_IS_DIR))
+        theme = wl_cursor_theme_create (path, size, display_wayland->shm);
+
+      g_free (path);
+
+      if (theme)
+        return theme;
+    }
+
+  /* This may fall back to builtin cursors */
+  return wl_cursor_theme_create ("/usr/share/icons/default/cursors", size, display_wayland->shm);
+}
+
 void
 gdk_wayland_display_set_cursor_theme (GdkDisplay  *display,
                                       const gchar *name,
@@ -1099,7 +1146,6 @@ gdk_wayland_display_set_cursor_theme (GdkDisplay  *display,
 {
   GdkWaylandDisplay *display_wayland = GDK_WAYLAND_DISPLAY(display);
   struct wl_cursor_theme *theme;
-  int i;
 
   g_assert (display_wayland);
   g_assert (display_wayland->shm);
@@ -1108,22 +1154,21 @@ gdk_wayland_display_set_cursor_theme (GdkDisplay  *display,
       display_wayland->cursor_theme_size == size)
     return;
 
-  theme = wl_cursor_theme_load (name, size, display_wayland->shm);
+  theme = get_cursor_theme (display_wayland, name, size);
   if (theme == NULL)
     {
       g_warning ("Failed to load cursor theme %s", name);
       return;
     }
 
-  for (i = 0; i < GDK_WAYLAND_THEME_SCALES_COUNT; i++)
+  if (display_wayland->cursor_theme)
     {
-      if (display_wayland->scaled_cursor_themes[i])
-        {
-          wl_cursor_theme_destroy (display_wayland->scaled_cursor_themes[i]);
-          display_wayland->scaled_cursor_themes[i] = NULL;
-        }
+      wl_cursor_theme_destroy (display_wayland->cursor_theme);
+      display_wayland->cursor_theme = NULL;
     }
-  display_wayland->scaled_cursor_themes[0] = theme;
+
+  display_wayland->cursor_theme = theme;
+
   if (display_wayland->cursor_theme_name != NULL)
     g_free (display_wayland->cursor_theme_name);
   display_wayland->cursor_theme_name = g_strdup (name);
@@ -1133,31 +1178,11 @@ gdk_wayland_display_set_cursor_theme (GdkDisplay  *display,
 }
 
 struct wl_cursor_theme *
-_gdk_wayland_display_get_scaled_cursor_theme (GdkWaylandDisplay *display_wayland,
-                                              guint              scale)
+_gdk_wayland_display_get_cursor_theme (GdkWaylandDisplay *display_wayland)
 {
-  struct wl_cursor_theme *theme;
-
   g_assert (display_wayland->cursor_theme_name);
-  g_assert (scale <= GDK_WAYLAND_MAX_THEME_SCALE);
-  g_assert (scale >= 1);
 
-  theme = display_wayland->scaled_cursor_themes[scale - 1];
-  if (!theme)
-    {
-      theme = wl_cursor_theme_load (display_wayland->cursor_theme_name,
-                                    display_wayland->cursor_theme_size * scale,
-                                    display_wayland->shm);
-      if (theme == NULL)
-        {
-          g_warning ("Failed to load cursor theme %s with scale %u",
-                     display_wayland->cursor_theme_name, scale);
-          return NULL;
-        }
-      display_wayland->scaled_cursor_themes[scale - 1] = theme;
-    }
-
-  return theme;
+  return display_wayland->cursor_theme;
 }
 
 static void

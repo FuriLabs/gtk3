@@ -1,0 +1,31 @@
+From: Simon McVittie <smcv@debian.org>
+Date: Wed, 23 Nov 2022 15:18:14 +0000
+Subject: Reinstate gdk/wayland/cursor/meson.build
+
+This was in upstream git, but not in the released tarball. It should be
+included in 3.24.36 (see upstream commit b2ad8d2a).
+
+Forwarded: not-needed
+---
+ gdk/wayland/cursor/meson.build | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+ create mode 100644 gdk/wayland/cursor/meson.build
+
+diff --git a/gdk/wayland/cursor/meson.build b/gdk/wayland/cursor/meson.build
+new file mode 100644
+index 0000000..02d5f2b
+--- /dev/null
++++ b/gdk/wayland/cursor/meson.build
+@@ -0,0 +1,12 @@
++wayland_cursor_sources = files([
++  'wayland-cursor.c',
++  'xcursor.c',
++  'os-compatibility.c'
++])
++
++libwayland_cursor = static_library('wayland+cursor',
++  sources: wayland_cursor_sources,
++  include_directories: [ confinc, ],
++  dependencies: [ glib_dep, wlclientdep, ],
++  c_args: common_cflags,
++)

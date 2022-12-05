@@ -141,7 +141,7 @@ entire GtkWindow</p>
 </tr>
 <tr>
 <td class="function_type">
-<a href="../html/gdk3-Windows.html#GdkModifierType"><span class="returnvalue">GdkModifierType</span></a>
+<span class="returnvalue">GdkModifierType</span>
 </td>
 <td class="function_name">
 <a class="link" href="gtk3-Keyboard-Accelerators.html#gtk-accel-group-get-modifier-mask" title="gtk_accel_group_get_modifier_mask ()">gtk_accel_group_get_modifier_mask</a> <span class="c_punctuation">()</span>
@@ -237,7 +237,7 @@ entire GtkWindow</p>
 </tr>
 <tr>
 <td class="function_type">
-<a href="../html/gdk3-Windows.html#GdkModifierType"><span class="returnvalue">GdkModifierType</span></a>
+<span class="returnvalue">GdkModifierType</span>
 </td>
 <td class="function_name">
 <a class="link" href="gtk3-Keyboard-Accelerators.html#gtk-accelerator-get-default-mod-mask" title="gtk_accelerator_get_default_mod_mask ()">gtk_accelerator_get_default_mod_mask</a> <span class="c_punctuation">()</span>
@@ -261,7 +261,7 @@ entire GtkWindow</p>
 <td class="property_flags">Read</td>
 </tr>
 <tr>
-<td class="property_type"><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a></td>
+<td class="property_type"><span class="type">GdkModifierType</span></td>
 <td class="property_name"><a class="link" href="gtk3-Keyboard-Accelerators.html#GtkAccelGroup--modifier-mask" title="The “modifier-mask” property">modifier-mask</a></td>
 <td class="property_flags">Read</td>
 </tr>
@@ -363,7 +363,7 @@ gtk_accel_group_new (<em class="parameter"><code><span class="type">void</span><
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_accel_group_connect (<em class="parameter"><code><a class="link" href="gtk3-Keyboard-Accelerators.html#GtkAccelGroup"><span class="type">GtkAccelGroup</span></a> *accel_group</code></em>,
                          <em class="parameter"><code><span class="type">guint</span> accel_key</code></em>,
-                         <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> accel_mods</code></em>,
+                         <em class="parameter"><code><span class="type">GdkModifierType</span> accel_mods</code></em>,
                          <em class="parameter"><code><a class="link" href="gtk3-Keyboard-Accelerators.html#GtkAccelFlags" title="enum GtkAccelFlags"><span class="type">GtkAccelFlags</span></a> accel_flags</code></em>,
                          <em class="parameter"><code><span class="type">GClosure</span> *closure</code></em>);</pre>
 <p>Installs an accelerator in this group. When <em class="parameter"><code>accel_group</code></em>
@@ -474,7 +474,7 @@ first with <code class="function">g_intern_static_string()</code>.</p>
 <span class="c_punctuation">(</span>*GtkAccelGroupActivate<span class="c_punctuation">)</span> (<em class="parameter"><code><a class="link" href="gtk3-Keyboard-Accelerators.html#GtkAccelGroup"><span class="type">GtkAccelGroup</span></a> *accel_group</code></em>,
                           <em class="parameter"><code><span class="type">GObject</span> *acceleratable</code></em>,
                           <em class="parameter"><code><span class="type">guint</span> keyval</code></em>,
-                          <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> modifier</code></em>);</pre>
+                          <em class="parameter"><code><span class="type">GdkModifierType</span> modifier</code></em>);</pre>
 </div>
 <hr>
 <div class="refsect2">
@@ -544,7 +544,7 @@ group, or <code class="literal">NULL</code> to remove all closures. </p></td>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_accel_group_disconnect_key (<em class="parameter"><code><a class="link" href="gtk3-Keyboard-Accelerators.html#GtkAccelGroup"><span class="type">GtkAccelGroup</span></a> *accel_group</code></em>,
                                 <em class="parameter"><code><span class="type">guint</span> accel_key</code></em>,
-                                <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> accel_mods</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GdkModifierType</span> accel_mods</code></em>);</pre>
 <p>Removes an accelerator previously installed through
 <a class="link" href="gtk3-Keyboard-Accelerators.html#gtk-accel-group-connect" title="gtk_accel_group_connect ()"><code class="function">gtk_accel_group_connect()</code></a>.</p>
 <div class="refsect3">
@@ -588,7 +588,7 @@ gtk_accel_group_activate (<em class="parameter"><code><a class="link" href="gtk3
                           <em class="parameter"><code><span class="type">GQuark</span> accel_quark</code></em>,
                           <em class="parameter"><code><span class="type">GObject</span> *acceleratable</code></em>,
                           <em class="parameter"><code><span class="type">guint</span> accel_key</code></em>,
-                          <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> accel_mods</code></em>);</pre>
+                          <em class="parameter"><code><span class="type">GdkModifierType</span> accel_mods</code></em>);</pre>
 <p>Finds the first accelerator in <em class="parameter"><code>accel_group</code></em>
  that matches
 <em class="parameter"><code>accel_key</code></em>
@@ -753,11 +753,11 @@ is connected, or <code class="literal">NULL</code>. </p>
 <hr>
 <div class="refsect2">
 <a name="gtk-accel-group-get-modifier-mask"></a><h3>gtk_accel_group_get_modifier_mask ()</h3>
-<pre class="programlisting"><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="returnvalue">GdkModifierType</span></a>
+<pre class="programlisting"><span class="returnvalue">GdkModifierType</span>
 gtk_accel_group_get_modifier_mask (<em class="parameter"><code><a class="link" href="gtk3-Keyboard-Accelerators.html#GtkAccelGroup"><span class="type">GtkAccelGroup</span></a> *accel_group</code></em>);</pre>
-<p>Gets a <a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> representing the mask for this
+<p>Gets a <span class="type">GdkModifierType</span> representing the mask for this
 <em class="parameter"><code>accel_group</code></em>
-. For example, <a href="../html/gdk3-Windows.html#GDK-CONTROL-MASK:CAPS"><span class="type">GDK_CONTROL_MASK</span></a>, <a href="../html/gdk3-Windows.html#GDK-SHIFT-MASK:CAPS"><span class="type">GDK_SHIFT_MASK</span></a>, etc.</p>
+. For example, <span class="type">GDK_CONTROL_MASK</span>, <span class="type">GDK_SHIFT_MASK</span>, etc.</p>
 <div class="refsect3">
 <a name="gtk-accel-group-get-modifier-mask.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -785,7 +785,7 @@ gtk_accel_group_get_modifier_mask (<em class="parameter"><code><a class="link" h
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_accel_groups_activate (<em class="parameter"><code><span class="type">GObject</span> *object</code></em>,
                            <em class="parameter"><code><span class="type">guint</span> accel_key</code></em>,
-                           <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> accel_mods</code></em>);</pre>
+                           <em class="parameter"><code><span class="type">GdkModifierType</span> accel_mods</code></em>);</pre>
 <p>Finds the first accelerator in any <a class="link" href="gtk3-Keyboard-Accelerators.html#GtkAccelGroup"><span class="type">GtkAccelGroup</span></a> attached
 to <em class="parameter"><code>object</code></em>
  that matches <em class="parameter"><code>accel_key</code></em>
@@ -909,10 +909,10 @@ with. </p></td>
 <a name="gtk-accelerator-valid"></a><h3>gtk_accelerator_valid ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 gtk_accelerator_valid (<em class="parameter"><code><span class="type">guint</span> keyval</code></em>,
-                       <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> modifiers</code></em>);</pre>
+                       <em class="parameter"><code><span class="type">GdkModifierType</span> modifiers</code></em>);</pre>
 <p>Determines whether a given keyval and modifier mask constitute
 a valid keyboard accelerator. For example, the <span class="type">GDK_KEY_a</span> keyval
-plus <a href="../html/gdk3-Windows.html#GDK-CONTROL-MASK:CAPS"><span class="type">GDK_CONTROL_MASK</span></a> is valid - this is a “Ctrl+a” accelerator.
+plus <span class="type">GDK_CONTROL_MASK</span> is valid - this is a “Ctrl+a” accelerator.
 But, you can't, for instance, use the <span class="type">GDK_KEY_Control_L</span> keyval
 as an accelerator.</p>
 <div class="refsect3">
@@ -948,13 +948,13 @@ as an accelerator.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gtk_accelerator_parse (<em class="parameter"><code>const <span class="type">gchar</span> *accelerator</code></em>,
                        <em class="parameter"><code><span class="type">guint</span> *accelerator_key</code></em>,
-                       <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> *accelerator_mods</code></em>);</pre>
+                       <em class="parameter"><code><span class="type">GdkModifierType</span> *accelerator_mods</code></em>);</pre>
 <p>Parses a string representing an accelerator. The format looks like
 “&lt;Control&gt;a” or “&lt;Shift&gt;&lt;Alt&gt;F1” or “&lt;Release&gt;z” (the last one is
 for key release).</p>
 <p>The parser is fairly liberal and allows lower or upper case, and also
 abbreviations such as “&lt;Ctl&gt;” and “&lt;Ctrl&gt;”. Key names are parsed using
-<a href="../html/gdk3-Keyboard-Handling.html#gdk-keyval-from-name"><code class="function">gdk_keyval_from_name()</code></a>. For character keys the name is not the symbol,
+<code class="function">gdk_keyval_from_name()</code>. For character keys the name is not the symbol,
 but the lowercase name, e.g. one would use “&lt;Ctrl&gt;minus” instead of
 “&lt;Ctrl&gt;-”.</p>
 <p>If the parse fails, <em class="parameter"><code>accelerator_key</code></em>
@@ -996,10 +996,10 @@ modifier mask, <code class="literal">NULL</code>. </p></td>
 <a name="gtk-accelerator-name"></a><h3>gtk_accelerator_name ()</h3>
 <pre class="programlisting"><span class="returnvalue">gchar</span> *
 gtk_accelerator_name (<em class="parameter"><code><span class="type">guint</span> accelerator_key</code></em>,
-                      <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> accelerator_mods</code></em>);</pre>
+                      <em class="parameter"><code><span class="type">GdkModifierType</span> accelerator_mods</code></em>);</pre>
 <p>Converts an accelerator keyval and modifier mask into a string
 parseable by <a class="link" href="gtk3-Keyboard-Accelerators.html#gtk-accelerator-parse" title="gtk_accelerator_parse ()"><code class="function">gtk_accelerator_parse()</code></a>. For example, if you pass in
-<span class="type">GDK_KEY_q</span> and <a href="../html/gdk3-Windows.html#GDK-CONTROL-MASK:CAPS"><span class="type">GDK_CONTROL_MASK</span></a>, this function returns “&lt;Control&gt;q”.</p>
+<span class="type">GDK_KEY_q</span> and <span class="type">GDK_CONTROL_MASK</span>, this function returns “&lt;Control&gt;q”.</p>
 <p>If you need to display accelerators in the user interface,
 see <a class="link" href="gtk3-Keyboard-Accelerators.html#gtk-accelerator-get-label" title="gtk_accelerator_get_label ()"><code class="function">gtk_accelerator_get_label()</code></a>.</p>
 <div class="refsect3">
@@ -1034,7 +1034,7 @@ see <a class="link" href="gtk3-Keyboard-Accelerators.html#gtk-accelerator-get-la
 <a name="gtk-accelerator-get-label"></a><h3>gtk_accelerator_get_label ()</h3>
 <pre class="programlisting"><span class="returnvalue">gchar</span> *
 gtk_accelerator_get_label (<em class="parameter"><code><span class="type">guint</span> accelerator_key</code></em>,
-                           <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> accelerator_mods</code></em>);</pre>
+                           <em class="parameter"><code><span class="type">GdkModifierType</span> accelerator_mods</code></em>);</pre>
 <p>Converts an accelerator keyval and modifier mask into a string
 which can be used to represent the accelerator to the user.</p>
 <div class="refsect3">
@@ -1072,7 +1072,7 @@ which can be used to represent the accelerator to the user.</p>
 gtk_accelerator_parse_with_keycode (<em class="parameter"><code>const <span class="type">gchar</span> *accelerator</code></em>,
                                     <em class="parameter"><code><span class="type">guint</span> *accelerator_key</code></em>,
                                     <em class="parameter"><code><span class="type">guint</span> **accelerator_codes</code></em>,
-                                    <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> *accelerator_mods</code></em>);</pre>
+                                    <em class="parameter"><code><span class="type">GdkModifierType</span> *accelerator_mods</code></em>);</pre>
 <p>Parses a string representing an accelerator, similarly to
 <a class="link" href="gtk3-Keyboard-Accelerators.html#gtk-accelerator-parse" title="gtk_accelerator_parse ()"><code class="function">gtk_accelerator_parse()</code></a> but handles keycodes as well. This is only
 useful for system-level components, applications should use
@@ -1128,10 +1128,10 @@ modifier mask, <code class="literal">NULL</code>. </p></td>
 <div class="refsect2">
 <a name="gtk-accelerator-name-with-keycode"></a><h3>gtk_accelerator_name_with_keycode ()</h3>
 <pre class="programlisting"><span class="returnvalue">gchar</span> *
-gtk_accelerator_name_with_keycode (<em class="parameter"><code><a href="../html/GdkDisplay.html#GdkDisplay-struct"><span class="type">GdkDisplay</span></a> *display</code></em>,
+gtk_accelerator_name_with_keycode (<em class="parameter"><code><span class="type">GdkDisplay</span> *display</code></em>,
                                    <em class="parameter"><code><span class="type">guint</span> accelerator_key</code></em>,
                                    <em class="parameter"><code><span class="type">guint</span> keycode</code></em>,
-                                   <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> accelerator_mods</code></em>);</pre>
+                                   <em class="parameter"><code><span class="type">GdkModifierType</span> accelerator_mods</code></em>);</pre>
 <p>Converts an accelerator keyval and modifier mask
 into a string parseable by <a class="link" href="gtk3-Keyboard-Accelerators.html#gtk-accelerator-parse-with-keycode" title="gtk_accelerator_parse_with_keycode ()"><code class="function">gtk_accelerator_parse_with_keycode()</code></a>,
 similarly to <a class="link" href="gtk3-Keyboard-Accelerators.html#gtk-accelerator-name" title="gtk_accelerator_name ()"><code class="function">gtk_accelerator_name()</code></a> but handling keycodes.
@@ -1148,7 +1148,7 @@ should use <a class="link" href="gtk3-Keyboard-Accelerators.html#gtk-accelerator
 <tbody>
 <tr>
 <td class="parameter_name"><p>display</p></td>
-<td class="parameter_description"><p>a <a href="../html/GdkDisplay.html#GdkDisplay-struct"><span class="type">GdkDisplay</span></a> or <code class="literal">NULL</code> to use the default display. </p></td>
+<td class="parameter_description"><p>a <span class="type">GdkDisplay</span> or <code class="literal">NULL</code> to use the default display. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -1180,10 +1180,10 @@ should use <a class="link" href="gtk3-Keyboard-Accelerators.html#gtk-accelerator
 <a name="gtk-accelerator-get-label-with-keycode"></a><h3>gtk_accelerator_get_label_with_keycode ()</h3>
 <pre class="programlisting"><span class="returnvalue">gchar</span> *
 gtk_accelerator_get_label_with_keycode
-                               (<em class="parameter"><code><a href="../html/GdkDisplay.html#GdkDisplay-struct"><span class="type">GdkDisplay</span></a> *display</code></em>,
+                               (<em class="parameter"><code><span class="type">GdkDisplay</span> *display</code></em>,
                                 <em class="parameter"><code><span class="type">guint</span> accelerator_key</code></em>,
                                 <em class="parameter"><code><span class="type">guint</span> keycode</code></em>,
-                                <em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> accelerator_mods</code></em>);</pre>
+                                <em class="parameter"><code><span class="type">GdkModifierType</span> accelerator_mods</code></em>);</pre>
 <p>Converts an accelerator keyval and modifier mask
 into a (possibly translated) string that can be displayed to
 a user, similarly to <a class="link" href="gtk3-Keyboard-Accelerators.html#gtk-accelerator-get-label" title="gtk_accelerator_get_label ()"><code class="function">gtk_accelerator_get_label()</code></a>, but handling
@@ -1201,7 +1201,7 @@ should use <a class="link" href="gtk3-Keyboard-Accelerators.html#gtk-accelerator
 <tbody>
 <tr>
 <td class="parameter_name"><p>display</p></td>
-<td class="parameter_description"><p>a <a href="../html/GdkDisplay.html#GdkDisplay-struct"><span class="type">GdkDisplay</span></a> or <code class="literal">NULL</code> to use the default display. </p></td>
+<td class="parameter_description"><p>a <span class="type">GdkDisplay</span> or <code class="literal">NULL</code> to use the default display. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
@@ -1232,11 +1232,11 @@ should use <a class="link" href="gtk3-Keyboard-Accelerators.html#gtk-accelerator
 <div class="refsect2">
 <a name="gtk-accelerator-set-default-mod-mask"></a><h3>gtk_accelerator_set_default_mod_mask ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
-gtk_accelerator_set_default_mod_mask (<em class="parameter"><code><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> default_mod_mask</code></em>);</pre>
+gtk_accelerator_set_default_mod_mask (<em class="parameter"><code><span class="type">GdkModifierType</span> default_mod_mask</code></em>);</pre>
 <p>Sets the modifiers that will be considered significant for keyboard
 accelerators. The default mod mask depends on the GDK backend in use,
-but will typically include <a href="../html/gdk3-Windows.html#GDK-CONTROL-MASK:CAPS"><span class="type">GDK_CONTROL_MASK</span></a> | <a href="../html/gdk3-Windows.html#GDK-SHIFT-MASK:CAPS"><span class="type">GDK_SHIFT_MASK</span></a> |
-<a href="../html/gdk3-Windows.html#GDK-MOD1-MASK:CAPS"><span class="type">GDK_MOD1_MASK</span></a> | <a href="../html/gdk3-Windows.html#GDK-SUPER-MASK:CAPS"><span class="type">GDK_SUPER_MASK</span></a> | <a href="../html/gdk3-Windows.html#GDK-HYPER-MASK:CAPS"><span class="type">GDK_HYPER_MASK</span></a> | <a href="../html/gdk3-Windows.html#GDK-META-MASK:CAPS"><span class="type">GDK_META_MASK</span></a>.
+but will typically include <span class="type">GDK_CONTROL_MASK</span> | <span class="type">GDK_SHIFT_MASK</span> |
+<span class="type">GDK_MOD1_MASK</span> | <span class="type">GDK_SUPER_MASK</span> | <span class="type">GDK_HYPER_MASK</span> | <span class="type">GDK_META_MASK</span>.
 In other words, Control, Shift, Alt, Super, Hyper and Meta. Other
 modifiers will by default be ignored by <a class="link" href="gtk3-Keyboard-Accelerators.html#GtkAccelGroup"><span class="type">GtkAccelGroup</span></a>.</p>
 <p>You must include at least the three modifiers Control, Shift
@@ -1262,7 +1262,7 @@ before using any accelerator groups.</p>
 <hr>
 <div class="refsect2">
 <a name="gtk-accelerator-get-default-mod-mask"></a><h3>gtk_accelerator_get_default_mod_mask ()</h3>
-<pre class="programlisting"><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="returnvalue">GdkModifierType</span></a>
+<pre class="programlisting"><span class="returnvalue">GdkModifierType</span>
 gtk_accelerator_get_default_mod_mask (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
 <p>Gets the modifier mask.</p>
 <p>The modifier mask determines which modifiers are considered significant
@@ -1371,7 +1371,7 @@ from the accel group.</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
 <tr>
-<td class="struct_member_name"><p><a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> <em class="structfield"><code><a name="GtkAccelKey.accel-mods"></a>accel_mods</code></em>;</p></td>
+<td class="struct_member_name"><p><span class="type">GdkModifierType</span> <em class="structfield"><code><a name="GtkAccelKey.accel-mods"></a>accel_mods</code></em>;</p></td>
 <td class="struct_member_description"><p>The accelerator modifiers</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
@@ -1398,7 +1398,7 @@ from the accel group.</p></td>
 <hr>
 <div class="refsect2">
 <a name="GtkAccelGroup--modifier-mask"></a><h3>The <code class="literal">“modifier-mask”</code> property</h3>
-<pre class="programlisting">  “modifier-mask”            <a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a></pre>
+<pre class="programlisting">  “modifier-mask”            <span class="type">GdkModifierType</span></pre>
 <p>Modifier Mask.</p>
 <p>Owner: GtkAccelGroup</p>
 <p>Flags: Read</p>
@@ -1412,7 +1412,7 @@ from the accel group.</p></td>
 user_function (<a class="link" href="gtk3-Keyboard-Accelerators.html#GtkAccelGroup"><span class="type">GtkAccelGroup</span></a>  *accel_group,
                <span class="type">GObject</span>        *acceleratable,
                <span class="type">guint</span>           keyval,
-               <a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> modifier,
+               <span class="type">GdkModifierType</span> modifier,
                <span class="type">gpointer</span>        user_data)</pre>
 <p>The accel-activate signal is an implementation detail of
 <a class="link" href="gtk3-Keyboard-Accelerators.html#GtkAccelGroup"><span class="type">GtkAccelGroup</span></a> and not meant to be used by applications.</p>
@@ -1465,7 +1465,7 @@ user_function (<a class="link" href="gtk3-Keyboard-Accelerators.html#GtkAccelGro
 <pre class="programlisting"><span class="returnvalue">void</span>
 user_function (<a class="link" href="gtk3-Keyboard-Accelerators.html#GtkAccelGroup"><span class="type">GtkAccelGroup</span></a>  *accel_group,
                <span class="type">guint</span>           keyval,
-               <a href="../html/gdk3-Windows.html#GdkModifierType"><span class="type">GdkModifierType</span></a> modifier,
+               <span class="type">GdkModifierType</span> modifier,
                <span class="type">GClosure</span>       *accel_closure,
                <span class="type">gpointer</span>        user_data)</pre>
 <p>The accel-changed signal is emitted when an entry

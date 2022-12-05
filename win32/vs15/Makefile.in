@@ -212,6 +212,7 @@ ETAGS = @ETAGS@
 EXEEXT = @EXEEXT@
 EXE_MANIFEST_ARCHITECTURE = @EXE_MANIFEST_ARCHITECTURE@
 FGREP = @FGREP@
+FILECMD = @FILECMD@
 GAIL_LT_CURRENT_MINUS_AGE = @GAIL_LT_CURRENT_MINUS_AGE@
 GAIL_LT_VERSION_INFO = @GAIL_LT_VERSION_INFO@
 GDK_BACKENDS = @GDK_BACKENDS@
@@ -480,20 +481,16 @@ EXTRA_DIST_COPIED = \
 	gtk3-demo-application.vcxproj.filters	\
 	gtk3-icon-browser.vcxproj	\
 	gtk3-icon-browser.vcxproj.filters	\
+	gtk3-widget-factory.vcxproj		\
+	gtk3-widget-factory.vcxproj.filters	\
 	gailutil-3.vcxproj	\
 	gailutil-3.vcxproj.filters	\
 	gtk3-install.vcxproj	\
-	gtk3-install.vcxproj.filters	\
 	gtk3-introspect.vcxproj		\
 	broadwayd.vcxproj	\
 	broadwayd.vcxproj.filters	\
 	gdk3-broadway.vcxproj	\
-	gdk3-broadway.vcxproj.filters	\
-	gtk3-build-defines.props	\
-	gtk3-copy-gdk-broadway.props	\
-	gtk3-ignore-broadway.props	\
-	gtk3-install.props	\
-	gtk3-version-paths.props
+	gdk3-broadway.vcxproj.filters
 
 DISTCLEANFILES = $(EXTRA_DIST_COPIED)
 MSVC_VER = 15
@@ -772,13 +769,6 @@ check-local: test-cwd
 		sed 's/v100/v$(MSVC_TOOLSET)/g' < $(top_srcdir)/win32/vs10/$@ > $(top_builddir)/win32/vs$(MSVC_VER)/$@; \
 	else \
 		sed 's/v100/v$(MSVC_TOOLSET)/g' < $(top_builddir)/win32/vs10/$@ > $(top_builddir)/win32/vs$(MSVC_VER)/$@; \
-	fi
-
-%.props: $(top_builddir)/win32/vs10/Makefile
-	if test -e $(top_srcdir)/win32/vs10/$@; then \
-		sed 's/<VSVer>10<\/VSVer>/<VSVer>$(MSVC_VER)<\/VSVer>/g' < $(top_srcdir)/win32/vs10/$@ > $(top_builddir)/win32/vs$(MSVC_VER)/$@; \
-	elif test -e $(top_builddir)/win32/vs10/$@; then \
-		sed 's/<VSVer>10<\/VSVer>/<VSVer>$(MSVC_VER)<\/VSVer>/g' < $(top_builddir)/win32/vs10/$@ > $(top_builddir)/win32/vs$(MSVC_VER)/$@; \
 	fi
 
 %.vcxproj.filters: $(top_builddir)/win32/vs10/Makefile

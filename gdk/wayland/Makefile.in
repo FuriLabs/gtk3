@@ -91,6 +91,10 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@USE_XDG_ACTIVATION_TRUE@am__append_1 = \
+@USE_XDG_ACTIVATION_TRUE@	xdg-activation-v1-client-protocol.h	\
+@USE_XDG_ACTIVATION_TRUE@	xdg-activation-v1-protocol.c
+
 subdir = gdk/wayland
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_prog_cc_for_build.m4 \
@@ -114,14 +118,18 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 LTLIBRARIES = $(noinst_LTLIBRARIES)
 libgdk_wayland_la_LIBADD =
+am__dirstamp = $(am__leading_dot)dirstamp
 am_libgdk_wayland_la_OBJECTS = gdkapplaunchcontext-wayland.lo \
 	gdkcursor-wayland.lo gdkdevice-wayland.lo \
 	gdkdisplay-wayland.lo gdkdnd-wayland.lo gdkeventsource.lo \
 	gdkkeys-wayland.lo gdkglcontext-wayland.lo \
 	gdkmonitor-wayland.lo gdkscreen-wayland.lo \
 	gdkselection-wayland.lo gdkwindow-wayland.lo \
-	wm-button-layout-translation.lo
-am__objects_1 = pointer-gestures-unstable-v1-protocol.lo \
+	wm-button-layout-translation.lo cursor/os-compatibility.lo \
+	cursor/wayland-cursor.lo cursor/xcursor.lo
+@USE_XDG_ACTIVATION_TRUE@am__objects_1 =  \
+@USE_XDG_ACTIVATION_TRUE@	xdg-activation-v1-protocol.lo
+am__objects_2 = pointer-gestures-unstable-v1-protocol.lo \
 	xdg-shell-protocol.lo xdg-shell-unstable-v6-protocol.lo \
 	xdg-foreign-unstable-v1-protocol.lo \
 	gtk-primary-selection-protocol.lo \
@@ -129,8 +137,8 @@ am__objects_1 = pointer-gestures-unstable-v1-protocol.lo \
 	xdg-output-unstable-v1-protocol.lo \
 	keyboard-shortcuts-inhibit-unstable-v1-protocol.lo \
 	server-decoration-protocol.lo gtk-shell-protocol.lo \
-	primary-selection-unstable-v1-protocol.lo
-nodist_libgdk_wayland_la_OBJECTS = $(am__objects_1)
+	primary-selection-unstable-v1-protocol.lo $(am__objects_1)
+nodist_libgdk_wayland_la_OBJECTS = $(am__objects_2)
 libgdk_wayland_la_OBJECTS = $(am_libgdk_wayland_la_OBJECTS) \
 	$(nodist_libgdk_wayland_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -171,10 +179,14 @@ am__depfiles_remade = ./$(DEPDIR)/gdkapplaunchcontext-wayland.Plo \
 	./$(DEPDIR)/server-decoration-protocol.Plo \
 	./$(DEPDIR)/tablet-unstable-v2-protocol.Plo \
 	./$(DEPDIR)/wm-button-layout-translation.Plo \
+	./$(DEPDIR)/xdg-activation-v1-protocol.Plo \
 	./$(DEPDIR)/xdg-foreign-unstable-v1-protocol.Plo \
 	./$(DEPDIR)/xdg-output-unstable-v1-protocol.Plo \
 	./$(DEPDIR)/xdg-shell-protocol.Plo \
-	./$(DEPDIR)/xdg-shell-unstable-v6-protocol.Plo
+	./$(DEPDIR)/xdg-shell-unstable-v6-protocol.Plo \
+	cursor/$(DEPDIR)/os-compatibility.Plo \
+	cursor/$(DEPDIR)/wayland-cursor.Plo \
+	cursor/$(DEPDIR)/xcursor.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -317,6 +329,7 @@ ETAGS = @ETAGS@
 EXEEXT = @EXEEXT@
 EXE_MANIFEST_ARCHITECTURE = @EXE_MANIFEST_ARCHITECTURE@
 FGREP = @FGREP@
+FILECMD = @FILECMD@
 GAIL_LT_CURRENT_MINUS_AGE = @GAIL_LT_CURRENT_MINUS_AGE@
 GAIL_LT_VERSION_INFO = @GAIL_LT_VERSION_INFO@
 GDK_BACKENDS = @GDK_BACKENDS@
@@ -570,6 +583,7 @@ AM_CPPFLAGS = \
 	-DGDK_COMPILATION			\
 	-I$(top_srcdir)				\
 	-I$(top_srcdir)/gdk			\
+	-I$(top_srcdir)/gdk/wayland/cursor	\
 	-I$(top_builddir)/gdk			\
 	$(GDK_HIDDEN_VISIBILITY_CFLAGS)		\
 	$(GTK_DEBUG_FLAGS)			\
@@ -579,58 +593,43 @@ LDADDS = $(GDK_DEP_LIBS) $(SHM_LIBS)
 noinst_LTLIBRARIES = \
 	libgdk-wayland.la
 
-BUILT_SOURCES = \
-	pointer-gestures-unstable-v1-client-protocol.h		\
-	pointer-gestures-unstable-v1-protocol.c			\
-	xdg-shell-client-protocol.h				\
-	xdg-shell-protocol.c					\
-	xdg-shell-unstable-v6-client-protocol.h			\
-	xdg-shell-unstable-v6-protocol.c			\
-	xdg-foreign-unstable-v1-client-protocol.h		\
-	xdg-foreign-unstable-v1-protocol.c			\
-	gtk-primary-selection-client-protocol.h			\
-	gtk-primary-selection-protocol.c			\
-	tablet-unstable-v2-client-protocol.h	\
-	tablet-unstable-v2-protocol.c		\
-	xdg-output-unstable-v1-protocol.c			\
-	xdg-output-unstable-v1-client-protocol.h		\
+BUILT_SOURCES = pointer-gestures-unstable-v1-client-protocol.h \
+	pointer-gestures-unstable-v1-protocol.c \
+	xdg-shell-client-protocol.h xdg-shell-protocol.c \
+	xdg-shell-unstable-v6-client-protocol.h \
+	xdg-shell-unstable-v6-protocol.c \
+	xdg-foreign-unstable-v1-client-protocol.h \
+	xdg-foreign-unstable-v1-protocol.c \
+	gtk-primary-selection-client-protocol.h \
+	gtk-primary-selection-protocol.c \
+	tablet-unstable-v2-client-protocol.h \
+	tablet-unstable-v2-protocol.c \
+	xdg-output-unstable-v1-protocol.c \
+	xdg-output-unstable-v1-client-protocol.h \
 	keyboard-shortcuts-inhibit-unstable-v1-client-protocol.h \
-	keyboard-shortcuts-inhibit-unstable-v1-protocol.c	\
-	server-decoration-client-protocol.h		\
-	server-decoration-protocol.c			\
-	gtk-shell-client-protocol.h		\
-	gtk-shell-protocol.c			\
-	primary-selection-unstable-v1-client-protocol.h		\
-	primary-selection-unstable-v1-protocol.c
-
+	keyboard-shortcuts-inhibit-unstable-v1-protocol.c \
+	server-decoration-client-protocol.h \
+	server-decoration-protocol.c gtk-shell-client-protocol.h \
+	gtk-shell-protocol.c \
+	primary-selection-unstable-v1-client-protocol.h \
+	primary-selection-unstable-v1-protocol.c $(am__append_1)
 nodist_libgdk_wayland_la_SOURCES = \
 	$(BUILT_SOURCES)
 
 DISTCLEANFILES = \
 	$(BUILT_SOURCES)
 
-libgdk_wayland_la_SOURCES = \
-	gdkapplaunchcontext-wayland.c		\
-	gdkcursor-wayland.c			\
-	gdkdevice-wayland.c			\
-	gdkdisplay-wayland.c			\
-	gdkdisplay-wayland.h			\
-	gdkdnd-wayland.c			\
-	gdkeventsource.c			\
-	gdkkeys-wayland.c                       \
-	gdkglcontext-wayland.c			\
-	gdkglcontext-wayland.h			\
-	gdkmonitor-wayland.c			\
-	gdkmonitor-wayland.h			\
-	gdkscreen-wayland.c			\
-	gdkseat-wayland.h			\
-	gdkselection-wayland.c			\
-	gdkwindow-wayland.c			\
-	gdkwayland.h				\
-	gdkprivate-wayland.h			\
-	wm-button-layout-translation.c		\
-	wm-button-layout-translation.h
-
+libgdk_wayland_la_SOURCES = gdkapplaunchcontext-wayland.c \
+	gdkcursor-wayland.c gdkdevice-wayland.c gdkdisplay-wayland.c \
+	gdkdisplay-wayland.h gdkdnd-wayland.c gdkeventsource.c \
+	gdkkeys-wayland.c gdkglcontext-wayland.c \
+	gdkglcontext-wayland.h gdkmonitor-wayland.c \
+	gdkmonitor-wayland.h gdkscreen-wayland.c gdkseat-wayland.h \
+	gdkselection-wayland.c gdkwindow-wayland.c gdkwayland.h \
+	gdkprivate-wayland.h wm-button-layout-translation.c \
+	wm-button-layout-translation.h cursor/os-compatibility.c \
+	cursor/os-compatibility.h cursor/wayland-cursor.c \
+	cursor/wayland-cursor.h cursor/xcursor.c cursor/xcursor.h
 libgdkinclude_HEADERS = \
 	gdkwayland.h
 
@@ -688,12 +687,26 @@ clean-noinstLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+cursor/$(am__dirstamp):
+	@$(MKDIR_P) cursor
+	@: > cursor/$(am__dirstamp)
+cursor/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) cursor/$(DEPDIR)
+	@: > cursor/$(DEPDIR)/$(am__dirstamp)
+cursor/os-compatibility.lo: cursor/$(am__dirstamp) \
+	cursor/$(DEPDIR)/$(am__dirstamp)
+cursor/wayland-cursor.lo: cursor/$(am__dirstamp) \
+	cursor/$(DEPDIR)/$(am__dirstamp)
+cursor/xcursor.lo: cursor/$(am__dirstamp) \
+	cursor/$(DEPDIR)/$(am__dirstamp)
 
 libgdk-wayland.la: $(libgdk_wayland_la_OBJECTS) $(libgdk_wayland_la_DEPENDENCIES) $(EXTRA_libgdk_wayland_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK)  $(libgdk_wayland_la_OBJECTS) $(libgdk_wayland_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f cursor/*.$(OBJEXT)
+	-rm -f cursor/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
@@ -718,10 +731,14 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/server-decoration-protocol.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/tablet-unstable-v2-protocol.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wm-button-layout-translation.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xdg-activation-v1-protocol.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xdg-foreign-unstable-v1-protocol.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xdg-output-unstable-v1-protocol.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xdg-shell-protocol.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xdg-shell-unstable-v6-protocol.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@cursor/$(DEPDIR)/os-compatibility.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@cursor/$(DEPDIR)/wayland-cursor.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@cursor/$(DEPDIR)/xcursor.Plo@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -758,6 +775,7 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf cursor/.libs cursor/_libs
 install-libgdkincludeHEADERS: $(libgdkinclude_HEADERS)
 	@$(NORMAL_INSTALL)
 	@list='$(libgdkinclude_HEADERS)'; test -n "$(libgdkincludedir)" || list=; \
@@ -922,6 +940,8 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f cursor/$(DEPDIR)/$(am__dirstamp)
+	-rm -f cursor/$(am__dirstamp)
 	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
 
 maintainer-clean-generic:
@@ -954,10 +974,14 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/server-decoration-protocol.Plo
 	-rm -f ./$(DEPDIR)/tablet-unstable-v2-protocol.Plo
 	-rm -f ./$(DEPDIR)/wm-button-layout-translation.Plo
+	-rm -f ./$(DEPDIR)/xdg-activation-v1-protocol.Plo
 	-rm -f ./$(DEPDIR)/xdg-foreign-unstable-v1-protocol.Plo
 	-rm -f ./$(DEPDIR)/xdg-output-unstable-v1-protocol.Plo
 	-rm -f ./$(DEPDIR)/xdg-shell-protocol.Plo
 	-rm -f ./$(DEPDIR)/xdg-shell-unstable-v6-protocol.Plo
+	-rm -f cursor/$(DEPDIR)/os-compatibility.Plo
+	-rm -f cursor/$(DEPDIR)/wayland-cursor.Plo
+	-rm -f cursor/$(DEPDIR)/xcursor.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -1024,10 +1048,14 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/server-decoration-protocol.Plo
 	-rm -f ./$(DEPDIR)/tablet-unstable-v2-protocol.Plo
 	-rm -f ./$(DEPDIR)/wm-button-layout-translation.Plo
+	-rm -f ./$(DEPDIR)/xdg-activation-v1-protocol.Plo
 	-rm -f ./$(DEPDIR)/xdg-foreign-unstable-v1-protocol.Plo
 	-rm -f ./$(DEPDIR)/xdg-output-unstable-v1-protocol.Plo
 	-rm -f ./$(DEPDIR)/xdg-shell-protocol.Plo
 	-rm -f ./$(DEPDIR)/xdg-shell-unstable-v6-protocol.Plo
+	-rm -f cursor/$(DEPDIR)/os-compatibility.Plo
+	-rm -f cursor/$(DEPDIR)/wayland-cursor.Plo
+	-rm -f cursor/$(DEPDIR)/xcursor.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
@@ -1141,6 +1169,11 @@ endef
 %-protocol.c : $(WAYLAND_PROTOCOLS_DATADIR)/$$(call protostability,$$*)/$$(call protoname,$$*)/$$*.xml
 	$(AM_V_GEN)$(WAYLAND_SCANNER) private-code < $< > $@
 %-client-protocol.h : $(WAYLAND_PROTOCOLS_DATADIR)/$$(call protostability,$$*)/$$(call protoname,$$*)/$$*.xml
+	$(AM_V_GEN)$(WAYLAND_SCANNER) client-header < $< > $@
+
+xdg-activation-v1-protocol.c : $(WAYLAND_PROTOCOLS_DATADIR)/staging/xdg-activation/xdg-activation-v1.xml
+	$(AM_V_GEN)$(WAYLAND_SCANNER) private-code < $< > $@
+xdg-activation-v1-client-protocol.h : $(WAYLAND_PROTOCOLS_DATADIR)/staging/xdg-activation/xdg-activation-v1.xml
 	$(AM_V_GEN)$(WAYLAND_SCANNER) client-header < $< > $@
 
 %-protocol.c : $(srcdir)/protocol/%.xml

@@ -60,8 +60,8 @@
       behavior than before.
     </p>
 <p>
-      The Gtk+ scrolling implementation has changed. <a href="../html/gdk3-Windows.html#gdk-window-scroll"><code class="function">gdk_window_scroll()</code></a>
-      and <a href="../html/gdk3-Windows.html#gdk-window-move-region"><code class="function">gdk_window_move_region()</code></a> no longer copy the region on the
+      The Gtk+ scrolling implementation has changed. <code class="function">gdk_window_scroll()</code>
+      and <code class="function">gdk_window_move_region()</code> no longer copy the region on the
       window, but rather invalidate the entire scrolled region. This is
       slightly slower, but allowed us to implement a offscreen surface
       scrolling method which better fits modern hardware. Most scrolling

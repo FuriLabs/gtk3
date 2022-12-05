@@ -42,12 +42,10 @@ for BACKEND in x11; do
         -u LD_PRELOAD \
         GIO_USE_VFS=local \
         GIO_USE_VOLUME_MONITOR=unix \
-        REFTEST_OUTPUT_DIR="$BUILDDIR/testsuite/reftests/output" \
         dbus-run-session -- \
             xvfb-run -a \
                 dh_auto_test --builddirectory="$BUILDDIR" -- \
-                    -k check -j1 \
-                    GTESTER="gtester -k --verbose -o gtester.xml" \
+                    "$@" \
     || touch "$test_data/tests-failed"
 
     # Don't base64-encode the image results for tests that upstream
@@ -57,8 +55,6 @@ for BACKEND in x11; do
     done
 done
 
-# gtester unhelpfully suppresses stdout/stderr, add those to the log
-find "$BUILDDIR" -name gtester.xml -print0 | xargs -0 -r head -v -n-0
 # Put the images in the log as base64 since we don't have an
 # equivalent of AUTOPKGTEST_ARTIFACTS for buildds
 debian/log-reftests.py
