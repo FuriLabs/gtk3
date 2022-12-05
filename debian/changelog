@@ -1,6 +1,6 @@
-gtk+3.0 (3.24.35-2ubuntu1) UNRELEASED; urgency=medium
+gtk+3.0 (3.24.35-2ubuntu1) lunar; urgency=medium
 
-  * Resynchronize with Debian, remaining changes
+  * Resynchronize with Debian, remaining changes:
     + debian/control.in: Build-Depend on dh-sequence-translations
     + Install a settings.ini file to set our themes
     + Update debian/libgtk-3-0.symbols for ubuntu_gtk_custom_menu_items.patch
@@ -18,9 +18,10 @@ gtk+3.0 (3.24.35-2ubuntu1) UNRELEASED; urgency=medium
       - 0001-gtkwindow-set-transparent-background-color.patch
       - unity-border-radius.patch
       - unity-headerbar-maximized-mode.patch
-    + Re-enable and adapt reftest-known-fail.patch (lp: #1987304)
+  * Update ubuntu_gtk_custom_menu_items.patch for meson
+  * Drop obsolete reftest-known-fail.patch
 
- -- Jeremy Bicha <jbicha@ubuntu.com>  Mon, 05 Dec 2022 09:46:00 -0500
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Mon, 05 Dec 2022 10:34:04 -0500
 
 gtk+3.0 (3.24.35-2) unstable; urgency=medium
 
