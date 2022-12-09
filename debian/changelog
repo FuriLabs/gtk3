@@ -1,3 +1,26 @@
+gtk+3.0 (3.24.35-3ubuntu1) lunar; urgency=medium
+
+  * Resynchronize with Debian, remaining changes:
+    + debian/control.in: Build-Depend on dh-sequence-translations
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0.symbols for ubuntu_gtk_custom_menu_items.patch
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Fri, 09 Dec 2022 08:40:49 -0500
+
 gtk+3.0 (3.24.35-3) unstable; urgency=medium
 
   * Cherry-pick 2 proposed patches to fix app startup regressions
