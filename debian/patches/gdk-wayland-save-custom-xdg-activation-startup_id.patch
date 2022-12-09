@@ -1,0 +1,39 @@
+From: Joan Bruguera <joanbrugueram@gmail.com>
+Date: Tue, 6 Dec 2022 23:51:28 +0000
+Subject: gdk/wayland: save custom xdg-activation startup_id
+
+We must save the startup id. in gdk_wayland_display_notify_startup_complete
+which was set by a previous gtk_window_set_startup_id call so we can use it
+later when presenting the window.
+
+Needed for activation of gnome-terminal (also needs patches on the application
+side, see https://gitlab.gnome.org/GNOME/gnome-terminal/-/issues/7952).
+
+Fixes #5386
+
+Signed-off-by: Joan Bruguera <joanbrugueram@gmail.com>
+
+https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/5301
+---
+ gdk/wayland/gdkdisplay-wayland.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/gdk/wayland/gdkdisplay-wayland.c b/gdk/wayland/gdkdisplay-wayland.c
+index ddf2bf3..7ce279d 100644
+--- a/gdk/wayland/gdkdisplay-wayland.c
++++ b/gdk/wayland/gdkdisplay-wayland.c
+@@ -948,7 +948,13 @@ gdk_wayland_display_notify_startup_complete (GdkDisplay  *display,
+ #ifdef HAVE_XDG_ACTIVATION
+   /* Will be signaled with focus activation */
+   if (display_wayland->xdg_activation)
+-    return;
++    {
++      if (startup_id != NULL)
++        {
++          display_wayland->startup_notification_id = g_strdup (startup_id);
++        }
++      return;
++    }
+ #endif
+ 
+   if (startup_id == NULL)

@@ -1,0 +1,41 @@
+From: Joan Bruguera <joanbrugueram@gmail.com>
+Date: Tue, 6 Dec 2022 20:55:53 +0000
+Subject: window: focus on window show for wayland activation
+
+When using xdg_activation this is responsible for submitting
+the activation token / startup id to the compositor.
+
+This supersedes 5dca6dce91b4413064c858ae011ea7b1e33421e2, which misses the case
+where the window is shown with gtk_widget_show instead of gtk_window_present.
+Note 5dca6dce91 was also accidentally missing on the xdg-activation GTK3 port.
+
+Fixes #5386
+
+Signed-off-by: Joan Bruguera <joanbrugueram@gmail.com>
+
+https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/5301
+---
+ gtk/gtkwindow.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/gtk/gtkwindow.c b/gtk/gtkwindow.c
+index 5478e89..c87b17a 100644
+--- a/gtk/gtkwindow.c
++++ b/gtk/gtkwindow.c
+@@ -6228,6 +6228,16 @@ gtk_window_show (GtkWidget *widget)
+   
+   if (priv->modal)
+     gtk_grab_add (widget);
++
++#ifdef GDK_WINDOWING_WAYLAND
++  if (GDK_IS_WAYLAND_WINDOW (gtk_widget_get_window (widget)))
++    {
++      // Submits the activation token / startup id to the compositor
++      gdk_window_focus (gtk_widget_get_window (widget), priv->initial_timestamp);
++      // Use gtk_window_present's timestamp only once
++      priv->initial_timestamp = GDK_CURRENT_TIME;
++    }
++#endif
+ }
+ 
+ static void
