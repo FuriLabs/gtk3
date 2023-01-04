@@ -7,7 +7,6 @@ items in a GMenuModel that have an 'x-canonical-type' attribute.
 
 It is needed by unity and should not be considered public API.
 ---
- gtk/gtk-sources.inc         |  3 ++
  gtk/gtkmenushell.c          | 69 ++++++++++++++++++++++++++++++++++++++++++++
  gtk/gtkmenutrackeritem.c    | 16 +++++++++++
  gtk/gtkmenutrackeritem.h    |  4 +++
@@ -15,32 +14,11 @@ It is needed by unity and should not be considered public API.
  gtk/ubuntu-private.h        | 32 +++++++++++++++++++++
  gtk/ubuntumenuitemfactory.c | 70 +++++++++++++++++++++++++++++++++++++++++++++
  gtk/ubuntumenuitemfactory.h | 61 +++++++++++++++++++++++++++++++++++++++
- 8 files changed, 258 insertions(+)
+ 7 files changed, 255 insertions(+)
  create mode 100644 gtk/ubuntu-private.h
  create mode 100644 gtk/ubuntumenuitemfactory.c
  create mode 100644 gtk/ubuntumenuitemfactory.h
 
-diff --git a/gtk/gtk-sources.inc b/gtk/gtk-sources.inc
-index a073ada..af4bb54 100644
---- a/gtk/gtk-sources.inc
-+++ b/gtk/gtk-sources.inc
-@@ -7,6 +7,8 @@
- GTK_PUB_HDRS = 		\
- 	gtk.h			\
- 	gtk-autocleanups.h	\
-+	ubuntu-private.h	\
-+	ubuntumenuitemfactory.h	\
- 	gtkx.h			\
- 	gtkx-autocleanups.h	\
- 	gtk-a11y.h		\
-@@ -489,6 +491,7 @@ gtk_base_private_h_sources =	\
- # gtk_base_c_sources_base_gtka_gtkh: sources from gtka* to gtkh*, mostly
- # gtk_base_c_sources_base_gtki_gtkw: sources from gtki* to gtkw*, mostly
- gtk_base_c_sources_base_gtka_gtkh =	\
-+	ubuntumenuitemfactory.c	\
- 	gtkactionmuxer.c	\
- 	gtkactionobserver.c	\
- 	gtkactionobservable.c	\
 diff --git a/gtk/gtkmenushell.c b/gtk/gtkmenushell.c
 index 515492c..ded731a 100644
 --- a/gtk/gtkmenushell.c
@@ -180,7 +158,7 @@ index 2f4f04a..7bf83d9 100644
 +
  #endif
 diff --git a/gtk/meson.build b/gtk/meson.build
-index 79f4f0d..d46f833 100644
+index 21540dd..0d054ed 100644
 --- a/gtk/meson.build
 +++ b/gtk/meson.build
 @@ -385,6 +385,7 @@ gtk_sources = files(
