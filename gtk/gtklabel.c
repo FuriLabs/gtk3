@@ -4232,7 +4232,7 @@ gtk_label_style_updated (GtkWidget *widget)
   if (change == NULL || gtk_css_style_change_affects (change, GTK_CSS_AFFECTS_FONT))
     {
       gtk_label_clear_layout (GTK_LABEL (widget));
-      gtk_widget_queue_resize (label);
+      gtk_widget_queue_resize (widget);
     }
 
   if (change == NULL || gtk_css_style_change_affects (change, GTK_CSS_AFFECTS_TEXT_ATTRS) ||
@@ -5222,7 +5222,8 @@ gtk_label_drag_gesture_begin (GtkGestureDrag *gesture,
     {
       if (min < max && min <= index && index <= max)
         {
-          info->in_drag = TRUE;
+          if (!info->select_words)
+            info->in_drag = TRUE;
           info->drag_start_x = start_x;
           info->drag_start_y = start_y;
         }

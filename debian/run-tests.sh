@@ -43,7 +43,7 @@ for BACKEND in x11; do
         GIO_USE_VFS=local \
         GIO_USE_VOLUME_MONITOR=unix \
         dbus-run-session -- \
-            xvfb-run -a \
+            debian/tests/run-with-display x11 \
                 dh_auto_test --builddirectory="$BUILDDIR" -- \
                     "$@" \
     || touch "$test_data/tests-failed"

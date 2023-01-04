@@ -1,3 +1,22 @@
+gtk+3.0 (3.24.36-1) unstable; urgency=medium
+
+  * New upstream release
+  * Drop patches that were applied upstream
+  * d/control: Increase Meson build-dependency to 0.60
+  * d/rules: Remove Autotools remnants.
+    Upstream releases are now built with Meson.
+  * d/copyright: Add license for cursor images used in Windows builds
+  * d/control.in: Explicitly build-depend on Freetype
+  * d/copyright: Update
+  * d/copyright: Move standalone license stanzas to the end
+  * d/tests, d/run-tests.sh: Copy run-with-display from gtk4.
+    This should make the build-time tests a bit more robust, by using the
+    -noreset option to avoid a race condition (see #981201).
+  * d/rules: Stop trying to install AUTHORS, no longer shipped upstream
+  * d/rules: Install README.md instead of README
+
+ -- Simon McVittie <smcv@debian.org>  Tue, 03 Jan 2023 15:09:37 +0000
+
 gtk+3.0 (3.24.35-3ubuntu1) lunar; urgency=medium
 
   * Resynchronize with Debian, remaining changes:

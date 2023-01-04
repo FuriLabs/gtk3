@@ -19,8 +19,9 @@ tests=$(gnome-desktop-testing-runner -l gtk+ |
     grep -v '^gtk./a11ystate.test$' |
     grep -v '^gtk./reftests')
 
-exec dbus-run-session -- \
-xvfb-run -a -s "-screen 0 1024x768x24" \
+exec \
+debian/tests/run-with-display x11 \
+dbus-run-session -- \
 gnome-desktop-testing-runner \
 --report-directory="$AUTOPKGTEST_ARTIFACTS" \
 --tap \
