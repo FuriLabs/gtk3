@@ -1,3 +1,21 @@
+gtk+3.0 (3.24.36-2) unstable; urgency=medium
+
+  [ Jeremy Bicha ]
+  * d/p/dist/Reinstate-gdk-wayland-cursor-meson.build.patch:
+    Drop, no longer needed as of 3.24.36.
+
+  [ Simon McVittie ]
+  * d/p/gdk-wayland-save-custom-xdg-activation-startup_id.patch,
+    d/p/window-focus-on-window-show-for-wayland-activation.patch:
+    Reinstate patches added in 3.24.35-3 and accidentally dropped while
+    rebasing on 3.24.36.
+    Note that this solution to GNOME/gtk#5386 has been rejected upstream
+    and should be replaced with a backport from GTK 4.
+  * d/rules: Accept minor rendering differences in label-background test.
+    Workaround for GNOME/gtk#5545
+
+ -- Simon McVittie <smcv@debian.org>  Tue, 24 Jan 2023 18:33:47 +0000
+
 gtk+3.0 (3.24.36-1ubuntu1) lunar; urgency=medium
 
   * Resynchronize with Debian, remaining changes:

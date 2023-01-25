@@ -133,8 +133,10 @@ configure_flags_udeb = \
 %:
 	dh $@
 
-fuzzy_reftests = \
-	$(NULL)
+fuzzy_reftests =
+
+# https://gitlab.gnome.org/GNOME/gtk/-/issues/5545
+fuzzy_reftests += label-background
 
 # Debian-specific
 ignore_reftests += \
