@@ -1,3 +1,33 @@
+gtk+3.0 (3.24.36-4) unstable; urgency=medium
+
+  * Team upload.
+  * Backport upstream patch to fix outdated screen state on screenshots.
+    (Closes: #1031112)
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Wed, 15 Feb 2023 12:45:23 +0300
+
+gtk+3.0 (3.24.36-3) unstable; urgency=medium
+
+  * d/patches: Update to gtk-3-24 branch commit 3.24.36-33-g5554113c74,
+    excluding Windows- and macOS-specific changes, and a workaround for
+    a libhandy bug which was applied and then reverted.
+    - Fix logic for when to build GObject-Introspection
+    - Treat XKB_MOD_NAME_LOGO as Super key in Wayland (GNOME/gtk#4913)
+    - Fix animations and transitions randomly stopping (GNOME/gtk#4426)
+    - Take UI scale into account when loading "image-missing" icon
+    - Improve tracking of app status during activation in an attempt to
+      solve GNOME/gtk#5386 in an upstreamable way
+    - Fix a touchscreen handling bug that can cause applications to become
+      unresponsive (GNOME/gtk#4947)
+    - Fix GL rendering issues in Totem after the Mesa AMD driver enabled
+      threaded rendering (GNOME/gtk#5517)
+    - Translation updates: ab, lt, tr
+  * Standards-Version: 4.6.2 (no changes required)
+  * Clean up unused Lintian overrides
+  * Add overrides for lintian/lintian!452
+
+ -- Simon McVittie <smcv@debian.org>  Sat, 04 Feb 2023 17:31:57 +0000
+
 gtk+3.0 (3.24.36-2ubuntu1) lunar; urgency=medium
 
   * Resynchronize with Debian, remaining changes:

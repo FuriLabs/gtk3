@@ -1,0 +1,78 @@
+From: Carlos Garnacho <carlosg@gnome.org>
+Date: Wed, 18 Jan 2023 19:55:31 +0100
+Subject: gtkwindow: Minor refactor
+
+Move the handling of the startup ID to a separate function, since
+this will be called from several places.
+
+(cherry-picked from commit 6f01f846dc66a6359a1524ace13377536821dbb0)
+
+Origin: upstream, 3.24.37, commit:a067938589
+---
+ gtk/gtkwindow.c | 46 +++++++++++++++++++++++++++-------------------
+ 1 file changed, 27 insertions(+), 19 deletions(-)
+
+diff --git a/gtk/gtkwindow.c b/gtk/gtkwindow.c
+index 5478e89..4e341f6 100644
+--- a/gtk/gtkwindow.c
++++ b/gtk/gtkwindow.c
+@@ -6279,6 +6279,32 @@ popover_map (GtkWidget        *widget,
+     }
+ }
+ 
++static void
++gtk_window_notify_startup (GtkWindow *window)
++{
++  GtkWindowPrivate *priv = window->priv;
++
++  if (!disable_startup_notification &&
++      !GTK_IS_OFFSCREEN_WINDOW (window) &&
++      priv->type != GTK_WINDOW_POPUP)
++    {
++      /* Do we have a custom startup-notification id? */
++      if (priv->startup_id != NULL)
++        {
++          /* Make sure we have a "real" id */
++          if (!startup_id_is_fake (priv->startup_id))
++            gdk_notify_startup_complete_with_id (priv->startup_id);
++
++          g_free (priv->startup_id);
++          priv->startup_id = NULL;
++        }
++      else
++        {
++          gdk_notify_startup_complete ();
++        }
++    }
++}
++
+ static void
+ gtk_window_map (GtkWidget *widget)
+ {
+@@ -6354,25 +6380,7 @@ gtk_window_map (GtkWidget *widget)
+ 
+   gdk_window_show (gdk_window);
+ 
+-  if (!disable_startup_notification &&
+-      !GTK_IS_OFFSCREEN_WINDOW (window) &&
+-      priv->type != GTK_WINDOW_POPUP)
+-    {
+-      /* Do we have a custom startup-notification id? */
+-      if (priv->startup_id != NULL)
+-        {
+-          /* Make sure we have a "real" id */
+-          if (!startup_id_is_fake (priv->startup_id))
+-            gdk_notify_startup_complete_with_id (priv->startup_id);
+-
+-          g_free (priv->startup_id);
+-          priv->startup_id = NULL;
+-        }
+-      else
+-        {
+-          gdk_notify_startup_complete ();
+-        }
+-    }
++  gtk_window_notify_startup (window);
+ 
+   /* if mnemonics visible is not already set
+    * (as in the case of popup menus), then hide mnemonics initially

@@ -1,0 +1,33 @@
+From: hrdl <7808331-hrdl@users.noreply.gitlab.com>
+Date: Sun, 15 May 2022 22:48:22 +0200
+Subject: Fixes incorrect grabbing behaviour causing subsequent rejection of
+ input
+
+mouse_location can be set to NULL in gtk_range_update_mouse_location(). This
+causes a match with stepper_?_gadget in gtk_range_multipress_gesture_pressed(),
+as both are NULL. This leads to a grab being added internally and as well, a
+critical error message, and a subsequent rejection of touch inputs. Returning
+early when mouse_location is NULL prevents this.
+
+Bug: https://gitlab.gnome.org/GNOME/gtk/-/issues/4947
+Origin: upstream, 3.24.37, commit:5c6d2c8e87
+---
+ gtk/gtkrange.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/gtk/gtkrange.c b/gtk/gtkrange.c
+index 774174d..b52a210 100644
+--- a/gtk/gtkrange.c
++++ b/gtk/gtkrange.c
+@@ -2711,6 +2711,11 @@ gtk_range_multipress_gesture_pressed (GtkGestureMultiPress *gesture,
+   priv->mouse_y = y;
+ 
+   gtk_range_update_mouse_location (range);
++  if (!priv->mouse_location)
++    {
++      g_warning(G_STRLOC "value of mouse_location is 'NULL'");
++      return;
++    }
+   gtk_css_gadget_get_margin_box (priv->slider_gadget, &slider_alloc);
+ 
+   g_object_get (gtk_widget_get_settings (widget),

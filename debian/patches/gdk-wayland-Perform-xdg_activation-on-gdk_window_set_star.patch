@@ -1,0 +1,50 @@
+From: Carlos Garnacho <carlosg@gnome.org>
+Date: Wed, 18 Jan 2023 20:03:01 +0100
+Subject: gdk/wayland: Perform xdg_activation on gdk_window_set_startup_id
+
+This call has everything to perform activation as specified by the
+xdg_activation protocol, notably a surface to activate as opposed to
+gdk_notify_startup_complete().
+
+Make activation happen here, so that the surface gets activated when
+its gets a startup ID assigned.
+
+(cherry-picked from commit 5aeabdb3d404579b5cab4fff1642ed116f745a8b)
+
+Origin: upstream, 3.24.37, commit:f5a5480fe2
+---
+ gdk/wayland/gdkwindow-wayland.c | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+
+diff --git a/gdk/wayland/gdkwindow-wayland.c b/gdk/wayland/gdkwindow-wayland.c
+index 6ba939a..041c4d3 100644
+--- a/gdk/wayland/gdkwindow-wayland.c
++++ b/gdk/wayland/gdkwindow-wayland.c
+@@ -4160,6 +4160,27 @@ static void
+ gdk_wayland_window_set_startup_id (GdkWindow   *window,
+                                    const gchar *startup_id)
+ {
++  GdkWindowImplWayland *impl = GDK_WINDOW_IMPL_WAYLAND (window->impl);
++  GdkDisplay *display = gdk_window_get_display (window);
++  GdkWaylandDisplay *display_wayland = GDK_WAYLAND_DISPLAY (display);
++  gchar *free_me = NULL;
++
++  if (!startup_id)
++    {
++      free_me = g_steal_pointer (&display_wayland->startup_notification_id);
++      startup_id = free_me;
++    }
++
++#ifdef HAVE_XDG_ACTIVATION
++  if (startup_id)
++    {
++      xdg_activation_v1_activate (display_wayland->xdg_activation,
++                                  startup_id,
++				  impl->display_server.wl_surface);
++    }
++#endif
++
++  g_free (free_me);
+ }
+ 
+ static gboolean

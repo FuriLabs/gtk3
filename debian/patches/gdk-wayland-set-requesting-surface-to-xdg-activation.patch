@@ -1,0 +1,52 @@
+From: Joan Bruguera <joanbrugueram@gmail.com>
+Date: Sun, 4 Dec 2022 22:54:51 +0000
+Subject: gdk/wayland: set requesting surface to xdg-activation
+
+The argument to xdg_activation_token_v1_set_surface is documented to be the
+surface requesting the activation, not the surface to be activated, which is
+given later when calling xdg_activation_v1_activate.
+(c.f. https://gitlab.freedesktop.org/wayland/wayland-protocols/-/commit/36cee4bdbcaf3a75f567315809953b5e21d703da)
+
+Use the same logic as in gdk_wayland_app_launch_context_get_startup_notify_id,
+i.e. if we have a surface with focus, set that, otherwise set NULL.
+
+This fixes requesting urgent/focus on wlroots (compositors like Sway, etc.),
+which was blocked as the surface requesting the activation didn't have focus.
+
+Backport of: 43c1a433aa0839826451f71029965d8e359a9178
+
+Signed-off-by: Joan Bruguera <joanbrugueram@gmail.com>
+Origin: upstream, 3.24.37, commit:41827d9f72
+---
+ gdk/wayland/gdkwindow-wayland.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/gdk/wayland/gdkwindow-wayland.c b/gdk/wayland/gdkwindow-wayland.c
+index 041c4d3..619f798 100644
+--- a/gdk/wayland/gdkwindow-wayland.c
++++ b/gdk/wayland/gdkwindow-wayland.c
+@@ -3850,6 +3850,8 @@ gdk_wayland_window_focus (GdkWindow *window,
+         {
+           struct xdg_activation_token_v1 *token;
+           struct wl_event_queue *event_queue;
++          struct wl_surface *wl_surface = NULL;
++          GdkWindow *focus_window;
+ 
+           event_queue = wl_display_create_queue (display_wayland->wl_display);
+ 
+@@ -3862,8 +3864,13 @@ gdk_wayland_window_focus (GdkWindow *window,
+           xdg_activation_token_v1_set_serial (token,
+                                               _gdk_wayland_seat_get_last_implicit_grab_serial (seat, NULL),
+                                               gdk_wayland_seat_get_wl_seat (seat));
+-          xdg_activation_token_v1_set_surface (token,
+-                                               gdk_wayland_window_get_wl_surface (window));
++
++          focus_window = gdk_wayland_device_get_focus (gdk_seat_get_keyboard (seat));
++          if (focus_window)
++            wl_surface = gdk_wayland_window_get_wl_surface (focus_window);
++          if (wl_surface)
++            xdg_activation_token_v1_set_surface (token, wl_surface);
++
+           xdg_activation_token_v1_commit (token);
+ 
+           while (startup_id == NULL)

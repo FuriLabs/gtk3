@@ -1,0 +1,39 @@
+From: Carlos Garnacho <carlosg@gnome.org>
+Date: Wed, 18 Jan 2023 21:05:28 +0100
+Subject: gtkapplication: Do not call gdk_display_notify_startup_complete()
+
+This should do nothing worthwhile anymore, the X11/Wayland GtkApplication
+implementations do already pass the startup ID from the platform_data
+via windowing specific APIs, and the application handling the request
+via show()/present() should trigger the activation request.
+
+(cherry-picked from commit 3526d8b299becb7cd1e970ea5228a141eae20257)
+
+Origin: upstream, 3.24.37, commit:79e11bed1a
+---
+ gtk/gtkapplication.c | 12 ------------
+ 1 file changed, 12 deletions(-)
+
+diff --git a/gtk/gtkapplication.c b/gtk/gtkapplication.c
+index 17e9205..ac33c84 100644
+--- a/gtk/gtkapplication.c
++++ b/gtk/gtkapplication.c
+@@ -376,18 +376,6 @@ static void
+ gtk_application_after_emit (GApplication *application,
+                             GVariant     *platform_data)
+ {
+-  const char *startup_notification_id = NULL;
+-
+-  g_variant_lookup (platform_data, "desktop-startup-id", "&s", &startup_notification_id);
+-  if (startup_notification_id)
+-    {
+-      GdkDisplay *display;
+-
+-      display = gdk_display_get_default ();
+-      if (display)
+-        gdk_display_notify_startup_complete (display, startup_notification_id);
+-    }
+-
+   gdk_threads_leave ();
+ }
+ 
