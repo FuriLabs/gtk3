@@ -1,5 +1,5 @@
 project('gtk+', 'c',
-  version: '3.24.36',
+  version: '3.24.37',
   default_options: [
     'buildtype=debugoptimized',
     'warning_level=1'
@@ -706,7 +706,6 @@ endif
 
 proto_sources = [
   'text-input-unstable-v3',
-  'gtk-text-input',
 ]
 proto_sources_outputs = []
 
@@ -760,7 +759,6 @@ immodules = [
   [ 'ime', files([ immodule_srcdir + 'gtkimcontextime.c', immodule_srcdir + 'imime.c' ]), win32_enabled ],
   [ 'quartz', files([ immodule_srcdir + 'imquartz.c' ]), quartz_enabled, [ '-xobjective-c' ] ],
   [ 'wayland', files([ immodule_srcdir + 'imwayland.c' ]) + proto_sources_outputs[0], wayland_enabled ],
-  [ 'waylandgtk', files([ immodule_srcdir + 'imwaylandgtk.c'])  + proto_sources_outputs[1], wayland_enabled ],
   [ 'xim', files([ immodule_srcdir + 'gtkimcontextxim.c', immodule_srcdir + 'imxim.c' ]), x11_enabled ],
 ]
 
@@ -849,7 +847,7 @@ endif
 
 # Introspection
 gir = find_program('g-ir-scanner', required : get_option('introspection'))
-build_gir = gir.found() and (not meson.is_cross_build() or get_option('introspection'))
+build_gir = gir.found() and get_option('introspection')
 
 subdir('gdk')
 subdir('gtk')

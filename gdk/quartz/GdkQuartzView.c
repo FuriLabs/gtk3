@@ -342,15 +342,6 @@
 }
 
 static void
-nsrect_from_cairo_rect (NSRect *nsrect, cairo_rectangle_int_t *rect)
-{
-  nsrect->origin.x = (CGFloat)rect->x;
-  nsrect->origin.y = (CGFloat)rect->y;
-  nsrect->size.width = (CGFloat)rect->width;
-  nsrect->size.height = (CGFloat)rect->height;
-}
-
-static void
 cairo_rect_from_nsrect (cairo_rectangle_int_t *rect, NSRect *nsrect)
 {
   rect->x = (int)nsrect->origin.x;
@@ -424,8 +415,7 @@ copy_rectangle_argb32 (cairo_surface_t *dest, cairo_surface_t *source,
     return;
 
   ++impl->in_paint_rect_count;
-  cairo_rect_from_nsrect (&bounds_rect, &backing_bounds);
-  bounds_region = cairo_region_create_rectangle (&bounds_rect);
+
   if (impl->needs_display_region)
     {
       cairo_region_t *region = impl->needs_display_region;
@@ -439,7 +429,7 @@ copy_rectangle_argb32 (cairo_surface_t *dest, cairo_surface_t *source,
       cairo_region_t *region;
 
       cairo_rect_from_nsrect (&bounds, &layer_bounds);
-      region = cairo_region_create_rectangle (&bounds);
+      region = cairo_region_create_rectangle(&bounds);
       _gdk_window_process_updates_recurse (gdk_window, region);
       cairo_region_destroy (region);
     }
@@ -447,8 +437,6 @@ copy_rectangle_argb32 (cairo_surface_t *dest, cairo_surface_t *source,
   if (!impl || !impl->cairo_surface)
     return;
 
-  impl_rect.width = cairo_image_surface_get_width (impl->cairo_surface);
-  impl_rect.height = cairo_image_surface_get_height (impl->cairo_surface);
   CVPixelBufferLockBaseAddress (pixels, 0);
   cvpb_surface =
     cairo_image_surface_create_for_data (CVPixelBufferGetBaseAddress (pixels),
@@ -458,6 +446,12 @@ copy_rectangle_argb32 (cairo_surface_t *dest, cairo_surface_t *source,
                                          (int)CVPixelBufferGetBytesPerRow (pixels));
 
 
+  cairo_rect_from_nsrect (&bounds_rect, &backing_bounds);
+  bounds_region = cairo_region_create_rectangle (&bounds_rect);
+
+  impl_rect.width = cairo_image_surface_get_width (impl->cairo_surface);
+  impl_rect.height = cairo_image_surface_get_height (impl->cairo_surface);
+
   cairo_region_intersect_rectangle (bounds_region, &impl_rect);
   copy_rectangle_argb32 (cvpb_surface, impl->cairo_surface, bounds_region);
 
@@ -465,7 +459,9 @@ copy_rectangle_argb32 (cairo_surface_t *dest, cairo_surface_t *source,
   cairo_region_destroy (bounds_region);
   _gdk_quartz_unref_cairo_surface (gdk_window); // reffed in gdk_window_impl_quartz_begin_paint
   CVPixelBufferUnlockBaseAddress (pixels, 0);
+
   --impl->in_paint_rect_count;
+
   self.layer.contents = NULL;
   self.layer.contents = (id)CVPixelBufferGetIOSurface (pixels);
 }
@@ -543,6 +539,8 @@ copy_rectangle_argb32 (cairo_surface_t *dest, cairo_surface_t *source,
 
 -(void)createBackingStoreWithWidth: (CGFloat) width andHeight: (CGFloat) height
 {
+  IOSurfaceRef surface;
+
   g_return_if_fail (width && height);
 
   CVPixelBufferRelease (pixels);
@@ -550,6 +548,9 @@ copy_rectangle_argb32 (cairo_surface_t *dest, cairo_surface_t *source,
                        kCVPixelFormatType_32BGRA,
                        cfpb_props, &pixels);
 
+  surface = CVPixelBufferGetIOSurface (pixels);
+  IOSurfaceSetValue(surface, CFSTR("IOSurfaceColorSpace"),
+                    kCGColorSpaceSRGB);
 }
 
 #if MAC_OS_X_VERSION_MIN_REQUIRED >= 10700

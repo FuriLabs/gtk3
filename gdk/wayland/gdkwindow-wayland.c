@@ -3850,6 +3850,8 @@ gdk_wayland_window_focus (GdkWindow *window,
         {
           struct xdg_activation_token_v1 *token;
           struct wl_event_queue *event_queue;
+          struct wl_surface *wl_surface = NULL;
+          GdkWindow *focus_window;
 
           event_queue = wl_display_create_queue (display_wayland->wl_display);
 
@@ -3862,8 +3864,13 @@ gdk_wayland_window_focus (GdkWindow *window,
           xdg_activation_token_v1_set_serial (token,
                                               _gdk_wayland_seat_get_last_implicit_grab_serial (seat, NULL),
                                               gdk_wayland_seat_get_wl_seat (seat));
-          xdg_activation_token_v1_set_surface (token,
-                                               gdk_wayland_window_get_wl_surface (window));
+
+          focus_window = gdk_wayland_device_get_focus (gdk_seat_get_keyboard (seat));
+          if (focus_window)
+            wl_surface = gdk_wayland_window_get_wl_surface (focus_window);
+          if (wl_surface)
+            xdg_activation_token_v1_set_surface (token, wl_surface);
+
           xdg_activation_token_v1_commit (token);
 
           while (startup_id == NULL)
@@ -4160,6 +4167,27 @@ static void
 gdk_wayland_window_set_startup_id (GdkWindow   *window,
                                    const gchar *startup_id)
 {
+  GdkWindowImplWayland *impl = GDK_WINDOW_IMPL_WAYLAND (window->impl);
+  GdkDisplay *display = gdk_window_get_display (window);
+  GdkWaylandDisplay *display_wayland = GDK_WAYLAND_DISPLAY (display);
+  gchar *free_me = NULL;
+
+  if (!startup_id)
+    {
+      free_me = g_steal_pointer (&display_wayland->startup_notification_id);
+      startup_id = free_me;
+    }
+
+#ifdef HAVE_XDG_ACTIVATION
+  if (startup_id)
+    {
+      xdg_activation_v1_activate (display_wayland->xdg_activation,
+                                  startup_id,
+				  impl->display_server.wl_surface);
+    }
+#endif
+
+  g_free (free_me);
 }
 
 static gboolean
