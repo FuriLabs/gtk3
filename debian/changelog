@@ -1,3 +1,24 @@
+gtk+3.0 (3.24.38-1) experimental; urgency=medium
+
+  [ Jeremy Bícha ]
+  * New upstream release
+  * Drop 3 patches applied in new release
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 22 May 2023 13:35:52 -0400
+
+gtk+3.0 (3.24.37-2) unstable; urgency=medium
+
+  * d/p/selection-Use-the-right-mime-type.patch:
+    Add patch to fix incorrect MIME type for file transfer portal.
+    Regression in 3.24.37, affecting interoperability with other
+    implementations like the one requested in QTBUG-91357.
+  * d/patches: Update translations from upstream git: gl, he
+  * d/copyright: Remove gtk-text-input.xml.
+    This file is no longer present in the source package.
+  * Remove Lintian overrides for lintian/lintian!452, no longer necessary
+
+ -- Simon McVittie <smcv@debian.org>  Wed, 08 Mar 2023 14:52:40 +0000
+
 gtk+3.0 (3.24.37-1ubuntu1) lunar; urgency=medium
 
   * Resynchronize with Debian, remaining changes:
