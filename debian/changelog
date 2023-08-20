@@ -1,3 +1,41 @@
+gtk+3.0 (3.24.38-2~deb12u1) UNRELEASED; urgency=medium
+
+  * Rebuild new upstream release 3.24.38 for Debian 12
+  * Changes since 3.24.37-2 in initial Debian 12 release:
+    - Fix application crash with "Couldn't find current GLX or EGL context"
+      under unknown circumstances (gtk#5711 upstream, regression in 3.24.37)
+    - Fix a gnome-flashback crash when taking screenshots
+      (gtk#5691, regression in 3.24.37)
+    - Fix application crash when running under Wayland with the
+      cursor-theme-size GSetting set to 0 (gtk#5700)
+    - Ensure apps launched under Wayland after setting
+      org.gtk.Settings.Modules will load the desired modules at startup
+      (gtk!5733)
+    - Don't crash in Wayland environments that don't implement
+      xdg_activation_v1, such as Enlightenment (Closes: #1043000)
+    - Fix a crash in gtk_application_set_screensaver_active() during
+      app exit (gtk#5775)
+    - Silence GFileInfo warnings if used with a backported version of GLib
+      (gtk!5645)
+    - Use a light colour for the caret in dark themes, making it much
+      easier to see in some apps, in particular Evince (evince#1842)
+    - Show more information in the "inspector" debugging interface: Pango
+      backend, input method module (gtk!5706, gtk#4512)
+    - Fix broken links in documentation (gtk!5718)
+    - Update documentation to discourage use of
+      gdk_pixbuf_get_from_window() (gtk#5691)
+    - Translation updates: ab, bg, ca, da, de, es, eu, fa, fr, gl, he, hu,
+      id, it, ka, ko, lt, nl, pl, pt, pt_BR, ru, sl, sr, sv, tr, uk
+    - testsuite: Disable some reftests that are not reliable
+    - Windows-specific changes not relevant to Debian
+    - macOS-specific (Quartz) changes not relevant to Debian
+    - d/p/Update-Galician-translation.patch,
+      d/p/Update-Hebrew-translation.patch,
+      d/p/selection-Use-the-right-mime-type.patch:
+      Drop patches that were included in 3.24.38
+
+ -- Simon McVittie <smcv@debian.org>  Sun, 20 Aug 2023 14:41:10 +0100
+
 gtk+3.0 (3.24.38-2) unstable; urgency=medium
 
   * Release to unstable
