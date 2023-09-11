@@ -1,3 +1,84 @@
+gtk+3.0 (3.24.38-5) unstable; urgency=medium
+
+  [ Amin Bandali ]
+  * Change packaging branch to debian/latest
+
+  [ Simon McVittie ]
+  * d/patches: Update to upstream gtk-3-24 branch commit
+    3.24.38-60-gecf3ac115d, excluding Windows- and macOS-specific changes
+    - d/p/Use-correct-stat-struct-for-ftw.patch:
+      Ensure that consistent types are used when updating icon cache
+    - d/p/Make-sure-that-the-charcode-is-signless.patch,
+      d/p/Fix-a-typo.patch:
+      Fix parsing of non-ASCII CSS on architectures with signed char
+    - d/p/This-commit-fixes-a-performance-issue-on-X11-systems-in-r.patch:
+      When using X11, improve performance of Inkscape and Totem by removing
+      code that was intended to be a fast-path, but in fact became slower
+      than the more generic implementation (as used on Wayland) due to
+      changes elsewhere in the ecosystem
+    - d/p/x11-Trap-XRandr-errors-when-getting-outputs-during-init-a.patch:
+      When using X11, catch errors if we are querying Xrandr outputs
+      while they are being updated
+    - d/p/gtkmountoperation-avoid-SEGV-after-bad-password-input.patch:
+      Don't segfault after incorrect password entry when mounting a
+      filesystem
+    - d/p/popover-Remove-useless-if-case.patch:
+      Diagnose NULL parameter to gtk_popover_get_pointing_to() as a
+      programming error as intended
+    - d/p/Popover-Clarify-guard-out-rect-of-get_pointing_to.patch:
+      Initialize result of gtk_popover_get_pointing_to() if it is not
+      pointing to anything
+    - d/p/gdk-wayland-Create-pad-devices-on-enter.patch,
+      d/p/gdk-wayland-Ensure-device-added-removed-emission-in-GdkSe.patch,
+      d/p/gdk-wayland-Return-pad-devices-querying-for-all-devices.patch:
+      When using Wayland, fix detection of graphics tablets
+    - d/p/gdkgl-Check-for-GLsync-before-using-it.patch:
+      Fix regression in 3.24.37 causing GL initialization to fail with
+      OpenGL < 3.2, for example on imx8mq devices such as MNT Reform or
+      Librem 5
+    - d/p/gdk-wayland-Switch-behavior-of-BTN_STYLUS-STYLUS2-as-midd.patch:
+      When using Wayland, report stylus buttons in the same order as in X11,
+      so that the same button opens the right-click menu in both windowing
+      systems
+    - d/p/a11y-atspi-Fix-reporting-table-cell-pos-at-index-0-0.patch:
+      Fix reporting of top left cell in a table to accessibility tools
+    - d/p/GdkWindow-Check-for-offscreen-windows-in-set_transient_fo.patch,
+      d/p/GtkMenu-Take-offscreen-windows-in-account-for-positioning.patch:
+      Fix a crash seen in GIMP when opening the menu of a combo box on
+      an offscreen window, and improve positioning of the resulting menu
+    - d/p/GtkApplicationImplDBus-Cancel-DBus-method-calls-on-shutdo.patch
+      Fix a use-after-free crash during application quit, particularly
+      affecting Inkscape command-line export with GLib >= 2.76, by
+      cancelling processing of pending D-Bus calls (Closes: #1051220)
+    - d/p/Fix-_gtk_get_slowdown.patch:
+      Correct declaration of internal _gtk_get_slowdown() to avoid undefined
+      behaviour
+    - d/p/ScrolledWindow-Frame-on-viewport-is-not-optional.patch,
+      d/p/Popover-Clarify-guard-out-rect-of-get_pointing_to.patch:
+      Documentation fixes
+    - Translation updates: ca, cs, el, en_GB, es, fa, ka, kk, ko, pa,
+      ro, sl, sk, tr
+
+ -- Simon McVittie <smcv@debian.org>  Sun, 10 Sep 2023 15:51:04 +0100
+
+gtk+3.0 (3.24.38-4) unstable; urgency=medium
+
+  * Have -dev package depend on libcloudproviders-dev on Debian
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Wed, 09 Aug 2023 18:10:50 -0400
+
+gtk+3.0 (3.24.38-3) unstable; urgency=medium
+
+  * Build with libcloudproviders (on Debian)
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Wed, 09 Aug 2023 11:29:11 -0400
+
+gtk+3.0 (3.24.38-2) unstable; urgency=medium
+
+  * Release to unstable
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Sun, 23 Jul 2023 16:14:18 -0400
+
 gtk+3.0 (3.24.38-1ubuntu1) mantic; urgency=medium
 
   * Resynchronize with Debian, remaining changes:

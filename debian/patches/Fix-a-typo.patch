@@ -1,0 +1,28 @@
+From: liulinsong <liulinsong@kylinos.cn>
+Date: Wed, 31 May 2023 22:13:48 +0800
+Subject: Fix a typo
+
+1. According to the UTF-8 spec, ASCII character's charcode is from
+   0 to 127 inclusively.
+
+2. Any charcode which is greater than or equal to 128 will be
+   a multi-byte character.
+
+Origin: 3.24.39, commit:1659cefde792f127f604f15ae12f17ede10f1c00
+---
+ gtk/gtkcssparser.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gtk/gtkcssparser.c b/gtk/gtkcssparser.c
+index fc8ede2..a9f0d37 100644
+--- a/gtk/gtkcssparser.c
++++ b/gtk/gtkcssparser.c
+@@ -373,7 +373,7 @@ _gtk_css_parser_read_char (GtkCssParser *parser,
+       parser->data++;
+       return TRUE;
+     }
+-  if ((*(guchar *) parser->data) >= 127)
++  if ((*(guchar *) parser->data) >= 128)
+     {
+       gsize len = g_utf8_skip[(guint) *(guchar *) parser->data];
+ 

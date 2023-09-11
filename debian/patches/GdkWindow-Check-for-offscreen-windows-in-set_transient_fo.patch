@@ -1,0 +1,29 @@
+From: Luca Bacci <luca.bacci982@gmail.com>
+Date: Thu, 13 Jul 2023 15:31:05 +0200
+Subject: GdkWindow: Check for offscreen windows in set_transient_for ()
+
+Bug: https://gitlab.gnome.org/GNOME/gimp/-/issues/6711
+Forwarded: https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/6184
+Origin: 3.24.39, commit:3e3266dce4a8aed453f296ca8043e3574ff29f63
+---
+ gdk/gdkwindow.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/gdk/gdkwindow.c b/gdk/gdkwindow.c
+index 727b0cf..62d488d 100644
+--- a/gdk/gdkwindow.c
++++ b/gdk/gdkwindow.c
+@@ -10542,6 +10542,13 @@ void
+ gdk_window_set_transient_for (GdkWindow *window,
+ 			      GdkWindow *parent)
+ {
++  if (!gdk_window_is_offscreen (window) &&
++      parent != NULL &&
++      gdk_window_is_offscreen (parent))
++    {
++      return;
++    }
++
+   window->transient_for = parent;
+ 
+   GDK_WINDOW_IMPL_GET_CLASS (window->impl)->set_transient_for (window, parent);

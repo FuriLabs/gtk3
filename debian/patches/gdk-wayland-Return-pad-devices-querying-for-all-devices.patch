@@ -1,0 +1,44 @@
+merge_Carlos Garnacho <carlosg@gnome.org>
+Date: Tue, 13 Jun 2023 22:54:23 +0200
+Subject: gdk/wayland: Return pad devices querying for all devices
+
+These devices unfortunately didn't ever get a capability flag in
+3.24 (fixed in GTK4). We are very far off into maintenance grounds that
+it is not ideal to add new flag values, but we could however return
+these devices if GDK_SEAT_CAPABILITY_ALL is being asked.
+
+Do that, so it is possible to deal with pad devices, even if it's
+not possible to query them specifically.
+
+Forwarded: https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/6049
+Origin: 3.24.39, commit:a9d7198d63d14e049c399914f11ddd37fc034f3a
+---
+ gdk/wayland/gdkdevice-wayland.c | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+
+diff --git a/gdk/wayland/gdkdevice-wayland.c b/gdk/wayland/gdkdevice-wayland.c
+index dd7db81..a1e4771 100644
+--- a/gdk/wayland/gdkdevice-wayland.c
++++ b/gdk/wayland/gdkdevice-wayland.c
+@@ -5141,6 +5141,21 @@ gdk_wayland_seat_get_slaves (GdkSeat             *seat,
+         }
+     }
+ 
++  /* There is no specific capability for pads, return
++   * them anyways if all devices are requested
++   */
++  if (capabilities == GDK_SEAT_CAPABILITY_ALL)
++    {
++      GList *l;
++
++      for (l = wayland_seat->tablet_pads; l; l = l->next)
++        {
++          GdkWaylandTabletPadData *pad = l->data;
++
++          slaves = g_list_prepend (slaves, pad->device);
++        }
++    }
++
+   return slaves;
+ }
+ 
