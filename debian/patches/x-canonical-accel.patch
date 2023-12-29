@@ -18,7 +18,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1208019
  5 files changed, 83 insertions(+), 1 deletion(-)
 
 diff --git a/gtk/gtkaccellabel.c b/gtk/gtkaccellabel.c
-index 0e2c50b..40d4981 100644
+index 75b27a8..da2d550 100644
 --- a/gtk/gtkaccellabel.c
 +++ b/gtk/gtkaccellabel.c
 @@ -127,6 +127,8 @@ struct _GtkAccelLabelPrivate
@@ -46,7 +46,7 @@ index 0e2c50b..40d4981 100644
  
    G_OBJECT_CLASS (gtk_accel_label_parent_class)->finalize (object);
  }
-@@ -942,6 +946,12 @@ gtk_accel_label_refetch (GtkAccelLabel *accel_label)
+@@ -953,6 +957,12 @@ gtk_accel_label_refetch (GtkAccelLabel *accel_label)
  
    g_clear_pointer (&accel_label->priv->accel_string, g_free);
  
@@ -59,7 +59,7 @@ index 0e2c50b..40d4981 100644
    g_object_get (gtk_widget_get_settings (GTK_WIDGET (accel_label)),
                  "gtk-enable-accels", &enable_accels,
                  NULL);
-@@ -1048,3 +1058,13 @@ gtk_accel_label_get_accel (GtkAccelLabel   *accel_label,
+@@ -1059,3 +1069,13 @@ gtk_accel_label_get_accel (GtkAccelLabel   *accel_label,
    *accelerator_key = accel_label->priv->accel_key;
    *accelerator_mods = accel_label->priv->accel_mods;
  }

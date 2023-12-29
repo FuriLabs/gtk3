@@ -1,11 +1,7 @@
-From 02dcea10b9ba13ecc83667affe49c4226b7bccf1 Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Ball=C3=B3=20Gy=C3=B6rgy?= <ballogyor@gmail.com>
+From: =?utf-8?b?QmFsbMOzIEd5w7ZyZ3k=?= <ballogyor@gmail.com>
 Date: Mon, 2 Oct 2023 15:32:29 +0200
-Subject: [PATCH] =?UTF-8?q?gdkglcontext-wayland:=20Fallback=20to=20GLES?=
- =?UTF-8?q?=C2=A02.0=20after=20legacy=20failed?=
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=5BPATCH=5D_gdkglcontext-wayland=3A_Fallback_to_GLES?=
+ =?utf-8?q?=C2=A02=2E0_after_legacy_failed?=
 
 This lets the NGL backend be selected instead of the Cairo backend on
 devices which expose both GL and GLES, but have better support of GLES.
@@ -14,11 +10,11 @@ Tested on a PinePhone.
 
 Backport of aced6030eed169f9c5df2fe9748cb10d8f4cd2cb
 ---
- gdk/wayland/gdkglcontext-wayland.c | 46 +++++++++++++++++++++++++-----
+ gdk/wayland/gdkglcontext-wayland.c | 46 ++++++++++++++++++++++++++++++++------
  1 file changed, 39 insertions(+), 7 deletions(-)
 
 diff --git a/gdk/wayland/gdkglcontext-wayland.c b/gdk/wayland/gdkglcontext-wayland.c
-index 296e5e0842d..c009ea704ee 100644
+index 296e5e0..c009ea7 100644
 --- a/gdk/wayland/gdkglcontext-wayland.c
 +++ b/gdk/wayland/gdkglcontext-wayland.c
 @@ -179,14 +179,46 @@ gdk_wayland_gl_context_realize (GdkGLContext *context,
@@ -75,6 +71,3 @@ index 296e5e0842d..c009ea704ee 100644
  
        eglBindAPI (EGL_OPENGL_API);
  
--- 
-GitLab
-
