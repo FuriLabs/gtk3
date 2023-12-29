@@ -10542,6 +10542,12 @@ void
 gdk_window_set_transient_for (GdkWindow *window,
 			      GdkWindow *parent)
 {
+  if (parent != NULL &&
+      GDK_WINDOW_IMPL_GET_CLASS (window->impl) != GDK_WINDOW_IMPL_GET_CLASS (parent->impl))
+    {
+      return;
+    }
+
   window->transient_for = parent;
 
   GDK_WINDOW_IMPL_GET_CLASS (window->impl)->set_transient_for (window, parent);

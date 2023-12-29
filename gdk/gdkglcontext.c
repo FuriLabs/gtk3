@@ -101,10 +101,13 @@ typedef struct {
   guint has_gl_framebuffer_blit : 1;
   guint has_frame_terminator : 1;
   guint has_unpack_subimage : 1;
+  guint has_sync : 1;
+  guint has_texture_format_bgra : 1;
   guint extensions_checked : 1;
   guint debug_enabled : 1;
   guint forward_compatible : 1;
   guint is_legacy : 1;
+  guint has_tex_param : 1;
 
   int use_es;
 
@@ -434,11 +437,35 @@ gdk_gl_context_has_frame_terminator (GdkGLContext *context)
 }
 
 gboolean
+gdk_gl_context_has_tex_param (GdkGLContext *context)
+{
+  GdkGLContextPrivate *priv = gdk_gl_context_get_instance_private (context);
+
+  return priv->has_tex_param;
+}
+
+gboolean
 gdk_gl_context_has_unpack_subimage (GdkGLContext *context)
 {
   GdkGLContextPrivate *priv = gdk_gl_context_get_instance_private (context);
 
   return priv->has_unpack_subimage;
+}
+
+gboolean
+gdk_gl_context_has_sync (GdkGLContext *context)
+{
+  GdkGLContextPrivate *priv = gdk_gl_context_get_instance_private (context);
+
+  return priv->has_sync;
+}
+
+gboolean
+gdk_gl_context_has_texture_format_bgra (GdkGLContext *context)
+{
+  GdkGLContextPrivate *priv = gdk_gl_context_get_instance_private (context);
+
+  return priv->has_texture_format_bgra;
 }
 
 /**
@@ -809,6 +836,9 @@ gdk_gl_context_check_extensions (GdkGLContext *context)
       priv->has_frame_terminator = FALSE;
 
       priv->has_unpack_subimage = epoxy_has_gl_extension ("GL_EXT_unpack_subimage");
+      priv->has_sync = priv->gl_version >= 30;
+      priv->has_texture_format_bgra = epoxy_has_gl_extension ("GL_EXT_texture_format_BGRA8888");
+      priv->has_tex_param = priv->gl_version >= 31;
     }
   else
     {
@@ -818,6 +848,11 @@ gdk_gl_context_check_extensions (GdkGLContext *context)
       priv->has_gl_framebuffer_blit = priv->gl_version >= 30 || epoxy_has_gl_extension ("GL_EXT_framebuffer_blit");
       priv->has_frame_terminator = epoxy_has_gl_extension ("GL_GREMEDY_frame_terminator");
       priv->has_unpack_subimage = TRUE;
+      priv->has_tex_param = priv->gl_version >= 10 &&
+                            epoxy_is_desktop_gl ();
+      priv->has_sync = priv->gl_version >= 32 ||
+                       epoxy_has_gl_extension ("GL_ARB_sync") ||
+                       epoxy_has_gl_extension ("GL_APPLE_sync");
 
       /* We asked for a core profile, but we didn't get one, so we're in legacy mode */
       if (priv->gl_version < 32)

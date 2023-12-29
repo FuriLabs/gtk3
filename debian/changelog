@@ -1,3 +1,32 @@
+gtk+3.0 (3.24.39-1) unstable; urgency=medium
+
+  * New upstream release
+  * Drop patches applied in new release
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Fri, 22 Dec 2023 10:32:30 -0500
+
+gtk+3.0 (3.24.38-6) unstable; urgency=medium
+
+  * d/p/gdk-wayland-Return-pad-devices-querying-for-all-devices.patch:
+    Fix a copy/paste error in patch metadata
+  * Stop generating d/control from a template
+  * Substitute GTK_BINVER_DEP as a substvar rather than using sed.
+  * d/rules: Drop some unused sed substitutions
+  * libgtk-3-dev: Add Provides for included GIR XML files.
+    Representing these by systematic names gir1.2-*-dev, and perhaps
+    eventually separating them into their own binary package, will help
+    to enable cross-compilation with GObject-Introspection removed by
+    a build profile. (Helps: #1030223)
+  * d/control: Add ${gir:Depends}, ${gir:Provides} substvars.
+    With a newer version of gobject-introspection (currently in
+    experimental), these will supersede some of the current hard-coded
+    Depends and Provides.
+  * d/control: Explicitly build-depend on GIR XML from Gdk-Pixbuf
+    and Pango.
+    The versions of these packages in testing provide these names.
+
+ -- Simon McVittie <smcv@debian.org>  Wed, 08 Nov 2023 16:30:21 +0000
+
 gtk+3.0 (3.24.38-5ubuntu2) noble; urgency=medium
 
   * debian/patches/gitlab_opengl_fallback.patch:

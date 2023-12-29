@@ -5218,7 +5218,8 @@ gtk_menu_position (GtkMenu  *menu,
   rect_anchor_dx = priv->rect_anchor_dx;
   rect_anchor_dy = priv->rect_anchor_dy;
 
-  if (priv->rect_window)
+  if (priv->rect_window &&
+      !GDK_PRIVATE_CALL (gdk_window_is_impl_offscreen (priv->rect_window)))
     {
       rect_window = priv->rect_window;
       rect = priv->rect;
@@ -5261,6 +5262,24 @@ gtk_menu_position (GtkMenu  *menu,
           rect_anchor_dy = 0;
           emulated_move_to_rect = TRUE;
         }
+    }
+
+  if (rect_window != NULL &&
+      GDK_PRIVATE_CALL (gdk_window_is_impl_offscreen (rect_window)))
+    {
+      GdkWindow *effective = gdk_offscreen_window_get_embedder (rect_window);
+
+      if (effective)
+        {
+          double x = rect.x, y = rect.y;
+
+          gdk_window_coords_to_parent (rect_window, x, y, &x, &y);
+
+          rect.x = x;
+          rect.y = y;
+        }
+
+      rect_window = effective;
     }
 
   if (!rect_window)

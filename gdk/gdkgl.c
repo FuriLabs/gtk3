@@ -22,10 +22,6 @@
 
 #include "gdkinternals.h"
 
-#ifdef GDK_WINDOWING_WIN32
-# include "win32/gdkwin32.h"
-#endif
-
 #include <epoxy/gl.h>
 #include <math.h>
 #include <string.h>
@@ -341,7 +337,7 @@ gdk_cairo_draw_from_gl (cairo_t              *cr,
                         int                   width,
                         int                   height)
 {
-  GdkGLContext *paint_context;
+  GdkGLContext *paint_context, *current_context;
   cairo_surface_t *image;
   cairo_matrix_t matrix;
   int dx, dy, window_scale;
@@ -352,7 +348,7 @@ gdk_cairo_draw_from_gl (cairo_t              *cr,
   int alpha_size = 0;
   cairo_region_t *clip_region;
   GdkGLContextPaintData *paint_data;
-  GLsync sync = NULL;
+  GLsync sync;
 
   impl_window = window->impl_window;
 
@@ -366,9 +362,13 @@ gdk_cairo_draw_from_gl (cairo_t              *cr,
     }
 
   clip_region = gdk_cairo_region_from_clip (cr);
+  current_context = gdk_gl_context_get_current ();
 
-  if ((gdk_gl_context_get_current () != NULL) && (gdk_gl_context_get_current () != paint_context))
+  if ((current_context != NULL) && (current_context != paint_context) &&
+      gdk_gl_context_has_sync (current_context))
     sync = glFenceSync (GL_SYNC_GPU_COMMANDS_COMPLETE, 0);
+  else
+    sync = NULL;
 
   gdk_gl_context_make_current (paint_context);
 
@@ -393,10 +393,10 @@ gdk_cairo_draw_from_gl (cairo_t              *cr,
     {
       glBindTexture (GL_TEXTURE_2D, source);
 
-      if (gdk_gl_context_get_use_es (paint_context))
-        alpha_size = 1;
-      else
+      if (gdk_gl_context_has_tex_param (paint_context))
         glGetTexLevelParameteriv (GL_TEXTURE_2D, 0, GL_TEXTURE_ALPHA_SIZE,  &alpha_size);
+      else
+        alpha_size = 1;
     }
   else
     {
@@ -540,33 +540,10 @@ gdk_cairo_draw_from_gl (cairo_t              *cr,
       /* Translate to impl coords */
       cairo_region_translate (clip_region, dx, dy);
 
-      if (alpha_size != 0)
-        {
-          cairo_region_t *opaque_region, *blend_region;
-
-          opaque_region = cairo_region_copy (clip_region);
-          cairo_region_subtract (opaque_region, impl_window->current_paint.flushed_region);
-          cairo_region_subtract (opaque_region, impl_window->current_paint.need_blend_region);
-
-          if (!cairo_region_is_empty (opaque_region))
-            gdk_gl_texture_from_surface (impl_window->current_paint.surface,
-                                         opaque_region);
-
-          blend_region = cairo_region_copy (clip_region);
-          cairo_region_intersect (blend_region, impl_window->current_paint.need_blend_region);
-
-          glEnable (GL_BLEND);
-          if (!cairo_region_is_empty (blend_region))
-            gdk_gl_texture_from_surface (impl_window->current_paint.surface,
-                                         blend_region);
-
-          cairo_region_destroy (opaque_region);
-          cairo_region_destroy (blend_region);
-        }
-
       glBindTexture (GL_TEXTURE_2D, source);
 
-      if (gdk_gl_context_get_use_es (paint_context))
+      if (gdk_gl_context_get_use_es (paint_context) ||
+          !gdk_gl_context_has_tex_param (paint_context))
         {
           texture_width = width;
           texture_height = height;
@@ -657,13 +634,6 @@ gdk_cairo_draw_from_gl (cairo_t              *cr,
     {
       /* Software fallback */
       int major, minor, version;
-      gboolean es_read_bgra = FALSE;
-
-#ifdef GDK_WINDOWING_WIN32
-      /* on ANGLE GLES, we need to set the glReadPixel() format as GL_BGRA instead */
-      if (GDK_WIN32_IS_GL_CONTEXT(paint_context))
-        es_read_bgra = TRUE;
-#endif
 
       gdk_gl_context_get_version (paint_context, &major, &minor);
       version = major * 100 + minor;
@@ -705,8 +675,11 @@ gdk_cairo_draw_from_gl (cairo_t              *cr,
       if (!gdk_gl_context_get_use_es (paint_context))
         glReadPixels (x, y, width, height, GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV,
                       cairo_image_surface_get_data (image));
+      else if (gdk_gl_context_has_texture_format_bgra (paint_context) && G_BYTE_ORDER == G_LITTLE_ENDIAN)
+        glReadPixels (x, y, width, height, GL_BGRA, GL_UNSIGNED_BYTE,
+                      cairo_image_surface_get_data (image));
       else
-        glReadPixels (x, y, width, height, es_read_bgra ? GL_BGRA : GL_RGBA, GL_UNSIGNED_BYTE,
+        glReadPixels (x, y, width, height, GL_RGBA, GL_UNSIGNED_BYTE,
                       cairo_image_surface_get_data (image));
 
       glPixelStorei (GL_PACK_ROW_LENGTH, 0);

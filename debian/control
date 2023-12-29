@@ -3,7 +3,7 @@ Section: libs
 Priority: optional
 Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
-Uploaders: Simon McVittie <smcv@debian.org>, Jeremy Bícha <jbicha@ubuntu.com>
+Uploaders: Simon McVittie <smcv@debian.org>, Dmitry Shachnev <mitya57@debian.org>, Jeremy Bícha <jbicha@ubuntu.com>
 Build-Depends: adwaita-icon-theme-full <!nocheck>,
                at-spi2-core <!nocheck>,
                dbus-daemon <!nocheck>,
@@ -14,6 +14,8 @@ Build-Depends: adwaita-icon-theme-full <!nocheck>,
                docbook-xsl <!nodoc>,
                fonts-cantarell <!nocheck>,
                fonts-dejavu-core <!nocheck>,
+               gir1.2-gdkpixbuf-2.0-dev,
+               gir1.2-pango-1.0-dev,
                gnome-pkg-tools (>= 0.11),
                gobject-introspection (>= 1.41.3),
                gsettings-desktop-schemas <!nocheck>,
@@ -78,7 +80,7 @@ Depends: adwaita-icon-theme,
          ${misc:Depends},
          ${shlibs:Depends},
          libgtk-3-common (>= ${source:Version})
-Provides: gtk3-binver-3.0.0
+Provides: ${gtk:BinVer}
 Recommends: libgtk-3-bin,
             librsvg2-common
 Suggests: gvfs,
@@ -97,7 +99,7 @@ Section: debian-installer
 Architecture: any
 Depends: ${misc:Depends},
          ${shlibs:Depends}
-Provides: gtk3-binver-3.0.0
+Provides: ${gtk:BinVer}
 Description: GTK graphical user interface library - minimal runtime
  This is a udeb, or a microdeb, for the debian-installer.
  .
@@ -173,11 +175,15 @@ Depends: gir1.2-gtk-3.0 (= ${binary:Version}),
          libxrandr-dev,
          pkg-config,
          wayland-protocols (>= 1.17) [linux-any],
+         ${gir:Depends},
          ${misc:Depends},
          ${shlibs:Depends},
          ${cloudProvider:Depends},
          libgtk-3-common (>= ${source:Version}),
          libgtk-3-0 (= ${binary:Version})
+Provides: gir1.2-gdk-3.0-dev (= ${binary:Version}),
+          gir1.2-gdkx11-3.0-dev (= ${binary:Version}),
+          ${gir:Provides}
 Suggests: libgtk-3-doc
 Description: development files for the GTK library
  GTK is a multi-platform toolkit for creating graphical user
@@ -233,7 +239,8 @@ Depends: ${gir:Depends},
 Breaks: python-gi (<< 3.18),
         python3-gi (<< 3.18)
 Provides: gir1.2-gdk-3.0 (= ${binary:Version}),
-          gir1.2-gdkx11-3.0 (= ${binary:Version})
+          gir1.2-gdkx11-3.0 (= ${binary:Version}),
+          ${gir:Provides}
 Description: GTK graphical user interface library -- gir bindings
  GTK is a multi-platform toolkit for creating graphical user
  interfaces. Offering a complete set of widgets, GTK is suitable

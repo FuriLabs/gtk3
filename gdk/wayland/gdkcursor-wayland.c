@@ -161,7 +161,7 @@ _gdk_wayland_cursor_update (GdkWaylandDisplay *display_wayland,
         {
           c = wl_cursor_theme_get_cursor (theme, name_fallback (cursor->name));
           if (!c)
-            c = wl_cursor_theme_get_cursor (theme, "left_ptr");
+            c = wl_cursor_theme_get_cursor (theme, "default");
         }
     }
 
@@ -220,7 +220,7 @@ _gdk_wayland_cursor_get_buffer (GdkCursor *cursor,
 {
   GdkWaylandCursor *wayland_cursor = GDK_WAYLAND_CURSOR (cursor);
 
-  if (wayland_cursor->wl_cursor)
+  if (wayland_cursor->wl_cursor && wayland_cursor->wl_cursor->image_count > 0)
     {
       struct wl_cursor_image *image;
       int cursor_scale;
@@ -236,13 +236,13 @@ _gdk_wayland_cursor_get_buffer (GdkCursor *cursor,
       image = wayland_cursor->wl_cursor->images[image_index];
 
       cursor_scale = wayland_cursor->scale;
-      if ((image->width % cursor_scale != 0) ||
-          (image->height % cursor_scale != 0))
+      while ((image->width % cursor_scale != 0) ||
+             (image->height % cursor_scale != 0))
         {
-          g_warning (G_STRLOC " cursor image size (%dx%d) not an integer"
+          g_warning_once (G_STRLOC " cursor image size (%dx%d) not an integer"
                      "multiple of scale (%d)", image->width, image->height,
                      cursor_scale);
-          cursor_scale = 1;
+          cursor_scale--;
         }
 
       *hotspot_x = image->hotspot_x / cursor_scale;
@@ -350,7 +350,7 @@ _gdk_wayland_cursor_init (GdkWaylandCursor *cursor)
 {
 }
 
-static GdkCursor *
+GdkCursor *
 _gdk_wayland_display_get_cursor_for_name_with_scale (GdkDisplay  *display,
                                                      const gchar *name,
                                                      guint        scale)
@@ -467,15 +467,24 @@ _gdk_wayland_display_get_cursor_for_surface (GdkDisplay *display,
   cursor->surface.hotspot_x = x;
   cursor->surface.hotspot_y = y;
 
-  cursor->surface.scale = 1;
-
   if (surface)
     {
+      cursor->surface.width = cairo_image_surface_get_width (surface);
+      cursor->surface.height = cairo_image_surface_get_height (surface);
+
       double sx, sy;
       cairo_surface_get_device_scale (surface, &sx, &sy);
       cursor->surface.scale = (int)sx;
-      cursor->surface.width = cairo_image_surface_get_width (surface);
-      cursor->surface.height = cairo_image_surface_get_height (surface);
+
+      while ((cursor->surface.width % cursor->surface.scale != 0) ||
+             (cursor->surface.height % cursor->surface.scale != 0))
+        {
+          g_warning_once (G_STRLOC " cursor image size (%dx%d) not an integer"
+                     "multiple of scale (%d)", cursor->surface.width, cursor->surface.height,
+                     cursor->surface.scale);
+          cursor->surface.scale--;
+        }
+
       cursor->surface.hotspot_x *= sx;
       cursor->surface.hotspot_y *= sx;
     }
@@ -483,12 +492,13 @@ _gdk_wayland_display_get_cursor_for_surface (GdkDisplay *display,
     {
       cursor->surface.width = 1;
       cursor->surface.height = 1;
+      cursor->surface.scale = 1;
     }
 
   cursor->surface.cairo_surface =
     _gdk_wayland_display_create_shm_surface (display_wayland,
-                                             cursor->surface.width,
-                                             cursor->surface.height,
+                                             cursor->surface.width / cursor->surface.scale,
+                                             cursor->surface.height / cursor->surface.scale,
                                              cursor->surface.scale);
 
   buffer = _gdk_wayland_shm_surface_get_wl_buffer (cursor->surface.cairo_surface);
