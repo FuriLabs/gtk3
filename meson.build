@@ -1,5 +1,5 @@
 project('gtk+', 'c',
-  version: '3.24.39',
+  version: '3.24.40',
   default_options: [
     'buildtype=debugoptimized',
     'warning_level=1'
@@ -542,6 +542,7 @@ if wayland_enabled
   backend_immodules += ['wayland']
 
   cdata.set('HAVE_XDG_ACTIVATION', wlprotocolsdep.version().version_compare('>=1.21'))
+  cdata.set('HAVE_TOPLEVEL_STATE_SUSPENDED', wlprotocolsdep.version().version_compare('>=1.32'))
 
   wayland_pkgs = [
     'wayland-client', wayland_req,

@@ -49,6 +49,12 @@
 #include "xdg-foreign-unstable-v1-client-protocol.h"
 #include "server-decoration-client-protocol.h"
 
+#ifdef HAVE_TOPLEVEL_STATE_SUSPENDED
+#define XDG_WM_BASE_VERSION      6
+#else
+#define XDG_WM_BASE_VERSION      2
+#endif
+
 /**
  * SECTION:wayland_interaction
  * @Short_description: Wayland backend-specific functions
@@ -634,6 +640,7 @@ _gdk_wayland_display_open (const gchar *display_name)
     }
 
   process_on_globals_closures (display_wayland);
+  display_wayland->selection = gdk_wayland_selection_new ();
 
   /* Wait for initializing to complete. This means waiting for all
    * asynchrounous roundtrips that were triggered during initial roundtrip. */
@@ -653,7 +660,7 @@ _gdk_wayland_display_open (const gchar *display_name)
         wl_registry_bind (display_wayland->wl_registry,
                           display_wayland->xdg_wm_base_id,
                           &xdg_wm_base_interface,
-                          MIN (display_wayland->xdg_wm_base_version, 6));
+                          MIN (display_wayland->xdg_wm_base_version, XDG_WM_BASE_VERSION));
       xdg_wm_base_add_listener (display_wayland->xdg_wm_base,
                                 &xdg_wm_base_listener,
                                 display_wayland);
@@ -677,8 +684,6 @@ _gdk_wayland_display_open (const gchar *display_name)
 
       return NULL;
     }
-
-  display_wayland->selection = gdk_wayland_selection_new ();
 
   g_signal_emit_by_name (display, "opened");
 

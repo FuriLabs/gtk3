@@ -1,3 +1,22 @@
+gtk+3.0 (3.24.40-1) unstable; urgency=medium
+
+  * New upstream release
+    - Update emoji chooser for Unicode 15.1
+  * missing-sources: Update emojibase
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Fri, 19 Jan 2024 15:22:17 -0500
+
+gtk+3.0 (3.24.39-2) unstable; urgency=medium
+
+  * d/control: Explicitly depend on necessary GIR XML modules.
+    Use the systematic names gir1.2-cairo-1.0-dev and gir1.2-gio-2.0-dev
+    if possible. The alternative dependency on libgirepository1.0-dev
+    illustrates how backports can be made to work.
+  * d/rules: If cross-compiling, use cross g-ir-scanner (see #1060838)
+  * d/control: Make Build-Depends cross-satisfiable
+
+ -- Simon McVittie <smcv@debian.org>  Wed, 17 Jan 2024 18:05:42 +0000
+
 gtk+3.0 (3.24.39-1ubuntu1) noble; urgency=medium
 
   * Resynchronize with Debian, remaining changes:
