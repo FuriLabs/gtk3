@@ -232,7 +232,9 @@ ifneq ($(filter %-udeb,$(built_binaries)),)
 endif
 
 override_dh_install:
+ifneq ($(filter %-udeb,$(built_binaries)),)
 	dh_install -p$(UDEB_PKG) --sourcedir=debian/install/udeb
+endif
 	dh_install --remaining-packages --sourcedir=debian/install/deb
 
 # debhelper >= 13.4 makes all of /usr/libexec executable, which is not
@@ -263,7 +265,11 @@ override_dh_installman:
 	dh_installman --sourcedir=debian/install/deb
 
 override_dh_makeshlibs:
+ifneq ($(filter %-udeb,$(built_binaries)),)
 	dh_makeshlibs -p$(SHARED_PKG) --add-udeb=$(UDEB_PKG) -X$(MODULES_BASE_PATH) -- -c4
+else
+	dh_makeshlibs -p$(SHARED_PKG) -X$(MODULES_BASE_PATH) -- -c4
+endif
 	dh_makeshlibs -plibgail-3-0t64 -- -c4
 	dh_makeshlibs --remaining-packages -X$(MODULES_BASE_PATH)
 
