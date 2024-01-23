@@ -1,0 +1,23 @@
+From: Michael Wyraz <mw@brick4u.de>
+Date: Fri, 19 Jan 2024 19:15:52 +0100
+Subject: don't free monitor->name twice (fixes #6345)
+
+(cherry picked from commit 6880ac90a0211095cfea753316e002bd668a4e92)
+
+Origin: gtk-3-24 branch, after 3.24.40
+---
+ gdk/x11/gdkscreen-x11.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/gdk/x11/gdkscreen-x11.c b/gdk/x11/gdkscreen-x11.c
+index f54bf51..4ac3167 100644
+--- a/gdk/x11/gdkscreen-x11.c
++++ b/gdk/x11/gdkscreen-x11.c
+@@ -922,7 +922,6 @@ init_randr13 (GdkScreen *screen, gboolean *changed)
+           g_object_ref (monitor);
+           g_ptr_array_remove (x11_display->monitors, monitor);
+           gdk_display_monitor_removed (display, GDK_MONITOR (monitor));
+-          free (monitor->name);
+           g_object_unref (monitor);
+           *changed = TRUE;
+         }
