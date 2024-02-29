@@ -30,10 +30,10 @@ CONFDIR := etc/gtk-3.0
 MODULES_BASE_PATH := $(LIBDIR)/gtk-3.0/$(GTK_BINARY_VERSION)
 
 # package names
-SHARED_PKG := libgtk-$(APIVER)-$(SONAME)
+SHARED_PKG := libgtk-$(APIVER)-$(SONAME)t64
 COMMON_PKG := libgtk-$(APIVER)-common
 DEV_PKG := libgtk-$(APIVER)-dev
-UDEB_PKG := $(SHARED_PKG)-udeb
+UDEB_PKG := libgtk-$(APIVER)-$(SONAME)-udeb
 DOC_PKG := libgtk-$(APIVER)-doc
 BIN_PKG := libgtk-$(APIVER)-bin
 EXAMPLES_PKG := gtk-$(APIVER)-examples
@@ -280,7 +280,7 @@ override_dh_installman:
 
 override_dh_makeshlibs:
 	dh_makeshlibs -p$(SHARED_PKG) --add-udeb=$(UDEB_PKG) -X$(MODULES_BASE_PATH) -- -c4
-	dh_makeshlibs -plibgail-3-0 -- -c4
+	dh_makeshlibs -plibgail-3-0t64 -- -c4
 	dh_makeshlibs --remaining-packages -X$(MODULES_BASE_PATH)
 
 dpkg_gencontrol_args = -Vgtk:BinVer=$(GTK_BINVER_DEP)
