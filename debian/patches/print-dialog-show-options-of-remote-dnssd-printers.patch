@@ -7,11 +7,23 @@ Bug-Upstream: https://bugzilla.gnome.org/show_bug.cgi?id=684533
  modules/printbackends/cups/gtkprintbackendcups.c | 13 +++++++++++++
  1 file changed, 13 insertions(+)
 
-diff --git a/modules/printbackends/cups/gtkprintbackendcups.c b/modules/printbackends/cups/gtkprintbackendcups.c
-index d5c00f9..ca91631 100644
 --- a/modules/printbackends/cups/gtkprintbackendcups.c
 +++ b/modules/printbackends/cups/gtkprintbackendcups.c
-@@ -2521,6 +2521,19 @@ cups_create_printer (GtkPrintBackendCups *cups_backend,
+@@ -2463,6 +2463,13 @@
+     }
+ }
+ 
++/* Lifted directly from CUPS private headers. We probably should have found
++ * a less fragile approach, I guess?  */
++extern const char	*_httpResolveURI(const char *uri, char *resolved_uri,
++			                 size_t resolved_size, int options,
++					 int (*cb)(void *context),
++					 void *context) _CUPS_PRIVATE;
++
+ static GtkPrinter*
+ cups_create_printer (GtkPrintBackendCups *cups_backend,
+ 		     PrinterSetupInfo *info)
+@@ -2521,6 +2528,19 @@
  		   &port,
  		   resource, sizeof (resource));
  

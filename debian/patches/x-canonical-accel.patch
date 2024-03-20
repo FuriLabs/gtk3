@@ -17,11 +17,9 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1208019
  gtk/gtkmodelmenuitem.c   | 45 ++++++++++++++++++++++++++++++++++++++++++++-
  5 files changed, 83 insertions(+), 1 deletion(-)
 
-diff --git a/gtk/gtkaccellabel.c b/gtk/gtkaccellabel.c
-index 75b27a8..da2d550 100644
 --- a/gtk/gtkaccellabel.c
 +++ b/gtk/gtkaccellabel.c
-@@ -127,6 +127,8 @@ struct _GtkAccelLabelPrivate
+@@ -127,6 +127,8 @@
  
    guint           accel_key;         /* manual accel key specification if != 0 */
    GdkModifierType accel_mods;
@@ -30,7 +28,7 @@ index 75b27a8..da2d550 100644
  };
  
  GParamSpec *props[LAST_PROP] = { NULL, };
-@@ -294,6 +296,7 @@ gtk_accel_label_init (GtkAccelLabel *accel_label)
+@@ -294,6 +296,7 @@
    priv->accel_closure = NULL;
    priv->accel_group = NULL;
    priv->accel_string = NULL;
@@ -38,7 +36,7 @@ index 75b27a8..da2d550 100644
  
    widget_node = gtk_widget_get_css_node (GTK_WIDGET (accel_label));
    priv->accel_node = gtk_css_node_new ();
-@@ -343,6 +346,7 @@ gtk_accel_label_finalize (GObject *object)
+@@ -343,6 +346,7 @@
    GtkAccelLabel *accel_label = GTK_ACCEL_LABEL (object);
  
    g_free (accel_label->priv->accel_string);
@@ -46,7 +44,7 @@ index 75b27a8..da2d550 100644
  
    G_OBJECT_CLASS (gtk_accel_label_parent_class)->finalize (object);
  }
-@@ -953,6 +957,12 @@ gtk_accel_label_refetch (GtkAccelLabel *accel_label)
+@@ -953,6 +957,12 @@
  
    g_clear_pointer (&accel_label->priv->accel_string, g_free);
  
@@ -59,7 +57,7 @@ index 75b27a8..da2d550 100644
    g_object_get (gtk_widget_get_settings (GTK_WIDGET (accel_label)),
                  "gtk-enable-accels", &enable_accels,
                  NULL);
-@@ -1059,3 +1069,13 @@ gtk_accel_label_get_accel (GtkAccelLabel   *accel_label,
+@@ -1059,3 +1069,13 @@
    *accelerator_key = accel_label->priv->accel_key;
    *accelerator_mods = accel_label->priv->accel_mods;
  }
@@ -73,11 +71,9 @@ index 75b27a8..da2d550 100644
 +
 +  gtk_accel_label_reset (accel_label);
 +}
-diff --git a/gtk/gtkmenushell.c b/gtk/gtkmenushell.c
-index ded731a..2ddc650 100644
 --- a/gtk/gtkmenushell.c
 +++ b/gtk/gtkmenushell.c
-@@ -2200,6 +2200,7 @@ gtk_menu_shell_tracker_insert_func (GtkMenuTrackerItem *item,
+@@ -2200,6 +2200,7 @@
        g_object_bind_property (item, "role", widget, "action-role", G_BINDING_SYNC_CREATE);
        g_object_bind_property (item, "toggled", widget, "toggled", G_BINDING_SYNC_CREATE);
        g_object_bind_property (item, "accel", widget, "accel", G_BINDING_SYNC_CREATE);
@@ -85,11 +81,9 @@ index ded731a..2ddc650 100644
  
        g_signal_connect (widget, "activate", G_CALLBACK (gtk_menu_shell_item_activate), item);
        gtk_widget_show (widget);
-diff --git a/gtk/gtkmenutrackeritem.c b/gtk/gtkmenutrackeritem.c
-index 8d50366..8688048 100644
 --- a/gtk/gtkmenutrackeritem.c
 +++ b/gtk/gtkmenutrackeritem.c
-@@ -115,6 +115,7 @@ enum {
+@@ -115,6 +115,7 @@
    PROP_ROLE,
    PROP_TOGGLED,
    PROP_ACCEL,
@@ -97,7 +91,7 @@ index 8d50366..8688048 100644
    PROP_SUBMENU_SHOWN,
    PROP_IS_VISIBLE,
    N_PROPS
-@@ -183,6 +184,9 @@ gtk_menu_tracker_item_get_property (GObject    *object,
+@@ -183,6 +184,9 @@
      case PROP_ACCEL:
        g_value_set_string (value, gtk_menu_tracker_item_get_accel (self));
        break;
@@ -107,7 +101,7 @@ index 8d50366..8688048 100644
      case PROP_SUBMENU_SHOWN:
        g_value_set_boolean (value, gtk_menu_tracker_item_get_submenu_shown (self));
        break;
-@@ -240,6 +244,8 @@ gtk_menu_tracker_item_class_init (GtkMenuTrackerItemClass *class)
+@@ -240,6 +244,8 @@
      g_param_spec_boolean ("toggled", "", "", FALSE, G_PARAM_STATIC_STRINGS | G_PARAM_READABLE);
    gtk_menu_tracker_item_pspecs[PROP_ACCEL] =
      g_param_spec_string ("accel", "", "", NULL, G_PARAM_STATIC_STRINGS | G_PARAM_READABLE);
@@ -116,7 +110,7 @@ index 8d50366..8688048 100644
    gtk_menu_tracker_item_pspecs[PROP_SUBMENU_SHOWN] =
      g_param_spec_boolean ("submenu-shown", "", "", FALSE, G_PARAM_STATIC_STRINGS | G_PARAM_READABLE);
    gtk_menu_tracker_item_pspecs[PROP_IS_VISIBLE] =
-@@ -736,6 +742,16 @@ gtk_menu_tracker_item_get_text_direction (GtkMenuTrackerItem *self)
+@@ -736,6 +742,16 @@
    return text_direction;
  }
  
@@ -133,11 +127,9 @@ index 8d50366..8688048 100644
  GMenuModel *
  _gtk_menu_tracker_item_get_link (GtkMenuTrackerItem *self,
                                   const gchar        *link_name)
-diff --git a/gtk/gtkmenutrackeritem.h b/gtk/gtkmenutrackeritem.h
-index 7bf83d9..0a96a72 100644
 --- a/gtk/gtkmenutrackeritem.h
 +++ b/gtk/gtkmenutrackeritem.h
-@@ -76,6 +76,8 @@ gboolean                gtk_menu_tracker_item_get_toggled               (GtkMenu
+@@ -76,6 +76,8 @@
  
  const gchar *           gtk_menu_tracker_item_get_accel                 (GtkMenuTrackerItem *self);
  
@@ -146,11 +138,9 @@ index 7bf83d9..0a96a72 100644
  GMenuModel *           _gtk_menu_tracker_item_get_link                  (GtkMenuTrackerItem *self,
                                                                           const gchar        *link_name);
  
-diff --git a/gtk/gtkmodelmenuitem.c b/gtk/gtkmodelmenuitem.c
-index 103f053..663b539 100644
 --- a/gtk/gtkmodelmenuitem.c
 +++ b/gtk/gtkmodelmenuitem.c
-@@ -44,7 +44,8 @@ enum
+@@ -44,7 +44,8 @@
    PROP_ICON,
    PROP_TEXT,
    PROP_TOGGLED,
@@ -160,11 +150,10 @@ index 103f053..663b539 100644
  };
  
  static void
-@@ -426,6 +427,41 @@ gtk_model_menu_item_get_property (GObject    *object,
-     }
+@@ -427,6 +428,41 @@
  }
  
-+static void
+ static void
 +gtk_model_menu_item_set_accel_text (GtkModelMenuItem *item,
 +                                    const gchar      *accel_text)
 +{
@@ -199,10 +188,11 @@ index 103f053..663b539 100644
 +    }
 +}
 +
- static void
++static void
  gtk_model_menu_item_set_property (GObject      *object,
                                    guint         prop_id,
-@@ -457,6 +493,10 @@ gtk_model_menu_item_set_property (GObject      *object,
+                                   const GValue *value,
+@@ -457,6 +493,10 @@
        gtk_model_menu_item_set_accel (item, g_value_get_string (value));
        break;
  
@@ -213,7 +203,7 @@ index 103f053..663b539 100644
      default:
        g_assert_not_reached ();
      }
-@@ -499,6 +539,9 @@ gtk_model_menu_item_class_init (GtkModelMenuItemClass *class)
+@@ -499,6 +539,9 @@
    g_object_class_install_property (object_class, PROP_ACCEL,
                                     g_param_spec_string ("accel", "accel", "accel", NULL,
                                                          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY));
@@ -223,3 +213,16 @@ index 103f053..663b539 100644
  
    gtk_widget_class_set_accessible_role (GTK_WIDGET_CLASS (class), ATK_ROLE_MENU_ITEM);
  }
+--- a/gtk/gtkaccellabel.h
++++ b/gtk/gtkaccellabel.h
+@@ -109,6 +109,10 @@
+ 							 guint               accelerator_key,
+ 							 GdkModifierType     accelerator_mods);
+ 
++void
++_gtk_accel_label_set_accel_text (GtkAccelLabel *accel_label,
++                                 const gchar   *accel_text);
++
+ G_DEFINE_AUTOPTR_CLEANUP_FUNC(GtkAccelLabel, g_object_unref)
+ 
+ G_END_DECLS
