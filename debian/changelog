@@ -1,3 +1,65 @@
+gtk+3.0 (3.24.41-4) unstable; urgency=medium
+
+  [ Jeremy Bícha ]
+  * d/control, d/rules: Reinstate cloudproviders.
+    This has now been rebuilt on the 32-bit architectures.
+
+  [ Simon McVittie ]
+  * d/control, d/rules: Reinstate colord integration on 32-bit
+  * d/control, d/rules: Reinstate build-time tests on 32-bit
+  * d/control: Use a concrete version number for the Breaks/Replaces
+
+ -- Simon McVittie <smcv@debian.org>  Mon, 25 Mar 2024 12:34:40 +0000
+
+gtk+3.0 (3.24.41-3) unstable; urgency=medium
+
+  * d/control, d/tests/control: Drop dependency on adwaita-icon-theme-full.
+    This package name was Ubuntu-specific, and was dropped since 45.0-4
+    (the Debian version of a-i-t has a Provides for a-i-t-full). Use a
+    versioned build-dependency so that we definitely have all of the
+    necessary icons to run tests successfully.
+    Thanks to Heinrich Schuchardt
+  * Temporarily disable tests on 32-bit non-i386 architectures.
+    This should help to resolve cyclic build-dependencies during the
+    64-bit time_t transition.
+  * d/control, d/rules: Temporarily disable colord on 32-bit non-i386.
+    This is not yet buildable on the architectures affected by the 64-bit
+    time_t transition.
+  * d/control, d/rules: Temporarily disable cloudproviders on 32-bit non-x86.
+    This is not yet buildable on the architectures affected by the 64-bit
+    time_t transition, with a dependency chain involving graphviz and
+    GTK 2.
+  * d/control, d/tests: Use pkgconf in preference to pkg-config
+  * d/control, d/rules: Make it clearer that we are using the correct
+    pkgconf.
+    We intentionally compile convert-emoji with the build architecture
+    pkgconf, because we need to run it during build, but we do not need
+    to install it.
+  * d/tests/manual: Fix a typo in a comment
+  * Fix lintian override for libgtk-3-0t64 containing both GDK and GTK
+  * Fix mismatched Lintian override for libgail-3-0t64 name vs. SONAME
+  * Add a Lintian override for arch-dep-package-has-big-usr-share.
+    This is mostly the GIR XML, which must be in an arch-dep package
+    as specified by the GObject-Introspection mini-policy. Keeping it
+    in /usr/share means that it can at least be shared between multiple
+    installed multiarch instances.
+
+ -- Simon McVittie <smcv@debian.org>  Thu, 14 Mar 2024 18:27:58 +0000
+
+gtk+3.0 (3.24.41-2) unstable; urgency=medium
+
+  * d/libgtk-3-0t64.preinst: Remove libgtk-3-0 postrm to avoid loss of
+    input method modules during upgrade (Closes: #1065494)
+  * d/tests/manual/1065494.sh: Add a manual reproducer for #1065494
+  * d/libgtk-3-0t64.postrm.in: Only clean up immodules.cache during purge.
+    This avoids input methods becoming briefly unavailable during upgrades.
+  * d/libgtk-3-0t64.postrm.in: Avoid recurrence of #1065494 in the future,
+    by not deleting immodules.cache (even during purge) unless the immodules
+    directory no longer exists.
+  * d/tests/1065494-futureproofing: Add a test for recurrence of #1065494.
+
+ -- Simon McVittie <smcv@debian.org>  Wed, 06 Mar 2024 11:23:01 +0000
+
 gtk+3.0 (3.24.41-1.1ubuntu4) noble; urgency=medium
 
   * No-change rebuild for CVE-2024-3094

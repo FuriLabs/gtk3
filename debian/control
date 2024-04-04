@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
 Uploaders: Simon McVittie <smcv@debian.org>, Dmitry Shachnev <mitya57@debian.org>, Jeremy Bícha <jbicha@ubuntu.com>
-Build-Depends: dpkg-dev (>= 1.22.5), adwaita-icon-theme-full <!nocheck>,
+Build-Depends: adwaita-icon-theme (>= 45.0-4~) <!nocheck>,
                at-spi2-core <!nocheck>,
                dbus-daemon <!nocheck>,
                debhelper-compat (= 13),
@@ -12,6 +12,7 @@ Build-Depends: dpkg-dev (>= 1.22.5), adwaita-icon-theme-full <!nocheck>,
                dh-sequence-translations,
                docbook-xml <!nodoc>,
                docbook-xsl <!nodoc>,
+               dpkg-dev (>= 1.22.5),
                fonts-cantarell <!nocheck>,
                fonts-dejavu-core <!nocheck>,
                gir1.2-atk-1.0-dev <pkg.gobject-introspection.todo>,
@@ -56,7 +57,8 @@ Build-Depends: dpkg-dev (>= 1.22.5), adwaita-icon-theme-full <!nocheck>,
                libxrandr-dev (>= 2:1.5.0),
                meson (>= 0.60.0),
                ninja-build,
-               pkg-config,
+               pkgconf,
+               pkgconf:native,
                sassc,
                wayland-protocols (>= 1.17) [linux-any],
                xauth <!nocheck>,
@@ -76,8 +78,8 @@ Vcs-Browser: https://salsa.debian.org/gnome-team/gtk3/tree/ubuntu/master
 Homepage: https://www.gtk.org/
 
 Package: libgtk-3-0t64
-Replaces: libgtk-3-0
-Breaks: libgtk-3-0 (<< ${source:Version})
+Replaces: libgtk-3-0 (<< 3.24.41-1.1)
+Breaks: libgtk-3-0 (<< 3.24.41-1.1)
 Architecture: any
 Multi-Arch: same
 Depends: adwaita-icon-theme,
@@ -179,7 +181,7 @@ Depends: gir1.2-gtk-3.0 (= ${binary:Version}),
          libxinerama-dev,
          libxkbcommon-dev,
          libxrandr-dev,
-         pkg-config,
+         pkgconf,
          wayland-protocols (>= 1.17) [linux-any],
          ${gir:Depends},
          ${misc:Depends},
@@ -276,8 +278,8 @@ Description: icon theme caching utility
 
 Package: libgail-3-0t64
 Provides: ${t64:Provides}
-Replaces: libgail-3-0
-Breaks: libgail-3-0 (<< ${source:Version})
+Replaces: libgail-3-0 (<< 3.24.41-1.1)
+Breaks: libgail-3-0 (<< 3.24.41-1.1)
 Architecture: any
 Multi-Arch: same
 Depends: at-spi2-core,
@@ -298,7 +300,7 @@ Multi-Arch: same
 Section: libdevel
 Depends: libatk1.0-dev,
          libgail-3-0t64 (= ${binary:Version}),
-         pkg-config,
+         pkgconf,
          ${misc:Depends},
          libgtk-3-dev (= ${binary:Version})
 Suggests: libgail-3-doc

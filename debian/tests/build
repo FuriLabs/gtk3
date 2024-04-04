@@ -56,7 +56,7 @@ EOF
 
 # Deliberately word-splitting, that's how pkg-config works:
 # shellcheck disable=SC2046
-"${CROSS_COMPILE}gcc" -o gtktest gtktest.c $("${CROSS_COMPILE}pkg-config" --cflags --libs gtk+-3.0)
+"${CROSS_COMPILE}gcc" -o gtktest gtktest.c $("${CROSS_COMPILE}pkgconf" --cflags --libs gtk+-3.0)
 echo "build: OK"
 [ -x gtktest ]
 "${srcdir}"/debian/tests/run-with-display x11 \

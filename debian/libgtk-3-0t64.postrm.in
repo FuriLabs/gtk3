@@ -4,8 +4,12 @@ set -e
 
 #DEBHELPER#
 
-if [ -d /@MODULES_BASE_PATH@ ]; then
-    # Purge the cache
-    rm -f /@MODULES_BASE_PATH@/immodules.cache
-    rmdir -p --ignore-fail-on-non-empty /@MODULES_BASE_PATH@
-fi
+case "$1" in
+    (purge)
+        if [ -d /@MODULES_BASE_PATH@ ] && ! [ -e /@MODULES_BASE_PATH@/immodules ]; then
+            # Purge the cache, but only do this if no more IM modules exist.
+            rm -f /@MODULES_BASE_PATH@/immodules.cache
+            rmdir -p --ignore-fail-on-non-empty /@MODULES_BASE_PATH@
+        fi
+        ;;
+esac
