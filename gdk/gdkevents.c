@@ -259,6 +259,7 @@ _gdk_event_queue_handle_motion_compression (GdkDisplay *display)
   GdkWindow *pending_motion_window = NULL;
   GdkDevice *pending_motion_device = NULL;
   gboolean uncompressed_motion = FALSE;
+  GdkEventSequence *pending_motion_sequence = NULL;
 
   /* If the last N events in the event queue are motion notify
    * events for the same window, drop all but the last */
@@ -289,7 +290,10 @@ _gdk_event_queue_handle_motion_compression (GdkDisplay *display)
           pending_motion_device != device)
         break;
 
-      pending_motion_window = window;
+      if (event->event.type == GDK_TOUCH_UPDATE &&
+          pending_motion_sequence != NULL &&
+          pending_motion_sequence != event->event.touch.sequence)
+        break;
 
       if (!window->event_compression)
         {
@@ -297,8 +301,11 @@ _gdk_event_queue_handle_motion_compression (GdkDisplay *display)
           break;
         }
 
+      pending_motion_window = window;
       pending_motion_device = device;
       pending_motions = tmp_list;
+      if (event->event.type == GDK_TOUCH_UPDATE)
+        pending_motion_sequence = event->event.touch.sequence;
 
       tmp_list = tmp_list->prev;
     }
