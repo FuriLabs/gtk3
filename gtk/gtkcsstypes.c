@@ -198,7 +198,8 @@ gtk_css_unit_get_dimension (GtkCssUnit unit)
     case GTK_CSS_IN:
     case GTK_CSS_CM:
     case GTK_CSS_MM:
-    case GTK_CSS_RPX:
+    case GTK_CSS_VW:
+    case GTK_CSS_VH:
       return GTK_CSS_DIMENSION_LENGTH;
 
     case GTK_CSS_RAD:

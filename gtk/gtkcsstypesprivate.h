@@ -383,7 +383,8 @@ typedef enum /*< skip >*/ {
   GTK_CSS_IN,
   GTK_CSS_CM,
   GTK_CSS_MM,
-  GTK_CSS_RPX,
+  GTK_CSS_VW,
+  GTK_CSS_VH,
   /* CSS term: <angle> */
   GTK_CSS_RAD,
   GTK_CSS_DEG,

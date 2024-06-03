@@ -144,9 +144,13 @@ gtk_css_value_dimension_compute (GtkCssValue             *number,
       return gtk_css_dimension_value_new (number->value *
                                           gtk_css_font_size_get_default_px (provider, style),
                                           GTK_CSS_PX);
-    case GTK_CSS_RPX:
-      return gtk_css_dimension_value_new (number->value /
-                                          _gtk_style_provider_private_get_scale (provider),
+    case GTK_CSS_VW:
+      // Nasty hack: use the default display since we don't know where this widget will be rendered
+      return gtk_css_dimension_value_new (number->value * 0.01 * gdk_screen_get_width (gdk_screen_get_default ()),
+                                          GTK_CSS_PX);
+    case GTK_CSS_VH:
+      // Nasty hack: use the default display since we don't know where this widget will be rendered
+      return gtk_css_dimension_value_new (number->value * 0.01 * gdk_screen_get_height (gdk_screen_get_default ()),
                                           GTK_CSS_PX);
     case GTK_CSS_RAD:
       return gtk_css_dimension_value_new (number->value * 360.0 / (2 * G_PI),
@@ -253,7 +257,7 @@ gtk_css_value_dimension_get_calc_term_order (const GtkCssValue *value)
   /* note: the order is alphabetic */
   guint order_per_unit[] = {
     /* [GTK_CSS_NUMBER] = */ 0,
-    /* [GTK_CSS_PERCENT] = */ 17,
+    /* [GTK_CSS_PERCENT] = */ 18,
     /* [GTK_CSS_PX] = */ 11,
     /* [GTK_CSS_PT] = */ 10,
     /* [GTK_CSS_EM] = */ 3,
@@ -263,12 +267,13 @@ gtk_css_value_dimension_get_calc_term_order (const GtkCssValue *value)
     /* [GTK_CSS_IN] = */ 6,
     /* [GTK_CSS_CM] = */ 1,
     /* [GTK_CSS_MM] = */ 7,
-    /* [GTK_CSS_RPX] = */ 14,
+    /* [GTK_CSS_VW] = */ 14,
+    /* [GTK_CSS_VH] = */ 15,
     /* [GTK_CSS_RAD] = */ 12,
     /* [GTK_CSS_DEG] = */ 2,
     /* [GTK_CSS_GRAD] = */ 5,
-    /* [GTK_CSS_TURN] = */ 16,
-    /* [GTK_CSS_S] = */ 15,
+    /* [GTK_CSS_TURN] = */ 17,
+    /* [GTK_CSS_S] = */ 16,
     /* [GTK_CSS_MS] = */ 8
   };
 
