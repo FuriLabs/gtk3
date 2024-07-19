@@ -1,0 +1,33 @@
+From: Matthias Clasen <mclasen@redhat.com>
+Date: Sat, 15 Jun 2024 14:18:01 -0400
+Subject: Stop looking for modules in cwd
+
+This is just not a good idea. It is surprising, and can be misused.
+
+Bug: https://gitlab.gnome.org/GNOME/gtk/-/issues/6786
+Bug-CVE: CVE-2024-6655
+Origin: upstream, 3.24.43, commit:https://gitlab.gnome.org/GNOME/gtk/-/commit/3bbf0b6176d42836d23c36a6ac410e807ec0a7a7
+---
+ gtk/gtkmodules.c | 9 ++-------
+ 1 file changed, 2 insertions(+), 7 deletions(-)
+
+diff --git a/gtk/gtkmodules.c b/gtk/gtkmodules.c
+index 704e412..f93101c 100644
+--- a/gtk/gtkmodules.c
++++ b/gtk/gtkmodules.c
+@@ -214,13 +214,8 @@ find_module (const gchar *name)
+   gchar *module_name;
+ 
+   module_name = _gtk_find_module (name, "modules");
+-  if (!module_name)
+-    {
+-      /* As last resort, try loading without an absolute path (using system
+-       * library path)
+-       */
+-      module_name = g_module_build_path (NULL, name);
+-    }
++  if (module_name == NULL)
++    return NULL;
+ 
+   module = g_module_open (module_name, G_MODULE_BIND_LOCAL | G_MODULE_BIND_LAZY);
+ 
