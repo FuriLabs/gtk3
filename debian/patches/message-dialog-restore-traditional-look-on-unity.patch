@@ -9,7 +9,7 @@ Subject: [PATCH] message dialog: restore traditional look on unity
  3 files changed, 91 insertions(+), 2 deletions(-)
 
 diff --git a/gtk/gtkmessagedialog.c b/gtk/gtkmessagedialog.c
-index e70c820..ba10f25 100644
+index e70c820..5d4580d 100644
 --- a/gtk/gtkmessagedialog.c
 +++ b/gtk/gtkmessagedialog.c
 @@ -104,6 +104,9 @@ struct _GtkMessageDialogPrivate
@@ -126,7 +126,7 @@ index e70c820..ba10f25 100644
 +  if (icon_name)
 +    gtk_image_set_from_icon_name (GTK_IMAGE (priv->image), icon_name, GTK_ICON_SIZE_DIALOG);
 +
-+  gtk_widget_set_visible (priv->image, icon_name);
++  gtk_widget_set_visible (priv->image, icon_name != NULL);
 +
    atk_obj = gtk_widget_get_accessible (GTK_WIDGET (dialog));
    if (GTK_IS_ACCESSIBLE (atk_obj))
