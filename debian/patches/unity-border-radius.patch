@@ -10,7 +10,7 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/1516403
  1 file changed, 152 insertions(+), 6 deletions(-)
 
 diff --git a/gtk/gtkwindow.c b/gtk/gtkwindow.c
-index c67530f..d6db84f 100644
+index c67530f..f835b9a 100644
 --- a/gtk/gtkwindow.c
 +++ b/gtk/gtkwindow.c
 @@ -256,6 +256,7 @@ struct _GtkWindowPrivate
@@ -96,7 +96,7 @@ index c67530f..d6db84f 100644
 +                             GtkWindow *window)
 +{
 +  GtkStyleContext *context = gtk_widget_get_style_context (widget);
-+  const GtkBitmask *change = gtk_style_context_get_change (context);
++  const GtkCssStyleChange *change = gtk_style_context_get_change (context);
 +
 +  if (!change || !gtk_css_style_change_affects (change, GTK_CSS_AFFECTS_BORDER))
 +    return;
