@@ -1,0 +1,27 @@
+From: yangyingchao <yang.yingchao@qq.com>
+Date: Tue, 30 Apr 2024 09:09:39 +0800
+Subject: Ensure the staging_cairo_surface is destroyed before re-assigning it
+
+Without doing so, memory regions allocated may not be freed in some cases.
+
+Closes 6675.
+
+(cherry picked from commit b237989bb3a795360e272f22f6edc23ca8f73f7e)
+
+Origin: upstream gtk-3-24 branch, after 3.24.43
+---
+ gdk/wayland/gdkwindow-wayland.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/gdk/wayland/gdkwindow-wayland.c b/gdk/wayland/gdkwindow-wayland.c
+index 7b24877..07af2ef 100644
+--- a/gdk/wayland/gdkwindow-wayland.c
++++ b/gdk/wayland/gdkwindow-wayland.c
+@@ -954,6 +954,7 @@ buffer_release_callback (void             *_data,
+   /* Release came in, we haven't done any interim updates, so we can just use
+    * the old committed buffer again.
+    */
++  g_clear_pointer (&impl->staging_cairo_surface, cairo_surface_destroy);
+   impl->staging_cairo_surface = g_steal_pointer (&impl->committed_cairo_surface);
+ }
+ 

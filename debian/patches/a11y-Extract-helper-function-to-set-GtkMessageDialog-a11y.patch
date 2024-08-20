@@ -1,0 +1,114 @@
+From: Michael Weghorn <m.weghorn@posteo.de>
+Date: Fri, 9 Aug 2024 18:30:24 +0200
+Subject: a11y: Extract helper function to set GtkMessageDialog a11y name
+
+Extract the existing logic to set an accessible name for the
+`GtkMessageDialog` based on the message type from `setup_type`
+to a new helper function `update_accessible_name`.
+
+That helper function will be reused and extended in a follow-up
+commit.
+
+(cherry picked from commit 13f55cd3e664b0fa7c14944572f2b41b73d64d16)
+
+Origin: upstream gtk-3-24 branch, after 3.24.43
+---
+ gtk/gtkmessagedialog.c | 68 +++++++++++++++++++++++++++++---------------------
+ 1 file changed, 40 insertions(+), 28 deletions(-)
+
+diff --git a/gtk/gtkmessagedialog.c b/gtk/gtkmessagedialog.c
+index e70c820..1de3118 100644
+--- a/gtk/gtkmessagedialog.c
++++ b/gtk/gtkmessagedialog.c
+@@ -366,12 +366,50 @@ setup_primary_label_font (GtkMessageDialog *dialog)
+     }
+ }
+ 
++static void
++update_accessible_name (GtkMessageDialog *dialog)
++{
++  AtkObject *atk_obj = gtk_widget_get_accessible (GTK_WIDGET (dialog));
++  if (!GTK_IS_ACCESSIBLE (atk_obj))
++    return;
++
++  const char *name = NULL;
++
++  switch (dialog->priv->message_type)
++  {
++  case GTK_MESSAGE_INFO:
++    name = _("Information");
++    break;
++
++  case GTK_MESSAGE_QUESTION:
++    name = _("Question");
++    break;
++
++  case GTK_MESSAGE_WARNING:
++    name = _("Warning");
++    break;
++
++  case GTK_MESSAGE_ERROR:
++    name = _("Error");
++    break;
++
++  case GTK_MESSAGE_OTHER:
++    break;
++
++  default:
++    g_warning ("Unknown GtkMessageType %u", dialog->priv->message_type);
++    break;
++  }
++
++  if (name)
++      atk_object_set_name (atk_obj, name);
++}
++
+ static void
+ setup_type (GtkMessageDialog *dialog,
+ 	    GtkMessageType    type)
+ {
+   GtkMessageDialogPrivate *priv = dialog->priv;
+-  const gchar *name = NULL;
+   AtkObject *atk_obj;
+ 
+   if (priv->message_type == type)
+@@ -379,38 +417,12 @@ setup_type (GtkMessageDialog *dialog,
+ 
+   priv->message_type = type;
+ 
+-  switch (type)
+-    {
+-    case GTK_MESSAGE_INFO:
+-      name = _("Information");
+-      break;
+-
+-    case GTK_MESSAGE_QUESTION:
+-      name = _("Question");
+-      break;
+-
+-    case GTK_MESSAGE_WARNING:
+-      name = _("Warning");
+-      break;
+-
+-    case GTK_MESSAGE_ERROR:
+-      name = _("Error");
+-      break;
+-
+-    case GTK_MESSAGE_OTHER:
+-      break;
+-
+-    default:
+-      g_warning ("Unknown GtkMessageType %u", type);
+-      break;
+-    }
+ 
+   atk_obj = gtk_widget_get_accessible (GTK_WIDGET (dialog));
+   if (GTK_IS_ACCESSIBLE (atk_obj))
+     {
+       atk_object_set_role (atk_obj, ATK_ROLE_ALERT);
+-      if (name)
+-        atk_object_set_name (atk_obj, name);
++      update_accessible_name (dialog);
+     }
+ 
+   g_object_notify (G_OBJECT (dialog), "message-type");
