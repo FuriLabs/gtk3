@@ -98,6 +98,12 @@ else
 configure_flags_deb += -Dcolord=no
 endif
 
+ifneq (,$(filter amd64 arm64 armel armhf i386 mips64el ppc64el riscv64 s390x hppa loong64 powerpc ppc64 sh4,$(DEB_HOST_ARCH)))
+configure_flags_deb += -Dprofiler=true
+else
+configure_flags_deb += -Dprofiler=false
+endif
+
 ifeq (linux,$(DEB_HOST_ARCH_OS))
 configure_flags_deb += -Dwayland_backend=true
 else
