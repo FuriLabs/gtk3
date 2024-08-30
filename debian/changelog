@@ -1,3 +1,32 @@
+gtk+3.0 (3.24.43-3ubuntu1) UNRELEASED; urgency=medium
+
+  [ Jeremy Bícha ]
+  * Resynchronize with Debian, remaining changes:
+    + Add Build-Depends: dh-sequence-translations
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0t64.symbols for ubuntu_gtk_custom_menu_items.patch
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+      - gitlab_opengl_fallback.patch
+
+  [ Alessandro Astone ]
+  * debian: Update message-dialog patch to fix build with gcc-14
+  * debian: Update unity border radius patch to fix build with gcc-14
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Fri, 30 Aug 2024 16:44:50 -0400
+
 gtk+3.0 (3.24.43-3) unstable; urgency=medium
 
   * Remove cherry-picked patch that broke tray icons in waybar
@@ -12,14 +41,6 @@ gtk+3.0 (3.24.43-2) unstable; urgency=medium
   * Bump Standards Version to 4.7.0
 
  -- Jeremy Bícha <jbicha@ubuntu.com>  Tue, 20 Aug 2024 16:42:46 -0400
-
-gtk+3.0 (3.24.43-1ubuntu2) UNRELEASED; urgency=medium
-
-  [ Alessandro Astone ]
-  * debian: Update message-dialog patch to fix build with gcc-14
-  * debian: Update unity border radius patch to fix build with gcc-14
-
- -- Jeremy Bícha <jbicha@ubuntu.com>  Fri, 30 Aug 2024 16:44:50 -0400
 
 gtk+3.0 (3.24.43-1ubuntu1) oracular; urgency=medium
 
