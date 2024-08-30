@@ -4,12 +4,14 @@ Subject: print-dialog-show-options-of-remote-dnssd-printers
 
 Bug-Upstream: https://bugzilla.gnome.org/show_bug.cgi?id=684533
 ---
- modules/printbackends/cups/gtkprintbackendcups.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ modules/printbackends/cups/gtkprintbackendcups.c | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
+diff --git a/modules/printbackends/cups/gtkprintbackendcups.c b/modules/printbackends/cups/gtkprintbackendcups.c
+index bbe01c9..20887a3 100644
 --- a/modules/printbackends/cups/gtkprintbackendcups.c
 +++ b/modules/printbackends/cups/gtkprintbackendcups.c
-@@ -2463,6 +2463,13 @@
+@@ -2463,6 +2463,13 @@ cups_printer_handle_attribute (GtkPrintBackendCups *cups_backend,
      }
  }
  
@@ -23,7 +25,7 @@ Bug-Upstream: https://bugzilla.gnome.org/show_bug.cgi?id=684533
  static GtkPrinter*
  cups_create_printer (GtkPrintBackendCups *cups_backend,
  		     PrinterSetupInfo *info)
-@@ -2521,6 +2528,19 @@
+@@ -2521,6 +2528,19 @@ cups_create_printer (GtkPrintBackendCups *cups_backend,
  		   &port,
  		   resource, sizeof (resource));
  

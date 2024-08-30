@@ -3,13 +3,13 @@ Date: Thu, 23 Oct 2014 10:01:04 -0400
 Subject: [PATCH] message dialog: restore traditional look on unity
 
 ---
- gtk/gtkmessagedialog.c           | 60 +++++++++++++++++++++++++++++++++++++++-
+ gtk/gtkmessagedialog.c           | 62 ++++++++++++++++++++++++++++++++++++++--
  gtk/ui/gtkmessagedialog.ui       | 18 ++++++++++++
  testsuite/a11y/messagedialog.txt | 15 +++++++++-
- 3 files changed, 91 insertions(+), 2 deletions(-)
+ 3 files changed, 92 insertions(+), 3 deletions(-)
 
 diff --git a/gtk/gtkmessagedialog.c b/gtk/gtkmessagedialog.c
-index e70c820..5d4580d 100644
+index ee35b26..2715bff 100644
 --- a/gtk/gtkmessagedialog.c
 +++ b/gtk/gtkmessagedialog.c
 @@ -104,6 +104,9 @@ struct _GtkMessageDialogPrivate
@@ -88,46 +88,55 @@ index e70c820..5d4580d 100644
  
    settings = gtk_widget_get_settings (GTK_WIDGET (dialog));
    g_object_get (settings, "gtk-keynav-use-caret", &use_caret, NULL);
-@@ -372,6 +420,7 @@ setup_type (GtkMessageDialog *dialog,
+@@ -370,6 +418,8 @@ static void
+ update_accessible_name (GtkMessageDialog *dialog)
  {
-   GtkMessageDialogPrivate *priv = dialog->priv;
-   const gchar *name = NULL;
+   AtkObject *atk_obj = gtk_widget_get_accessible (GTK_WIDGET (dialog));
 +  const gchar *icon_name = NULL;
-   AtkObject *atk_obj;
++
+   if (!GTK_IS_ACCESSIBLE (atk_obj))
+     return;
  
-   if (priv->message_type == type)
-@@ -383,18 +432,22 @@ setup_type (GtkMessageDialog *dialog,
-     {
-     case GTK_MESSAGE_INFO:
-       name = _("Information");
-+      icon_name = "dialog-information-symbolic";
-       break;
+@@ -384,18 +434,22 @@ update_accessible_name (GtkMessageDialog *dialog)
+   {
+   case GTK_MESSAGE_INFO:
+     name = _("Information");
++    icon_name = "dialog-information-symbolic";
+     break;
  
-     case GTK_MESSAGE_QUESTION:
-       name = _("Question");
-+      icon_name = "dialog-question-symbolic";
-       break;
+   case GTK_MESSAGE_QUESTION:
+     name = _("Question");
++    icon_name = "dialog-question-symbolic";
+     break;
  
-     case GTK_MESSAGE_WARNING:
-       name = _("Warning");
-+      icon_name = "dialog-warning-symbolic";
-       break;
+   case GTK_MESSAGE_WARNING:
+     name = _("Warning");
++    icon_name = "dialog-warning-symbolic";
+     break;
  
-     case GTK_MESSAGE_ERROR:
-       name = _("Error");
-+      icon_name = "dialog-error-symbolic";
-       break;
+   case GTK_MESSAGE_ERROR:
+     name = _("Error");
++    icon_name = "dialog-error-symbolic";
+     break;
  
-     case GTK_MESSAGE_OTHER:
-@@ -405,6 +458,11 @@ setup_type (GtkMessageDialog *dialog,
-       break;
-     }
+   case GTK_MESSAGE_OTHER:
+@@ -408,6 +462,11 @@ update_accessible_name (GtkMessageDialog *dialog)
  
+   if (name)
+       atk_object_set_name (atk_obj, name);
++
++  gtk_widget_set_visible (dialog->priv->image, icon_name != NULL);
++
 +  if (icon_name)
-+    gtk_image_set_from_icon_name (GTK_IMAGE (priv->image), icon_name, GTK_ICON_SIZE_DIALOG);
-+
-+  gtk_widget_set_visible (priv->image, icon_name != NULL);
-+
++    gtk_image_set_from_icon_name (GTK_IMAGE (dialog->priv->image), icon_name, GTK_ICON_SIZE_DIALOG);
+ }
+ 
+ static void
+@@ -422,7 +481,6 @@ setup_type (GtkMessageDialog *dialog,
+ 
+   priv->message_type = type;
+ 
+-
    atk_obj = gtk_widget_get_accessible (GTK_WIDGET (dialog));
    if (GTK_IS_ACCESSIBLE (atk_obj))
      {
