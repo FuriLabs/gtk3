@@ -42,6 +42,7 @@ Build-Depends: adwaita-icon-theme (>= 45.0-4~) <!nocheck>,
                libjson-glib-dev:native,
                libpango1.0-dev (>= 1.44.0),
                librsvg2-common [amd64 arm64 armel armhf i386 mips64el mipsel ppc64el s390x powerpc ppc64 riscv64 sparc64] <!nocheck>,
+               libsysprof-capture-4-dev (>= 3.40.1) [amd64 arm64 armel armhf i386 mips64el ppc64el riscv64 s390x hppa loong64 powerpc ppc64 sh4],
                libwayland-dev (>= 1.14.91) [linux-any],
                libx11-dev,
                libxcomposite-dev,
@@ -70,11 +71,11 @@ Build-Depends-Indep: gtk-doc-tools (>= 1.20) <!nodoc>,
                      libglib2.0-doc <!nodoc>,
                      libpango1.0-doc <!nodoc>,
 Rules-Requires-Root: no
-Standards-Version: 4.6.2
+Standards-Version: 4.7.0
 XS-Debian-Vcs-Git: https://salsa.debian.org/gnome-team/gtk3.git
 XS-Debian-Vcs-Browser: https://salsa.debian.org/gnome-team/gtk3
-Vcs-Git: https://salsa.debian.org/gnome-team/gtk3.git -b ubuntu/master
-Vcs-Browser: https://salsa.debian.org/gnome-team/gtk3/tree/ubuntu/master
+Vcs-Git: https://salsa.debian.org/gnome-team/gtk3.git -b ubuntu/latest
+Vcs-Browser: https://salsa.debian.org/gnome-team/gtk3/tree/ubuntu/latest
 Homepage: https://www.gtk.org/
 
 Package: libgtk-3-0t64
