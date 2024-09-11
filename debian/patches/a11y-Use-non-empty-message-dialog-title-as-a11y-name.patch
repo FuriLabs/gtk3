@@ -15,19 +15,19 @@ This can easily be tested with the "Dialogs and
 Message Boxes" sample from gtk3-demo when setting
 a title for the message dialog in there like this:
 
-    diff --git a/demos/gtk-demo/dialog.c b/demos/gtk-demo/dialog.c
-    index 0eb1c62397..53fb7f8b0e 100644
-    --- a/demos/gtk-demo/dialog.c
-    +++ b/demos/gtk-demo/dialog.c
-    @@ -25,6 +25,8 @@ message_dialog_clicked (GtkButton *button,
-                                        "number of times:");
-       gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-                                                 "%d", i);
-    +  gtk_window_set_title (GTK_WINDOW (dialog), "Some informative title");
-    +
-       gtk_dialog_run (GTK_DIALOG (dialog));
-       gtk_widget_destroy (dialog);
-       i++;
+>   diff --git a/demos/gtk-demo/dialog.c b/demos/gtk-demo/dialog.c
+>   index 0eb1c62397..53fb7f8b0e 100644
+>   --- a/demos/gtk-demo/dialog.c
+>   +++ b/demos/gtk-demo/dialog.c
+>   @@ -25,6 +25,8 @@ message_dialog_clicked (GtkButton *button,
+>                                       "number of times:");
+>      gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+>                                                "%d", i);
+>   +  gtk_window_set_title (GTK_WINDOW (dialog), "Some informative title");
+>   +
+>      gtk_dialog_run (GTK_DIALOG (dialog));
+>      gtk_widget_destroy (dialog);
+>      i++;
 
 (cherry picked from commit 939737c3e72c2deaa0094f35838038df92f2a724)
 
