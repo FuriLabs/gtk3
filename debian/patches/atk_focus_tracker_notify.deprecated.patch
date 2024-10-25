@@ -1,0 +1,61 @@
+From 5147e95d1d6a02212b1f51c2cc0a61653425850a Mon Sep 17 00:00:00 2001
+From: Michael Weghorn <m.weghorn@posteo.de>
+Date: Wed, 8 May 2024 11:32:27 +0200
+Subject: [PATCH] a11y: Port from deprecated atk_focus_tracker_notify
+
+Port `gail_focus_notify` from using the deprecated
+`atk_focus_tracker_notify` to notify about the new
+focus object. Notify of a state of the focused state
+instead, as suggested in the
+`atk_focus_tracker_notify` doc [1].
+
+Using the deprecated function e.g. resulted in
+the Orca screen reader no longer announcing
+initial focus on editable comboboxes in
+LibreOffice Writer's toolbars after Orca dropped
+support for the deprecated "focus" AT-SPI event
+in this commit [2]:
+
+    commit 9e2902dd46c7e583a097e235dfd7e3c50b016383
+    Author: Joanmarie Diggs <jdiggs@igalia.com>
+    Date:   Wed May 1 12:14:07 2024 +0200
+
+        Remove the on_focus handler for the LibreOffice script
+
+        The "focus:" event was deprecated many years ago. If the expected
+        "object:state-changed:focused" event is absent, that bug should
+        be fixed.
+
+This commit makes the announcement work again.
+
+It also fixes the scenario described in [3].
+
+[1] https://docs.gtk.org/atk/func.focus_tracker_notify.html
+[2] https://gitlab.gnome.org/GNOME/orca/-/commit/9e2902dd46c7e583a097e235dfd7e3c50b016383
+[3] https://gitlab.gnome.org/GNOME/gtk/-/issues/454#note_2099344
+
+Fixes: #454
+---
+ gtk/a11y/gtkaccessibility.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/gtk/a11y/gtkaccessibility.c b/gtk/a11y/gtkaccessibility.c
+index 7f0e5207d91..1b319db35af 100644
+--- a/gtk/a11y/gtkaccessibility.c
++++ b/gtk/a11y/gtkaccessibility.c
+@@ -525,11 +525,9 @@ gail_focus_notify (GtkWidget *widget)
+       /*
+        * Do not report focus on redundant object
+        */
+-      G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
+       if (atk_obj &&
+ 	  (atk_object_get_role(atk_obj) != ATK_ROLE_REDUNDANT_OBJECT))
+-	  atk_focus_tracker_notify (atk_obj);
+-      G_GNUC_END_IGNORE_DEPRECATIONS;
++	  atk_object_notify_state_change (atk_obj, ATK_STATE_FOCUSED, TRUE);
+       if (atk_obj && transient)
+         g_object_unref (atk_obj);
+       if (subsequent_focus_widget)
+-- 
+GitLab
+
