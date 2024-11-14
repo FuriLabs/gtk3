@@ -1,3 +1,27 @@
+gtk+3.0 (3.24.43-4ubuntu1) UNRELEASED; urgency=medium
+
+  * Resynchronize with Debian, remaining changes:
+    + Add Build-Depends: dh-sequence-translations
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0t64.symbols for ubuntu_gtk_custom_menu_items.patch
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+      - gitlab_opengl_fallback.patch
+
+ -- Alessandro Astone <alessandro.astone@canonical.com>  Thu, 14 Nov 2024 15:59:16 +0100
+
 gtk+3.0 (3.24.43-4) unstable; urgency=medium
 
   * d/p/a11y-Use-non-empty-message-dialog-title-as-a11y-name.patch:
