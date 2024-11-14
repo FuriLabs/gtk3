@@ -1,3 +1,16 @@
+gtk+3.0 (3.24.43-4) unstable; urgency=medium
+
+  * d/p/a11y-Use-non-empty-message-dialog-title-as-a11y-name.patch:
+    Edit patch so the long description is not used as part of the diff
+    (Closes: #1081179)
+  * d/rules: Don't build gtk-update-icon-cache on release architectures.
+    Ideally src:gtk4 would take over gtk-update-icon-cache on all
+    architectures, but it isn't buildable on all -ports architectures
+    yet, and the -ports architectures are more susceptible to packages
+    temporarily disappearing.
+
+ -- Simon McVittie <smcv@debian.org>  Mon, 16 Sep 2024 11:11:27 +0100
+
 gtk+3.0 (3.24.43-3ubuntu2) oracular; urgency=medium
 
   * Remove obsolete gtk-update-icon-cache package, now built by gtk4
