@@ -76,6 +76,8 @@ debian/%: debian/%.in
 		-e "s#@README@#$(README)#g" \
 		$@.in > $@
 
+dh_options =
+
 configure_flags_common = \
 	-Dx11_backend=true \
 	$(NULL)
@@ -96,6 +98,16 @@ ifeq (,$(filter stage1,$(DEB_BUILD_PROFILES)))
 configure_flags_deb += -Dcolord=yes
 else
 configure_flags_deb += -Dcolord=no
+endif
+
+ifneq (,$(filter amd64 arm64 armel armhf i386 mips64el ppc64el riscv64 s390x hppa loong64 powerpc ppc64 sh4,$(DEB_HOST_ARCH)))
+configure_flags_deb += -Dprofiler=true
+else
+configure_flags_deb += -Dprofiler=false
+endif
+
+ifneq (,$(filter amd64 arm64 armel armhf i386 mips64el ppc64el riscv64 s390x,$(DEB_HOST_ARCH)))
+dh_options += -Ngtk-update-icon-cache
 endif
 
 ifeq (linux,$(DEB_HOST_ARCH_OS))
@@ -134,7 +146,7 @@ configure_flags_udeb = \
 	$(NULL)
 
 %:
-	dh $@
+	dh $@ $(dh_options)
 
 fuzzy_reftests =
 

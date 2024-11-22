@@ -1,12 +1,37 @@
-gtk+3.0 (3.24.42-1mobian1) unstable; urgency=medium
+gtk+3.0 (3.24.43-4) unstable; urgency=medium
 
-  * d/gbp.conf: update for Mobian
-  * debian: drop udeb package.
-    We don't need it in Mobian, so let's improve build time by dropping it.
-  * libgtk-3-common: install Purism gschema
-  * d/patches: import Purism patches improving adaptive UI
+  * d/p/a11y-Use-non-empty-message-dialog-title-as-a11y-name.patch:
+    Edit patch so the long description is not used as part of the diff
+    (Closes: #1081179)
+  * d/rules: Don't build gtk-update-icon-cache on release architectures.
+    Ideally src:gtk4 would take over gtk-update-icon-cache on all
+    architectures, but it isn't buildable on all -ports architectures
+    yet, and the -ports architectures are more susceptible to packages
+    temporarily disappearing.
 
- -- Arnaud Ferraris <aferraris@debian.org>  Fri, 31 May 2024 09:53:44 +0200
+ -- Simon McVittie <smcv@debian.org>  Mon, 16 Sep 2024 11:11:27 +0100
+
+gtk+3.0 (3.24.43-3) unstable; urgency=medium
+
+  * Remove cherry-picked patch that broke tray icons in waybar
+    (Closes: #1079292)
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Fri, 23 Aug 2024 11:49:09 -0400
+
+gtk+3.0 (3.24.43-2) unstable; urgency=medium
+
+  * Cherry-pick fixes from upstream gtk-3-24 branch
+  * Enable sysprof profiling integration on most architectures (LP: #2077465)
+  * Bump Standards Version to 4.7.0
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Tue, 20 Aug 2024 16:42:46 -0400
+
+gtk+3.0 (3.24.43-1) unstable; urgency=high
+
+  * SECURITY UPDATE: New upstream release
+    - CVE-2024-6655 Stop looking for modules in cwd
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Wed, 10 Jul 2024 15:04:37 -0400
 
 gtk+3.0 (3.24.42-1) unstable; urgency=medium
 
