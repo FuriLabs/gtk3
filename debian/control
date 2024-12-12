@@ -62,7 +62,9 @@ Build-Depends: adwaita-icon-theme (>= 45.0-4~) <!nocheck>,
                wayland-protocols (>= 1.17) [linux-any],
                xauth <!nocheck>,
                xsltproc <!nodoc>,
-               xvfb <!nocheck>
+               xvfb <!nocheck>,
+               binutils,
+               patchelf,
 Build-Depends-Indep: gtk-doc-tools (>= 1.20) <!nodoc>,
                      libatk1.0-doc <!nodoc>,
                      libcairo2-doc <!nodoc>,
@@ -304,3 +306,18 @@ Description: documentation files of the Gail library
  of accessibility, without the need to modify the application at all.
  .
  This package contains the documentation files for Gail.
+
+Package: flatpak-extension-gtk3-libhandy
+Architecture: any
+# hard dependencies are not really needed since we're going to
+# copy the libraries anyway, but it's good to avoid eventual desyncs
+Depends: ${misc:Depends},
+         libgtk-3-0t64 (>= ${source:Version})
+Recommends: flatpak-hybris
+Description: GTK3 extension for FuriOS flatpak
+ This package contains all of the GTK3 libraries in a directory
+ which will be added to LD_LIBRARY_PATH by our flatpak wrapper
+ .
+ This enables GTK3 adaptive optimizations inside flatpaks as well. Note that installing
+ this package won't enable it automatically.
+ Check the flatpak-hybris package for more details.

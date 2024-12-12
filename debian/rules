@@ -293,3 +293,7 @@ dpkg_gencontrol_args = -Vgtk:BinVer=$(GTK_BINVER_DEP)
 
 override_dh_gencontrol:
 	dh_gencontrol -- $(dpkg_gencontrol_args)
+
+override_dh_strip:
+	dh_strip
+	find $(CURDIR)/debian/flatpak-extension-gtk3-libhandy/var/lib/flatpak-extensions/ -type f -name \*.so\* -exec $(CURDIR)/debian/clear_symbols.sh \{\} \;
