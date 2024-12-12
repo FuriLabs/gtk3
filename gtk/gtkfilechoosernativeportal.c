@@ -461,9 +461,6 @@ gtk_file_chooser_native_portal_show (GtkFileChooserNative *self)
   GtkFileChooserAction action;
   const char *method_name;
 
-  if (!gtk_should_use_portal ())
-    return FALSE;
-
   connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, NULL);
   if (connection == NULL)
     return FALSE;
