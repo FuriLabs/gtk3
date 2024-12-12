@@ -128,12 +128,12 @@ else
 configure_flags_deb += -Dgtk_doc=true
 endif
 
-ifeq ($(shell dpkg-vendor --is Ubuntu && echo yes), yes)
+#ifeq ($(shell dpkg-vendor --is Ubuntu && echo yes), yes)
 # Not in main repository
 configure_flags_deb += -Dcloudproviders=false
-else
-configure_flags_deb += -Dcloudproviders=true
-endif
+#else
+#configure_flags_deb += -Dcloudproviders=false
+#endif
 
 configure_flags_udeb = \
 	-Dbroadway_backend=false \
@@ -287,9 +287,9 @@ endif
 
 dpkg_gencontrol_args = -Vgtk:BinVer=$(GTK_BINVER_DEP)
 # libcloudproviders is in Ubuntu "universe"
-ifneq ($(shell dpkg-vendor --query vendor),Ubuntu)
-dpkg_gencontrol_args += -VcloudProvider:Depends='libcloudproviders-dev (>= 0.3.2)'
-endif
+#ifneq ($(shell dpkg-vendor --query vendor),Ubuntu)
+#dpkg_gencontrol_args += -VcloudProvider:Depends='libcloudproviders-dev (>= 0.3.2)'
+#endif
 
 override_dh_gencontrol:
 	dh_gencontrol -- $(dpkg_gencontrol_args)
