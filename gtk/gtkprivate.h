@@ -153,7 +153,7 @@ _gtk_get_is_phone (void)
   gboolean is_phone;
 
   if (!gsettings)
-    return FALSE;
+    return TRUE;
 
   is_phone = g_settings_get_boolean (gsettings, "is-phone");
   g_object_unref (gsettings);
