@@ -1,3 +1,19 @@
+gtk+3.0 (3.24.43-5) unstable; urgency=medium
+
+  * d/salsa-ci.yml: Add
+  * d/rules: Explicitly use build architecture gcc in rebuild-emoji target.
+    This makes it more obvious that we're intentionally building a
+    build-architecture binary, to be run during the build and then discarded.
+  * d/rules: Use CFLAGS_FOR_BUILD, etc. to link convert-emoji
+  * d/libgtk-3-0t64.links.in:
+    Provide a symlink to the old gtk-query-immodules-3.0 path.
+    This provides drop-in compatibility with libgtk-3-0, which some
+    packages rely on (gcin, hime, ibus).
+  * Add test coverage for the historical path of gtk-query-immodules-3.0
+  * Remove obsolete Lintian overrides
+
+ -- Simon McVittie <smcv@debian.org>  Tue, 14 Jan 2025 14:38:06 +0000
+
 gtk+3.0 (3.24.43-4) unstable; urgency=medium
 
   * d/p/a11y-Use-non-empty-message-dialog-title-as-a11y-name.patch:
