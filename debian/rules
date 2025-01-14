@@ -248,6 +248,9 @@ endif
 override_dh_install:
 	dh_install -p$(UDEB_PKG) --sourcedir=debian/install/udeb
 	dh_install --remaining-packages --sourcedir=debian/install/deb
+ifneq ($(filter $(EXAMPLES_PKG),$(built_binaries)),)
+	printf '%s\n' "${DEB_HOST_MULTIARCH}" > debian/$(EXAMPLES_PKG)/usr/libexec/installed-tests/gtk+/DEB_HOST_MULTIARCH
+endif
 
 # debhelper >= 13.4 makes all of /usr/libexec executable, which is not
 # quite right for installed-tests
