@@ -1,3 +1,13 @@
+gtk+3.0 (3.24.48-3) unstable; urgency=medium
+
+  * Restore gtk-update-icon-cache package as was previously provided.
+    Notably this isn't actually built on release architectures because
+    of debian/rules handling. See the 3.24.43-4 changelog.
+  * Add loong64 to the list of architectures we don't want to build
+    gtk-update-icon-cache
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 27 Jan 2025 11:51:58 -0500
+
 gtk+3.0 (3.24.48-2) unstable; urgency=medium
 
   * Remove obsolete gtk-update-icon-cache package, now built by gtk4
