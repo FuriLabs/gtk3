@@ -1,16 +1,6 @@
-gtk+3.0 (3.24.48-3) unstable; urgency=medium
+gtk+3.0 (3.24.48-3ubuntu1) plucky; urgency=medium
 
-  * Restore gtk-update-icon-cache package as was previously provided.
-    Notably this isn't actually built on release architectures because
-    of debian/rules handling. See the 3.24.43-4 changelog.
-  * Add loong64 to the list of architectures we don't want to build
-    gtk-update-icon-cache
-
- -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 27 Jan 2025 11:51:58 -0500
-
-gtk+3.0 (3.24.48-2ubuntu1) UNRELEASED; urgency=medium
-
-  * Resynchronize with Debian, remaining changes:
+  * Resynchronize with Debian (LP: #2096777), remaining changes:
     + Add Build-Depends: dh-sequence-translations
     + Install a settings.ini file to set our themes
     + Update debian/libgtk-3-0t64.symbols for ubuntu_gtk_custom_menu_items.patch
@@ -29,8 +19,19 @@ gtk+3.0 (3.24.48-2ubuntu1) UNRELEASED; urgency=medium
       - unity-border-radius.patch
       - unity-headerbar-maximized-mode.patch
       - gitlab_opengl_fallback.patch
+  * debian/salsa-ci.yml: Use ubuntu recipe
 
  -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 27 Jan 2025 10:57:38 -0500
+
+gtk+3.0 (3.24.48-3) unstable; urgency=medium
+
+  * Restore gtk-update-icon-cache package as was previously provided.
+    Notably this isn't actually built on release architectures because
+    of debian/rules handling. See the 3.24.43-4 changelog.
+  * Add loong64 to the list of architectures we don't want to build
+    gtk-update-icon-cache
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 27 Jan 2025 11:51:58 -0500
 
 gtk+3.0 (3.24.48-2) unstable; urgency=medium
 
