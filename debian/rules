@@ -106,6 +106,8 @@ else
 configure_flags_deb += -Dprofiler=false
 endif
 
+# We don't build gtk-update-icon-cache on release architectures (+ loong64) because we assume they get it from gtk4.
+# We still build it on -ports architectures (except loong64) because they don't build gtk4 reliably.
 ifneq (,$(filter amd64 arm64 armel armhf i386 mips64el ppc64el riscv64 s390x loong64,$(DEB_HOST_ARCH)))
 dh_options += -Ngtk-update-icon-cache
 endif
