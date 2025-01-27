@@ -527,7 +527,7 @@ static TranslationEntry translations[] = {
   { FALSE, "org.gnome.desktop.interface", "gtk-key-theme", "gtk-key-theme-name" , G_TYPE_STRING, { .s = "Default" } },
   { FALSE, "org.gnome.desktop.interface", "icon-theme", "gtk-icon-theme-name", G_TYPE_STRING, { .s = "gnome" } },
   { FALSE, "org.gnome.desktop.interface", "cursor-theme", "gtk-cursor-theme-name", G_TYPE_STRING, { .s = "Adwaita" } },
-  { FALSE, "org.gnome.desktop.interface", "cursor-size", "gtk-cursor-theme-size", G_TYPE_INT, { .i = 32 } },
+  { FALSE, "org.gnome.desktop.interface", "cursor-size", "gtk-cursor-theme-size", G_TYPE_INT, { .i = 24 } },
   { FALSE, "org.gnome.desktop.interface", "font-name", "gtk-font-name", G_TYPE_STRING, { .s = "Cantarell 11" } },
   { FALSE, "org.gnome.desktop.interface", "cursor-blink", "gtk-cursor-blink", G_TYPE_BOOLEAN,  { .b = TRUE } },
   { FALSE, "org.gnome.desktop.interface", "cursor-blink-time", "gtk-cursor-blink-time", G_TYPE_INT, { .i = 1200 } },
@@ -760,15 +760,17 @@ init_settings (GdkScreen *screen)
           goto fallback;
         }
 
-      if (g_variant_n_children (ret) == 0)
+      g_variant_get (ret, "(a{sa{sv}})", &iter);
+
+      if (g_variant_iter_n_children (iter) == 0)
         {
           g_debug ("Received no portal settings");
+          g_clear_pointer (&iter, g_variant_iter_free);
           g_clear_pointer (&ret, g_variant_unref);
+          g_clear_object (&screen_wayland->settings_portal);
 
           goto fallback;
         }
-
-      g_variant_get (ret, "(a{sa{sv}})", &iter);
 
       while (g_variant_iter_loop (iter, "{s@a{sv}}", &schema, &val))
         {
@@ -1565,7 +1567,9 @@ apply_monitor_change (GdkWaylandMonitor *monitor)
   GdkRectangle logical_geometry;
   gboolean needs_scaling = FALSE;
 
-  if (monitor->xdg_output_done)
+  if (monitor_has_xdg_output (monitor) &&
+      monitor->xdg_output_geometry.width != 0  &&
+      monitor->xdg_output_geometry.height != 0)
     {
       logical_geometry = monitor->xdg_output_geometry;
       needs_scaling =
