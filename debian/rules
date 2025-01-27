@@ -106,7 +106,7 @@ else
 configure_flags_deb += -Dprofiler=false
 endif
 
-ifneq (,$(filter amd64 arm64 armel armhf i386 mips64el ppc64el riscv64 s390x,$(DEB_HOST_ARCH)))
+ifneq (,$(filter amd64 arm64 armel armhf i386 mips64el ppc64el riscv64 s390x loong64,$(DEB_HOST_ARCH)))
 dh_options += -Ngtk-update-icon-cache
 endif
 
