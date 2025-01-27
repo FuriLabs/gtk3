@@ -47,6 +47,7 @@
 #include "tablet-unstable-v2-client-protocol.h"
 #include "xdg-shell-unstable-v6-client-protocol.h"
 #include "xdg-foreign-unstable-v1-client-protocol.h"
+#include "xdg-foreign-unstable-v2-client-protocol.h"
 #include "server-decoration-client-protocol.h"
 
 #ifdef HAVE_TOPLEVEL_STATE_SUSPENDED
@@ -493,15 +494,27 @@ gdk_registry_handle_global (void               *data,
     }
   else if (strcmp (interface, "zxdg_exporter_v1") == 0)
     {
-      display_wayland->xdg_exporter =
+      display_wayland->xdg_exporter_v1 =
         wl_registry_bind (display_wayland->wl_registry, id,
                           &zxdg_exporter_v1_interface, 1);
     }
   else if (strcmp (interface, "zxdg_importer_v1") == 0)
     {
-      display_wayland->xdg_importer =
+      display_wayland->xdg_importer_v1 =
         wl_registry_bind (display_wayland->wl_registry, id,
                           &zxdg_importer_v1_interface, 1);
+    }
+  else if (strcmp (interface, "zxdg_exporter_v2") == 0)
+    {
+      display_wayland->xdg_exporter_v2 =
+        wl_registry_bind (display_wayland->wl_registry, id,
+                          &zxdg_exporter_v2_interface, 1);
+    }
+  else if (strcmp (interface, "zxdg_importer_v2") == 0)
+    {
+      display_wayland->xdg_importer_v2 =
+        wl_registry_bind (display_wayland->wl_registry, id,
+                          &zxdg_importer_v2_interface, 1);
     }
   else if (strcmp (interface, "zwp_keyboard_shortcuts_inhibit_manager_v1") == 0)
     {
@@ -1208,7 +1221,7 @@ _gdk_wayland_display_load_cursor_theme (GdkWaylandDisplay *display_wayland)
   if (gdk_screen_get_setting (display_wayland->screen, "gtk-cursor-theme-size", &v))
     size = g_value_get_int (&v);
   else
-    size = 32;
+    size = 24;
   g_value_unset (&v);
 
   g_value_init (&v, G_TYPE_STRING);
