@@ -1,3 +1,63 @@
+gtk+3.0 (3.24.48-4) unstable; urgency=medium
+
+  * Add Breaks on libgtk-layer-shell0 older than 0.9.0
+    gtk-layer-shell uses undocumented implementation details of GTK
+    and requires in-depth knowledge of private data structures, so GTK
+    updates will often result in it crashing. This Breaks should be
+    increased whenever that happens. (Closes: #1079292)
+  * d/libgtk-3-0t64.bug-control: Add libgtk-layer-shell0 to
+    Package-Status. If libgtk-layer-shell0 is installed, we'll want to
+    see its version number when crashes are reported.
+
+ -- Simon McVittie <smcv@debian.org>  Thu, 30 Jan 2025 10:11:58 +0000
+
+gtk+3.0 (3.24.48-3) unstable; urgency=medium
+
+  * Restore gtk-update-icon-cache package as was previously provided.
+    Notably this isn't actually built on release architectures because
+    of debian/rules handling. See the 3.24.43-4 changelog.
+  * Add loong64 to the list of architectures we don't want to build
+    gtk-update-icon-cache
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 27 Jan 2025 11:51:58 -0500
+
+gtk+3.0 (3.24.48-2) unstable; urgency=medium
+
+  * Remove obsolete gtk-update-icon-cache package, now built by gtk4
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 27 Jan 2025 10:56:07 -0500
+
+gtk+3.0 (3.24.48-1) unstable; urgency=medium
+
+  [ Jeremy Bícha ]
+  * New upstream release
+  * Update debian/watch. New releases no longer include + in filenames
+  * missing-sources: Update emojibase. The emoji chooser was updated to
+    support Unicode 16
+  * Remove 5 patches applied in new release
+
+  [ Simon McVittie ]
+  * d/salsa-ci.yml: Disable reprotest on Salsa-CI.
+    It takes longer than the infrastructure timeout (1 hour).
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 27 Jan 2025 09:54:24 -0500
+
+gtk+3.0 (3.24.43-5) unstable; urgency=medium
+
+  * d/salsa-ci.yml: Add
+  * d/rules: Explicitly use build architecture gcc in rebuild-emoji target.
+    This makes it more obvious that we're intentionally building a
+    build-architecture binary, to be run during the build and then discarded.
+  * d/rules: Use CFLAGS_FOR_BUILD, etc. to link convert-emoji
+  * d/libgtk-3-0t64.links.in:
+    Provide a symlink to the old gtk-query-immodules-3.0 path.
+    This provides drop-in compatibility with libgtk-3-0, which some
+    packages rely on (gcin, hime, ibus).
+  * Add test coverage for the historical path of gtk-query-immodules-3.0
+  * Remove obsolete Lintian overrides
+
+ -- Simon McVittie <smcv@debian.org>  Tue, 14 Jan 2025 14:38:06 +0000
+
 gtk+3.0 (3.24.43-4) unstable; urgency=medium
 
   * d/p/a11y-Use-non-empty-message-dialog-title-as-a11y-name.patch:
