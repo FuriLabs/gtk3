@@ -2,7 +2,7 @@
 # autopkgtest check: Run the installed-tests to verify GTK works correctly
 # Based on glib2.0's d/tests/installed-tests, (C) 2013 Canonical Ltd.
 
-set -e
+set -ex
 
 # Disable gvfs if it happens to be installed. We want to test the built-in
 # stuff
@@ -13,6 +13,11 @@ export XDG_RUNTIME_DIR="$AUTOPKGTEST_TMP"
 
 # Workaround for #1025312
 export LIBGL_ALWAYS_SOFTWARE=1
+
+DEB_HOST_MULTIARCH="$(cat /usr/libexec/installed-tests/gtk+/DEB_HOST_MULTIARCH)"
+# Some packages (gcin, hime, ibus) rely on being able to run
+# gtk-query-immmodules by this path; make sure they won't regress
+"/usr/lib/${DEB_HOST_MULTIARCH}/libgtk-3-0/gtk-query-immodules-3.0"
 
 tests=$(gnome-desktop-testing-runner -l gtk+ |
     cut -f1 -d' ' |
