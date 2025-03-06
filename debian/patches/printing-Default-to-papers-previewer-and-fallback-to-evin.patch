@@ -1,0 +1,47 @@
+From: Alessandro Astone <alessandro.astone@canonical.com>
+Date: Thu, 6 Mar 2025 10:59:25 +0100
+Subject: printing: Default to papers-previewer and fallback to evince
+
+Forwarded: https://gitlab.gnome.org/GNOME/gtk/-/issues/7378
+---
+ gtk/gtksettings.c | 16 ++++++++++++++--
+ 1 file changed, 14 insertions(+), 2 deletions(-)
+
+diff --git a/gtk/gtksettings.c b/gtk/gtksettings.c
+index 22b1420..70d3b19 100644
+--- a/gtk/gtksettings.c
++++ b/gtk/gtksettings.c
+@@ -61,7 +61,8 @@
+ #ifdef GDK_WINDOWING_QUARTZ
+ #define PRINT_PREVIEW_COMMAND "open -b com.apple.Preview %f"
+ #else
+-#define PRINT_PREVIEW_COMMAND "evince --unlink-tempfile --preview --print-settings %s %f"
++#define PAPERS_PREVIEW_COMMAND "papers-previewer --unlink-tempfile --print-settings %s %f"
++#define EVINCE_PREVIEW_COMMAND "evince --unlink-tempfile --preview --print-settings %s %f"
+ #endif
+ 
+ /**
+@@ -1026,11 +1027,22 @@ gtk_settings_class_init (GtkSettingsClass *class)
+    *
+    * Since: 2.10
+    */
++  const char *print_preview_command;
++#ifdef GDK_WINDOWING_QUARTZ
++  print_preview_command = PRINT_PREVIEW_COMMAND;
++#else
++  g_autofree char *path = g_find_program_in_path ("papers-previewer");
++  if (path)
++    print_preview_command = PAPERS_PREVIEW_COMMAND;
++  else
++    print_preview_command = EVINCE_PREVIEW_COMMAND;
++#endif
++
+   result = settings_install_property_parser (class,
+                                              g_param_spec_string ("gtk-print-preview-command",
+                                                                   P_("Default command to run when displaying a print preview"),
+                                                                   P_("Command to run when displaying a print preview"),
+-                                                                  PRINT_PREVIEW_COMMAND,
++                                                                  print_preview_command,
+                                                                   GTK_PARAM_READWRITE),
+                                              NULL);
+   g_assert (result == PROP_PRINT_PREVIEW_COMMAND);
