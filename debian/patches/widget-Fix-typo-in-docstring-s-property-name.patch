@@ -1,0 +1,26 @@
+From: Maximiliano Sandoval <msandova@gnome.org>
+Date: Fri, 21 Mar 2025 18:34:48 +0100
+Subject: widget: Fix typo in docstring's property name
+
+This is a fixup for a11310a40b7444b56823da6bbb44b759f2b15cc8.
+
+(cherry picked from commit 1076a6ef72e007c9d66ecff11638757a6ec68199)
+
+Origin: upstream gtk-3-24 after 3.24.49
+---
+ gtk/gtkwidget.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gtk/gtkwidget.c b/gtk/gtkwidget.c
+index eb16d2e..4aa6862 100644
+--- a/gtk/gtkwidget.c
++++ b/gtk/gtkwidget.c
+@@ -1159,7 +1159,7 @@ gtk_widget_class_init (GtkWidgetClass *klass)
+                             GTK_PARAM_READWRITE|G_PARAM_EXPLICIT_NOTIFY);
+ 
+   /**
+-   * GtkWidget:visible: (getter get_sensitive)
++   * GtkWidget:sensitive: (getter get_sensitive)
+    */
+   widget_props[PROP_SENSITIVE] =
+       g_param_spec_boolean ("sensitive",
