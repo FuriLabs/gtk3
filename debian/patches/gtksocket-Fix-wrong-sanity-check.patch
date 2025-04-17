@@ -1,0 +1,27 @@
+From: =?utf-8?q?Ga=C3=ABl_Bonithon?= <gael@xfce.org>
+Date: Sat, 3 Feb 2024 22:33:57 +0100
+Subject: gtksocket: Fix wrong sanity check
+
+This avoids a critical warning from gtk_widget_get_parent() if
+focus_widget == NULL.
+
+(cherry picked from commit 1d29335cbfbd4a6d3c39664c68145a7966fdbd14)
+
+Origin: upstream gtk-3-24 after 3.24.49
+---
+ gtk/gtksocket.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gtk/gtksocket.c b/gtk/gtksocket.c
+index ffdaf8b..7b87b4d 100644
+--- a/gtk/gtksocket.c
++++ b/gtk/gtksocket.c
+@@ -1260,7 +1260,7 @@ gtk_socket_advance_toplevel_focus (GtkSocket        *socket,
+     }
+ 
+   focus_widget = gtk_window_get_focus (window);
+-  if (window)
++  if (focus_widget)
+     {
+       /* Wrapped off the end, clear the focus setting for the toplevel */
+       parent = gtk_widget_get_parent (focus_widget);

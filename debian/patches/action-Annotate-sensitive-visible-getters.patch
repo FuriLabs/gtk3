@@ -1,0 +1,39 @@
+From: Maximiliano Sandoval <msandova@gnome.org>
+Date: Thu, 20 Mar 2025 19:01:20 +0100
+Subject: action: Annotate sensitive & visible getters
+
+Since
+https://gitlab.gnome.org/GNOME/gobject-introspection/-/merge_requests/473
+g-i will pick up gtk_widget_is_visible as the getter for this property.
+
+See https://gitlab.gnome.org/GNOME/gjs/-/issues/681.
+
+(cherry picked from commit 52e2b8555f56dabdb0056e1d375fdacd4081c2df)
+
+Origin: upstream gtk-3-24 after 3.24.49
+---
+ gtk/deprecated/gtkaction.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gtk/deprecated/gtkaction.c b/gtk/deprecated/gtkaction.c
+index b89ae77..4c1abf2 100644
+--- a/gtk/deprecated/gtkaction.c
++++ b/gtk/deprecated/gtkaction.c
+@@ -453,7 +453,7 @@ gtk_action_class_init (GtkActionClass *klass)
+ 							 TRUE,
+ 							 GTK_PARAM_READWRITE));
+   /**
+-   * GtkAction:sensitive:
++   * GtkAction:sensitive: (getter get_sensitive)
+    *
+    * Whether the action is enabled.
+    *
+@@ -468,7 +468,7 @@ gtk_action_class_init (GtkActionClass *klass)
+ 							 TRUE,
+ 							 GTK_PARAM_READWRITE));
+   /**
+-   * GtkAction:visible:
++   * GtkAction:visible: (getter get_visible)
+    *
+    * Whether the action is visible.
+    *
