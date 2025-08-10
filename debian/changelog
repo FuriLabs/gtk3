@@ -37,6 +37,13 @@ gtk+3.0 (3.24.50-1) UNRELEASED; urgency=medium
     - Translation updates
     - macOS- and Windows-specific changes not relevant to Debian
   * d/patches: Drop patches that were included in the upstream release
+  * d/p/printing-Default-to-papers-previewer-and-fallback-to-evin.patch:
+    Drop patch defaulting to papers-previewer for print preview.
+    This was solved differently in the new upstream release.
+  * d/p/workarounds/Revert-Replace-hardcoded-values-of-Cantarell.patch:
+    Revert the change from Cantarell to Adwaita Sans as UI font.
+    Adwaita Sans isn't packaged yet (ITP: #1101879) and until it is,
+    we should keep using Cantarell.
   * d/libgtk-3-0t64.bug-control: Add details of more GTK_MODULES to
     bug reports.
     Arbitrary code injected into all GTK applications can easily lead to
@@ -46,7 +53,7 @@ gtk+3.0 (3.24.50-1) UNRELEASED; urgency=medium
     All except atk/ were dangling symlinks anyway, as a result of the
     other packages' transition from gtk-doc to gi-docgen.
 
- -- Simon McVittie <smcv@debian.org>  Sun, 10 Aug 2025 13:39:48 +0100
+ -- Simon McVittie <smcv@debian.org>  Sun, 10 Aug 2025 14:17:45 +0100
 
 gtk+3.0 (3.24.49-3) unstable; urgency=medium
 
