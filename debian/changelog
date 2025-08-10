@@ -1,3 +1,16 @@
+gtk+3.0 (3.24.49-4) UNRELEASED; urgency=medium
+
+  * d/libgtk-3-0t64.bug-control: Add details of more GTK_MODULES to
+    bug reports.
+    Arbitrary code injected into all GTK applications can easily lead to
+    crashes or other unintended interactions, so it's good to have these
+    diagnosed as "packages libgtk-3-0t64 is related to" in bug reports.
+  * d/libgtk-3-doc.links.in: Remove unused symlinks to other packages' docs.
+    All except atk/ were dangling symlinks anyway, as a result of the
+    other packages' transition from gtk-doc to gi-docgen.
+
+ -- Simon McVittie <smcv@debian.org>  Sun, 10 Aug 2025 13:37:59 +0100
+
 gtk+3.0 (3.24.49-3) unstable; urgency=medium
 
   * Cherry-pick fixes from gtk-3-24 branch including
