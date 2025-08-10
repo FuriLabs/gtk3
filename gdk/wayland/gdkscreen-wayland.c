@@ -527,8 +527,8 @@ static TranslationEntry translations[] = {
   { FALSE, "org.gnome.desktop.interface", "gtk-key-theme", "gtk-key-theme-name" , G_TYPE_STRING, { .s = "Default" } },
   { FALSE, "org.gnome.desktop.interface", "icon-theme", "gtk-icon-theme-name", G_TYPE_STRING, { .s = "gnome" } },
   { FALSE, "org.gnome.desktop.interface", "cursor-theme", "gtk-cursor-theme-name", G_TYPE_STRING, { .s = "Adwaita" } },
-  { FALSE, "org.gnome.desktop.interface", "cursor-size", "gtk-cursor-theme-size", G_TYPE_INT, { .i = 24 } },
-  { FALSE, "org.gnome.desktop.interface", "font-name", "gtk-font-name", G_TYPE_STRING, { .s = "Cantarell 11" } },
+  { FALSE, "org.gnome.desktop.interface", "cursor-size", "gtk-cursor-theme-size", G_TYPE_INT, { .i = 32 } },
+  { FALSE, "org.gnome.desktop.interface", "font-name", "gtk-font-name", G_TYPE_STRING, { .s = "Adwaita Sans 11" } },
   { FALSE, "org.gnome.desktop.interface", "cursor-blink", "gtk-cursor-blink", G_TYPE_BOOLEAN,  { .b = TRUE } },
   { FALSE, "org.gnome.desktop.interface", "cursor-blink-time", "gtk-cursor-blink-time", G_TYPE_INT, { .i = 1200 } },
   { FALSE, "org.gnome.desktop.interface", "cursor-blink-timeout", "gtk-cursor-blink-timeout", G_TYPE_INT, { .i = 3600 } },
@@ -1657,6 +1657,7 @@ xdg_output_handle_name (void                  *data,
   GDK_NOTE (MISC,
             g_message ("handle name xdg-output %d", monitor->id));
 
+  g_free (monitor->name);
   monitor->name = g_strdup (name);
 }
 
@@ -1799,12 +1800,41 @@ output_handle_mode (void             *data,
     apply_monitor_change (monitor);
 }
 
+static void
+output_handle_name (void             *data,
+                    struct wl_output *wl_output,
+                    const char       *name)
+{
+  GdkWaylandMonitor *monitor = (GdkWaylandMonitor *) data;
+
+  GDK_NOTE (MISC,
+            g_message ("handle name output %d", monitor->id));
+
+  g_free (monitor->name);
+  monitor->name = g_strdup (name);
+}
+
+static void
+output_handle_description (void             *data,
+                           struct wl_output *xdg_output,
+                           const char       *description)
+{
+#ifdef G_ENABLE_DEBUG
+  GdkWaylandMonitor *monitor = (GdkWaylandMonitor *) data;
+
+  GDK_NOTE (MISC,
+            g_message ("handle description output %d", monitor->id));
+#endif
+}
+
 static const struct wl_output_listener output_listener =
 {
   output_handle_geometry,
   output_handle_mode,
   output_handle_done,
   output_handle_scale,
+  output_handle_name,
+  output_handle_description,
 };
 
 void

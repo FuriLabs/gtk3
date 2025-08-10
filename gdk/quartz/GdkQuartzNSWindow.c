@@ -252,7 +252,6 @@ synthesize_configure_event(GdkWindow *window)
   content_rect.origin.y = 0;
 
   [[self contentView] setFrame:content_rect];
-
   /* Certain resize operations (e.g. going fullscreen), also move the
    * origin of the window.
    */
@@ -790,9 +789,10 @@ update_context_from_dragging_info (id <NSDraggingInfo> sender)
           wh = gdk_window_get_height (win);
 
           if (gx > wx && gy > wy && gx <= wx + ww && gy <= wy + wh)
-            event->dnd.context->dest_window = g_object_ref (win);
-            break;
-        }
+            {
+              event->dnd.context->dest_window = g_object_ref (win);
+              break;
+            }}
     }
 
   device = gdk_drag_context_get_device (_gdk_quartz_drag_source_context);
