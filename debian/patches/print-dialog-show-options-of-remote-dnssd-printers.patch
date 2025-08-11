@@ -8,10 +8,10 @@ Bug-Upstream: https://bugzilla.gnome.org/show_bug.cgi?id=684533
  1 file changed, 20 insertions(+)
 
 diff --git a/modules/printbackends/cups/gtkprintbackendcups.c b/modules/printbackends/cups/gtkprintbackendcups.c
-index bbe01c9..20887a3 100644
+index edc3c85..d8f210b 100644
 --- a/modules/printbackends/cups/gtkprintbackendcups.c
 +++ b/modules/printbackends/cups/gtkprintbackendcups.c
-@@ -2463,6 +2463,13 @@ cups_printer_handle_attribute (GtkPrintBackendCups *cups_backend,
+@@ -2507,6 +2507,13 @@ cups_printer_handle_attribute (GtkPrintBackendCups *cups_backend,
      }
  }
  
@@ -25,7 +25,7 @@ index bbe01c9..20887a3 100644
  static GtkPrinter*
  cups_create_printer (GtkPrintBackendCups *cups_backend,
  		     PrinterSetupInfo *info)
-@@ -2521,6 +2528,19 @@ cups_create_printer (GtkPrintBackendCups *cups_backend,
+@@ -2565,6 +2572,19 @@ cups_create_printer (GtkPrintBackendCups *cups_backend,
  		   &port,
  		   resource, sizeof (resource));
  
@@ -42,6 +42,6 @@ index bbe01c9..20887a3 100644
 +		       resource, sizeof (resource));
 +    }
 +
+ #if CUPS_VERSION_MAJOR < 3
    if (strncmp (resource, "/printers/", 10) == 0)
      {
-       cups_printer->ppd_name = g_strdup (resource + 10);
