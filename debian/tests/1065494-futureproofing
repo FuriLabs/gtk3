@@ -8,6 +8,9 @@
 
 set -eux
 
+# Machine-readable TAP on fd 3, human-readable diagnostics on fds 1 and 2
+exec 3>&1 >&2
+
 export DEBIAN_FRONTEND=noninteractive
 n=0
 failed=0
@@ -21,9 +24,9 @@ assert () {
     n=$(( n + 1 ))
 
     if "$@"; then
-        echo "ok $n - $*"
+        echo "ok $n - $*" >&3
     else
-        echo "not ok $n - $* exit status $?"
+        echo "not ok $n - $* exit status $?" >&3
         failed=1
     fi
 }
@@ -32,9 +35,9 @@ assert_not () {
     n=$(( n + 1 ))
 
     if ! "$@"; then
-        echo "ok $n - unsuccessful as expected: $*"
+        echo "ok $n - unsuccessful as expected: $*" >&3
     else
-        echo "not ok $n - should not have succeeded: $*"
+        echo "not ok $n - should not have succeeded: $*" >&3
         failed=1
     fi
 }
@@ -94,7 +97,7 @@ apt-get -y purge "$future_binary_package"
 assert_not test -e "/usr/lib/$this_tuple/gtk-3.0/3.0.0/immodules.cache"
 assert_not test -s "/usr/lib/$this_tuple/gtk-3.0/3.0.0/immodules.cache"
 
-echo "1..$n"
+echo "1..$n" >&3
 exit "$failed"
 
 # vim:set sw=4 sts=4 et:
