@@ -61,6 +61,7 @@ this_tuple="$(dpkg-architecture -qDEB_HOST_MULTIARCH)"
 # This assumes that libgtk-3-0t64 has at least one each of Breaks, Provides
 # and Replaces, and will need to be adjusted if that assumption is broken in
 # the future for whatever reason.
+dpkg-query -s "$binary_package"
 # The $ substitution is to be expanded by dpkg-query:
 # shellcheck disable=SC2016
 binary_version="$(dpkg-query -W -f '${Version}' "$binary_package")"
@@ -82,6 +83,8 @@ env \
         -e 's/^(Replaces:.*)$/$1, $ENV{binary_package}/;' \
         dpkg-repack.*/DEBIAN/control
 dpkg-deb --build dpkg-repack.* "$future_binary_package.deb"
+dpkg-deb --info "$future_binary_package.deb"
+dpkg-deb --contents "$future_binary_package.deb"
 apt-get -y install ./"$future_binary_package.deb"
 
 assert test -e "/usr/lib/$this_tuple/gtk-3.0/3.0.0/immodules.cache"
