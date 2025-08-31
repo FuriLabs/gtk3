@@ -61,8 +61,7 @@
 #ifdef GDK_WINDOWING_QUARTZ
 #define PRINT_PREVIEW_COMMAND "open -b com.apple.Preview %f"
 #else
-#define PAPERS_PREVIEW_COMMAND "papers-previewer --unlink-tempfile --print-settings %s %f"
-#define EVINCE_PREVIEW_COMMAND "evince --unlink-tempfile --preview --print-settings %s %f"
+#define PRINT_PREVIEW_COMMAND "evince --unlink-tempfile --preview --print-settings %s %f"
 #endif
 
 /**
@@ -1027,22 +1026,11 @@ gtk_settings_class_init (GtkSettingsClass *class)
    *
    * Since: 2.10
    */
-  const char *print_preview_command;
-#ifdef GDK_WINDOWING_QUARTZ
-  print_preview_command = PRINT_PREVIEW_COMMAND;
-#else
-  g_autofree char *path = g_find_program_in_path ("papers-previewer");
-  if (path)
-    print_preview_command = PAPERS_PREVIEW_COMMAND;
-  else
-    print_preview_command = EVINCE_PREVIEW_COMMAND;
-#endif
-
   result = settings_install_property_parser (class,
                                              g_param_spec_string ("gtk-print-preview-command",
                                                                   P_("Default command to run when displaying a print preview"),
                                                                   P_("Command to run when displaying a print preview"),
-                                                                  print_preview_command,
+                                                                  PRINT_PREVIEW_COMMAND,
                                                                   GTK_PARAM_READWRITE),
                                              NULL);
   g_assert (result == PROP_PRINT_PREVIEW_COMMAND);
