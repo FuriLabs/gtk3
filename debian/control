@@ -156,8 +156,7 @@ Package: libgtk-3-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: gir1.2-gtk-3.0 (= ${binary:Version}),
-         libatk-bridge2.0-dev (>= 2.15.1),
+Depends: libatk-bridge2.0-dev (>= 2.15.1),
          libatk1.0-dev (>= 2.35.1),
          libcairo2-dev (>= 1.14.0),
          libegl1-mesa-dev [linux-any],
@@ -182,13 +181,10 @@ Depends: gir1.2-gtk-3.0 (= ${binary:Version}),
          wayland-protocols (>= 1.41) [linux-any],
          ${gir:Depends},
          ${misc:Depends},
-         ${shlibs:Depends},
          ${cloudProvider:Depends},
          libgtk-3-common (>= ${source:Version}),
          libgtk-3-0t64 (= ${binary:Version})
-Provides: gir1.2-gdk-3.0-dev (= ${binary:Version}),
-          gir1.2-gdkx11-3.0-dev (= ${binary:Version}),
-          ${gir:Provides}
+Provides: ${gir:Provides}
 Suggests: libgtk-3-doc
 Description: development files for the GTK library
  GTK is a multi-platform toolkit for creating graphical user
@@ -238,13 +234,10 @@ Architecture: any
 Multi-Arch: same
 Depends: ${gir:Depends},
          ${misc:Depends},
-         ${shlibs:Depends},
          libgtk-3-common
 Breaks: python-gi (<< 3.18),
         python3-gi (<< 3.18)
-Provides: gir1.2-gdk-3.0 (= ${binary:Version}),
-          gir1.2-gdkx11-3.0 (= ${binary:Version}),
-          ${gir:Provides}
+Provides: ${gir:Provides}
 Description: GTK graphical user interface library -- gir bindings
  GTK is a multi-platform toolkit for creating graphical user
  interfaces. Offering a complete set of widgets, GTK is suitable
