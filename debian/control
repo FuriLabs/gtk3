@@ -73,9 +73,7 @@ Vcs-Git: https://salsa.debian.org/gnome-team/gtk3.git
 Homepage: https://www.gtk.org/
 
 Package: libgtk-3-0t64
-Replaces: libgtk-3-0 (<< 3.24.41-1.1)
-Breaks: libgtk-3-0 (<< 3.24.41-1.1),
-        libgtk-layer-shell0 (<< 0.9.0),
+Breaks: libgtk-layer-shell0 (<< 0.9.0)
 Architecture: any
 Multi-Arch: same
 Depends: adwaita-icon-theme,
@@ -122,8 +120,6 @@ Architecture: all
 Multi-Arch: foreign
 Depends: ${misc:Depends}
 Recommends: libgtk-3-0t64
-Breaks: libgtk-3-dev (<< 3.24.30-3~)
-Replaces: libgtk-3-dev (<< 3.24.30-3~)
 Description: common files for the GTK graphical user interface library
  GTK is a multi-platform toolkit for creating graphical user
  interfaces. Offering a complete set of widgets, GTK is suitable
@@ -141,8 +137,6 @@ Depends: gtk-update-icon-cache,
          ${shlibs:Depends},
          libgtk-3-common (>= ${source:Version}),
          libgtk-3-0t64 (>= ${source:Version})
-Breaks: gtk-3-examples (<< 3.24.13)
-Replaces: gtk-3-examples (<< 3.24.13)
 Description: programs for the GTK graphical user interface library
  GTK is a multi-platform toolkit for creating graphical user
  interfaces. Offering a complete set of widgets, GTK is suitable
@@ -235,8 +229,6 @@ Multi-Arch: same
 Depends: ${gir:Depends},
          ${misc:Depends},
          libgtk-3-common
-Breaks: python-gi (<< 3.18),
-        python3-gi (<< 3.18)
 Provides: ${gir:Provides}
 Description: GTK graphical user interface library -- gir bindings
  GTK is a multi-platform toolkit for creating graphical user
@@ -254,10 +246,6 @@ Architecture: any
 Multi-Arch: foreign
 Depends: ${misc:Depends},
          ${shlibs:Depends}
-Breaks: libgtk-3-bin (<< 3.20.6-1),
-        libgtk2.0-bin (<< 2.24.30-2)
-Replaces: libgtk-3-bin (<< 3.20.6-1),
-          libgtk2.0-bin (<< 2.24.30-2)
 Description: icon theme caching utility
  gtk-update-icon-cache creates mmap()able cache files for icon themes.
  .
@@ -268,8 +256,6 @@ Description: icon theme caching utility
 
 Package: libgail-3-0t64
 Provides: ${t64:Provides}
-Replaces: libgail-3-0 (<< 3.24.41-1.1)
-Breaks: libgail-3-0 (<< 3.24.41-1.1)
 Architecture: any
 Multi-Arch: same
 Depends: at-spi2-core,
