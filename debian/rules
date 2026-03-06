@@ -310,3 +310,6 @@ endif
 
 override_dh_gencontrol:
 	dh_gencontrol -- $(dpkg_gencontrol_args)
+
+# We only use dh_gnome to automatically run dh_translations in Ubuntu
+override_dh_gnome:
