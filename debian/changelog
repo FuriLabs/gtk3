@@ -1,3 +1,27 @@
+gtk+3.0 (3.24.51-4ubuntu1) resolute; urgency=medium
+
+  * Merge with Debian. Remaining changes:
+    + Install a settings.ini file to set our themes
+    + Update debian/libgtk-3-0t64.symbols for ubuntu_gtk_custom_menu_items.patch
+    + Ubuntu-specific patches:
+      - 073_treeview_almost_fixed.patch
+      - bzg_gtkcellrenderer_grabbing_modifier.patch
+      - ubuntu_gtk_custom_menu_items.patch
+      - print-dialog-show-options-of-remote-dnssd-printers.patch
+      - uimanager-guard-against-nested-node-updates.patch
+      - x-canonical-accel.patch
+      - message-dialog-restore-traditional-look-on-unity.patch
+      - 0001-gtk-reftest-Force-icon-theme-to-Adwaita.patch
+      - restore_filechooser_typeaheadfind.patch
+      - 0001-calendar-always-emit-day-selected-once.patch
+      - 0001-gtkwindow-set-transparent-background-color.patch
+      - unity-border-radius.patch
+      - unity-headerbar-maximized-mode.patch
+      - gitlab_opengl_fallback.patch
+  * d/p: Refresh patches
+
+ -- Alessandro Astone <alessandro.astone@canonical.com>  Fri, 06 Mar 2026 19:56:23 +0100
+
 gtk+3.0 (3.24.51-4) unstable; urgency=medium
 
   * Remove unnecessary Build-Depends: fonts-cantarell
