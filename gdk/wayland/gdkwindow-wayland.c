@@ -3556,7 +3556,7 @@ gdk_wayland_window_hide_surface (GdkWindow *window)
 
       wl_surface_destroy (impl->display_server.wl_surface);
       impl->display_server.wl_surface = NULL;
-      impl->surface_callback = NULL;
+      g_clear_pointer (&impl->surface_callback, wl_callback_destroy);
 
       g_slist_free (impl->display_server.outputs);
       impl->display_server.outputs = NULL;
@@ -5421,11 +5421,16 @@ invoke_exported_closures (GdkWindow *window)
   GdkWindowImplWayland *impl = GDK_WINDOW_IMPL_WAYLAND (window->impl);
   GList *l;
 
+  if (gdk_window_is_destroyed (window))
+    g_warning ("gdk_wayland_window_export_handle() callback called on destroyed window. "
+               "Make sure you called gdk_wayland_window_unexport_handle().");
+
   for (l = impl->exported.closures; l; l = l->next)
     {
       ExportedClosure *closure = l->data;
 
-      closure->callback (window, impl->exported.handle, closure->user_data);
+      if (! gdk_window_is_destroyed (window))
+        closure->callback (window, impl->exported.handle, closure->user_data);
 
       if (closure->destroy_func)
         closure->destroy_func (closure->user_data);
