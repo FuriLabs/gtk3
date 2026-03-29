@@ -485,7 +485,7 @@ gdk_wayland_device_update_window_cursor (GdkDevice *device)
 {
   GdkWaylandSeat *seat = GDK_WAYLAND_SEAT (gdk_device_get_seat (device));
   GdkWaylandPointerData *pointer = GDK_WAYLAND_DEVICE (device)->pointer;
-  struct wl_buffer *buffer;
+  struct wl_buffer *buffer = NULL;
   int x, y, w, h, scale;
   guint next_image_index, next_image_delay;
   gboolean retval = G_SOURCE_REMOVE;
@@ -610,7 +610,9 @@ gdk_wayland_device_set_window_cursor (GdkDevice *device,
     return;
 
   if (seat->grab_cursor)
-    cursor = seat->grab_cursor;
+    cursor = g_object_ref (seat->grab_cursor);
+  else if (cursor)
+    cursor = g_object_ref (cursor);
 
   /* Setting the cursor to NULL means that we should use
    * the default cursor
@@ -624,17 +626,23 @@ gdk_wayland_device_set_window_cursor (GdkDevice *device,
                                                              scale);
     }
   else
-    _gdk_wayland_cursor_set_scale (cursor, pointer->current_output_scale);
+    {
+      _gdk_wayland_cursor_set_scale (cursor, pointer->current_output_scale);
+    }
 
   if (cursor == pointer->cursor)
-    return;
+    {
+      if (cursor)
+        g_object_unref (cursor);
+      return;
+    }
 
   gdk_wayland_pointer_stop_cursor_animation (pointer);
 
   if (pointer->cursor)
     g_object_unref (pointer->cursor);
 
-  pointer->cursor = g_object_ref (cursor);
+  pointer->cursor = cursor;
 
   gdk_wayland_device_update_window_cursor (device);
 }
@@ -4090,6 +4098,10 @@ tablet_tool_handle_button (void                      *data,
     n_button = GDK_BUTTON_SECONDARY;
   else if (button == BTN_STYLUS3)
     n_button = 8; /* Back */
+  else if (button == BTN_BACK)
+    n_button = 8; /* Back */
+  else if (button == BTN_FORWARD)
+    n_button = 9; /* Forward */
   else
     return;
 

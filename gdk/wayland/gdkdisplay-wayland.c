@@ -623,13 +623,6 @@ _gdk_wayland_display_open (const gchar *display_name)
 
   GDK_NOTE (MISC, g_message ("opening display %s", display_name ? display_name : ""));
 
-  /* If this variable is unset then wayland initialisation will surely
-   * fail, logging a fatal error in the process.  Save ourselves from
-   * that.
-   */
-  if (g_getenv ("XDG_RUNTIME_DIR") == NULL)
-    return NULL;
-
   wl_log_set_handler_client (log_handler);
 
   wl_display = wl_display_connect (display_name);
@@ -729,7 +722,8 @@ gdk_wayland_display_dispose (GObject *object)
       display_wayland->selection = NULL;
     }
 
-  g_list_free_full (display_wayland->async_roundtrips, (GDestroyNotify) wl_callback_destroy);
+  g_clear_list (&display_wayland->async_roundtrips,
+                (GDestroyNotify) wl_callback_destroy);
 
   if (display_wayland->known_globals)
     {
@@ -737,7 +731,7 @@ gdk_wayland_display_dispose (GObject *object)
       display_wayland->known_globals = NULL;
     }
 
-  g_list_free_full (display_wayland->on_has_globals_closures, g_free);
+  g_clear_list (&display_wayland->on_has_globals_closures, g_free);
 
   G_OBJECT_CLASS (gdk_wayland_display_parent_class)->dispose (object);
 }
@@ -1139,6 +1133,8 @@ static void
 gdk_wayland_display_init (GdkWaylandDisplay *display)
 {
   display->xkb_context = xkb_context_new (0);
+  if (G_UNLIKELY (!display->xkb_context))
+    g_error ("Failed to create XKB context");
 
   display->monitors = g_ptr_array_new_with_free_func (g_object_unref);
 }
