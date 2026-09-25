@@ -5,7 +5,7 @@ Uploaders: Simon McVittie <smcv@debian.org>, Dmitry Shachnev <mitya57@debian.org
 Build-Depends: adwaita-icon-theme (>= 45.0-4~) <!nocheck>,
                at-spi2-core <!nocheck>,
                dbus-daemon <!nocheck>,
-               debhelper-compat (= 13),
+               debhelper-compat (= 14),
                dh-sequence-gir,
                dh-sequence-gnome,
                docbook-xml <!nodoc>,
@@ -77,10 +77,8 @@ Multi-Arch: same
 Depends: adwaita-icon-theme,
          hicolor-icon-theme,
          shared-mime-info,
-         ${misc:Depends},
-         ${shlibs:Depends},
          libgtk-3-common (>= ${source:Upstream-Version}),
-Provides: ${t64:Provides}, ${gtk:BinVer}
+Provides: ${gtk:BinVer}
 Recommends: ibus-gtk3,
             libgtk-3-bin,
             librsvg2-common
@@ -98,8 +96,6 @@ Build-Profiles: <!noudeb>
 Package-Type: udeb
 Section: debian-installer
 Architecture: any
-Depends: ${misc:Depends},
-         ${shlibs:Depends}
 Provides: ${gtk:BinVer}
 Description: GTK graphical user interface library - minimal runtime
  This is a udeb, or a microdeb, for the debian-installer.
@@ -116,7 +112,6 @@ Package: libgtk-3-common
 Section: misc
 Architecture: all
 Multi-Arch: foreign
-Depends: ${misc:Depends}
 Recommends: libgtk-3-0t64
 Description: common files for the GTK graphical user interface library
  GTK is a multi-platform toolkit for creating graphical user
@@ -131,8 +126,6 @@ Section: misc
 Architecture: any
 Multi-Arch: foreign
 Depends: gtk-update-icon-cache,
-         ${misc:Depends},
-         ${shlibs:Depends},
          libgtk-3-0t64 (>= ${source:Version})
 Description: programs for the GTK graphical user interface library
  GTK is a multi-platform toolkit for creating graphical user
@@ -170,11 +163,8 @@ Depends: libatk-bridge2.0-dev (>= 2.15.1),
          libxrandr-dev,
          pkgconf,
          wayland-protocols (>= 1.41) [linux-any],
-         ${gir:Depends},
-         ${misc:Depends},
          ${cloudProvider:Depends},
          libgtk-3-0t64 (= ${binary:Version})
-Provides: ${gir:Provides}
 Suggests: libgtk-3-doc
 Description: development files for the GTK library
  GTK is a multi-platform toolkit for creating graphical user
@@ -190,7 +180,6 @@ Build-Profiles: <!nodoc>
 Section: doc
 Architecture: all
 Multi-Arch: foreign
-Depends: ${misc:Depends}
 Recommends: libatk1.0-doc,
             libglib2.0-doc,
             libpango1.0-doc
@@ -206,9 +195,6 @@ Description: documentation for the GTK graphical user interface library
 Package: gtk-3-examples
 Section: x11
 Architecture: any
-Depends: ${misc:Depends},
-         ${shlibs:Depends},
-         libgtk-3-0t64 (= ${binary:Version})
 Description: example files for GTK 3
  GTK is a multi-platform toolkit for creating graphical user
  interfaces. Offering a complete set of widgets, GTK is suitable
@@ -222,9 +208,6 @@ Package: gir1.2-gtk-3.0
 Section: introspection
 Architecture: any
 Multi-Arch: same
-Depends: ${gir:Depends},
-         ${misc:Depends},
-Provides: ${gir:Provides}
 Description: GTK graphical user interface library -- gir bindings
  GTK is a multi-platform toolkit for creating graphical user
  interfaces. Offering a complete set of widgets, GTK is suitable
@@ -239,8 +222,6 @@ Package: gtk-update-icon-cache
 Section: misc
 Architecture: any
 Multi-Arch: foreign
-Depends: ${misc:Depends},
-         ${shlibs:Depends}
 Description: icon theme caching utility
  gtk-update-icon-cache creates mmap()able cache files for icon themes.
  .
@@ -250,13 +231,9 @@ Description: icon theme caching utility
  applications, the overall memory consumption is reduced as well.
 
 Package: libgail-3-0t64
-Provides: ${t64:Provides}
 Architecture: any
 Multi-Arch: same
 Depends: at-spi2-core,
-         ${misc:Depends},
-         ${shlibs:Depends},
-         libgtk-3-0t64 (= ${binary:Version})
 Description: GNOME Accessibility Implementation Library -- shared libraries
  Gail implements ATK interfaces for GTK widgets which are dynamically
  loadable at runtime by a GTK application. Once loaded, those parts of
@@ -272,7 +249,6 @@ Section: libdevel
 Depends: libatk1.0-dev,
          libgail-3-0t64 (= ${binary:Version}),
          pkgconf,
-         ${misc:Depends},
          libgtk-3-dev (= ${binary:Version})
 Suggests: libgail-3-doc
 Description: GNOME Accessibility Implementation Library -- development files
@@ -288,7 +264,6 @@ Build-Profiles: <!nodoc>
 Architecture: all
 Multi-Arch: foreign
 Section: doc
-Depends: ${misc:Depends}
 Description: documentation files of the Gail library
  Gail implements ATK interfaces for GTK widgets which are dynamically
  loadable at runtime by a GTK application. Once loaded, those parts of
